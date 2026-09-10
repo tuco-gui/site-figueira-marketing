@@ -10,8 +10,10 @@ const solutions = [
   { name: "Sites e Landing Pages", path: "/solucoes/paginas-conversao" },
   { name: "CRM e Processo Comercial", path: "/solucoes/crm" },
   { name: "Automações", path: "/solucoes/automacoes" },
+  { name: "Agentes de IA", path: "/solucoes/agentes-ia" },
   { name: "Dados e BI", path: "/solucoes/dados-bi" },
   { name: "Tecnologia e Sistemas", path: "/solucoes/tecnologia" },
+  { name: "Soluções sob medida", path: "/solucoes/solucoes-sob-medida" },
   { name: "Retenção e Sucesso", path: "/solucoes/retencao" },
 ];
 
@@ -61,6 +63,7 @@ export default function Footer() {
                 Empresa
               </h4>
               <ul className="space-y-3">
+                <li><Link to="/cases" className="text-sm text-white/60 hover:text-white transition-colors duration-200">Cases</Link></li>
                 <li><Link to="/sobre" className="text-sm text-white/60 hover:text-white transition-colors duration-200">Sobre nós</Link></li>
                 <li><Link to="/contato" className="text-sm text-white/60 hover:text-white transition-colors duration-200">Contato</Link></li>
                 <li><Link to="/recursos/growth-marketing" className="text-sm text-white/60 hover:text-white transition-colors duration-200">Growth Marketing</Link></li>

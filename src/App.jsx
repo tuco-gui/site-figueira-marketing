@@ -9,6 +9,7 @@ import SiteLayout from '@/components/layout/SiteLayout'
 
 import Home from '@/pages/Home'
 import Sobre from '@/pages/Sobre'
+import Cases from '@/pages/Cases'
 import Contato from '@/pages/Contato'
 import GrowthMarketing from '@/pages/GrowthMarketing'
 
@@ -19,8 +20,10 @@ import Criativos from '@/pages/solutions/Criativos'
 import PaginasConversao from '@/pages/solutions/PaginasConversao'
 import CRM from '@/pages/solutions/CRM'
 import Automacoes from '@/pages/solutions/Automacoes'
+import AgentesIA from '@/pages/solutions/AgentesIA'
 import DadosBI from '@/pages/solutions/DadosBI'
 import Tecnologia from '@/pages/solutions/Tecnologia'
+import SolucoesSobMedida from '@/pages/solutions/SolucoesSobMedida'
 import Retencao from '@/pages/solutions/Retencao'
 
 function App() {
@@ -32,6 +35,7 @@ function App() {
           <Route element={<SiteLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/sobre" element={<Sobre />} />
+            <Route path="/cases" element={<Cases />} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/recursos/growth-marketing" element={<GrowthMarketing />} />
             <Route path="/solucoes/estrategia-growth" element={<EstrategiaGrowth />} />
@@ -41,8 +45,10 @@ function App() {
             <Route path="/solucoes/paginas-conversao" element={<PaginasConversao />} />
             <Route path="/solucoes/crm" element={<CRM />} />
             <Route path="/solucoes/automacoes" element={<Automacoes />} />
+            <Route path="/solucoes/agentes-ia" element={<AgentesIA />} />
             <Route path="/solucoes/dados-bi" element={<DadosBI />} />
             <Route path="/solucoes/tecnologia" element={<Tecnologia />} />
+            <Route path="/solucoes/solucoes-sob-medida" element={<SolucoesSobMedida />} />
             <Route path="/solucoes/retencao" element={<Retencao />} />
           </Route>
           <Route path="*" element={<PageNotFound />} />
