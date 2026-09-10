@@ -1,20 +1,30 @@
-# Figueira Marketing — Site Institucional
+# Figueira Marketing
 
-Site institucional multi-página da Figueira Marketing — Propósito & Performance.
-
-## Estrutura
-
-- Home institucional
-- Páginas de soluções
-- Tecnologia Figueira: Harvest AI e Kesher
-- Método Figueira
-- Recursos e ferramentas
-- Página institucional e contato
+Site institucional da Figueira Marketing — Propósito e Performance.
 
 ## Stack
 
-HTML, CSS e JavaScript nativos, com motion, Canvas, SVG, parallax e microinterações.
+- React 18
+- Vite
+- Tailwind CSS
+- Framer Motion
+- React Router
 
-## Deploy
+## Desenvolvimento local
 
-Projeto preparado para deploy estático na Vercel. `vercel.json` habilita URLs limpas.
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+```
+
+O resultado de produção é gerado em `dist/`.
+
+## Migração
+
+Este projeto foi originalmente construído no Base44 e está sendo migrado para uma base independente no GitHub. O site público não depende de autenticação Base44.
