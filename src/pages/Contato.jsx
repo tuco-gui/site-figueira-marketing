@@ -9,15 +9,25 @@ import { ArrowRight, Mail, Phone, MapPin, CheckCircle } from "lucide-react";
 
 export default function Contato() {
   const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [revenue, setRevenue] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-      setSubmitted(true);
-    }, 1500);
+    const data = new FormData(e.currentTarget);
+    const lines = [
+      "Olá! Vim pelo site da Figueira Marketing.",
+      "",
+      `Nome: ${data.get("name") || ""}`,
+      `E-mail: ${data.get("email") || ""}`,
+      data.get("phone") ? `Telefone: ${data.get("phone")}` : null,
+      data.get("company") ? `Empresa: ${data.get("company")}` : null,
+      revenue ? `Faturamento: ${revenue}` : null,
+      data.get("message") ? `Desafio: ${data.get("message")}` : null,
+    ].filter(Boolean);
+
+    const url = `https://wa.me/5511951783049?text=${encodeURIComponent(lines.join("\n"))}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+    setSubmitted(true);
   };
 
   return (
@@ -85,9 +95,9 @@ export default function Contato() {
                   <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mb-6">
                     <CheckCircle className="w-8 h-8 text-accent" />
                   </div>
-                  <h3 className="font-display font-bold text-2xl mb-3">Recebemos sua mensagem</h3>
+                  <h3 className="font-display font-bold text-2xl mb-3">Continue pelo WhatsApp</h3>
                   <p className="text-muted-foreground">
-                    Nosso time entrará em contato em até 24 horas para agendar seu diagnóstico gratuito.
+                    Abrimos a conversa com os dados preenchidos. Revise a mensagem e toque em enviar para concluir o contato.
                   </p>
                 </div>
               ) : (
@@ -95,28 +105,28 @@ export default function Contato() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="name">Nome completo</Label>
-                      <Input id="name" placeholder="Seu nome" required />
+                      <Input id="name" name="name" placeholder="Seu nome" required />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="email">E-mail</Label>
-                      <Input id="email" type="email" placeholder="seu@email.com" required />
+                      <Input id="email" name="email" type="email" placeholder="seu@email.com" required />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
                       <Label htmlFor="phone">Telefone</Label>
-                      <Input id="phone" placeholder="(11) 99999-9999" />
+                      <Input id="phone" name="phone" placeholder="(11) 99999-9999" />
                     </div>
                     <div className="space-y-2">
                       <Label htmlFor="company">Empresa</Label>
-                      <Input id="company" placeholder="Nome da empresa" />
+                      <Input id="company" name="company" placeholder="Nome da empresa" />
                     </div>
                   </div>
 
                   <div className="space-y-2">
                     <Label htmlFor="revenue">Faturamento mensal (opcional)</Label>
-                    <Select>
+                    <Select onValueChange={setRevenue}>
                       <SelectTrigger>
                         <SelectValue placeholder="Selecione uma faixa" />
                       </SelectTrigger>
@@ -132,16 +142,15 @@ export default function Contato() {
 
                   <div className="space-y-2">
                     <Label htmlFor="message">Como podemos ajudar?</Label>
-                    <Textarea id="message" placeholder="Conte sobre seu desafio de crescimento" className="h-28" />
+                    <Textarea id="message" name="message" placeholder="Conte sobre seu desafio de crescimento" className="h-28" />
                   </div>
 
                   <Button
                     type="submit"
-                    disabled={loading}
                     className="w-full bg-accent text-accent-foreground hover:opacity-90 transition-opacity py-3 text-base font-semibold"
                   >
-                    {loading ? "Enviando…" : "Enviar"}
-                    {!loading && <ArrowRight className="w-4 h-4 ml-2" />}
+                    Continuar no WhatsApp
+                    <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
 
                   <p className="text-xs text-muted-foreground text-center">
