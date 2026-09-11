@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SolutionPageLayout from "@/components/solutions/SolutionPageLayout";
+import DigitalStack from "@/components/shared/DigitalStack";
 
 const features = [
   { title: "Agente BDR e qualificação", description: "Recebe o lead, entende contexto, faz perguntas de qualificação, registra informações e encaminha para o vendedor no momento certo. Pode operar em WhatsApp, site ou outros canais integrados." },
@@ -60,6 +61,7 @@ export default function AgentesIA() {
         </div>
       </section>
 
+      <DigitalStack variant="ai" />
       <section className="py-24 lg:py-32 bg-[#C4191F] text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-start">
