@@ -63,7 +63,7 @@ export default function SolutionPageLayout({
         style={{ scaleX: progress }}
       />
 
-      <section ref={heroRef} className="relative min-h-[82vh] pt-28 lg:pt-32 overflow-hidden border-b border-border">
+      <section ref={heroRef} className="relative min-h-[76vh] lg:min-h-[80vh] pt-24 lg:pt-28 overflow-hidden border-b border-border">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(17,17,17,.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(17,17,17,.045)_1px,transparent_1px)] bg-[size:42px_42px]" />
         <div className="absolute top-0 right-0 w-[38vw] h-full bg-[#111111] hidden lg:block" />
 
@@ -75,7 +75,7 @@ export default function SolutionPageLayout({
             Todas as soluções
           </Link>
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_.95fr] gap-12 lg:gap-16 items-center pb-20 lg:pb-28">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_.95fr] gap-10 lg:gap-14 items-center pb-14 lg:pb-20">
             <motion.div style={{ y: copyY }} className="relative z-10">
               <div className="flex items-center gap-3 mb-7">
                 <span className="h-px w-10 bg-[#C4191F]" />
@@ -84,7 +84,7 @@ export default function SolutionPageLayout({
                 </span>
               </div>
 
-              <h1 className="font-display font-black text-[clamp(3rem,7vw,6.8rem)] tracking-[-0.055em] leading-[0.87] max-w-4xl mb-8">
+              <h1 className="font-display font-black text-[clamp(2.45rem,4.9vw,4.95rem)] tracking-[-0.05em] leading-[0.9] max-w-4xl mb-7">
                 {title}{" "}
                 <span className="text-[#C4191F]">{titleAccent}</span>
               </h1>
@@ -113,7 +113,7 @@ export default function SolutionPageLayout({
                 <motion.img
                   src={heroImage}
                   alt={`${title} ${titleAccent}`}
-                  className="w-full h-[430px] lg:h-[560px] object-cover"
+                  className="w-full h-[360px] sm:h-[420px] lg:h-[500px] object-cover"
                   style={{ scale: imageScale }}
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-transparent" />
