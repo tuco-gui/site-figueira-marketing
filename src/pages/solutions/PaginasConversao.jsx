@@ -1,6 +1,7 @@
 import React from "react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SolutionPageLayout from "@/components/solutions/SolutionPageLayout";
+import DigitalStack from "@/components/shared/DigitalStack";
 
 const features=[
  {title:"Sites institucionais",description:"Estrutura completa para apresentar empresa, soluções, diferenciais, prova, processo e contato com uma experiência coerente em desktop e mobile."},
@@ -32,6 +33,7 @@ export default function PaginasConversao(){
     </div>
    </div>
   </section>
+  <DigitalStack variant="sites" />
   <section className="py-24 lg:py-32 bg-[#111111] text-white">
    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <AnimatedSection className="grid grid-cols-1 lg:grid-cols-2 gap-14"><h2 className="font-display font-black text-4xl sm:text-5xl tracking-[-.045em] leading-[.95]">A página não termina no botão.</h2><div className="space-y-5 text-lg text-white/60 leading-relaxed"><p>Depois do clique existe uma operação: o lead precisa chegar com origem, contexto e dados corretos; alguém ou algum agente precisa responder; o CRM precisa registrar; e o resultado precisa voltar para marketing.</p><p>Por isso sites e landing pages da Figueira podem ser conectados ao Harvest, CRM, WhatsApp, automações e analytics conforme a arquitetura do projeto.</p></div></AnimatedSection>
