@@ -53,7 +53,7 @@ const stackByVariant = {
     items: [
       { name: "Kommo", asset: "/partners/kommo-partner-light.png", assetDark: "/partners/kommo-partner-dark.png", note: "Parceiro Kommo: CRM conversacional, mensageria, pipeline e automações.", partner: true },
       { name: "Zoho", asset: "/partners/zoho-partner.png", note: "Parceria Zoho: CRM e ecossistema integrado para vendas, marketing, atendimento, operações e dados.", partner: true },
-      { name: "Pipefy", slug: "pipefy", note: "Processos e workflows", partner: true },
+      { name: "Pipefy", slug: "pipefy", note: "Processos e workflows" },
       { name: "HubSpot", slug: "hubspot", note: "Marketing, CRM e automação" },
       { name: "Pipedrive", slug: "pipedrive", note: "Pipeline e execução comercial" },
       { name: "Harvest", note: "Camada própria de operação e inteligência", owned: true },
