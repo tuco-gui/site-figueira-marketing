@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SolutionPageLayout from "@/components/solutions/SolutionPageLayout";
+import DigitalStack from "@/components/shared/DigitalStack";
 
 const features = [
   { title: "Estratégia por canal", description: "Escolhemos canal, campanha e objetivo a partir da oferta, público, ciclo de venda e capacidade comercial. Nem toda empresa precisa estar em toda plataforma." },
@@ -67,6 +68,7 @@ export default function MidiaPaga() {
         </div>
       </section>
 
+      <DigitalStack variant="media" dark />
       <section className="py-24 lg:py-32 bg-[#111111] text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="grid grid-cols-1 lg:grid-cols-[.78fr_1.22fr] gap-14 items-start">
