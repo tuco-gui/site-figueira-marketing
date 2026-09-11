@@ -129,7 +129,7 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
 
-              <Link to="/cases" className="relative px-4 py-2 text-sm font-medium text-foreground/70 hover:text-foreground group">
+              <Link to="/stack-digital" className="relative px-4 py-2 text-sm font-medium text-foreground/70 hover:text-foreground group">Stack Digital</Link>\n              <Link to="/cases" className="relative px-4 py-2 text-sm font-medium text-foreground/70 hover:text-foreground group">
                 Cases
                 <span className="absolute left-4 right-4 bottom-0 h-px bg-[#C4191F] scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
               </Link>
