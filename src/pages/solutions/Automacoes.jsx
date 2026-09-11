@@ -35,7 +35,7 @@ export default function Automacoes() {
       badge="Automações"
       title="Automação não é apertar play."
       titleAccent="É desenhar processo."
-      description="A Figueira constrói fluxos de marketing, vendas, atendimento e operação que conectam sistemas, reduzem trabalho manual e mantêm regras claras para o que deve — e para o que não deve — ser automatizado."
+      description="A Figueira constrói fluxos de marketing, vendas, atendimento e operação que conectam sistemas, reduzem trabalho manual e mantêm regras claras sobre o que deve ser automatizado e o que precisa continuar humano."
       heroImage="https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1400&h=1000&fit=crop&auto=format"
       features={features}
     >

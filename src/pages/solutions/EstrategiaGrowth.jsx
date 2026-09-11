@@ -5,7 +5,7 @@ import SolutionPageLayout from "@/components/solutions/SolutionPageLayout";
 const features = [
   { title: "Diagnóstico do negócio", description: "Entendemos oferta, público, canais, processo comercial, dados, operação e restrições antes de propor qualquer plano. Estratégia sem contexto vira apresentação." },
   { title: "Posicionamento e proposta de valor", description: "Revisamos como a empresa se apresenta, o que realmente diferencia a oferta, quais problemas resolve e quais argumentos ajudam o mercado a entender por que escolher você." },
-  { title: "ICP e segmentação", description: "Organizamos hipóteses de público ideal usando histórico, dados disponíveis, ticket, margem, ciclo de venda, recorrência e capacidade de entrega — não apenas uma persona inventada." },
+  { title: "ICP e segmentação", description: "Organizamos hipóteses de público ideal usando histórico, dados disponíveis, ticket, margem, ciclo de venda, recorrência e capacidade de entrega, não apenas uma persona inventada." },
   { title: "Funil e jornada", description: "Mapeamos da primeira atenção à venda e ao pós-venda, identificando onde oportunidade se perde e quais etapas precisam de canal, conteúdo, automação ou processo." },
   { title: "Prioridades e experimentos", description: "Transformamos problemas em hipóteses testáveis, ordenando iniciativas por impacto, esforço, velocidade de aprendizado e dependências reais." },
   { title: "Métricas e governança", description: "Definimos o que acompanhar, com que frequência, quem decide e quais sinais indicam manter, corrigir ou interromper uma iniciativa." },
@@ -17,7 +17,7 @@ const questions = [
   "Quem compra melhor, fecha mais rápido e permanece mais tempo?",
   "Em qual ponto da jornada estamos perdendo mais oportunidade?",
   "Quais dados são confiáveis o suficiente para decidir?",
-  "O que precisa acontecer nos próximos 30, 60 e 90 dias — e o que pode esperar?",
+  "O que precisa acontecer nos próximos 30, 60 e 90 dias? O que pode esperar?",
 ];
 
 export default function EstrategiaGrowth() {
@@ -26,7 +26,7 @@ export default function EstrategiaGrowth() {
       badge="Estratégia & Growth"
       title="Growth não é fazer mais."
       titleAccent="É escolher melhor."
-      description="A Figueira transforma um cenário cheio de ações, ferramentas e opiniões em prioridades claras. Estratégia serve para decidir onde concentrar energia, orçamento e capacidade operacional — e o que não fazer agora."
+      description="A Figueira transforma um cenário cheio de ações, ferramentas e opiniões em prioridades claras. Estratégia serve para decidir onde concentrar energia, orçamento e capacidade operacional, além do que não fazer agora."
       heroImage="https://images.unsplash.com/photo-1552664730-d307ca884978?w=1400&h=1000&fit=crop&auto=format"
       features={features}
     >

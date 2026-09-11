@@ -5,7 +5,7 @@ import SolutionPageLayout from "@/components/solutions/SolutionPageLayout";
 const features=[
  {title:"Planejamento operacional",description:"Transformamos estratégia em agenda de execução: prioridades, responsáveis, dependências, prazos, orçamento e critérios de acompanhamento."},
  {title:"Gestão de demandas",description:"Organizamos entrada, triagem e prioridade de demandas para reduzir urgência artificial, retrabalho e tarefas que ocupam o time sem mover resultado."},
- {title:"Rituais de decisão",description:"Estruturamos reuniões, pautas, indicadores e registros para que o time saia com decisão, responsável e próximo passo — não apenas com mais uma conversa."},
+ {title:"Rituais de decisão",description:"Estruturamos reuniões, pautas, indicadores e registros para que o time saia com decisão, responsável e próximo passo; não apenas com mais uma conversa."},
  {title:"Integração marketing e vendas",description:"Marketing não termina no lead. Aproximamos mídia, conteúdo, atendimento e comercial para que feedback de qualidade e conversão volte para quem decide aquisição."},
  {title:"Gestão por indicadores",description:"Escolhemos poucos indicadores úteis por frente e criamos uma rotina de leitura que separa sinal de ruído e ajuda a priorizar correções."},
  {title:"Modelo de operação",description:"Podemos atuar junto ao time interno, coordenar fornecedores, operar frentes específicas ou montar uma camada de gestão compartilhada conforme a realidade da empresa."},

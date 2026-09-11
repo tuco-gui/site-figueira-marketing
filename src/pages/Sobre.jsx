@@ -29,7 +29,7 @@ export default function Sobre() {
                 Construímos <span className="text-primary">sistemas de crescimento</span>, não campanhas
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
-                A Figueira conecta estratégia, marketing, tecnologia e processo comercial para resolver gargalos reais de crescimento — sem tratar cada entrega como uma peça isolada.
+                A Figueira conecta estratégia, marketing, tecnologia e processo comercial para resolver gargalos reais de crescimento. Cada entrega precisa fazer sentido dentro da operação como um todo.
               </p>
             </motion.div>
           </div>

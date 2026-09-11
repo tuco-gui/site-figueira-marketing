@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import GreenCTA from "@/components/ui/GreenCTA";
-import { TrendingUp, ArrowRight } from "lucide-react";
+
 
 const cases = [
   {
@@ -21,7 +21,7 @@ const cases = [
     description: "Estratégia de conteúdo + mídia paga + automações de nutrição que gerou pipeline previsível para o time comercial.",
     metrics: [
       { label: "Leads/mês", value: "500+" },
-      { label: "MQL → SQL", value: "32%" },
+      { label: "MQL para SQL", value: "32%" },
       { label: "Ciclo de vendas", value: "-40%" },
     ],
   },

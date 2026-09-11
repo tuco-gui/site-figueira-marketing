@@ -13,7 +13,7 @@ const differentials = [
   },
   {
     title: "Não tomamos decisões por opinião. Tomamos por dado.",
-    description: "Rastreamento correto, atribuição honesta e análise de verdade — não relatórios de vaidade para parecer que está funcionando."
+    description: "Rastreamento correto, atribuição honesta e análise de verdade. Relatório de vaidade não muda decisão."
   },
   {
     title: "Não buscamos apenas clique. Buscamos confiança.",
@@ -45,13 +45,13 @@ export default function WhyFigueira({ teamImage }) {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           <div>
             <AnimatedSection>
-              <div className="flex items-center gap-3 mb-6">
-                <span className="font-display font-black text-3xl text-[#C4191F] leading-none">09</span>
-                <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-xs font-mono font-medium text-white/60 uppercase tracking-wider">
+              <div className="flex items-center gap-3 mb-5">
+                <span className="font-display font-black text-3xl text-[#C4191F] leading-none">06</span>
+                <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 border border-white/10 text-[10px] font-mono font-medium text-white/60 uppercase tracking-[0.2em]">
                   Os Diferenciais
                 </span>
               </div>
-              <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight leading-[1.05] mb-10">
+              <h2 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl tracking-[-0.05em] leading-[0.94] mb-10">
                 Por que a Figueira é diferente de uma <span className="text-[#C4191F]">agência convencional</span>?
               </h2>
             </AnimatedSection>

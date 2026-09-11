@@ -5,10 +5,10 @@ import SolutionPageLayout from "@/components/solutions/SolutionPageLayout";
 
 const features = [
   { title: "Desenho do processo comercial", description: "Antes de escolher campos e telas, definimos etapas, critérios de passagem, responsáveis, tempos de resposta, motivos de perda, próximos passos e informações que realmente precisam estar no CRM." },
-  { title: "Implantação e reorganização", description: "Configuramos ou reconstruímos pipelines, campos, atividades, permissões, automações e integrações em CRMs existentes — ou desenhamos uma solução própria quando a ferramenta pronta força o processo a trabalhar errado." },
+  { title: "Implantação e reorganização", description: "Configuramos ou reconstruímos pipelines, campos, atividades, permissões, automações e integrações em CRMs existentes. Quando a ferramenta pronta força o processo a trabalhar errado, desenhamos uma solução própria." },
   { title: "WhatsApp e atendimento", description: "Centralizamos conversas e histórico quando a arquitetura permite, conectando WhatsApp ao cadastro do lead, à oportunidade e às tarefas do comercial para reduzir atendimento sem contexto." },
   { title: "Cadências e follow-up", description: "Estruturamos o que acontece depois do primeiro contato: quem fala, quando fala, por qual canal, com qual objetivo e o que interrompe ou muda a cadência." },
-  { title: "Gestão de pipeline", description: "Criamos visibilidade sobre volume, conversão entre etapas, tempo parado, origem, vendedor, ticket, previsão e gargalos para que o CRM ajude a decidir — não apenas a armazenar contatos." },
+  { title: "Gestão de pipeline", description: "Criamos visibilidade sobre volume, conversão entre etapas, tempo parado, origem, vendedor, ticket, previsão e gargalos para que o CRM ajude a decidir, não apenas a armazenar contatos." },
   { title: "Integração com marketing e dados", description: "Quando possível, conectamos campanha, formulário, página, origem e parâmetros de aquisição ao CRM para acompanhar a jornada até oportunidade, venda e retorno." },
 ];
 
@@ -36,7 +36,7 @@ export default function CRM() {
       badge="CRM & Processo Comercial"
       title="CRM não é banco de contatos."
       titleAccent="É processo vivo."
-      description="A Figueira estrutura tecnologia, rotina e informação para que cada lead tenha contexto, responsável, próximo passo e histórico. O objetivo é fazer o comercial enxergar o que precisa acontecer agora — e a gestão entender onde a venda está travando."
+      description="A Figueira estrutura tecnologia, rotina e informação para que cada lead tenha contexto, responsável, próximo passo e histórico. O objetivo é fazer o comercial enxergar o que precisa acontecer agora e a gestão entender onde a venda está travando."
       heroImage="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=1400&h=1000&fit=crop&auto=format"
       features={features}
     >

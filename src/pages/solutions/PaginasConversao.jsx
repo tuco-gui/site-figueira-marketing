@@ -26,7 +26,7 @@ export default function PaginasConversao(){
     <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-border border border-border">
      {[
       ["01","MENSAGEM","O visitante entende rapidamente o que você faz, para quem e por que isso importa."],
-      ["02","EXPERIÊNCIA","Layout, tipografia, movimento e interação criam uma linguagem própria — não cara de template."],
+      ["02","EXPERIÊNCIA","Layout, tipografia, movimento e interação criam uma linguagem própria, sem cara de template."],
       ["03","CONVERSÃO","Cada página conduz para um próximo passo mensurável: contato, WhatsApp, formulário, agendamento ou compra."],
      ].map(([n,t,d])=><div key={n} className="bg-white p-8 lg:p-10 min-h-[260px]"><span className="font-mono text-xs text-[#C4191F]">{n}</span><h3 className="font-display font-black text-2xl mt-12 mb-4">{t}</h3><p className="text-muted-foreground leading-relaxed">{d}</p></div>)}
     </div>

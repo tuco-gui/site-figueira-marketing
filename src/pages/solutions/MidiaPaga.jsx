@@ -8,7 +8,7 @@ const features = [
   { title: "Estrutura de campanhas", description: "Organizamos contas, campanhas, públicos, nomenclaturas, orçamento e testes para que a operação seja legível e permita aprender com o que acontece." },
   { title: "Tracking e origem", description: "Padronizamos UTMs, eventos e conversões e conectamos mídia a analytics e CRM quando possível para acompanhar não só o clique, mas a qualidade do lead e o avanço no funil." },
   { title: "Criativos conectados à mídia", description: "Mídia e criação trabalham juntas. Transformamos dúvidas, objeções, oferta e dados de performance em novas hipóteses de copy, vídeo, imagem e landing page." },
-  { title: "Otimização contínua", description: "Ajustamos distribuição de verba, segmentação, criativo, página e estratégia com base em sinais de custo, volume, qualidade e comportamento — não em uma única métrica isolada." },
+  { title: "Otimização contínua", description: "Ajustamos distribuição de verba, segmentação, criativo, página e estratégia com base em sinais de custo, volume, qualidade e comportamento, não em uma única métrica isolada." },
   { title: "Leitura de negócio", description: "ROAS, CPL e CPA são importantes, mas não suficientes. Sempre que os dados permitem, olhamos conversão comercial, ticket, margem, recorrência e retorno para decidir onde vale acelerar." },
 ];
 
@@ -97,7 +97,7 @@ export default function MidiaPaga() {
             </h2>
             <div className="text-lg text-muted-foreground leading-relaxed space-y-5">
               <p>Quando o CRM e o processo comercial estão conectados, a mídia deixa de otimizar apenas para volume e começa a receber sinais sobre qualidade, avanço no funil e venda.</p>
-              <p>É essa leitura que permite decidir se o problema está no canal, no criativo, na oferta, na página, na qualificação ou no atendimento — em vez de trocar campanha toda semana sem aprender nada.</p>
+              <p>É essa leitura que permite decidir se o problema está no canal, no criativo, na oferta, na página, na qualificação ou no atendimento. Assim evitamos trocar campanha toda semana sem aprender nada.</p>
             </div>
           </AnimatedSection>
         </div>

@@ -21,7 +21,7 @@ const Check = () => (
   <span className="text-accent font-bold text-lg">✓</span>
 );
 const Dash = () => (
-  <span className="text-muted-foreground/30 text-lg">—</span>
+  <span className="text-muted-foreground/30 text-lg">·</span>
 );
 
 export default function ComparisonTable() {
@@ -63,10 +63,10 @@ export default function ComparisonTable() {
           </div>
         </AnimatedSection>
 
-        <AnimatedSection delay={0.2} className="text-center mt-12">
+        <AnimatedSection delay={0.2} className="mt-12 flex flex-col items-start">
           <GreenCTA text="Quero entender qual modelo é o meu" size="lg" />
           <p className="mt-4 text-sm text-muted-foreground">
-            O diagnóstico gratuito responde essa pergunta.
+            A conversa inicial ajuda a definir o formato que faz sentido.
           </p>
         </AnimatedSection>
       </div>

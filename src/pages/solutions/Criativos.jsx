@@ -7,7 +7,7 @@ const features=[
  {title:"Copy para performance",description:"Desenvolvemos headlines, ofertas, ganchos, provas, objeções e CTAs alinhados ao estágio de consciência e ao contexto do canal."},
  {title:"Vídeo e motion",description:"Roteiros, estrutura de cenas, texto em tela, motion e variações para anúncios, reels e peças comerciais com ritmo pensado para retenção e clareza."},
  {title:"Peças estáticas",description:"Criativos para feed, stories, display e formatos de campanha com hierarquia visual, adaptação de formato e variações para teste."},
- {title:"Sistema de testes",description:"Organizamos hipóteses por ângulo, mensagem, formato e público para descobrir o que realmente está causando diferença — em vez de trocar tudo ao mesmo tempo."},
+ {title:"Sistema de testes",description:"Organizamos hipóteses por ângulo, mensagem, formato e público para descobrir o que realmente está causando diferença, em vez de trocar tudo ao mesmo tempo."},
  {title:"Leitura criativa",description:"Conectamos performance com mensagem: quais ganchos seguram atenção, quais argumentos geram resposta e quais sinais indicam fadiga ou necessidade de nova abordagem."},
 ];
 
@@ -18,7 +18,7 @@ export default function Criativos(){
   badge="Criativos"
   title="Criativo bom não é enfeite."
   titleAccent="É argumento visual."
-  description="A Figueira trata criação como parte da estratégia de aquisição e posicionamento. Conceito, copy, design, vídeo e motion precisam dizer algo específico para alguém específico — e gerar aprendizado para a próxima rodada."
+  description="A Figueira trata criação como parte da estratégia de aquisição e posicionamento. Conceito, copy, design, vídeo e motion precisam dizer algo específico para alguém específico e gerar aprendizado para a próxima rodada."
   heroImage="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=1400&h=1000&fit=crop&auto=format"
   features={features}
  >

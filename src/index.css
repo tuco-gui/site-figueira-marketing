@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Inter+Tight:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Montserrat:wght@500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -31,9 +31,9 @@
     --chart-4: 240 4% 46%;
     --chart-5: 0 0% 100%;
     --radius: 0.625rem;
-    --font-heading: 'Inter Tight', 'Inter', system-ui, sans-serif;
+    --font-heading: 'Montserrat', 'Inter', system-ui, sans-serif;
     --font-body: 'Inter', system-ui, sans-serif;
-    --font-display: 'Inter Tight', 'Inter', system-ui, sans-serif;
+    --font-display: 'Montserrat', 'Inter', system-ui, sans-serif;
     --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;

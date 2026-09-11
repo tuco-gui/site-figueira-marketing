@@ -31,25 +31,25 @@ export default function GrowthMarketing() {
           <AnimatedSection>
             <div className="prose-content space-y-6 text-muted-foreground leading-relaxed">
               <p>
-                Growth marketing é uma abordagem sistemática para crescimento que trata o marketing como um processo mensurável, iterativo e orientado por dados. Em vez de concentrar esforços apenas no topo do funil — atrair visitantes e gerar leads —, o growth marketing olha para a jornada completa do cliente, da primeira impressão à retenção e à expansão de receita. O objetivo não é gerar cliques, mas construir uma máquina de aquisição rentável e escalável.
+                Growth marketing é uma abordagem sistemática para crescimento que trata o marketing como um processo mensurável, iterativo e orientado por dados. Em vez de concentrar esforços apenas no topo do funil, atraindo visitantes e gerando leads, o growth marketing olha para a jornada completa do cliente, da primeira impressão à retenção e à expansão de receita. O objetivo não é gerar cliques, mas construir uma máquina de aquisição rentável e escalável.
               </p>
               <p>
-                A diferença entre marketing tradicional e growth marketing está na mentalidade. O marketing tradicional costuma trabalhar com campanhas isoladas, metas de awareness e relatórios retrospectivos. O growth marketing opera com experimentos contínuos, hipóteses testáveis e ciclos curtos de aprendizado. Cada cano, criativo e página é tratado como uma variável que pode ser otimizada com base em evidência, não em opinião.
+                A diferença entre marketing tradicional e growth marketing está na mentalidade. O marketing tradicional costuma trabalhar com campanhas isoladas, metas de awareness e relatórios retrospectivos. O growth marketing opera com experimentos contínuos, hipóteses testáveis e ciclos curtos de aprendizado. Cada canal, criativo e página é tratado como uma variável que pode ser otimizada com base em evidência, não em opinião.
               </p>
               <p>
                 Para aplicar growth marketing, uma empresa precisa de quatro elementos conectados. O primeiro é uma estratégia clara, que define segmento, proposta de valor e metas de receita. O segundo é uma operação de aquisição eficiente, com mídia paga, criativos e páginas de conversão alinhadas a um custo de aquisição sustentável. O terceiro é um processo comercial estruturado, com CRM, automações e acompanhamento de lead até o fechamento. O quarto é uma camada de dados e BI que transforma tudo isso em um dashboard de decisão, onde ROI, CAC e LTV orientam cada movimento.
               </p>
               <p>
-                Empresas que adotam growth marketing corretamente reduzem o custo de aquisição, aumentam a previsibilidade de receita e ganham capacidade de escalar sem perder rentabilidade. O Método Figueira, desenvolvido pela Figueira Marketing, organiza esses elementos em quatro camadas — raízes, tronco, galhos e frutos — que garantem que cada decisão de marketing esteja conectada a um resultado de negócio mensurável. O crescimento deixa de ser uma promessa e passa a ser um sistema.
+                Empresas que adotam growth marketing corretamente reduzem o custo de aquisição, aumentam a previsibilidade de receita e ganham capacidade de escalar sem perder rentabilidade. O Método Figueira organiza esses elementos a partir de uma Base Estratégica e quatro motores: Demanda, Engajamento, Receita e Expansão. Assim, cada decisão pode ser ligada a um objetivo de negócio e revisada com base no que realmente aconteceu. O crescimento deixa de ser uma promessa e passa a ser um sistema.
               </p>
               <p>
-                Se a sua empresa já tem um produto validado e faturamento recorrente, o próximo passo é diagnosticar onde está o maior gargalo — aquisição, conversão, retenção ou dados. Um diagnóstico bem-feito responde essa pergunta e define por onde começar a construir o sistema de crescimento.
+                Se a sua empresa já tem um produto validado e faturamento recorrente, o próximo passo é diagnosticar onde está o maior gargalo: aquisição, conversão, retenção, dados ou outra etapa da operação. Um diagnóstico bem-feito responde essa pergunta e define por onde começar a construir o sistema de crescimento.
               </p>
             </div>
           </AnimatedSection>
 
           <AnimatedSection delay={0.2} className="pt-8">
-            <GreenCTA text="Agendar diagnóstico gratuito" size="lg" />
+            <GreenCTA text="Quero identificar o gargalo" size="lg" />
           </AnimatedSection>
         </div>
       </section>

@@ -1,38 +1,35 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
 
-export default function GreenCTA({ 
-  text = "Fale com um especialista", 
+export default function GreenCTA({
+  text = "Falar com a Figueira",
   to = "/contato",
   size = "default",
-  className = "",
-  icon = true
+  className = ""
 }) {
   const sizes = {
-    sm: "px-5 py-2.5 text-sm",
-    default: "px-7 py-3.5 text-sm",
-    lg: "px-8 py-4 text-base",
+    sm: "px-5 py-2.5 text-sm min-h-[42px]",
+    default: "px-7 py-3.5 text-sm min-h-[48px]",
+    lg: "px-8 py-4 text-base min-h-[56px]",
   };
 
   return (
-    <Link to={to}>
-      <motion.div
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
+    <Link to={to} className="inline-flex">
+      <motion.span
+        whileHover={{ y: -2 }}
+        whileTap={{ scale: 0.985 }}
         className={`
-          inline-flex items-center gap-2 font-semibold rounded-lg
+          inline-flex items-center justify-center text-center font-semibold rounded-lg
           bg-accent text-accent-foreground
-          hover:shadow-lg hover:shadow-accent/20
-          transition-shadow duration-300
+          hover:shadow-lg hover:shadow-accent/20 hover:brightness-95
+          transition-all duration-300
           ${sizes[size]}
           ${className}
         `}
       >
         {text}
-        {icon && <ArrowRight className="w-4 h-4" />}
-      </motion.div>
+      </motion.span>
     </Link>
   );
 }

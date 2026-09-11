@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { ArrowRight, Mail, Phone, MapPin, CheckCircle } from "lucide-react";
+import { Mail, Phone, MapPin, CheckCircle } from "lucide-react";
 
 export default function Contato() {
   const [submitted, setSubmitted] = useState(false);
@@ -132,9 +132,9 @@ export default function Contato() {
                       </SelectTrigger>
                       <SelectContent>
                         <SelectItem value="ate-100k">Até R$100k</SelectItem>
-                        <SelectItem value="100-500k">R$100k — R$500k</SelectItem>
-                        <SelectItem value="500k-1m">R$500k — R$1M</SelectItem>
-                        <SelectItem value="1m-5m">R$1M — R$5M</SelectItem>
+                        <SelectItem value="100-500k">R$100k a R$500k</SelectItem>
+                        <SelectItem value="500k-1m">R$500k a R$1M</SelectItem>
+                        <SelectItem value="1m-5m">R$1M a R$5M</SelectItem>
                         <SelectItem value="5m+">Acima de R$5M</SelectItem>
                       </SelectContent>
                     </Select>
@@ -150,7 +150,6 @@ export default function Contato() {
                     className="w-full bg-accent text-accent-foreground hover:opacity-90 transition-opacity py-3 text-base font-semibold"
                   >
                     Continuar no WhatsApp
-                    <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
 
                   <p className="text-xs text-muted-foreground text-center">

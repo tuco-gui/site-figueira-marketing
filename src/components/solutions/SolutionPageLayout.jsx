@@ -4,14 +4,6 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import GreenCTA from "@/components/ui/GreenCTA";
 import { Link } from "react-router-dom";
 
-function ArrowBack() {
-  return (
-    <svg viewBox="0 0 24 24" className="w-4 h-4" aria-hidden="true">
-      <path d="M14.5 5.5 8 12l6.5 6.5M8.5 12H21" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-    </svg>
-  );
-}
-
 function SolutionGlyph({ index = 0 }) {
   const variants = [
     <path key="a" d="M5 19V8m0 0h7m-7 0 5-5m3 16V5m0 7h6" />,
@@ -80,7 +72,6 @@ export default function SolutionPageLayout({
             to="/#solucoes"
             className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-200 mb-10"
           >
-            <ArrowBack />
             Todas as soluções
           </Link>
 

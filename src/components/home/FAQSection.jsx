@@ -26,7 +26,7 @@ const faqs = [
   },
   {
     question: "Em quanto tempo um projeto começa a gerar resultado?",
-    answer: "Depende do ponto de partida, do tipo de projeto e do ciclo de venda da empresa. Antes de começar, alinhamos escopo, prioridades e como o resultado será acompanhado — sem prometer prazo ou número que não dependa apenas da nossa execução."
+    answer: "Depende do ponto de partida, do tipo de projeto e do ciclo de venda da empresa. Antes de começar, alinhamos escopo, prioridades e como o resultado será acompanhado; sem prometer prazo ou número que não dependa apenas da nossa execução."
   },
   {
     question: "Como vocês acompanham os resultados?",
@@ -46,11 +46,11 @@ export default function FAQSection() {
   return (
     <section className="py-20 lg:py-32">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-12">
-          <span className="inline-flex items-center px-3 py-1 rounded-full bg-secondary text-xs font-mono font-medium text-muted-foreground uppercase tracking-wider mb-4">
+        <AnimatedSection className="mb-12">
+          <span className="inline-flex items-center px-3 py-1 rounded-full bg-secondary text-[10px] font-mono font-medium text-muted-foreground uppercase tracking-[0.2em] border border-border mb-4">
             FAQ
           </span>
-          <h2 className="font-display font-black text-3xl sm:text-4xl tracking-tight mb-4">
+          <h2 className="font-display font-black text-4xl sm:text-5xl tracking-[-0.045em] leading-[0.95] mb-4">
             Perguntas <span className="text-primary">frequentes</span>
           </h2>
         </AnimatedSection>

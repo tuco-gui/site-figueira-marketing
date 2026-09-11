@@ -4,6 +4,30 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import GreenCTA from "@/components/ui/GreenCTA";
 import { Link } from "react-router-dom";
 
+function SolutionGlyph({ index }) {
+  const paths = [
+    <path key="1" d="M5 18V7h6v11m4 0V4h4v14M3 18h18" />,
+    <path key="2" d="M5 6h14M5 12h10M5 18h7" />,
+    <path key="3" d="M4 17 9 7l4 7 2-4 5 7M4 17h16" />,
+    <path key="4" d="M5 5h14v14H5zM8 9h8M8 13h5" />,
+    <path key="5" d="M4 5h16v14H4zM4 9h16M8 15h4" />,
+    <path key="6" d="M5 7h14M7 12h10M9 17h6" />,
+    <path key="7" d="M5 12h4l3-7 3 14 2-7h2" />,
+    <path key="8" d="M7 5h10v4H7zM5 13h14v6H5z" />,
+    <path key="9" d="M4 18V9m5 9V5m5 13v-7m5 7V3" />,
+    <path key="10" d="M5 5h5v5H5zm9 0h5v5h-5zM5 14h5v5H5zm9 0h5v5h-5z" />,
+    <path key="11" d="M5 18V6h14v12M8 9h8M8 13h5" />,
+    <path key="12" d="M6 18c0-5 2-9 6-12 4 3 6 7 6 12M9 13h6" />,
+  ];
+  return (
+    <svg viewBox="0 0 24 24" className="w-5 h-5" aria-hidden="true">
+      <g fill="none" stroke="currentColor" strokeWidth="1.45" strokeLinecap="round" strokeLinejoin="round">
+        {paths[index % paths.length]}
+      </g>
+    </svg>
+  );
+}
+
 const tabs = [
   {
     number: "01",
@@ -18,7 +42,7 @@ const tabs = [
     number: "02",
     title: "Gestão de Marketing",
     tagline: "Planejamento, prioridade e execução sem ruído.",
-    description: "Organizamos a operação para que estratégia não morra na reunião. Planejamento, responsáveis, cadência, pauta, prioridade, acompanhamento e tomada de decisão passam a funcionar como um sistema de gestão — interno, compartilhado ou junto ao time da Figueira.",
+    description: "Organizamos a operação para que estratégia não morra na reunião. Planejamento, responsáveis, cadência, pauta, prioridade, acompanhamento e tomada de decisão passam a funcionar como um sistema de gestão, interno, compartilhado ou junto ao time da Figueira.",
     deliverables: ["Planejamento de marketing", "Rituais e cadências", "Gestão de demandas", "Definição de responsáveis", "Acompanhamento de execução", "Integração com vendas e dados"],
     path: "/solucoes/gestao",
     image: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=900&h=600&fit=crop&auto=format",
@@ -54,7 +78,7 @@ const tabs = [
     number: "06",
     title: "CRM e Processo Comercial",
     tagline: "Lead sem processo vira oportunidade perdida.",
-    description: "Estruturamos CRM, pipeline, etapas, responsáveis, histórico, cadências, follow-up, integrações e indicadores para transformar atendimento e vendas em um processo claro — em ferramentas de mercado ou em soluções sob medida.",
+    description: "Estruturamos CRM, pipeline, etapas, responsáveis, histórico, cadências, follow-up, integrações e indicadores para transformar atendimento e vendas em um processo claro, usando ferramentas de mercado ou soluções sob medida.",
     deliverables: ["Implantação e reorganização de CRM", "Pipeline e etapas", "Cadências de follow-up", "Integração WhatsApp", "Automação comercial", "Indicadores de vendas"],
     path: "/solucoes/crm",
     image: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=900&h=600&fit=crop&auto=format",
@@ -122,19 +146,21 @@ export default function SolutionsGrid() {
   return (
     <section id="solucoes" className="py-20 lg:py-32 bg-[#111111] text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <AnimatedSection className="text-center mb-12">
-          <div className="flex items-center justify-center gap-3 mb-4">
+        <AnimatedSection className="mb-14 lg:mb-16">
+          <div className="grid grid-cols-[auto_1fr] gap-3 items-center mb-5">
             <span className="font-display font-black text-3xl text-[#C4191F] leading-none">02</span>
-            <span className="inline-flex items-center px-3 py-1 rounded-full bg-white/10 text-xs font-mono font-medium text-white/60 uppercase tracking-wider">
+            <span className="justify-self-start inline-flex items-center px-3 py-1 rounded-full bg-white/10 border border-white/10 text-[10px] font-mono font-medium text-white/60 uppercase tracking-[0.2em]">
               Soluções
             </span>
           </div>
-          <h2 className="font-display font-black text-3xl sm:text-4xl lg:text-5xl tracking-tight mb-4">
-            Estratégia, marketing e tecnologia conectados à <span className="text-[#C4191F]">sua operação</span>
-          </h2>
-          <p className="text-white/60 text-lg max-w-2xl mx-auto">
-            Podemos resolver uma necessidade específica ou conectar diferentes frentes. O ponto de partida é entender o que está travando o resultado agora.
-          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_.85fr] gap-8 lg:gap-16 items-end">
+            <h2 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl tracking-[-0.05em] leading-[0.94]">
+              Uma empresa não cresce por departamento. <span className="text-[#C4191F]">Cresce pela conexão.</span>
+            </h2>
+            <p className="text-white/55 text-lg leading-relaxed max-w-xl lg:justify-self-end">
+              Demanda, experiência, venda, automação, dados e tecnologia participam da mesma jornada. Entre por uma necessidade específica e aprofunde a solução completa.
+            </p>
+          </div>
         </AnimatedSection>
 
         {/* Tabs row */}
@@ -148,14 +174,15 @@ export default function SolutionsGrid() {
                 key={i}
                 onClick={() => setActiveTab(i)}
                 className={`
-                  flex-shrink-0 px-4 lg:px-5 py-3 text-sm font-medium 
-                  border-b-2 transition-all duration-200 whitespace-nowrap
+                  flex-shrink-0 px-4 lg:px-5 py-3 text-sm font-medium
+                  border-b-2 transition-all duration-200 whitespace-nowrap inline-flex items-center gap-2
                   ${activeTab === i
                     ? 'border-[#C4191F] text-[#C4191F] bg-[#C4191F]/10'
                     : 'border-transparent text-white/50 hover:text-white/80 hover:border-white/20'
                   }
                 `}
               >
+                <span className={activeTab === i ? "text-[#C4191F]" : "text-white/35"}><SolutionGlyph index={i} /></span>
                 {tab.title}
               </button>
             ))}
@@ -175,8 +202,8 @@ export default function SolutionsGrid() {
             {/* Left - content */}
             <div>
               <div className="flex items-start gap-4 mb-6">
-                <div className="w-14 h-14 border-2 border-[#C4191F] rounded-xl flex items-center justify-center flex-shrink-0">
-                  <span className="font-display font-black text-2xl text-[#C4191F]">{active.number}</span>
+                <div className="w-14 h-14 border border-white/15 rounded-full flex items-center justify-center flex-shrink-0 text-[#4BDF6A]">
+                  <SolutionGlyph index={activeTab} />
                 </div>
                 <div>
                   <h3 className="font-display font-black text-2xl lg:text-3xl tracking-tight leading-tight text-white mb-3">
@@ -201,9 +228,9 @@ export default function SolutionsGrid() {
               </ul>
               <Link
                 to={active.path}
-                className="inline-flex items-center gap-2 px-6 py-3 bg-[#C4191F] text-white font-semibold text-sm rounded-lg hover:bg-[#a3141a] transition-colors duration-200"
+                className="inline-flex min-h-[48px] items-center justify-center text-center px-7 py-3.5 bg-accent text-white font-semibold text-sm rounded-lg hover:brightness-95 hover:shadow-lg hover:shadow-accent/20 transition-all duration-200"
               >
-                Ver solução completa →
+                Ver solução completa
               </Link>
             </div>
 
