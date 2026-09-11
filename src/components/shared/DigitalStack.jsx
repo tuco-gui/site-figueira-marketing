@@ -6,15 +6,15 @@ const stackByVariant = {
   home: {
     eyebrow: "Stack digital",
     title: "As melhores ferramentas funcionam melhor quando trabalham juntas.",
-    description: "A Figueira combina plataformas líderes de mercado, parcerias estratégicas e tecnologia própria para montar a stack que o processo realmente precisa.",
+    description: "A Figueira combina parcerias oficiais, plataformas líderes e tecnologia própria. Não é uma vitrine de logos: cada ferramenta entra onde faz sentido para mídia, hospedagem, CRM, automação, atendimento e dados.",
     items: [
-      { name: "Google Partner", slug: "google", note: "Mídia, mensuração e ecossistema Google", partner: true },
-      { name: "Meta Partner", slug: "meta", note: "Mídia e ecossistema Meta", partner: true },
-      { name: "Hostinger Partner", slug: "hostinger", note: "VPS, hospedagem, domínio e e-mail", partner: true },
-      { name: "TikTok Partner", slug: "tiktok", note: "Mídia e descoberta", partner: true },
-      { name: "Mercado Livre Partner", slug: "mercadolibre", note: "Ecossistema de marketplace", partner: true },
-      { name: "Kommo", slug: "kommo", note: "CRM conversacional" },
-      { name: "Zoho", slug: "zoho", note: "CRM e suíte de negócios" },
+      { name: "Google Partner", asset: "/partners/google-partner.png", note: "Google Partner para mídia, mensuração e ecossistema Google.", partner: true },
+      { name: "Meta Partner", asset: "/partners/meta-partner.png", note: "Parceria Meta para Facebook, Instagram, mídia e mensuração.", partner: true },
+      { name: "Hostinger Partner", asset: "/partners/hostinger-partner-light.png", assetDark: "/partners/hostinger-partner-dark.png", note: "Parceria Hostinger para VPS, hospedagem, domínio e e-mail.", partner: true },
+      { name: "TikTok Partner", asset: "/partners/tiktok-partner.png", note: "Parceria no ecossistema TikTok para mídia e descoberta.", partner: true },
+      { name: "Mercado Livre Partner", asset: "/partners/mercadolivre-partner.jpg", note: "Parceria no ecossistema Mercado Livre e marketplace.", partner: true },
+      { name: "Kommo", asset: "/partners/kommo-partner-light.png", assetDark: "/partners/kommo-partner-dark.png", note: "Parceiro Kommo para CRM conversacional, pipeline, mensageria e automações.", partner: true },
+      { name: "Zoho", asset: "/partners/zoho-partner.png", note: "Parceria Zoho para CRM e ecossistema integrado de vendas, marketing, atendimento, operações e dados.", partner: true },
       { name: "Pipefy", slug: "pipefy", note: "Processos e workflows" },
       { name: "Harvest", note: "Tecnologia própria Figueira", owned: true },
       { name: "Kesher", note: "Tecnologia própria Figueira", owned: true },
@@ -25,9 +25,9 @@ const stackByVariant = {
     title: "O site não termina no layout.",
     description: "Hospedagem, domínio, e-mail, analytics, CRM e automação fazem parte da entrega quando o projeto exige uma operação completa.",
     items: [
-      { name: "Hostinger", slug: "hostinger", note: "Parceira para VPS, hospedagem e e-mail", partner: true },
-      { name: "Google", slug: "google", note: "Analytics, Search e mensuração", partner: true },
-      { name: "Meta", slug: "meta", note: "Pixels e mensuração de campanhas", partner: true },
+      { name: "Hostinger", asset: "/partners/hostinger-partner-light.png", assetDark: "/partners/hostinger-partner-dark.png", note: "Parceria Hostinger para VPS, hospedagem, domínio e e-mail profissional.", partner: true },
+      { name: "Google", asset: "/partners/google-partner.png", note: "Google Partner: Analytics, Search, mensuração e ecossistema Google.", partner: true },
+      { name: "Meta", asset: "/partners/meta-partner.png", note: "Parceria Meta para pixels, eventos e mensuração de campanhas.", partner: true },
       { name: "Vercel", slug: "vercel", note: "Deploy e entrega web" },
       { name: "Harvest", note: "Entrada de leads e operação comercial", owned: true },
       { name: "WhatsApp", slug: "whatsapp", note: "Conversão e atendimento" },
@@ -38,10 +38,10 @@ const stackByVariant = {
     title: "Operamos canais diferentes sem perder uma única leitura de negócio.",
     description: "Parcerias, plataformas e mensuração entram no mesmo desenho para conectar investimento, campanha, lead e resultado.",
     items: [
-      { name: "Google Partner", slug: "googleads", note: "Google Ads e ecossistema Google", partner: true },
-      { name: "Meta", slug: "meta", note: "Facebook e Instagram Ads", partner: true },
-      { name: "TikTok", slug: "tiktok", note: "TikTok Ads", partner: true },
-      { name: "Mercado Livre", slug: "mercadolibre", note: "Marketplace e mídia", partner: true },
+      { name: "Google Partner", asset: "/partners/google-partner.png", note: "Google Ads, YouTube, Search e mensuração dentro do ecossistema Google.", partner: true },
+      { name: "Meta", asset: "/partners/meta-partner.png", note: "Parceria Meta para Facebook e Instagram Ads.", partner: true },
+      { name: "TikTok", asset: "/partners/tiktok-partner.png", note: "Parceria no ecossistema TikTok para mídia e descoberta.", partner: true },
+      { name: "Mercado Livre", asset: "/partners/mercadolivre-partner.jpg", note: "Parceria no ecossistema Mercado Livre para marketplace e mídia.", partner: true },
       { name: "YouTube", slug: "youtube", note: "Vídeo e remarketing" },
       { name: "LinkedIn", slug: "linkedin", note: "Aquisição B2B" },
     ],
@@ -51,8 +51,8 @@ const stackByVariant = {
     title: "Escolhemos a ferramenta pelo processo, não o processo pela ferramenta.",
     description: "Implantamos e integramos plataformas de CRM, atendimento e workflow. Quando nenhuma resolve direito, construímos a camada que falta.",
     items: [
-      { name: "Kommo", slug: "kommo", note: "CRM conversacional e mensageria", partner: true },
-      { name: "Zoho", slug: "zoho", note: "CRM e suíte de negócios", partner: true },
+      { name: "Kommo", asset: "/partners/kommo-partner-light.png", assetDark: "/partners/kommo-partner-dark.png", note: "Parceiro Kommo: CRM conversacional, mensageria, pipeline e automações.", partner: true },
+      { name: "Zoho", asset: "/partners/zoho-partner.png", note: "Parceria Zoho: CRM e ecossistema integrado para vendas, marketing, atendimento, operações e dados.", partner: true },
       { name: "Pipefy", slug: "pipefy", note: "Processos e workflows", partner: true },
       { name: "HubSpot", slug: "hubspot", note: "Marketing, CRM e automação" },
       { name: "Pipedrive", slug: "pipedrive", note: "Pipeline e execução comercial" },
@@ -67,7 +67,7 @@ const stackByVariant = {
       { name: "n8n", slug: "n8n", note: "Orquestração e automação" },
       { name: "WhatsApp", slug: "whatsapp", note: "Atendimento, cobrança e follow-up" },
       { name: "Google Workspace", slug: "google", note: "E-mail, Drive, Sheets e calendário" },
-      { name: "Hostinger", slug: "hostinger", note: "Infraestrutura e VPS", partner: true },
+      { name: "Hostinger", asset: "/partners/hostinger-partner-light.png", assetDark: "/partners/hostinger-partner-dark.png", note: "Parceria Hostinger para infraestrutura, VPS e hospedagem.", partner: true },
       { name: "Harvest", note: "Operação comercial e inteligência", owned: true },
       { name: "Kesher", note: "Tecnologia própria Figueira", owned: true },
     ],
@@ -81,7 +81,7 @@ const stackByVariant = {
       { name: "Kesher", note: "Tecnologia própria Figueira", owned: true },
       { name: "WhatsApp", slug: "whatsapp", note: "Canal de conversa" },
       { name: "n8n", slug: "n8n", note: "Orquestração de ferramentas" },
-      { name: "Kommo", slug: "kommo", note: "CRM conversacional" },
+      { name: "Kommo", asset: "/partners/kommo-partner-light.png", assetDark: "/partners/kommo-partner-dark.png", note: "Parceiro Kommo para CRM conversacional, pipeline, mensageria e automações.", partner: true },
       { name: "Google Workspace", slug: "google", note: "Agenda, documentos e e-mail" },
     ],
   },
@@ -90,7 +90,7 @@ const stackByVariant = {
     title: "Construímos em cima de uma stack que pode evoluir.",
     description: "Infraestrutura, deploy, dados, automação e tecnologia própria entram conforme o produto e a operação pedem.",
     items: [
-      { name: "Hostinger", slug: "hostinger", note: "VPS, hospedagem, domínio e e-mail", partner: true },
+      { name: "Hostinger", asset: "/partners/hostinger-partner-light.png", assetDark: "/partners/hostinger-partner-dark.png", note: "Parceria Hostinger para VPS, hospedagem, domínio e e-mail.", partner: true },
       { name: "Vercel", slug: "vercel", note: "Deploy e entrega web" },
       { name: "Supabase", slug: "supabase", note: "Dados, autenticação e backend" },
       { name: "n8n", slug: "n8n", note: "Automação e integrações" },
@@ -102,6 +102,18 @@ const stackByVariant = {
 
 function LogoMark({ item, dark }) {
   const [failed, setFailed] = useState(false);
+
+  if (item.asset && !failed) {
+    return (
+      <img
+        src={dark && item.assetDark ? item.assetDark : item.asset}
+        alt={item.name}
+        className="h-10 max-w-[150px] object-contain object-left"
+        loading="lazy"
+        onError={() => setFailed(true)}
+      />
+    );
+  }
 
   if (item.owned || failed || !item.slug) {
     return (
