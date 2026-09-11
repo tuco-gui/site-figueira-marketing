@@ -13,7 +13,6 @@ import Cases from '@/pages/Cases'
 import Contato from '@/pages/Contato'
 import GrowthMarketing from '@/pages/GrowthMarketing'
 import StackDigital from '@/pages/StackDigital'
-import StackDigital from '@/pages/StackDigital'
 
 import EstrategiaGrowth from '@/pages/solutions/EstrategiaGrowth'
 import Gestao from '@/pages/solutions/Gestao'
@@ -40,8 +39,6 @@ function App() {
             <Route path="/cases" element={<Cases />} />
             <Route path="/contato" element={<Contato />} />
             <Route path="/recursos/growth-marketing" element={<GrowthMarketing />} />
-            <Route path="/stack-digital" element={<StackDigital />} />
-            <Route path="/stack-digital/:partner" element={<StackDigital />} />
             <Route path="/stack-digital" element={<StackDigital />} />
             <Route path="/stack-digital/:partner" element={<StackDigital />} />
             <Route path="/solucoes/estrategia-growth" element={<EstrategiaGrowth />} />
