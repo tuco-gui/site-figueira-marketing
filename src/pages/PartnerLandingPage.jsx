@@ -484,6 +484,10 @@ const pages = {
           ["VPS e aplicações", "Arquitetura para serviços contínuos, Docker, n8n, bancos, APIs e agentes."],
           ["Link e condição de parceiro", "A contratação pode ser direcionada pelo canal de parceiro da Figueira, conforme oferta disponível no momento."],
         ],
+        externalCta: {
+          label: "Ver Hostinger pelo link da Figueira",
+          href: "https://www.hostinger.com/br?REFERRALCODE=VSRSYLVIOCZ4",
+        },
       },
       {
         id: "experiencia",
@@ -601,6 +605,19 @@ function Section({ section }) {
                 <img src={src} alt={alt} className="w-full h-auto rounded-[14px] object-contain" loading="lazy" />
               </div>
             ))}
+          </div>
+        )}
+
+        {section.externalCta && (
+          <div className="mt-10">
+            <a
+              href={section.externalCta.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[52px] items-center justify-center px-7 py-3.5 rounded-lg bg-accent text-white font-semibold text-sm hover:brightness-95 hover:shadow-lg hover:shadow-accent/20 transition-all"
+            >
+              {section.externalCta.label}
+            </a>
           </div>
         )}
 
