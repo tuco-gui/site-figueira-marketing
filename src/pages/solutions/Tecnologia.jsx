@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SolutionPageLayout from "@/components/solutions/SolutionPageLayout";
+import DigitalStack from "@/components/shared/DigitalStack";
 
 const features = [
   { title: "Arquitetura e integrações", description: "Desenhamos como sistemas, APIs, bancos, automações e canais precisam conversar. O foco é reduzir dependência de trabalho manual e evitar que dados importantes fiquem presos em ferramentas isoladas." },
@@ -88,6 +89,7 @@ export default function Tecnologia() {
         </div>
       </section>
 
+      <DigitalStack variant="technology" />
       <section className="py-20 lg:py-24 bg-[#F6F4F1]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-10">
