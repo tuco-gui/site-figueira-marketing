@@ -16,7 +16,7 @@ export default function GrowthMarketing() {
             <span className="inline-flex items-center px-3 py-1 rounded-full bg-secondary text-xs font-mono font-medium text-muted-foreground uppercase tracking-wider mb-6">
               Recurso
             </span>
-            <h1 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[0.95] mb-6">
+            <h1 className="font-display font-black text-4xl sm:text-5xl lg:text-[3.35rem] tracking-[-0.04em] leading-[0.96] mb-6">
               O que é <span className="text-primary">Growth Marketing</span> e como aplicar na sua empresa
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed mb-10">
