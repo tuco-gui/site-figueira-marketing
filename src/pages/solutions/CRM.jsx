@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SolutionPageLayout from "@/components/solutions/SolutionPageLayout";
+import DigitalStack from "@/components/shared/DigitalStack";
 
 const features = [
   { title: "Desenho do processo comercial", description: "Antes de escolher campos e telas, definimos etapas, critérios de passagem, responsáveis, tempos de resposta, motivos de perda, próximos passos e informações que realmente precisam estar no CRM." },
@@ -95,6 +96,7 @@ export default function CRM() {
         </div>
       </section>
 
+      <DigitalStack variant="crm" />
       <section className="py-24 lg:py-28 bg-[#F6F4F1]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <AnimatedSection className="grid grid-cols-1 lg:grid-cols-2 gap-14">
