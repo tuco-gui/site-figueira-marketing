@@ -2,6 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import SolutionPageLayout from "@/components/solutions/SolutionPageLayout";
+import DigitalStack from "@/components/shared/DigitalStack";
 
 const features = [
   { title: "Mapeamento do processo", description: "Antes de abrir o n8n, entendemos entrada, regra, decisão, exceção, responsável e resultado esperado. Automação boa começa no processo, não na ferramenta." },
@@ -91,18 +92,7 @@ export default function Automacoes() {
         </div>
       </section>
 
-      <section className="py-20 bg-[#C4191F] text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <AnimatedSection>
-            <div className="font-mono text-[10px] tracking-[0.22em] uppercase text-white/55 mb-6">Stack conectado</div>
-            <div className="flex flex-wrap gap-x-8 gap-y-4 font-display font-black text-2xl sm:text-3xl lg:text-4xl">
-              {["n8n", "WhatsApp", "CRM", "E-mail", "APIs", "Bancos", "Planilhas", "Harvest"].map((item) => (
-                <span key={item} className="border-b border-white/35 pb-1">{item}</span>
-              ))}
-            </div>
-          </AnimatedSection>
-        </div>
-      </section>
+      <DigitalStack variant="automation" dark />
     </SolutionPageLayout>
   );
 }
