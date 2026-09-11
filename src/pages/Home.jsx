@@ -9,6 +9,7 @@ import WhyFigueira from "@/components/home/WhyFigueira";
 import ProcessSection from "@/components/home/ProcessSection";
 import FAQSection from "@/components/home/FAQSection";
 import CTASection from "@/components/home/CTASection";
+import DigitalStack from "@/components/shared/DigitalStack";
 
 const IMAGES = {
   hero: "https://media.base44.com/images/public/6a35d36fce43a708f39a8f2e/23fdd92b2_generated_7fd24c53.png",
@@ -21,6 +22,7 @@ export default function Home() {
       <HeroSection heroImage={IMAGES.hero} />
       <ProblemSection />
       <SolutionsGrid />
+      <DigitalStack variant="home" />
       <DeliveryModels />
       <ComparisonTable />
       <ShowcaseSection />
