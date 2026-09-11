@@ -26,7 +26,7 @@ export default function HeroSection({ heroImage }) {
   const copyY = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 34]);
 
   return (
-    <section ref={ref} className="relative min-h-[92vh] flex items-center overflow-hidden pt-28 lg:pt-32 pb-16 lg:pb-20 bg-[#F7F6F2]">
+    <section ref={ref} className="relative min-h-[84vh] lg:min-h-[88vh] flex items-center overflow-hidden pt-24 lg:pt-28 pb-12 lg:pb-16 bg-[#F7F6F2]">
       <div className="absolute inset-0 opacity-[0.055]" style={{
         backgroundImage: "linear-gradient(rgba(17,17,17,.16) 1px,transparent 1px),linear-gradient(90deg,rgba(17,17,17,.16) 1px,transparent 1px)",
         backgroundSize: "52px 52px"
@@ -50,7 +50,7 @@ export default function HeroSection({ heroImage }) {
               initial={{ opacity: 0, y: 28 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
-              className="font-display font-black text-[clamp(3.2rem,7vw,6.8rem)] tracking-[-0.065em] leading-[0.86] max-w-4xl mb-8"
+              className="font-display font-black text-[clamp(2.65rem,5.25vw,5.35rem)] tracking-[-0.055em] leading-[0.9] max-w-4xl mb-7"
             >
               O crescimento não depende de fazer tudo.
               <span className="block text-[#C4191F] mt-2">Depende de agir no gargalo certo.</span>
