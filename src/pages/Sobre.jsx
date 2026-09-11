@@ -25,7 +25,7 @@ export default function Sobre() {
               <span className="inline-flex items-center px-3 py-1 rounded-full bg-secondary text-xs font-mono font-medium text-muted-foreground uppercase tracking-wider mb-6">
                 Sobre nós
               </span>
-              <h1 className="font-display font-black text-4xl sm:text-5xl lg:text-6xl tracking-tight leading-[0.95] mb-6">
+              <h1 className="font-display font-black text-4xl sm:text-5xl lg:text-[3.35rem] tracking-[-0.04em] leading-[0.96] mb-6">
                 Construímos <span className="text-primary">sistemas de crescimento</span>, não campanhas
               </h1>
               <p className="text-lg text-muted-foreground leading-relaxed">
