@@ -129,7 +129,8 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
 
-              <Link to="/stack-digital" className="relative px-4 py-2 text-sm font-medium text-foreground/70 hover:text-foreground group">Stack Digital</Link>\n              <Link to="/cases" className="relative px-4 py-2 text-sm font-medium text-foreground/70 hover:text-foreground group">
+              <Link to="/stack-digital" className="relative px-4 py-2 text-sm font-medium text-foreground/70 hover:text-foreground group">Stack Digital</Link>
+              <Link to="/cases" className="relative px-4 py-2 text-sm font-medium text-foreground/70 hover:text-foreground group">
                 Cases
                 <span className="absolute left-4 right-4 bottom-0 h-px bg-[#C4191F] scale-x-0 group-hover:scale-x-100 transition-transform origin-left" />
               </Link>
@@ -163,7 +164,8 @@ export default function Navbar() {
           >
             <div className="px-6 pb-12">
               <Link to="/" className="block py-4 text-2xl font-display font-black border-b border-white/10">Home</Link>
-              <Link to="/stack-digital" className="block py-4 text-2xl font-display font-black border-b border-white/10">Stack Digital</Link>\n              <Link to="/cases" className="block py-4 text-2xl font-display font-black border-b border-white/10">Cases</Link>
+              <Link to="/stack-digital" className="block py-4 text-2xl font-display font-black border-b border-white/10">Stack Digital</Link>
+              <Link to="/cases" className="block py-4 text-2xl font-display font-black border-b border-white/10">Cases</Link>
               <Link to="/sobre" className="block py-4 text-2xl font-display font-black border-b border-white/10">Sobre</Link>
               <div className="pt-8">
                 <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#C4191F] mb-5">Soluções</div>
