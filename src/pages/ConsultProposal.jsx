@@ -1,82 +1,57 @@
 import React, { useEffect } from "react";
 import {
-  ArrowRight,
   CalendarDays,
-  FileText,
-  Layers3,
+  CheckCircle2,
+  ExternalLink,
   MapPinned,
   MessageCircle,
   Search,
   ShieldCheck,
   Smartphone,
   Sparkles,
-  Target,
-  Users,
 } from "lucide-react";
 
 const CALENDAR_URL = "https://calendar.app.google/AAm3kdGvNd2s5QWv7";
+const CONSULT_URL = "https://www.consult.med.br/";
+const BEHANCE_URL = "https://www.behance.net/figueira_marketing";
 const CONSULT_LOGO =
   "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/68d54790-6c3c-48c4-b8cb-7143ac1e0fec.png";
 
-const homeSections = [
-  "Hero + Menu",
-  "Nossas Áreas de Atuação",
-  "Diferenciais",
-  "Onde Atuamos",
-  "Quem Atendemos",
-  "Conteúdo Técnico e Atualizações",
-  "Contato",
+const cases = [
+  {
+    title: "Site — Remax Japi",
+    image:
+      "https://mir-s3-cdn-cf.behance.net/projects/404/d1d56e234046379.Y3JvcCwxNDg2LDExNjIsMCwyNjE4.png",
+    url: "https://www.behance.net/gallery/234046379/Site-Remax-Japi",
+  },
+  {
+    title: "Landing Page — Canaã Telecom",
+    image:
+      "https://mir-s3-cdn-cf.behance.net/projects/404/679f29234038137.Y3JvcCwxOTIwLDE1MDEsMCwxMTM1.png",
+    url: "https://www.behance.net/gallery/234038137/Landing-Page-Canaa-Telecom-Promocoes",
+  },
+  {
+    title: "Landing Page — Grupo Lybs",
+    image:
+      "https://mir-s3-cdn-cf.behance.net/projects/404/d41a0d234046505.Y3JvcCwzMDI0LDIzNjUsMCw0MzQ4.png",
+    url: "https://www.behance.net/gallery/234046505/Landing-Page-Grupo-Lybs",
+  },
+  {
+    title: "Caesal Casa — Ecommerce",
+    image:
+      "https://mir-s3-cdn-cf.behance.net/projects/404/9bbfcf234190099.Y3JvcCwxMDgwLDg0NCwwLDExNw.jpg",
+    url: "https://www.behance.net/gallery/234190099/Caesal-Casa-Ecommerce",
+  },
 ];
 
 const improvements = [
-  {
-    icon: Layers3,
-    title: "Menu reorganizado",
-    text: "Navegação mais simples, estratégica e preparada para o crescimento do site.",
-  },
-  {
-    icon: Target,
-    title: "Hero mais claro",
-    text: "Quem entra entende rapidamente quem é a Consult, o que ela faz e para quem trabalha.",
-  },
-  {
-    icon: ShieldCheck,
-    title: "Áreas com páginas próprias",
-    text: "Física Médica, Proteção Radiológica e Engenharia Clínica ganham hierarquia e profundidade.",
-  },
-  {
-    icon: Sparkles,
-    title: "Visual mais atual",
-    text: "Uma presença mais profissional, humana e coerente com o tamanho atual da operação.",
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile-first",
-    text: "Experiência pensada desde o início para celular, sem adaptar o desktop de última hora.",
-  },
-  {
-    icon: MessageCircle,
-    title: "Mais pontos de conversão",
-    text: "WhatsApp, formulários e chamadas para contato aparecem nos momentos certos da jornada.",
-  },
-  {
-    icon: MapPinned,
-    title: "Cobertura geográfica clara",
-    text: "O mapa continua no projeto, mas passa a explicar a área de atuação de forma estratégica.",
-  },
-  {
-    icon: Search,
-    title: "SEO preservado e fortalecido",
-    text: "Conteúdo técnico existente não é descartado: será reorganizado para autoridade e busca.",
-  },
-];
-
-const briefing = [
-  "Explicar rapidamente quem é a Consult",
-  "Deixar claro o que a empresa faz",
-  "Mostrar para quem trabalha",
-  "Apresentar onde atua",
-  "Reforçar diferenciais e autoridade técnica",
+  "Menu mais simples e estratégico",
+  "Hero que explica rapidamente quem é a Consult",
+  "Física Médica, Proteção Radiológica e Engenharia Clínica com destaque real",
+  "Mapa mantido, mas usado para comunicar cobertura",
+  "Experiência mobile-first",
+  "WhatsApp e formulários em pontos de conversão",
+  "Conteúdo técnico preservado para SEO e autoridade",
 ];
 
 export default function ConsultProposal() {
@@ -97,11 +72,11 @@ export default function ConsultProposal() {
     <div className="bg-white text-[#111111] pt-20">
       <section className="relative overflow-hidden bg-[#111111] text-white">
         <div className="absolute inset-y-0 left-0 w-1 bg-[#C4191F]" />
-        <div className="absolute -right-32 -top-32 h-[440px] w-[440px] rounded-full border border-white/10" />
-        <div className="absolute -right-16 -top-16 h-[300px] w-[300px] rounded-full border border-[#C4191F]/25" />
+        <div className="absolute -right-24 -top-28 h-[420px] w-[420px] rounded-full border border-white/10" />
+        <div className="absolute -right-8 -top-12 h-[280px] w-[280px] rounded-full border border-[#C4191F]/25" />
 
         <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_.85fr]">
+          <div className="grid items-center gap-12 lg:grid-cols-[1.1fr_.9fr]">
             <div>
               <div className="mb-6 flex items-center gap-3">
                 <span className="h-px w-10 bg-[#C4191F]" />
@@ -116,45 +91,33 @@ export default function ConsultProposal() {
               </h1>
 
               <p className="mt-7 max-w-3xl text-lg leading-relaxed text-white/68 lg:text-xl">
-                Estudamos o briefing enviado, o site atual e a forma como a Consult apresenta hoje seus
-                serviços. A partir disso, organizamos uma primeira direção para um site mais claro,
-                profissional e preparado para gerar novas oportunidades comerciais.
+                Partimos do briefing enviado pela Luiza e do conteúdo já construído pela Consult para
+                organizar uma direção de site mais clara, moderna e preparada para representar o
+                momento atual da empresa.
               </p>
 
-              <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="#direcao"
-                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-bold text-[#111111] transition hover:bg-white/90"
-                >
-                  Ver direção proposta
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-                <a
-                  href={CALENDAR_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-lg bg-accent px-6 py-3 text-sm font-bold text-white transition hover:brightness-95"
-                >
-                  <CalendarDays className="h-4 w-4" />
-                  Agendar reunião
-                </a>
-              </div>
+              <a
+                href="#direcao"
+                className="mt-9 inline-flex min-h-[52px] items-center justify-center rounded-lg bg-accent px-7 py-3 text-sm font-bold text-white transition hover:brightness-95"
+              >
+                Ver direção proposta
+              </a>
             </div>
 
             <div className="rounded-[28px] border border-white/10 bg-white/[0.06] p-6 backdrop-blur-sm lg:p-8">
-              <div className="mb-7 rounded-2xl bg-[#064d4b] p-6">
+              <div className="rounded-2xl bg-[#064d4b] p-6">
                 <img
                   src={CONSULT_LOGO}
                   alt="Consult Radiometria e Qualidade"
                   className="mx-auto h-28 w-auto object-contain"
                 />
               </div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#C4191F]">
-                O desafio central
+              <p className="mt-7 font-mono text-[10px] uppercase tracking-[0.22em] text-[#C4191F]">
+                O ponto de partida
               </p>
               <p className="mt-3 text-xl font-semibold leading-snug">
-                Fazer o site representar o tamanho, a evolução e a autoridade técnica que a Consult já
-                possui fora dele.
+                O site precisa mostrar, em poucos segundos, quem é a Consult, o que ela faz, para quem
+                trabalha, onde atua e por que é uma referência técnica.
               </p>
             </div>
           </div>
@@ -173,143 +136,308 @@ export default function ConsultProposal() {
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <div className="grid gap-12 lg:grid-cols-[.72fr_1.28fr]">
+        <div className="grid gap-12 lg:grid-cols-[.75fr_1.25fr]">
           <div>
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#C4191F]">
-              01 • O que entendemos
+              O que entendemos do briefing
             </span>
             <h2 className="mt-4 font-display text-3xl font-black tracking-tight sm:text-4xl">
-              O briefing pede mais do que um redesign.
+              Não é apenas deixar o site mais bonito.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-black/60">
-              A necessidade não é apenas modernizar a aparência. O novo site precisa organizar o
-              posicionamento da Consult e transformar conhecimento técnico em clareza para o mercado.
+              A necessidade é reorganizar a presença digital da Consult para acompanhar a evolução da
+              empresa e facilitar o entendimento de quem chega ao site.
             </p>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            {briefing.map((item, index) => (
-              <div
-                key={item}
-                className={"rounded-2xl border border-black/10 bg-white p-6 " +
-                  (index === briefing.length - 1 ? "sm:col-span-2" : "")}
-              >
-                <div className="mb-4 flex h-9 w-9 items-center justify-center rounded-full bg-[#111111] text-sm font-bold text-white">
-                  {index + 1}
-                </div>
-                <p className="font-semibold leading-snug">{item}</p>
+          <div className="space-y-4">
+            {[
+              "Explicar rapidamente quem é a Consult e o que ela faz.",
+              "Organizar Física Médica, Proteção Radiológica e Engenharia Clínica de forma evidente.",
+              "Mostrar quem a empresa atende e onde atua.",
+              "Dar mais força aos diferenciais, à experiência e à autoridade técnica.",
+              "Preservar o conteúdo já construído e melhorar seu uso para SEO e geração de oportunidades.",
+            ].map((item) => (
+              <div key={item} className="flex gap-4 border-b border-black/10 pb-4">
+                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-accent" />
+                <p className="text-base leading-relaxed text-black/70">{item}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="direcao" className="bg-[#111111] text-white">
+      <section id="direcao" className="bg-[#F5F5F5]">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="mb-12 max-w-3xl">
+          <div className="max-w-3xl">
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#C4191F]">
-              02 • Estrutura sugerida
+              Do site atual à nova direção
             </span>
             <h2 className="mt-4 font-display text-3xl font-black tracking-tight sm:text-5xl">
-              Uma Home que responde às principais perguntas na ordem certa.
+              Uma evolução visível, sem jogar fora o que já funciona.
             </h2>
+            <p className="mt-5 text-base leading-relaxed text-black/60">
+              A proposta parte do conteúdo existente, reorganiza a leitura da marca e cria uma Home
+              mais objetiva. Abaixo está uma leitura de “antes e depois” do que queremos mudar.
+            </p>
           </div>
 
-          <div className="grid gap-px overflow-hidden rounded-[24px] border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-4">
-            {homeSections.map((item, index) => (
-              <div key={item} className="min-h-[150px] bg-[#111111] p-6 lg:p-7">
-                <div className="font-mono text-xs text-[#C4191F]">0{index + 1}</div>
-                <div className="mt-8 text-lg font-bold">{item}</div>
+          <div className="mt-12 grid gap-6 lg:grid-cols-2">
+            <div className="overflow-hidden rounded-[26px] border border-black/10 bg-white">
+              <div className="flex items-center justify-between border-b border-black/10 px-5 py-4">
+                <div>
+                  <div className="text-sm font-black">Hoje</div>
+                  <div className="text-xs text-black/45">Mensagem dispersa e serviços pouco hierarquizados</div>
+                </div>
+                <a
+                  href={CONSULT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-black/55 hover:text-black"
+                >
+                  Abrir site atual
+                  <ExternalLink className="h-3.5 w-3.5" />
+                </a>
               </div>
-            ))}
-            <div className="flex min-h-[150px] items-end bg-[#C4191F] p-6 text-white lg:p-7">
-              <p className="text-sm font-semibold leading-relaxed">
-                Cada área de atuação poderá evoluir para uma página própria com conteúdo, aplicações,
-                provas técnicas e conversão.
-              </p>
+
+              <div className="bg-[#064d4b] p-5 text-white">
+                <div className="flex items-center gap-4 border-b border-white/15 pb-4">
+                  <img src={CONSULT_LOGO} alt="" className="h-12 w-auto object-contain" />
+                  <div className="ml-auto flex gap-4 text-[10px] text-white/60">
+                    <span>Empresa</span>
+                    <span>Serviços</span>
+                    <span>Contato</span>
+                  </div>
+                </div>
+                <div className="py-12">
+                  <div className="max-w-sm text-2xl font-bold leading-tight">
+                    Segurança, proteção radiológica e controle de qualidade
+                  </div>
+                  <p className="mt-4 max-w-md text-sm leading-relaxed text-white/60">
+                    Muito conteúdo técnico está presente, mas a evolução da Consult e a amplitude da
+                    operação ainda não aparecem de forma imediata.
+                  </p>
+                </div>
+              </div>
             </div>
+
+            <div className="overflow-hidden rounded-[26px] border border-black/10 bg-white shadow-xl shadow-black/5">
+              <div className="flex items-center justify-between border-b border-black/10 px-5 py-4">
+                <div>
+                  <div className="text-sm font-black">Direção proposta</div>
+                  <div className="text-xs text-black/45">Clareza de posicionamento e conversão</div>
+                </div>
+                <span className="rounded-full bg-accent/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-accent">
+                  Conceito
+                </span>
+              </div>
+
+              <div className="bg-[#064d4b] p-5 text-white">
+                <div className="flex items-center gap-4 border-b border-white/15 pb-4">
+                  <img src={CONSULT_LOGO} alt="" className="h-12 w-auto object-contain" />
+                  <div className="ml-auto hidden gap-4 text-[10px] text-white/70 sm:flex">
+                    <span>Soluções</span>
+                    <span>Quem atendemos</span>
+                    <span>Conteúdo</span>
+                    <span>Contato</span>
+                  </div>
+                </div>
+                <div className="grid gap-6 py-10 sm:grid-cols-[1.15fr_.85fr]">
+                  <div>
+                    <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#A8F53A]">
+                      Soluções técnicas para a área da saúde
+                    </div>
+                    <div className="mt-3 text-3xl font-black leading-[1.05]">
+                      Física Médica, Proteção Radiológica e Engenharia Clínica com leitura imediata.
+                    </div>
+                    <p className="mt-4 text-sm leading-relaxed text-white/65">
+                      A Home passa a explicar rapidamente quem é a Consult, para quem trabalha e como
+                      pode ajudar.
+                    </p>
+                    <div className="mt-5 inline-flex rounded-lg bg-[#FF6A3D] px-4 py-2 text-xs font-bold">
+                      Solicitar contato
+                    </div>
+                  </div>
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
+                    <div className="text-xs font-semibold">Três áreas centrais</div>
+                    <div className="mt-3 space-y-2 text-[11px] text-white/70">
+                      <div className="rounded-lg bg-white/10 px-3 py-2">Física Médica</div>
+                      <div className="rounded-lg bg-white/10 px-3 py-2">Proteção Radiológica</div>
+                      <div className="rounded-lg bg-white/10 px-3 py-2">Engenharia Clínica</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 rounded-[28px] border border-black/10 bg-white p-6 sm:p-8 lg:p-10">
+            <div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr]">
+              <div>
+                <h3 className="font-display text-2xl font-black">Hero + menu</h3>
+                <p className="mt-4 text-sm leading-relaxed text-black/60">
+                  O topo deixa de ser apenas institucional e passa a funcionar como uma apresentação
+                  rápida da empresa. O menu também acompanha a nova lógica de serviços e públicos.
+                </p>
+
+                <h3 className="mt-9 font-display text-2xl font-black">Áreas de atuação</h3>
+                <p className="mt-4 text-sm leading-relaxed text-black/60">
+                  As três frentes principais aparecem logo após o Hero e cada uma fica preparada para
+                  evoluir para uma página própria, com conteúdo técnico, aplicações e chamadas para
+                  contato.
+                </p>
+              </div>
+
+              <div className="overflow-hidden rounded-[22px] border border-black/10 bg-[#F8FBFA]">
+                <div className="flex items-center gap-2 border-b border-black/10 bg-white px-4 py-3">
+                  <span className="h-2.5 w-2.5 rounded-full bg-black/15" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-black/15" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-black/15" />
+                  <span className="ml-3 text-[10px] text-black/35">consult.med.br — conceito</span>
+                </div>
+
+                <div className="bg-[#064d4b] px-5 py-8 text-white sm:px-7">
+                  <div className="text-[10px] uppercase tracking-[0.18em] text-[#A8F53A]">
+                    Soluções técnicas para a área da saúde
+                  </div>
+                  <div className="mt-3 max-w-xl text-3xl font-black leading-tight">
+                    Segurança, qualidade e engenharia para serviços de saúde.
+                  </div>
+                  <div className="mt-5 inline-flex rounded-md bg-[#FF6A3D] px-4 py-2 text-[11px] font-bold">
+                    Falar com a equipe
+                  </div>
+                </div>
+
+                <div className="grid gap-3 p-5 sm:grid-cols-3">
+                  {["Física Médica", "Proteção Radiológica", "Engenharia Clínica"].map((item) => (
+                    <div key={item} className="rounded-xl border border-black/10 bg-white p-4">
+                      <div className="mb-4 h-8 w-8 rounded-lg bg-[#0AA77D]" />
+                      <div className="text-sm font-black">{item}</div>
+                      <div className="mt-2 h-2 w-full rounded bg-black/5" />
+                      <div className="mt-2 h-2 w-4/5 rounded bg-black/5" />
+                    </div>
+                  ))}
+                </div>
+
+                <div className="border-t border-black/10 bg-white p-5">
+                  <div className="grid gap-3 sm:grid-cols-3">
+                    <div className="rounded-xl bg-[#F5F7F7] p-4">
+                      <div className="text-xs font-black">Diferenciais</div>
+                      <div className="mt-2 text-[10px] text-black/45">Autoridade e prova técnica</div>
+                    </div>
+                    <div className="rounded-xl bg-[#064d4b] p-4 text-white">
+                      <div className="text-xs font-black">Onde atuamos</div>
+                      <div className="mt-2 text-[10px] text-white/55">Mapa + cobertura</div>
+                    </div>
+                    <div className="rounded-xl bg-[#F5F7F7] p-4">
+                      <div className="text-xs font-black">Quem atendemos</div>
+                      <div className="mt-2 text-[10px] text-black/45">Segmentação por público</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {improvements.map((item, index) => {
+              const Icon = [Sparkles, ShieldCheck, MapPinned, Smartphone, MessageCircle, Search, CheckCircle2][index];
+              return (
+                <div key={item} className="rounded-2xl bg-white p-5 ring-1 ring-black/10">
+                  <Icon className="h-5 w-5 text-accent" />
+                  <p className="mt-4 text-sm font-semibold leading-relaxed">{item}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-        <div className="mb-12 flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
-          <div className="max-w-3xl">
+        <div className="grid gap-12 lg:grid-cols-2">
+          <div>
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#C4191F]">
-              03 • O que muda na prática
+              SEO e autoridade técnica
             </span>
-            <h2 className="mt-4 font-display text-3xl font-black tracking-tight sm:text-5xl">
-              Clareza, autoridade e conversão trabalhando juntas.
+            <h2 className="mt-4 font-display text-3xl font-black tracking-tight sm:text-4xl">
+              Melhorar a estrutura sem perder o que já foi conquistado.
             </h2>
           </div>
-          <p className="max-w-md text-sm leading-relaxed text-black/55">
-            O objetivo é melhorar a experiência sem perder o que o site atual já construiu de valor.
-          </p>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {improvements.map(({ icon: Icon, title, text }) => (
-            <article
-              key={title}
-              className="group rounded-2xl border border-black/10 bg-white p-6 transition duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/5"
-            >
-              <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#111111] text-white transition group-hover:bg-[#C4191F]">
-                <Icon className="h-5 w-5" />
-              </div>
-              <h3 className="mt-6 font-display text-lg font-black">{title}</h3>
-              <p className="mt-3 text-sm leading-relaxed text-black/55">{text}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="bg-[#F5F5F5]">
-        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
-          <div className="grid gap-6 lg:grid-cols-2">
-            <div className="rounded-[26px] bg-white p-8 ring-1 ring-black/10 lg:p-10">
-              <FileText className="h-8 w-8 text-[#C4191F]" />
-              <h2 className="mt-7 font-display text-3xl font-black tracking-tight">
-                SEO e autoridade técnica
-              </h2>
-              <p className="mt-5 leading-relaxed text-black/60">
-                O conteúdo técnico já publicado não deve ser apagado ou tratado como detalhe. A proposta
-                é preservar o valor acumulado, melhorar organização, hierarquia, links internos e
-                transformar artigos e materiais técnicos em prova de autoridade e porta de entrada
-                orgânica.
-              </p>
-            </div>
-
-            <div className="rounded-[26px] bg-[#111111] p-8 text-white lg:p-10">
-              <Users className="h-8 w-8 text-accent" />
-              <h2 className="mt-7 font-display text-3xl font-black tracking-tight">
-                O papel desta prévia
-              </h2>
-              <p className="mt-5 leading-relaxed text-white/62">
-                Esta não é a versão final do projeto. É uma primeira leitura estratégica para mostrar
-                como entendemos o desafio e dar uma base concreta para a próxima conversa. Na reunião,
-                validamos escopo, prioridades, conteúdo, páginas e detalhes comerciais.
-              </p>
-            </div>
+          <div className="space-y-5 text-base leading-relaxed text-black/60">
+            <p>
+              O site atual já tem conteúdo técnico relevante e páginas que podem carregar histórico de
+              busca. A proposta não é apagar isso para começar do zero.
+            </p>
+            <p>
+              O trabalho previsto é preservar conteúdo estratégico, reorganizar títulos, hierarquia,
+              links internos e páginas de serviço, além de dar mais visibilidade aos artigos técnicos
+              que ajudam a construir autoridade.
+            </p>
           </div>
         </div>
       </section>
 
-      <section className="relative overflow-hidden bg-[#C4191F] text-white">
-        <div className="absolute -right-16 top-1/2 h-72 w-72 -translate-y-1/2 rounded-full border border-white/20" />
-        <div className="absolute -right-2 top-1/2 h-48 w-48 -translate-y-1/2 rounded-full border border-white/20" />
-
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
-          <div className="grid items-center gap-10 lg:grid-cols-[1fr_auto]">
+      <section className="bg-[#111111] text-white">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+          <div className="flex flex-col justify-between gap-5 lg:flex-row lg:items-end">
             <div className="max-w-3xl">
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/60">
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#C4191F]">
+                Alguns trabalhos da Figueira
+              </span>
+              <h2 className="mt-4 font-display text-3xl font-black tracking-tight sm:text-5xl">
+                Design e páginas pensados para contexto, marca e conversão.
+              </h2>
+            </div>
+            <a
+              href={BEHANCE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-white/65 transition hover:text-white"
+            >
+              Ver portfólio no Behance
+              <ExternalLink className="h-4 w-4" />
+            </a>
+          </div>
+
+          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+            {cases.map((item) => (
+              <a
+                key={item.title}
+                href={item.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04]"
+              >
+                <div className="aspect-[4/3] overflow-hidden bg-white/5">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
+                  />
+                </div>
+                <div className="p-5">
+                  <div className="text-sm font-bold">{item.title}</div>
+                  <div className="mt-2 text-xs text-white/45">Projeto publicado no Behance</div>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="relative overflow-hidden bg-[#F7F7F7]">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
+          <div className="grid items-center gap-10 rounded-[30px] border border-black/10 bg-white p-8 shadow-xl shadow-black/5 lg:grid-cols-[1fr_auto] lg:p-12">
+            <div className="max-w-3xl">
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#C4191F]">
                 Próximo passo
               </span>
               <h2 className="mt-4 font-display text-3xl font-black tracking-tight sm:text-5xl">
-                Vamos validar essa direção juntos?
+                Vamos conversar sobre o projeto?
               </h2>
-              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/78">
-                Agende uma conversa com a Figueira Marketing para alinharmos prioridades, escopo e os
-                próximos passos do novo site da Consult.
+              <p className="mt-5 max-w-2xl text-lg leading-relaxed text-black/60">
+                Essa é uma primeira direção. Na reunião podemos validar prioridades, detalhar o escopo,
+                entender os serviços que precisam entrar no novo site e fechar os próximos passos.
               </p>
             </div>
 
@@ -317,11 +445,10 @@ export default function ConsultProposal() {
               href={CALENDAR_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[58px] items-center justify-center gap-3 rounded-xl bg-white px-7 py-4 font-bold text-[#111111] shadow-xl transition hover:-translate-y-0.5 hover:bg-white/95"
+              className="inline-flex min-h-[58px] items-center justify-center gap-3 rounded-xl bg-accent px-8 py-4 font-bold text-white shadow-xl shadow-accent/20 transition hover:brightness-95"
             >
               <CalendarDays className="h-5 w-5" />
               Agendar reunião
-              <ArrowRight className="h-5 w-5" />
             </a>
           </div>
         </div>
