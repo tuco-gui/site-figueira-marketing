@@ -17,6 +17,13 @@ const BEHANCE_URL = "https://www.behance.net/figueira_marketing";
 const CONSULT_LOGO =
   "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/68d54790-6c3c-48c4-b8cb-7143ac1e0fec.png";
 
+const APPROVED_MOCKUP = {
+  full: "https://drive.google.com/uc?export=view&id=1u9eCB8nI6AlGpWpFl-vZQDHmt60w1Dwe",
+  top: "https://drive.google.com/uc?export=view&id=1hqgteLRy-ypIbfFYnuf7LdDVtiqnyxHn",
+  middle: "https://drive.google.com/uc?export=view&id=11D6zk8cZork7vvQWZYW0DgYE19T_UJI9",
+  bottom: "https://drive.google.com/uc?export=view&id=1Y8n_3F8rJAlN-V5u0gaxJzwQlaRlvqnF",
+};
+
 const cases = [
   {
     title: "Site — Remax Japi",
@@ -171,172 +178,61 @@ export default function ConsultProposal() {
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
           <div className="max-w-3xl">
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#C4191F]">
-              Do site atual à nova direção
+              Prévia visual da proposta
             </span>
             <h2 className="mt-4 font-display text-3xl font-black tracking-tight sm:text-5xl">
-              Uma evolução visível, sem jogar fora o que já funciona.
+              Esta é a direção visual que imaginamos para a nova Home da Consult.
             </h2>
             <p className="mt-5 text-base leading-relaxed text-black/60">
-              A proposta parte do conteúdo existente, reorganiza a leitura da marca e cria uma Home
-              mais objetiva. Abaixo está uma leitura de “antes e depois” do que queremos mudar.
+              A prévia abaixo organiza a Home na sequência definida no briefing: apresentação clara da
+              Consult, áreas de atuação, diferenciais, cobertura, públicos atendidos, conteúdo técnico e
+              contato. É um conceito inicial para orientar a conversa, não a versão final do projeto.
             </p>
           </div>
 
-          <div className="mt-12 grid gap-6 lg:grid-cols-2">
-            <div className="overflow-hidden rounded-[26px] border border-black/10 bg-white">
-              <div className="flex items-center justify-between border-b border-black/10 px-5 py-4">
-                <div>
-                  <div className="text-sm font-black">Hoje</div>
-                  <div className="text-xs text-black/45">Mensagem dispersa e serviços pouco hierarquizados</div>
-                </div>
-                <a
-                  href={CONSULT_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 text-xs font-semibold text-black/55 hover:text-black"
-                >
-                  Abrir site atual
-                  <ExternalLink className="h-3.5 w-3.5" />
-                </a>
-              </div>
-
-              <div className="bg-[#064d4b] p-5 text-white">
-                <div className="flex items-center gap-4 border-b border-white/15 pb-4">
-                  <img src={CONSULT_LOGO} alt="" className="h-12 w-auto object-contain" />
-                  <div className="ml-auto flex gap-4 text-[10px] text-white/60">
-                    <span>Empresa</span>
-                    <span>Serviços</span>
-                    <span>Contato</span>
-                  </div>
-                </div>
-                <div className="py-12">
-                  <div className="max-w-sm text-2xl font-bold leading-tight">
-                    Segurança, proteção radiológica e controle de qualidade
-                  </div>
-                  <p className="mt-4 max-w-md text-sm leading-relaxed text-white/60">
-                    Muito conteúdo técnico está presente, mas a evolução da Consult e a amplitude da
-                    operação ainda não aparecem de forma imediata.
-                  </p>
-                </div>
-              </div>
+          <div className="mt-12 overflow-hidden rounded-[28px] border border-black/10 bg-white shadow-2xl shadow-black/10">
+            <div className="flex items-center gap-2 border-b border-black/10 bg-white px-4 py-3 sm:px-6">
+              <span className="h-2.5 w-2.5 rounded-full bg-black/15" />
+              <span className="h-2.5 w-2.5 rounded-full bg-black/15" />
+              <span className="h-2.5 w-2.5 rounded-full bg-black/15" />
+              <span className="ml-3 text-[10px] text-black/35 sm:text-xs">consult.med.br — proposta visual</span>
             </div>
 
-            <div className="overflow-hidden rounded-[26px] border border-black/10 bg-white shadow-xl shadow-black/5">
-              <div className="flex items-center justify-between border-b border-black/10 px-5 py-4">
-                <div>
-                  <div className="text-sm font-black">Direção proposta</div>
-                  <div className="text-xs text-black/45">Clareza de posicionamento e conversão</div>
-                </div>
-                <span className="rounded-full bg-accent/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-accent">
-                  Conceito
-                </span>
-              </div>
-
-              <div className="bg-[#064d4b] p-5 text-white">
-                <div className="flex items-center gap-4 border-b border-white/15 pb-4">
-                  <img src={CONSULT_LOGO} alt="" className="h-12 w-auto object-contain" />
-                  <div className="ml-auto hidden gap-4 text-[10px] text-white/70 sm:flex">
-                    <span>Soluções</span>
-                    <span>Quem atendemos</span>
-                    <span>Conteúdo</span>
-                    <span>Contato</span>
-                  </div>
-                </div>
-                <div className="grid gap-6 py-10 sm:grid-cols-[1.15fr_.85fr]">
-                  <div>
-                    <div className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#A8F53A]">
-                      Soluções técnicas para a área da saúde
-                    </div>
-                    <div className="mt-3 text-3xl font-black leading-[1.05]">
-                      Física Médica, Proteção Radiológica e Engenharia Clínica com leitura imediata.
-                    </div>
-                    <p className="mt-4 text-sm leading-relaxed text-white/65">
-                      A Home passa a explicar rapidamente quem é a Consult, para quem trabalha e como
-                      pode ajudar.
-                    </p>
-                    <div className="mt-5 inline-flex rounded-lg bg-[#FF6A3D] px-4 py-2 text-xs font-bold">
-                      Solicitar contato
-                    </div>
-                  </div>
-                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
-                    <div className="text-xs font-semibold">Três áreas centrais</div>
-                    <div className="mt-3 space-y-2 text-[11px] text-white/70">
-                      <div className="rounded-lg bg-white/10 px-3 py-2">Física Médica</div>
-                      <div className="rounded-lg bg-white/10 px-3 py-2">Proteção Radiológica</div>
-                      <div className="rounded-lg bg-white/10 px-3 py-2">Engenharia Clínica</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            <div className="bg-[#EDF7F5]">
+              <img
+                src={APPROVED_MOCKUP.top}
+                alt="Prévia aprovada do novo site da Consult — Hero e áreas de atuação"
+                className="block h-auto w-full"
+                loading="eager"
+              />
+              <img
+                src={APPROVED_MOCKUP.middle}
+                alt="Prévia aprovada do novo site da Consult — Diferenciais, onde atuamos e quem atendemos"
+                className="block h-auto w-full"
+                loading="lazy"
+              />
+              <img
+                src={APPROVED_MOCKUP.bottom}
+                alt="Prévia aprovada do novo site da Consult — Conteúdo técnico, contato e rodapé"
+                className="block h-auto w-full"
+                loading="lazy"
+              />
             </div>
           </div>
 
-          <div className="mt-10 rounded-[28px] border border-black/10 bg-white p-6 sm:p-8 lg:p-10">
-            <div className="grid gap-10 lg:grid-cols-[.75fr_1.25fr]">
-              <div>
-                <h3 className="font-display text-2xl font-black">Hero + menu</h3>
-                <p className="mt-4 text-sm leading-relaxed text-black/60">
-                  O topo deixa de ser apenas institucional e passa a funcionar como uma apresentação
-                  rápida da empresa. O menu também acompanha a nova lógica de serviços e públicos.
-                </p>
-
-                <h3 className="mt-9 font-display text-2xl font-black">Áreas de atuação</h3>
-                <p className="mt-4 text-sm leading-relaxed text-black/60">
-                  As três frentes principais aparecem logo após o Hero e cada uma fica preparada para
-                  evoluir para uma página própria, com conteúdo técnico, aplicações e chamadas para
-                  contato.
-                </p>
-              </div>
-
-              <div className="overflow-hidden rounded-[22px] border border-black/10 bg-[#F8FBFA]">
-                <div className="flex items-center gap-2 border-b border-black/10 bg-white px-4 py-3">
-                  <span className="h-2.5 w-2.5 rounded-full bg-black/15" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-black/15" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-black/15" />
-                  <span className="ml-3 text-[10px] text-black/35">consult.med.br — conceito</span>
-                </div>
-
-                <div className="bg-[#064d4b] px-5 py-8 text-white sm:px-7">
-                  <div className="text-[10px] uppercase tracking-[0.18em] text-[#A8F53A]">
-                    Soluções técnicas para a área da saúde
-                  </div>
-                  <div className="mt-3 max-w-xl text-3xl font-black leading-tight">
-                    Segurança, qualidade e engenharia para serviços de saúde.
-                  </div>
-                  <div className="mt-5 inline-flex rounded-md bg-[#FF6A3D] px-4 py-2 text-[11px] font-bold">
-                    Falar com a equipe
-                  </div>
-                </div>
-
-                <div className="grid gap-3 p-5 sm:grid-cols-3">
-                  {["Física Médica", "Proteção Radiológica", "Engenharia Clínica"].map((item) => (
-                    <div key={item} className="rounded-xl border border-black/10 bg-white p-4">
-                      <div className="mb-4 h-8 w-8 rounded-lg bg-[#0AA77D]" />
-                      <div className="text-sm font-black">{item}</div>
-                      <div className="mt-2 h-2 w-full rounded bg-black/5" />
-                      <div className="mt-2 h-2 w-4/5 rounded bg-black/5" />
-                    </div>
-                  ))}
-                </div>
-
-                <div className="border-t border-black/10 bg-white p-5">
-                  <div className="grid gap-3 sm:grid-cols-3">
-                    <div className="rounded-xl bg-[#F5F7F7] p-4">
-                      <div className="text-xs font-black">Diferenciais</div>
-                      <div className="mt-2 text-[10px] text-black/45">Autoridade e prova técnica</div>
-                    </div>
-                    <div className="rounded-xl bg-[#064d4b] p-4 text-white">
-                      <div className="text-xs font-black">Onde atuamos</div>
-                      <div className="mt-2 text-[10px] text-white/55">Mapa + cobertura</div>
-                    </div>
-                    <div className="rounded-xl bg-[#F5F7F7] p-4">
-                      <div className="text-xs font-black">Quem atendemos</div>
-                      <div className="mt-2 text-[10px] text-black/45">Segmentação por público</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
+          <div className="mt-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+            <p className="max-w-2xl text-sm leading-relaxed text-black/50">
+              O desenho final será refinado após a reunião, com validação de conteúdo, serviços, áreas
+              de atuação, cobertura geográfica e informações institucionais.
+            </p>
+            <a
+              href={APPROVED_MOCKUP.full}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-[46px] items-center justify-center rounded-lg border border-black/15 bg-white px-5 py-3 text-sm font-semibold transition hover:bg-black hover:text-white"
+            >
+              Ver página completa
+            </a>
           </div>
 
           <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
