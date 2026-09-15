@@ -52,7 +52,8 @@ export default function Footer() {
             <div className="lg:col-span-2">
               <h4 className="font-mono text-xs uppercase tracking-wider text-white/40 mb-5">Empresa</h4>
               <ul className="space-y-3">
-                <li><Link to="/stack-digital" className="text-sm text-white/60 hover:text-white transition-colors">Stack Digital</Link></li>\n                <li><Link to="/cases" className="text-sm text-white/60 hover:text-white transition-colors">Cases</Link></li>
+                <li><Link to="/stack-digital" className="text-sm text-white/60 hover:text-white transition-colors">Stack Digital</Link></li>
+                <li><Link to="/cases" className="text-sm text-white/60 hover:text-white transition-colors">Cases</Link></li>
                 <li><Link to="/sobre" className="text-sm text-white/60 hover:text-white transition-colors">Sobre nós</Link></li>
                 <li><Link to="/contato" className="text-sm text-white/60 hover:text-white transition-colors">Contato</Link></li>
                 <li><Link to="/recursos/growth-marketing" className="text-sm text-white/60 hover:text-white transition-colors">Growth Marketing</Link></li>
