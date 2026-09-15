@@ -17,12 +17,8 @@ const BEHANCE_URL = "https://www.behance.net/figueira_marketing";
 const CONSULT_LOGO =
   "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/68d54790-6c3c-48c4-b8cb-7143ac1e0fec.png";
 
-const APPROVED_MOCKUP = {
-  full: "https://drive.google.com/uc?export=view&id=1u9eCB8nI6AlGpWpFl-vZQDHmt60w1Dwe",
-  top: "https://drive.google.com/uc?export=view&id=1hqgteLRy-ypIbfFYnuf7LdDVtiqnyxHn",
-  middle: "https://drive.google.com/uc?export=view&id=11D6zk8cZork7vvQWZYW0DgYE19T_UJI9",
-  bottom: "https://drive.google.com/uc?export=view&id=1Y8n_3F8rJAlN-V5u0gaxJzwQlaRlvqnF",
-};
+const APPROVED_MOCKUP =
+  "https://figueira-prospect-assets.vercel.app/consult-home-aprovada.png";
 
 const cases = [
   {
@@ -200,22 +196,10 @@ export default function ConsultProposal() {
 
             <div className="bg-[#EDF7F5]">
               <img
-                src={APPROVED_MOCKUP.top}
-                alt="Prévia aprovada do novo site da Consult — Hero e áreas de atuação"
+                src={APPROVED_MOCKUP}
+                alt="Prévia aprovada da nova Home da Consult"
                 className="block h-auto w-full"
                 loading="eager"
-              />
-              <img
-                src={APPROVED_MOCKUP.middle}
-                alt="Prévia aprovada do novo site da Consult — Diferenciais, onde atuamos e quem atendemos"
-                className="block h-auto w-full"
-                loading="lazy"
-              />
-              <img
-                src={APPROVED_MOCKUP.bottom}
-                alt="Prévia aprovada do novo site da Consult — Conteúdo técnico, contato e rodapé"
-                className="block h-auto w-full"
-                loading="lazy"
               />
             </div>
           </div>
@@ -226,7 +210,7 @@ export default function ConsultProposal() {
               de atuação, cobertura geográfica e informações institucionais.
             </p>
             <a
-              href={APPROVED_MOCKUP.full}
+              href={APPROVED_MOCKUP}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-[46px] items-center justify-center rounded-lg border border-black/15 bg-white px-5 py-3 text-sm font-semibold transition hover:bg-black hover:text-white"
