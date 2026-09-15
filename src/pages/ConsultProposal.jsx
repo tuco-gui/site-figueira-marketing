@@ -11,7 +11,7 @@ import {
   Sparkles,
 } from "lucide-react";
 
-const CALENDAR_URL = "https://calendar.app.google/AAm3kdGvNd2s5QWv7";
+const CALENDAR_URL = "https://calendar.app.google/LRaorVsVUsAbgAZN7";
 const CONSULT_URL = "https://www.consult.med.br/";
 const BEHANCE_URL = "https://www.behance.net/figueira_marketing";
 const CONSULT_LOGO =
