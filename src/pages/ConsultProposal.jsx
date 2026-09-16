@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import {
-  CalendarDays,
   CheckCircle2,
   ExternalLink,
   MapPinned,
@@ -11,9 +10,9 @@ import {
   Sparkles,
 } from "lucide-react";
 
-const CALENDAR_URL = "https://calendar.app.google/LRaorVsVUsAbgAZN7";
 const CONSULT_URL = "https://www.consult.med.br/";
 const BEHANCE_URL = "https://www.behance.net/figueira_marketing";
+const WHATSAPP_NUMBER = "5511951783049";
 const CONSULT_LOGO =
   "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/68d54790-6c3c-48c4-b8cb-7143ac1e0fec.png";
 
@@ -57,9 +56,93 @@ const improvements = [
   "Conteúdo técnico preservado para SEO e autoridade",
 ];
 
+const proposalPlans = [
+  {
+    name: "Site Assistido",
+    price: "R$ 200",
+    suffix: "/mês",
+    description:
+      "Para manter o novo site tecnicamente cuidado, com a estrutura de blog pronta para a equipe da Consult operar.",
+    items: [
+      "Manutenção técnica do site",
+      "Ajustes e atualizações solicitadas pela Consult",
+      "Ferramenta administrativa e blog disponíveis",
+      "A Consult administra e publica os conteúdos do blog",
+      "Suporte para manter a estrutura funcionando corretamente",
+    ],
+  },
+  {
+    name: "Site + Conteúdo",
+    price: "R$ 600",
+    suffix: "/mês",
+    description:
+      "Para tirar a operação do blog da rotina da Consult e manter o site sendo atualizado de forma contínua.",
+    items: [
+      "Tudo do Site Assistido",
+      "Administração do blog pela Figueira",
+      "Produção e publicação de conteúdo técnico",
+      "Otimizações contínuas de SEO",
+      "Evolução de conteúdo pensando também em buscas por IA",
+    ],
+    featured: true,
+  },
+  {
+    name: "Site + Tráfego",
+    price: "R$ 1.000",
+    suffix: "/mês",
+    description:
+      "Para unir manutenção do site com gestão de mídia paga e geração ativa de demanda.",
+    items: [
+      "Manutenção do site",
+      "Gestão de tráfego pago",
+      "Estratégia de campanhas por canal e público",
+      "Integração dos pontos de conversão do site",
+      "Investimento em mídia pago diretamente pela Consult",
+    ],
+  },
+  {
+    name: "Site + Tráfego + CRM",
+    price: "R$ 1.500",
+    suffix: "/mês",
+    description:
+      "Para captar e organizar as oportunidades em um processo comercial integrado, reduzindo o trabalho manual.",
+    items: [
+      "Manutenção do site",
+      "Gestão de tráfego pago",
+      "CRM integrado aos contatos do site",
+      "Organização de funil, tarefas e acompanhamento de leads",
+      "Integração comercial conforme o fluxo definido com a Consult",
+    ],
+  },
+  {
+    name: "Ecossistema Completo",
+    price: "R$ 2.500",
+    suffix: "/mês",
+    description:
+      "A solução completa apresentada na reunião: aquisição, CRM, automações, IA, conteúdo e evolução contínua do site.",
+    items: [
+      "Manutenção proativa do site",
+      "Gestão de tráfego pago",
+      "CRM e integrações comerciais",
+      "Automações de CRM e processos",
+      "Soluções de inteligência artificial",
+      "Administração do blog e produção de conteúdo",
+      "Otimizações contínuas de SEO e presença em buscas por IA",
+    ],
+  },
+];
+
+const whatsappProposalUrl = (planName, price) => {
+  const message = planName
+    ? `Olá! Aqui é da Consult. Analisamos a proposta da Figueira Marketing e optamos pelo pacote ${planName} (${price}/mês), com a implementação do novo site por R$ 2.900. Podem providenciar o contrato e os próximos passos?`
+    : "Olá! Aqui é da Consult. Analisamos a proposta da Figueira Marketing e queremos seguir com a contratação. Podem nos orientar sobre os próximos passos para formalização e contrato?";
+
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+};
+
 export default function ConsultProposal() {
   useEffect(() => {
-    document.title = "Prévia estratégica para Consult | Figueira Marketing";
+    document.title = "Proposta comercial para Consult | Figueira Marketing";
 
     const meta = document.querySelector('meta[name="robots"]') || document.createElement("meta");
     meta.setAttribute("name", "robots");
@@ -84,7 +167,7 @@ export default function ConsultProposal() {
               <div className="mb-6 flex items-center gap-3">
                 <span className="h-px w-10 bg-[#C4191F]" />
                 <span className="font-mono text-[11px] uppercase tracking-[0.24em] text-white/55">
-                  Figueira Marketing • Prévia estratégica
+                  Figueira Marketing • Proposta comercial
                 </span>
               </div>
 
@@ -94,9 +177,9 @@ export default function ConsultProposal() {
               </h1>
 
               <p className="mt-7 max-w-3xl text-lg leading-relaxed text-white/68 lg:text-xl">
-                Partimos do briefing enviado pela Luiza e do conteúdo já construído pela Consult para
-                organizar uma direção de site mais clara, moderna e preparada para representar o
-                momento atual da empresa.
+                Partimos do briefing enviado pela Luiza, da reunião de diagnóstico e do conteúdo já construído
+                pela Consult para organizar uma solução mais clara, moderna e preparada para representar
+                o momento atual da empresa, com opções modulares de continuidade.
               </p>
 
               <a
@@ -305,6 +388,105 @@ export default function ConsultProposal() {
         </div>
       </section>
 
+
+      <section id="investimento" className="bg-[#F7F7F7]">
+        <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
+          <div className="grid gap-10 lg:grid-cols-[.8fr_1.2fr] lg:items-end">
+            <div>
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#C4191F]">
+                Investimento e possibilidades
+              </span>
+              <h2 className="mt-4 font-display text-3xl font-black tracking-tight sm:text-5xl">
+                Um projeto de site. Cinco formas de continuar evoluindo.
+              </h2>
+            </div>
+            <p className="max-w-2xl text-base leading-relaxed text-black/60">
+              A implementação do novo site é a base do projeto. Depois da entrega, a Consult escolhe
+              o nível de acompanhamento que faz mais sentido para a operação: desde uma manutenção
+              mais simples até um ecossistema completo com tráfego, CRM, automações, IA e conteúdo.
+            </p>
+          </div>
+
+          <div className="mt-12 rounded-[28px] bg-[#111111] p-7 text-white sm:p-9 lg:flex lg:items-center lg:justify-between lg:gap-10">
+            <div className="max-w-3xl">
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/45">
+                Implementação do novo site
+              </span>
+              <h3 className="mt-3 font-display text-3xl font-black sm:text-4xl">
+                R$ 2.900
+              </h3>
+              <p className="mt-4 text-sm leading-relaxed text-white/65 sm:text-base">
+                Redesenho e implementação da nova estrutura da Consult, preservando o conteúdo estratégico,
+                reorganizando as áreas de Física Médica, Proteção Radiológica e Engenharia Clínica e
+                entregando a nova versão em até 30 dias.
+              </p>
+            </div>
+            <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.06] px-6 py-5 lg:mt-0 lg:min-w-[260px]">
+              <div className="text-xs uppercase tracking-[0.18em] text-white/40">Prazo máximo</div>
+              <div className="mt-2 text-2xl font-black">30 dias</div>
+              <div className="mt-2 text-sm text-white/55">A mensalidade escolhida começa após a entrega.</div>
+            </div>
+          </div>
+
+          <div className="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {proposalPlans.map((plan) => (
+              <div
+                key={plan.name}
+                className={`flex h-full flex-col rounded-[24px] border p-6 sm:p-7 ${plan.featured ? "border-accent bg-white shadow-xl shadow-black/5 ring-1 ring-accent/10" : "border-black/10 bg-white"}`}
+              >
+                <div>
+                  {plan.featured && (
+                    <span className="inline-flex rounded-full bg-accent/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.16em] text-accent">
+                      Manutenção proativa
+                    </span>
+                  )}
+                  <h3 className="mt-4 font-display text-2xl font-black tracking-tight">{plan.name}</h3>
+                  <div className="mt-4 flex items-end gap-2">
+                    <span className="text-3xl font-black tracking-tight">{plan.price}</span>
+                    <span className="pb-1 text-sm text-black/45">{plan.suffix}</span>
+                  </div>
+                  <p className="mt-4 text-sm leading-relaxed text-black/60">{plan.description}</p>
+                </div>
+
+                <div className="mt-6 space-y-3">
+                  {plan.items.map((item) => (
+                    <div key={item} className="flex gap-3 text-sm leading-relaxed text-black/70">
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <a
+                  href={whatsappProposalUrl(plan.name, plan.price)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-7 inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-bold text-white transition hover:brightness-95"
+                >
+                  <MessageCircle className="h-4 w-4" />
+                  Aceitar este pacote
+                </a>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-8 rounded-2xl border border-black/10 bg-white p-6 sm:p-8">
+            <h3 className="font-display text-xl font-black">Condições do projeto</h3>
+            <div className="mt-5 grid gap-4 text-sm leading-relaxed text-black/60 md:grid-cols-2">
+              <p>
+                Os pacotes mensais são modulares e podem evoluir conforme a necessidade da Consult.
+                O investimento de mídia das campanhas não está incluído nas mensalidades de gestão.
+              </p>
+              <p>
+                A Consult fornece informações técnicas, materiais institucionais e validações necessárias.
+                Nos planos com conteúdo administrado pela Figueira, os materiais produzidos seguem para
+                aprovação antes da publicação.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section className="relative overflow-hidden bg-[#F7F7F7]">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-24">
           <div className="grid items-center gap-10 rounded-[30px] border border-black/10 bg-white p-8 shadow-xl shadow-black/5 lg:grid-cols-[1fr_auto] lg:p-12">
@@ -313,35 +495,35 @@ export default function ConsultProposal() {
                 Próximo passo
               </span>
               <h2 className="mt-4 font-display text-3xl font-black tracking-tight sm:text-5xl">
-                Vamos conversar sobre o projeto?
+                A direção está aprovada?
               </h2>
               <p className="mt-5 max-w-2xl text-lg leading-relaxed text-black/60">
-                Essa é uma primeira direção. Na reunião podemos validar prioridades, detalhar o escopo,
-                entender os serviços que precisam entrar no novo site e fechar os próximos passos.
+                Escolha o pacote que melhor atende a Consult. Ao aceitar a proposta pelo WhatsApp,
+                seguimos com a formalização do contrato, definição do cronograma e início da implementação.
               </p>
             </div>
 
             <a
-              href={CALENDAR_URL}
+              href={whatsappProposalUrl()}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex min-h-[58px] items-center justify-center gap-3 rounded-xl bg-accent px-8 py-4 font-bold text-white shadow-xl shadow-accent/20 transition hover:brightness-95"
             >
-              <CalendarDays className="h-5 w-5" />
-              Agendar reunião
+              <MessageCircle className="h-5 w-5" />
+              Aceitar proposta
             </a>
           </div>
         </div>
       </section>
 
       <a
-        href={CALENDAR_URL}
+        href={whatsappProposalUrl()}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed bottom-4 left-4 right-4 z-40 inline-flex min-h-[54px] items-center justify-center gap-2 rounded-xl bg-accent px-5 py-3 text-sm font-bold text-white shadow-2xl lg:hidden"
       >
-        <CalendarDays className="h-4 w-4" />
-        Agendar reunião
+        <MessageCircle className="h-4 w-4" />
+        Aceitar proposta
       </a>
     </div>
   );
