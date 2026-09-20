@@ -1,25 +1,23 @@
-# IA operacional — Figueira Marketing
+# IA operacional — site Figueira Marketing
 
-O plugin canônico de conteúdo fica em `plugins/figueira-content-squad/`.
+O Content Squad não é mantido neste repositório.
+Fonte canônica:
+
+`tuco-gui/figueira-marketing-skills/plugins/figueira-content-squad`
 
 ## Regra de sincronização
 
-Não manter alterações apenas localmente ou apenas no GitHub.
+Este repositório apenas referencia o plugin pelo marketplace GitHub.
+Nunca copie as cinco skills para `plugins/` ou `.agents/skills/`.
 
-Antes de editar:
+Quando uma mudança do squad for necessária:
 
-1. Verificar `git status` e preservar mudanças locais.
-2. Se a árvore estiver limpa, atualizar com `git pull --ff-only origin main`.
-3. Se houver mudanças locais, reconciliar antes do pull; nunca descartar trabalho silenciosamente.
+1. atualizar a fonte canônica em `figueira-marketing-skills`;
+2. validar e publicar no `origin/main` daquele repositório;
+3. sincronizar/atualizar o marketplace/plugin nos consumidores;
+4. manter este site focado no código e conteúdo do site.
 
-Depois de validar qualquer alteração do squad:
-
-1. Atualizar somente a fonte canônica em `plugins/figueira-content-squad/`.
-2. Validar que `.agents/skills/*` continua apontando para a fonte canônica.
-3. Executar os testes de `plugins/figueira-content-squad/VALIDATION.md`.
-4. Fazer commit e push para `origin/main` quando houver autorização/acesso para persistir a mudança.
-
-## Superfícies alvo
+## Superfícies alvo do plugin
 
 - ChatGPT Chat
 - ChatGPT Work
@@ -27,4 +25,4 @@ Depois de validar qualquer alteração do squad:
 - ChatGPT/Codex Desktop
 - Codex CLI
 
-Diferenças de host devem ser tratadas por detecção de capacidade dentro das skills, nunca por forks independentes.
+Diferenças de host devem ser tratadas dentro das skills, nunca por forks neste repositório.

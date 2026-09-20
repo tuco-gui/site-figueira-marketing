@@ -1,5 +1,0 @@
-interface:
-  display_name: "Figueira Hormozi"
-  short_description: "Refina ganchos e aberturas de posts."
-policy:
-  allow_implicit_invocation: true

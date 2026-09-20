@@ -2,14 +2,17 @@
 
 ## Content Squad
 
-A fonte canônica das skills de conteúdo está em `plugins/figueira-content-squad/skills/`.
+A fonte canônica das skills de conteúdo é externa a este repositório:
 
-As entradas em `.agents/skills/` são apenas aliases/symlinks para descoberta local do Codex. Nunca mantenha conteúdo divergente nesses caminhos.
+`https://github.com/tuco-gui/figueira-marketing-skills/tree/main/plugins/figueira-content-squad`
 
-Ao alterar Setup, Kotler, Hormozi, Ogilvy ou Da Vinci:
+Este site **não mantém cópia** de Setup, Kotler, Hormozi, Ogilvy ou Da Vinci.
+O Codex deve consumi-las pelo marketplace em `.agents/plugins/marketplace.json`.
+
+Ao trabalhar com o squad:
 
 - preserve compatibilidade com ChatGPT Chat/Work e Codex web/desktop/CLI;
+- não crie fork ou cópia local versionada das skills;
 - não introduza caminhos absolutos específicos de fornecedor;
-- não congele datas/anos em instruções operacionais;
-- valide pelo checklist do plugin;
-- mantenha o checkout local e o GitHub sincronizados conforme `FIGUEIRA-AI.md`.
+- mantenha contexto do cliente separado por escopo;
+- alterações nas skills devem ser feitas no repositório `figueira-marketing-skills`, validadas e publicadas lá.
