@@ -1,0 +1,5 @@
+interface:
+  display_name: "Figueira Da Vinci"
+  short_description: "Transforma posts em narrativa e carrosséis visuais."
+policy:
+  allow_implicit_invocation: true

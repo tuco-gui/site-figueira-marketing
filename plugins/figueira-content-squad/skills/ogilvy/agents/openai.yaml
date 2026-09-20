@@ -1,0 +1,5 @@
+interface:
+  display_name: "Figueira Ogilvy"
+  short_description: "Redige posts B2B no tom de voz do cliente."
+policy:
+  allow_implicit_invocation: true

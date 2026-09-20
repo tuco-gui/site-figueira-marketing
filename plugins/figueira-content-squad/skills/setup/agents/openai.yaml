@@ -1,0 +1,5 @@
+interface:
+  display_name: "Figueira Setup"
+  short_description: "Cria e atualiza o contexto canônico de clientes."
+policy:
+  allow_implicit_invocation: true

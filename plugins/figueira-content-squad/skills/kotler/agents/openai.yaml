@@ -1,0 +1,5 @@
+interface:
+  display_name: "Figueira Kotler"
+  short_description: "Planeja calendário editorial e briefings de LinkedIn."
+policy:
+  allow_implicit_invocation: true
