@@ -998,3 +998,422 @@ footer {
   </div>
 
   <footer>
+    <span class="domain">[DOMINIO_DO_CLIENTE]</span>
+    <span class="slide-count">[TOTAL] / [TOTAL]</span>
+  </footer>
+</body>
+</html>
+```
+
+---
+
+### Template: Tipo 6 — Conteúdo com Imagem (Stacked Interior)
+
+Usar para slides com visual de suporte (screenshot do produto do cliente, print de resultado, mockup). **Imagem é prova, não decoração.** A imagem é um anexo do projeto ou fornecida pelo usuário.
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<!--FONTE-INTER-INLINE-->  <!-- render.py injeta @font-face base64 aqui (a rede do ambiente de execução bloqueia Google Fonts) -->
+<style>
+:root{
+  /* === 3 CORES DO CLIENTE — preencher do brandbook.md === */
+  --destaque:#1447E6;   /* cor de destaque do cliente */
+  --escura:#121117;     /* cor escura do cliente (fundo dark + texto escuro) */
+  --clara:#FAFAFA;      /* cor clara do cliente (fundo dos slides) */
+
+  /* === superfície branca (alternância de fundo em slides de conteúdo) === */
+  --surface:#FFFFFF;
+
+  /* === tints derivados do destaque (automáticos — não mexer) === */
+  --destaque-tint:  color-mix(in srgb, var(--destaque) 75%, #fff);   /* ~ #4D7BF3 */
+  --destaque-pale:  color-mix(in srgb, var(--destaque) 45%, #fff);   /* ~ #93B4FF */
+  --destaque-wash:  color-mix(in srgb, var(--destaque) 8%,  #fff);   /* ~ #EFF4FF */
+  --destaque-shade: color-mix(in srgb, var(--destaque) 85%, #000);   /* ~ #1039C4 */
+  --destaque-08: color-mix(in srgb, var(--destaque) 8%,  transparent);
+  --destaque-15: color-mix(in srgb, var(--destaque) 15%, transparent);
+  --destaque-20: color-mix(in srgb, var(--destaque) 20%, transparent);
+  --destaque-25: color-mix(in srgb, var(--destaque) 25%, transparent);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--surface);   /* ou var(--clara) — alternar; nunca 3 iguais seguidos */
+  display: flex; flex-direction: column;
+  padding: 80px;
+  -webkit-font-smoothing: antialiased;
+}
+header { display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-icon {
+  width: 44px; height: 44px; background: var(--destaque); border-radius: 11px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.logo-text { font-size: 24px; font-weight: 700; color: var(--escura); letter-spacing: -0.02em; }
+.counter { font-size: 22px; font-weight: 500; color: #6B7280; }
+.main { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.eyebrow {
+  font-size: 22px; font-weight: 600; color: var(--destaque);
+  text-transform: uppercase; letter-spacing: 0.07em; margin-bottom: 20px;
+}
+h1 {
+  font-size: 60px; font-weight: 700; color: var(--escura);
+  line-height: 1.1; letter-spacing: -0.025em; margin-bottom: 20px;
+}
+.body-text { font-size: 30px; font-weight: 500; color: var(--escura); line-height: 1.5; margin-bottom: 28px; }
+.image-container {
+  width: 92%; flex-shrink: 0;
+  border: 1px solid #E2E8F0; border-radius: 14px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08), 0 1px 6px rgba(0,0,0,0.04);
+  overflow: hidden;
+  /* altura ~45-55% da área disponível entre header e barra de progresso */
+  max-height: 540px;
+}
+.image-container img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.progress-bar { height: 4px; background: #E2E8F0; border-radius: 2px; overflow: hidden; width: 920px; flex-shrink: 0; }
+.progress-fill { height: 100%; background: var(--destaque); border-radius: 2px; }
+</style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <div class="logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+             fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>
+        </svg>
+      </div>
+      <span class="logo-text">[NOME_DA_MARCA]</span>
+    </div>
+    <span class="counter">[N] / [TOTAL]</span>
+  </header>
+
+  <div class="main">
+    <p class="eyebrow">[EYEBROW — opcional]</p>
+    <h1>[TÍTULO — afirma o ponto que a imagem comprova]</h1>
+    <!-- Texto ou lista curta: 1-2 linhas OU 2-3 itens com → -->
+    <p class="body-text">[texto curto ou lista 2b inline — max 2 linhas]</p>
+    <!-- Imagem: sempre com borda + shadow — NUNCA solta sobre fundo claro -->
+    <div class="image-container">
+      <img src="[PATH_DA_IMAGEM]" alt="[descrição]">
+    </div>
+  </div>
+
+  <div class="progress-bar">
+    <div class="progress-fill" style="width: [LARGURA]px;"></div>
+  </div>
+</body>
+</html>
+```
+
+---
+
+### Template: Tipo 7 — Prova com Screenshot
+
+Usar para depoimentos de WhatsApp, DM, resultado de cliente. **Sem barra de progresso** — exceção única. A imagem é um anexo do projeto ou fornecida pelo usuário.
+
+**Regras de layout:**
+- Sem eyebrow — o título ocupa direto o topo de `.main`
+- Título sempre centralizado (`text-align: center`)
+- `.screenshot-container` é **filho de `.main`** (não sibling do body) — garante que a imagem nunca sobreponha o texto
+- `flex: 1` + `min-height: 0` no container → absorve o espaço vertical restante após o título
+- `object-fit: cover; object-position: top center` → mostra o topo da conversa, corta o excesso na base
+- `margin-bottom: -48px` → bleed visual na borda inferior do slide
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<!--FONTE-INTER-INLINE-->  <!-- render.py injeta @font-face base64 aqui (a rede do ambiente de execução bloqueia Google Fonts) -->
+<style>
+:root{
+  /* === 3 CORES DO CLIENTE — preencher do brandbook.md === */
+  --destaque:#1447E6;   /* cor de destaque do cliente */
+  --escura:#121117;     /* cor escura do cliente (fundo dark + texto escuro) */
+  --clara:#FAFAFA;      /* cor clara do cliente (fundo dos slides) */
+
+  /* === superfície branca (alternância de fundo em slides de conteúdo) === */
+  --surface:#FFFFFF;
+
+  /* === tints derivados do destaque (automáticos — não mexer) === */
+  --destaque-tint:  color-mix(in srgb, var(--destaque) 75%, #fff);   /* ~ #4D7BF3 */
+  --destaque-pale:  color-mix(in srgb, var(--destaque) 45%, #fff);   /* ~ #93B4FF */
+  --destaque-wash:  color-mix(in srgb, var(--destaque) 8%,  #fff);   /* ~ #EFF4FF */
+  --destaque-shade: color-mix(in srgb, var(--destaque) 85%, #000);   /* ~ #1039C4 */
+  --destaque-08: color-mix(in srgb, var(--destaque) 8%,  transparent);
+  --destaque-15: color-mix(in srgb, var(--destaque) 15%, transparent);
+  --destaque-20: color-mix(in srgb, var(--destaque) 20%, transparent);
+  --destaque-25: color-mix(in srgb, var(--destaque) 25%, transparent);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1080px; height: 1350px; overflow: hidden; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--surface);   /* ou var(--clara) — alternar; nunca 3 iguais seguidos */
+  display: flex; flex-direction: column;
+  padding: 80px 80px 0 80px;
+  -webkit-font-smoothing: antialiased;
+}
+header { display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
+.logo { display: flex; align-items: center; gap: 12px; }
+.logo-icon {
+  width: 44px; height: 44px; background: var(--destaque); border-radius: 11px;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.logo-text { font-size: 24px; font-weight: 700; color: var(--escura); letter-spacing: -0.02em; }
+.counter { font-size: 22px; font-weight: 500; color: #6B7280; }
+.main {
+  flex: 1; display: flex; flex-direction: column;
+  justify-content: flex-start; padding-top: 40px;
+}
+h1 {
+  font-size: 58px; font-weight: 700; color: var(--escura);
+  line-height: 1.1; letter-spacing: -0.025em;
+  margin-bottom: 32px; text-align: center;
+}
+.screenshot-container {
+  flex: 1;
+  min-height: 0;
+  width: 76%; align-self: center;
+  overflow: hidden;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px 16px 0 0;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.05);
+  margin-bottom: -48px;
+}
+.screenshot-container img {
+  width: 100%; height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: top center;
+}
+/* SEM .progress-bar neste template — exceção única do design system */
+</style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <div class="logo-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+             fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/>
+        </svg>
+      </div>
+      <span class="logo-text">[NOME_DA_MARCA]</span>
+    </div>
+    <span class="counter">[N] / [TOTAL]</span>
+  </header>
+
+  <div class="main">
+    <!-- Título narrativo curto, centralizado — sem eyebrow -->
+    <!-- ex: "E isso foi o que ele me disse..." / "O resultado depois de 7 dias:" -->
+    <h1>[TÍTULO NARRATIVO — 1-2 linhas, tom de storytelling]</h1>
+    <!-- Screenshot filho de .main — nunca sobreporá o título -->
+    <div class="screenshot-container">
+      <img src="[PATH_DA_IMAGEM]" alt="depoimento">
+    </div>
+  </div>
+  <!-- SEM barra de progresso — exceção única -->
+</body>
+</html>
+```
+
+---
+
+## Etapa 5 — Arquivos de suporte
+
+### carrossel-preview.html
+
+Visualização local de todos os slides escalados para revisão. Substituir `[LISTA_DE_SLIDES]` com os iframes dos slides do carrossel.
+
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Preview — [SLUG DO CARROSSEL]</title>
+<style>
+body { background: #1a1a2e; padding: 40px; font-family: sans-serif; }
+h1 { color: #fff; font-size: 18px; margin-bottom: 24px; opacity: 0.6; }
+.slides { display: flex; flex-wrap: wrap; gap: 20px; }
+.slide-wrapper {
+  position: relative;
+  width: 270px; height: 337px;
+  border-radius: 8px; overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+.slide-wrapper iframe {
+  width: 1080px; height: 1350px;
+  border: none;
+  transform: scale(0.25); transform-origin: 0 0;
+  pointer-events: none;
+}
+.slide-label {
+  position: absolute; bottom: 8px; left: 0; right: 0;
+  text-align: center; color: rgba(255,255,255,0.5); font-size: 11px;
+}
+</style>
+</head>
+<body>
+  <h1>Preview — [SLUG DO CARROSSEL]</h1>
+  <div class="slides">
+    <!-- Repetir para cada slide: -->
+    <div class="slide-wrapper">
+      <iframe src="slide-01-capa.html"></iframe>
+      <div class="slide-label">01 — Capa</div>
+    </div>
+    <!-- slide-02, slide-03, ..., slide-NN-cta -->
+  </div>
+</body>
+</html>
+```
+
+### render.py — script de render (Python + Playwright)
+
+> **Render primário no ambiente de execução atual.** Para cada `slide-NN-*.html`, injeta a fonte Inter **inline em base64** (a rede do ambiente de execução bloqueia Google Fonts — ver seção de Fonte), abre a página, espera a fonte aplicar, valida overflow de texto e salva `slide-NN.png` (viewport 1080×1350, `device_scale_factor=2`, screenshot PNG). **Saída = um PNG por slide.** Não gera PDF.
+
+```python
+import asyncio, base64, re
+from pathlib import Path
+import os
+from playwright.async_api import async_playwright
+
+HERE = Path(__file__).parent
+WEIGHTS = [400, 500, 600, 700, 800]
+FONT_DIR = Path("node_modules/@fontsource/inter/files")   # via: npm install @fontsource/inter
+# Use o diretório de artefatos/outputs do host quando ele existir; caso contrário, salve ao lado dos HTMLs.
+OUT_DIR = Path(os.environ.get("FIGUEIRA_OUTPUT_DIR", HERE))
+MARKER = "<!--FONTE-INTER-INLINE-->"
+
+def build_font_css():
+    faces = []
+    for w in WEIGHTS:
+        f = FONT_DIR / f"inter-latin-{w}-normal.woff2"
+        if not f.exists():
+            print(f"⚠ fonte ausente: {f} — rode: npm install @fontsource/inter")
+            continue
+        b64 = base64.b64encode(f.read_bytes()).decode()
+        faces.append(
+            f"@font-face{{font-family:'Inter';font-style:normal;font-weight:{w};"
+            f"font-display:block;src:url(data:font/woff2;base64,{b64}) format('woff2');}}"
+        )
+    return "<style>\n" + "\n".join(faces) + "\n</style>"
+
+FONT_STYLE = build_font_css()
+slides = sorted(p for p in HERE.glob("slide-*.html"))
+
+async def main():
+    if not slides:
+        print("Nenhum slide-*.html encontrado."); return
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    print(f"→ {len(slides)} slides. Saída em: {OUT_DIR}")
+
+    async with async_playwright() as p:
+        browser = await p.chromium.launch(args=["--no-sandbox", "--disable-setuid-sandbox"])
+        page = await browser.new_page(viewport={"width": 1080, "height": 1350}, device_scale_factor=2)
+
+        for slide in slides:
+            html = slide.read_text(encoding="utf-8")
+            # injeta a fonte inline (marcador deixado pelo template; senão, logo após <head>)
+            if MARKER in html:
+                html = html.replace(MARKER, FONT_STYLE)
+            else:
+                html = re.sub(r"(<head[^>]*>)", r"\1" + FONT_STYLE, html, count=1)
+            # grava temporário na MESMA pasta p/ preservar caminhos relativos de imagem (Tipo 6/7)
+            tmp = slide.with_name(f"_r_{slide.name}")
+            tmp.write_text(html, encoding="utf-8")
+
+            await page.goto(tmp.as_uri(), wait_until="networkidle")
+            await page.evaluate("document.fonts.ready")
+            await page.wait_for_timeout(300)
+
+            # gate de overflow: reporta blocos marcados com data-check cujo texto estourou
+            overflows = await page.evaluate("""() => {
+              const bad = [];
+              document.querySelectorAll('[data-check]').forEach(el => {
+                const ovf = el.scrollHeight - el.clientHeight;
+                if (ovf > 2) bad.push({el: el.id || el.className, ovf});
+              });
+              return bad;
+            }""")
+            # anti-fallback: confirma que Inter aplicou (não caiu em fonte de sistema)
+            inter_ok = await page.evaluate("() => document.fonts.check(\"80px 'Inter'\")")
+
+            m = re.search(r"slide-(\d+)", slide.stem)
+            num = m.group(1) if m else slide.stem
+            out = OUT_DIR / f"slide-{num}.png"
+            if not inter_ok:
+                print(f"⚠ {slide.name}: Inter NÃO aplicou — confira o npm install @fontsource/inter.")
+            if overflows:
+                print(f"⚠ {slide.name}: texto estourou — {overflows}. Ajuste copy/tamanho antes de publicar.")
+
+            await page.screenshot(path=str(out), clip={"x": 0, "y": 0, "width": 1080, "height": 1350})
+            tmp.unlink(missing_ok=True)
+            print(f"✓ {out.name}")
+
+        await browser.close()
+    print("\nDone. Um PNG por slide em:", OUT_DIR)
+
+asyncio.run(main())
+```
+
+**Como rodar quando o host oferece shell/Python:**
+
+```bash
+python3 -m playwright install chromium     # idempotente — 1x por sessão (Chromium costuma já vir no ambiente)
+npm install @fontsource/inter              # fonte via npm; NÃO usar Google Fonts (a rede bloqueia)
+python3 render.py
+# Se faltar o pacote: pip install --break-system-packages playwright
+```
+
+> **Marque com `data-check`** os blocos de título/corpo que precisam caber num espaço fixo — o gate de overflow do `render.py` valida só esses e avisa antes de exportar um slide com texto cortado.
+
+> **Nota de ambiente (crítica):** este passo depende de o ambiente de execução atual conseguir rodar Chromium headless. **Se por algum motivo o Chromium não estiver disponível no ambiente, avisar o usuário em vez de falhar silenciosamente** — entregar os HTMLs + o `render.py` + estas instruções, e explicar que o passo de imagem não pôde rodar aqui.
+
+> **Se as imagens de Tipo 6/7 forem arquivos do contexto do cliente** com caminhos que o Playwright não resolve via `file://`, embutir as imagens como data URI no HTML antes de renderizar (ler o arquivo, converter para base64 e substituir o `src`), ou colocar as imagens na mesma pasta dos HTMLs.
+
+---
+
+## Checklist antes de entregar
+
+- [ ] `:root` de cada slide preenchido com as 3 cores do cliente (`--destaque`/`--escura`/`--clara` do `brandbook.md`)? (tints derivam sozinhos via `color-mix()`)
+- [ ] Wordmark `[NOME_DA_MARCA]` e domínio `[DOMINIO_DO_CLIENTE]` preenchidos com os dados do `brandbook.md`?
+- [ ] Se o cliente tem ícone/logo próprio, aplicado? Se não tem, `.logo-icon` removido e só o wordmark presente?
+- [ ] Cada slide tem o template correto para o tipo de conteúdo?
+- [ ] Nenhum slide tem mais de 3 itens de lista (exceto Tipo 2b que permite até 5 curtos)?
+- [ ] Capa tem dot pattern + glow (dark) ou dot pattern (light)?
+- [ ] Eyebrow nas capas está em pill (`.eyebrow-pill`), não texto solto?
+- [ ] Slides de conteúdo alternam `var(--surface)` e `var(--clara)`? (nunca 3 consecutivos iguais)
+- [ ] Barras de progresso calculadas corretamente para cada slide?
+- [ ] Tipo 7 não tem barra de progresso?
+- [ ] Tipo 7: `.screenshot-container` é filho de `.main` (não sibling do body)?
+- [ ] Tipo 7: título centralizado (`text-align: center`) e sem eyebrow?
+- [ ] Tipo 7: `object-fit: cover; object-position: top center` na imagem?
+- [ ] CTA tem fundo na cor de destaque, logo invertido (ícone com stroke na cor de destaque sobre fundo branco), rodapé com `[DOMINIO_DO_CLIENTE]`?
+- [ ] CTA não tem círculos decorativos?
+- [ ] Logo/wordmark do cliente em todos os slides (nunca emoji)?
+- [ ] Tipo 6 e Tipo 7 têm `src="[PATH_DA_IMAGEM]"` como placeholder explícito?
+- [ ] `carrossel-preview.html` lista todos os slides?
+- [ ] `render.py` presente e pronto para rodar no sandbox?
+- [ ] Um PNG por slide gerado (ou HTMLs + `render.py` + aviso, se o Chromium não rodou)?
+- [ ] Hook da capa é fiel ao post — não parafraseado?
+- [ ] CTA do último slide é extraído do texto do post — não inventado?
+
+---
+
+## Regras duras de output
+
+- Nunca reescrever ou parafrasear o hook quando o post original foi fornecido
+- Nunca usar Tipo 3 para afirmações do autor — apenas para fala literal de pessoa identificada com nome + cargo/empresa
+- Nunca misturar sub-componentes de templates diferentes no mesmo slide
+- Nunca usar cores fora da paleta do cliente (destaque/escura/clara + tints) + neutros/semânticos universais
+- Nunca usar emoji no lugar do logo/ícone do cliente
+- Nunca adicionar `deco-circle-*` ou elementos decorativos no slide CTA
+- Nunca usar a cor de destaque sólida em título sobre fundo dark se perder contraste — usar gradient ou tint claro do destaque
+- Fonte Inter embutida em base64 (`@fontsource`), injetada pelo `render.py` no marcador `<!--FONTE-INTER-INLINE-->`. Nunca Google Fonts por URL nem `@import`.
+- Saída final = **um PNG por slide** — nunca montar PDF
+- Sempre confirmar a narrativa (Etapa A aprovada) antes de gerar os HTMLs
