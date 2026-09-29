@@ -620,7 +620,7 @@ export default function ConsultProposal() {
 
         <section className="relative isolate overflow-hidden bg-[#075653] text-white">
           <img
-            src="https://d2ol7oe51mr4n9.cloudfront.net/user_3DxYylYzuYNdRvGcUVEKRePLRKg/28c80340-9abd-441a-87a3-ec1318947178.webp"
+            src="/consult/approved-national-bg.webp"
             alt=""
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-55"
@@ -674,7 +674,7 @@ export default function ConsultProposal() {
 
               <div className="relative z-[5] mx-auto flex h-[330px] w-full max-w-[430px] items-center justify-center sm:h-[370px] lg:h-[390px]">
                 <img
-                  src="https://d2ol7oe51mr4n9.cloudfront.net/user_3DxYylYzuYNdRvGcUVEKRePLRKg/870d328d-a770-4428-8f4d-f81924543feb.webp"
+                  src="/consult/approved-national-map.webp"
                   alt="Mapa do Brasil representando a cobertura nacional da Consult Radiometria e Qualidade."
                   className="block h-full w-auto max-w-full object-contain [mask-image:linear-gradient(90deg,transparent_0%,black_7%,black_94%,transparent_100%)] [-webkit-mask-image:linear-gradient(90deg,transparent_0%,black_7%,black_94%,transparent_100%)]"
                 />
