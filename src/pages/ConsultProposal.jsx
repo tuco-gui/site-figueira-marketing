@@ -497,7 +497,7 @@ export default function ConsultProposal() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href="#contato"
-                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-[13px] font-extrabold whitespace-nowrap text-white shadow-xl shadow-black/10 transition hover:brightness-95"
+                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-4 py-3 text-[12px] font-extrabold whitespace-nowrap sm:text-[13px] text-white shadow-xl shadow-black/10 transition hover:brightness-95"
                 >
                   <FileText className="h-4 w-4" />
                   Solicite um orçamento
@@ -628,7 +628,7 @@ export default function ConsultProposal() {
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(4,84,80,.96)_0%,rgba(4,84,80,.88)_34%,rgba(3,70,67,.66)_67%,rgba(3,63,60,.80)_100%)]" />
 
           <div className="relative mx-auto max-w-[1320px] px-5 py-8 sm:px-8 sm:py-8 lg:px-14 lg:py-7 xl:px-12">
-            <div className="grid items-center gap-7 lg:grid-cols-[minmax(0,45fr)_minmax(330px,35fr)_minmax(180px,20fr)] lg:gap-4 xl:gap-6">
+            <div className="grid items-center gap-7 lg:grid-cols-[minmax(0,47fr)_minmax(330px,34fr)_minmax(170px,19fr)] lg:gap-3 xl:gap-5">
               <div className="relative z-10 max-w-[500px]">
                 <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.32em] text-white/78">
                   <span className="h-[2px] w-10 bg-[#8AE600]" />
@@ -657,7 +657,7 @@ export default function ConsultProposal() {
                     href={waUrl("Olá, equipe Consult. Gostaria de saber sobre atendimento na minha região.")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl border-2 border-[#8AE600] bg-[#075653]/35 px-5 py-3 text-[13px] font-extrabold whitespace-nowrap text-white backdrop-blur-[2px] transition hover:bg-[#8AE600] hover:text-[#075653]"
+                    className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl border-2 border-[#8AE600] bg-[#075653]/35 px-4 py-3 text-[12px] font-extrabold whitespace-nowrap sm:text-[13px] text-white backdrop-blur-[2px] transition hover:bg-[#8AE600] hover:text-[#075653]"
                   >
                     <WhatsAppIcon className="h-5 w-5" />
                     Falar no WhatsApp
