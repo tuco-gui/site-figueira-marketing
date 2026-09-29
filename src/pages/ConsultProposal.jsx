@@ -620,7 +620,7 @@ export default function ConsultProposal() {
 
         <section className="relative isolate overflow-hidden bg-[#064F4C] text-white">
           <img
-            src="https://d2jqrm6oza8nb6.cloudfront.net/datasets/17a11537-f72e-4cce-b807-b8946a7bf4ea.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiYmVkOGEwZWUzYzdlNWFkNSIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MDg2OTYxNH0.bl2uIjHVlgDx7aMFAxS_AdVYMq1ihbDZcLYwB2yga90"
+            src="/consult/atendimento-brasil-bg.webp"
             alt=""
             aria-hidden="true"
             className="absolute inset-0 h-full w-full object-cover object-[72%_50%] sm:object-[68%_50%] lg:object-center"
