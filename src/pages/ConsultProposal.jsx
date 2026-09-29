@@ -619,22 +619,40 @@ export default function ConsultProposal() {
         </section>
 
         <section className="relative overflow-hidden bg-[#075653] text-white">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_40%,rgba(5,210,157,.14),transparent_38%),radial-gradient(circle_at_82%_25%,rgba(138,230,0,.08),transparent_28%)]" />
-          <div className="relative mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[.82fr_1.18fr] lg:px-8 lg:py-20">
-            <div className="flex flex-col justify-center">
-              <SectionEyebrow dark>Onde atuamos</SectionEyebrow>
-              <h2 className="text-4xl font-black leading-[.98] tracking-[-0.035em] sm:text-5xl">Atendimento em<br /><span className="text-[#8AE600]">todo o Brasil</span></h2>
-              <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-white/78">A Consult Radiometria e Qualidade atende instituições de saúde em todo o território nacional, com estrutura para realizar visitas técnicas, suporte remoto e acompanhamento contínuo, onde você estiver.</p>
-              <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-                <a href="#contato" className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-6 py-3 text-sm font-extrabold"><CalendarDays className="h-4 w-4" /> Agendar reunião <ArrowRight className="h-4 w-4" /></a>
-                <a href={waUrl("Olá, equipe Consult. Gostaria de saber sobre atendimento na minha região.")} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/80 px-6 py-3 text-sm font-extrabold text-[#B8FF51]"><WhatsAppIcon className="h-5 w-5" /> Falar no WhatsApp</a>
-              </div>
-              <div className="mt-7 text-[9px] font-bold uppercase tracking-[0.32em] text-white/55">Mais saúde e segurança em todo o território nacional</div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,rgba(138,230,0,.08),transparent_34%),radial-gradient(circle_at_25%_70%,rgba(5,210,157,.10),transparent_38%)]" />
+          <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
+            <div className="sr-only">
+              Conhecimento Técnico Sem Fronteiras. Atendimento em todas as regiões: Norte, Nordeste, Centro-Oeste, Sudeste e Sul.
             </div>
-            <div className="flex items-center justify-center">
-              <div className="relative aspect-[394/240] w-full max-w-[640px] overflow-hidden">
-                <img src={APPROVED_MOCKUP} alt="Mapa do Brasil com cobertura nacional da Consult" className="absolute left-0 top-0 max-w-none" style={{ width: "183.756%", transform: "translate(-45.58%, -44.89%)", transformOrigin: "0 0" }} />
-              </div>
+
+            <div className="relative overflow-hidden rounded-[28px] border border-white/10 shadow-2xl shadow-black/20">
+              <img
+                src="/consult/atendimento-em-todas-as-regioes.png"
+                alt="Conhecimento Técnico Sem Fronteiras. Atendimento em todas as regiões do Brasil: Norte, Nordeste, Centro-Oeste, Sudeste e Sul."
+                className="block h-auto w-full"
+              />
+              <div className="pointer-events-none absolute left-[69%] top-[47%] h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8AE600]/15 blur-2xl motion-safe:animate-pulse" />
+              <div className="pointer-events-none absolute left-[78%] top-[30%] h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10 blur-xl motion-safe:animate-pulse" />
+            </div>
+
+            <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+              <a
+                href="#contato"
+                className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-6 py-3 text-sm font-extrabold"
+              >
+                <CalendarDays className="h-4 w-4" />
+                Agendar reunião
+                <ArrowRight className="h-4 w-4" />
+              </a>
+              <a
+                href={waUrl("Olá, equipe Consult. Gostaria de saber sobre atendimento na minha região.")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/80 px-6 py-3 text-sm font-extrabold text-[#B8FF51]"
+              >
+                <WhatsAppIcon className="h-5 w-5" />
+                Falar no WhatsApp
+              </a>
             </div>
           </div>
         </section>
