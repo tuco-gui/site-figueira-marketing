@@ -497,7 +497,7 @@ export default function ConsultProposal() {
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
                   href="#contato"
-                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-6 py-3 text-sm font-extrabold text-white shadow-xl shadow-black/10 transition hover:brightness-95"
+                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-[13px] font-extrabold whitespace-nowrap text-white shadow-xl shadow-black/10 transition hover:brightness-95"
                 >
                   <FileText className="h-4 w-4" />
                   Solicite um orçamento
@@ -627,19 +627,19 @@ export default function ConsultProposal() {
           />
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(4,84,80,.96)_0%,rgba(4,84,80,.88)_34%,rgba(3,70,67,.66)_67%,rgba(3,63,60,.80)_100%)]" />
 
-          <div className="relative mx-auto max-w-[1320px] px-5 py-9 sm:px-7 sm:py-10 lg:px-8 lg:py-10">
-            <div className="grid items-center gap-7 lg:grid-cols-[minmax(0,44fr)_minmax(380px,36fr)_minmax(185px,20fr)] lg:gap-6 xl:gap-8">
-              <div className="relative z-10 max-w-[535px]">
+          <div className="relative mx-auto max-w-[1320px] px-5 py-8 sm:px-8 sm:py-8 lg:px-14 lg:py-7 xl:px-12">
+            <div className="grid items-center gap-7 lg:grid-cols-[minmax(0,45fr)_minmax(330px,35fr)_minmax(180px,20fr)] lg:gap-4 xl:gap-6">
+              <div className="relative z-10 max-w-[500px]">
                 <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.32em] text-white/78">
                   <span className="h-[2px] w-10 bg-[#8AE600]" />
                   Onde atuamos
                 </div>
 
-                <h2 className="mt-4 text-[38px] font-black leading-[0.98] tracking-[-0.04em] sm:text-[44px] lg:text-[42px] xl:text-[46px]">
+                <h2 className="mt-4 text-[38px] font-black leading-[0.98] tracking-[-0.04em] sm:text-[44px] lg:text-[42px] xl:text-[44px]">
                   Atendimento em <span className="text-[#8AE600]">todo o Brasil</span>
                 </h2>
 
-                <p className="mt-5 max-w-[505px] text-[14px] leading-[1.55] text-white/90 sm:text-[15px]">
+                <p className="mt-5 max-w-[475px] text-[14px] leading-[1.55] text-white/90 sm:text-[15px]">
                   A Consult Radiometria e Qualidade atende instituições de saúde em todo o território nacional,
                   com estrutura para realizar visitas técnicas, suporte remoto e acompanhamento contínuo, onde você estiver.
                 </p>
@@ -657,7 +657,7 @@ export default function ConsultProposal() {
                     href={waUrl("Olá, equipe Consult. Gostaria de saber sobre atendimento na minha região.")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl border-2 border-[#8AE600] bg-[#075653]/35 px-6 py-3 text-sm font-extrabold text-white backdrop-blur-[2px] transition hover:bg-[#8AE600] hover:text-[#075653]"
+                    className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl border-2 border-[#8AE600] bg-[#075653]/35 px-5 py-3 text-[13px] font-extrabold whitespace-nowrap text-white backdrop-blur-[2px] transition hover:bg-[#8AE600] hover:text-[#075653]"
                   >
                     <WhatsAppIcon className="h-5 w-5" />
                     Falar no WhatsApp
@@ -672,7 +672,7 @@ export default function ConsultProposal() {
                 </div>
               </div>
 
-              <div className="relative z-[5] mx-auto flex h-[330px] w-full max-w-[430px] items-center justify-center sm:h-[370px] lg:h-[390px]">
+              <div className="relative z-[5] mx-auto flex h-[300px] w-full max-w-[390px] items-center justify-center sm:h-[320px] lg:h-[340px]">
                 <img
                   src="/consult/approved-national-map.webp"
                   alt="Mapa do Brasil representando a cobertura nacional da Consult Radiometria e Qualidade."
