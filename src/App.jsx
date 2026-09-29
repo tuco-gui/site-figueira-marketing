@@ -14,7 +14,7 @@ import Contato from '@/pages/Contato'
 import GrowthMarketing from '@/pages/GrowthMarketing'
 import StackDigital from '@/pages/StackDigital'
 import PartnerLandingPage from '@/pages/PartnerLandingPage'
-import ConsultProposal from '@/pages/ConsultProposal'
+import ConsultProposal, { ConsultAreaPage } from '@/pages/ConsultProposal'
 
 import EstrategiaGrowth from '@/pages/solutions/EstrategiaGrowth'
 import Gestao from '@/pages/solutions/Gestao'
@@ -43,7 +43,6 @@ function App() {
             <Route path="/recursos/growth-marketing" element={<GrowthMarketing />} />
             <Route path="/stack-digital" element={<StackDigital />} />
             <Route path="/stack-digital/:partner" element={<PartnerLandingPage />} />
-            <Route path="/consult" element={<ConsultProposal />} />
             <Route path="/solucoes/estrategia-growth" element={<EstrategiaGrowth />} />
             <Route path="/solucoes/gestao" element={<Gestao />} />
             <Route path="/solucoes/midia-paga" element={<MidiaPaga />} />
@@ -57,6 +56,8 @@ function App() {
             <Route path="/solucoes/solucoes-sob-medida" element={<SolucoesSobMedida />} />
             <Route path="/solucoes/retencao" element={<Retencao />} />
           </Route>
+          <Route path="/consult" element={<ConsultProposal />} />
+          <Route path="/consult/areas/:slug" element={<ConsultAreaPage />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Toaster />
