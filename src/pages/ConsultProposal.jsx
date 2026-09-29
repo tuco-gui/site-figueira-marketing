@@ -623,14 +623,15 @@ export default function ConsultProposal() {
             src="/consult/atendimento-brasil-bg.webp"
             alt=""
             aria-hidden="true"
-            className="absolute inset-0 h-full w-full object-cover object-[72%_50%] sm:object-[68%_50%] lg:object-center"
+            className="pointer-events-none absolute right-0 top-1/2 h-[72%] w-auto max-w-none -translate-y-1/2 object-contain opacity-45 sm:h-[84%] sm:opacity-70 lg:h-[94%] lg:opacity-100"
           />
 
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(5,86,83,.98)_0%,rgba(5,86,83,.93)_27%,rgba(5,86,83,.66)_42%,rgba(5,86,83,.22)_58%,rgba(5,86,83,.04)_78%)] lg:bg-[linear-gradient(90deg,rgba(5,86,83,.98)_0%,rgba(5,86,83,.92)_24%,rgba(5,86,83,.60)_39%,rgba(5,86,83,.18)_55%,rgba(5,86,83,0)_74%)]" />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-[#064F4C]/55 to-transparent" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#064F4C]/70 to-transparent" />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(5,86,83,.99)_0%,rgba(5,86,83,.96)_28%,rgba(5,86,83,.78)_42%,rgba(5,86,83,.34)_56%,rgba(5,86,83,.06)_72%,rgba(5,86,83,0)_100%)]" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-[30%] bg-[linear-gradient(270deg,rgba(3,55,53,.94)_0%,rgba(3,55,53,.78)_38%,rgba(3,55,53,.28)_72%,rgba(3,55,53,0)_100%)] lg:block" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-9 bg-gradient-to-b from-[#064F4C]/55 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-[#064F4C]/65 to-transparent" />
 
-          <div className="relative mx-auto min-h-[430px] max-w-7xl px-4 py-10 sm:min-h-[445px] sm:px-6 sm:py-12 lg:min-h-[405px] lg:px-8 lg:py-12">
+          <div className="relative mx-auto min-h-[430px] max-w-7xl px-4 py-10 sm:min-h-[445px] sm:px-6 sm:py-12 lg:min-h-[430px] lg:px-8 lg:py-12">
             <div className="relative z-10 max-w-[610px] lg:max-w-[500px]">
               <div className="flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.28em] text-white/75">
                 <span className="h-[2px] w-8 bg-[#8AE600]" />
@@ -659,7 +660,7 @@ export default function ConsultProposal() {
                   href={waUrl("Olá, equipe Consult. Gostaria de saber sobre atendimento na minha região.")}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/90 bg-[#064F4C]/35 px-5 py-3 text-sm font-extrabold text-[#C9FF72] backdrop-blur-[2px] transition hover:bg-[#064F4C]/55"
+                  className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/90 bg-[#064F4C]/45 px-5 py-3 text-sm font-extrabold text-[#C9FF72] backdrop-blur-[2px] transition hover:bg-[#064F4C]/65"
                 >
                   <WhatsAppIcon className="h-5 w-5" />
                   Falar no WhatsApp
@@ -674,30 +675,31 @@ export default function ConsultProposal() {
               </div>
             </div>
 
-            <div className="absolute right-6 top-8 z-10 hidden max-w-[175px] border-l-2 border-[#8AE600] pl-4 text-[9px] font-bold uppercase leading-[1.7] tracking-[0.26em] text-white/78 lg:block">
-              Conhecimento técnico sem fronteiras
-            </div>
-
-            <div className="absolute bottom-10 right-6 z-10 hidden w-[172px] rounded-2xl border border-[#8AE600]/35 bg-[#064F4C]/58 p-4 shadow-xl shadow-black/10 backdrop-blur-[4px] lg:block">
-              <div className="text-[8px] font-black uppercase leading-[1.45] tracking-[0.15em] text-white/80">
-                Atendimento em todas as regiões
-              </div>
-              <div className="mt-3 space-y-1.5 text-[10px] font-semibold text-white/92">
-                {["Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"].map((region) => (
-                  <div key={region} className="flex items-center gap-2">
-                    <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#8AE600] text-[9px] font-black text-[#075653]">✓</span>
-                    <span>{region}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             <div className="relative z-10 mt-8 flex max-w-[520px] flex-wrap gap-x-4 gap-y-2 text-[10px] font-bold text-white/82 lg:hidden">
               {["Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"].map((region) => (
                 <span key={region} className="inline-flex items-center gap-1.5">
                   <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#8AE600] text-[9px] font-black text-[#075653]">✓</span>
                   {region}
                 </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="absolute right-[4vw] top-9 z-10 hidden max-w-[190px] rounded-xl border border-white/10 bg-[#043D3B]/84 px-4 py-3 text-[9px] font-bold uppercase leading-[1.7] tracking-[0.26em] text-white/92 shadow-lg shadow-black/10 backdrop-blur-[5px] lg:block">
+            <span className="mb-2 block h-[2px] w-8 bg-[#8AE600]" />
+            Conhecimento técnico sem fronteiras
+          </div>
+
+          <div className="absolute bottom-9 right-[4vw] z-10 hidden w-[188px] rounded-2xl border border-[#8AE600]/35 bg-[#043D3B]/88 p-4 shadow-xl shadow-black/20 backdrop-blur-[6px] lg:block">
+            <div className="text-[8px] font-black uppercase leading-[1.45] tracking-[0.15em] text-white/90">
+              Atendimento em todas as regiões
+            </div>
+            <div className="mt-3 space-y-1.5 text-[10px] font-semibold text-white/95">
+              {["Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"].map((region) => (
+                <div key={region} className="flex items-center gap-2">
+                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#8AE600] text-[9px] font-black text-[#075653]">✓</span>
+                  <span>{region}</span>
+                </div>
               ))}
             </div>
           </div>
