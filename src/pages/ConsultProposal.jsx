@@ -666,11 +666,11 @@ export default function ConsultProposal() {
                 </div>
               </div>
 
-              <div className="relative z-[5] min-h-[300px] sm:min-h-[320px] lg:min-h-[330px]">
+              <div className="relative z-[5] h-[300px] overflow-hidden sm:h-[320px] lg:h-[330px]">
                 <img
                   src="/consult/atendimento-brasil-bg.webp"
                   alt="Mapa do Brasil representando a cobertura nacional da Consult Radiometria e Qualidade."
-                  className="pointer-events-none absolute right-[-10%] top-1/2 h-[132%] w-auto max-w-none -translate-y-1/2 object-contain [mask-image:linear-gradient(90deg,transparent_0%,black_20%,black_100%)] [-webkit-mask-image:linear-gradient(90deg,transparent_0%,black_20%,black_100%)]"
+                  className="pointer-events-none absolute right-[-17%] top-1/2 h-full w-auto max-w-none -translate-y-1/2 object-contain [mask-image:linear-gradient(90deg,transparent_0%,black_18%,black_100%)] [-webkit-mask-image:linear-gradient(90deg,transparent_0%,black_18%,black_100%)]"
                 />
               </div>
 
