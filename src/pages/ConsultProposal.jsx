@@ -618,35 +618,30 @@ export default function ConsultProposal() {
           </div>
         </section>
 
-        <section className="relative isolate overflow-hidden bg-[#064F4C] text-white">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_8%_8%,rgba(20,170,145,.18),transparent_34%),radial-gradient(circle_at_88%_18%,rgba(0,220,165,.12),transparent_28%),linear-gradient(115deg,#075e59_0%,#075653_38%,#064744_68%,#043b39_100%)]" />
-          <div className="pointer-events-none absolute -left-[12%] bottom-[-38%] h-[520px] w-[760px] rounded-[50%] border-[70px] border-[#0AA88B]/12 rotate-[12deg]" />
-          <div className="pointer-events-none absolute left-[34%] top-[-64%] h-[560px] w-[760px] rounded-[50%] border-[54px] border-[#0BC49C]/10 -rotate-[18deg]" />
-          <div className="pointer-events-none absolute right-[18%] bottom-[-52%] h-[500px] w-[660px] rounded-[50%] border-[58px] border-[#0AB28F]/10 rotate-[18deg]" />
-          <div className="pointer-events-none absolute inset-x-0 top-0 h-8 bg-gradient-to-b from-[#064F4C]/55 to-transparent" />
-          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-9 bg-gradient-to-t from-[#064F4C]/60 to-transparent" />
+        <section className="relative isolate overflow-hidden bg-[#075653] text-white">
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#075653_0%,#075653_36%,#064C49_68%,#05423F_100%)]" />
 
-          <div className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-12 lg:px-8">
-            <div className="grid items-center gap-8 md:grid-cols-[minmax(0,1.05fr)_minmax(300px,.95fr)] lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,.92fr)_220px] lg:gap-7 xl:gap-9">
-              <div className="relative z-10 max-w-[540px]">
+          <div className="relative mx-auto max-w-7xl px-4 py-9 sm:px-6 sm:py-10 lg:px-8 lg:py-10">
+            <div className="grid items-center gap-7 md:grid-cols-[minmax(0,1.04fr)_minmax(300px,.96fr)] lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,.92fr)_205px] lg:gap-6 xl:gap-8">
+              <div className="relative z-10 max-w-[520px]">
                 <div className="flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.28em] text-white/75">
                   <span className="h-[2px] w-8 bg-[#8AE600]" />
                   Onde atuamos
                 </div>
 
-                <h2 className="mt-3 text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[42px] lg:text-[40px] xl:text-[42px]">
+                <h2 className="mt-3 text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[40px] lg:text-[38px] xl:text-[40px]">
                   Atendimento em <span className="text-[#8AE600]">todo o Brasil</span>
                 </h2>
 
-                <p className="mt-4 max-w-[500px] text-[13px] leading-[1.6] text-white/88 sm:text-[14px]">
+                <p className="mt-4 max-w-[490px] text-[13px] leading-[1.58] text-white/88 sm:text-[14px]">
                   A Consult Radiometria e Qualidade atende instituições de saúde em todo o território nacional,
                   com estrutura para realizar visitas técnicas, suporte remoto e acompanhamento contínuo, onde você estiver.
                 </p>
 
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <div className="mt-5 flex flex-col gap-3 sm:flex-row">
                   <a
                     href="#contato"
-                    className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold shadow-lg shadow-black/20 transition hover:-translate-y-0.5"
+                    className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold shadow-lg shadow-black/20 transition hover:-translate-y-0.5"
                   >
                     <CalendarDays className="h-4 w-4" />
                     Agendar reunião
@@ -656,14 +651,14 @@ export default function ConsultProposal() {
                     href={waUrl("Olá, equipe Consult. Gostaria de saber sobre atendimento na minha região.")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/90 bg-[#064F4C]/48 px-5 py-3 text-sm font-extrabold text-[#C9FF72] backdrop-blur-[2px] transition hover:bg-[#064F4C]/68"
+                    className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/90 bg-[#075653]/35 px-5 py-3 text-sm font-extrabold text-[#C9FF72] backdrop-blur-[2px] transition hover:bg-[#075653]/55"
                   >
                     <WhatsAppIcon className="h-5 w-5" />
                     Falar no WhatsApp
                   </a>
                 </div>
 
-                <div className="mt-6">
+                <div className="mt-5">
                   <span className="block h-[2px] w-8 bg-[#8AE600]" />
                   <p className="mt-3 max-w-[360px] text-[8px] font-bold uppercase leading-[1.75] tracking-[0.3em] text-white/70">
                     Mais saúde e segurança em todo o território nacional
@@ -671,26 +666,21 @@ export default function ConsultProposal() {
                 </div>
               </div>
 
-              <div className="relative z-[5] flex min-h-[300px] items-center justify-center sm:min-h-[340px] lg:min-h-[360px]">
-                <div className="relative h-[300px] w-full max-w-[520px] overflow-hidden sm:h-[340px] lg:h-[360px]">
-                  <img
-                    src="/consult/atendimento-brasil-bg.webp"
-                    alt="Mapa do Brasil representando a cobertura nacional da Consult Radiometria e Qualidade."
-                    className="absolute right-[-7%] top-1/2 h-full w-auto max-w-none -translate-y-1/2 mix-blend-lighten [mask-image:radial-gradient(ellipse_78%_82%_at_54%_50%,black_54%,transparent_90%)] [-webkit-mask-image:radial-gradient(ellipse_78%_82%_at_54%_50%,black_54%,transparent_90%)]"
-                  />
-                </div>
+              <div className="relative z-[5] min-h-[300px] sm:min-h-[320px] lg:min-h-[330px]">
+                <img
+                  src="/consult/atendimento-brasil-bg.webp"
+                  alt="Mapa do Brasil representando a cobertura nacional da Consult Radiometria e Qualidade."
+                  className="pointer-events-none absolute right-[-10%] top-1/2 h-[132%] w-auto max-w-none -translate-y-1/2 object-contain [mask-image:linear-gradient(90deg,transparent_0%,black_20%,black_100%)] [-webkit-mask-image:linear-gradient(90deg,transparent_0%,black_20%,black_100%)]"
+                />
               </div>
 
               <aside className="relative z-10 md:col-span-2 md:grid md:grid-cols-2 md:gap-4 lg:col-span-1 lg:block">
-                <div className="rounded-2xl border border-white/10 bg-[#043D3B]/88 p-4 shadow-xl shadow-black/15 backdrop-blur-[6px]">
-                  <span className="mb-3 block h-[2px] w-8 bg-[#8AE600]" />
-                  <div className="text-[9px] font-bold uppercase leading-[1.75] tracking-[0.25em] text-white/92">
-                    Conhecimento técnico sem fronteiras
-                  </div>
+                <div className="border-l-2 border-[#8AE600] pl-4 text-[9px] font-bold uppercase leading-[1.75] tracking-[0.24em] text-white/88">
+                  Conhecimento técnico sem fronteiras
                 </div>
 
-                <div className="mt-4 rounded-2xl border border-[#8AE600]/35 bg-[#043D3B]/92 p-4 shadow-xl shadow-black/20 backdrop-blur-[6px] md:mt-0 lg:mt-4">
-                  <div className="text-[8px] font-black uppercase leading-[1.5] tracking-[0.15em] text-white/90">
+                <div className="mt-5 rounded-2xl border border-[#8AE600]/35 bg-[#043D3B]/82 p-4 shadow-xl shadow-black/15 backdrop-blur-[5px] md:mt-0 lg:mt-5">
+                  <div className="text-[8px] font-black uppercase leading-[1.5] tracking-[0.14em] text-white/90">
                     Atendimento em todas as regiões
                   </div>
                   <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 text-[10px] font-semibold text-white/95 md:grid-cols-5 lg:grid-cols-1">
