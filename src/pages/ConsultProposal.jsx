@@ -618,81 +618,87 @@ export default function ConsultProposal() {
           </div>
         </section>
 
-        <section className="relative overflow-hidden bg-[#075653] text-white">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid min-h-[330px] overflow-hidden lg:grid-cols-[43%_57%]">
-              <div className="relative z-10 flex flex-col justify-center px-6 py-10 sm:px-8 lg:px-10 lg:py-9">
-                <div className="flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.28em] text-white/70">
-                  <span className="h-[2px] w-8 bg-[#8AE600]" />
-                  Onde atuamos
-                </div>
+        <section className="relative isolate overflow-hidden bg-[#064F4C] text-white">
+          <img
+            src="https://d2jqrm6oza8nb6.cloudfront.net/datasets/17a11537-f72e-4cce-b807-b8946a7bf4ea.png?_jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJrZXlIYXNoIjoiYmVkOGEwZWUzYzdlNWFkNSIsImJ1Y2tldCI6InJ1bndheS1kYXRhc2V0cyIsInN0YWdlIjoicHJvZCIsImV4cCI6MTc5MDg2OTYxNH0.bl2uIjHVlgDx7aMFAxS_AdVYMq1ihbDZcLYwB2yga90"
+            alt=""
+            aria-hidden="true"
+            className="absolute inset-0 h-full w-full object-cover object-[72%_50%] sm:object-[68%_50%] lg:object-center"
+          />
 
-                <h2 className="mt-3 text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[40px]">
-                  Atendimento em <span className="text-[#8AE600]">todo o Brasil</span>
-                </h2>
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(5,86,83,.98)_0%,rgba(5,86,83,.93)_27%,rgba(5,86,83,.66)_42%,rgba(5,86,83,.22)_58%,rgba(5,86,83,.04)_78%)] lg:bg-[linear-gradient(90deg,rgba(5,86,83,.98)_0%,rgba(5,86,83,.92)_24%,rgba(5,86,83,.60)_39%,rgba(5,86,83,.18)_55%,rgba(5,86,83,0)_74%)]" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-[#064F4C]/55 to-transparent" />
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-[#064F4C]/70 to-transparent" />
 
-                <p className="mt-4 max-w-[470px] text-[13px] leading-[1.55] text-white/84 sm:text-[14px]">
-                  A Consult Radiometria e Qualidade atende instituições de saúde em todo o território nacional,
-                  com estrutura para realizar visitas técnicas, suporte remoto e acompanhamento contínuo, onde você estiver.
+          <div className="relative mx-auto min-h-[430px] max-w-7xl px-4 py-10 sm:min-h-[445px] sm:px-6 sm:py-12 lg:min-h-[405px] lg:px-8 lg:py-12">
+            <div className="relative z-10 max-w-[610px] lg:max-w-[500px]">
+              <div className="flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.28em] text-white/75">
+                <span className="h-[2px] w-8 bg-[#8AE600]" />
+                Onde atuamos
+              </div>
+
+              <h2 className="mt-3 text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[42px] lg:text-[40px]">
+                Atendimento em <span className="text-[#8AE600]">todo o Brasil</span>
+              </h2>
+
+              <p className="mt-4 max-w-[500px] text-[13px] leading-[1.6] text-white/88 sm:text-[14px]">
+                A Consult Radiometria e Qualidade atende instituições de saúde em todo o território nacional,
+                com estrutura para realizar visitas técnicas, suporte remoto e acompanhamento contínuo, onde você estiver.
+              </p>
+
+              <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="#contato"
+                  className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold shadow-lg shadow-black/20 transition hover:-translate-y-0.5"
+                >
+                  <CalendarDays className="h-4 w-4" />
+                  Agendar reunião
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+                <a
+                  href={waUrl("Olá, equipe Consult. Gostaria de saber sobre atendimento na minha região.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/90 bg-[#064F4C]/35 px-5 py-3 text-sm font-extrabold text-[#C9FF72] backdrop-blur-[2px] transition hover:bg-[#064F4C]/55"
+                >
+                  <WhatsAppIcon className="h-5 w-5" />
+                  Falar no WhatsApp
+                </a>
+              </div>
+
+              <div className="mt-6">
+                <span className="block h-[2px] w-8 bg-[#8AE600]" />
+                <p className="mt-3 max-w-[340px] text-[8px] font-bold uppercase leading-[1.75] tracking-[0.3em] text-white/68">
+                  Mais saúde e segurança em todo o território nacional
                 </p>
-
-                <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-                  <a
-                    href="#contato"
-                    className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold shadow-lg shadow-black/15"
-                  >
-                    <CalendarDays className="h-4 w-4" />
-                    Agendar reunião
-                    <ArrowRight className="h-4 w-4" />
-                  </a>
-                  <a
-                    href={waUrl("Olá, equipe Consult. Gostaria de saber sobre atendimento na minha região.")}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/90 px-5 py-3 text-sm font-extrabold text-[#C9FF72]"
-                  >
-                    <WhatsAppIcon className="h-5 w-5" />
-                    Falar no WhatsApp
-                  </a>
-                </div>
-
-                <div className="mt-6">
-                  <span className="block h-[2px] w-8 bg-[#8AE600]" />
-                  <p className="mt-3 max-w-[310px] text-[8px] font-bold uppercase leading-[1.75] tracking-[0.3em] text-white/62">
-                    Mais saúde e segurança em todo o território nacional
-                  </p>
-                </div>
               </div>
+            </div>
 
-              <div className="relative min-h-[270px] overflow-hidden lg:min-h-[330px]">
-                <img
-                  src="/consult/atendimento-em-todas-as-regioes.png"
-                  alt="Mapa do Brasil representando a cobertura nacional da Consult Radiometria e Qualidade."
-                  className="absolute inset-0 h-full w-full scale-[1.08] object-cover object-[77%_50%]"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-[#075653] via-[#075653]/18 to-transparent" />
+            <div className="absolute right-6 top-8 z-10 hidden max-w-[175px] border-l-2 border-[#8AE600] pl-4 text-[9px] font-bold uppercase leading-[1.7] tracking-[0.26em] text-white/78 lg:block">
+              Conhecimento técnico sem fronteiras
+            </div>
 
-                <div className="absolute right-7 top-7 hidden max-w-[150px] border-l-2 border-[#8AE600] pl-4 text-[8px] font-bold uppercase leading-[1.65] tracking-[0.26em] text-white/72 sm:block">
-                  Conhecimento técnico sem fronteiras
-                </div>
-
-                <div className="absolute bottom-7 right-7 hidden w-[150px] rounded-2xl border border-[#8AE600]/30 bg-[#075653]/72 p-4 backdrop-blur-[3px] sm:block">
-                  <div className="text-[8px] font-black uppercase leading-[1.45] tracking-[0.15em] text-white/75">
-                    Atendimento em todas as regiões
-                  </div>
-                  <div className="mt-3 space-y-1.5 text-[10px] font-semibold text-white/88">
-                    {["Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"].map((region) => (
-                      <div key={region} className="flex items-center gap-2">
-                        <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#8AE600] text-[9px] font-black text-[#075653]">✓</span>
-                        <span>{region}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="pointer-events-none absolute left-[56%] top-[47%] h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8AE600]/15 blur-2xl motion-safe:animate-pulse" />
-                <div className="pointer-events-none absolute left-[77%] top-[27%] h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10 blur-xl motion-safe:animate-pulse" />
+            <div className="absolute bottom-10 right-6 z-10 hidden w-[172px] rounded-2xl border border-[#8AE600]/35 bg-[#064F4C]/58 p-4 shadow-xl shadow-black/10 backdrop-blur-[4px] lg:block">
+              <div className="text-[8px] font-black uppercase leading-[1.45] tracking-[0.15em] text-white/80">
+                Atendimento em todas as regiões
               </div>
+              <div className="mt-3 space-y-1.5 text-[10px] font-semibold text-white/92">
+                {["Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"].map((region) => (
+                  <div key={region} className="flex items-center gap-2">
+                    <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#8AE600] text-[9px] font-black text-[#075653]">✓</span>
+                    <span>{region}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative z-10 mt-8 flex max-w-[520px] flex-wrap gap-x-4 gap-y-2 text-[10px] font-bold text-white/82 lg:hidden">
+              {["Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"].map((region) => (
+                <span key={region} className="inline-flex items-center gap-1.5">
+                  <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#8AE600] text-[9px] font-black text-[#075653]">✓</span>
+                  {region}
+                </span>
+              ))}
             </div>
           </div>
         </section>
