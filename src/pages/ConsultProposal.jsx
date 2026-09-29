@@ -619,40 +619,40 @@ export default function ConsultProposal() {
         </section>
 
         <section className="relative overflow-hidden bg-[#075653] text-white">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_35%,rgba(138,230,0,.08),transparent_34%),radial-gradient(circle_at_25%_70%,rgba(5,210,157,.10),transparent_38%)]" />
-          <div className="relative mx-auto max-w-7xl px-4 py-14 sm:px-6 lg:px-8 lg:py-16">
-            <div className="sr-only">
-              Conhecimento Técnico Sem Fronteiras. Atendimento em todas as regiões: Norte, Nordeste, Centro-Oeste, Sudeste e Sul.
-            </div>
+          <div className="sr-only">
+            Conhecimento Técnico Sem Fronteiras. Atendimento em todas as regiões: Norte, Nordeste, Centro-Oeste, Sudeste e Sul.
+          </div>
 
-            <div className="relative overflow-hidden rounded-[28px] border border-white/10 shadow-2xl shadow-black/20">
-              <img
-                src="/consult/atendimento-em-todas-as-regioes.png"
-                alt="Conhecimento Técnico Sem Fronteiras. Atendimento em todas as regiões do Brasil: Norte, Nordeste, Centro-Oeste, Sudeste e Sul."
-                className="block h-auto w-full"
-              />
-              <div className="pointer-events-none absolute left-[69%] top-[47%] h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8AE600]/15 blur-2xl motion-safe:animate-pulse" />
-              <div className="pointer-events-none absolute left-[78%] top-[30%] h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10 blur-xl motion-safe:animate-pulse" />
-            </div>
+          <div className="relative min-h-[290px] overflow-hidden sm:min-h-[340px] lg:min-h-[390px]">
+            <img
+              src="/consult/atendimento-em-todas-as-regioes.png"
+              alt="Conhecimento Técnico Sem Fronteiras. Atendimento em todas as regiões do Brasil: Norte, Nordeste, Centro-Oeste, Sudeste e Sul."
+              className="absolute inset-0 h-full w-full object-cover object-center"
+            />
 
-            <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
-              <a
-                href="#contato"
-                className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-6 py-3 text-sm font-extrabold"
-              >
-                <CalendarDays className="h-4 w-4" />
-                Agendar reunião
-                <ArrowRight className="h-4 w-4" />
-              </a>
-              <a
-                href={waUrl("Olá, equipe Consult. Gostaria de saber sobre atendimento na minha região.")}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/80 px-6 py-3 text-sm font-extrabold text-[#B8FF51]"
-              >
-                <WhatsAppIcon className="h-5 w-5" />
-                Falar no WhatsApp
-              </a>
+            <div className="pointer-events-none absolute left-[69%] top-[47%] h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8AE600]/15 blur-2xl motion-safe:animate-pulse" />
+            <div className="pointer-events-none absolute left-[78%] top-[30%] h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10 blur-xl motion-safe:animate-pulse" />
+
+            <div className="relative mx-auto flex min-h-[290px] max-w-7xl items-end px-4 pb-5 sm:min-h-[340px] sm:px-6 sm:pb-7 lg:min-h-[390px] lg:px-8 lg:pb-8">
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <a
+                  href="#contato"
+                  className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold shadow-lg shadow-black/15"
+                >
+                  <CalendarDays className="h-4 w-4" />
+                  Agendar reunião
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+                <a
+                  href={waUrl("Olá, equipe Consult. Gostaria de saber sobre atendimento na minha região.")}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/90 bg-[#075653]/35 px-5 py-3 text-sm font-extrabold text-[#C9FF72] backdrop-blur-[2px]"
+                >
+                  <WhatsAppIcon className="h-5 w-5" />
+                  Falar no WhatsApp
+                </a>
+              </div>
             </div>
           </div>
         </section>
