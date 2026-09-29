@@ -619,39 +619,79 @@ export default function ConsultProposal() {
         </section>
 
         <section className="relative overflow-hidden bg-[#075653] text-white">
-          <div className="sr-only">
-            Conhecimento Técnico Sem Fronteiras. Atendimento em todas as regiões: Norte, Nordeste, Centro-Oeste, Sudeste e Sul.
-          </div>
+          <div className="mx-auto max-w-7xl">
+            <div className="grid min-h-[330px] overflow-hidden lg:grid-cols-[43%_57%]">
+              <div className="relative z-10 flex flex-col justify-center px-6 py-10 sm:px-8 lg:px-10 lg:py-9">
+                <div className="flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.28em] text-white/70">
+                  <span className="h-[2px] w-8 bg-[#8AE600]" />
+                  Onde atuamos
+                </div>
 
-          <div className="relative min-h-[290px] overflow-hidden sm:min-h-[340px] lg:min-h-[390px]">
-            <img
-              src="/consult/atendimento-em-todas-as-regioes.png"
-              alt="Conhecimento Técnico Sem Fronteiras. Atendimento em todas as regiões do Brasil: Norte, Nordeste, Centro-Oeste, Sudeste e Sul."
-              className="absolute inset-0 h-full w-full object-cover object-center"
-            />
+                <h2 className="mt-3 text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[40px]">
+                  Atendimento em <span className="text-[#8AE600]">todo o Brasil</span>
+                </h2>
 
-            <div className="pointer-events-none absolute left-[69%] top-[47%] h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8AE600]/15 blur-2xl motion-safe:animate-pulse" />
-            <div className="pointer-events-none absolute left-[78%] top-[30%] h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10 blur-xl motion-safe:animate-pulse" />
+                <p className="mt-4 max-w-[470px] text-[13px] leading-[1.55] text-white/84 sm:text-[14px]">
+                  A Consult Radiometria e Qualidade atende instituições de saúde em todo o território nacional,
+                  com estrutura para realizar visitas técnicas, suporte remoto e acompanhamento contínuo, onde você estiver.
+                </p>
 
-            <div className="relative mx-auto flex min-h-[290px] max-w-7xl items-end px-4 pb-5 sm:min-h-[340px] sm:px-6 sm:pb-7 lg:min-h-[390px] lg:px-8 lg:pb-8">
-              <div className="flex flex-col gap-3 sm:flex-row">
-                <a
-                  href="#contato"
-                  className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold shadow-lg shadow-black/15"
-                >
-                  <CalendarDays className="h-4 w-4" />
-                  Agendar reunião
-                  <ArrowRight className="h-4 w-4" />
-                </a>
-                <a
-                  href={waUrl("Olá, equipe Consult. Gostaria de saber sobre atendimento na minha região.")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/90 bg-[#075653]/35 px-5 py-3 text-sm font-extrabold text-[#C9FF72] backdrop-blur-[2px]"
-                >
-                  <WhatsAppIcon className="h-5 w-5" />
-                  Falar no WhatsApp
-                </a>
+                <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                  <a
+                    href="#contato"
+                    className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold shadow-lg shadow-black/15"
+                  >
+                    <CalendarDays className="h-4 w-4" />
+                    Agendar reunião
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                  <a
+                    href={waUrl("Olá, equipe Consult. Gostaria de saber sobre atendimento na minha região.")}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/90 px-5 py-3 text-sm font-extrabold text-[#C9FF72]"
+                  >
+                    <WhatsAppIcon className="h-5 w-5" />
+                    Falar no WhatsApp
+                  </a>
+                </div>
+
+                <div className="mt-6">
+                  <span className="block h-[2px] w-8 bg-[#8AE600]" />
+                  <p className="mt-3 max-w-[310px] text-[8px] font-bold uppercase leading-[1.75] tracking-[0.3em] text-white/62">
+                    Mais saúde e segurança em todo o território nacional
+                  </p>
+                </div>
+              </div>
+
+              <div className="relative min-h-[270px] overflow-hidden lg:min-h-[330px]">
+                <img
+                  src="/consult/atendimento-em-todas-as-regioes.png"
+                  alt="Mapa do Brasil representando a cobertura nacional da Consult Radiometria e Qualidade."
+                  className="absolute inset-0 h-full w-full scale-[1.08] object-cover object-[77%_50%]"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#075653] via-[#075653]/18 to-transparent" />
+
+                <div className="absolute right-7 top-7 hidden max-w-[150px] border-l-2 border-[#8AE600] pl-4 text-[8px] font-bold uppercase leading-[1.65] tracking-[0.26em] text-white/72 sm:block">
+                  Conhecimento técnico sem fronteiras
+                </div>
+
+                <div className="absolute bottom-7 right-7 hidden w-[150px] rounded-2xl border border-[#8AE600]/30 bg-[#075653]/72 p-4 backdrop-blur-[3px] sm:block">
+                  <div className="text-[8px] font-black uppercase leading-[1.45] tracking-[0.15em] text-white/75">
+                    Atendimento em todas as regiões
+                  </div>
+                  <div className="mt-3 space-y-1.5 text-[10px] font-semibold text-white/88">
+                    {["Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"].map((region) => (
+                      <div key={region} className="flex items-center gap-2">
+                        <span className="flex h-4 w-4 items-center justify-center rounded-full bg-[#8AE600] text-[9px] font-black text-[#075653]">✓</span>
+                        <span>{region}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="pointer-events-none absolute left-[56%] top-[47%] h-20 w-20 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[#8AE600]/15 blur-2xl motion-safe:animate-pulse" />
+                <div className="pointer-events-none absolute left-[77%] top-[27%] h-12 w-12 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white/10 blur-xl motion-safe:animate-pulse" />
               </div>
             </div>
           </div>
