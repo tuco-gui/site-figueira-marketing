@@ -619,74 +619,88 @@ export default function ConsultProposal() {
         </section>
 
         <section className="relative isolate overflow-hidden bg-[#075653] text-white">
-          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#075653_0%,#075653_36%,#064C49_68%,#05423F_100%)]" />
+          <img
+            src="https://d2ol7oe51mr4n9.cloudfront.net/user_3DxYylYzuYNdRvGcUVEKRePLRKg/28c80340-9abd-441a-87a3-ec1318947178.webp"
+            alt=""
+            aria-hidden="true"
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-55"
+          />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(4,84,80,.96)_0%,rgba(4,84,80,.88)_34%,rgba(3,70,67,.66)_67%,rgba(3,63,60,.80)_100%)]" />
 
-          <div className="relative mx-auto max-w-7xl px-4 py-9 sm:px-6 sm:py-10 lg:px-8 lg:py-10">
-            <div className="grid items-center gap-7 md:grid-cols-[minmax(0,1.04fr)_minmax(300px,.96fr)] lg:grid-cols-[minmax(0,1.08fr)_minmax(360px,.92fr)_205px] lg:gap-6 xl:gap-8">
-              <div className="relative z-10 max-w-[520px]">
-                <div className="flex items-center gap-3 text-[9px] font-bold uppercase tracking-[0.28em] text-white/75">
-                  <span className="h-[2px] w-8 bg-[#8AE600]" />
+          <div className="relative mx-auto max-w-[1320px] px-5 py-9 sm:px-7 sm:py-10 lg:px-8 lg:py-10">
+            <div className="grid items-center gap-7 lg:grid-cols-[minmax(0,44fr)_minmax(380px,36fr)_minmax(185px,20fr)] lg:gap-6 xl:gap-8">
+              <div className="relative z-10 max-w-[535px]">
+                <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.32em] text-white/78">
+                  <span className="h-[2px] w-10 bg-[#8AE600]" />
                   Onde atuamos
                 </div>
 
-                <h2 className="mt-3 text-[34px] font-black leading-[0.98] tracking-[-0.035em] sm:text-[40px] lg:text-[38px] xl:text-[40px]">
+                <h2 className="mt-4 text-[38px] font-black leading-[0.98] tracking-[-0.04em] sm:text-[44px] lg:text-[42px] xl:text-[46px]">
                   Atendimento em <span className="text-[#8AE600]">todo o Brasil</span>
                 </h2>
 
-                <p className="mt-4 max-w-[490px] text-[13px] leading-[1.58] text-white/88 sm:text-[14px]">
+                <p className="mt-5 max-w-[505px] text-[14px] leading-[1.55] text-white/90 sm:text-[15px]">
                   A Consult Radiometria e Qualidade atende instituições de saúde em todo o território nacional,
                   com estrutura para realizar visitas técnicas, suporte remoto e acompanhamento contínuo, onde você estiver.
                 </p>
 
-                <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                   <a
                     href="#contato"
-                    className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold shadow-lg shadow-black/20 transition hover:-translate-y-0.5"
+                    className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-black/20 transition hover:-translate-y-0.5"
                   >
-                    <CalendarDays className="h-4 w-4" />
-                    Agendar reunião
+                    <FileText className="h-4 w-4" />
+                    Solicite um orçamento
                     <ArrowRight className="h-4 w-4" />
                   </a>
                   <a
                     href={waUrl("Olá, equipe Consult. Gostaria de saber sobre atendimento na minha região.")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/90 bg-[#075653]/35 px-5 py-3 text-sm font-extrabold text-[#C9FF72] backdrop-blur-[2px] transition hover:bg-[#075653]/55"
+                    className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl border-2 border-[#8AE600] bg-[#075653]/35 px-6 py-3 text-sm font-extrabold text-white backdrop-blur-[2px] transition hover:bg-[#8AE600] hover:text-[#075653]"
                   >
                     <WhatsAppIcon className="h-5 w-5" />
                     Falar no WhatsApp
                   </a>
                 </div>
 
-                <div className="mt-5">
-                  <span className="block h-[2px] w-8 bg-[#8AE600]" />
-                  <p className="mt-3 max-w-[360px] text-[8px] font-bold uppercase leading-[1.75] tracking-[0.3em] text-white/70">
+                <div className="mt-7">
+                  <span className="block h-[2px] w-10 bg-[#8AE600]" />
+                  <p className="mt-3 max-w-[380px] text-[9px] font-bold uppercase leading-[1.75] tracking-[0.32em] text-white/78">
                     Mais saúde e segurança em todo o território nacional
                   </p>
                 </div>
               </div>
 
-              <div className="relative z-[5] h-[300px] overflow-hidden sm:h-[320px] lg:h-[330px]">
+              <div className="relative z-[5] mx-auto flex h-[330px] w-full max-w-[430px] items-center justify-center sm:h-[370px] lg:h-[390px]">
                 <img
-                  src="/consult/atendimento-brasil-bg.webp"
+                  src="https://d2ol7oe51mr4n9.cloudfront.net/user_3DxYylYzuYNdRvGcUVEKRePLRKg/870d328d-a770-4428-8f4d-f81924543feb.webp"
                   alt="Mapa do Brasil representando a cobertura nacional da Consult Radiometria e Qualidade."
-                  className="pointer-events-none absolute right-[-17%] top-1/2 h-full w-auto max-w-none -translate-y-1/2 object-contain [mask-image:linear-gradient(90deg,transparent_0%,black_18%,black_100%)] [-webkit-mask-image:linear-gradient(90deg,transparent_0%,black_18%,black_100%)]"
+                  className="block h-full w-auto max-w-full object-contain [mask-image:linear-gradient(90deg,transparent_0%,black_7%,black_94%,transparent_100%)] [-webkit-mask-image:linear-gradient(90deg,transparent_0%,black_7%,black_94%,transparent_100%)]"
                 />
               </div>
 
-              <aside className="relative z-10 md:col-span-2 md:grid md:grid-cols-2 md:gap-4 lg:col-span-1 lg:block">
-                <div className="border-l-2 border-[#8AE600] pl-4 text-[9px] font-bold uppercase leading-[1.75] tracking-[0.24em] text-white/88">
+              <aside className="relative z-10 grid gap-5 sm:grid-cols-2 lg:block">
+                <div className="border-l-2 border-[#8AE600] pl-4 text-[10px] font-bold uppercase leading-[1.75] tracking-[0.28em] text-white/90">
                   Conhecimento técnico sem fronteiras
                 </div>
 
-                <div className="mt-5 rounded-2xl border border-[#8AE600]/35 bg-[#043D3B]/82 p-4 shadow-xl shadow-black/15 backdrop-blur-[5px] md:mt-0 lg:mt-5">
-                  <div className="text-[8px] font-black uppercase leading-[1.5] tracking-[0.14em] text-white/90">
-                    Atendimento em todas as regiões
+                <div className="rounded-2xl border border-[#13B991] bg-[#043D3B]/78 p-5 shadow-xl shadow-black/15 backdrop-blur-[5px] lg:mt-7">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-7 items-end gap-[3px] pt-1" aria-hidden="true">
+                      <span className="h-2 w-1.5 rounded-sm bg-[#8AE600]" />
+                      <span className="h-4 w-1.5 rounded-sm bg-[#8AE600]" />
+                      <span className="h-6 w-1.5 rounded-sm bg-[#8AE600]" />
+                    </div>
+                    <div className="text-[9px] font-black uppercase leading-[1.45] tracking-[0.13em] text-white/92">
+                      Atendimento em todas as regiões
+                    </div>
                   </div>
-                  <div className="mt-3 grid grid-cols-2 gap-x-3 gap-y-2 text-[10px] font-semibold text-white/95 md:grid-cols-5 lg:grid-cols-1">
+
+                  <div className="mt-4 space-y-2.5 text-[12px] font-medium text-white/95">
                     {["Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"].map((region) => (
-                      <div key={region} className="flex items-center gap-2">
-                        <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#8AE600] text-[9px] font-black text-[#075653]">✓</span>
+                      <div key={region} className="flex items-center gap-2.5">
+                        <span className="flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[#8AE600] text-[10px] font-black text-[#075653]">✓</span>
                         <span>{region}</span>
                       </div>
                     ))}
