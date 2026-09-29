@@ -647,7 +647,7 @@ export default function ConsultProposal() {
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row">
                   <a
                     href="#contato"
-                    className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-6 py-3 text-sm font-extrabold text-white shadow-lg shadow-black/20 transition hover:-translate-y-0.5"
+                    className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-4 py-3 text-[12px] font-extrabold whitespace-nowrap text-white shadow-lg shadow-black/20 transition hover:-translate-y-0.5 sm:text-[13px]"
                   >
                     <FileText className="h-4 w-4" />
                     Solicite um orçamento
@@ -676,16 +676,16 @@ export default function ConsultProposal() {
                 <img
                   src="/consult/approved-national-map.webp"
                   alt="Mapa do Brasil representando a cobertura nacional da Consult Radiometria e Qualidade."
-                  className="block h-full w-auto max-w-full object-contain [mask-image:linear-gradient(90deg,transparent_0%,black_7%,black_94%,transparent_100%)] [-webkit-mask-image:linear-gradient(90deg,transparent_0%,black_7%,black_94%,transparent_100%)]"
+                  className="block h-full w-auto max-w-full object-contain [mask-image:radial-gradient(ellipse_88%_94%_at_50%_50%,black_74%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_88%_94%_at_50%_50%,black_74%,transparent_100%)] lg:translate-x-2"
                 />
               </div>
 
-              <aside className="relative z-10 grid gap-5 sm:grid-cols-2 lg:block">
+              <aside className="relative z-10 grid gap-5 sm:grid-cols-2 lg:block lg:translate-x-5">
                 <div className="border-l-2 border-[#8AE600] pl-4 text-[10px] font-bold uppercase leading-[1.75] tracking-[0.28em] text-white/90">
                   Conhecimento técnico sem fronteiras
                 </div>
 
-                <div className="rounded-2xl border border-[#13B991] bg-[#043D3B]/78 p-5 shadow-xl shadow-black/15 backdrop-blur-[5px] lg:mt-7">
+                <div className="rounded-2xl border border-[#13B991] bg-[#043D3B]/78 p-4 shadow-xl shadow-black/15 backdrop-blur-[5px] lg:mt-6">
                   <div className="flex items-start gap-3">
                     <div className="flex h-7 items-end gap-[3px] pt-1" aria-hidden="true">
                       <span className="h-2 w-1.5 rounded-sm bg-[#8AE600]" />
@@ -697,7 +697,7 @@ export default function ConsultProposal() {
                     </div>
                   </div>
 
-                  <div className="mt-4 space-y-2.5 text-[12px] font-medium text-white/95">
+                  <div className="mt-3 space-y-2 text-[11px] font-medium text-white/95">
                     {["Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"].map((region) => (
                       <div key={region} className="flex items-center gap-2.5">
                         <span className="flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[#8AE600] text-[10px] font-black text-[#075653]">✓</span>
