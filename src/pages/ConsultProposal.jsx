@@ -499,7 +499,9 @@ export default function ConsultProposal() {
                   href="#contato"
                   className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-6 py-3 text-sm font-extrabold text-white shadow-xl shadow-black/10 transition hover:brightness-95"
                 >
+                  <FileText className="h-4 w-4" />
                   Solicite um orçamento
+                  <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
                   href={waUrl("Olá, equipe Consult. Gostaria de conversar sobre uma necessidade técnica.")}
@@ -533,9 +535,9 @@ export default function ConsultProposal() {
           <div className="mx-auto grid max-w-7xl divide-y divide-black/10 px-4 py-4 sm:grid-cols-2 sm:divide-x sm:divide-y-0 sm:px-6 lg:grid-cols-4 lg:px-8">
             {[
               [ShieldCheck, "Mais segurança", "para pacientes e profissionais"],
-              [FileCheck2, "Conformidade", "com as normas vigentes"],
-              [Wrench, "Tecnologia", "a serviço da qualidade"],
-              [Stethoscope, "Experiência", "em diferentes áreas da saúde"],
+              [FileText, "Conformidade", "com as normas vigentes"],
+              [Settings, "Tecnologia", "a serviço da qualidade"],
+              [UsersRound, "Experiência", "em diferentes áreas da saúde"],
             ].map(([Icon, title, text]) => (
               <div key={title} className="flex items-center gap-3 px-3 py-4 sm:px-5">
                 <Icon className="h-8 w-8 shrink-0 text-[#08A77F]" />
@@ -711,7 +713,9 @@ export default function ConsultProposal() {
                   href="#contato"
                   className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-6 py-3 text-sm font-extrabold"
                 >
-                  Solicite um orçamento
+                  <CalendarDays className="h-4 w-4" />
+                  Agendar reunião
+                  <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
                   href={waUrl("Olá, equipe Consult. Gostaria de conversar sobre uma necessidade técnica.")}
