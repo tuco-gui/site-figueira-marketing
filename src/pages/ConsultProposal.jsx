@@ -35,7 +35,7 @@ const BRAND = {
 const CDN =
   "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305";
 
-const LOGO = `${CDN}/68d54790-6c3c-48c4-b8cb-7143ac1e0fec.png`;
+const LOGO = `${CDN}/68d5471e-43b0-4285-8644-3407ac1e09ff.png`;
 const HERO_IMAGE = `${CDN}/5ba95360-34a0-449d-9a24-4836ac1f137f.jpg`;
 const BG_A = `${CDN}/5ba952d9-c3e4-48d7-9dc0-4716ac1f137f.jpg`;
 const BG_B = `${CDN}/5ba954a4-90f8-4e55-a0d3-4b15ac1f137f.jpg`;
@@ -274,10 +274,10 @@ function Header() {
   );
 }
 
-function SectionEyebrow({ children, dark = false }) {
+function SectionEyebrow({ children, dark = false, center = false }) {
   return (
     <div
-      className={`mb-3 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.28em] ${
+      className={`mb-3 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.28em] ${center ? "justify-center " : ""}${
         dark ? "text-white/70" : "text-[#4D7775]"
       }`}
     >
@@ -564,7 +564,7 @@ export default function ConsultProposal() {
           <div className="absolute -right-32 bottom-0 h-96 w-96 rounded-full border-[34px] border-[#E7F6F3]/70" />
           <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
             <div className="text-center">
-              <SectionEyebrow>Nossas especialidades</SectionEyebrow>
+              <SectionEyebrow center>Nossas especialidades</SectionEyebrow>
               <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
                 Nossas <span className="text-[#075653]">áreas de</span>{" "}
                 <span className="text-[#79D900]">atuação</span>
@@ -623,7 +623,7 @@ export default function ConsultProposal() {
         <section id="sobre" className="bg-[#F4FBFA]">
           <div className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
             <div className="text-center">
-              <SectionEyebrow>Diferenciais</SectionEyebrow>
+              <SectionEyebrow center>Diferenciais</SectionEyebrow>
               <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
                 Por que escolher a <span className="text-[#79D900]">Consult?</span>
               </h2>
@@ -731,7 +731,7 @@ export default function ConsultProposal() {
         <section className="bg-[#F4FBFA]">
           <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
             <div className="text-center">
-              <SectionEyebrow>Quem atendemos</SectionEyebrow>
+              <SectionEyebrow center>Quem atendemos</SectionEyebrow>
               <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
                 Ao lado de quem <span className="text-[#79D900]">cuida da vida</span>
               </h2>
@@ -847,7 +847,7 @@ export default function ConsultProposal() {
           />
           <div className="relative mx-auto grid max-w-7xl gap-12 px-4 py-20 sm:px-6 lg:grid-cols-[1fr_.9fr] lg:px-8">
             <div className="flex flex-col justify-center">
-              <SectionEyebrow dark>Onde atravessar?</SectionEyebrow>
+              <SectionEyebrow dark>Contato</SectionEyebrow>
               <h2 className="text-4xl font-black tracking-tight sm:text-5xl">
                 Fale com a nossa <span className="text-[#8AE600]">equipe</span>
               </h2>
