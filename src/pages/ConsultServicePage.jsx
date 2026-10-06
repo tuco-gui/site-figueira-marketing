@@ -1,19 +1,17 @@
 import React, { useEffect, useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
-import { ConsultReportPreview, ConsultSectionNav } from '@/components/consult/ConsultTechnicalDesign'
+import { ConsultReportPreview } from '@/components/consult/ConsultTechnicalDesign'
 import {
-  DeliverableHeader,
-  EditorialStatement,
-  MeasurementMatrix,
-  OutcomeNote,
-  ProcessTimeline,
-  ServiceHeroConsole,
-  ServiceProofRail,
-  StandardsShelf,
-  TechnicalFaq,
-  TriggerPanel,
-} from '@/components/consult/ConsultServiceV3Design'
+  ApprovedDarkProcess,
+  ApprovedFaq,
+  ApprovedInternalHero,
+  ApprovedLightSection,
+  ApprovedList,
+  ApprovedNormCards,
+  ApprovedProofStrip,
+  CONSULT_IMAGES,
+} from '@/components/consult/ConsultApprovedInternal'
 
 const RDC_611 = 'https://anvisalegis.datalegis.net/action/TematicaAction.php?acao=abrirVinculos&cod_menu=8457&cod_modulo=135&cotematica=18518373'
 const ANVISA_IN = 'https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2021/anvisa-avanca-na-consolidacao-de-suas-normas'
@@ -120,7 +118,12 @@ const SERVICES = {
   },
 }
 
-const PROCESS = [['01','Entender o escopo','A equipe identifica serviço, equipamento, ambiente e objetivo técnico.'],['02','Preparar a execução','São definidos dados, condições e referências necessárias.'],['03','Executar tecnicamente','Medições, cálculos, ensaios ou revisão documental são realizados conforme o serviço.'],['04','Documentar o resultado','A entrega assume a forma adequada ao serviço: laudo, programa, memorial, resultado de medição ou apoio documental.']]
+const PROCESS = [['01','Entender a necessidade','Identificar serviço, equipamento, ambiente e objetivo técnico.'],['02','Preparar a execução','Definir dados, condições e referências necessárias.'],['03','Executar tecnicamente','Realizar medições, cálculos, ensaios ou revisão documental conforme o serviço.'],['04','Documentar o resultado','Entregar o laudo, programa, memorial ou documentação correspondente ao escopo.']]
+
+function heroImage(service) {
+  if (service.eyebrow === 'Proteção Radiológica' || service.visual === 'shield') return CONSULT_IMAGES.protection
+  return CONSULT_IMAGES.radiology
+}
 
 export default function ConsultServicePage() {
   const { slug } = useParams()
@@ -134,48 +137,52 @@ export default function ConsultServicePage() {
 
   if (!service) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Serviço não encontrado</h1><Link to="/consult" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para a Consult</Link></main></ConsultSiteShell>
 
-  return (
-    <ConsultSiteShell>
-      <main>
-        <section className="relative overflow-hidden bg-[#075653] text-white">
-          <div className="absolute inset-0 opacity-75" style={{backgroundImage:'radial-gradient(circle at 80% 20%, rgba(138,230,0,.15), transparent 24%), linear-gradient(125deg, transparent 42%, rgba(5,210,157,.11) 100%)'}} />
-          <div className="relative mx-auto grid min-h-[670px] max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[1fr_.9fr] lg:items-center">
-            <div>
-              <Link to="/consult#areas" className="text-sm font-bold text-white/55 hover:text-white">Áreas de atuação</Link>
-              <div className="mt-9 flex items-center gap-3 text-[10px] font-black uppercase tracking-[.26em] text-[#8AE600]"><span className="h-px w-10 bg-[#8AE600]" />{service.eyebrow}</div>
-              <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[.98] tracking-[-.045em] sm:text-5xl lg:text-[66px]">{service.title}</h1>
-              <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-white/88">{service.intro}</p>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-white/56">{service.audience}</p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row"><a href="/consult#contato" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#FF6B26] px-6 py-3 text-sm font-extrabold text-white">Agendar reunião técnica</a><a href="#entregavel" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/18 px-6 py-3 text-sm font-extrabold text-white/82">Ver entregável</a></div>
-            </div>
-            <ServiceHeroConsole title={service.title} kicker={service.eyebrow} chips={[service.proof[2][1], service.proof[1][1]]} accent={service.visual} />
-          </div>
-        </section>
+  return <ConsultSiteShell><main>
+    <ApprovedInternalHero eyebrow={service.eyebrow} title={service.title} description={service.intro} image={heroImage(service)}/>
+    <ApprovedProofStrip items={service.proof}/>
 
-        <ServiceProofRail items={service.proof} />
-        <ConsultSectionNav items={[["Visão geral","#visao-geral"],["Quando contratar","#quando-contratar"],["Como funciona","#processo"],["Entregável","#entregavel"],["Normas","#normas"],["FAQ","#faq"]]} />
-
-        <div id="visao-geral" className="scroll-mt-32">
-          <EditorialStatement eyebrow="Por que este serviço existe" title={service.storyTitle}><p>{service.story}</p><p className="mt-5 text-sm leading-7">{service.audience}</p></EditorialStatement>
-          <MeasurementMatrix title="O que entra na análise" items={service.parameters} />
+    <ApprovedLightSection eyebrow="Sobre o serviço" title={service.title} intro={service.audience} center>
+      <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
+        <div className="rounded-2xl bg-[#075653] p-7 text-white shadow-xl shadow-[#075653]/10">
+          <div className="text-[10px] font-bold uppercase tracking-[.24em] text-[#8AE600]">Objetivo</div>
+          <h3 className="mt-4 text-2xl font-black leading-tight">O que este serviço verifica ou organiza</h3>
+          <p className="mt-4 text-sm leading-7 text-white/72">{service.metric}</p>
         </div>
+        <div>
+          <div className="mb-4 text-xs font-black uppercase tracking-[.18em] text-[#08A77F]">O que entra na análise</div>
+          <div className="grid gap-3 sm:grid-cols-2">{service.parameters.map(([label,text])=><div key={label} className="rounded-xl border border-black/5 bg-white p-5 shadow-sm"><div className="text-sm font-black text-[#123C3B]">{label}</div><p className="mt-2 text-sm leading-6 text-black/55">{text}</p></div>)}</div>
+        </div>
+      </div>
+    </ApprovedLightSection>
 
-        <div id="quando-contratar" className="scroll-mt-32"><TriggerPanel items={service.when} /></div>
-        <div id="processo" className="scroll-mt-32"><ProcessTimeline items={PROCESS} /></div>
+    <ApprovedLightSection eyebrow="Quando contratar" title="Situações em que este serviço costuma ser necessário" intro="O escopo final depende da condição da instituição, do equipamento e da aplicação técnica." white>
+      <ApprovedList items={service.when}/>
+    </ApprovedLightSection>
 
-        <section id="entregavel" className="scroll-mt-32 bg-white">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[.68fr_1.32fr] lg:items-start">
-            <div><DeliverableHeader title={service.deliverable} description="A entrega é apresentada visualmente para o visitante entender o que fica documentado ao final do trabalho." /><OutcomeNote>{service.note}</OutcomeNote></div>
-            <ConsultReportPreview title={service.deliverable} sections={service.deliverableSections} note={service.note} />
+    <ApprovedDarkProcess items={PROCESS}/>
+
+    <ApprovedLightSection eyebrow="Entregável técnico" title={service.deliverable} intro="Veja de forma ilustrativa como o resultado pode ser organizado e quais informações fazem parte da entrega." white>
+      <div className="grid gap-10 lg:grid-cols-[.65fr_1.35fr] lg:items-center">
+        <div>
+          <p className="text-[15px] leading-7 text-black/60">{service.note}</p>
+          <div className="mt-6 rounded-xl border border-[#CFE4DE] bg-[#F4FBFA] p-5">
+            <div className="text-xs font-black uppercase tracking-[.16em] text-[#08A77F]">O que fica documentado</div>
+            <div className="mt-4 space-y-3">{service.deliverableSections.map((item,index)=><div key={item} className="flex gap-3"><span className="font-black text-[#08A77F]">0{index+1}</span><span className="text-sm font-semibold leading-6 text-[#315B58]">{item}</span></div>)}</div>
           </div>
-        </section>
+        </div>
+        <ConsultReportPreview title={service.deliverable} sections={service.deliverableSections} note={service.note}/>
+      </div>
+    </ApprovedLightSection>
 
-        {service.equipmentNorms && <section className="bg-[#043F3D] text-white"><div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[.55fr_1.45fr]"><div><div className="text-[10px] font-black uppercase tracking-[.22em] text-[#8AE600]">Controle de Qualidade</div><h2 className="mt-4 text-3xl font-black tracking-[-.04em] md:text-4xl">Uma referência por modalidade</h2><p className="mt-4 text-sm leading-7 text-white/60">O Controle de Qualidade será desdobrado em páginas específicas por modalidade na próxima etapa da V3.</p></div><div className="overflow-hidden rounded-[22px] border border-white/10">{service.equipmentNorms.map(([equipment,norm],index)=><div key={equipment} className={`grid gap-2 bg-white/[.035] px-5 py-4 sm:grid-cols-[1.3fr_.7fr] sm:items-center ${index?'border-t border-white/10':''}`}><strong className="text-sm text-white/86">{equipment}</strong><span className="text-xs font-black text-[#B8FF51] sm:text-right">{norm}</span></div>)}</div></div></section>}
+    {service.equipmentNorms && <ApprovedLightSection eyebrow="Controle de Qualidade" title="Referência técnica por modalidade" intro="A RDC 611/2022 estabelece a base geral e as Instruções Normativas variam de acordo com a tecnologia avaliada.">
+      <div className="grid gap-4 sm:grid-cols-2">{service.equipmentNorms.map(([equipment,norm])=><div key={equipment} className="rounded-xl border border-black/5 bg-white p-5 shadow-sm"><div className="text-sm font-black text-[#123C3B]">{equipment}</div><div className="mt-2 text-xs font-extrabold text-[#08A77F]">{norm}</div></div>)}</div>
+    </ApprovedLightSection>}
 
-        <div id="normas" className="scroll-mt-32"><StandardsShelf items={service.norms} /></div>
-        <div id="faq" className="scroll-mt-32"><TechnicalFaq items={service.faq} /></div>
-        <ConsultCtaBand title={`Precisa de ${service.title}?`} text="Explique o serviço, modalidade ou situação da instituição. A equipe Consult confirma o escopo técnico e o próximo passo." />
-      </main>
-    </ConsultSiteShell>
-  )
+    <ApprovedLightSection eyebrow="Base normativa" title="Normas e referências do serviço" intro="As referências ficam junto do conteúdo e levam às fontes oficiais ou ao catálogo correspondente." white>
+      <ApprovedNormCards items={service.norms}/>
+    </ApprovedLightSection>
+
+    <ApprovedFaq items={service.faq}/>
+    <ConsultCtaBand title={`Precisa de ${service.title}?`} text="Conte a situação da sua instituição. A equipe Consult confirma o escopo técnico e orienta o próximo passo."/>
+  </main></ConsultSiteShell>
 }
