@@ -20,24 +20,24 @@ function Wave({ variant }) {
   return <path d="M62 236 C96 236 101 191 129 191 C158 191 163 263 194 263 C225 263 228 174 264 174 C299 174 307 235 339 235 C372 235 378 194 446 194" />
 }
 
-export function ConsultTechnicalVisual({ variant = 'measurement', title, metric = 'Resultado técnico documentado' }) {
+export function ConsultTechnicalVisual({ variant = 'measurement', title, metric = 'Resultado técnico documentado', compact = false }) {
   const labels = LABELS[variant] || LABELS.measurement
   return (
-    <div className="relative mx-auto w-full max-w-[560px] overflow-hidden rounded-[30px] border border-white/12 bg-[#043F3D]/82 p-4 shadow-[0_34px_80px_rgba(0,32,31,.35)] backdrop-blur md:p-5">
-      <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full border border-[#8AE600]/18" />
-      <div className="absolute -right-8 -top-8 h-36 w-36 rounded-full border border-[#8AE600]/15" />
-      <div className="relative rounded-[24px] border border-white/8 bg-[#064946] p-5 md:p-6">
-        <div className="flex items-start justify-between gap-5">
-          <div>
-            <div className="text-[9px] font-black uppercase tracking-[.24em] text-[#8AE600]">Consult / análise técnica</div>
-            <div className="mt-2 max-w-[330px] text-lg font-black leading-6 text-white md:text-xl">{title}</div>
+    <div className={`relative mx-auto w-full overflow-hidden border border-white/12 bg-[#043F3D]/82 shadow-[0_34px_80px_rgba(0,32,31,.35)] backdrop-blur ${compact ? 'max-w-[500px] rounded-[24px] p-3 sm:p-4' : 'max-w-[560px] rounded-[26px] p-3 sm:rounded-[30px] sm:p-4 md:p-5'}`}>
+      <div className="pointer-events-none absolute -right-24 -top-24 h-56 w-56 rounded-full border border-[#8AE600]/18 sm:-right-20 sm:-top-20" />
+      <div className="pointer-events-none absolute -right-10 -top-10 h-36 w-36 rounded-full border border-[#8AE600]/15" />
+      <div className="relative rounded-[20px] border border-white/8 bg-[#064946] p-4 sm:rounded-[24px] sm:p-5 md:p-6">
+        <div className="flex items-start justify-between gap-3 sm:gap-5">
+          <div className="min-w-0">
+            <div className="text-[8px] font-black uppercase tracking-[.18em] text-[#8AE600] sm:text-[9px] sm:tracking-[.24em]">Consult / análise técnica</div>
+            <div className="mt-2 max-w-[330px] text-base font-black leading-5 text-white sm:text-lg sm:leading-6 md:text-xl">{title}</div>
           </div>
-          <div className="grid h-12 w-12 shrink-0 place-items-center rounded-full border border-[#8AE600]/30 bg-[#8AE600]/10">
-            <div className="h-4 w-4 rounded-full bg-[#8AE600] shadow-[0_0_24px_rgba(138,230,0,.72)]" />
+          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-full border border-[#8AE600]/30 bg-[#8AE600]/10 sm:h-12 sm:w-12">
+            <div className="h-3.5 w-3.5 rounded-full bg-[#8AE600] shadow-[0_0_24px_rgba(138,230,0,.72)] sm:h-4 sm:w-4" />
           </div>
         </div>
 
-        <div className="mt-6 overflow-hidden rounded-[20px] border border-white/8 bg-[#053F3D]">
+        <div className="mt-4 overflow-hidden rounded-[16px] border border-white/8 bg-[#053F3D] sm:mt-6 sm:rounded-[20px]">
           <svg viewBox="0 0 520 300" className="block h-auto w-full" aria-hidden="true">
             <defs>
               <linearGradient id={`consult-line-${variant}`} x1="0" x2="1">
@@ -61,17 +61,17 @@ export function ConsultTechnicalVisual({ variant = 'measurement', title, metric 
           </svg>
         </div>
 
-        <div className="mt-4 grid grid-cols-3 divide-x divide-white/8 rounded-[18px] border border-white/8 bg-white/[.035]">
+        <div className="mt-3 grid grid-cols-3 divide-x divide-white/8 overflow-hidden rounded-[14px] border border-white/8 bg-white/[.035] sm:mt-4 sm:rounded-[18px]">
           {labels.map((label, index) => (
-            <div key={label} className="px-3 py-3.5">
-              <div className="text-[8px] font-black tracking-[.18em] text-white/38">0{index + 1}</div>
-              <div className="mt-1 text-[10px] font-black tracking-[.12em] text-white/78">{label}</div>
+            <div key={label} className="min-w-0 px-2 py-3 sm:px-3 sm:py-3.5">
+              <div className="text-[7px] font-black tracking-[.14em] text-white/38 sm:text-[8px] sm:tracking-[.18em]">0{index + 1}</div>
+              <div className="mt-1 truncate text-[8px] font-black tracking-[.06em] text-white/78 sm:text-[10px] sm:tracking-[.12em]">{label}</div>
             </div>
           ))}
         </div>
-        <div className="mt-4 flex items-center gap-3 rounded-[16px] border border-[#8AE600]/18 bg-[#8AE600]/7 px-4 py-3">
-          <CheckCircle2 size={18} className="shrink-0 text-[#8AE600]" />
-          <span className="text-xs font-bold leading-5 text-white/78">{metric}</span>
+        <div className="mt-3 flex items-start gap-2.5 rounded-[14px] border border-[#8AE600]/18 bg-[#8AE600]/7 px-3.5 py-3 sm:mt-4 sm:items-center sm:gap-3 sm:rounded-[16px] sm:px-4">
+          <CheckCircle2 size={17} className="mt-0.5 shrink-0 text-[#8AE600] sm:mt-0 sm:h-[18px] sm:w-[18px]" />
+          <span className="text-[11px] font-bold leading-5 text-white/78 sm:text-xs">{metric}</span>
         </div>
       </div>
     </div>
@@ -80,10 +80,10 @@ export function ConsultTechnicalVisual({ variant = 'measurement', title, metric 
 
 export function ConsultSectionNav({ items }) {
   return (
-    <div className="sticky top-[72px] z-40 border-b border-[#DCEAE7] bg-white/95 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-4 py-2.5 sm:px-6 lg:px-8">
+    <div className="sticky top-[72px] z-40 border-b border-[#DCEAE7] bg-white/95 shadow-[0_8px_22px_rgba(7,86,83,.04)] backdrop-blur">
+      <div className="mx-auto flex max-w-7xl snap-x gap-1 overflow-x-auto px-3 py-2 sm:px-6 sm:py-2.5 lg:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {items.map(([label, href]) => (
-          <a key={href} href={href} className="shrink-0 rounded-full px-4 py-2 text-xs font-extrabold text-[#4D706D] transition hover:bg-[#EAF5F2] hover:text-[#075653]">{label}</a>
+          <a key={href} href={href} className="shrink-0 snap-start rounded-full px-3 py-2 text-[11px] font-extrabold text-[#4D706D] transition hover:bg-[#EAF5F2] hover:text-[#075653] sm:px-4 sm:text-xs">{label}</a>
         ))}
       </div>
     </div>
@@ -92,27 +92,27 @@ export function ConsultSectionNav({ items }) {
 
 export function ConsultReportPreview({ eyebrow = 'ENTREGÁVEL', title = 'Documento técnico', sections = ['Identificação', 'Metodologia', 'Medições', 'Critérios aplicáveis', 'Resultado técnico'] }) {
   return (
-    <div className="relative mx-auto max-w-[620px]">
+    <div className="relative mx-auto w-full max-w-[620px]">
       <div className="absolute -left-5 top-8 hidden h-[86%] w-full rotate-[-2deg] rounded-[28px] border border-[#CFE3DE] bg-[#E8F3F0] md:block" />
-      <div className="relative overflow-hidden rounded-[28px] border border-[#D4E6E1] bg-white shadow-[0_30px_70px_rgba(7,86,83,.14)]">
-        <div className="flex items-start justify-between gap-5 border-b border-[#E4EEEC] px-6 py-6 md:px-8">
-          <div>
-            <div className="text-[9px] font-black uppercase tracking-[.25em] text-[#08A77F]">{eyebrow}</div>
-            <div className="mt-2 text-2xl font-black tracking-tight text-[#075653]">{title}</div>
+      <div className="relative overflow-hidden rounded-[22px] border border-[#D4E6E1] bg-white shadow-[0_24px_60px_rgba(7,86,83,.12)] sm:rounded-[28px] sm:shadow-[0_30px_70px_rgba(7,86,83,.14)]">
+        <div className="flex items-start justify-between gap-4 border-b border-[#E4EEEC] px-5 py-5 sm:gap-5 sm:px-6 sm:py-6 md:px-8">
+          <div className="min-w-0">
+            <div className="text-[8px] font-black uppercase tracking-[.2em] text-[#08A77F] sm:text-[9px] sm:tracking-[.25em]">{eyebrow}</div>
+            <div className="mt-2 text-xl font-black tracking-tight text-[#075653] sm:text-2xl">{title}</div>
           </div>
-          <div className="grid h-12 w-12 place-items-center rounded-xl bg-[#075653] text-[#8AE600]"><FileText size={23} /></div>
+          <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-[#075653] text-[#8AE600] sm:h-12 sm:w-12"><FileText size={21} className="sm:h-[23px] sm:w-[23px]" /></div>
         </div>
-        <div className="px-6 py-4 md:px-8">
+        <div className="px-5 py-3 sm:px-6 sm:py-4 md:px-8">
           {sections.map((section, index) => (
-            <div key={section} className={`grid grid-cols-[34px_1fr_auto] items-center gap-4 py-4 ${index ? 'border-t border-[#EDF3F1]' : ''}`}>
-              <span className="text-xs font-black text-[#08A77F]">0{index + 1}</span>
-              <span className="text-sm font-extrabold text-[#315B58]">{section}</span>
-              <span className="h-2.5 w-16 rounded-full bg-[#E3EFEC] sm:w-24" />
+            <div key={section} className={`grid grid-cols-[30px_1fr] items-center gap-3 py-3.5 sm:grid-cols-[34px_1fr_auto] sm:gap-4 sm:py-4 ${index ? 'border-t border-[#EDF3F1]' : ''}`}>
+              <span className="text-[11px] font-black text-[#08A77F] sm:text-xs">0{index + 1}</span>
+              <span className="text-[13px] font-extrabold leading-5 text-[#315B58] sm:text-sm">{section}</span>
+              <span className="hidden h-2.5 w-16 rounded-full bg-[#E3EFEC] sm:block sm:w-20 md:w-24" />
             </div>
           ))}
         </div>
-        <div className="grid gap-2 border-t border-[#E4EEEC] bg-[#F6FAF9] px-6 py-5 sm:grid-cols-3 md:px-8">
-          {['Rastreabilidade', 'Responsável técnico', 'Histórico'].map((item) => <div key={item} className="rounded-xl border border-[#DCEAE7] bg-white px-3 py-3 text-[10px] font-black uppercase tracking-[.1em] text-[#5A7976]">{item}</div>)}
+        <div className="grid gap-2 border-t border-[#E4EEEC] bg-[#F6FAF9] px-5 py-4 sm:grid-cols-3 sm:px-6 sm:py-5 md:px-8">
+          {['Rastreabilidade', 'Responsável técnico', 'Histórico'].map((item) => <div key={item} className="rounded-xl border border-[#DCEAE7] bg-white px-3 py-3 text-[9px] font-black uppercase tracking-[.08em] text-[#5A7976] sm:text-[10px] sm:tracking-[.1em]">{item}</div>)}
         </div>
       </div>
     </div>
@@ -123,9 +123,9 @@ export function ConsultEditorialList({ items }) {
   return (
     <div className="divide-y divide-[#DCEAE7] border-y border-[#DCEAE7]">
       {items.map((item, index) => (
-        <div key={item} className="grid gap-2 py-5 sm:grid-cols-[58px_1fr] sm:items-start">
-          <span className="text-2xl font-black text-[#08A77F]">0{index + 1}</span>
-          <span className="text-base font-extrabold leading-7 text-[#315B58]">{item}</span>
+        <div key={item} className="grid gap-1.5 py-4 sm:grid-cols-[54px_1fr] sm:items-start sm:gap-2 sm:py-5">
+          <span className="text-xl font-black text-[#08A77F] sm:text-2xl">0{index + 1}</span>
+          <span className="text-sm font-extrabold leading-6 text-[#315B58] sm:text-base sm:leading-7">{item}</span>
         </div>
       ))}
     </div>
