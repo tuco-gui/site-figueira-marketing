@@ -2,13 +2,7 @@ import React, { useEffect, useMemo } from 'react'
 import { Activity, CalendarDays, CheckCircle2, ClipboardCheck, ExternalLink, FileText, Gauge, MapPin, ShieldCheck, Stethoscope, Thermometer, Wrench } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultEyebrow, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
-
-const CDN = 'https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305'
-const IMAGES = {
-  physics: `${CDN}/5ba95360-34a0-449d-9a24-4836ac1f137f.jpg`,
-  protection: `${CDN}/5ba952d9-c3e4-48d7-9dc0-4716ac1f137f.jpg`,
-  engineering: `${CDN}/5ba954a4-90f8-4e55-a0d3-4b15ac1f137f.jpg`,
-}
+import { ConsultTechnicalVisual } from '@/components/consult/ConsultTechnicalDesign'
 
 const ANVISA_IN = 'https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2021/anvisa-avanca-na-consolidacao-de-suas-normas'
 const RDC_611 = 'https://anvisalegis.datalegis.net/action/TematicaAction.php?acao=abrirVinculos&cod_menu=8457&cod_modulo=135&cotematica=18518373'
@@ -37,9 +31,10 @@ const AREAS = {
   'fisica-medica': {
     title: 'Física Médica',
     eyebrow: 'Medição, controle de qualidade e laudo técnico',
-    image: IMAGES.physics,
     hero: 'Verificação técnica de equipamentos de diagnóstico por imagem para comprovar segurança, desempenho e conformidade.',
     intro: 'A Consult executa testes e medições em equipamentos de diagnóstico por imagem, verifica dose, qualidade de imagem e funcionamento e documenta os resultados em laudo técnico assinado pelo físico médico.',
+    visualVariant: 'measurement',
+    visualMetric: 'Dose, qualidade de imagem e desempenho documentados',
     highlights: ['Dose e desempenho', 'Qualidade de imagem', 'Laudo técnico', 'RDC 611/2022 + INs'],
     services: [
       ['Controle de qualidade (CQ)', 'Testes periódicos para verificar dose, qualidade de imagem e funcionamento dos equipamentos.', '/consult/servicos/controle-qualidade', Gauge],
@@ -76,9 +71,10 @@ const AREAS = {
   'protecao-radiologica': {
     title: 'Proteção Radiológica',
     eyebrow: 'Segurança, documentação e conformidade técnica',
-    image: IMAGES.protection,
     hero: 'Estruturação da proteção radiológica para reduzir riscos e manter o serviço alinhado às exigências aplicáveis.',
     intro: 'A Consult apoia serviços de radiologia diagnóstica e intervencionista na implantação e manutenção das rotinas de proteção radiológica, realizando medições, projetos, documentação, treinamento e suporte ao licenciamento sanitário.',
+    visualVariant: 'shield',
+    visualMetric: 'Ambiente, proteção e documentação conectados no mesmo processo',
     highlights: ['Proteção ocupacional', 'Levantamento radiométrico', 'Blindagem', 'Documentação'],
     services: [
       ['Programa de Proteção Radiológica', 'Elaboração e acompanhamento do programa exigido para serviços de radiologia diagnóstica e intervencionista.', '/consult/servicos/programa-protecao-radiologica', ClipboardCheck],
@@ -113,9 +109,10 @@ const AREAS = {
   'engenharia-clinica': {
     title: 'Consult Engenharia Clínica',
     eyebrow: 'Medição, ensaio, calibração, qualificação e laudo',
-    image: IMAGES.engineering,
     hero: 'Avaliação independente de equipamentos de saúde, com resultado técnico documentado e sem vínculo com empresas de conserto.',
     intro: 'A Consult confirma por medição se o equipamento está seguro e entregando o que deveria entregar. Cada atendimento gera documentação por equipamento e cria uma base objetiva para a instituição decidir o próximo passo.',
+    visualVariant: 'clinical',
+    visualMetric: 'Equipamento, ensaio e laudo ligados ao histórico técnico',
     highlights: ['RDC 509/2021', 'Laudo por equipamento', 'Arkmeds', 'Rastreabilidade RBC'],
     independence: true,
     services: [
@@ -150,21 +147,22 @@ const AREAS = {
   },
 }
 
-function ServiceCard({ item, featured = false }) {
+function ServiceCard({ item, index }) {
   const [title, text, href, Icon] = item
+  const dark = index % 3 === 2
   return (
-    <Link to={href} className={`group relative overflow-hidden rounded-[22px] border transition duration-300 hover:-translate-y-1 ${featured ? 'border-white/12 bg-white/8 p-7 text-white shadow-xl' : 'border-[#D9E9E5] bg-white p-6 text-[#123C3B] shadow-[0_12px_35px_rgba(7,86,83,.06)] hover:border-[#83CBB8]'}`}>
-      <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${featured ? 'bg-[#8AE600] text-[#075653]' : 'bg-[#E7F6F1] text-[#078B6B]'}`}><Icon size={21} /></div>
-      <h3 className={`mt-5 text-xl font-black leading-6 ${featured ? 'text-white' : 'text-[#075653]'}`}>{title}</h3>
-      <p className={`mt-3 text-sm leading-6 ${featured ? 'text-white/70' : 'text-[#607D7A]'}`}>{text}</p>
-      <span className={`mt-5 inline-flex text-xs font-black uppercase tracking-[.14em] ${featured ? 'text-[#B8FF51]' : 'text-[#078B6B]'}`}>Ver serviço</span>
+    <Link to={href} className={`group relative overflow-hidden rounded-[22px] border p-5 transition duration-300 hover:-translate-y-1 sm:p-6 ${dark ? 'border-[#075653] bg-[#075653] text-white shadow-[0_18px_45px_rgba(7,86,83,.16)]' : 'border-[#D9E9E5] bg-white text-[#123C3B] shadow-[0_12px_35px_rgba(7,86,83,.06)] hover:border-[#83CBB8]'}`}>
+      <div className={`flex h-11 w-11 items-center justify-center rounded-xl ${dark ? 'bg-[#8AE600] text-[#075653]' : 'bg-[#E7F6F1] text-[#078B6B]'}`}><Icon size={21} /></div>
+      <h3 className={`mt-5 text-lg font-black leading-6 sm:text-xl ${dark ? 'text-white' : 'text-[#075653]'}`}>{title}</h3>
+      <p className={`mt-3 text-sm leading-6 ${dark ? 'text-white/68' : 'text-[#607D7A]'}`}>{text}</p>
+      <span className={`mt-5 inline-flex text-[10px] font-black uppercase tracking-[.14em] sm:text-xs ${dark ? 'text-[#B8FF51]' : 'text-[#078B6B]'}`}>Ver serviço</span>
     </Link>
   )
 }
 
 function Faq({ items }) {
   return <div className="mt-7 divide-y divide-white/10 overflow-hidden rounded-[22px] border border-white/10 bg-white/5">{items.map(([question, answer]) => (
-    <details key={question} className="group px-5 py-5 md:px-6">
+    <details key={question} className="group px-4 py-4 sm:px-5 sm:py-5 md:px-6">
       <summary className="cursor-pointer list-none pr-5 text-sm font-extrabold text-white">{question}</summary>
       <p className="mt-3 max-w-4xl text-sm leading-7 text-white/68">{answer}</p>
     </details>
@@ -188,23 +186,22 @@ export default function ConsultAreaLandingPageV2() {
       <main>
         <section className="relative overflow-hidden bg-[#075653] text-white">
           <div className="absolute inset-0 opacity-60" style={{ backgroundImage: 'radial-gradient(circle at 18% 100%, rgba(5,210,157,.18), transparent 26%), linear-gradient(120deg, transparent 45%, rgba(138,230,0,.08) 100%)' }} />
-          <div className="relative mx-auto grid min-h-[590px] max-w-7xl lg:grid-cols-[1.03fr_.97fr]">
-            <div className="flex flex-col justify-center px-5 py-14 md:px-8 md:py-18 lg:py-20">
+          <div className="relative mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:py-14 md:grid-cols-[1.02fr_.98fr] md:items-center md:px-8 md:py-16 lg:min-h-[590px] lg:gap-12 lg:py-20">
+            <div className="flex min-w-0 flex-col justify-center">
               <Link to="/consult#areas" className="text-sm font-bold text-white/58 hover:text-white">Áreas de atuação</Link>
-              <p className="mt-8 text-[10px] font-black uppercase tracking-[.28em] text-[#8AE600]">{area.eyebrow}</p>
-              <h1 className="mt-4 max-w-3xl text-4xl font-black leading-[1.02] tracking-[-.04em] sm:text-5xl lg:text-6xl">{area.title}</h1>
-              <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-white/92">{area.hero}</p>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-white/68 md:text-base">{area.intro}</p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <a href="/consult#contato" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white"><CalendarDays size={18}/> Agende uma reunião</a>
-                <a href="/consult#cobertura" className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-white/22 px-5 py-3 text-sm font-bold text-white"><MapPin size={18}/> Ver atendimento</a>
+              <p className="mt-7 text-[9px] font-black uppercase tracking-[.22em] text-[#8AE600] sm:mt-8 sm:text-[10px] sm:tracking-[.28em]">{area.eyebrow}</p>
+              <h1 className="mt-4 max-w-3xl text-[2.35rem] font-black leading-[1.02] tracking-[-.04em] sm:text-5xl lg:text-6xl">{area.title}</h1>
+              <p className="mt-5 max-w-2xl text-base font-semibold leading-7 text-white/92 sm:mt-6 sm:text-lg sm:leading-8">{area.hero}</p>
+              <p className="mt-4 max-w-2xl text-sm leading-6 text-white/68 sm:leading-7 md:text-[15px] lg:text-base">{area.intro}</p>
+              <div className="mt-7 flex flex-col gap-2.5 sm:flex-row sm:flex-wrap sm:gap-3">
+                <a href="/consult#contato" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white"><CalendarDays size={18}/> Agende uma reunião</a>
+                <a href="/consult#cobertura" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-white/22 px-5 py-3 text-sm font-bold text-white"><MapPin size={18}/> Ver atendimento</a>
               </div>
             </div>
-            <div className="relative min-h-[390px] overflow-hidden lg:min-h-full">
-              <img src={area.image} alt={`${area.title} — Consult`} className="absolute inset-0 h-full w-full object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#075653] via-[#075653]/25 to-transparent lg:from-[#075653]/65" />
-              <div className="absolute inset-x-5 bottom-5 grid grid-cols-2 gap-2 sm:grid-cols-4 lg:inset-x-8 lg:bottom-8 lg:grid-cols-2">
-                {area.highlights.map((item) => <div key={item} className="rounded-xl border border-white/12 bg-[#043F3D]/72 px-4 py-3 text-xs font-extrabold text-white backdrop-blur">{item}</div>)}
+            <div className="min-w-0 pb-1 md:pb-0">
+              <ConsultTechnicalVisual variant={area.visualVariant} title={area.title} metric={area.visualMetric} compact />
+              <div className="mx-auto mt-3 grid max-w-[500px] grid-cols-2 gap-2 sm:grid-cols-4 md:grid-cols-2 lg:grid-cols-4">
+                {area.highlights.map((item) => <div key={item} className="rounded-xl border border-white/12 bg-[#043F3D]/58 px-3 py-2.5 text-center text-[10px] font-extrabold leading-4 text-white/86 backdrop-blur sm:text-[11px]">{item}</div>)}
               </div>
             </div>
           </div>
@@ -213,15 +210,15 @@ export default function ConsultAreaLandingPageV2() {
         {area.independence && <section className="border-y border-[#8AE600]/25 bg-[#043F3D] text-white"><div className="mx-auto grid max-w-7xl gap-3 px-5 py-5 md:grid-cols-[1fr_auto] md:items-center md:px-8"><div><p className="text-[10px] font-black uppercase tracking-[.22em] text-[#8AE600]">Verificação independente</p><p className="mt-1 text-sm leading-6 text-white/74">Não consertamos e não vendemos peças. A Consult mede, ensaia, documenta e entrega o resultado técnico.</p></div><span className="text-xs font-bold text-white/48">Sem vínculo com empresa de conserto</span></div></section>}
 
         <section className="bg-[#F4FAF8]">
-          <div className="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-18">
-            <div className="grid gap-9 lg:grid-cols-[.68fr_1.32fr] lg:items-start">
+          <div className="mx-auto max-w-7xl px-5 py-12 sm:py-14 md:px-8 md:py-16">
+            <div className="grid gap-8 lg:grid-cols-[.62fr_1.38fr] lg:items-start">
               <div className="lg:sticky lg:top-28">
                 <ConsultEyebrow>Serviços</ConsultEyebrow>
                 <h2 className="mt-3 text-3xl font-black tracking-tight text-[#075653] md:text-4xl">O que a Consult faz nesta área</h2>
-                <p className="mt-4 text-sm leading-7 text-[#607D7A]">Cada frente técnica leva a uma página própria com finalidade, processo, entregáveis e base normativa.</p>
+                <p className="mt-4 max-w-xl text-sm leading-7 text-[#607D7A]">Cada frente técnica leva a uma página própria com finalidade, processo, entregáveis e base normativa.</p>
               </div>
-              <div className="grid gap-4 md:grid-cols-2">
-                {area.services.map((service, index) => <ServiceCard key={service[2]} item={service} featured={false} />)}
+              <div className="grid gap-4 sm:grid-cols-2">
+                {area.services.map((service, index) => <ServiceCard key={service[2]} item={service} index={index} />)}
               </div>
             </div>
           </div>
@@ -229,35 +226,35 @@ export default function ConsultAreaLandingPageV2() {
 
         <section className="relative overflow-hidden bg-[#075653] text-white">
           <div className="absolute inset-0 opacity-45" style={{ backgroundImage: 'linear-gradient(115deg, transparent 30%, rgba(5,210,157,.12) 70%, transparent), radial-gradient(circle at 88% 20%, rgba(138,230,0,.14), transparent 22%)' }} />
-          <div className="relative mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-16">
+          <div className="relative mx-auto max-w-7xl px-5 py-12 sm:py-14 md:px-8 md:py-16">
             <div className="max-w-3xl"><ConsultEyebrow light>Como funciona</ConsultEyebrow><h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">Da necessidade ao resultado documentado</h2></div>
-            <div className="mt-9 grid gap-4 md:grid-cols-4">{area.process.map(([number,title,text]) => <article key={number} className="rounded-[22px] border border-white/10 bg-white/6 p-5 backdrop-blur"><span className="text-3xl font-black text-[#8AE600]">{number}</span><h3 className="mt-5 text-lg font-black">{title}</h3><p className="mt-3 text-sm leading-6 text-white/65">{text}</p></article>)}</div>
+            <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">{area.process.map(([number,title,text]) => <article key={number} className="rounded-[20px] border border-white/10 bg-white/6 p-5 backdrop-blur"><span className="text-3xl font-black text-[#8AE600]">{number}</span><h3 className="mt-4 text-lg font-black">{title}</h3><p className="mt-3 text-sm leading-6 text-white/65">{text}</p></article>)}</div>
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-16">
-          <div className="grid gap-8 lg:grid-cols-[.72fr_1.28fr]">
-            <div><ConsultEyebrow>Entrega técnica</ConsultEyebrow><h2 className="mt-3 text-3xl font-black tracking-tight text-[#075653] md:text-4xl">O que o cliente recebe</h2><p className="mt-4 text-sm leading-7 text-[#607D7A]">A entrega não é só uma visita. O resultado precisa ficar compreensível, rastreável e documentado.</p></div>
-            <div className="grid gap-4 md:grid-cols-3">{area.deliverables.map(([title,text,Icon]) => <article key={title} className="rounded-[22px] border border-[#DCEAE7] bg-white p-6 shadow-[0_14px_40px_rgba(7,86,83,.07)]"><div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#E7F6F1] text-[#078B6B]"><Icon size={22}/></div><h3 className="mt-5 text-lg font-black text-[#075653]">{title}</h3><p className="mt-3 text-sm leading-6 text-[#607D7A]">{text}</p></article>)}</div>
+        <section className="mx-auto max-w-7xl px-5 py-12 sm:py-14 md:px-8 md:py-16">
+          <div className="grid gap-8 lg:grid-cols-[.68fr_1.32fr]">
+            <div><ConsultEyebrow>Entrega técnica</ConsultEyebrow><h2 className="mt-3 text-3xl font-black tracking-tight text-[#075653] md:text-4xl">O que o cliente recebe</h2><p className="mt-4 max-w-xl text-sm leading-7 text-[#607D7A]">A entrega não é só uma visita. O resultado precisa ficar compreensível, rastreável e documentado.</p></div>
+            <div className="grid gap-4 sm:grid-cols-3">{area.deliverables.map(([title,text,Icon]) => <article key={title} className="rounded-[20px] border border-[#DCEAE7] bg-white p-5 shadow-[0_14px_40px_rgba(7,86,83,.07)] sm:p-6"><div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[#E7F6F1] text-[#078B6B]"><Icon size={22}/></div><h3 className="mt-4 text-lg font-black text-[#075653]">{title}</h3><p className="mt-3 text-sm leading-6 text-[#607D7A]">{text}</p></article>)}</div>
           </div>
         </section>
 
         <section className="bg-[#EAF5F2]">
-          <div className="mx-auto grid max-w-7xl gap-9 px-5 py-14 md:px-8 md:py-16 lg:grid-cols-[.72fr_1.28fr]">
-            <div><ConsultEyebrow>{area.equipment ? 'Equipamentos atendidos' : 'Aplicações'}</ConsultEyebrow><h2 className="mt-3 text-3xl font-black tracking-tight text-[#075653]">{area.equipment ? 'Veja exatamente o que pode ser ensaiado' : area.secondaryTitle}</h2><p className="mt-4 text-sm leading-7 text-[#607D7A]">A estrutura foi organizada para levar o visitante da visão geral até a informação técnica específica.</p></div>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">{(area.equipment || area.secondaryItems.map((item) => [item,null])).map(([label,href]) => href ? <Link key={href} to={href} className="flex min-h-20 items-center gap-3 rounded-xl border border-[#CEE4DE] bg-white p-4 text-sm font-extrabold text-[#365A58] transition hover:border-[#08A77F] hover:text-[#075653]"><Activity size={18} className="shrink-0 text-[#08A77F]"/> {label}</Link> : <div key={label} className="flex min-h-20 items-center gap-3 rounded-xl border border-[#CEE4DE] bg-white p-4 text-sm font-bold text-[#365A58]"><CheckCircle2 size={18} className="shrink-0 text-[#08A77F]"/> {label}</div>)}</div>
+          <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:py-14 md:px-8 md:py-16 lg:grid-cols-[.68fr_1.32fr]">
+            <div><ConsultEyebrow>{area.equipment ? 'Equipamentos atendidos' : 'Aplicações'}</ConsultEyebrow><h2 className="mt-3 text-3xl font-black tracking-tight text-[#075653]">{area.equipment ? 'Veja exatamente o que pode ser ensaiado' : area.secondaryTitle}</h2><p className="mt-4 max-w-xl text-sm leading-7 text-[#607D7A]">A estrutura foi organizada para levar o visitante da visão geral até a informação técnica específica.</p></div>
+            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">{(area.equipment || area.secondaryItems.map((item) => [item,null])).map(([label,href]) => href ? <Link key={href} to={href} className="flex min-h-16 items-center gap-3 rounded-xl border border-[#CEE4DE] bg-white p-4 text-sm font-extrabold text-[#365A58] transition hover:border-[#08A77F] hover:text-[#075653] sm:min-h-20"><Activity size={18} className="shrink-0 text-[#08A77F]"/> {label}</Link> : <div key={label} className="flex min-h-16 items-center gap-3 rounded-xl border border-[#CEE4DE] bg-white p-4 text-sm font-bold text-[#365A58] sm:min-h-20"><CheckCircle2 size={18} className="shrink-0 text-[#08A77F]"/> {label}</div>)}</div>
           </div>
         </section>
 
         <section className="bg-[#043F3D] text-white">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-16 lg:grid-cols-[.65fr_1.35fr]">
-            <div><ConsultEyebrow light>Normas e referências</ConsultEyebrow><h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">Base técnica do serviço</h2><p className="mt-4 text-sm leading-7 text-white/62">As referências abaixo podem ser abertas para consulta. A norma aplicável depende do serviço e do equipamento.</p></div>
-            <div className="grid gap-3 md:grid-cols-2">{area.standards.map(([label,text,href]) => <a key={`${label}-${text}`} href={href} target="_blank" rel="noreferrer" className="group rounded-[18px] border border-white/10 bg-white/6 p-5 transition hover:border-[#8AE600]/50 hover:bg-white/10"><div className="flex items-start justify-between gap-4"><FileText size={20} className="shrink-0 text-[#8AE600]"/><ExternalLink size={15} className="text-white/35 transition group-hover:text-[#8AE600]"/></div><h3 className="mt-4 font-black text-white">{label}</h3><p className="mt-2 text-xs leading-5 text-white/58">{text}</p><span className="mt-4 inline-flex text-[10px] font-black uppercase tracking-[.15em] text-[#B8FF51]">Ver referência oficial</span></a>)}</div>
+          <div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 sm:py-14 md:px-8 md:py-16 lg:grid-cols-[.62fr_1.38fr]">
+            <div><ConsultEyebrow light>Normas e referências</ConsultEyebrow><h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">Base técnica do serviço</h2><p className="mt-4 max-w-xl text-sm leading-7 text-white/62">As referências abaixo podem ser abertas para consulta. A norma aplicável depende do serviço e do equipamento.</p></div>
+            <div className="grid gap-3 sm:grid-cols-2">{area.standards.map(([label,text,href]) => <a key={`${label}-${text}`} href={href} target="_blank" rel="noreferrer" className="group rounded-[18px] border border-white/10 bg-white/6 p-5 transition hover:border-[#8AE600]/50 hover:bg-white/10"><div className="flex items-start justify-between gap-4"><FileText size={20} className="shrink-0 text-[#8AE600]"/><ExternalLink size={15} className="text-white/35 transition group-hover:text-[#8AE600]"/></div><h3 className="mt-4 font-black text-white">{label}</h3><p className="mt-2 text-xs leading-5 text-white/58">{text}</p><span className="mt-4 inline-flex text-[10px] font-black uppercase tracking-[.15em] text-[#B8FF51]">Ver referência oficial</span></a>)}</div>
           </div>
         </section>
 
         <section className="bg-[#075653] text-white">
-          <div className="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-16"><ConsultEyebrow light>Dúvidas frequentes</ConsultEyebrow><h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">Antes de solicitar o atendimento</h2><Faq items={area.faq}/></div>
+          <div className="mx-auto max-w-7xl px-5 py-12 sm:py-14 md:px-8 md:py-16"><ConsultEyebrow light>Dúvidas frequentes</ConsultEyebrow><h2 className="mt-3 text-3xl font-black tracking-tight md:text-4xl">Antes de solicitar o atendimento</h2><Faq items={area.faq}/></div>
         </section>
 
         <ConsultCtaBand title={`Vamos conversar sobre ${area.title}?`} />
