@@ -1,4 +1,6 @@
 export const CONSULT_PROJECT = {
+  clientId: '0b88061b-676d-48fb-846a-2483b0cf8284',
+  projectId: '6bf62bce-b7ff-46f1-84e9-07c54689a8e4',
   clientSlug: 'consult',
   siteBasePath: '/consult',
   blogBasePath: '/consult/blog',
@@ -11,7 +13,9 @@ export const CONSULT_PROJECT = {
   },
   content: {
     blogEnabled: true,
-    provider: 'pending_content_backend',
+    provider: 'supabase_site_posts',
+    publicTable: 'site_posts',
+    fallback: 'local_seed',
   },
 }
 
