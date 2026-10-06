@@ -2,14 +2,14 @@ import React, { useEffect, useMemo, useState } from 'react'
 import { CalendarDays, Search } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { ConsultEyebrow, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
-import { getConsultBlogCategories, getConsultBlogPosts } from '@/lib/consultBlogRepository'
+import { getConsultBlogCategories, getConsultBlogPosts, getConsultBlogSeedPosts } from '@/lib/consultBlogRepository'
 
 function formatDate(value) {
   return new Date(value).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }).replace('.', '')
 }
 
 export default function ConsultBlogPage() {
-  const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState(() => getConsultBlogSeedPosts())
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('Todos')
 
@@ -17,7 +17,11 @@ export default function ConsultBlogPage() {
     document.title = 'Blog técnico | Consult Radiometria e Qualidade'
     const description = document.querySelector('meta[name="description"]')
     description?.setAttribute('content', 'Conteúdos técnicos da Consult sobre Física Médica, Proteção Radiológica, controle de qualidade, Engenharia Clínica e segurança em serviços de saúde.')
-    getConsultBlogPosts().then(setPosts)
+    let active = true
+    getConsultBlogPosts().then((items) => {
+      if (active && items.length) setPosts(items)
+    })
+    return () => { active = false }
   }, [])
 
   const categories = useMemo(() => ['Todos', ...getConsultBlogCategories(posts)], [posts])
@@ -79,7 +83,7 @@ export default function ConsultBlogPage() {
                 <article key={post.id} className="group overflow-hidden rounded-[24px] border border-[#DCEAE7] bg-white shadow-[0_16px_45px_rgba(7,86,83,.08)] transition hover:-translate-y-1 hover:shadow-[0_22px_55px_rgba(7,86,83,.14)]">
                   <Link to={`/consult/blog/${post.slug}`} className="block">
                     <div className="relative h-56 overflow-hidden bg-[#075653]">
-                      <img src={post.coverImage} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]" />
+                      {post.coverImage ? <img src={post.coverImage} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]" /> : null}
                       <div className="absolute inset-0 bg-gradient-to-t from-[#043F3D]/82 via-[#043F3D]/10 to-transparent" />
                       <span className="absolute left-5 top-5 rounded-full bg-[#8AE600] px-3 py-1.5 text-[10px] font-black uppercase tracking-[.13em] text-[#075653]">{post.category}</span>
                     </div>
