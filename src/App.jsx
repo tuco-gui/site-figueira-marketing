@@ -20,6 +20,8 @@ import ConsultServicePage from '@/pages/ConsultServicePage'
 import ConsultEngineeringServicePage from '@/pages/ConsultEngineeringServicePage'
 import ConsultEquipmentPage from '@/pages/ConsultEquipmentPage'
 import ConsultRegionPage from '@/pages/ConsultRegionPage'
+import ConsultBlogPage from '@/pages/ConsultBlogPage'
+import ConsultBlogPostPage from '@/pages/ConsultBlogPostPage'
 
 import EstrategiaGrowth from '@/pages/solutions/EstrategiaGrowth'
 import Gestao from '@/pages/solutions/Gestao'
@@ -67,6 +69,8 @@ function App() {
           <Route path="/consult/engenharia-clinica/:slug" element={<ConsultEngineeringServicePage />} />
           <Route path="/consult/equipamentos/:slug" element={<ConsultEquipmentPage />} />
           <Route path="/consult/regioes/:slug" element={<ConsultRegionPage />} />
+          <Route path="/consult/blog" element={<ConsultBlogPage />} />
+          <Route path="/consult/blog/:slug" element={<ConsultBlogPostPage />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Toaster />
