@@ -1,6 +1,8 @@
 import { CONSULT_PROJECT } from './consultProject'
 
 const CDN = 'https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305'
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
+const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY
 
 const SEED_POSTS = [
   {
@@ -66,16 +68,75 @@ const SEED_POSTS = [
 ]
 
 function sortByDate(posts) {
-  return [...posts].sort((a, b) => new Date(b.publishedAt) - new Date(a.publishedAt))
+  return [...posts].sort((a, b) => new Date(b.publishedAt || 0) - new Date(a.publishedAt || 0))
+}
+
+function markdownToParagraphs(markdown = '') {
+  return String(markdown)
+    .split(/\n\s*\n/g)
+    .map((part) => part.trim())
+    .filter(Boolean)
+}
+
+function mapRow(row) {
+  return {
+    id: row.id,
+    slug: row.slug,
+    title: row.title,
+    category: row.category || 'Conteúdo técnico',
+    publishedAt: row.published_at,
+    author: row.author || 'Consult',
+    excerpt: row.excerpt || '',
+    summary: markdownToParagraphs(row.content_markdown),
+    coverImage: row.cover_url || '',
+    relatedLinks: Array.isArray(row.related_links) ? row.related_links : [],
+    sourceUrl: row.source_url || null,
+    migrationStatus: row.metadata?.migration_status || null,
+    seoTitle: row.seo_title || null,
+    seoDescription: row.seo_description || null,
+    contentSource: 'supabase_site_posts',
+  }
+}
+
+function canUseBackend() {
+  return CONSULT_PROJECT.content.provider === 'supabase_site_posts' && Boolean(SUPABASE_URL && SUPABASE_KEY)
+}
+
+async function fetchPublishedPosts() {
+  if (!canUseBackend()) return null
+
+  const select = [
+    'id','slug','title','category','published_at','author','excerpt','content_markdown','cover_url',
+    'related_links','source_url','metadata','seo_title','seo_description',
+  ].join(',')
+  const params = new URLSearchParams({
+    client_id: `eq.${CONSULT_PROJECT.clientId}`,
+    status: 'eq.published',
+    is_public: 'eq.true',
+    select,
+    order: 'published_at.desc',
+  })
+
+  const response = await fetch(`${SUPABASE_URL}/rest/v1/${CONSULT_PROJECT.content.publicTable}?${params.toString()}`, {
+    headers: {
+      apikey: SUPABASE_KEY,
+      Accept: 'application/json',
+    },
+  })
+
+  if (!response.ok) throw new Error(`Consult blog backend returned ${response.status}`)
+  const rows = await response.json()
+  return Array.isArray(rows) ? rows.map(mapRow) : []
 }
 
 export async function getConsultBlogPosts() {
-  // Ponto único de troca para o futuro backend editorial.
-  // A UI não conhece Base44, Supabase ou qualquer CMS específico.
-  if (CONSULT_PROJECT.content.provider === 'pending_content_backend') {
-    return sortByDate(SEED_POSTS)
+  try {
+    const backendPosts = await fetchPublishedPosts()
+    if (backendPosts?.length) return sortByDate(backendPosts)
+  } catch (error) {
+    console.warn('[Consult Blog] Supabase indisponível; usando fallback editorial local.', error)
   }
-  return sortByDate(SEED_POSTS)
+  return sortByDate(SEED_POSTS.map((post) => ({ ...post, contentSource: 'local_seed' })))
 }
 
 export async function getConsultBlogPost(slug) {
@@ -84,5 +145,5 @@ export async function getConsultBlogPost(slug) {
 }
 
 export function getConsultBlogCategories(posts = SEED_POSTS) {
-  return [...new Set(posts.map((post) => post.category))].sort((a, b) => a.localeCompare(b, 'pt-BR'))
+  return [...new Set(posts.map((post) => post.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'))
 }
