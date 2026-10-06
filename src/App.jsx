@@ -7,14 +7,14 @@ import PageNotFound from './lib/PageNotFound'
 import ScrollToTop from './components/ScrollToTop'
 
 import SiteLayout from '@/components/layout/SiteLayout'
-
 import Home from '@/pages/Home'
-import Sobre from '@/pages/Sobre'
-import Cases from '@/pages/Cases'
-import Contato from '@/pages/Contato'
-import GrowthMarketing from '@/pages/GrowthMarketing'
-import StackDigital from '@/pages/StackDigital'
-import PartnerLandingPage from '@/pages/PartnerLandingPage'
+
+const Sobre = lazy(() => import('@/pages/Sobre'))
+const Cases = lazy(() => import('@/pages/Cases'))
+const Contato = lazy(() => import('@/pages/Contato'))
+const GrowthMarketing = lazy(() => import('@/pages/GrowthMarketing'))
+const StackDigital = lazy(() => import('@/pages/StackDigital'))
+const PartnerLandingPage = lazy(() => import('@/pages/PartnerLandingPage'))
 
 const ConsultProposal = lazy(() => import('@/pages/ConsultProposal'))
 const ConsultAreaLandingPageV2 = lazy(() => import('@/pages/ConsultAreaLandingPageV2'))
@@ -25,28 +25,32 @@ const ConsultRegionPage = lazy(() => import('@/pages/ConsultRegionPage'))
 const ConsultBlogPage = lazy(() => import('@/pages/ConsultBlogPage'))
 const ConsultBlogPostPage = lazy(() => import('@/pages/ConsultBlogPostPage'))
 
-import EstrategiaGrowth from '@/pages/solutions/EstrategiaGrowth'
-import Gestao from '@/pages/solutions/Gestao'
-import MidiaPaga from '@/pages/solutions/MidiaPaga'
-import Criativos from '@/pages/solutions/Criativos'
-import PaginasConversao from '@/pages/solutions/PaginasConversao'
-import CRM from '@/pages/solutions/CRM'
-import Automacoes from '@/pages/solutions/Automacoes'
-import AgentesIA from '@/pages/solutions/AgentesIA'
-import DadosBI from '@/pages/solutions/DadosBI'
-import Tecnologia from '@/pages/solutions/Tecnologia'
-import SolucoesSobMedida from '@/pages/solutions/SolucoesSobMedida'
-import Retencao from '@/pages/solutions/Retencao'
+const EstrategiaGrowth = lazy(() => import('@/pages/solutions/EstrategiaGrowth'))
+const Gestao = lazy(() => import('@/pages/solutions/Gestao'))
+const MidiaPaga = lazy(() => import('@/pages/solutions/MidiaPaga'))
+const Criativos = lazy(() => import('@/pages/solutions/Criativos'))
+const PaginasConversao = lazy(() => import('@/pages/solutions/PaginasConversao'))
+const CRM = lazy(() => import('@/pages/solutions/CRM'))
+const Automacoes = lazy(() => import('@/pages/solutions/Automacoes'))
+const AgentesIA = lazy(() => import('@/pages/solutions/AgentesIA'))
+const DadosBI = lazy(() => import('@/pages/solutions/DadosBI'))
+const Tecnologia = lazy(() => import('@/pages/solutions/Tecnologia'))
+const SolucoesSobMedida = lazy(() => import('@/pages/solutions/SolucoesSobMedida'))
+const Retencao = lazy(() => import('@/pages/solutions/Retencao'))
 
-function ConsultRouteFallback() {
+function RouteFallback({ consult = false }) {
   return (
-    <div className="min-h-screen bg-[#075653] flex items-center justify-center px-6 text-white">
+    <div className={`min-h-screen flex items-center justify-center px-6 ${consult ? 'bg-[#075653] text-white' : 'bg-black text-white'}`}>
       <div className="text-center">
-        <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-white/25 border-t-[#8AE600]" />
-        <p className="mt-4 text-sm font-semibold text-white/70">Carregando Consult...</p>
+        <div className={`mx-auto h-8 w-8 animate-spin rounded-full border-2 ${consult ? 'border-white/25 border-t-[#8AE600]' : 'border-white/20 border-t-white'}`} />
+        <p className="mt-4 text-sm font-semibold text-white/70">Carregando...</p>
       </div>
     </div>
   )
+}
+
+function Deferred({ children, consult = false }) {
+  return <Suspense fallback={<RouteFallback consult={consult} />}>{children}</Suspense>
 }
 
 function App() {
@@ -57,27 +61,27 @@ function App() {
         <Routes>
           <Route element={<SiteLayout />}>
             <Route path="/" element={<Home />} />
-            <Route path="/sobre" element={<Sobre />} />
-            <Route path="/cases" element={<Cases />} />
-            <Route path="/contato" element={<Contato />} />
-            <Route path="/recursos/growth-marketing" element={<GrowthMarketing />} />
-            <Route path="/stack-digital" element={<StackDigital />} />
-            <Route path="/stack-digital/:partner" element={<PartnerLandingPage />} />
-            <Route path="/solucoes/estrategia-growth" element={<EstrategiaGrowth />} />
-            <Route path="/solucoes/gestao" element={<Gestao />} />
-            <Route path="/solucoes/midia-paga" element={<MidiaPaga />} />
-            <Route path="/solucoes/criativos" element={<Criativos />} />
-            <Route path="/solucoes/paginas-conversao" element={<PaginasConversao />} />
-            <Route path="/solucoes/crm" element={<CRM />} />
-            <Route path="/solucoes/automacoes" element={<Automacoes />} />
-            <Route path="/solucoes/agentes-ia" element={<AgentesIA />} />
-            <Route path="/solucoes/dados-bi" element={<DadosBI />} />
-            <Route path="/solucoes/tecnologia" element={<Tecnologia />} />
-            <Route path="/solucoes/solucoes-sob-medida" element={<SolucoesSobMedida />} />
-            <Route path="/solucoes/retencao" element={<Retencao />} />
+            <Route path="/sobre" element={<Deferred><Sobre /></Deferred>} />
+            <Route path="/cases" element={<Deferred><Cases /></Deferred>} />
+            <Route path="/contato" element={<Deferred><Contato /></Deferred>} />
+            <Route path="/recursos/growth-marketing" element={<Deferred><GrowthMarketing /></Deferred>} />
+            <Route path="/stack-digital" element={<Deferred><StackDigital /></Deferred>} />
+            <Route path="/stack-digital/:partner" element={<Deferred><PartnerLandingPage /></Deferred>} />
+            <Route path="/solucoes/estrategia-growth" element={<Deferred><EstrategiaGrowth /></Deferred>} />
+            <Route path="/solucoes/gestao" element={<Deferred><Gestao /></Deferred>} />
+            <Route path="/solucoes/midia-paga" element={<Deferred><MidiaPaga /></Deferred>} />
+            <Route path="/solucoes/criativos" element={<Deferred><Criativos /></Deferred>} />
+            <Route path="/solucoes/paginas-conversao" element={<Deferred><PaginasConversao /></Deferred>} />
+            <Route path="/solucoes/crm" element={<Deferred><CRM /></Deferred>} />
+            <Route path="/solucoes/automacoes" element={<Deferred><Automacoes /></Deferred>} />
+            <Route path="/solucoes/agentes-ia" element={<Deferred><AgentesIA /></Deferred>} />
+            <Route path="/solucoes/dados-bi" element={<Deferred><DadosBI /></Deferred>} />
+            <Route path="/solucoes/tecnologia" element={<Deferred><Tecnologia /></Deferred>} />
+            <Route path="/solucoes/solucoes-sob-medida" element={<Deferred><SolucoesSobMedida /></Deferred>} />
+            <Route path="/solucoes/retencao" element={<Deferred><Retencao /></Deferred>} />
           </Route>
           <Route path="/consult/*" element={
-            <Suspense fallback={<ConsultRouteFallback />}>
+            <Deferred consult>
               <Routes>
                 <Route index element={<ConsultProposal />} />
                 <Route path="areas/:slug" element={<ConsultAreaLandingPageV2 />} />
@@ -88,7 +92,7 @@ function App() {
                 <Route path="blog" element={<ConsultBlogPage />} />
                 <Route path="blog/:slug" element={<ConsultBlogPostPage />} />
               </Routes>
-            </Suspense>
+            </Deferred>
           } />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
