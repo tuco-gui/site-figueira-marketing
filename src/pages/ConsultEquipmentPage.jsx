@@ -1,32 +1,42 @@
 import React, { useEffect, useMemo } from 'react'
-import { CheckCircle2, FileText, Gauge, ShieldCheck } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
-import { ConsultCtaBand, ConsultEyebrow, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
+import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
+import { ConsultReportPreview, ConsultSectionNav } from '@/components/consult/ConsultTechnicalDesign'
+import {
+  DeliverableHeader,
+  EditorialStatement,
+  IndependenceBand,
+  MeasurementMatrix,
+  OutcomeNote,
+  ProcessTimeline,
+  ServiceHeroConsole,
+  ServiceProofRail,
+  StandardsShelf,
+  TechnicalFaq,
+} from '@/components/consult/ConsultServiceV3Design'
+
+const RDC_509 = 'https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2021/rdc0509_27_05_2021.pdf'
+const ABNT = 'https://www.abntcatalogo.com.br/'
 
 const EQUIPMENT = {
-  'monitor-multiparametrico': { title:'Monitor multiparamétrico', test:'ECG, PNI (pressão não invasiva), pressão invasiva, temperatura, respiração e SpO₂', analyzer:'Waller + Yagi' },
-  eletrocardiografo: { title:'Eletrocardiógrafo', test:'Resposta a ritmos cardíacos simulados', analyzer:'Waller' },
-  'oximetro-pulso': { title:'Oxímetro de pulso', test:'Leitura de SpO₂ e frequência de pulso com sinal simulado. Não avalia a exatidão do sensor no paciente.', analyzer:'Yagi' },
-  'esfigmomanometro-mapa': { title:'Esfigmomanômetro digital e MAPA', test:'Leitura de pressão sistólica e diastólica simuladas', analyzer:'Waller' },
-  'desfibrilador-cardioversor-dea': { title:'Desfibrilador, cardioversor e DEA', test:'Energia entregue, tempo de carga, atraso no modo sincronizado e resposta ao ECG', analyzer:'Lown' },
-  'marca-passo-transcutaneo': { title:'Marca-passo transcutâneo', test:'Tensão, corrente e frequência em diferentes cargas', analyzer:'Lown' },
-  'bisturi-eletrico': { title:'Bisturi elétrico (eletrocautério)', test:'Potência entregue em diferentes cargas e fuga de alta frequência', analyzer:'Harrison' },
-  'ventilador-pulmonar': { title:'Ventilador pulmonar', test:'Fluxo, volume, pressões, incluindo PEEP, e concentração de O₂', analyzer:'Luft + pulmão de teste' },
-  'aparelho-anestesia': { title:'Aparelho de anestesia — parte ventilatória', test:'Os mesmos parâmetros do ventilador. Não mede concentração de agente anestésico.', analyzer:'Luft' },
-  'cpap-bipap': { title:'CPAP e BiPAP', test:'Fluxo e pressão', analyzer:'Luft' },
-  'fluxometro-manometro-o2': { title:'Fluxômetro e manômetro de O₂', test:'Fluxo e pressão', analyzer:'Luft' },
-  autoclave: { title:'Autoclave', test:'Temperatura em até 16 pontos, pressão e letalidade (F0), em ciclos de operação', analyzer:'Otto' },
-  'termodesinfectora-estufa': { title:'Termodesinfectora e estufa de esterilização', test:'Temperatura em até 16 pontos e letalidade (A0)', analyzer:'Otto' },
-  'estufa-banho-maria': { title:'Estufa e banho-maria de laboratório', test:'Estabilidade e uniformidade de temperatura', analyzer:'Otto' },
-  'geladeira-camara-vacina': { title:'Geladeira e câmara de vacina', test:'Mapeamento de temperatura', analyzer:'Otto' },
+  'monitor-multiparametrico': { title:'Monitor multiparamétrico', analyzer:'Waller + Yagi', parameters:['ECG','PNI (pressão não invasiva)','Pressão invasiva','Temperatura','Respiração','SpO₂'] },
+  eletrocardiografo: { title:'Eletrocardiógrafo', analyzer:'Waller', parameters:['Resposta a ritmos cardíacos simulados'] },
+  'oximetro-pulso': { title:'Oxímetro de pulso', analyzer:'Yagi', parameters:['SpO₂ simulada','Frequência de pulso simulada'], caveat:'O guia informa que o ensaio não avalia a exatidão do sensor no paciente.' },
+  'esfigmomanometro-mapa': { title:'Esfigmomanômetro digital e MAPA', analyzer:'Waller', parameters:['Pressão sistólica simulada','Pressão diastólica simulada'] },
+  'desfibrilador-cardioversor-dea': { title:'Desfibrilador, cardioversor e DEA', analyzer:'Lown', parameters:['Energia entregue','Tempo de carga','Atraso no modo sincronizado','Resposta ao ECG'] },
+  'marca-passo-transcutaneo': { title:'Marca-passo transcutâneo', analyzer:'Lown', parameters:['Tensão','Corrente','Frequência em diferentes cargas'] },
+  'bisturi-eletrico': { title:'Bisturi elétrico (eletrocautério)', analyzer:'Harrison', parameters:['Potência entregue em diferentes cargas','Fuga de alta frequência'] },
+  'ventilador-pulmonar': { title:'Ventilador pulmonar', analyzer:'Luft + pulmão de teste', parameters:['Fluxo','Volume','Pressões','PEEP','Concentração de O₂'] },
+  'aparelho-anestesia': { title:'Aparelho de anestesia — parte ventilatória', analyzer:'Luft', parameters:['Fluxo','Volume','Pressões','PEEP','Concentração de O₂'], caveat:'O guia informa que a Consult não mede a concentração do agente anestésico nesta avaliação.' },
+  'cpap-bipap': { title:'CPAP e BiPAP', analyzer:'Luft', parameters:['Fluxo','Pressão'] },
+  'fluxometro-manometro-o2': { title:'Fluxômetro e manômetro de O₂', analyzer:'Luft', parameters:['Fluxo','Pressão'] },
+  autoclave: { title:'Autoclave', analyzer:'Otto', parameters:['Temperatura em até 16 pontos','Pressão','Letalidade F0','Ciclos de operação'], thermal:true },
+  'termodesinfectora-estufa': { title:'Termodesinfectora e estufa de esterilização', analyzer:'Otto', parameters:['Temperatura em até 16 pontos','Letalidade A0'], thermal:true },
+  'estufa-banho-maria': { title:'Estufa e banho-maria de laboratório', analyzer:'Otto', parameters:['Estabilidade de temperatura','Uniformidade de temperatura'], thermal:true },
+  'geladeira-camara-vacina': { title:'Geladeira e câmara de vacina', analyzer:'Otto', parameters:['Mapeamento de temperatura'], thermal:true },
 }
 
-const FLOW = [
-  ['01','Identificação','Confirmação do equipamento, modelo, aplicação e ensaios aplicáveis.'],
-  ['02','Segurança','Execução do ensaio de segurança elétrica quando aplicável ao equipamento.'],
-  ['03','Desempenho','Medição dos parâmetros específicos com analisador ou simulador calibrado.'],
-  ['04','Laudo','Resultado documentado por equipamento e preservado no histórico técnico.'],
-]
+const FLOW = [['01','Identificar','Equipamento, modelo, aplicação e ensaios aplicáveis são confirmados.'],['02','Ensaiar','Segurança elétrica e desempenho são executados conforme o equipamento e o escopo.'],['03','Comparar','Os valores são confrontados com a referência técnica aplicável.'],['04','Documentar','O resultado é emitido por equipamento e preservado no histórico técnico.']]
 
 export default function ConsultEquipmentPage() {
   const { slug } = useParams()
@@ -35,42 +45,29 @@ export default function ConsultEquipmentPage() {
   useEffect(() => {
     if (!item) return
     document.title = `Ensaio de ${item.title} | Consult Engenharia Clínica`
-    document.querySelector('meta[name="description"]')?.setAttribute('content', `Ensaio de segurança elétrica e desempenho para ${item.title}. ${item.test}.`)
+    document.querySelector('meta[name="description"]')?.setAttribute('content', `Ensaios de segurança elétrica e desempenho para ${item.title}, com analisador ${item.analyzer}, laudo por equipamento e rastreabilidade RBC.`)
   }, [item])
 
   if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Equipamento não encontrado</h1><Link to="/consult/areas/engenharia-clinica" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Engenharia Clínica</Link></main></ConsultSiteShell>
 
-  return (
-    <ConsultSiteShell>
-      <main>
-        <section className="relative overflow-hidden bg-[#075653] text-white">
-          <div className="absolute inset-0 opacity-60" style={{backgroundImage:'radial-gradient(circle at 84% 30%, rgba(138,230,0,.18), transparent 23%), linear-gradient(130deg, transparent 40%, rgba(5,210,157,.12) 100%)'}}/>
-          <div className="relative mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-20">
-            <Link to="/consult/areas/engenharia-clinica" className="text-sm font-bold text-white/58 hover:text-white">Consult Engenharia Clínica</Link>
-            <p className="mt-8 text-[10px] font-black uppercase tracking-[.28em] text-[#8AE600]">Equipamento atendido</p>
-            <h1 className="mt-4 max-w-5xl text-4xl font-black leading-[1.02] tracking-[-.04em] sm:text-5xl lg:text-6xl">{item.title}</h1>
-            <p className="mt-6 max-w-3xl text-base leading-8 text-white/80 md:text-lg">Ensaios de segurança e desempenho com medição documentada e histórico técnico por equipamento.</p>
-            <div className="mt-8 flex flex-wrap gap-2 text-xs font-bold"><span className="rounded-full border border-white/16 bg-white/7 px-4 py-2">RDC 509/2021</span><span className="rounded-full border border-white/16 bg-white/7 px-4 py-2">Arkmeds</span><span className="rounded-full border border-white/16 bg-white/7 px-4 py-2">Rastreabilidade RBC</span></div>
-          </div>
-        </section>
+  const parameterRows = item.parameters.map((parameter,index)=>[parameter, index === 0 ? `Analisador ${item.analyzer}` : 'Medição específica do equipamento'])
+  const reportRows = item.parameters.slice(0,4).map((parameter)=>[parameter,'Valor medido','Referência','Resultado'])
+  const norms = [['RDC 509/2021 — Anvisa','Base geral informada pela Consult para gerenciamento de tecnologias em saúde.',RDC_509],['ABNT NBR IEC 62353','Referência indicada para o ensaio de segurança elétrica recorrente e após reparo.',ABNT],['Manual do fabricante + norma particular aplicável','O desempenho é comparado conforme o equipamento, seu manual e a norma particular correspondente da família IEC 60601 quando aplicável.',ABNT]]
 
-        <section className="border-y border-[#8AE600]/25 bg-[#043F3D] text-white"><div className="mx-auto flex max-w-7xl items-start gap-3 px-5 py-5 md:px-8"><ShieldCheck size={20} className="mt-0.5 shrink-0 text-[#8AE600]"/><div><p className="text-[10px] font-black uppercase tracking-[.22em] text-[#8AE600]">Verificação independente</p><p className="mt-1 text-sm leading-6 text-white/74">A Consult não conserta e não vende peças. O resultado técnico serve como base objetiva para a instituição decidir o próximo passo.</p></div></div></section>
+  return <ConsultSiteShell><main>
+    <section className="relative overflow-hidden bg-[#075653] text-white"><div className="absolute inset-0 opacity-75" style={{backgroundImage:'radial-gradient(circle at 80% 20%, rgba(138,230,0,.15), transparent 24%), linear-gradient(125deg, transparent 42%, rgba(5,210,157,.11) 100%)'}}/><div className="relative mx-auto grid min-h-[680px] max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[1fr_.9fr] lg:items-center"><div><Link to="/consult/areas/engenharia-clinica" className="text-sm font-bold text-white/55 hover:text-white">Consult Engenharia Clínica</Link><div className="mt-9 flex items-center gap-3 text-[10px] font-black uppercase tracking-[.26em] text-[#8AE600]"><span className="h-px w-10 bg-[#8AE600]" />Equipamento atendido</div><h1 className="mt-5 max-w-4xl text-4xl font-black leading-[.98] tracking-[-.045em] sm:text-5xl lg:text-[64px]">{item.title}</h1><p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-white/88">Segurança elétrica e desempenho documentados por equipamento, com analisador específico e histórico técnico.</p><p className="mt-4 max-w-2xl text-sm leading-7 text-white/58">Parâmetros confirmados no guia técnico da Consult: {item.parameters.join(', ')}.</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><a href="/consult#contato" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#FF6B26] px-6 py-3 text-sm font-extrabold text-white">Agendar avaliação</a><a href="#laudo" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/18 px-6 py-3 text-sm font-extrabold text-white/82">Ver exemplo de laudo</a></div></div><ServiceHeroConsole title={item.title} kicker="Engenharia Clínica" chips={[`Analisador ${item.analyzer}`,'Rastreabilidade RBC']} accent={item.thermal?'thermal':'technical'} /></div></section>
+    <IndependenceBand />
+    <ServiceProofRail items={[["EQUIPAMENTO",item.title],["ANALISADOR",item.analyzer],["ENTREGA","Laudo por equipamento"],["HISTÓRICO","Arkmeds + RBC"]]} />
+    <ConsultSectionNav items={[["Visão geral","#visao"],["Parâmetros","#parametros"],["Processo","#processo"],["Laudo","#laudo"],["Base técnica","#normas"],["FAQ","#faq"]]} />
 
-        <section className="mx-auto grid max-w-7xl gap-8 px-5 py-14 md:px-8 md:py-16 lg:grid-cols-[.62fr_1.38fr]">
-          <div><ConsultEyebrow>Escopo do ensaio</ConsultEyebrow><h2 className="mt-3 text-3xl font-black tracking-tight text-[#075653]">O que é verificado</h2><p className="mt-4 text-sm leading-7 text-[#607D7A]">A página do equipamento deixa claro o parâmetro medido e o instrumento utilizado, evitando descrições genéricas.</p></div>
-          <div className="grid gap-4 md:grid-cols-3">
-            <article className="rounded-[22px] border border-[#DCEAE7] bg-white p-6 shadow-sm"><Gauge size={24} className="text-[#08A77F]"/><h3 className="mt-5 text-lg font-black text-[#075653]">Parâmetros</h3><p className="mt-3 text-sm leading-6 text-[#607D7A]">{item.test}</p></article>
-            <article className="rounded-[22px] border border-[#DCEAE7] bg-white p-6 shadow-sm"><CheckCircle2 size={24} className="text-[#08A77F]"/><h3 className="mt-5 text-lg font-black text-[#075653]">Analisador</h3><p className="mt-3 text-sm font-bold leading-6 text-[#365A58]">{item.analyzer}</p><p className="mt-3 text-xs leading-5 text-[#78908E]">Instrumento com certificado de calibração e rastreabilidade RBC, conforme a estrutura informada pela Consult.</p></article>
-            <article className="rounded-[22px] bg-[#075653] p-6 text-white"><ShieldCheck size={24} className="text-[#8AE600]"/><h3 className="mt-5 text-lg font-black">Segurança elétrica</h3><p className="mt-3 text-sm leading-6 text-white/68">Quando aplicável, o equipamento recebe ensaio de segurança elétrica com Safetest 50, Rigel.</p></article>
-          </div>
-        </section>
+    <div id="visao" className="scroll-mt-32"><EditorialStatement eyebrow="Ensaio por equipamento" title="A página deixa de vender uma categoria genérica e mostra exatamente o que é medido."><p>Para {item.title}, a Consult informou analisador e parâmetros próprios. A V3 transforma essa informação em conteúdo técnico de decisão para engenharia clínica, compras e gestão hospitalar.</p>{item.caveat&&<p className="mt-5 rounded-[16px] border-l-4 border-[#08A77F] bg-[#F4FAF8] px-5 py-4 text-sm font-semibold text-[#315B58]">{item.caveat}</p>}</EditorialStatement></div>
+    <div id="parametros" className="scroll-mt-32"><MeasurementMatrix title={`O que é verificado em ${item.title}`} items={parameterRows} /></div>
+    <div id="processo" className="scroll-mt-32"><ProcessTimeline items={FLOW} /></div>
 
-        <section className="relative overflow-hidden bg-[#F4FAF8]"><div className="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-16"><ConsultEyebrow>Fluxo técnico</ConsultEyebrow><h2 className="mt-3 text-3xl font-black tracking-tight text-[#075653]">Da bancada ao histórico do equipamento</h2><div className="mt-9 grid gap-4 md:grid-cols-4">{FLOW.map(([num,title,text]) => <article key={num} className="rounded-[20px] border border-[#DCEAE7] bg-white p-5"><span className="text-3xl font-black text-[#08A77F]">{num}</span><h3 className="mt-4 text-lg font-black text-[#075653]">{title}</h3><p className="mt-3 text-sm leading-6 text-[#607D7A]">{text}</p></article>)}</div></div></section>
+    <section id="laudo" className="scroll-mt-32 bg-white"><div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[.62fr_1.38fr]"><div><DeliverableHeader title={`Laudo técnico — ${item.title}`} description="O documento registra o ensaio por equipamento e permite manter o histórico técnico no Arkmeds."/><OutcomeNote>O mockup é demonstrativo, com valores fictícios. Os campos reais dependem do ensaio executado e do padrão de emissão da Consult.</OutcomeNote><div className="mt-5 rounded-[18px] bg-[#075653] p-5 text-white"><div className="text-[9px] font-black uppercase tracking-[.2em] text-[#8AE600]">Instrumentação</div><p className="mt-2 text-sm font-black">{item.analyzer}</p><p className="mt-2 text-xs leading-5 text-white/60">O guia oficial informa analisadores calibrados com rastreabilidade RBC.</p></div></div><ConsultReportPreview title={`Laudo — ${item.title}`} exampleRows={reportRows} resultLabel="Resultado / pendências" note="Exemplo visual sem dados reais. A Consult não indica quem deve executar eventual conserto." /></div></section>
 
-        <section className="bg-[#075653] text-white"><div className="mx-auto grid max-w-7xl gap-8 px-5 py-12 md:grid-cols-[.65fr_1.35fr] md:px-8 md:py-14"><div><ConsultEyebrow light>Entregável</ConsultEyebrow><h2 className="mt-3 text-3xl font-black tracking-tight">Laudo por equipamento</h2></div><div className="rounded-[22px] border border-white/10 bg-white/6 p-6"><div className="flex gap-4"><FileText size={26} className="mt-1 shrink-0 text-[#8AE600]"/><div><h3 className="text-xl font-black">Resultado técnico e histórico no Arkmeds</h3><p className="mt-3 text-sm leading-7 text-white/66">O resultado fica associado ao equipamento e pode compor seu histórico técnico. Quando a Consult liberar um modelo demonstrativo, este bloco poderá exibir um exemplo sem dados sensíveis.</p></div></div></div></div></section>
-
-        <ConsultCtaBand title={`Solicite a avaliação de ${item.title}`} text="Converse com a equipe Consult para confirmar escopo, equipamento, ensaios aplicáveis e agenda de atendimento." />
-      </main>
-    </ConsultSiteShell>
-  )
+    <div id="normas" className="scroll-mt-32"><StandardsShelf items={norms} /></div>
+    <div id="faq" className="scroll-mt-32"><TechnicalFaq items={[[`Qual analisador é usado para ${item.title}?`,item.analyzer],["O equipamento também recebe segurança elétrica?","O guia informa que os equipamentos confirmados para Engenharia Clínica recebem também ensaio de segurança elétrica com Safetest 50, Rigel."],["A Consult conserta o equipamento se encontrar uma pendência?","Não. A Consult documenta a condição encontrada e a instituição resolve com o fornecedor de sua escolha."],["O resultado fica no histórico do equipamento?","Sim. O guia oficial informa emissão no Arkmeds com histórico por equipamento."]]} /></div>
+    <ConsultCtaBand title={`Precisa avaliar ${item.title}?`} text="Informe o equipamento, modelo e situação. A equipe Consult confirma o escopo de ensaio e a agenda de atendimento." />
+  </main></ConsultSiteShell>
 }
