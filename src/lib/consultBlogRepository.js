@@ -72,10 +72,7 @@ function sortByDate(posts) {
 }
 
 function markdownToParagraphs(markdown = '') {
-  return String(markdown)
-    .split(/\n\s*\n/g)
-    .map((part) => part.trim())
-    .filter(Boolean)
+  return String(markdown).split(/\n\s*\n/g).map((part) => part.trim()).filter(Boolean)
 }
 
 function mapRow(row) {
@@ -104,29 +101,18 @@ function canUseBackend() {
 
 async function fetchPublishedPosts() {
   if (!canUseBackend()) return null
-
-  const select = [
-    'id','slug','title','category','published_at','author','excerpt','content_markdown','cover_url',
-    'related_links','source_url','metadata','seo_title','seo_description',
-  ].join(',')
-  const params = new URLSearchParams({
-    client_id: `eq.${CONSULT_PROJECT.clientId}`,
-    status: 'eq.published',
-    is_public: 'eq.true',
-    select,
-    order: 'published_at.desc',
-  })
-
+  const select = ['id','slug','title','category','published_at','author','excerpt','content_markdown','cover_url','related_links','source_url','metadata','seo_title','seo_description'].join(',')
+  const params = new URLSearchParams({ client_id: `eq.${CONSULT_PROJECT.clientId}`, status: 'eq.published', is_public: 'eq.true', select, order: 'published_at.desc' })
   const response = await fetch(`${SUPABASE_URL}/rest/v1/${CONSULT_PROJECT.content.publicTable}?${params.toString()}`, {
-    headers: {
-      apikey: SUPABASE_KEY,
-      Accept: 'application/json',
-    },
+    headers: { apikey: SUPABASE_KEY, Accept: 'application/json' },
   })
-
   if (!response.ok) throw new Error(`Consult blog backend returned ${response.status}`)
   const rows = await response.json()
   return Array.isArray(rows) ? rows.map(mapRow) : []
+}
+
+export function getConsultBlogSeedPosts() {
+  return sortByDate(SEED_POSTS.map((post) => ({ ...post, contentSource: 'local_seed' })))
 }
 
 export async function getConsultBlogPosts() {
@@ -136,7 +122,7 @@ export async function getConsultBlogPosts() {
   } catch (error) {
     console.warn('[Consult Blog] Supabase indisponível; usando fallback editorial local.', error)
   }
-  return sortByDate(SEED_POSTS.map((post) => ({ ...post, contentSource: 'local_seed' })))
+  return getConsultBlogSeedPosts()
 }
 
 export async function getConsultBlogPost(slug) {
