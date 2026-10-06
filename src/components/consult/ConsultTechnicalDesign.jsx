@@ -56,14 +56,8 @@ export function ConsultTechnicalVisual({ variant = 'measurement', title, metric 
   )
 }
 
-export function ConsultSectionNav({ items }) {
-  return (
-    <div className="sticky top-[72px] z-40 border-b border-[#DCEAE7] bg-white/95 shadow-[0_8px_22px_rgba(7,86,83,.04)] backdrop-blur">
-      <div className="mx-auto flex max-w-7xl snap-x gap-1 overflow-x-auto px-3 py-2 sm:px-6 sm:py-2.5 lg:px-8 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {items.map(([label, href]) => <a key={href} href={href} className="shrink-0 snap-start rounded-full px-3 py-2 text-[11px] font-extrabold text-[#4D706D] transition hover:bg-[#EAF5F2] hover:text-[#075653] sm:px-4 sm:text-xs">{label}</a>)}
-      </div>
-    </div>
-  )
+export function ConsultSectionNav() {
+  return null
 }
 
 export function ConsultReportPreview({
