@@ -1,3 +1,4 @@
+import { lazy, Suspense } from 'react'
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
@@ -14,14 +15,15 @@ import Contato from '@/pages/Contato'
 import GrowthMarketing from '@/pages/GrowthMarketing'
 import StackDigital from '@/pages/StackDigital'
 import PartnerLandingPage from '@/pages/PartnerLandingPage'
-import ConsultProposal from '@/pages/ConsultProposal'
-import ConsultAreaLandingPageV2 from '@/pages/ConsultAreaLandingPageV2'
-import ConsultServicePage from '@/pages/ConsultServicePage'
-import ConsultEngineeringServicePage from '@/pages/ConsultEngineeringServicePage'
-import ConsultEquipmentPage from '@/pages/ConsultEquipmentPage'
-import ConsultRegionPage from '@/pages/ConsultRegionPage'
-import ConsultBlogPage from '@/pages/ConsultBlogPage'
-import ConsultBlogPostPage from '@/pages/ConsultBlogPostPage'
+
+const ConsultProposal = lazy(() => import('@/pages/ConsultProposal'))
+const ConsultAreaLandingPageV2 = lazy(() => import('@/pages/ConsultAreaLandingPageV2'))
+const ConsultServicePage = lazy(() => import('@/pages/ConsultServicePage'))
+const ConsultEngineeringServicePage = lazy(() => import('@/pages/ConsultEngineeringServicePage'))
+const ConsultEquipmentPage = lazy(() => import('@/pages/ConsultEquipmentPage'))
+const ConsultRegionPage = lazy(() => import('@/pages/ConsultRegionPage'))
+const ConsultBlogPage = lazy(() => import('@/pages/ConsultBlogPage'))
+const ConsultBlogPostPage = lazy(() => import('@/pages/ConsultBlogPostPage'))
 
 import EstrategiaGrowth from '@/pages/solutions/EstrategiaGrowth'
 import Gestao from '@/pages/solutions/Gestao'
@@ -35,6 +37,17 @@ import DadosBI from '@/pages/solutions/DadosBI'
 import Tecnologia from '@/pages/solutions/Tecnologia'
 import SolucoesSobMedida from '@/pages/solutions/SolucoesSobMedida'
 import Retencao from '@/pages/solutions/Retencao'
+
+function ConsultRouteFallback() {
+  return (
+    <div className="min-h-screen bg-[#075653] flex items-center justify-center px-6 text-white">
+      <div className="text-center">
+        <div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-white/25 border-t-[#8AE600]" />
+        <p className="mt-4 text-sm font-semibold text-white/70">Carregando Consult...</p>
+      </div>
+    </div>
+  )
+}
 
 function App() {
   return (
@@ -63,14 +76,20 @@ function App() {
             <Route path="/solucoes/solucoes-sob-medida" element={<SolucoesSobMedida />} />
             <Route path="/solucoes/retencao" element={<Retencao />} />
           </Route>
-          <Route path="/consult" element={<ConsultProposal />} />
-          <Route path="/consult/areas/:slug" element={<ConsultAreaLandingPageV2 />} />
-          <Route path="/consult/servicos/:slug" element={<ConsultServicePage />} />
-          <Route path="/consult/engenharia-clinica/:slug" element={<ConsultEngineeringServicePage />} />
-          <Route path="/consult/equipamentos/:slug" element={<ConsultEquipmentPage />} />
-          <Route path="/consult/regioes/:slug" element={<ConsultRegionPage />} />
-          <Route path="/consult/blog" element={<ConsultBlogPage />} />
-          <Route path="/consult/blog/:slug" element={<ConsultBlogPostPage />} />
+          <Route path="/consult/*" element={
+            <Suspense fallback={<ConsultRouteFallback />}>
+              <Routes>
+                <Route index element={<ConsultProposal />} />
+                <Route path="areas/:slug" element={<ConsultAreaLandingPageV2 />} />
+                <Route path="servicos/:slug" element={<ConsultServicePage />} />
+                <Route path="engenharia-clinica/:slug" element={<ConsultEngineeringServicePage />} />
+                <Route path="equipamentos/:slug" element={<ConsultEquipmentPage />} />
+                <Route path="regioes/:slug" element={<ConsultRegionPage />} />
+                <Route path="blog" element={<ConsultBlogPage />} />
+                <Route path="blog/:slug" element={<ConsultBlogPostPage />} />
+              </Routes>
+            </Suspense>
+          } />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Toaster />
