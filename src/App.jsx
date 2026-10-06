@@ -21,6 +21,7 @@ const ConsultAreaLandingPageV2 = lazy(() => import('@/pages/ConsultAreaLandingPa
 const ConsultServicePage = lazy(() => import('@/pages/ConsultServicePage'))
 const ConsultEngineeringServicePage = lazy(() => import('@/pages/ConsultEngineeringServicePage'))
 const ConsultEquipmentPage = lazy(() => import('@/pages/ConsultEquipmentPage'))
+const ConsultQualityModalityPage = lazy(() => import('@/pages/ConsultQualityModalityPage'))
 const ConsultRegionPage = lazy(() => import('@/pages/ConsultRegionPage'))
 const ConsultBlogPage = lazy(() => import('@/pages/ConsultBlogPage'))
 const ConsultBlogPostPage = lazy(() => import('@/pages/ConsultBlogPostPage'))
@@ -86,6 +87,7 @@ function App() {
                 <Route index element={<ConsultProposal />} />
                 <Route path="areas/:slug" element={<ConsultAreaLandingPageV2 />} />
                 <Route path="servicos/:slug" element={<ConsultServicePage />} />
+                <Route path="fisica-medica/controle-de-qualidade/:slug" element={<ConsultQualityModalityPage />} />
                 <Route path="engenharia-clinica/:slug" element={<ConsultEngineeringServicePage />} />
                 <Route path="equipamentos/:slug" element={<ConsultEquipmentPage />} />
                 <Route path="regioes/:slug" element={<ConsultRegionPage />} />
