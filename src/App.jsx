@@ -29,6 +29,7 @@ const ConsultNormMapResourcePage = lazy(() => import('@/pages/ConsultNormMapReso
 const ConsultRadiologyServiceGuidePage = lazy(() => import('@/pages/ConsultRadiologyServiceGuidePage'))
 const ConsultBlogPage = lazy(() => import('@/pages/ConsultBlogPage'))
 const ConsultBlogPostPage = lazy(() => import('@/pages/ConsultBlogPostPage'))
+const ConsultLegacyRedirect = lazy(() => import('@/pages/ConsultLegacyRedirect'))
 
 const EstrategiaGrowth = lazy(() => import('@/pages/solutions/EstrategiaGrowth'))
 const Gestao = lazy(() => import('@/pages/solutions/Gestao'))
@@ -89,24 +90,28 @@ function App() {
             <Deferred consult>
               <Routes>
                 <Route index element={<ConsultProposal />} />
-                <Route path="areas/:slug" element={<ConsultAreaLandingPageV3 />} />
+
                 <Route path="fisica-medica" element={<ConsultAreaLandingPageV3 fixedSlug="fisica-medica" />} />
                 <Route path="protecao-radiologica" element={<ConsultAreaLandingPageV3 fixedSlug="protecao-radiologica" />} />
                 <Route path="engenharia-clinica" element={<ConsultAreaLandingPageV3 fixedSlug="engenharia-clinica" />} />
-                <Route path="servicos/:slug" element={<ConsultServicePage />} />
+
                 <Route path="fisica-medica/controle-de-qualidade/:slug" element={<ConsultQualityModalityPage />} />
                 <Route path="fisica-medica/:slug" element={<ConsultServicePage />} />
                 <Route path="engenharia-clinica/equipamentos/:slug" element={<ConsultEquipmentPage />} />
                 <Route path="engenharia-clinica/:slug" element={<ConsultEngineeringServicePage />} />
-                <Route path="equipamentos/:slug" element={<ConsultEquipmentPage />} />
                 <Route path="atuacao/:slug" element={<ConsultRegionPage />} />
-                <Route path="regioes/:slug" element={<ConsultRegionPage />} />
+
                 <Route path="normas" element={<ConsultNormsPage />} />
                 <Route path="materiais" element={<ConsultMaterialsPage />} />
                 <Route path="materiais/mapa-normas-radiologia" element={<ConsultNormMapResourcePage />} />
                 <Route path="materiais/guia-servicos-radiologia" element={<ConsultRadiologyServiceGuidePage />} />
                 <Route path="blog" element={<ConsultBlogPage />} />
                 <Route path="blog/:slug" element={<ConsultBlogPostPage />} />
+
+                <Route path="areas/:slug" element={<ConsultLegacyRedirect type="area" />} />
+                <Route path="servicos/:slug" element={<ConsultLegacyRedirect type="service" />} />
+                <Route path="equipamentos/:slug" element={<ConsultLegacyRedirect type="equipment" />} />
+                <Route path="regioes/:slug" element={<ConsultLegacyRedirect type="region" />} />
               </Routes>
             </Deferred>
           } />
