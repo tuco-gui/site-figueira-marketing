@@ -45,8 +45,8 @@ export default function ConsultBlogPage() {
                 <p className="mt-6 max-w-3xl text-base leading-8 text-white/78 md:text-lg">Física Médica, Proteção Radiológica, controle de qualidade, Engenharia Clínica e temas que ajudam instituições de saúde a entender medições, ensaios, requisitos e boas práticas.</p>
               </div>
               <div className="rounded-2xl border border-white/12 bg-white/7 p-5 backdrop-blur">
-                <p className="text-xs font-black uppercase tracking-[.2em] text-[#8AE600]">Arquitetura editorial</p>
-                <p className="mt-3 text-sm leading-7 text-white/72">Cada artigo pode se conectar diretamente às páginas de serviços, equipamentos e regiões, fortalecendo a navegação e a estratégia de SEO da Consult.</p>
+                <p className="text-xs font-black uppercase tracking-[.2em] text-[#8AE600]">Conteúdo conectado</p>
+                <p className="mt-3 text-sm leading-7 text-white/72">Artigos técnicos ajudam profissionais e instituições a compreender normas, serviços, equipamentos e boas práticas aplicáveis à rotina em saúde.</p>
               </div>
             </div>
           </div>
