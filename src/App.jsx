@@ -15,7 +15,7 @@ import GrowthMarketing from '@/pages/GrowthMarketing'
 import StackDigital from '@/pages/StackDigital'
 import PartnerLandingPage from '@/pages/PartnerLandingPage'
 import ConsultProposal from '@/pages/ConsultProposal'
-import ConsultAreaLandingPage from '@/pages/ConsultAreaLandingPage'
+import ConsultAreaLandingPageV2 from '@/pages/ConsultAreaLandingPageV2'
 import ConsultServicePage from '@/pages/ConsultServicePage'
 import ConsultEngineeringServicePage from '@/pages/ConsultEngineeringServicePage'
 import ConsultEquipmentPage from '@/pages/ConsultEquipmentPage'
@@ -64,7 +64,7 @@ function App() {
             <Route path="/solucoes/retencao" element={<Retencao />} />
           </Route>
           <Route path="/consult" element={<ConsultProposal />} />
-          <Route path="/consult/areas/:slug" element={<ConsultAreaLandingPage />} />
+          <Route path="/consult/areas/:slug" element={<ConsultAreaLandingPageV2 />} />
           <Route path="/consult/servicos/:slug" element={<ConsultServicePage />} />
           <Route path="/consult/engenharia-clinica/:slug" element={<ConsultEngineeringServicePage />} />
           <Route path="/consult/equipamentos/:slug" element={<ConsultEquipmentPage />} />
