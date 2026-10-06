@@ -17,7 +17,7 @@ const StackDigital = lazy(() => import('@/pages/StackDigital'))
 const PartnerLandingPage = lazy(() => import('@/pages/PartnerLandingPage'))
 
 const ConsultProposal = lazy(() => import('@/pages/ConsultProposal'))
-const ConsultAreaLandingPageV2 = lazy(() => import('@/pages/ConsultAreaLandingPageV2'))
+const ConsultAreaLandingPageV3 = lazy(() => import('@/pages/ConsultAreaLandingPageV3'))
 const ConsultServicePage = lazy(() => import('@/pages/ConsultServicePage'))
 const ConsultEngineeringServicePage = lazy(() => import('@/pages/ConsultEngineeringServicePage'))
 const ConsultEquipmentPage = lazy(() => import('@/pages/ConsultEquipmentPage'))
@@ -89,10 +89,13 @@ function App() {
             <Deferred consult>
               <Routes>
                 <Route index element={<ConsultProposal />} />
-                <Route path="areas/:slug" element={<ConsultAreaLandingPageV2 />} />
+                <Route path="areas/:slug" element={<ConsultAreaLandingPageV3 />} />
+                <Route path="fisica-medica" element={<ConsultAreaLandingPageV3 fixedSlug="fisica-medica" />} />
+                <Route path="protecao-radiologica" element={<ConsultAreaLandingPageV3 fixedSlug="protecao-radiologica" />} />
+                <Route path="engenharia-clinica" element={<ConsultAreaLandingPageV3 fixedSlug="engenharia-clinica" />} />
                 <Route path="servicos/:slug" element={<ConsultServicePage />} />
-                <Route path="fisica-medica/:slug" element={<ConsultServicePage />} />
                 <Route path="fisica-medica/controle-de-qualidade/:slug" element={<ConsultQualityModalityPage />} />
+                <Route path="fisica-medica/:slug" element={<ConsultServicePage />} />
                 <Route path="engenharia-clinica/equipamentos/:slug" element={<ConsultEquipmentPage />} />
                 <Route path="engenharia-clinica/:slug" element={<ConsultEngineeringServicePage />} />
                 <Route path="equipamentos/:slug" element={<ConsultEquipmentPage />} />
