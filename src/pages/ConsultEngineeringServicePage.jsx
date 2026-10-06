@@ -1,27 +1,20 @@
 import React, { useEffect, useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
-import { ConsultReportPreview, ConsultSectionNav } from '@/components/consult/ConsultTechnicalDesign'
+import { ConsultReportPreview } from '@/components/consult/ConsultTechnicalDesign'
 import {
-  DeliverableHeader,
-  EditorialStatement,
-  IndependenceBand,
-  MeasurementMatrix,
-  OutcomeNote,
-  ProcessTimeline,
-  ServiceHeroConsole,
-  ServiceProofRail,
-  StandardsShelf,
-  TechnicalFaq,
-  TriggerPanel,
-} from '@/components/consult/ConsultServiceV3Design'
+  ApprovedDarkProcess,
+  ApprovedFaq,
+  ApprovedInternalHero,
+  ApprovedLightSection,
+  ApprovedList,
+  ApprovedNormCards,
+  ApprovedProofStrip,
+  CONSULT_IMAGES,
+} from '@/components/consult/ConsultApprovedInternal'
 
-const RDC_509 = 'https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2021/rdc0509_27_05_2021.pdf'
+const RDC_509 = 'https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2020/rdc0509_27_05_2021.pdf'
 const ABNT = 'https://www.abntcatalogo.com.br/'
-const RDC_15 = 'https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2012/rdc0015_15_03_2012.pdf'
-const RDC_197 = 'https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2017/rdc0197_26_12_2017.pdf'
-const RDC_430 = 'https://www.gov.br/anvisa/en/rules-and-regulations/arquivos/rdc-430_2020.pdf'
-const PNI = 'https://www.gov.br/saude/pt-br/composicao/svsa/pni/rede-de-frio/publicacoes/manual-de-rede-de-frio-pni-5ed.pdf/view'
 
 const SERVICES = {
   'seguranca-eletrica': {
@@ -96,7 +89,7 @@ const SERVICES = {
   },
 }
 
-const PROCESS = [['01','Identificar','Equipamento, modelo, aplicação e ensaio necessário são definidos.'],['02','Medir','Analisadores ou simuladores calibrados são usados conforme o equipamento.'],['03','Comparar','Os valores são confrontados com a referência aplicável.'],['04','Documentar','O resultado fica registrado por equipamento e preservado no histórico técnico.']]
+const PROCESS = [['01','Identificar','Confirmar equipamento, aplicação, histórico e ensaio necessário.'],['02','Medir','Utilizar analisador ou simulador adequado e calibrado.'],['03','Comparar','Analisar valores medidos frente à referência aplicável.'],['04','Documentar','Registrar o resultado por equipamento e preservar o histórico técnico.']]
 
 export default function ConsultEngineeringServicePage() {
   const { slug } = useParams()
@@ -108,49 +101,42 @@ export default function ConsultEngineeringServicePage() {
     document.querySelector('meta[name="description"]')?.setAttribute('content', service.intro)
   }, [service])
 
-  if (!service) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Serviço não encontrado</h1><Link to="/consult/areas/engenharia-clinica" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Engenharia Clínica</Link></main></ConsultSiteShell>
+  if (!service) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Serviço não encontrado</h1><Link to="/consult/engenharia-clinica" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Engenharia Clínica</Link></main></ConsultSiteShell>
 
-  return (
-    <ConsultSiteShell>
-      <main>
-        <section className="relative overflow-hidden bg-[#075653] text-white">
-          <div className="absolute inset-0 opacity-75" style={{backgroundImage:'radial-gradient(circle at 80% 20%, rgba(138,230,0,.15), transparent 24%), linear-gradient(125deg, transparent 42%, rgba(5,210,157,.11) 100%)'}} />
-          <div className="relative mx-auto grid min-h-[690px] max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[1fr_.9fr] lg:items-center">
-            <div>
-              <Link to="/consult/areas/engenharia-clinica" className="text-sm font-bold text-white/55 hover:text-white">Consult Engenharia Clínica</Link>
-              <div className="mt-9 flex items-center gap-3 text-[10px] font-black uppercase tracking-[.26em] text-[#8AE600]"><span className="h-px w-10 bg-[#8AE600]" />Medição, ensaio e laudo</div>
-              <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[.98] tracking-[-.045em] sm:text-5xl lg:text-[66px]">{service.title}</h1>
-              <p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-white/88">{service.intro}</p>
-              <p className="mt-4 max-w-2xl text-sm leading-7 text-white/58">Laudo por equipamento, histórico no Arkmeds e analisadores com rastreabilidade RBC conforme o guia técnico da Consult.</p>
-              <div className="mt-8 flex flex-col gap-3 sm:flex-row"><a href="/consult#contato" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#FF6B26] px-6 py-3 text-sm font-extrabold text-white">Agendar reunião técnica</a><a href="#entregavel" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/18 px-6 py-3 text-sm font-extrabold text-white/82">Ver exemplo de laudo</a></div>
-            </div>
-            <ServiceHeroConsole title={service.title} kicker="Consult Engenharia Clínica" chips={[service.proof[2][1], service.proof[3][1]]} accent={service.visual} />
-          </div>
-        </section>
+  const proof=[['SEGURANÇA','Verificação independente'],['BASE','RDC 509/2021'],['HISTÓRICO','Arkmeds'],['RASTREIO','RBC']]
 
-        <IndependenceBand />
-        <ServiceProofRail items={service.proof} />
-        <ConsultSectionNav items={[["Visão geral","#visao-geral"],["Quando contratar","#quando-contratar"],["Como funciona","#processo"],["Laudo","#entregavel"],["Base técnica","#normas"],["FAQ","#faq"]]} />
+  return <ConsultSiteShell><main>
+    <ApprovedInternalHero eyebrow="Engenharia Clínica" title={service.title} description={service.intro} image={CONSULT_IMAGES.engineering}/>
+    <ApprovedProofStrip items={proof}/>
 
-        <div id="visao-geral" className="scroll-mt-32">
-          <EditorialStatement eyebrow="Por que este ensaio existe" title={service.storyTitle}><p>{service.story}</p><p className="mt-5 text-sm leading-7">O papel da Consult é medir e documentar a condição encontrada. A instituição escolhe como tratar uma eventual pendência.</p></EditorialStatement>
-          <MeasurementMatrix title="O que entra na avaliação" items={service.parameters} />
+    <ApprovedLightSection eyebrow="Sobre o serviço" title={service.title} intro="A Consult mede, ensaia e documenta a condição encontrada. Não vende peças e não condiciona o resultado a uma empresa de conserto." center>
+      <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr]">
+        <div className="rounded-2xl bg-[#075653] p-7 text-white shadow-xl shadow-[#075653]/10">
+          <div className="text-[10px] font-bold uppercase tracking-[.24em] text-[#8AE600]">Resultado técnico</div>
+          <h3 className="mt-4 text-2xl font-black leading-tight">{service.result}</h3>
+          <p className="mt-4 text-sm leading-7 text-white/70">O resultado é vinculado ao equipamento e compõe o histórico técnico da instituição.</p>
         </div>
+        <div><div className="mb-4 text-xs font-black uppercase tracking-[.18em] text-[#08A77F]">O que é avaliado</div><div className="grid gap-3 sm:grid-cols-2">{service.points.map(point=><div key={point} className="rounded-xl border border-black/5 bg-white p-5 text-sm font-extrabold leading-6 text-[#315B58] shadow-sm">{point}</div>)}</div></div>
+      </div>
+    </ApprovedLightSection>
 
-        <div id="quando-contratar" className="scroll-mt-32"><TriggerPanel items={service.when} /></div>
-        <div id="processo" className="scroll-mt-32"><ProcessTimeline items={PROCESS} /></div>
+    <ApprovedDarkProcess items={PROCESS}/>
 
-        <section id="entregavel" className="scroll-mt-32 bg-white">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[.62fr_1.38fr] lg:items-start">
-            <div><DeliverableHeader title={service.deliverable} description="O exemplo mostra a lógica do documento sem expor dados reais: ensaio, valor medido, referência, resultado e pendências quando aplicável." /><OutcomeNote>{service.note}</OutcomeNote><div className="mt-5 rounded-[18px] bg-[#075653] p-5 text-white"><div className="text-[9px] font-black uppercase tracking-[.2em] text-[#8AE600]">Histórico técnico</div><p className="mt-2 text-sm leading-6 text-white/68">Os laudos da Engenharia Clínica são emitidos no Arkmeds e associados ao histórico do equipamento, conforme informação oficial da Consult.</p></div></div>
-            <ConsultReportPreview title={service.deliverable} exampleRows={service.exampleRows} resultLabel="Resultado geral / pendências" note={service.note} />
-          </div>
-        </section>
+    <ApprovedLightSection eyebrow="Entregável" title={service.result} intro="O exemplo abaixo é ilustrativo e serve apenas para mostrar a lógica das informações documentadas." white>
+      <div className="grid gap-10 lg:grid-cols-[.65fr_1.35fr] lg:items-center">
+        <div>
+          <ApprovedList items={service.points}/>
+          <div className="mt-6 rounded-xl border border-[#CFE4DE] bg-[#F4FBFA] p-5 text-sm leading-7 text-[#4D706D]">Na Engenharia Clínica, os laudos são emitidos por equipamento, com histórico no Arkmeds e analisadores com calibração rastreável à RBC.</div>
+        </div>
+        <ConsultReportPreview title={service.result} sections={service.points} note="Exemplo ilustrativo sem dados reais de cliente."/>
+      </div>
+    </ApprovedLightSection>
 
-        <div id="normas" className="scroll-mt-32"><StandardsShelf items={service.norms} /></div>
-        <div id="faq" className="scroll-mt-32"><TechnicalFaq items={service.faq} /></div>
-        <ConsultCtaBand title={`Precisa de ${service.title}?`} text="Informe o equipamento e a situação. A equipe Consult confirma o ensaio aplicável, o escopo e a agenda de atendimento." />
-      </main>
-    </ConsultSiteShell>
-  )
+    <ApprovedLightSection eyebrow="Base técnica" title="Norma e referência do ensaio" intro="A aplicação exata depende do equipamento, do fabricante e do tipo de ensaio." >
+      <ApprovedNormCards items={[[service.norm, 'Referência técnica principal indicada para este serviço.', service.normUrl],[ 'RDC 509/2021', 'Base geral para gerenciamento de tecnologias em saúde.', RDC_509 ]]}/>
+    </ApprovedLightSection>
+
+    <ApprovedFaq items={service.faq || [['A Consult conserta o equipamento?','Não. A Consult mede, ensaia e documenta a condição encontrada.'],['O resultado fica registrado?','Sim. O resultado é documentado por equipamento e preservado no histórico técnico.']]}/>
+    <ConsultCtaBand title={`Precisa de ${service.title}?`} text="Informe o equipamento e a situação da instituição. A equipe Consult confirma o ensaio e o escopo técnico aplicável."/>
+  </main></ConsultSiteShell>
 }
