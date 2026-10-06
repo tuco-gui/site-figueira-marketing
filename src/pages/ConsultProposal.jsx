@@ -405,7 +405,7 @@ function Footer() {
                 <Link
                   key={area.slug}
                   className="block hover:text-[#8AE600]"
-                  to={`/consult/areas/${area.slug}`}
+                  to={`/consult/${area.slug}`}
                 >
                   {area.title}
                 </Link>
@@ -447,7 +447,6 @@ function Footer() {
 
         <div className="flex flex-col gap-3 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 Consult Radiometria e Qualidade. Todos os direitos reservados.</span>
-          <span>Ambiente de homologação do novo site desenvolvido pela Figueira Marketing</span>
         </div>
       </div>
     </footer>
@@ -594,7 +593,7 @@ export default function ConsultProposal() {
               {serviceAreas.map((area) => {
                 const Icon = area.Icon;
                 return (
-                  <Link key={area.slug} to={`/consult/areas/${area.slug}`} className="group overflow-hidden rounded-xl border border-black/5 bg-white shadow-lg shadow-[#075653]/5 transition hover:-translate-y-1 hover:shadow-xl">
+                  <Link key={area.slug} to={`/consult/${area.slug}`} className="group overflow-hidden rounded-xl border border-black/5 bg-white shadow-lg shadow-[#075653]/5 transition hover:-translate-y-1 hover:shadow-xl">
                     <div className="relative h-52 overflow-hidden bg-[#DCEEEB]">
                       <img src={area.image} alt={area.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]" />
                     </div>
