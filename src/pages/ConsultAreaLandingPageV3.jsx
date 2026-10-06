@@ -1,8 +1,18 @@
 import React, { useEffect, useMemo } from 'react'
 import { Activity, CheckCircle2, FileText, Gauge, ShieldCheck, Stethoscope, Thermometer, Wrench } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
-import { ConsultCtaBand, ConsultEyebrow, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
-import { EditorialStatement, IndependenceBand, ProcessTimeline, ServiceHeroConsole, ServiceProofRail, StandardsShelf, TechnicalFaq } from '@/components/consult/ConsultServiceV3Design'
+import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
+import {
+  ApprovedDarkProcess,
+  ApprovedFaq,
+  ApprovedInternalHero,
+  ApprovedLightSection,
+  ApprovedList,
+  ApprovedNormCards,
+  ApprovedProofStrip,
+  ApprovedServiceCards,
+  CONSULT_IMAGES,
+} from '@/components/consult/ConsultApprovedInternal'
 
 const RDC_611 = 'https://anvisalegis.datalegis.net/action/TematicaAction.php?acao=abrirVinculos&cod_menu=8457&cod_modulo=135&cotematica=18518373'
 const ANVISA_IN = 'https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2021/anvisa-avanca-na-consolidacao-de-suas-normas'
@@ -19,97 +29,124 @@ const MODALITIES = [
   ['Ultrassom','IN 96/2021','/consult/fisica-medica/controle-de-qualidade/ultrassom'],
   ['Ressonância magnética','IN 97/2021','/consult/fisica-medica/controle-de-qualidade/ressonancia-magnetica'],
   ['Densitometria óssea','RDC 611/2022','/consult/fisica-medica/controle-de-qualidade/densitometria-ossea'],
-  ['Raios X veterinário','RDC 611 + IN 90 ref.','/consult/fisica-medica/controle-de-qualidade/raio-x-veterinario'],
+  ['Raios X veterinário','RDC 611/2022 + IN 90 como referência','/consult/fisica-medica/controle-de-qualidade/raio-x-veterinario'],
 ]
 
 const EQUIPMENT = [
-  ['Monitor multiparamétrico','/consult/engenharia-clinica/equipamentos/monitor-multiparametrico'],['Eletrocardiógrafo','/consult/engenharia-clinica/equipamentos/eletrocardiografo'],['Oxímetro de pulso','/consult/engenharia-clinica/equipamentos/oximetro-pulso'],['Esfigmomanômetro digital e MAPA','/consult/engenharia-clinica/equipamentos/esfigmomanometro-mapa'],['Desfibrilador, cardioversor e DEA','/consult/engenharia-clinica/equipamentos/desfibrilador-cardioversor-dea'],['Marca-passo transcutâneo','/consult/engenharia-clinica/equipamentos/marca-passo-transcutaneo'],['Bisturi elétrico','/consult/engenharia-clinica/equipamentos/bisturi-eletrico'],['Ventilador pulmonar','/consult/engenharia-clinica/equipamentos/ventilador-pulmonar'],['Aparelho de anestesia','/consult/engenharia-clinica/equipamentos/aparelho-anestesia'],['CPAP e BiPAP','/consult/engenharia-clinica/equipamentos/cpap-bipap'],['Fluxômetro e manômetro de O₂','/consult/engenharia-clinica/equipamentos/fluxometro-manometro-o2'],['Autoclave','/consult/engenharia-clinica/equipamentos/autoclave'],['Termodesinfectora e estufa','/consult/engenharia-clinica/equipamentos/termodesinfectora-estufa'],['Estufa e banho-maria','/consult/engenharia-clinica/equipamentos/estufa-banho-maria'],['Geladeira e câmara de vacina','/consult/engenharia-clinica/equipamentos/geladeira-camara-vacina'],
+  ['Monitor multiparamétrico','/consult/engenharia-clinica/equipamentos/monitor-multiparametrico'],
+  ['Eletrocardiógrafo','/consult/engenharia-clinica/equipamentos/eletrocardiografo'],
+  ['Oxímetro de pulso','/consult/engenharia-clinica/equipamentos/oximetro-pulso'],
+  ['Esfigmomanômetro digital e MAPA','/consult/engenharia-clinica/equipamentos/esfigmomanometro-mapa'],
+  ['Desfibrilador, cardioversor e DEA','/consult/engenharia-clinica/equipamentos/desfibrilador-cardioversor-dea'],
+  ['Marca-passo transcutâneo','/consult/engenharia-clinica/equipamentos/marca-passo-transcutaneo'],
+  ['Bisturi elétrico','/consult/engenharia-clinica/equipamentos/bisturi-eletrico'],
+  ['Ventilador pulmonar','/consult/engenharia-clinica/equipamentos/ventilador-pulmonar'],
+  ['Aparelho de anestesia','/consult/engenharia-clinica/equipamentos/aparelho-anestesia'],
+  ['CPAP e BiPAP','/consult/engenharia-clinica/equipamentos/cpap-bipap'],
+  ['Fluxômetro e manômetro de O₂','/consult/engenharia-clinica/equipamentos/fluxometro-manometro-o2'],
+  ['Autoclave','/consult/engenharia-clinica/equipamentos/autoclave'],
+  ['Termodesinfectora e estufa','/consult/engenharia-clinica/equipamentos/termodesinfectora-estufa'],
+  ['Estufa e banho-maria','/consult/engenharia-clinica/equipamentos/estufa-banho-maria'],
+  ['Geladeira e câmara de vacina','/consult/engenharia-clinica/equipamentos/geladeira-camara-vacina'],
 ]
 
 const AREAS = {
   'fisica-medica': {
-    title:'Física Médica', kicker:'Controle de qualidade, medição e laudo', visual:'technical',
+    title:'Física Médica',
+    eyebrow:'Controle de qualidade, medição e laudo',
+    image: CONSULT_IMAGES.radiology,
     intro:'Verificação técnica de equipamentos de diagnóstico por imagem, com Controle de Qualidade por modalidade e resultado documentado em laudo técnico assinado pelo físico médico.',
-    statement:'Cada modalidade tem referência própria. Por isso a V3 deixa de tratar o Controle de Qualidade como um bloco único e leva o visitante até a página específica do seu equipamento.',
-    proof:[['BASE','RDC 611/2022'],['MODALIDADES','IN 90 a 97/2021'],['ENTREGA','Laudo técnico'],['ATUAÇÃO','SP, PR, MS e MG']],
+    proof:[['SEGURANÇA','Controle de Qualidade'],['CONFORMIDADE','RDC 611/2022'],['MODALIDADES','IN 90 a 97/2021'],['ENTREGA','Laudo técnico']],
+    sectionTitle:'Controle de qualidade com critérios próprios para cada modalidade.',
+    sectionIntro:'Raios X, mamografia, tomografia, ultrassom e ressonância magnética não são avaliados da mesma forma. A Consult aplica a referência correspondente à tecnologia e documenta o resultado técnico.',
     services:[
-      ['Controle de Qualidade','Dose, qualidade de imagem e funcionamento por modalidade.','/consult/fisica-medica/controle-de-qualidade',Gauge],
-      ['Levantamento radiométrico','Medição da radiação no entorno e fuga do cabeçote.','/consult/fisica-medica/levantamento-radiometrico',Activity],
-      ['Projeto de blindagem','Cálculo e memorial antes de obra, reforma ou troca de equipamento.','/consult/fisica-medica/projeto-blindagem',ShieldCheck],
+      ['Controle de Qualidade','Verificação de dose, qualidade de imagem e funcionamento conforme a modalidade.','/consult/fisica-medica/controle-de-qualidade',Gauge],
+      ['Levantamento radiométrico','Medição da radiação no entorno da sala e avaliação da radiação de fuga.','/consult/fisica-medica/levantamento-radiometrico',Activity],
+      ['Projeto de blindagem','Cálculo e memorial técnico antes de obra, reforma ou troca de equipamento.','/consult/fisica-medica/projeto-blindagem',ShieldCheck],
     ],
-    process:[['01','Identificar','Modalidade, equipamento, ambiente e objetivo técnico.'],['02','Medir','Ensaios e medições aplicáveis ao escopo.'],['03','Comparar','Resultados analisados frente à referência pertinente.'],['04','Documentar','Entrega técnica correspondente ao serviço.']],
+    process:[['01','Identificar','Modalidade, equipamento, ambiente e objetivo da avaliação.'],['02','Medir','Executar os testes e medições aplicáveis ao escopo.'],['03','Comparar','Analisar os resultados frente à referência pertinente.'],['04','Documentar','Registrar os resultados no documento técnico correspondente.']],
     standards:[['RDC 611/2022','Base sanitária geral para radiologia diagnóstica e intervencionista.',RDC_611],['IN 90 a 97/2021','Referências específicas por modalidade de diagnóstico por imagem.',ANVISA_IN]],
-    faq:[['O Controle de Qualidade é igual para todas as modalidades?','Não. A referência e os testes aplicáveis variam conforme a modalidade.'],['O resultado do CQ é documentado?','Sim. O guia oficial confirma laudo assinado pelo físico médico.']],
+    faq:[['O Controle de Qualidade é igual para todas as modalidades?','Não. Os testes e referências variam conforme a tecnologia avaliada.'],['O resultado é documentado?','Sim. O Controle de Qualidade gera laudo técnico assinado pelo físico médico.']],
     resources:'modalities',
   },
   'protecao-radiologica': {
-    title:'Proteção Radiológica', kicker:'Ambiente, equipe e documentação', visual:'shield',
-    intro:'Medições, cálculo de blindagem, programa, treinamento e apoio documental para estruturar a proteção radiológica de serviços de diagnóstico e intervenção.',
-    statement:'Proteção radiológica não é uma única entrega. Ela conecta ambiente, equipamento, equipe, documentação e rotinas diferentes conforme a necessidade da instituição.',
-    proof:[['BASE','RDC 611/2022'],['AMBIENTE','Radiometria + blindagem'],['EQUIPE','Treinamentos'],['DOCUMENTO','Programa + licenciamento']],
+    title:'Proteção Radiológica',
+    eyebrow:'Segurança para ambientes, equipes e serviços',
+    image: CONSULT_IMAGES.protection,
+    intro:'Medições, projeto de blindagem, programa, treinamento e apoio documental para reduzir riscos e organizar a proteção radiológica do serviço.',
+    proof:[['AMBIENTE','Radiometria'],['PROJETO','Blindagem'],['EQUIPE','Treinamentos'],['BASE','RDC 611/2022']],
+    sectionTitle:'Proteção radiológica começa antes do problema.',
+    sectionIntro:'A segurança depende da relação entre ambiente, equipamento, barreiras, equipe e documentação. Cada serviço atende uma etapa diferente dessa rotina.',
     services:[
       ['Programa de Proteção Radiológica','Elaboração e acompanhamento do programa do serviço.','/consult/fisica-medica/programa-protecao-radiologica',FileText],
       ['Levantamento radiométrico','Medição das condições radiométricas do ambiente.','/consult/fisica-medica/levantamento-radiometrico',Activity],
-      ['Projeto de blindagem','Memorial de cálculo antes da execução física.','/consult/fisica-medica/projeto-blindagem',ShieldCheck],
-      ['Treinamentos','Radioproteção e segurança em ressonância magnética.','/consult/fisica-medica/treinamentos',Stethoscope],
+      ['Projeto de blindagem','Memorial de cálculo para obra, reforma, expansão ou troca de equipamento.','/consult/fisica-medica/projeto-blindagem',ShieldCheck],
+      ['Treinamentos','Capacitação em radioproteção e segurança em ressonância magnética.','/consult/fisica-medica/treinamentos',Stethoscope],
       ['Licenciamento sanitário','Apoio técnico e documental para obtenção ou renovação.','/consult/fisica-medica/licenciamento-sanitario',CheckCircle2],
     ],
-    process:[['01','Mapear','Serviço, sala, equipamento, equipe e situação documental.'],['02','Avaliar','Medições, cálculos ou revisão documental conforme o caso.'],['03','Organizar','Evidências e documentação técnica aplicável.'],['04','Orientar','Resultado e próximos passos dentro do escopo contratado.']],
-    standards:[['RDC 611/2022','Base sanitária e de proteção radiológica.',RDC_611],['IN 90 a 97/2021','Referências específicas conforme modalidade/equipamento.',ANVISA_IN]],
-    faq:[['Levantamento radiométrico e projeto de blindagem são a mesma coisa?','Não. O projeto dimensiona antes; o levantamento mede a condição do ambiente.'],['A Consult garante a licença sanitária?','Não. A Consult presta apoio técnico/documental; a decisão é da autoridade sanitária.']],
+    process:[['01','Mapear','Entender sala, equipamento, equipe e situação documental.'],['02','Avaliar','Realizar medições, cálculos ou revisão documental conforme a necessidade.'],['03','Organizar','Estruturar evidências e documentação técnica aplicável.'],['04','Orientar','Entregar o resultado e os próximos passos dentro do escopo contratado.']],
+    standards:[['RDC 611/2022','Base sanitária e de proteção radiológica.',RDC_611],['IN 90 a 97/2021','Referências específicas conforme modalidade e equipamento.',ANVISA_IN]],
+    faq:[['Levantamento radiométrico e projeto de blindagem são a mesma coisa?','Não. O projeto dimensiona a proteção antes da execução; o levantamento mede a condição radiométrica do ambiente.'],['A Consult garante a licença sanitária?','Não. A Consult presta apoio técnico e documental; a decisão compete à autoridade sanitária.']],
     resources:'situations',
   },
   'engenharia-clinica': {
-    title:'Consult Engenharia Clínica', kicker:'Medição independente por equipamento', visual:'technical',
-    intro:'Ensaios, calibração, preventiva, reverificação e qualificação com laudo por equipamento, histórico no Arkmeds e analisadores com rastreabilidade RBC.',
-    statement:'O diferencial está na independência: a Consult mede e documenta a condição encontrada. Não vende peças e não condiciona o laudo a uma empresa de conserto.',
-    proof:[['BASE','RDC 509/2021'],['SEGURANÇA','ABNT NBR IEC 62353'],['SISTEMA','Arkmeds'],['RASTREIO','RBC']],
+    title:'Engenharia Clínica',
+    eyebrow:'Ensaios, calibração e qualificação',
+    image: CONSULT_IMAGES.engineering,
+    intro:'Ensaios de segurança elétrica e desempenho, manutenção preventiva, reverificação e qualificação térmica com resultado documentado por equipamento.',
+    proof:[['SEGURANÇA','IEC 62353'],['RASTREIO','RBC'],['HISTÓRICO','Arkmeds'],['BASE','RDC 509/2021']],
+    sectionTitle:'Medição independente para decisões mais seguras sobre equipamentos de saúde.',
+    sectionIntro:'A Consult verifica o equipamento e documenta a condição encontrada. Não vende peças e não condiciona o resultado a uma empresa de conserto.',
     services:[
       ['Segurança elétrica','Aterramento, isolamento e correntes de fuga.','/consult/engenharia-clinica/seguranca-eletrica',ShieldCheck],
-      ['Desempenho e calibração','Comparação ponto a ponto com referência calibrada.','/consult/engenharia-clinica/desempenho-calibracao',Gauge],
-      ['Manutenção preventiva','Limpeza, lubrificação, testes e pendências sem troca de peças.','/consult/engenharia-clinica/manutencao-preventiva',Wrench],
-      ['Reverificação','Novo ensaio após tratamento de pendência.','/consult/engenharia-clinica/reverificacao',CheckCircle2],
-      ['Qualificação térmica','Mapeamento com sensores calibrados e relatório.','/consult/engenharia-clinica/qualificacao-termica',Thermometer],
+      ['Desempenho e calibração','Comparação ponto a ponto com analisador ou simulador calibrado.','/consult/engenharia-clinica/desempenho-calibracao',Gauge],
+      ['Manutenção preventiva','Limpeza, lubrificação, testes e registro de pendências.','/consult/engenharia-clinica/manutencao-preventiva',Wrench],
+      ['Reverificação','Novo ensaio após o tratamento de uma pendência.','/consult/engenharia-clinica/reverificacao',CheckCircle2],
+      ['Qualificação térmica','Mapeamento de temperatura com sensores calibrados e relatório.','/consult/engenharia-clinica/qualificacao-termica',Thermometer],
     ],
-    process:[['01','Identificar','Equipamento, modelo, histórico e ensaio.'],['02','Medir','Analisador ou simulador específico do equipamento.'],['03','Comparar','Valores frente à referência aplicável.'],['04','Emitir','Laudo por equipamento e histórico técnico.']],
-    standards:[['RDC 509/2021','Base geral indicada para gerenciamento de tecnologias em saúde.',RDC_509],['ABNT NBR IEC 62353','Referência de segurança elétrica recorrente e após reparo.',ABNT],['Família ABNT NBR IEC 60601','Normas particulares conforme equipamento.',ABNT]],
-    faq:[['A Consult conserta os equipamentos?','Não. Ela mede, ensaia, documenta e registra pendências.'],['Os analisadores têm rastreabilidade?','Sim. O guia confirma calibração com rastreabilidade RBC.']],
-    resources:'equipment', independence:true,
+    process:[['01','Identificar','Equipamento, modelo, histórico e ensaio necessário.'],['02','Medir','Utilizar analisador ou simulador adequado ao equipamento.'],['03','Comparar','Analisar valores medidos frente à referência aplicável.'],['04','Emitir','Documentar o resultado e preservar o histórico técnico.']],
+    standards:[['RDC 509/2021','Base geral para gerenciamento de tecnologias em saúde.',RDC_509],['ABNT NBR IEC 62353','Referência para segurança elétrica recorrente e após reparo.',ABNT],['Família ABNT NBR IEC 60601','Normas particulares conforme equipamento.',ABNT]],
+    faq:[['A Consult conserta os equipamentos?','Não. A Consult mede, ensaia, documenta e registra pendências.'],['Os analisadores possuem rastreabilidade?','Sim. Os analisadores utilizados possuem certificado de calibração com rastreabilidade RBC.']],
+    resources:'equipment',
   },
 }
 
-function ServiceRow({ item,index }) {
-  const [title,text,href,Icon] = item
-  return <Link to={href} className={`group grid gap-4 border-t border-[#DCEAE7] py-6 sm:grid-cols-[64px_1fr_auto] sm:items-center ${index===0?'border-t-0 pt-0':''}`}><div className="grid h-12 w-12 place-items-center rounded-2xl bg-[#E7F6F1] text-[#078B6B]"><Icon size={22}/></div><div><h3 className="text-lg font-black text-[#075653] group-hover:text-[#08A77F]">{title}</h3><p className="mt-2 text-sm leading-6 text-[#607D7A]">{text}</p></div><span className="text-xs font-black uppercase tracking-[.13em] text-[#078B6B]">Abrir serviço</span></Link>
-}
-
 export default function ConsultAreaLandingPageV3({ fixedSlug }) {
-  const params = useParams()
-  const slug = fixedSlug || params.slug
-  const area = useMemo(()=>AREAS[slug],[slug])
+  const params=useParams()
+  const slug=fixedSlug||params.slug
+  const area=useMemo(()=>AREAS[slug],[slug])
 
-  useEffect(()=>{if(!area)return;document.title=`${area.title} | Consult`;document.querySelector('meta[name="description"]')?.setAttribute('content',area.intro)},[area])
+  useEffect(()=>{if(!area)return;document.title=`${area.title} | Consult Radiometria e Qualidade`;document.querySelector('meta[name="description"]')?.setAttribute('content',area.intro)},[area])
+
   if(!area) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Área não encontrada</h1><Link to="/consult" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar</Link></main></ConsultSiteShell>
 
   return <ConsultSiteShell><main>
-    <section className="relative overflow-hidden bg-[#075653] text-white"><div className="absolute inset-0 opacity-70" style={{backgroundImage:'radial-gradient(circle at 82% 22%, rgba(138,230,0,.15), transparent 24%), linear-gradient(125deg, transparent 42%, rgba(5,210,157,.12) 100%)'}}/><div className="relative mx-auto grid min-h-[650px] max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[1fr_.9fr] lg:items-center"><div><Link to="/consult#areas" className="text-sm font-bold text-white/55 hover:text-white">Áreas de atuação</Link><div className="mt-9 flex items-center gap-3 text-[10px] font-black uppercase tracking-[.25em] text-[#8AE600]"><span className="h-px w-10 bg-[#8AE600]"/>{area.kicker}</div><h1 className="mt-5 text-4xl font-black leading-[.98] tracking-[-.045em] sm:text-5xl lg:text-[66px]">{area.title}</h1><p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-white/88">{area.intro}</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><a href="/consult#contato" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#FF6B26] px-6 py-3 text-sm font-extrabold text-white">Agendar reunião técnica</a><Link to="/consult/normas" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/18 px-6 py-3 text-sm font-extrabold text-white/82">Ver normas</Link></div></div><ServiceHeroConsole title={area.title} kicker={area.kicker} chips={[area.proof[0][1],area.proof[2][1]]} accent={area.visual}/></div></section>
-    {area.independence&&<IndependenceBand/>}
-    <ServiceProofRail items={area.proof}/>
+    <ApprovedInternalHero eyebrow={area.eyebrow} title={area.title} description={area.intro} image={area.image}/>
+    <ApprovedProofStrip items={area.proof}/>
 
-    <EditorialStatement eyebrow="Visão da área" title={area.statement}><p>{area.intro}</p></EditorialStatement>
+    <ApprovedLightSection eyebrow="Nossa especialidade" title={area.sectionTitle} intro={area.sectionIntro} center>
+      <ApprovedServiceCards items={area.services}/>
+    </ApprovedLightSection>
 
-    <section className="bg-[#F4FAF8]"><div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[.55fr_1.45fr]"><div className="lg:sticky lg:top-28"><ConsultEyebrow>Serviços</ConsultEyebrow><h2 className="mt-4 text-3xl font-black tracking-[-.04em] text-[#075653] md:text-4xl">Da área técnica para o serviço específico.</h2><p className="mt-4 text-sm leading-7 text-[#607D7A]">Cada rota aprofunda quando contratar, parâmetros, metodologia, entregável, normas e FAQ.</p></div><div>{area.services.map((item,index)=><ServiceRow key={item[2]} item={item} index={index}/>)}</div></div></section>
+    <ApprovedDarkProcess items={area.process}/>
 
-    <ProcessTimeline items={area.process}/>
+    {area.resources==='modalities'&&<ApprovedLightSection eyebrow="Controle de Qualidade" title="Encontre a modalidade do seu equipamento" intro="Cada tecnologia possui uma referência específica para o Controle de Qualidade." white>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{MODALITIES.map(([label,norm,href])=><Link key={href} to={href} className="rounded-xl border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"><div className="text-base font-black text-[#123C3B]">{label}</div><div className="mt-2 text-xs font-extrabold text-[#08A77F]">{norm}</div><div className="mt-4 text-sm font-extrabold text-[#08A77F]">Ver detalhes</div></Link>)}</div>
+    </ApprovedLightSection>}
 
-    {area.resources==='modalities'&&<section className="bg-white"><div className="mx-auto grid max-w-7xl gap-9 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[.5fr_1.5fr]"><div><ConsultEyebrow>Controle por modalidade</ConsultEyebrow><h2 className="mt-4 text-3xl font-black tracking-[-.04em] text-[#075653] md:text-4xl">Uma página para cada referência.</h2><p className="mt-4 text-sm leading-7 text-[#607D7A]">A V3 conecta a modalidade diretamente à sua página de Controle de Qualidade.</p></div><div className="grid gap-3 sm:grid-cols-2">{MODALITIES.map(([label,norm,href])=><Link key={href} to={href} className="rounded-[18px] border border-[#D5E6E1] p-5 transition hover:border-[#08A77F] hover:bg-[#F7FBFA]"><div className="text-sm font-black text-[#075653]">{label}</div><div className="mt-2 text-xs font-black text-[#078B6B]">{norm}</div></Link>)}</div></div></section>}
+    {area.resources==='equipment'&&<ApprovedLightSection eyebrow="Equipamentos atendidos" title="Ensaios organizados por tipo de equipamento" intro="Acesse a página específica para conhecer os parâmetros medidos, o analisador utilizado e o tipo de resultado documentado." white>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{EQUIPMENT.map(([label,href])=><Link key={href} to={href} className="rounded-xl border border-black/5 bg-white p-5 text-sm font-black leading-6 text-[#315B58] shadow-sm transition hover:-translate-y-1 hover:shadow-lg">{label}<div className="mt-3 text-xs font-extrabold text-[#08A77F]">Ver equipamento</div></Link>)}</div>
+    </ApprovedLightSection>}
 
-    {area.resources==='equipment'&&<section id="equipamentos" className="scroll-mt-28 bg-white"><div className="mx-auto grid max-w-7xl gap-9 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[.5fr_1.5fr]"><div><ConsultEyebrow>Equipamentos confirmados</ConsultEyebrow><h2 className="mt-4 text-3xl font-black tracking-[-.04em] text-[#075653] md:text-4xl">15 páginas técnicas próprias.</h2><p className="mt-4 text-sm leading-7 text-[#607D7A]">Cada equipamento mostra parâmetros confirmados, analisador, metodologia, laudo e FAQ.</p></div><div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-3">{EQUIPMENT.map(([label,href])=><Link key={href} to={href} className="flex min-h-20 items-center rounded-[16px] border border-[#D5E6E1] p-4 text-sm font-black leading-5 text-[#315B58] transition hover:border-[#08A77F] hover:bg-[#F7FBFA]">{label}</Link>)}</div></div></section>}
+    {area.resources==='situations'&&<ApprovedLightSection eyebrow="Quando contratar" title="Situações em que a proteção radiológica entra na rotina" intro="O serviço adequado depende do momento da instituição, do ambiente e do equipamento.">
+      <ApprovedList items={['Sala nova ou reforma','Troca de equipamento','Expansão do serviço','Renovação documental','Revisão do Programa de Proteção Radiológica','Capacitação da equipe']}/>
+    </ApprovedLightSection>}
 
-    {area.resources==='situations'&&<section className="bg-white"><div className="mx-auto grid max-w-7xl gap-9 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[.5fr_1.5fr]"><div><ConsultEyebrow>Quando entra</ConsultEyebrow><h2 className="mt-4 text-3xl font-black tracking-[-.04em] text-[#075653] md:text-4xl">Da implantação à rotina.</h2></div><div className="grid gap-3 sm:grid-cols-2">{['Sala nova ou reforma','Troca de equipamento','Expansão do serviço','Renovação documental','Revisão do Programa de Proteção Radiológica','Capacitação da equipe'].map((label,index)=><div key={label} className="rounded-[18px] border border-[#D5E6E1] p-5"><div className="text-[10px] font-black text-[#08A77F]">0{index+1}</div><div className="mt-2 text-sm font-black text-[#315B58]">{label}</div></div>)}</div></div></section>}
+    <ApprovedLightSection eyebrow="Base normativa" title="Normas e referências técnicas" intro="As referências são apresentadas junto ao contexto do serviço, com acesso às fontes oficiais." white>
+      <ApprovedNormCards items={area.standards}/>
+    </ApprovedLightSection>
 
-    <StandardsShelf items={area.standards}/>
-    <TechnicalFaq items={area.faq}/>
-    <ConsultCtaBand title={`Vamos conversar sobre ${area.title}?`} text="Envie o contexto da instituição, equipamento ou necessidade. A equipe Consult confirma o serviço e o escopo técnico aplicável."/>
+    <ApprovedFaq items={area.faq}/>
+    <ConsultCtaBand title={`Vamos conversar sobre ${area.title}?`} text="Conte a necessidade da sua instituição. A equipe Consult orienta o serviço e o escopo técnico aplicável."/>
   </main></ConsultSiteShell>
 }
