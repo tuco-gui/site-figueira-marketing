@@ -16,6 +16,7 @@ import StackDigital from '@/pages/StackDigital'
 import PartnerLandingPage from '@/pages/PartnerLandingPage'
 import ConsultProposal, { ConsultAreaPage } from '@/pages/ConsultProposal'
 import ConsultServicePage from '@/pages/ConsultServicePage'
+import ConsultEngineeringServicePage from '@/pages/ConsultEngineeringServicePage'
 
 import EstrategiaGrowth from '@/pages/solutions/EstrategiaGrowth'
 import Gestao from '@/pages/solutions/Gestao'
@@ -60,6 +61,7 @@ function App() {
           <Route path="/consult" element={<ConsultProposal />} />
           <Route path="/consult/areas/:slug" element={<ConsultAreaPage />} />
           <Route path="/consult/servicos/:slug" element={<ConsultServicePage />} />
+          <Route path="/consult/engenharia-clinica/:slug" element={<ConsultEngineeringServicePage />} />
           <Route path="*" element={<PageNotFound />} />
         </Routes>
         <Toaster />
