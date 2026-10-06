@@ -23,6 +23,7 @@ const ConsultEngineeringServicePage = lazy(() => import('@/pages/ConsultEngineer
 const ConsultEquipmentPage = lazy(() => import('@/pages/ConsultEquipmentPage'))
 const ConsultQualityModalityPage = lazy(() => import('@/pages/ConsultQualityModalityPage'))
 const ConsultRegionPage = lazy(() => import('@/pages/ConsultRegionPage'))
+const ConsultNormsPage = lazy(() => import('@/pages/ConsultNormsPage'))
 const ConsultBlogPage = lazy(() => import('@/pages/ConsultBlogPage'))
 const ConsultBlogPostPage = lazy(() => import('@/pages/ConsultBlogPostPage'))
 
@@ -87,10 +88,14 @@ function App() {
                 <Route index element={<ConsultProposal />} />
                 <Route path="areas/:slug" element={<ConsultAreaLandingPageV2 />} />
                 <Route path="servicos/:slug" element={<ConsultServicePage />} />
+                <Route path="fisica-medica/:slug" element={<ConsultServicePage />} />
                 <Route path="fisica-medica/controle-de-qualidade/:slug" element={<ConsultQualityModalityPage />} />
+                <Route path="engenharia-clinica/equipamentos/:slug" element={<ConsultEquipmentPage />} />
                 <Route path="engenharia-clinica/:slug" element={<ConsultEngineeringServicePage />} />
                 <Route path="equipamentos/:slug" element={<ConsultEquipmentPage />} />
+                <Route path="atuacao/:slug" element={<ConsultRegionPage />} />
                 <Route path="regioes/:slug" element={<ConsultRegionPage />} />
+                <Route path="normas" element={<ConsultNormsPage />} />
                 <Route path="blog" element={<ConsultBlogPage />} />
                 <Route path="blog/:slug" element={<ConsultBlogPostPage />} />
               </Routes>
