@@ -59,6 +59,21 @@
     "minas-gerais": ["Minas Gerais", "em Minas Gerais"],
   };
 
+  const blogMeta = {
+    "educacao-continuada-cursos-digitais-radioprotecao": [
+      "Educação continuada e cursos de radioproteção | Consult",
+      "A Consult amplia o acesso a treinamentos online de proteção radiológica, qualidade em radiodiagnóstico e segurança em ressonância magnética.",
+    ],
+    "iaea-hhs-47-controle-qualidade-equipamentos": [
+      "IAEA HHS 47 e controle de qualidade de equipamentos | Consult",
+      "Entenda a importância do guia IAEA HHS 47 para testes de controle de qualidade em radiologia diagnóstica e sua relação com segurança e desempenho.",
+    ],
+    "protecao-radiologica-equipamentos-arco-c": [
+      "Proteção radiológica em equipamentos Arco C | Consult",
+      "Conteúdo técnico sobre exposição ocupacional, proteção e uso seguro de equipamentos Arco C em procedimentos guiados por imagem.",
+    ],
+  };
+
   let title = "Consult Radiometria e Qualidade | Física Médica e Engenharia Clínica";
   let description = "Medição, ensaio, calibração, qualificação e laudos técnicos em Física Médica, Proteção Radiológica e Engenharia Clínica.";
   let keywords = "Consult Radiometria e Qualidade, Física Médica, Proteção Radiológica, Engenharia Clínica, laudo técnico";
@@ -69,8 +84,18 @@
   const engineeringMatch = path.match(/^\/consult\/engenharia-clinica\/([^/]+)$/);
   const equipmentMatch = path.match(/^\/consult\/equipamentos\/([^/]+)$/);
   const regionMatch = path.match(/^\/consult\/regioes\/([^/]+)$/);
+  const blogMatch = path.match(/^\/consult\/blog\/([^/]+)$/);
 
-  if (areaMatch && areaMeta[areaMatch[1]]) {
+  if (path === "/consult/blog") {
+    title = "Blog técnico | Consult Radiometria e Qualidade";
+    description = "Conteúdos técnicos da Consult sobre Física Médica, Proteção Radiológica, controle de qualidade, Engenharia Clínica e segurança em serviços de saúde.";
+    keywords = "blog Consult, Física Médica, Proteção Radiológica, controle de qualidade, Engenharia Clínica";
+    type = "Blog";
+  } else if (blogMatch && blogMeta[blogMatch[1]]) {
+    [title, description] = blogMeta[blogMatch[1]];
+    keywords = `${blogMatch[1].replaceAll("-", " ")}, Consult, conteúdo técnico`;
+    type = "Article";
+  } else if (areaMatch && areaMeta[areaMatch[1]]) {
     [title, description] = areaMeta[areaMatch[1]];
     keywords = `${areaMatch[1].replaceAll("-", " ")}, Consult, laudo técnico, SP, PR, MS, MG`;
     type = "Service";
@@ -111,7 +136,7 @@
   setMeta('meta[name="keywords"]', "name", "keywords", keywords);
   setMeta('meta[property="og:title"]', "property", "og:title", title);
   setMeta('meta[property="og:description"]', "property", "og:description", description);
-  setMeta('meta[property="og:type"]', "property", "og:type", "website");
+  setMeta('meta[property="og:type"]', "property", "og:type", type === "Article" ? "article" : "website");
   setMeta('meta[property="og:site_name"]', "property", "og:site_name", "Consult Radiometria e Qualidade");
   setMeta('meta[property="og:url"]', "property", "og:url", `${location.origin}${path}`);
   setMeta('meta[name="twitter:title"]', "name", "twitter:title", title);
@@ -131,7 +156,7 @@
   const ld = document.createElement("script");
   ld.id = "consult-route-ldjson";
   ld.type = "application/ld+json";
-  ld.textContent = JSON.stringify({
+  const base = {
     "@context": "https://schema.org",
     "@type": type,
     name: title.replace(/ \| .*$/, ""),
@@ -141,7 +166,12 @@
       name: "Consult Radiometria e Qualidade",
       address: { "@type": "PostalAddress", addressLocality: "Matão", addressRegion: "SP", addressCountry: "BR" },
     },
-    areaServed: ["São Paulo", "Paraná", "Mato Grosso do Sul", "Minas Gerais"],
-  });
+  };
+  if (type === "Service") base.areaServed = ["São Paulo", "Paraná", "Mato Grosso do Sul", "Minas Gerais"];
+  if (type === "Article") {
+    base.headline = title.replace(/ \| .*$/, "");
+    base.publisher = { "@type": "Organization", name: "Consult Radiometria e Qualidade" };
+  }
+  ld.textContent = JSON.stringify(base);
   document.head.appendChild(ld);
 })();
