@@ -1,19 +1,16 @@
 import React, { useEffect, useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
-import { ConsultReportPreview, ConsultSectionNav } from '@/components/consult/ConsultTechnicalDesign'
+import { ConsultReportPreview } from '@/components/consult/ConsultTechnicalDesign'
 import {
-  DeliverableHeader,
-  EditorialStatement,
-  MeasurementMatrix,
-  OutcomeNote,
-  ProcessTimeline,
-  ServiceHeroConsole,
-  ServiceProofRail,
-  StandardsShelf,
-  TechnicalFaq,
-  TriggerPanel,
-} from '@/components/consult/ConsultServiceV3Design'
+  ApprovedDarkProcess,
+  ApprovedFaq,
+  ApprovedInternalHero,
+  ApprovedLightSection,
+  ApprovedNormCards,
+  ApprovedProofStrip,
+  CONSULT_IMAGES,
+} from '@/components/consult/ConsultApprovedInternal'
 
 const RDC_611 = 'https://anvisalegis.datalegis.net/action/TematicaAction.php?acao=abrirVinculos&cod_menu=8457&cod_modulo=135&cotematica=18518373'
 const ANVISA_IN = 'https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2021/anvisa-avanca-na-consolidacao-de-suas-normas'
@@ -71,7 +68,7 @@ const MODALITIES = {
   },
 }
 
-const PROCESS = [['01','Identificar a modalidade','Equipamento, contexto de uso e referência aplicável são confirmados.'],['02','Executar os ensaios','O físico médico realiza os testes aplicáveis à modalidade.'],['03','Analisar o resultado','Os resultados são confrontados com os critérios pertinentes.'],['04','Emitir o laudo','A instituição recebe o resultado documentado e assinado pelo físico médico.']]
+const PROCESS = [['01','Identificar a modalidade','Confirmar equipamento, contexto de uso e referência aplicável.'],['02','Executar os ensaios','Realizar os testes previstos para a modalidade.'],['03','Analisar os resultados','Confrontar as medições com os critérios pertinentes.'],['04','Emitir o laudo','Documentar o resultado e a conclusão técnica.']]
 
 export default function ConsultQualityModalityPage() {
   const { slug } = useParams()
@@ -83,20 +80,34 @@ export default function ConsultQualityModalityPage() {
     document.querySelector('meta[name="description"]')?.setAttribute('content', item.intro)
   }, [item])
 
-  if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Modalidade não encontrada</h1><Link to="/consult/servicos/controle-qualidade" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Controle de Qualidade</Link></main></ConsultSiteShell>
+  if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Modalidade não encontrada</h1><Link to="/consult/fisica-medica/controle-de-qualidade" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Controle de Qualidade</Link></main></ConsultSiteShell>
 
-  const norms = item.norm.startsWith('IN ') ? [['RDC 611/2022 — Anvisa','Base sanitária geral para radiologia diagnóstica e intervencionista.',RDC_611],[`${item.norm} — Anvisa`,`Referência específica indicada no guia técnico da Consult para ${item.short}.`,ANVISA_IN]] : [['RDC 611/2022 — Anvisa','Base indicada no guia técnico da Consult para esta modalidade.',RDC_611],[item.norm,'Observação técnica registrada no guia oficial da Consult.',ANVISA_IN]]
+  const norms=item.norm.startsWith('IN ')
+    ? [['RDC 611/2022 — Anvisa','Base sanitária geral para radiologia diagnóstica e intervencionista.',RDC_611],[`${item.norm} — Anvisa`,`Referência específica indicada para ${item.short}.`,ANVISA_IN]]
+    : [['RDC 611/2022 — Anvisa','Base indicada para esta modalidade.',RDC_611],[item.norm,'Referência técnica indicada no material da Consult.',ANVISA_IN]]
 
   return <ConsultSiteShell><main>
-    <section className="relative overflow-hidden bg-[#075653] text-white"><div className="absolute inset-0 opacity-75" style={{backgroundImage:'radial-gradient(circle at 80% 20%, rgba(138,230,0,.15), transparent 24%), linear-gradient(125deg, transparent 42%, rgba(5,210,157,.11) 100%)'}}/><div className="relative mx-auto grid min-h-[650px] max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[1fr_.9fr] lg:items-center"><div><Link to="/consult/servicos/controle-qualidade" className="text-sm font-bold text-white/55 hover:text-white">Controle de Qualidade</Link><div className="mt-9 flex items-center gap-3 text-[10px] font-black uppercase tracking-[.26em] text-[#8AE600]"><span className="h-px w-10 bg-[#8AE600]" />{item.norm}</div><h1 className="mt-5 max-w-4xl text-4xl font-black leading-[.98] tracking-[-.045em] sm:text-5xl lg:text-[62px]">{item.title}</h1><p className="mt-6 max-w-2xl text-lg font-semibold leading-8 text-white/88">{item.intro}</p><div className="mt-8 flex flex-col gap-3 sm:flex-row"><a href="/consult#contato" className="inline-flex min-h-12 items-center justify-center rounded-xl bg-[#FF6B26] px-6 py-3 text-sm font-extrabold text-white">Agendar reunião técnica</a><a href="#entregavel" className="inline-flex min-h-12 items-center justify-center rounded-xl border border-white/18 px-6 py-3 text-sm font-extrabold text-white/82">Ver laudo</a></div></div><ServiceHeroConsole title={item.short} kicker="Controle de Qualidade" chips={[item.norm,'Laudo técnico']} /></div></section>
-    <ServiceProofRail items={[["MODALIDADE",item.short],["NORMA",item.norm],["ENTREGA","Laudo técnico"],["RESPONSÁVEL","Físico médico"]]} />
-    <ConsultSectionNav items={[["Visão geral","#visao"],["Parâmetros","#parametros"],["Processo","#processo"],["Entregável","#entregavel"],["Normas","#normas"],["FAQ","#faq"]]} />
-    <div id="visao" className="scroll-mt-32"><EditorialStatement eyebrow="Controle por modalidade" title="A referência técnica muda conforme o equipamento."><p>{item.intro}</p><p className="mt-5 text-sm leading-7">Por isso a V3 separa cada modalidade em uma página própria, em vez de concentrar todo o Controle de Qualidade em uma descrição única.</p></EditorialStatement></div>
-    <div id="parametros" className="scroll-mt-32"><MeasurementMatrix title={`O que a página de ${item.short} precisa explicar`} items={item.focus} /></div>
-    <div id="processo" className="scroll-mt-32"><ProcessTimeline items={PROCESS} /></div>
-    <section id="entregavel" className="scroll-mt-32 bg-white"><div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:px-8 md:py-20 lg:grid-cols-[.65fr_1.35fr]"><div><DeliverableHeader title="Laudo de Controle de Qualidade" description={`Resultado técnico da avaliação de ${item.short}, com os ensaios e critérios aplicáveis à modalidade.`}/><OutcomeNote>O formato visual é demonstrativo. O guia oficial confirma laudo assinado pelo físico médico, mas não define um layout único para todas as modalidades.</OutcomeNote></div><ConsultReportPreview title={`CQ — ${item.short}`} sections={['Equipamento e modalidade','Ensaios realizados','Resultados medidos','Referência aplicável','Conclusão e assinatura do físico médico']} note="Exemplo ilustrativo sem dados reais." /></div></section>
-    <div id="normas" className="scroll-mt-32"><StandardsShelf items={norms} /></div>
-    <div id="faq" className="scroll-mt-32"><TechnicalFaq items={[[`Qual é a referência para ${item.short}?`,item.norm],["O resultado é documentado?","Sim. O guia da Consult confirma laudo assinado pelo físico médico para o Controle de Qualidade."],["Essa página substitui a avaliação técnica?","Não. A página explica o serviço e a referência. O escopo final depende do equipamento e da situação da instituição."]]} /></div>
-    <ConsultCtaBand title={`Precisa de Controle de Qualidade em ${item.short}?`} text="Informe o equipamento e a situação do serviço. A equipe Consult confirma o escopo técnico e a programação da avaliação." />
+    <ApprovedInternalHero eyebrow={`Controle de Qualidade • ${item.norm}`} title={item.title} description={item.intro} image={CONSULT_IMAGES.radiology}/>
+    <ApprovedProofStrip items={[[ 'MODALIDADE',item.short ],[ 'NORMA',item.norm ],[ 'ENTREGA','Laudo técnico' ],[ 'RESPONSÁVEL','Físico médico' ]]}/>
+
+    <ApprovedLightSection eyebrow="Controle por modalidade" title={`O que é avaliado em ${item.short}`} intro="Os testes e critérios mudam conforme a tecnologia. Por isso a avaliação considera a referência específica da modalidade." center>
+      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">{item.focus.map(([label,text])=><div key={label} className="rounded-xl border border-black/5 bg-white p-5 shadow-sm"><div className="text-base font-black text-[#123C3B]">{label}</div><p className="mt-3 text-sm leading-6 text-black/55">{text}</p></div>)}</div>
+    </ApprovedLightSection>
+
+    <ApprovedDarkProcess items={PROCESS}/>
+
+    <ApprovedLightSection eyebrow="Entregável" title="Laudo de Controle de Qualidade" intro={`Resultado técnico da avaliação de ${item.short}, com os ensaios e critérios aplicáveis à modalidade.`} white>
+      <div className="grid gap-10 lg:grid-cols-[.65fr_1.35fr] lg:items-center">
+        <div className="rounded-2xl bg-[#075653] p-7 text-white"><div className="text-[10px] font-bold uppercase tracking-[.2em] text-[#8AE600]">O que fica registrado</div><h3 className="mt-4 text-2xl font-black">Resultados do Controle de Qualidade</h3><p className="mt-4 text-sm leading-7 text-white/68">Equipamento e modalidade, ensaios realizados, resultados medidos, referência aplicável e conclusão técnica assinada pelo físico médico.</p></div>
+        <ConsultReportPreview title={`CQ — ${item.short}`} sections={['Equipamento e modalidade','Ensaios realizados','Resultados medidos','Referência aplicável','Conclusão e assinatura do físico médico']} note="Exemplo ilustrativo sem dados reais."/>
+      </div>
+    </ApprovedLightSection>
+
+    <ApprovedLightSection eyebrow="Base normativa" title="Normas e referências" intro="A avaliação combina a base geral da RDC 611/2022 com a referência específica da modalidade." >
+      <ApprovedNormCards items={norms}/>
+    </ApprovedLightSection>
+
+    <ApprovedFaq items={[[`Qual é a referência para ${item.short}?`,item.norm],['O resultado é documentado?','Sim. O Controle de Qualidade gera laudo técnico assinado pelo físico médico.'],['A página substitui a avaliação técnica?','Não. O conteúdo explica o serviço; o escopo final depende do equipamento e da situação da instituição.']]}/>
+    <ConsultCtaBand title={`Precisa de Controle de Qualidade em ${item.short}?`} text="Informe o equipamento e a situação do serviço. A equipe Consult confirma o escopo técnico e a programação da avaliação."/>
   </main></ConsultSiteShell>
 }
