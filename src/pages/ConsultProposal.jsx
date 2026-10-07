@@ -132,7 +132,7 @@ const articles = [
     title: "Consult fortalece educação continuada com nova plataforma de cursos digitais",
     text: "Conheça a plataforma de treinamentos da Consult para atualização em radioproteção e segurança.",
     image: ARTICLE_TRAINING_IMAGE,
-    href: "http://www.consult.med.br/posts/?dt=consult-fortalece-educacao-continuada-com-nova-plataforma-de-cursos-digitais-M1RmNTNHUnRGSjNnbkRKaTA4RTdoUT09",
+    href: "/consult/blog/educacao-continuada-cursos-digitais-radioprotecao",
   },
   {
     tag: "CONTROLE DE QUALIDADE",
@@ -140,7 +140,7 @@ const articles = [
     title: "Publicado IAEA HHS 47, um guia prático de controle de qualidade de equipamentos",
     text: "Material técnico de referência para testes de controle de qualidade em radiologia diagnóstica.",
     image: ARTICLE_IAEA_IMAGE,
-    href: "http://www.consult.med.br/posts/?dt=publicado-iaea-hhs-47-um-guia-pratico-de-controle-de-qualidade-de-equipamentos-Nk8wSnFob1pNSC9qYXdmTVFFdEtLQT09",
+    href: "/consult/blog/iaea-hhs-47-controle-qualidade-equipamentos",
   },
   {
     tag: "RADIOPROTEÇÃO",
@@ -148,7 +148,7 @@ const articles = [
     title: "Proteção radiológica em equipamentos Arco C",
     text: "Conteúdo técnico sobre proteção radiológica em procedimentos que utilizam equipamentos Arco C.",
     image: ARTICLE_ARC_IMAGE,
-    href: "http://www.consult.med.br/posts/?dt=protecao-radiologica-em-equipamentos-arco-c-NS9kS1lkbXlWaG5mTEJGNmlUZnhUdz09",
+    href: "/consult/blog/protecao-radiologica-equipamentos-arco-c",
   },
 ];
 
@@ -742,7 +742,7 @@ export default function ConsultProposal() {
                 <h2 className="text-4xl font-black tracking-[-0.03em] sm:text-5xl">Conteúdo técnico e <span className="text-[#79D900]">atualizações</span></h2>
                 <p className="mt-3 text-[15px] text-black/55">Artigos, novidades e insights sobre radiometria, qualidade e segurança em saúde.</p>
               </div>
-              <a href="http://www.consult.med.br/posts" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full border border-[#08A77F] px-6 py-3 text-sm font-bold text-[#08A77F] transition hover:bg-[#08A77F] hover:text-white">Ver todos os conteúdos <ArrowRight className="h-4 w-4" /></a>
+              <a href="/consult/blog" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full border border-[#08A77F] px-6 py-3 text-sm font-bold text-[#08A77F] transition hover:bg-[#08A77F] hover:text-white">Ver todos os conteúdos <ArrowRight className="h-4 w-4" /></a>
             </div>
             <div className="mt-9 grid gap-5 lg:grid-cols-3">
               {articles.map((article) => (
