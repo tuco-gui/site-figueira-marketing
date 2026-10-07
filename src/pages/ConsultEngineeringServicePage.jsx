@@ -104,41 +104,50 @@ export default function ConsultEngineeringServicePage() {
 
   if (!service) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Serviço não encontrado</h1><Link to="/consult/engenharia-clinica" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Engenharia Clínica</Link></main></ConsultSiteShell>
 
-  const proof=[['SEGURANÇA','Verificação independente'],['BASE','RDC 509/2021'],['HISTÓRICO','Arkmeds'],['RASTREIO','RBC']]
+  const parameterItems = service.parameters.map(([label, text]) => `${label}: ${text}`)
 
   return <ConsultSiteShell><main>
     <ApprovedInternalHero eyebrow="Engenharia Clínica" title={service.title} description={service.intro} image={CONSULT_IMAGES.engineering}/>
-    <ApprovedProofStrip items={proof}/>
+    <ApprovedProofStrip items={service.proof}/>
     <ApprovedIndependenceBand/>
 
-    <ApprovedLightSection eyebrow="Sobre o serviço" title={service.title} intro="A Consult mede, ensaia e documenta a condição encontrada. Não vende peças e não condiciona o resultado a uma empresa de conserto." center>
+    <ApprovedLightSection eyebrow="Sobre o serviço" title={service.storyTitle} intro={service.story} center>
       <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr]">
         <div className="rounded-2xl bg-[#075653] p-7 text-white shadow-xl shadow-[#075653]/10">
-          <div className="text-[10px] font-bold uppercase tracking-[.24em] text-[#8AE600]">Resultado técnico</div>
-          <h3 className="mt-4 text-2xl font-black leading-tight">{service.result}</h3>
+          <div className="text-[10px] font-bold uppercase tracking-[.24em] text-[#8AE600]">Entregável técnico</div>
+          <h3 className="mt-4 text-2xl font-black leading-tight">{service.deliverable}</h3>
           <p className="mt-4 text-sm leading-7 text-white/70">O resultado é documentado por equipamento, assinado pelo responsável técnico e emitido no Arkmeds, preservando o histórico técnico da instituição.</p>
         </div>
-        <div><div className="mb-4 text-xs font-black uppercase tracking-[.18em] text-[#08A77F]">O que é avaliado</div><div className="grid gap-3 sm:grid-cols-2">{service.points.map(point=><div key={point} className="rounded-xl border border-black/5 bg-white p-5 text-sm font-extrabold leading-6 text-[#315B58] shadow-sm">{point}</div>)}</div></div>
+        <div>
+          <div className="mb-4 text-xs font-black uppercase tracking-[.18em] text-[#08A77F]">O que é avaliado</div>
+          <div className="grid gap-3 sm:grid-cols-2">
+            {service.parameters.map(([label,text]) => <div key={label} className="rounded-xl border border-black/5 bg-white p-5 shadow-sm"><div className="text-sm font-black text-[#123C3B]">{label}</div><p className="mt-2 text-sm leading-6 text-black/55">{text}</p></div>)}
+          </div>
+        </div>
       </div>
+    </ApprovedLightSection>
+
+    <ApprovedLightSection eyebrow="Quando contratar" title="Situações em que este serviço costuma ser necessário" intro="O escopo final depende do equipamento, do histórico técnico e da situação da instituição." white>
+      <ApprovedList items={service.when}/>
     </ApprovedLightSection>
 
     <ApprovedDarkProcess items={PROCESS}/>
 
-    <ApprovedLightSection eyebrow="Entregável" title={service.result} intro="O exemplo abaixo é ilustrativo e serve apenas para mostrar a lógica das informações documentadas." white>
+    <ApprovedLightSection eyebrow="Entregável" title={service.deliverable} intro="O exemplo abaixo é ilustrativo e serve apenas para mostrar a lógica das informações documentadas." white>
       <div className="grid gap-10 lg:grid-cols-[.65fr_1.35fr] lg:items-center">
         <div>
-          <ApprovedList items={service.points}/>
-          <div className="mt-6 rounded-xl border border-[#CFE4DE] bg-[#F4FBFA] p-5 text-sm leading-7 text-[#4D706D]">Na Engenharia Clínica, os laudos são assinados pelo responsável técnico e emitidos por equipamento no Arkmeds, com histórico técnico e analisadores com calibração rastreável à RBC.</div>
+          <ApprovedList items={parameterItems}/>
+          <div className="mt-6 rounded-xl border border-[#CFE4DE] bg-[#F4FBFA] p-5 text-sm leading-7 text-[#4D706D]">Na Engenharia Clínica, os documentos são assinados pelo responsável técnico e emitidos por equipamento no Arkmeds, com histórico técnico e analisadores com calibração rastreável à RBC.</div>
         </div>
-        <ConsultReportPreview title={service.result} sections={service.points} note="Exemplo ilustrativo sem dados reais de cliente."/>
+        <ConsultReportPreview title={service.deliverable} exampleRows={service.exampleRows} note={service.note}/>
       </div>
     </ApprovedLightSection>
 
-    <ApprovedLightSection eyebrow="Base técnica" title="Norma e referência do ensaio" intro="A aplicação exata depende do equipamento, do fabricante e do tipo de ensaio." >
-      <ApprovedNormCards items={[[service.norm, 'Referência técnica principal indicada para este serviço.', service.normUrl],[ 'RDC 509/2021', 'Base geral para gerenciamento de tecnologias em saúde.', RDC_509 ]]}/>
+    <ApprovedLightSection eyebrow="Base técnica" title="Normas e referências do serviço" intro="A aplicação exata depende do equipamento, do fabricante e do tipo de ensaio.">
+      <ApprovedNormCards items={service.norms}/>
     </ApprovedLightSection>
 
-    <ApprovedFaq items={service.faq || [['A Consult conserta o equipamento?','Não. A Consult mede, ensaia e documenta a condição encontrada.'],['O resultado fica registrado?','Sim. O resultado é documentado por equipamento e preservado no histórico técnico.']]}/>
+    <ApprovedFaq items={service.faq}/>
     <ConsultCtaBand title={`Precisa de ${service.title}?`} text="Informe o equipamento e a situação da instituição. A equipe Consult confirma o ensaio e o escopo técnico aplicável."/>
   </main></ConsultSiteShell>
 }
