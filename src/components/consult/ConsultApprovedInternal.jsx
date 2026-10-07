@@ -42,6 +42,18 @@ export function ApprovedProofStrip({ items = [] }) {
   </div></section>
 }
 
+export function ApprovedIndependenceBand() {
+  return <section className="border-y border-[#8AE600]/25 bg-[#043F3D] text-white">
+    <div className="mx-auto grid max-w-7xl gap-4 px-4 py-5 sm:px-6 lg:grid-cols-[1fr_auto] lg:items-center lg:px-8">
+      <div>
+        <div className="text-[10px] font-black uppercase tracking-[.22em] text-[#8AE600]">Verificação independente</div>
+        <p className="mt-2 max-w-4xl text-sm leading-6 text-white/78">A Consult não conserta e não vende peças. O laudo aponta a condição do equipamento e a instituição resolve com o fornecedor que preferir.</p>
+      </div>
+      <div className="text-xs font-extrabold text-white/55">Sem vínculo com empresas de conserto</div>
+    </div>
+  </section>
+}
+
 export function ApprovedLightSection({ eyebrow, title, intro, children, center = false, white = false }) {
   return <section className={`relative overflow-hidden ${white?'bg-white':'bg-[#F4FBFA]'}`}>
     <div className="absolute -left-28 top-12 h-80 w-80 rounded-full border-[28px] border-[#DFF4EF]/55"/>
