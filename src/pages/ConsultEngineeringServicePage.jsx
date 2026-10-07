@@ -5,6 +5,7 @@ import { ConsultReportPreview } from '@/components/consult/ConsultTechnicalDesig
 import {
   ApprovedDarkProcess,
   ApprovedFaq,
+  ApprovedIndependenceBand,
   ApprovedInternalHero,
   ApprovedLightSection,
   ApprovedList,
@@ -108,13 +109,14 @@ export default function ConsultEngineeringServicePage() {
   return <ConsultSiteShell><main>
     <ApprovedInternalHero eyebrow="Engenharia Clínica" title={service.title} description={service.intro} image={CONSULT_IMAGES.engineering}/>
     <ApprovedProofStrip items={proof}/>
+    <ApprovedIndependenceBand/>
 
     <ApprovedLightSection eyebrow="Sobre o serviço" title={service.title} intro="A Consult mede, ensaia e documenta a condição encontrada. Não vende peças e não condiciona o resultado a uma empresa de conserto." center>
       <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr]">
         <div className="rounded-2xl bg-[#075653] p-7 text-white shadow-xl shadow-[#075653]/10">
           <div className="text-[10px] font-bold uppercase tracking-[.24em] text-[#8AE600]">Resultado técnico</div>
           <h3 className="mt-4 text-2xl font-black leading-tight">{service.result}</h3>
-          <p className="mt-4 text-sm leading-7 text-white/70">O resultado é vinculado ao equipamento e compõe o histórico técnico da instituição.</p>
+          <p className="mt-4 text-sm leading-7 text-white/70">O resultado é documentado por equipamento, assinado pelo responsável técnico e emitido no Arkmeds, preservando o histórico técnico da instituição.</p>
         </div>
         <div><div className="mb-4 text-xs font-black uppercase tracking-[.18em] text-[#08A77F]">O que é avaliado</div><div className="grid gap-3 sm:grid-cols-2">{service.points.map(point=><div key={point} className="rounded-xl border border-black/5 bg-white p-5 text-sm font-extrabold leading-6 text-[#315B58] shadow-sm">{point}</div>)}</div></div>
       </div>
@@ -126,7 +128,7 @@ export default function ConsultEngineeringServicePage() {
       <div className="grid gap-10 lg:grid-cols-[.65fr_1.35fr] lg:items-center">
         <div>
           <ApprovedList items={service.points}/>
-          <div className="mt-6 rounded-xl border border-[#CFE4DE] bg-[#F4FBFA] p-5 text-sm leading-7 text-[#4D706D]">Na Engenharia Clínica, os laudos são emitidos por equipamento, com histórico no Arkmeds e analisadores com calibração rastreável à RBC.</div>
+          <div className="mt-6 rounded-xl border border-[#CFE4DE] bg-[#F4FBFA] p-5 text-sm leading-7 text-[#4D706D]">Na Engenharia Clínica, os laudos são assinados pelo responsável técnico e emitidos por equipamento no Arkmeds, com histórico técnico e analisadores com calibração rastreável à RBC.</div>
         </div>
         <ConsultReportPreview title={service.result} sections={service.points} note="Exemplo ilustrativo sem dados reais de cliente."/>
       </div>
