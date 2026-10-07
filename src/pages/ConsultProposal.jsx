@@ -53,7 +53,7 @@ const ARTICLE_ARC_IMAGE = "data:image/jpeg;base64,/9j/2wCEAAoHBwgHBgoICAgLCgoLDh
 const WHATSAPP = "5514996710677";
 const PHONE = "(14) 98161-0712";
 const ADDRESS =
-  "Avenida Doutor Vital Brasil, 1060, sala 205, Vila São Lúcio, Botucatu - SP";
+  "Sede em Matão - SP";
 const EMAIL = "radiometria@consult.med.br";
 
 const waUrl = (message) =>
@@ -110,15 +110,15 @@ const serviceAreas = [
 const differentials = [
   { icon: UsersRound, title: "Equipe técnica especializada", text: "Profissionais qualificados e com ampla experiência nas áreas de radiometria, física médica e qualidade." },
   { icon: MessageCircle, title: "Atendimento consultivo", text: "Escuta ativa e soluções personalizadas para a realidade de cada instituição." },
-  { icon: MapPin, title: "Visitas in loco + assessoria online", text: "Suporte presencial em todo o Brasil e atendimento remoto ágil e eficiente." },
+  { icon: MapPin, title: "Visitas in loco + assessoria online", text: "Atendimento presencial em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais, com suporte remoto conforme a necessidade." },
   { icon: FileText, title: "Relatórios ágeis e objetivos", text: "Documentação clara, técnica e focada nas necessidades do seu serviço." },
   { icon: ShieldCheck, title: "Conformidade técnica", text: "Alinhamento com as normas vigentes da Anvisa, CNEN, CFM e demais órgãos reguladores." },
-  { icon: Settings, title: "Atuação multidisciplinar", text: "Integração entre física, engenharia, qualidade e saúde para soluções completas e seguras." },
+  { icon: Settings, title: "Um só fornecedor técnico", text: "Radiologia e demais equipamentos na mesma visita, com o mesmo padrão de laudo e o mesmo responsável técnico." },
 ];
 
 const audiences = [
-  ["Hospitais", "Suporte completo para serviços de alta complexidade."],
-  ["Clínicas", "Soluções sob medida para atendimentos de diferentes portes."],
+  ["Hospitais", "Atendimento a gestores de hospitais, Santas Casas, Unimeds e fundações."],
+  ["Clínicas", "Atendimento a responsáveis técnicos e gestores de clínicas de imagem."],
   ["Diagnóstico por imagem", "Qualidade e segurança em radiologia, TC, RM e medicina nuclear."],
   ["Odontologia", "Proteção radiológica e conformidade para consultórios e clínicas odontológicas."],
   ["Veterinária", "Suporte técnico para hospitais e clínicas veterinárias."],
@@ -197,8 +197,9 @@ function Header() {
     ["Sobre", "/consult#sobre"],
     ["Serviços", "/consult#areas"],
     ["Áreas de atuação", "/consult#areas"],
-    ["Conteúdos", "/consult#conteudos"],
-    ["Contato", "/consult#contato"],
+    ["Blog", "/consult/blog"],
+    ["Cursos", "https://consultcursos.herospark.co"],
+    ["Portal", "https://www.consult.med.br/Portal/"],
   ];
 
   return (
@@ -536,7 +537,7 @@ export default function ConsultProposal() {
               [ShieldCheck, "Mais segurança", "para pacientes e profissionais"],
               [FileText, "Conformidade", "com as normas vigentes"],
               [Settings, "Tecnologia", "a serviço da qualidade"],
-              [UsersRound, "Experiência", "em diferentes áreas da saúde"],
+              [UsersRound, "Mais de 15 anos", "de mercado"],
             ].map(([Icon, title, text]) => (
               <div key={title} className="flex items-center gap-3 px-3 py-4 sm:px-5">
                 <Icon className="h-8 w-8 shrink-0 text-[#08A77F]" />
@@ -666,7 +667,7 @@ export default function ConsultProposal() {
                 <div className="mt-7">
                   <span className="block h-[2px] w-10 bg-[#8AE600]" />
                   <p className="mt-3 max-w-[380px] text-[9px] font-bold uppercase leading-[1.75] tracking-[0.32em] text-white/78">
-                    Mais saúde e segurança em todo o território nacional
+                    Atendimento presencial em quatro estados
                   </p>
                 </div>
               </div>
@@ -692,12 +693,12 @@ export default function ConsultProposal() {
                       <span className="h-6 w-1.5 rounded-sm bg-[#8AE600]" />
                     </div>
                     <div className="text-[9px] font-black uppercase leading-[1.45] tracking-[0.13em] text-white/92">
-                      Atendimento em todas as regiões
+                      Atendimento presencial em 4 estados
                     </div>
                   </div>
 
                   <div className="mt-3 space-y-2 text-[11px] font-medium text-white/95">
-                    {["Norte", "Nordeste", "Centro-Oeste", "Sudeste", "Sul"].map((region) => (
+                    {["São Paulo", "Paraná", "Mato Grosso do Sul", "Minas Gerais"].map((region) => (
                       <div key={region} className="flex items-center gap-2.5">
                         <span className="flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[#8AE600] text-[10px] font-black text-[#075653]">✓</span>
                         <span>{region}</span>
