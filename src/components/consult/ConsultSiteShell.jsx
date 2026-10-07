@@ -25,15 +25,15 @@ export function ConsultHeader() {
     ['Cursos','https://consultcursos.herospark.co'],
     ['Portal','https://www.consult.med.br/Portal/'],
   ]
-  return <header className="sticky top-0 z-50 border-b border-white/10 bg-[#075653]/96 text-white backdrop-blur">
+  return <header className="sticky top-0 z-50 border-b border-white/10 bg-[#075653]/95 text-white backdrop-blur" style={{ backgroundColor: 'rgba(7,86,83,.97)', color: '#fff' }}>
     <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
       <Link to="/consult" className="flex items-center" aria-label="Página inicial da Consult"><img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-12 w-auto max-w-[190px] object-contain" /></Link>
       <nav className="hidden items-center gap-6 lg:flex">
         {nav.map(([label,href]) => href.startsWith('http')
-          ? <a key={label} href={href} target="_blank" rel="noreferrer" className="text-sm font-semibold text-white/88 transition hover:text-[#8AE600]">{label}</a>
+          ? <a key={label} href={href} target="_blank" rel="noreferrer" className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
           : href.startsWith('/consult#')
-            ? <a key={label} href={href} className="text-sm font-semibold text-white/88 transition hover:text-[#8AE600]">{label}</a>
-            : <Link key={label} to={href} className="text-sm font-semibold text-white/88 transition hover:text-[#8AE600]">{label}</Link>
+            ? <a key={label} href={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
+            : <Link key={label} to={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</Link>
         )}
         <a href="/consult#contato" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#FF6B26] px-4 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-black/10 transition hover:brightness-95">
           <FileText size={16}/> Solicite um orçamento
