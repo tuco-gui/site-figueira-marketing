@@ -21,16 +21,19 @@ export function ConsultHeader() {
     ['Sobre','/consult#sobre'],
     ['Serviços','/consult#areas'],
     ['Áreas de atuação','/consult#areas'],
-    ['Conteúdos','/consult/blog'],
-    ['Contato','/consult#contato'],
+    ['Blog','/consult/blog'],
+    ['Cursos','https://consultcursos.herospark.co'],
+    ['Portal','https://www.consult.med.br/Portal/'],
   ]
   return <header className="sticky top-0 z-50 border-b border-white/10 bg-[#075653]/96 text-white backdrop-blur">
     <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
       <Link to="/consult" className="flex items-center" aria-label="Página inicial da Consult"><img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-12 w-auto max-w-[190px] object-contain" /></Link>
       <nav className="hidden items-center gap-6 lg:flex">
-        {nav.map(([label,href]) => href.startsWith('/consult#')
-          ? <a key={label} href={href} className="text-sm font-semibold text-white/88 transition hover:text-[#8AE600]">{label}</a>
-          : <Link key={label} to={href} className="text-sm font-semibold text-white/88 transition hover:text-[#8AE600]">{label}</Link>
+        {nav.map(([label,href]) => href.startsWith('http')
+          ? <a key={label} href={href} target="_blank" rel="noreferrer" className="text-sm font-semibold text-white/88 transition hover:text-[#8AE600]">{label}</a>
+          : href.startsWith('/consult#')
+            ? <a key={label} href={href} className="text-sm font-semibold text-white/88 transition hover:text-[#8AE600]">{label}</a>
+            : <Link key={label} to={href} className="text-sm font-semibold text-white/88 transition hover:text-[#8AE600]">{label}</Link>
         )}
         <a href="/consult#contato" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#FF6B26] px-4 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-black/10 transition hover:brightness-95">
           <FileText size={16}/> Solicite um orçamento
@@ -39,9 +42,11 @@ export function ConsultHeader() {
       <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 lg:hidden" onClick={() => setOpen(v => !v)} aria-label="Abrir menu">{open ? <X size={20}/> : <Menu size={20}/>}</button>
     </div>
     {open && <div className="border-t border-white/10 bg-[#064946] px-4 py-5 lg:hidden"><div className="mx-auto flex max-w-7xl flex-col gap-1">
-      {nav.map(([label,href]) => href.startsWith('/consult#')
-        ? <a key={label} href={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</a>
-        : <Link key={label} to={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</Link>
+      {nav.map(([label,href]) => href.startsWith('http')
+        ? <a key={label} href={href} target="_blank" rel="noreferrer" onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</a>
+        : href.startsWith('/consult#')
+          ? <a key={label} href={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</a>
+          : <Link key={label} to={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</Link>
       )}
       <a href="/consult#contato" onClick={()=>setOpen(false)} className="mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white"><FileText size={16}/> Solicite um orçamento</a>
     </div></div>}
@@ -57,7 +62,9 @@ export function ConsultFooter() {
           <Link className="block hover:text-[#8AE600]" to="/consult">Início</Link>
           <a className="block hover:text-[#8AE600]" href="/consult#sobre">Sobre</a>
           <a className="block hover:text-[#8AE600]" href="/consult#areas">Serviços</a>
-          <Link className="block hover:text-[#8AE600]" to="/consult/blog">Conteúdos</Link>
+          <Link className="block hover:text-[#8AE600]" to="/consult/blog">Blog</Link>
+          <a className="block hover:text-[#8AE600]" href="https://consultcursos.herospark.co" target="_blank" rel="noreferrer">Cursos</a>
+          <a className="block hover:text-[#8AE600]" href="https://www.consult.med.br/Portal/" target="_blank" rel="noreferrer">Portal de Arquivos</a>
           <a className="block hover:text-[#8AE600]" href="/consult#contato">Contato</a>
         </div></div>
         <div><h4 className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">Áreas de atuação</h4><div className="mt-4 space-y-2 text-sm text-white/75">
