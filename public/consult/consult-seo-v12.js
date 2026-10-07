@@ -47,6 +47,12 @@
       type: 'CollectionPage', canonical: '/consult/materiais',
       crumbs: [['Consult','/consult'],['Materiais','/consult/materiais']],
     },
+    '/consult/materiais/modelos-sinalizacao': {
+      title: 'Modelos de Sinalização Técnica | Consult',
+      description: 'Modelos ilustrativos de sinalização para radioproteção, áreas controladas e ressonância magnética, sujeitos à validação técnica.',
+      type: 'WebPage', canonical: '/consult/materiais/modelos-sinalizacao',
+      crumbs: [['Consult','/consult'],['Materiais','/consult/materiais'],['Modelos de sinalização','/consult/materiais/modelos-sinalizacao']],
+    },
     '/consult/materiais/mapa-normas-radiologia': {
       title: 'Mapa de Normas por Modalidade | Consult',
       description: 'RDC 611/2022 e IN 90 a 97/2021 organizadas por modalidade de diagnóstico por imagem atendida pela Consult.',
