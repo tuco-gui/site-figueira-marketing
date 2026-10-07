@@ -5,6 +5,7 @@ import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSi
 import {
   ApprovedDarkProcess,
   ApprovedFaq,
+  ApprovedIndependenceBand,
   ApprovedInternalHero,
   ApprovedLightSection,
   ApprovedList,
@@ -93,8 +94,8 @@ const AREAS = {
     title:'Engenharia Clínica',
     eyebrow:'Ensaios, calibração e qualificação',
     image: CONSULT_IMAGES.engineering,
-    intro:'Ensaios de segurança elétrica e desempenho, manutenção preventiva, reverificação e qualificação térmica com resultado documentado por equipamento.',
-    proof:[['SEGURANÇA','IEC 62353'],['RASTREIO','RBC'],['HISTÓRICO','Arkmeds'],['BASE','RDC 509/2021']],
+    intro:'A Consult ensaia, calibra e qualifica os equipamentos médicos do seu hospital e entrega o resultado em laudo. Não fazemos conserto e não vendemos peças: o laudo diz o que o equipamento tem, e você resolve com o fornecedor que preferir.',
+    proof:[['ENTREGA','Laudo por equipamento'],['RESPONSÁVEL','Responsável técnico'],['HISTÓRICO','Arkmeds'],['RASTREIO','RBC']],
     sectionTitle:'Medição independente para decisões mais seguras sobre equipamentos de saúde.',
     sectionIntro:'A Consult verifica o equipamento e documenta a condição encontrada. Não vende peças e não condiciona o resultado a uma empresa de conserto.',
     services:[
@@ -123,6 +124,7 @@ export default function ConsultAreaLandingPageV3({ fixedSlug }) {
   return <ConsultSiteShell><main>
     <ApprovedInternalHero eyebrow={area.eyebrow} title={area.title} description={area.intro} image={area.image}/>
     <ApprovedProofStrip items={area.proof}/>
+    {slug==='engenharia-clinica' && <ApprovedIndependenceBand/>}
 
     <ApprovedLightSection eyebrow="Nossa especialidade" title={area.sectionTitle} intro={area.sectionIntro} center>
       <ApprovedServiceCards items={area.services}/>
@@ -134,7 +136,7 @@ export default function ConsultAreaLandingPageV3({ fixedSlug }) {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{MODALITIES.map(([label,norm,href])=><Link key={href} to={href} className="rounded-xl border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"><div className="text-base font-black text-[#123C3B]">{label}</div><div className="mt-2 text-xs font-extrabold text-[#08A77F]">{norm}</div><div className="mt-4 text-sm font-extrabold text-[#08A77F]">Ver detalhes</div></Link>)}</div>
     </ApprovedLightSection>}
 
-    {area.resources==='equipment'&&<ApprovedLightSection eyebrow="Equipamentos atendidos" title="Ensaios organizados por tipo de equipamento" intro="Acesse a página específica para conhecer os parâmetros medidos, o analisador utilizado e o tipo de resultado documentado." white>
+    {area.resources==='equipment'&&<ApprovedLightSection eyebrow="Equipamentos atendidos" title="Ensaios organizados por tipo de equipamento" intro="Todos os equipamentos confirmados pela Consult recebem também ensaio de segurança elétrica com Safetest 50, Rigel. Acesse a página específica para conhecer os parâmetros medidos, o analisador utilizado e o resultado documentado." white>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{EQUIPMENT.map(([label,href])=><Link key={href} to={href} className="rounded-xl border border-black/5 bg-white p-5 text-sm font-black leading-6 text-[#315B58] shadow-sm transition hover:-translate-y-1 hover:shadow-lg">{label}<div className="mt-3 text-xs font-extrabold text-[#08A77F]">Ver equipamento</div></Link>)}</div>
     </ApprovedLightSection>}
 
