@@ -18,6 +18,13 @@ const MATERIALS = [
     tag: 'Proteção Radiológica',
     Icon: GitBranch,
   },
+  {
+    title: 'Modelos de sinalização técnica',
+    text: 'Referências visuais de placas para radioproteção, acesso controlado e ressonância magnética, sujeitas à validação técnica.',
+    href: '/consult/materiais/modelos-sinalizacao',
+    tag: 'Material gratuito',
+    Icon: ShieldCheck,
+  },
 ]
 
 export default function ConsultMaterialsPage() {
