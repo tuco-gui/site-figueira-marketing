@@ -63,14 +63,14 @@ const serviceAreas = [
   {
     slug: "fisica-medica",
     title: "Física Médica",
-    summary: "Planejamento, dosimetria, comissionamento e controle de qualidade em radioterapia, medicina nuclear e diagnóstico por imagem.",
+    summary: "Controle de Qualidade, medições e laudos técnicos para equipamentos de diagnóstico por imagem.",
     image: AREA_PHYS_IMAGE,
     intro: "Atuação técnica para apoiar instituições de saúde na qualidade, segurança e desempenho de tecnologias que utilizam radiação e sistemas de imagem.",
     bullets: [
       "Controle de qualidade de equipamentos radiológicos",
       "Dosimetria e avaliação técnica",
       "Comissionamento e aceitação de equipamentos",
-      "Apoio técnico em radioterapia, medicina nuclear e diagnóstico por imagem",
+      "Controle de Qualidade, medições e documentação técnica em diagnóstico por imagem",
       "Relatórios, documentação e suporte à conformidade",
     ],
     Icon: HeartPulse,
@@ -119,7 +119,7 @@ const differentials = [
 const audiences = [
   ["Hospitais", "Atendimento a gestores de hospitais, Santas Casas, Unimeds e fundações."],
   ["Clínicas", "Atendimento a responsáveis técnicos e gestores de clínicas de imagem."],
-  ["Diagnóstico por imagem", "Qualidade e segurança em radiologia, TC, RM e medicina nuclear."],
+  ["Diagnóstico por imagem", "Qualidade e segurança em radiologia, tomografia, ressonância magnética e demais modalidades confirmadas."],
   ["Odontologia", "Proteção radiológica e conformidade para consultórios e clínicas odontológicas."],
   ["Veterinária", "Suporte técnico para hospitais e clínicas veterinárias."],
   ["Outras instituições de saúde", "Atendimento a centros de pesquisa, ensino e demais serviços da área da saúde."],
