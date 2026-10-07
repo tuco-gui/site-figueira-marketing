@@ -5,6 +5,7 @@ import { ConsultReportPreview } from '@/components/consult/ConsultTechnicalDesig
 import {
   ApprovedDarkProcess,
   ApprovedFaq,
+  ApprovedIndependenceBand,
   ApprovedInternalHero,
   ApprovedLightSection,
   ApprovedList,
@@ -52,8 +53,9 @@ export default function ConsultEquipmentPage() {
   const reportRows=item.parameters.slice(0,4).map(parameter=>[parameter,'Valor medido','Referência','Resultado'])
 
   return <ConsultSiteShell><main>
-    <ApprovedInternalHero eyebrow="Engenharia Clínica" title={item.title} description="Ensaios de segurança elétrica e desempenho com medição documentada, analisador específico e histórico técnico por equipamento." image={CONSULT_IMAGES.engineering}/>
-    <ApprovedProofStrip items={[[ 'EQUIPAMENTO', item.title ],[ 'ANALISADOR', item.analyzer ],[ 'ENTREGA','Laudo técnico' ],[ 'RASTREIO','RBC' ]]}/>
+    <ApprovedInternalHero eyebrow="Engenharia Clínica" title={item.title} description="Ensaios de segurança elétrica e desempenho com medição documentada, analisador específico, laudo por equipamento e histórico técnico. Todos os equipamentos confirmados recebem também segurança elétrica com Safetest 50, Rigel." image={CONSULT_IMAGES.engineering}/>
+    <ApprovedProofStrip items={[[ 'EQUIPAMENTO', item.title ],[ 'DESEMPENHO', item.analyzer ],[ 'SEG. ELÉTRICA','Safetest 50 • Rigel' ],[ 'RASTREIO','RBC' ]]}/>
+    <ApprovedIndependenceBand/>
 
     <ApprovedLightSection eyebrow="O que é avaliado" title={`Parâmetros verificados em ${item.title}`} intro="A avaliação é organizada de acordo com o equipamento e com os parâmetros confirmados para o ensaio." center>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{item.parameters.map((parameter,index)=><div key={parameter} className="rounded-xl border border-black/5 bg-white p-5 shadow-sm"><div className="text-[10px] font-black uppercase tracking-[.18em] text-[#08A77F]">0{index+1}</div><div className="mt-3 text-base font-black text-[#123C3B]">{parameter}</div><p className="mt-2 text-sm leading-6 text-black/55">{index===0?`Analisador: ${item.analyzer}`:'Medição específica do equipamento'}</p></div>)}</div>
@@ -68,7 +70,7 @@ export default function ConsultEquipmentPage() {
           <div className="rounded-2xl bg-[#075653] p-6 text-white"><div className="text-[10px] font-bold uppercase tracking-[.2em] text-[#8AE600]">Instrumentação</div><div className="mt-3 text-2xl font-black">{item.analyzer}</div><p className="mt-3 text-sm leading-7 text-white/65">Os analisadores utilizados possuem certificado de calibração com rastreabilidade RBC.</p></div>
           <ApprovedList items={['Identificação do equipamento','Ensaios e parâmetros medidos','Referência técnica aplicável','Resultado e eventuais pendências']}/>
         </div>
-        <ConsultReportPreview title={`Laudo — ${item.title}`} exampleRows={reportRows} resultLabel="Resultado / pendências" note="Exemplo ilustrativo sem dados reais. A Consult documenta a condição encontrada e não indica fornecedor de conserto."/>
+        <ConsultReportPreview title={`Laudo — ${item.title}`} exampleRows={reportRows} resultLabel="Resultado / pendências" note="Exemplo ilustrativo sem dados reais. O laudo é emitido por equipamento, assinado pelo responsável técnico e registrado no Arkmeds. A Consult documenta a condição encontrada e não indica fornecedor de conserto."/>
       </div>
     </ApprovedLightSection>
 
@@ -76,7 +78,7 @@ export default function ConsultEquipmentPage() {
       <ApprovedNormCards items={norms}/>
     </ApprovedLightSection>
 
-    <ApprovedFaq items={[[`Qual analisador é usado para ${item.title}?`,item.analyzer],['O equipamento também recebe segurança elétrica?','Quando aplicável, a avaliação inclui ensaio de segurança elétrica conforme a referência pertinente.'],['A Consult conserta o equipamento se encontrar uma pendência?','Não. A Consult documenta a condição encontrada e a instituição resolve com o fornecedor de sua escolha.'],['O resultado fica no histórico do equipamento?','Sim. O histórico técnico é preservado por equipamento no Arkmeds.']]}/>
+    <ApprovedFaq items={[[`Qual analisador é usado para ${item.title}?`,item.analyzer],['O equipamento também recebe segurança elétrica?','Sim. Todos os equipamentos confirmados nesta linha recebem também ensaio de segurança elétrica com Safetest 50, Rigel, além dos ensaios de desempenho correspondentes.'],['A Consult conserta o equipamento se encontrar uma pendência?','Não. A Consult documenta a condição encontrada e a instituição resolve com o fornecedor de sua escolha.'],['O resultado fica no histórico do equipamento?','Sim. O histórico técnico é preservado por equipamento no Arkmeds.']]}/>
     <ConsultCtaBand title={`Precisa avaliar ${item.title}?`} text="Informe o equipamento, modelo e situação. A equipe Consult confirma o escopo de ensaio e a programação do atendimento."/>
   </main></ConsultSiteShell>
 }
