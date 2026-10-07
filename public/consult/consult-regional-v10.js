@@ -3,10 +3,10 @@
   if (!PATH_OK.test(window.location.pathname)) return;
 
   const REGION_LINKS = {
-    "São Paulo": "/consult/regioes/sao-paulo",
-    "Paraná": "/consult/regioes/parana",
-    "Mato Grosso do Sul": "/consult/regioes/mato-grosso-do-sul",
-    "Minas Gerais": "/consult/regioes/minas-gerais",
+    "São Paulo": "/consult/atuacao/sao-paulo",
+    "Paraná": "/consult/atuacao/parana",
+    "Mato Grosso do Sul": "/consult/atuacao/mato-grosso-do-sul",
+    "Minas Gerais": "/consult/atuacao/minas-gerais",
   };
 
   function normalize(value) {
