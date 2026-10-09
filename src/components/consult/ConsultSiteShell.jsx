@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const CDN = 'https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305'
 const LOGO = `${CDN}/68d5471e-43b0-4285-8644-3407ac1e09ff.png`
-const WHATSAPP = '5514996710677'
+const WHATSAPP = '5514981610712'
 
 export const CONSULT_COLORS = {
   dark: '#075653', deep: '#064946', green: '#08A77F', mint: '#05D29D', lime: '#8AE600', orange: '#FF6B26', ink: '#123C3B', soft: '#F4FBFA',
@@ -55,7 +55,7 @@ export function ConsultHeader() {
 export function ConsultFooter() {
   return <footer className="bg-[#064946] text-white">
     <div className="mx-auto max-w-7xl px-4 pb-8 pt-12 sm:px-6 lg:px-8">
-      <div className="grid gap-10 border-b border-white/10 pb-10 lg:grid-cols-[1.3fr_.8fr_.9fr]">
+      <div className="grid gap-10 border-b border-white/10 pb-10 lg:grid-cols-[1.2fr_.7fr_.8fr_1.2fr]">
         <div><img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-14 w-auto max-w-[220px] object-contain"/><p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65">Soluções técnicas para a área da saúde, com foco em segurança, qualidade e conformidade.</p></div>
         <div><h4 className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">Navegação</h4><div className="mt-4 space-y-2 text-sm text-white/75">
           <Link className="block hover:text-[#8AE600]" to="/consult">Início</Link>
@@ -69,8 +69,15 @@ export function ConsultFooter() {
         <div><h4 className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">Áreas de atuação</h4><div className="mt-4 space-y-2 text-sm text-white/75">
           <Link className="block hover:text-[#8AE600]" to="/consult/fisica-medica">Física Médica</Link>
           <Link className="block hover:text-[#8AE600]" to="/consult/protecao-radiologica">Proteção Radiológica</Link>
-          <Link className="block hover:text-[#8AE600]" to="/consult/engenharia-clinica">Engenharia Clínica</Link>
+          <Link className="block hover:text-[#8AE600]" to="/consult/engenharia-clinica">Consult Engenharia Clínica</Link>
           <Link className="block hover:text-[#8AE600]" to="/consult/normas">Normas e referências</Link>
+        </div></div>
+        <div><h4 className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">Contato</h4><div className="mt-4 space-y-2 text-sm leading-6 text-white/75">
+          <p>Sede: Matão/SP</p>
+          <p>Atendimento: Av. Dr. Vital Brasil, 1060, sala 205 – Botucatu Home Trade Center, Botucatu/SP</p>
+          <a className="block hover:text-[#8AE600]" href="tel:+5514981610712">(14) 98161-0712</a>
+          <a className="block hover:text-[#8AE600]" href="mailto:radiometria@consult.med.br">radiometria@consult.med.br</a>
+          <p>Atendimento: 8h às 17h</p>
         </div></div>
       </div>
       <div className="pt-6 text-xs text-white/45">© 2026 Consult Radiometria e Qualidade. Todos os direitos reservados.</div>

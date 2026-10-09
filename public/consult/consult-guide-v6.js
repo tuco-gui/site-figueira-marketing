@@ -24,11 +24,7 @@
     ],
     [
       "Suporte presencial em todo o Brasil e atendimento remoto ágil e eficiente.",
-      "Atendimento presencial em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais, com suporte remoto conforme a necessidade.",
-    ],
-    [
-      "Alinhamento com as normas vigentes da Anvisa, CNEN, CFM e demais órgãos reguladores.",
-      "Aplicamos a norma correspondente a cada serviço e equipamento, com laudos que registram valores medidos, limites e conformidade.",
+      "Atendimento em todo o Brasil, com equipes em campo em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais.",
     ],
     [
       "Gestão de equipamentos, manutenção técnica, testes de segurança e suporte para ciclo de vida dos ativos em saúde.",
@@ -41,7 +37,7 @@
     ["Apoio ao planejamento do ciclo de vida dos ativos", "Qualificação térmica"],
     [
       "Avenida Doutor Vital Brasil, 1060, sala 205, Vila São Lúcio, Botucatu - SP",
-      "Sede em Matão - SP",
+      "Sede: Matão/SP · Atendimento: Av. Dr. Vital Brasil, 1060, sala 205 – Botucatu Home Trade Center, Botucatu/SP",
     ],
   ]);
 
@@ -136,14 +132,14 @@
 
     const heading = copy.querySelector("h2");
     if (heading) {
-      heading.innerHTML = `Atendimento presencial em<br><span style="color:#8AE600">SP, PR, MS e MG</span>`;
+      heading.innerHTML = `Atendimento em <span style="color:#8AE600">todo o Brasil</span>`;
     }
 
     const body = Array.from(copy.querySelectorAll("p")).find((p) =>
       /território nacional|todo o Brasil|instituições de saúde/i.test(p.textContent)
     );
     if (body) {
-      body.textContent = "Atendimento presencial em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais, com a mesma metodologia de medição, rastreabilidade e laudo técnico.";
+      body.textContent = "Atendimento em todo o Brasil, com equipes em campo em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais.";
     }
 
     const primary = Array.from(copy.querySelectorAll("a")).find((a) =>
@@ -173,7 +169,7 @@
       const titleBlock = card.children?.[0];
       if (titleBlock) {
         const textBox = titleBlock.lastElementChild;
-        if (textBox) textBox.innerHTML = `ATENDIMENTO PRESENCIAL EM<br><strong>4 ESTADOS</strong>`;
+        if (textBox) textBox.innerHTML = `EQUIPES EM CAMPO EM<br><strong>4 ESTADOS</strong>`;
       }
 
       const list = card.children?.[1];
@@ -333,7 +329,7 @@
       const svg = svgNode("svg", {
         viewBox: "0 0 520 520",
         role: "img",
-        "aria-label": "Mapa do Brasil com atendimento presencial destacado em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais, com rotas partindo de Matão, São Paulo.",
+        "aria-label": "Mapa do Brasil representando atendimento nacional da Consult, com equipes em campo destacadas em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais.",
       });
       drawCoverage(svg, geojson);
       mapContainer.replaceChildren(svg);

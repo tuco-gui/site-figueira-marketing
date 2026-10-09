@@ -21,7 +21,7 @@ export function ApprovedInternalHero({ eyebrow, title, description, image = CONS
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/82 lg:text-lg">{description}</p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
           <a href="/consult#contato" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white shadow-xl shadow-black/10 transition hover:brightness-95"><FileText className="h-4 w-4"/>{primaryLabel}<ArrowRight className="h-4 w-4"/></a>
-          <a href={`https://wa.me/5514996710677?text=${message}`} target="_blank" rel="noreferrer" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/70 px-6 py-3 text-sm font-extrabold text-[#B8FF51] transition hover:bg-[#8AE600] hover:text-[#075653]"><MessageCircle className="h-4 w-4"/>{secondaryLabel}</a>
+          <a href={`https://wa.me/5514981610712?text=${message}`} target="_blank" rel="noreferrer" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/70 px-6 py-3 text-sm font-extrabold text-[#B8FF51] transition hover:bg-[#8AE600] hover:text-[#075653]"><MessageCircle className="h-4 w-4"/>{secondaryLabel}</a>
         </div>
       </div>
       <div className="relative min-h-[340px] overflow-hidden lg:min-h-full">
