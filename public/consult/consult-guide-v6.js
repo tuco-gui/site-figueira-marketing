@@ -27,10 +27,6 @@
       "Atendimento em todo o Brasil, com equipes em campo em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais.",
     ],
     [
-      "Alinhamento com as normas vigentes da Anvisa, CNEN, CFM e demais órgãos reguladores.",
-      "Alinhamento com as normas vigentes da Anvisa e da Vigilância Sanitária.",
-    ],
-    [
       "Gestão de equipamentos, manutenção técnica, testes de segurança e suporte para ciclo de vida dos ativos em saúde.",
       "Ensaios, calibração e qualificação de equipamentos médico-assistenciais, com resultado documentado em laudo técnico independente.",
     ],
