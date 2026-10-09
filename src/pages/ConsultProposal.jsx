@@ -361,7 +361,7 @@ function ContactForm() {
         type="submit"
         className="mt-3 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-lg bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white transition hover:brightness-95"
       >
-        Agendar reunião
+        Enviar mensagem
         <ArrowRight className="h-4 w-4" />
       </button>
       <p className="mt-3 text-center text-[10px] text-black/40">
@@ -518,8 +518,8 @@ export default function ConsultProposal() {
 
             <div className="relative min-h-[360px] overflow-hidden lg:min-h-full">
               <img
-                src={HERO_IMAGE}
-                alt="Profissional da área da saúde"
+                src={AREA_PHYS_IMAGE}
+                alt="Equipamento de diagnóstico por imagem em ambiente de saúde"
                 className="absolute inset-0 h-full w-full scale-110 object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-[#075653] via-[#075653]/30 to-transparent lg:from-[#075653]/70" />
@@ -613,7 +613,7 @@ export default function ConsultProposal() {
             </div>
             <div className="mt-9 flex justify-center">
               <a href="#contato" className="inline-flex min-h-[48px] items-center justify-center gap-3 rounded-full border-2 border-[#08A77F] px-7 py-3 text-sm font-extrabold text-[#075653] transition hover:bg-[#08A77F] hover:text-white">
-                Conheça todos os nossos serviços <ArrowRight className="h-4 w-4" />
+                Solicite uma avaliação <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </div>
