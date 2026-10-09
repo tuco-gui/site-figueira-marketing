@@ -40,7 +40,7 @@ export default function ConsultMaterialsPage() {
         <Link to="/consult" className="text-sm font-bold text-white/55 hover:text-white">Consult Radiometria e Qualidade</Link>
         <div className="mt-9 flex items-center gap-3 text-[10px] font-black uppercase tracking-[.26em] text-[#8AE600]"><span className="h-px w-10 bg-[#8AE600]"/>Materiais gratuitos</div>
         <h1 className="mt-5 max-w-5xl text-4xl font-black leading-[.98] tracking-[-.045em] sm:text-5xl lg:text-[66px]">Conteúdo técnico para consultar antes de decidir.</h1>
-        <p className="mt-6 max-w-3xl text-lg leading-8 text-white/72">Guias próprios da Consult organizados a partir das referências técnicas e do escopo confirmado, sem substituir a norma oficial nem a avaliação de cada caso.</p>
+        <p className="mt-6 max-w-3xl text-lg leading-8 text-white/72">Guias próprios da Consult organizados a partir de referências técnicas, sem substituir a norma oficial nem a avaliação de cada caso.</p>
       </div>
     </section>
 
