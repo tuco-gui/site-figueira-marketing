@@ -136,7 +136,7 @@ export default function ConsultAreaLandingPageV3({ fixedSlug }) {
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{MODALITIES.map(([label,norm,href])=><Link key={href} to={href} className="rounded-xl border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"><div className="text-base font-black text-[#123C3B]">{label}</div><div className="mt-2 text-xs font-extrabold text-[#08A77F]">{norm}</div><div className="mt-4 text-sm font-extrabold text-[#08A77F]">Ver detalhes</div></Link>)}</div>
     </ApprovedLightSection>}
 
-    {area.resources==='equipment'&&<ApprovedLightSection eyebrow="Equipamentos atendidos" title="Ensaios organizados por tipo de equipamento" intro="Todos os equipamentos confirmados pela Consult recebem também ensaio de segurança elétrica com Safetest 50, Rigel. Acesse a página específica para conhecer os parâmetros medidos, o analisador utilizado e o resultado documentado." white>
+    {area.resources==='equipment'&&<ApprovedLightSection eyebrow="Equipamentos atendidos" title="Ensaios organizados por tipo de equipamento" intro="Os equipamentos eletromédicos recebem ensaio de segurança elétrica conforme aplicabilidade. Acesse a página específica para conhecer os parâmetros medidos e o resultado documentado." white>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{EQUIPMENT.map(([label,href])=><Link key={href} to={href} className="rounded-xl border border-black/5 bg-white p-5 text-sm font-black leading-6 text-[#315B58] shadow-sm transition hover:-translate-y-1 hover:shadow-lg">{label}<div className="mt-3 text-xs font-extrabold text-[#08A77F]">Ver equipamento</div></Link>)}</div>
     </ApprovedLightSection>}
 
