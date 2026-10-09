@@ -10,6 +10,7 @@
 
   const serviceMeta = {
     "controle-qualidade": ["Controle de Qualidade em Radiologia | RDC 611 | Consult","Testes de qualidade em radiodiagnóstico conforme RDC 611/2022 e INs 90 a 97, com laudo técnico assinado pelo físico médico."],
+    "controle-de-qualidade": ["Controle de Qualidade em Diagnóstico por Imagem | Consult","Controle de Qualidade por modalidade, com referências específicas, medições documentadas e laudo técnico assinado pelo físico médico."],
     "programa-protecao-radiologica": ["Programa de Proteção Radiológica | Consult","Elaboração e acompanhamento do Programa de Proteção Radiológica para serviços de radiologia diagnóstica e intervencionista."],
     "levantamento-radiometrico": ["Levantamento Radiométrico | Consult","Medição da radiação nas áreas ao redor da sala e avaliação da radiação de fuga do cabeçote, com resultado técnico documentado."],
     "projeto-blindagem": ["Projeto de Blindagem Radiológica | Consult","Cálculo técnico e memorial de blindagem para obras, reformas, expansões ou troca de equipamentos de radiologia."],
@@ -60,6 +61,7 @@
   let crumbs = [["Consult","/consult"]];
 
   const areaMatch = path.match(/^\/consult\/areas\/([^/]+)$/);
+  const directAreaMatch = path.match(/^\/consult\/(fisica-medica|protecao-radiologica|engenharia-clinica)$/);
   const oldServiceMatch = path.match(/^\/consult\/servicos\/([^/]+)$/);
   const siloServiceMatch = path.match(/^\/consult\/fisica-medica\/([^/]+)$/);
   const modalityMatch = path.match(/^\/consult\/fisica-medica\/controle-de-qualidade\/([^/]+)$/);
@@ -70,7 +72,31 @@
   const siloRegionMatch = path.match(/^\/consult\/atuacao\/([^/]+)$/);
   const blogMatch = path.match(/^\/consult\/blog\/([^/]+)$/);
 
-  if (path === "/consult/blog") {
+  if (path === "/consult/materiais") {
+    title = "Materiais Técnicos | Consult Radiometria e Qualidade";
+    description = "Guias e materiais técnicos da Consult sobre Física Médica, Proteção Radiológica, Controle de Qualidade e Engenharia Clínica.";
+    keywords = "materiais técnicos Consult, Física Médica, Proteção Radiológica, Engenharia Clínica";
+    schemaType = "CollectionPage";
+    crumbs.push(["Materiais",path]);
+  } else if (path === "/consult/materiais/modelos-sinalizacao") {
+    title = "Modelos de Sinalização Técnica | Consult";
+    description = "Referências visuais de sinalização técnica para radioproteção, áreas controladas e ressonância magnética.";
+    keywords = "sinalização radioproteção, áreas controladas, Consult";
+    schemaType = "WebPage";
+    crumbs.push(["Materiais","/consult/materiais"],["Modelos de sinalização",path]);
+  } else if (path === "/consult/materiais/mapa-normas-radiologia") {
+    title = "Mapa de Normas por Modalidade | Consult";
+    description = "RDC 611/2022 e Instruções Normativas organizadas por modalidade de diagnóstico por imagem.";
+    keywords = "RDC 611, IN 90 97, mapa de normas, radiologia, Consult";
+    schemaType = "WebPage";
+    crumbs.push(["Materiais","/consult/materiais"],["Mapa de normas",path]);
+  } else if (path === "/consult/materiais/guia-servicos-radiologia") {
+    title = "CQ, Radiometria ou Blindagem? | Consult";
+    description = "Entenda quando utilizar Controle de Qualidade, levantamento radiométrico ou projeto de blindagem em radiologia.";
+    keywords = "controle de qualidade, levantamento radiométrico, projeto de blindagem, Consult";
+    schemaType = "WebPage";
+    crumbs.push(["Materiais","/consult/materiais"],["Guia de serviços",path]);
+  } else if (path === "/consult/blog") {
     title = "Blog técnico | Consult Radiometria e Qualidade";
     description = "Conteúdos técnicos sobre Física Médica, Proteção Radiológica, controle de qualidade, Engenharia Clínica e normas sanitárias.";
     keywords = "blog Consult, Física Médica, Proteção Radiológica, controle de qualidade, Engenharia Clínica";
@@ -92,11 +118,13 @@
     keywords = `${modalityMatch[1].replaceAll("-"," ")}, controle de qualidade, RDC 611, Consult`;
     schemaType = "Service";
     crumbs.push(["Física Médica","/consult/areas/fisica-medica"],["Controle de Qualidade","/consult/fisica-medica/controle-de-qualidade"],[title.replace(/ \| .*$/,""),path]);
-  } else if (areaMatch && areaMeta[areaMatch[1]]) {
-    [title,description] = areaMeta[areaMatch[1]];
-    keywords = `${areaMatch[1].replaceAll("-"," ")}, Consult, laudo técnico, SP, PR, MS, MG`;
+  } else if ((areaMatch || directAreaMatch) && areaMeta[(areaMatch || directAreaMatch)[1]]) {
+    const areaSlug = (areaMatch || directAreaMatch)[1];
+    [title,description] = areaMeta[areaSlug];
+    keywords = `${areaSlug.replaceAll("-"," ")}, Consult, laudo técnico, SP, PR, MS, MG`;
     schemaType = "Service";
-    crumbs.push([title.replace(/ \| .*$/,""),path]);
+    canonicalPath = `/consult/${areaSlug}`;
+    crumbs.push([title.replace(/ \| .*$/,""),canonicalPath]);
   } else if ((oldServiceMatch || siloServiceMatch) && serviceMeta[(oldServiceMatch || siloServiceMatch)[1]]) {
     const slug = (oldServiceMatch || siloServiceMatch)[1];
     [title,description] = serviceMeta[slug];
