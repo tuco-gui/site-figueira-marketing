@@ -196,7 +196,6 @@ function Header() {
     ["Início", "/consult#inicio"],
     ["Sobre", "/consult#sobre"],
     ["Serviços", "/consult#areas"],
-    ["Áreas de atuação", "/consult#areas"],
     ["Blog", "/consult/blog"],
     ["Cursos", "https://consultcursos.herospark.co"],
     ["Portal", "https://www.consult.med.br/Portal/"],
@@ -299,6 +298,7 @@ function ContactForm() {
 
   return (
     <form
+      id="contato-form"
       onSubmit={submit}
       className="rounded-2xl bg-white p-5 text-[#123C3B] shadow-2xl shadow-black/10 sm:p-7"
     >
@@ -783,11 +783,11 @@ export default function ConsultProposal() {
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                 <a
-                  href="#contato"
+                  href="#contato-form"
                   className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-6 py-3 text-sm font-extrabold"
                 >
-                  <CalendarDays className="h-4 w-4" />
-                  Agendar reunião
+                  <FileText className="h-4 w-4" />
+                  Preencher formulário
                   <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
