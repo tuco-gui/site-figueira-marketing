@@ -91,7 +91,7 @@ const AREAS = {
     resources:'situations',
   },
   'engenharia-clinica': {
-    title:'Engenharia Clínica',
+    title:'Consult Engenharia Clínica',
     eyebrow:'Ensaios, calibração e qualificação',
     image: CONSULT_IMAGES.engineering,
     intro:'A Consult ensaia, calibra e qualifica os equipamentos médicos do seu hospital e entrega o resultado em laudo. Não fazemos conserto e não vendemos peças: o laudo diz o que o equipamento tem, e você resolve com o fornecedor que preferir.',
