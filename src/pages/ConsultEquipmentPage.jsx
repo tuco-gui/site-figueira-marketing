@@ -20,13 +20,13 @@ const ABNT = 'https://www.abntcatalogo.com.br/'
 const EQUIPMENT = {
   'monitor-multiparametrico': { title:'Monitor multiparamétrico', analyzer:'Waller + Yagi', parameters:['ECG','PNI (pressão não invasiva)','Pressão invasiva','Temperatura','Respiração','SpO₂'] },
   eletrocardiografo: { title:'Eletrocardiógrafo', analyzer:'Waller', parameters:['Resposta a ritmos cardíacos simulados'] },
-  'oximetro-pulso': { title:'Oxímetro de pulso', analyzer:'Yagi', parameters:['SpO₂ simulada','Frequência de pulso simulada'], caveat:'O guia informa que o ensaio não avalia a exatidão do sensor no paciente.' },
+  'oximetro-pulso': { title:'Oxímetro de pulso', analyzer:'Yagi', parameters:['SpO₂ simulada','Frequência de pulso simulada'], caveat:'O ensaio avalia sinais simulados e não determina a exatidão do sensor em uso no paciente.' },
   'esfigmomanometro-mapa': { title:'Esfigmomanômetro digital e MAPA', analyzer:'Waller', parameters:['Pressão sistólica simulada','Pressão diastólica simulada'] },
   'desfibrilador-cardioversor-dea': { title:'Desfibrilador, cardioversor e DEA', analyzer:'Lown', parameters:['Energia entregue','Tempo de carga','Atraso no modo sincronizado','Resposta ao ECG'] },
   'marca-passo-transcutaneo': { title:'Marca-passo transcutâneo', analyzer:'Lown', parameters:['Tensão','Corrente','Frequência em diferentes cargas'] },
   'bisturi-eletrico': { title:'Bisturi elétrico (eletrocautério)', analyzer:'Harrison', parameters:['Potência entregue em diferentes cargas','Fuga de alta frequência'] },
   'ventilador-pulmonar': { title:'Ventilador pulmonar', analyzer:'Luft + pulmão de teste', parameters:['Fluxo','Volume','Pressões','PEEP','Concentração de O₂'] },
-  'aparelho-anestesia': { title:'Aparelho de anestesia — parte ventilatória', analyzer:'Luft', parameters:['Fluxo','Volume','Pressões','PEEP','Concentração de O₂'], caveat:'O guia informa que a Consult não mede a concentração do agente anestésico nesta avaliação.' },
+  'aparelho-anestesia': { title:'Aparelho de anestesia — parte ventilatória', analyzer:'Luft', parameters:['Fluxo','Volume','Pressões','PEEP','Concentração de O₂'], caveat:'Esta avaliação não inclui medição da concentração do agente anestésico.' },
   'cpap-bipap': { title:'CPAP e BiPAP', analyzer:'Luft', parameters:['Fluxo','Pressão'] },
   'fluxometro-manometro-o2': { title:'Fluxômetro e manômetro de O₂', analyzer:'Luft', parameters:['Fluxo','Pressão'] },
   autoclave: { title:'Autoclave', analyzer:'Otto', parameters:['Temperatura em até 16 pontos','Pressão','Letalidade F0','Ciclos de operação'], thermal:true },
@@ -49,7 +49,7 @@ export default function ConsultEquipmentPage() {
 
   if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Equipamento não encontrado</h1><Link to="/consult/engenharia-clinica" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Engenharia Clínica</Link></main></ConsultSiteShell>
 
-  const norms=[['RDC 509/2021 — Anvisa','Base geral informada pela Consult para gerenciamento de tecnologias em saúde.',RDC_509],['ABNT NBR IEC 62353','Referência indicada para o ensaio de segurança elétrica recorrente e após reparo.',ABNT],['Manual do fabricante + norma particular aplicável','O desempenho é comparado conforme o equipamento, seu manual e a norma particular correspondente quando aplicável.',ABNT]]
+  const norms=[['RDC 509/2021 — Anvisa','Base geral para gerenciamento de tecnologias em saúde.',RDC_509],['ABNT NBR IEC 62353','Referência indicada para o ensaio de segurança elétrica recorrente e após reparo.',ABNT],['Manual do fabricante + norma particular aplicável','O desempenho é comparado conforme o equipamento, seu manual e a norma particular correspondente quando aplicável.',ABNT]]
   const reportRows=item.parameters.slice(0,4).map(parameter=>[parameter,'Valor medido','Referência','Resultado'])
 
   return <ConsultSiteShell><main>
@@ -57,7 +57,7 @@ export default function ConsultEquipmentPage() {
     <ApprovedProofStrip items={[[ 'EQUIPAMENTO', item.title ],[ 'DESEMPENHO', item.analyzer ],[ 'SEG. ELÉTRICA','Safetest 50 • Rigel' ],[ 'RASTREIO','RBC' ]]}/>
     <ApprovedIndependenceBand/>
 
-    <ApprovedLightSection eyebrow="O que é avaliado" title={`Parâmetros verificados em ${item.title}`} intro="A avaliação é organizada de acordo com o equipamento e com os parâmetros confirmados para o ensaio." center>
+    <ApprovedLightSection eyebrow="O que é avaliado" title={`Parâmetros verificados em ${item.title}`} intro="A avaliação é organizada de acordo com o equipamento e com os parâmetros aplicáveis ao ensaio." center>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{item.parameters.map((parameter,index)=><div key={parameter} className="rounded-xl border border-black/5 bg-white p-5 shadow-sm"><div className="text-[10px] font-black uppercase tracking-[.18em] text-[#08A77F]">0{index+1}</div><div className="mt-3 text-base font-black text-[#123C3B]">{parameter}</div><p className="mt-2 text-sm leading-6 text-black/55">{index===0?`Analisador: ${item.analyzer}`:'Medição específica do equipamento'}</p></div>)}</div>
       {item.caveat&&<div className="mx-auto mt-6 max-w-3xl rounded-xl border-l-4 border-[#08A77F] bg-white p-5 text-sm font-semibold leading-6 text-[#315B58] shadow-sm">{item.caveat}</div>}
     </ApprovedLightSection>
@@ -78,7 +78,7 @@ export default function ConsultEquipmentPage() {
       <ApprovedNormCards items={norms}/>
     </ApprovedLightSection>
 
-    <ApprovedFaq items={[[`Qual analisador é usado para ${item.title}?`,item.analyzer],['O equipamento também recebe segurança elétrica?','Sim. Todos os equipamentos confirmados nesta linha recebem também ensaio de segurança elétrica com Safetest 50, Rigel, além dos ensaios de desempenho correspondentes.'],['A Consult conserta o equipamento se encontrar uma pendência?','Não. A Consult documenta a condição encontrada e a instituição resolve com o fornecedor de sua escolha.'],['O resultado fica no histórico do equipamento?','Sim. O histórico técnico é preservado por equipamento no Arkmeds.']]}/>
+    <ApprovedFaq items={[[`Qual analisador é usado para ${item.title}?`,item.analyzer],['O equipamento também recebe segurança elétrica?','Sim. Os equipamentos eletromédicos recebem ensaio de segurança elétrica conforme aplicabilidade, além dos ensaios de desempenho correspondentes.'],['A Consult conserta o equipamento se encontrar uma pendência?','Não. A Consult documenta a condição encontrada e a instituição resolve com o fornecedor de sua escolha.'],['O resultado fica no histórico do equipamento?','Sim. O histórico técnico é preservado por equipamento no Arkmeds.']]}/>
     <ConsultCtaBand title={`Precisa avaliar ${item.title}?`} text="Informe o equipamento, modelo e situação. A equipe Consult confirma o escopo de ensaio e a programação do atendimento."/>
   </main></ConsultSiteShell>
 }
