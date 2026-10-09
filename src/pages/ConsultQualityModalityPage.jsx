@@ -38,7 +38,7 @@ const MODALITIES = {
   },
   'odontologico-extraoral': {
     title: 'Controle de Qualidade em Radiologia Odontológica Extraoral', short: 'Odontológico extraoral', norm: 'IN 94/2021',
-    intro: 'Ensaios de controle de qualidade para equipamentos odontológicos extraorais, incluindo sistemas panorâmicos e tomografia odontológica dentro do escopo confirmado.',
+    intro: 'Ensaios de controle de qualidade para equipamentos odontológicos extraorais, incluindo sistemas panorâmicos e tomografia odontológica conforme a aplicação.',
     focus: [['Equipamento','Sistema extraoral avaliado'],['Imagem','Qualidade de imagem da modalidade'],['Exposição','Parâmetros aplicáveis ao ensaio'],['Laudo','Resultado técnico assinado pelo físico médico']],
   },
   'odontologico-intraoral': {
@@ -58,12 +58,12 @@ const MODALITIES = {
   },
   'densitometria-ossea': {
     title: 'Controle de Qualidade em Densitometria Óssea', short: 'Densitometria óssea', norm: 'RDC 611/2022',
-    intro: 'Controle de qualidade para densitômetros ósseos dentro da base geral da RDC 611/2022. O guia da Consult não indica uma Instrução Normativa específica para esta modalidade.',
+    intro: 'Controle de qualidade para densitômetros ósseos com base na RDC 611/2022, sem Instrução Normativa específica para esta modalidade.',
     focus: [['Equipamento','Densitômetro identificado no escopo'],['Desempenho','Testes aplicáveis à modalidade'],['Referência','RDC 611/2022 como base informada'],['Laudo','Resultado técnico assinado pelo físico médico']],
   },
   'raio-x-veterinario': {
     title: 'Controle de Qualidade em Raios X Veterinário', short: 'Raios X veterinário', norm: 'RDC 611/2022 + IN 90/2021 como referência técnica',
-    intro: 'Avaliação técnica de equipamentos de raios X veterinário considerando a proteção de trabalhadores e público, com a IN 90/2021 utilizada como referência técnica conforme o guia da Consult.',
+    intro: 'Avaliação técnica de equipamentos de raios X veterinário considerando a proteção de trabalhadores e público, com a IN 90/2021 utilizada como referência técnica.',
     focus: [['Equipamento','Sistema veterinário avaliado'],['Imagem','Qualidade de imagem no controle'],['Proteção','Trabalhadores e público considerados no escopo'],['Laudo','Resultado técnico assinado pelo físico médico']],
   },
 }
@@ -84,7 +84,7 @@ export default function ConsultQualityModalityPage() {
 
   const norms=item.norm.startsWith('IN ')
     ? [['RDC 611/2022 — Anvisa','Base sanitária geral para radiologia diagnóstica e intervencionista.',RDC_611],[`${item.norm} — Anvisa`,`Referência específica indicada para ${item.short}.`,ANVISA_IN]]
-    : [['RDC 611/2022 — Anvisa','Base indicada para esta modalidade.',RDC_611],[item.norm,'Referência técnica indicada no material da Consult.',ANVISA_IN]]
+    : [['RDC 611/2022 — Anvisa','Base indicada para esta modalidade.',RDC_611],[item.norm,'Referência técnica aplicável à modalidade.',ANVISA_IN]]
 
   return <ConsultSiteShell><main>
     <ApprovedInternalHero eyebrow={`Controle de Qualidade • ${item.norm}`} title={item.title} description={item.intro} image={CONSULT_IMAGES.radiology}/>
