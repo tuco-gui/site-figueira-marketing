@@ -16,21 +16,25 @@ import {
 
 const RDC_509 = 'https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2020/rdc0509_27_05_2021.pdf'
 const ABNT = 'https://www.abntcatalogo.com.br/'
+const RDC_15 = 'https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2012/rdc0015_15_03_2012.pdf'
+const RDC_197 = 'https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2017/rdc0197_26_12_2017.pdf'
+const PNI = 'https://www.gov.br/saude/pt-br/composicao/svsa/pni/rede-de-frio/publicacoes/manual-de-rede-de-frio-pni-5ed.pdf/view'
+const RDC_430 = 'https://www.gov.br/anvisa/en/rules-and-regulations/arquivos/rdc-430_2020.pdf'
 
 const SERVICES = {
   'seguranca-eletrica': {
     title: 'Ensaio de segurança elétrica', visual: 'technical',
     intro: 'Medição de resistência de aterramento, resistência de isolamento e correntes de fuga do equipamento e das partes aplicadas ao paciente.',
     storyTitle: 'Segurança elétrica recorrente precisa medir o desgaste real do equipamento.',
-    story: 'A página passa a explicar o ensaio como verificação de campo, e não como uma simples checagem visual. O foco é medir parâmetros elétricos, comparar com os limites aplicáveis e registrar o resultado no histórico técnico do equipamento.',
-    proof: [['ENSAIO','Recorrente e após reparo'],['ENTREGA','Laudo por equipamento'],['BASE','ABNT NBR IEC 62353'],['SISTEMA','Arkmeds + RBC']],
-    when: ['Ensaio recorrente de segurança elétrica','Após reparo ou intervenção técnica','Quando o hospital precisa registrar a condição elétrica do equipamento','Para compor o histórico técnico no Arkmeds'],
+    story: 'O ensaio verifica a condição elétrica do equipamento por medição, compara os resultados com os limites aplicáveis e registra a conclusão no histórico técnico.',
+    proof: [['ENSAIO','Recorrente e após reparo'],['ENTREGA','Laudo por equipamento'],['BASE','ABNT NBR IEC 62353'],['RASTREIO','Rastreabilidade RBC']],
+    when: ['Ensaio recorrente de segurança elétrica','Após reparo ou intervenção técnica','Quando o hospital precisa registrar a condição elétrica do equipamento','Para compor o histórico técnico do equipamento'],
     parameters: [['Aterramento','Resistência medida no equipamento'],['Isolamento','Condição de isolamento elétrico'],['Correntes de fuga','Equipamento e partes aplicadas'],['Resultado','Valor medido, limite e aprovação/reprovação']],
     deliverable: 'Laudo de Segurança Elétrica',
     exampleRows: [['Aterramento','Valor medido','Limite','Aprov./Reprov.'],['Isolamento','Valor medido','Limite','Aprov./Reprov.'],['Corrente de fuga','Valor medido','Limite','Aprov./Reprov.']],
-    note: 'Exemplo visual sem dados reais. O guia oficial confirma que o laudo registra valores medidos, limites da norma e resultado aprovado ou reprovado.',
+    note: 'Exemplo visual sem dados reais. O laudo registra valores medidos, limites aplicáveis e o resultado aprovado ou reprovado.',
     norms: [['ABNT NBR IEC 62353','Referência indicada pela Consult para ensaio recorrente e após reparo. A norma completa é consultada pelo catálogo da ABNT.',ABNT],['RDC 509/2021 — Anvisa','Base geral indicada para gerenciamento de tecnologias em saúde.',RDC_509]],
-    faq: [['Qual a diferença entre IEC 60601 e IEC 62353 neste contexto?','No material de referência da Consult, a família IEC 60601 aparece associada às normas particulares dos equipamentos, enquanto a IEC 62353 é a referência indicada para o ensaio recorrente e após reparo.'],['O ensaio é apenas visual?','Não. O escopo confirmado inclui medição de aterramento, isolamento e correntes de fuga.'],['O hospital recebe apenas um status “aprovado”?','Não. O guia confirma que o laudo apresenta os valores medidos, os limites aplicáveis e o resultado.']],
+    faq: [['Qual a diferença entre IEC 60601 e IEC 62353 neste contexto?','A família IEC 60601 reúne normas particulares aplicáveis aos equipamentos, enquanto a IEC 62353 é utilizada como referência para ensaios recorrentes e após reparo.'],['O ensaio é apenas visual?','Não. O ensaio inclui medição de aterramento, isolamento e correntes de fuga.'],['O hospital recebe apenas um status “aprovado”?','Não. O laudo apresenta os valores medidos, os limites aplicáveis e o resultado.']],
   },
   'desempenho-calibracao': {
     title: 'Ensaio de desempenho e calibração', visual: 'technical',
@@ -42,9 +46,9 @@ const SERVICES = {
     parameters: [['Ponto de ensaio','Grandeza e faixa definidas para o equipamento'],['Valor medido','Resposta observada durante o ensaio'],['Referência','Analisador ou simulador calibrado'],['Conclusão','Desvio e conformidade documentados']],
     deliverable: 'Laudo de Desempenho',
     exampleRows: [['Ponto de ensaio','Valor medido','Referência','Conformidade'],['Ponto de ensaio','Valor medido','Referência','Conformidade'],['Ponto de ensaio','Valor medido','Referência','Conformidade']],
-    note: 'Exemplo visual, sem valores reais. O guia confirma que o laudo registra pontos ensaiados, desvios e conformidade.',
+    note: 'Exemplo visual, sem valores reais. O laudo registra pontos ensaiados, desvios e conformidade.',
     norms: [['Manual do fabricante','Critérios e procedimentos específicos dependem do equipamento.','#manual'],['Família ABNT NBR IEC 60601','Norma particular aplicável conforme o tipo de equipamento.',ABNT],['RDC 509/2021 — Anvisa','Base geral indicada para gerenciamento de tecnologias em saúde.',RDC_509]],
-    faq: [['Calibração significa ajustar o equipamento?','Não necessariamente. O conteúdo da Consult descreve o serviço como comparação do que o equipamento mede ou entrega com um analisador calibrado, ponto a ponto, registrando desvios e conformidade.'],['A mesma norma vale para todos os equipamentos?','Não. O guia informa uso do manual do fabricante e da norma particular aplicável da família IEC 60601, conforme o equipamento.'],['Os analisadores têm rastreabilidade?','Sim. O guia oficial confirma analisadores calibrados com rastreabilidade RBC.']],
+    faq: [['Calibração significa ajustar o equipamento?','Não necessariamente. O conteúdo da Consult descreve o serviço como comparação do que o equipamento mede ou entrega com um analisador calibrado, ponto a ponto, registrando desvios e conformidade.'],['A mesma norma vale para todos os equipamentos?','Não. A avaliação considera o manual do fabricante e a norma particular aplicável da família IEC 60601, conforme o equipamento.'],['Os analisadores têm rastreabilidade?','Sim. Os padrões utilizados possuem calibração com rastreabilidade RBC.']],
   },
   'manutencao-preventiva': {
     title: 'Manutenção preventiva', visual: 'shield',
@@ -58,7 +62,7 @@ const SERVICES = {
     exampleRows: [['Limpeza técnica','Executado','Plano fabricante','Registrado'],['Teste funcional','Executado','Plano fabricante','Registrado'],['Pendência encontrada','Identificada','Especificação','Pendente']],
     note: 'Exemplo visual. Quando há peça gasta ou vencida, o laudo registra a pendência e a especificação; a Consult não vende nem troca a peça.',
     norms: [['Plano de manutenção do fabricante','A referência específica depende do equipamento.','#manual'],['RDC 509/2021 — Anvisa','Base geral indicada para gerenciamento de tecnologias em saúde.',RDC_509]],
-    faq: [['A Consult faz manutenção corretiva?','Não. O guia oficial determina que o site não posicione a Consult como empresa de manutenção corretiva ou assistência técnica.'],['A Consult troca a peça identificada como pendência?','Não. A peça é registrada e especificada no laudo, mas a Consult não vende nem troca peças.'],['O que fica registrado?','O guia confirma laudo com o que foi realizado e a lista de pendências.']],
+    faq: [['A Consult faz manutenção corretiva?','Não. A Consult realiza manutenção preventiva dentro do escopo contratado, mas não executa manutenção corretiva.'],['A Consult troca a peça identificada como pendência?','Não. A peça é registrada e especificada no laudo, mas a Consult não vende nem troca peças.'],['O que fica registrado?','O laudo registra o que foi realizado e a lista de pendências encontradas.']],
   },
   reverificacao: {
     title: 'Reverificação', visual: 'technical',
@@ -70,9 +74,9 @@ const SERVICES = {
     parameters: [['Pendência anterior','Item que originou a nova avaliação'],['Ensaio original','Referência técnica mantida'],['Novo valor','Resultado obtido após correção'],['Atualização','Novo laudo e histórico técnico']],
     deliverable: 'Laudo Atualizado de Reverificação',
     exampleRows: [['Pendência anterior','Reensaiada','Ensaio original','Atualizado'],['Parâmetro crítico','Novo valor','Limite','Aprov./Reprov.'],['Resultado geral','Reavaliado','Critério original','Atualizado']],
-    note: 'Exemplo visual. A Consult refaz o ensaio correspondente e emite laudo atualizado. O guia informa que a reverificação é cobrada à parte.',
+    note: 'Exemplo visual. A Consult refaz o ensaio correspondente e emite laudo atualizado. A reverificação é um serviço separado do ensaio inicial.',
     norms: [['Referência do ensaio original','A reverificação usa a mesma base técnica do ensaio que gerou a pendência.','#original'],['RDC 509/2021 — Anvisa','Base geral indicada para gerenciamento de tecnologias em saúde.',RDC_509]],
-    faq: [['Quem precisa corrigir a pendência antes da reverificação?','A própria instituição resolve com equipe interna ou fornecedor de sua escolha. A Consult não condiciona o laudo a uma empresa de conserto.'],['A reverificação está incluída automaticamente no primeiro ensaio?','Não. O guia informa que ela é cobrada à parte.']],
+    faq: [['Quem precisa corrigir a pendência antes da reverificação?','A própria instituição resolve com equipe interna ou fornecedor de sua escolha. A Consult não condiciona o laudo a uma empresa de conserto.'],['A reverificação está incluída automaticamente no primeiro ensaio?','Não. A reverificação é contratada separadamente do primeiro ensaio.']],
   },
   'qualificacao-termica': {
     title: 'Qualificação térmica', visual: 'thermal',
@@ -85,8 +89,8 @@ const SERVICES = {
     deliverable: 'Relatório de Qualificação Térmica',
     exampleRows: [['Sensor / ponto','Curva registrada','Faixa aplicável','Conforme'],['Sensor / ponto','Curva registrada','Faixa aplicável','Conforme'],['Ciclo avaliado','Registrado','Critério aplicável','Resultado']],
     note: 'Exemplo visual. O relatório real contém registros de temperatura, gráficos gerados no ciclo e o resultado de conformidade.',
-    norms: [['RDC 15/2012','Referência indicada no guia para autoclaves e CME.',RDC_15],['RDC 197/2017','Referência indicada para serviços de vacinação.',RDC_197],['Manual da Rede de Frio do PNI','Referência indicada para câmaras de vacina.',PNI],['RDC 430/2020','Referência adicional indicada conforme o equipamento e a aplicação.',RDC_430]],
-    faq: [['Qualificação térmica é apenas medir a temperatura uma vez?','Não. O guia descreve mapeamento com sensores calibrados durante ciclos de operação e entrega com gráficos.'],['Quais equipamentos estão confirmados?','O guia confirma autoclave, termodesinfectora/estufa, estufa e banho-maria de laboratório, geladeira e câmara de vacina dentro das capacidades informadas.'],['O relatório inclui gráficos?','Sim. O guia oficial confirma relatório de qualificação com gráficos de temperatura e conformidade.']],
+    norms: [['RDC 15/2012','Referência aplicável a autoclaves e ao processamento de produtos para saúde.',RDC_15],['RDC 197/2017','Referência indicada para serviços de vacinação.',RDC_197],['Manual da Rede de Frio do PNI','Referência para conservação e rede de frio do PNI.',PNI],['RDC 430/2020','Referência adicional conforme o equipamento e a aplicação.',RDC_430]],
+    faq: [['Qualificação térmica é apenas medir a temperatura uma vez?','Não. A qualificação acompanha ciclos de operação com sensores calibrados e gera registros e gráficos.'],['Quais equipamentos estão confirmados?','O serviço contempla os equipamentos térmicos definidos no escopo contratado, conforme sua aplicação e faixa de operação.'],['O relatório inclui gráficos?','Sim. O relatório de qualificação apresenta registros, gráficos de temperatura e a conclusão de conformidade.']],
   },
 }
 
@@ -116,7 +120,7 @@ export default function ConsultEngineeringServicePage() {
         <div className="rounded-2xl bg-[#075653] p-7 text-white shadow-xl shadow-[#075653]/10">
           <div className="text-[10px] font-bold uppercase tracking-[.24em] text-[#8AE600]">Entregável técnico</div>
           <h3 className="mt-4 text-2xl font-black leading-tight">{service.deliverable}</h3>
-          <p className="mt-4 text-sm leading-7 text-white/70">O resultado é documentado por equipamento, assinado pelo responsável técnico e emitido no Arkmeds, preservando o histórico técnico da instituição.</p>
+          <p className="mt-4 text-sm leading-7 text-white/70">O resultado é documentado por equipamento, assinado pelo responsável técnico e incorporado ao histórico técnico da instituição.</p>
         </div>
         <div>
           <div className="mb-4 text-xs font-black uppercase tracking-[.18em] text-[#08A77F]">O que é avaliado</div>
@@ -137,7 +141,7 @@ export default function ConsultEngineeringServicePage() {
       <div className="grid gap-10 lg:grid-cols-[.65fr_1.35fr] lg:items-center">
         <div>
           <ApprovedList items={parameterItems}/>
-          <div className="mt-6 rounded-xl border border-[#CFE4DE] bg-[#F4FBFA] p-5 text-sm leading-7 text-[#4D706D]">Na Engenharia Clínica, os documentos são assinados pelo responsável técnico e emitidos por equipamento no Arkmeds, com histórico técnico e analisadores com calibração rastreável à RBC.</div>
+          <div className="mt-6 rounded-xl border border-[#CFE4DE] bg-[#F4FBFA] p-5 text-sm leading-7 text-[#4D706D]">Na Engenharia Clínica, os documentos são assinados pelo responsável técnico, emitidos por equipamento e vinculados ao histórico técnico, com padrões de medição de rastreabilidade RBC.</div>
         </div>
         <ConsultReportPreview title={service.deliverable} exampleRows={service.exampleRows} note={service.note}/>
       </div>
