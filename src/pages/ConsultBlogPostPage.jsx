@@ -65,11 +65,13 @@ export default function ConsultBlogPostPage() {
                 {post.summary.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               </div>
 
-              <div className="mt-9 rounded-2xl border border-[#CFE4DE] bg-[#EAF5F2] p-6">
-                <p className="text-xs font-black uppercase tracking-[.2em] text-[#078B6B]">Migração do acervo</p>
-                <p className="mt-3 text-sm leading-7 text-[#4D706D]">Este artigo faz parte do acervo histórico da Consult e está sendo migrado para a nova estrutura editorial. O conteúdo integral permanece disponível na publicação original enquanto a equipe conclui a revisão e a migração definitiva.</p>
-                <a href={post.sourceUrl} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-[#075653]">Ver publicação original <ExternalLink size={14} /></a>
-              </div>
+              {post.migrationStatus === 'historical_summary' && post.sourceUrl && (
+                <div className="mt-9 rounded-2xl border border-[#CFE4DE] bg-[#EAF5F2] p-6">
+                  <p className="text-xs font-black uppercase tracking-[.2em] text-[#078B6B]">Acervo histórico</p>
+                  <p className="mt-3 text-sm leading-7 text-[#4D706D]">Este conteúdo está em processo de migração integral para a nova estrutura editorial da Consult. Até a conclusão, a publicação original permanece disponível para consulta.</p>
+                  <a href={post.sourceUrl} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-[#075653]">Ver publicação original <ExternalLink size={14} /></a>
+                </div>
+              )}
             </div>
 
             <aside>
