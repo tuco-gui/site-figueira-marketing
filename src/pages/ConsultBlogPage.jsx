@@ -25,6 +25,7 @@ export default function ConsultBlogPage() {
   }, [])
 
   const categories = useMemo(() => ['Todos', ...getConsultBlogCategories(posts)], [posts])
+  const hasHistoricalSummaries = useMemo(() => posts.some((post) => post.migrationStatus === 'historical_summary'), [posts])
   const filtered = useMemo(() => posts.filter((post) => {
     const term = search.trim().toLocaleLowerCase('pt-BR')
     const matchesSearch = !term || `${post.title} ${post.excerpt} ${post.category}`.toLocaleLowerCase('pt-BR').includes(term)
@@ -74,7 +75,7 @@ export default function ConsultBlogPage() {
               <ConsultEyebrow>Artigos</ConsultEyebrow>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-[#075653] md:text-4xl">Acervo técnico da Consult</h2>
             </div>
-            <p className="max-w-xl text-sm leading-6 text-[#607D7A]">O acervo histórico está sendo migrado para a nova estrutura editorial, sem dependência do sistema anterior.</p>
+            <p className="max-w-xl text-sm leading-6 text-[#607D7A]">{hasHistoricalSummaries ? 'Parte do acervo histórico está sendo migrada integralmente para a nova estrutura editorial.' : 'Artigos técnicos organizados por área, serviço e tema para facilitar a consulta.'}</p>
           </div>
 
           {filtered.length ? (
