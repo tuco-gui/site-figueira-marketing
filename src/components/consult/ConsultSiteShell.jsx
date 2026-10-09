@@ -20,7 +20,6 @@ export function ConsultHeader() {
     ['Início','/consult'],
     ['Sobre','/consult#sobre'],
     ['Serviços','/consult#areas'],
-    ['Áreas de atuação','/consult#areas'],
     ['Blog','/consult/blog'],
     ['Cursos','https://consultcursos.herospark.co'],
     ['Portal','https://www.consult.med.br/Portal/'],
