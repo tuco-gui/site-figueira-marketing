@@ -33,7 +33,7 @@ const SERVICES = {
     deliverable: 'Laudo de Segurança Elétrica',
     exampleRows: [['Aterramento','Valor medido','Limite','Aprov./Reprov.'],['Isolamento','Valor medido','Limite','Aprov./Reprov.'],['Corrente de fuga','Valor medido','Limite','Aprov./Reprov.']],
     note: 'Exemplo visual sem dados reais. O laudo registra valores medidos, limites aplicáveis e o resultado aprovado ou reprovado.',
-    norms: [['ABNT NBR IEC 62353','Referência indicada pela Consult para ensaio recorrente e após reparo. A norma completa é consultada pelo catálogo da ABNT.',ABNT],['RDC 509/2021 — Anvisa','Base geral indicada para gerenciamento de tecnologias em saúde.',RDC_509]],
+    norms: [['ABNT NBR IEC 62353','Referência para ensaio recorrente e após reparo. A norma completa pode ser consultada no catálogo da ABNT.',ABNT],['RDC 509/2021 — Anvisa','Base geral indicada para gerenciamento de tecnologias em saúde.',RDC_509]],
     faq: [['Qual a diferença entre IEC 60601 e IEC 62353 neste contexto?','A família IEC 60601 reúne normas particulares aplicáveis aos equipamentos, enquanto a IEC 62353 é utilizada como referência para ensaios recorrentes e após reparo.'],['O ensaio é apenas visual?','Não. O ensaio inclui medição de aterramento, isolamento e correntes de fuga.'],['O hospital recebe apenas um status “aprovado”?','Não. O laudo apresenta os valores medidos, os limites aplicáveis e o resultado.']],
   },
   'desempenho-calibracao': {
@@ -48,7 +48,7 @@ const SERVICES = {
     exampleRows: [['Ponto de ensaio','Valor medido','Referência','Conformidade'],['Ponto de ensaio','Valor medido','Referência','Conformidade'],['Ponto de ensaio','Valor medido','Referência','Conformidade']],
     note: 'Exemplo visual, sem valores reais. O laudo registra pontos ensaiados, desvios e conformidade.',
     norms: [['Manual do fabricante','Critérios e procedimentos específicos dependem do equipamento.','#manual'],['Família ABNT NBR IEC 60601','Norma particular aplicável conforme o tipo de equipamento.',ABNT],['RDC 509/2021 — Anvisa','Base geral indicada para gerenciamento de tecnologias em saúde.',RDC_509]],
-    faq: [['Calibração significa ajustar o equipamento?','Não necessariamente. O conteúdo da Consult descreve o serviço como comparação do que o equipamento mede ou entrega com um analisador calibrado, ponto a ponto, registrando desvios e conformidade.'],['A mesma norma vale para todos os equipamentos?','Não. A avaliação considera o manual do fabricante e a norma particular aplicável da família IEC 60601, conforme o equipamento.'],['Os analisadores têm rastreabilidade?','Sim. Os padrões utilizados possuem calibração com rastreabilidade RBC.']],
+    faq: [['Calibração significa ajustar o equipamento?','Não necessariamente. O serviço compara, ponto a ponto, o que o equipamento mede ou entrega com uma referência calibrada, registrando desvios e conformidade.'],['A mesma norma vale para todos os equipamentos?','Não. A avaliação considera o manual do fabricante e a norma particular aplicável da família IEC 60601, conforme o equipamento.'],['Os analisadores têm rastreabilidade?','Sim. Os padrões utilizados possuem calibração com rastreabilidade RBC.']],
   },
   'manutencao-preventiva': {
     title: 'Manutenção preventiva', visual: 'shield',
