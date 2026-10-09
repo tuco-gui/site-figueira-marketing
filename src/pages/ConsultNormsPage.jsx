@@ -9,7 +9,7 @@ const GROUPS = [
     intro: 'Base regulatória usada para organizar os serviços de radiologia diagnóstica e intervencionista apresentados no site.',
     items: [
       ['RDC 611/2022 — Anvisa','Base sanitária geral para serviços de radiologia diagnóstica e intervencionista.','https://anvisalegis.datalegis.net/action/TematicaAction.php?acao=abrirVinculos&cod_menu=8457&cod_modulo=135&cotematica=18518373'],
-      ['IN 90/2021 — Radiografia convencional','Referência indicada no guia da Consult para radiografia médica convencional.','https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2021/anvisa-avanca-na-consolidacao-de-suas-normas'],
+      ['IN 90/2021 — Radiografia convencional','Referência para radiografia médica convencional.','https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2021/anvisa-avanca-na-consolidacao-de-suas-normas'],
       ['IN 91/2021 — Fluoroscopia e intervenção','Referência indicada para fluoroscopia, arco cirúrgico e angiografia.','https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2021/anvisa-avanca-na-consolidacao-de-suas-normas'],
       ['IN 92/2021 — Mamografia','Referência indicada para mamografia.','https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2021/anvisa-avanca-na-consolidacao-de-suas-normas'],
       ['IN 93/2021 — Tomografia','Referência indicada para tomografia computadorizada.','https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2021/anvisa-avanca-na-consolidacao-de-suas-normas'],
@@ -20,10 +20,10 @@ const GROUPS = [
   },
   {
     title: 'Engenharia Clínica',
-    intro: 'Referências gerais confirmadas no guia oficial para gerenciamento de tecnologias, segurança elétrica e desempenho de equipamentos.',
+    intro: 'Referências gerais para gerenciamento de tecnologias, segurança elétrica e desempenho de equipamentos.',
     items: [
       ['RDC 509/2021 — Anvisa','Base geral indicada para gerenciamento de tecnologias em saúde.','https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2021/rdc0509_27_05_2021.pdf'],
-      ['ABNT NBR IEC 62353','Referência indicada pela Consult para ensaio recorrente de segurança elétrica e após reparo.','https://www.abntcatalogo.com.br/'],
+      ['ABNT NBR IEC 62353','Referência para ensaio recorrente de segurança elétrica e após reparo.','https://www.abntcatalogo.com.br/'],
       ['Família ABNT NBR IEC 60601','Normas particulares aplicáveis conforme o tipo de equipamento e o ensaio de desempenho.','https://www.abntcatalogo.com.br/'],
       ['Manual do fabricante','Critérios e procedimentos específicos também dependem da documentação oficial de cada equipamento.','#fabricante'],
     ],
@@ -33,7 +33,7 @@ const GROUPS = [
     intro: 'Referências informadas pela Consult para autoclaves, câmaras de vacina e demais aplicações térmicas confirmadas.',
     items: [
       ['RDC 15/2012','Referência indicada para autoclaves e processamento de produtos para saúde.','https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2012/rdc0015_15_03_2012.pdf'],
-      ['RDC 197/2017','Referência indicada no guia para serviços de vacinação.','https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2017/rdc0197_26_12_2017.pdf'],
+      ['RDC 197/2017','Referência para serviços de vacinação.','https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2017/rdc0197_26_12_2017.pdf'],
       ['Manual da Rede de Frio do PNI','Referência indicada para câmaras de vacina e conservação.','https://www.gov.br/saude/pt-br/composicao/svsa/pni/rede-de-frio/publicacoes/manual-de-rede-de-frio-pni-5ed.pdf/view'],
       ['RDC 430/2020','Referência adicional indicada conforme o equipamento e a aplicação.','https://www.gov.br/anvisa/en/rules-and-regulations/arquivos/rdc-430_2020.pdf'],
     ],
