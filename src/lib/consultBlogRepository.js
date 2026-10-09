@@ -71,8 +71,18 @@ function sortByDate(posts) {
   return [...posts].sort((a, b) => new Date(b.publishedAt || 0) - new Date(a.publishedAt || 0))
 }
 
+function normalizeEditorialText(value = '') {
+  return String(value)
+    .replace(/\\r\\n/g, '\n')
+    .replace(/\\n/g, '\n')
+    .replace(/\r\n/g, '\n')
+}
+
 function markdownToParagraphs(markdown = '') {
-  return String(markdown).split(/\n\s*\n/g).map((part) => part.trim()).filter(Boolean)
+  return normalizeEditorialText(markdown)
+    .split(/\n\s*\n/g)
+    .map((part) => part.trim())
+    .filter(Boolean)
 }
 
 function mapRow(row) {
