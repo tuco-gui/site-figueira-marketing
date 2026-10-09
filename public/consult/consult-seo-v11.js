@@ -3,7 +3,7 @@
   if (!path.startsWith("/consult")) return;
 
   const areaMeta = {
-    "fisica-medica": ["Física Médica | Consult Radiometria e Qualidade","Controle de qualidade, medições e laudos para equipamentos de diagnóstico por imagem, com atendimento presencial em SP, PR, MS e MG."],
+    "fisica-medica": ["Física Médica | Consult Radiometria e Qualidade","Controle de qualidade, medições e laudos para equipamentos de diagnóstico por imagem, com atendimento em todo o Brasil e equipes em campo em SP, PR, MS e MG."],
     "protecao-radiologica": ["Proteção Radiológica | Consult Radiometria e Qualidade","Programa de Proteção Radiológica, levantamento radiométrico, blindagem, treinamentos e apoio ao licenciamento sanitário."],
     "engenharia-clinica": ["Consult Engenharia Clínica | Ensaios, calibração e laudos","Ensaios de segurança elétrica e desempenho, manutenção preventiva, reverificação e qualificação térmica com laudo por equipamento."],
   };
@@ -53,8 +53,8 @@
     "protecao-radiologica-equipamentos-arco-c":["Proteção radiológica em equipamentos Arco C | Consult","Conteúdo técnico sobre exposição ocupacional, proteção e uso seguro de equipamentos Arco C."],
   };
 
-  let title = "Consult Radiometria e Qualidade | Física Médica e Engenharia Clínica";
-  let description = "Medição, ensaio, calibração, qualificação e laudos técnicos em Física Médica, Proteção Radiológica e Engenharia Clínica.";
+  let title = "Consult Radiometria e Qualidade | Física Médica e Consult Engenharia Clínica";
+  let description = "Medição, ensaio, calibração, qualificação e laudos técnicos em Física Médica, Proteção Radiológica e Consult Engenharia Clínica, com atendimento em todo o Brasil.";
   let keywords = "Consult Radiometria e Qualidade, Física Médica, Proteção Radiológica, Engenharia Clínica, laudo técnico";
   let schemaType = "WebPage";
   let canonicalPath = path;
@@ -201,7 +201,7 @@
   };
   if (schemaType === "Service") {
     pageEntity.provider = {"@type":"Organization","@id":`${location.origin}/consult#organization`,name:"Consult Radiometria e Qualidade"};
-    pageEntity.areaServed = ["São Paulo","Paraná","Mato Grosso do Sul","Minas Gerais"];
+    pageEntity.areaServed = ["Brasil","São Paulo","Paraná","Mato Grosso do Sul","Minas Gerais"];
   }
   if (schemaType === "Article") {
     pageEntity.headline = title.replace(/ \| .*$/," ").trim();
