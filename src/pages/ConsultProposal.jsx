@@ -427,7 +427,7 @@ function Footer() {
               </div>
               <a className="flex gap-2 hover:text-white" href="tel:+5514981610712">
                 <Phone className="h-4 w-4 shrink-0 text-[#8AE600]" />
-                {PHONE}
+                <span>{PHONE}<span className="block text-xs text-white/50">Atendimento: 8h às 17h</span></span>
               </a>
               <a className="flex gap-2 hover:text-white" href={`mailto:${EMAIL}`}>
                 <Mail className="h-4 w-4 shrink-0 text-[#8AE600]" />
@@ -455,7 +455,7 @@ function Footer() {
 }
 
 export default function ConsultProposal() {
-  usePageMeta("Consult Radiometria e Qualidade | Novo site");
+  usePageMeta("Consult Radiometria e Qualidade | Física Médica, Proteção Radiológica e Engenharia Clínica");
 
   return (
     <div className="min-h-screen bg-white font-sans text-[#123C3B]">
@@ -807,7 +807,7 @@ export default function ConsultProposal() {
                   </span>
                   <span>
                     <strong className="block text-white">Ligue para nós</strong>
-                    {PHONE}
+                    {PHONE}<span className="block text-xs text-white/50">Atendimento: 8h às 17h</span>
                   </span>
                 </a>
                 <a href={`mailto:${EMAIL}`} className="flex items-center gap-3 hover:text-white">
