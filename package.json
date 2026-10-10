@@ -5,8 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build && node scripts/prerender-seo.mjs",
-    "preview": "vite preview"
+    "build": "vite build && node scripts/prerender-seo.mjs && node scripts/qa-build.mjs",
+    "preview": "vite preview",
+    "qa": "node scripts/qa-build.mjs"
   },
   "dependencies": {
     "lucide-react": "^0.475.0",
