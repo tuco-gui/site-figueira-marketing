@@ -15,7 +15,6 @@ import {
   Monitor,
   PawPrint,
   Phone,
-  Search,
   Settings,
   ShieldCheck,
   Smile,
