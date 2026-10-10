@@ -84,7 +84,7 @@ export default function ConsultBlogPage() {
                 <article key={post.id} className="group overflow-hidden rounded-[24px] border border-[#DCEAE7] bg-white shadow-[0_16px_45px_rgba(7,86,83,.08)] transition hover:-translate-y-1 hover:shadow-[0_22px_55px_rgba(7,86,83,.14)]">
                   <Link to={`/consult/blog/${post.slug}`} className="block">
                     <div className="relative h-56 overflow-hidden bg-[#075653]">
-                      {post.coverImage ? <img src={post.coverImage} alt="" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]" /> : null}
+                      {post.coverImage ? <img src={post.coverImage} alt={post.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]" /> : null}
                       <div className="absolute inset-0 bg-gradient-to-t from-[#043F3D]/82 via-[#043F3D]/10 to-transparent" />
                       <span className="absolute left-5 top-5 rounded-full bg-[#8AE600] px-3 py-1.5 text-[10px] font-black uppercase tracking-[.13em] text-[#075653]">{post.category}</span>
                     </div>
