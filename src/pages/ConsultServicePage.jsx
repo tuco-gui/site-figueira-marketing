@@ -13,7 +13,7 @@ import {
 } from '@/components/consult/ConsultApprovedInternal'
 
 const RDC_611 = 'https://anvisalegis.datalegis.net/action/TematicaAction.php?acao=abrirVinculos&cod_menu=8457&cod_modulo=135&cotematica=18518373'
-const ANVISA_IN = 'https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2021/anvisa-avanca-na-consolidacao-de-suas-normas'
+const NORMS_LIBRARY = '/normas'
 
 const PROTECTION_SLUGS = new Set(['programa-protecao-radiologica','levantamento-radiometrico','projeto-blindagem','treinamentos','licenciamento-sanitario'])
 
@@ -32,7 +32,7 @@ const SERVICES = {
     metric: 'Dose, qualidade de imagem e funcionamento verificados em ensaio',
     deliverable: 'Laudo de Controle de Qualidade',
     deliverableSections: ['Equipamento e modalidade avaliados','Testes realizados','Resultados medidos','Referência aplicável à modalidade','Resultado técnico e assinatura do físico médico'],
-        norms: [['RDC 611/2022 — Anvisa','Base sanitária para serviços de radiologia diagnóstica e intervencionista.',RDC_611],['IN 90 a 97/2021 — Anvisa','Requisitos específicos por modalidade e equipamento.',ANVISA_IN]],
+        norms: [['RDC 611/2022 — Anvisa','Base sanitária para serviços de radiologia diagnóstica e intervencionista.',RDC_611],['IN 90 a 97/2021 — Anvisa','Requisitos específicos por modalidade e equipamento.',NORMS_LIBRARY]],
     equipmentNorms: [['Raios X médico convencional','IN 90/2021'],['Fluoroscopia, arco cirúrgico e angiógrafo','IN 91/2021'],['Mamógrafo','IN 92/2021'],['Tomógrafo','IN 93/2021'],['Raios X odontológico extraoral','IN 94/2021'],['Raios X odontológico intraoral','IN 95/2021'],['Ultrassom','IN 96/2021'],['Ressonância magnética','IN 97/2021'],['Densitômetro ósseo','RDC 611/2022'],['Raios X veterinário','RDC 611/2022 + IN 90/2021 como referência técnica']],
     faq: [['Controle de qualidade e calibração são a mesma coisa?','Não. O Controle de Qualidade integra o escopo de Física Médica e radiodiagnóstico. A Engenharia Clínica possui uma frente própria de ensaio de desempenho para equipamentos biomédicos.'],['A norma é a mesma para todos os equipamentos?','Não. A RDC 611/2022 é a base geral e as Instruções Normativas 90 a 97/2021 variam conforme a modalidade.']],
   },
@@ -64,7 +64,7 @@ const SERVICES = {
     metric: 'Radiação no entorno e fuga do cabeçote medidas em campo',
     deliverable: 'Resultado do Levantamento Radiométrico',
     deliverableSections: ['Sala e equipamento avaliados','Pontos de medição no entorno','Medição da radiação de fuga','Resultados obtidos','Conclusão técnica da avaliação'],
-        norms: [['RDC 611/2022 — Anvisa','Base sanitária e de proteção radiológica.',RDC_611],['IN aplicável à modalidade','A referência específica depende do equipamento avaliado.',ANVISA_IN]],
+        norms: [['RDC 611/2022 — Anvisa','Base sanitária e de proteção radiológica.',RDC_611],['IN aplicável à modalidade','A referência específica depende do equipamento avaliado.',NORMS_LIBRARY]],
     faq: [['Quando esse serviço costuma ser necessário?','O serviço costuma ser necessário em salas novas ou reformadas, após troca de equipamento e em avaliações periódicas.'],['O levantamento substitui projeto de blindagem?','Não. O projeto de blindagem calcula a solução antes da obra ou mudança; o levantamento radiométrico mede a condição do ambiente.']],
   },
   'projeto-blindagem': {
@@ -80,7 +80,7 @@ const SERVICES = {
     deliverable: 'Memorial de Cálculo de Blindagem',
     deliverableSections: ['Ambiente e equipamento previstos','Premissas utilizadas no cálculo','Cálculo da blindagem','Barreiras consideradas','Memorial técnico do projeto'],
     note: 'O próprio serviço é apresentado pela Consult como Memorial de Cálculo de Blindagem. O documento final é dimensionado conforme o ambiente e o equipamento do projeto.',
-    norms: [['RDC 611/2022 — Anvisa','Base sanitária para os serviços abrangidos.',RDC_611],['IN aplicável à modalidade','A referência específica depende da tecnologia prevista.',ANVISA_IN]],
+    norms: [['RDC 611/2022 — Anvisa','Base sanitária para os serviços abrangidos.',RDC_611],['IN aplicável à modalidade','A referência específica depende da tecnologia prevista.',NORMS_LIBRARY]],
     faq: [['Projeto de blindagem e levantamento radiométrico são iguais?','Não. O projeto calcula a solução previamente; o levantamento mede a condição radiométrica do ambiente.'],['Serve apenas para obra nova?','Não. O serviço também se aplica a reforma, expansão e troca de equipamento.']],
   },
   treinamentos: {
@@ -96,7 +96,7 @@ const SERVICES = {
     deliverable: 'Capacitação técnica',
     deliverableSections: ['Tema do treinamento','Público participante','Conteúdo técnico definido para a equipe','Orientações aplicáveis à rotina','Escopo de realização'],
     note: 'A capacitação pode ser realizada periodicamente conforme a necessidade da instituição e os requisitos aplicáveis.',
-    norms: [['RDC 611/2022 — Anvisa','Referência sanitária central para os serviços de radiologia.',RDC_611],['Requisitos complementares','Variam conforme o tema e a modalidade do treinamento.',ANVISA_IN]],
+    norms: [['RDC 611/2022 — Anvisa','Referência sanitária central para os serviços de radiologia.',RDC_611],['Requisitos complementares','Variam conforme o tema e a modalidade do treinamento.',NORMS_LIBRARY]],
     faq: [['O treinamento é apenas sobre raios X?','Não. A Consult também realiza treinamento em segurança em ressonância magnética.'],['Há certificado obrigatório?','O formato do entregável depende do treinamento contratado e da necessidade da instituição.']],
   },
   'licenciamento-sanitario': {
@@ -112,7 +112,7 @@ const SERVICES = {
     deliverable: 'Apoio documental ao licenciamento',
     deliverableSections: ['Levantamento do escopo do serviço','Organização da documentação técnica aplicável','Identificação de pendências documentais','Referências técnicas relacionadas','Acompanhamento dentro do escopo contratado'],
     note: 'O serviço oferece apoio técnico e documental. A aprovação ou emissão da licença depende da autoridade sanitária competente.',
-    norms: [['RDC 611/2022 — Anvisa','Referência central para serviços de radiologia.',RDC_611],['Exigências específicas','Podem variar conforme modalidade e autoridade sanitária.',ANVISA_IN]],
+    norms: [['RDC 611/2022 — Anvisa','Referência central para serviços de radiologia.',RDC_611],['Exigências específicas','Podem variar conforme modalidade e autoridade sanitária.',NORMS_LIBRARY]],
     faq: [['A Consult garante a emissão da licença?','Não. A Consult presta apoio técnico e documental; a decisão compete à autoridade sanitária.'],['O serviço vale para renovação?','Sim. O apoio pode abranger obtenção e renovação, conforme o caso.']],
   },
 }
