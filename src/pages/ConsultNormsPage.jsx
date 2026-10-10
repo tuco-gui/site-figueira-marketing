@@ -30,7 +30,7 @@ const GROUPS = [
   },
   {
     title: 'Qualificação térmica e rede de frio',
-    intro: 'Referências informadas pela Consult para autoclaves, câmaras de vacina e demais aplicações térmicas confirmadas.',
+    intro: 'Referências para autoclaves, termodesinfectoras, câmaras de vacina e demais aplicações térmicas e laboratoriais.',
     items: [
       ['ABNT NBR ISO 17665','Referência aplicável à esterilização por calor úmido em autoclaves. Consulte a edição vigente no Catálogo ABNT.','https://www.abntcatalogo.com.br/pav.aspx'],
       ['ABNT NBR ISO 15883','Referência aplicável a lavadoras termodesinfectoras. Consulte a edição vigente no Catálogo ABNT.','https://www.abntcatalogo.com.br/pav.aspx'],
