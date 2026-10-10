@@ -281,6 +281,7 @@ function SectionEyebrow({ children, dark = false, center = false }) {
 function ContactForm() {
   const [status, setStatus] = useState("idle");
   const [error, setError] = useState("");
+  const [emailSent, setEmailSent] = useState(false);
 
   const submit = async (event) => {
     event.preventDefault();
@@ -328,6 +329,7 @@ function ContactForm() {
       } catch {}
 
       form.reset();
+      setEmailSent(Boolean(result?.email_sent));
       setStatus("success");
       window.dataLayer?.push?.({
         event: "lead_form_success",
@@ -349,7 +351,9 @@ function ContactForm() {
         </div>
         <h3 className="mt-5 text-xl font-black">Mensagem recebida</h3>
         <p className="mt-3 text-sm leading-7 text-black/60">
-          Seus dados foram registrados e encaminhados para a equipe Consult. Retornaremos pelos canais informados.
+          {emailSent
+            ? "Seus dados foram registrados e a equipe Consult foi notificada. Retornaremos pelos canais informados."
+            : "Seus dados foram registrados, mas não foi possível confirmar o envio da notificação por e-mail. Se precisar de atendimento imediato, ligue para (14) 98161-0712."}
         </p>
         <button
           type="button"
