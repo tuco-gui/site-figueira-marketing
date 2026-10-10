@@ -29,7 +29,8 @@ const sections = [
   ]],
   ['Seus direitos e contato', [
     'Você pode solicitar informações, correção, atualização ou outras providências previstas na LGPD em relação aos seus dados.',
-    'Para assuntos de privacidade e dados pessoais, utilize o e-mail radiometria@consult.med.br.',
+    'Encarregados indicados pela Consult: Matheus Alvarez (matheus@consult.med.br) e Amanda (amanda@consult.med.br).',
+    'Para contato geral sobre privacidade e dados pessoais, também pode ser utilizado o e-mail radiometria@consult.med.br.',
   ]],
 ]
 
@@ -45,6 +46,7 @@ export default function ConsultPrivacyPage() {
       title="Política de Privacidade"
       description="Esta política explica como os dados enviados pelo site da Consult são usados para atendimento, segurança e relacionamento com instituições e profissionais."
       image={CONSULT_IMAGES.protection}
+      breadcrumbs={[[ 'Início','/consult' ],[ 'Política de Privacidade',null ]]}
       primaryLabel="Falar com a Consult"
       secondaryLabel="WhatsApp"
     />
