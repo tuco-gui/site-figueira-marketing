@@ -20,8 +20,8 @@
 
   const engineeringMeta = {
     "seguranca-eletrica": ["Ensaio de Segurança Elétrica IEC 62353 | Consult","Medição de aterramento, isolamento e correntes de fuga conforme ABNT NBR IEC 62353, com laudo por equipamento."],
-    "desempenho-calibracao": ["Ensaio de Desempenho e Calibração | Consult","Comparação ponto a ponto com analisador ou simulador calibrado, documentando valores, desvios e conformidade."],
-    "manutencao-preventiva": ["Manutenção Preventiva | Consult Engenharia Clínica","Limpeza, lubrificação e testes de funcionamento com pendências documentadas. A Consult não vende nem troca peças."],
+    "desempenho-calibracao": ["Calibração e Ensaio de Desempenho | Consult","Ensaio de desempenho com comparação ponto a ponto, documentação de valores, desvios e conformidade, com padrões de rastreabilidade RBC/Inmetro."],
+    "manutencao-preventiva": ["Manutenção Preventiva | Consult Engenharia Clínica","Limpeza, lubrificação e testes de funcionamento, com atividades e pendências documentadas em laudo por equipamento."],
     reverificacao: ["Reverificação de Equipamentos | Consult Engenharia Clínica","Novo ensaio após tratamento de uma pendência, com emissão de laudo atualizado e histórico técnico."],
     "qualificacao-termica": ["Qualificação Térmica de Autoclaves e Câmaras | Consult","Mapeamento de temperatura com sensores calibrados e relatório com registros, gráficos e conformidade."],
   };
@@ -40,7 +40,7 @@
   };
 
   const equipmentNames = {
-    "monitor-multiparametrico":"Monitor multiparamétrico", eletrocardiografo:"Eletrocardiógrafo", "oximetro-pulso":"Oxímetro de pulso", "esfigmomanometro-mapa":"Esfigmomanômetro digital e MAPA", "desfibrilador-cardioversor-dea":"Desfibrilador, cardioversor e DEA", "marca-passo-transcutaneo":"Marca-passo transcutâneo", "bisturi-eletrico":"Bisturi elétrico", "ventilador-pulmonar":"Ventilador pulmonar", "aparelho-anestesia":"Aparelho de anestesia", "cpap-bipap":"CPAP e BiPAP", "fluxometro-manometro-o2":"Fluxômetro e manômetro de O₂", autoclave:"Autoclave", "termodesinfectora-estufa":"Termodesinfectora e estufa", "estufa-banho-maria":"Estufa e banho-maria de laboratório", "geladeira-camara-vacina":"Geladeira e câmara de vacina",
+    "monitor-multiparametrico":"Monitor multiparamétrico", eletrocardiografo:"Eletrocardiógrafo", "oximetro-pulso":"Oxímetro de pulso", "esfigmomanometro-mapa":"Esfigmomanômetro digital e MAPA", "desfibrilador-cardioversor-dea":"Desfibrilador, cardioversor e DEA", "marca-passo-transcutaneo":"Marca-passo transcutâneo", "bisturi-eletrico":"Bisturi elétrico", "ventilador-pulmonar":"Ventilador pulmonar", "aparelho-anestesia":"Aparelho de anestesia", "cpap-bipap":"CPAP e BiPAP", "fluxometro-manometro-o2":"Fluxômetro e manômetro de O₂", "concentrador-oxigenio":"Concentrador de oxigênio", autoclave:"Autoclave", termodesinfectora:"Termodesinfectora", "estufa-banho-maria":"Estufa e banho-maria de laboratório", "geladeira-camara-vacina":"Geladeira e câmara de vacina",
   };
 
   const regionNames = {
@@ -141,8 +141,8 @@
     const slug = (oldEquipmentMatch || siloEquipmentMatch)[1];
     const name = equipmentNames[slug];
     title = `Ensaio de ${name} | Consult Engenharia Clínica`;
-    description = `Ensaios de segurança elétrica e desempenho para ${name}, com analisador calibrado, rastreabilidade RBC e laudo por equipamento.`;
-    keywords = `${name}, ensaio, calibração, segurança elétrica, Engenharia Clínica, Consult`;
+    description = `Ensaios aplicáveis a ${name}, com medição documentada, padrões com rastreabilidade RBC/Inmetro e laudo por equipamento.`;
+    keywords = `${name}, ensaio de desempenho, segurança elétrica, Engenharia Clínica, Consult`;
     schemaType = "Service";
     if (oldEquipmentMatch) canonicalPath = `/consult/engenharia-clinica/equipamentos/${slug}`;
     crumbs.push(["Engenharia Clínica","/consult/areas/engenharia-clinica"],["Equipamentos","/consult/areas/engenharia-clinica#equipamentos"],[name,canonicalPath]);
