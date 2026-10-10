@@ -2,9 +2,10 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 
 const DIST = 'dist'
-const SITE_ORIGIN = process.env.CONSULT_SITE_ORIGIN || 'https://www.consult.med.br'\nconst ROBOTS = process.env.CONSULT_INDEXABLE === 'true' ? 'index, follow' : 'noindex, nofollow'
+const SITE_ORIGIN = process.env.CONSULT_SITE_ORIGIN || 'https://www.consult.med.br'
+const ROBOTS = process.env.CONSULT_INDEXABLE === 'true' ? 'index, follow' : 'noindex, nofollow'
 const SOCIAL_IMAGE = `${SITE_ORIGIN}/approved-national-bg.webp`
-const STATIC_POSTS = JSON.parse(await readFile('src/lib/StaticPosts.json','utf8'))
+const STATIC_POSTS = JSON.parse(await readFile('src/lib/consultStaticPosts.json','utf8'))
 
 const areas = {
   'fisica-medica': ['Física Médica | Controle de Qualidade e Laudos | Consult','Controle de qualidade, medições e laudos técnicos para diagnóstico por imagem, com atendimento da Consult em todo o Brasil.'],
@@ -127,7 +128,7 @@ function render(base, route, title, description, ogType) {
 const base = await readFile(join(DIST,'index.html'),'utf8')
 
 for (const [route,title,description,ogType] of routes) {
-  const relative = route === '/' ? 'index.html' : route.replace(/^\\//,'') + '.html'
+  const relative = route === '/' ? 'index.html' : route.replace(/^\//,'') + '.html'
   const file = join(DIST, relative)
   await mkdir(dirname(file), { recursive: true })
   await writeFile(file, render(base, route, title, description, ogType), 'utf8')
@@ -143,7 +144,6 @@ const sitemap = [
   '',
 ].join('\n')
 
-await mkdir(join(DIST,'consult'), { recursive: true })
-await writeFile(join(DIST,'consult','sitemap.xml'), sitemap, 'utf8')
+await writeFile(join(DIST,'sitemap.xml'), sitemap, 'utf8')
 
 console.log(`[consult-standalone-seo] ${routes.length} rotas pré-renderizadas + sitemap preparado.`)
