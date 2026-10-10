@@ -70,6 +70,7 @@ const AREAS = {
     standards:[['RDC 611/2022','Base sanitária geral para radiologia diagnóstica e intervencionista.',RDC_611],['IN 90 a 97/2021','Referências específicas por modalidade de diagnóstico por imagem.',ANVISA_IN]],
     faq:[['O Controle de Qualidade é igual para todas as modalidades?','Não. Os testes e referências variam conforme a tecnologia avaliada.'],['O resultado é documentado?','Sim. O Controle de Qualidade gera laudo técnico assinado pelo físico médico.']],
     resources:'modalities',
+    recurring:['Vistoria mensal','Análise semanal de imagens','Supervisão de proteção radiológica'],
   },
   'protecao-radiologica': {
     title:'Proteção Radiológica',
@@ -135,6 +136,10 @@ export default function ConsultAreaLandingPageV3({ fixedSlug }) {
 
     {area.resources==='modalities'&&<ApprovedLightSection eyebrow="Controle de Qualidade" title="Encontre a modalidade do seu equipamento" intro="Cada tecnologia possui uma referência específica para o Controle de Qualidade." white>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{MODALITIES.map(([label,norm,href])=><Link key={href} to={href} className="rounded-xl border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"><div className="text-base font-black text-[#123C3B]">{label}</div><div className="mt-2 text-xs font-extrabold text-[#08A77F]">{norm}</div><div className="mt-4 text-sm font-extrabold text-[#08A77F]">Ver detalhes</div></Link>)}</div>
+    </ApprovedLightSection>}
+
+    {area.recurring&&<ApprovedLightSection eyebrow="Programas recorrentes" title="Acompanhamento contínuo em Física Médica" intro="Além dos serviços avulsos, a Consult também estrutura rotinas recorrentes conforme a necessidade da instituição.">
+      <ApprovedList items={area.recurring}/>
     </ApprovedLightSection>}
 
     {area.resources==='equipment'&&<ApprovedLightSection eyebrow="Equipamentos atendidos" title="Ensaios organizados por tipo de equipamento" intro="Os equipamentos eletromédicos recebem ensaio de segurança elétrica conforme aplicabilidade. Acesse a página específica para conhecer os parâmetros medidos e o resultado documentado." white>
