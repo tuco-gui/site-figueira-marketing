@@ -21,6 +21,18 @@ function markdownToParagraphs(markdown = '') {
     .filter(Boolean)
 }
 
+function normalizeConsultHref(href = '') {
+  const value = String(href || '')
+  if (!value.startsWith('/') || value.startsWith('/consult')) return value
+  return '/consult' + value
+}
+
+function normalizeRelatedLinks(links = []) {
+  return Array.isArray(links)
+    ? links.map((item) => ({ ...item, href: normalizeConsultHref(item?.href) }))
+    : []
+}
+
 function mapRow(row) {
   return {
     id: row.id,
@@ -32,7 +44,7 @@ function mapRow(row) {
     excerpt: row.excerpt || '',
     summary: markdownToParagraphs(row.content_markdown),
     coverImage: row.cover_url || '',
-    relatedLinks: Array.isArray(row.related_links) ? row.related_links : [],
+    relatedLinks: normalizeRelatedLinks(row.related_links),
     sourceUrl: row.source_url || null,
     migrationStatus: row.metadata?.migration_status || null,
     seoTitle: row.seo_title || null,
@@ -58,7 +70,7 @@ async function fetchPublishedPosts() {
 }
 
 export function getConsultBlogSeedPosts() {
-  return sortByDate(SEED_POSTS.map((post) => ({ ...post, contentSource: 'local_seed' })))
+  return sortByDate(SEED_POSTS.map((post) => ({ ...post, relatedLinks: normalizeRelatedLinks(post.relatedLinks), contentSource: 'local_static' })))
 }
 
 export async function getConsultBlogPosts() {
