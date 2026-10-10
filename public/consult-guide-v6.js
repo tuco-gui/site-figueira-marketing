@@ -75,7 +75,7 @@
 
     const current = normalizeText(h1.textContent);
     if (current.includes("Soluções técnicas para a área da saúde") || h1.dataset.consultGuide === "1") {
-      h1.textContent = "Segurança, desempenho e rastreabilidade dos equipamentos de saúde, comprovados em laudo técnico";
+      h1.textContent = "Segurança, desempenho e rastreabilidade dos equipamentos de saúde, documentados em laudo técnico";
       h1.dataset.consultGuide = "1";
 
       const section = h1.closest("section") || h1.parentElement;
