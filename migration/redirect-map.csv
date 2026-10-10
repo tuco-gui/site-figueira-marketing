@@ -1,43 +1,56 @@
 source_pattern,target,rule_type,rationale
-/,/,keep,"Home remains home"
-/index.html,/,301,"Legacy home alias"
-/contato.html,/#contato,301,"Closest equivalent contact section"
-/empresa.html,/sobre,301,"Institutional company page"
-/pericia.html,/servicos,301,"No one-to-one page in current scope; service catalogue is the closest destination"
-/radio.html,/protecao-radiologica,301,"Closest radiological protection silo"
-/saude.html,/servicos,301,"Closest current service catalogue"
-/posts/?ct=conversando-sobre-radioprotecao-*,/blog,301,"Legacy blog category and pagination"
-/posts/?dt=consult-fortalece-educacao-continuada-com-nova-plataforma-de-cursos-digitais-*,/blog/educacao-continuada-cursos-digitais-radioprotecao,301,"Migrated article"
-/posts/?dt=publicado-iaea-hhs-47-um-guia-pratico-de-controle-de-qualidade-de-equipamentos-*,/blog/iaea-hhs-47-controle-qualidade-equipamentos,301,"Migrated article"
-/posts/?dt=protecao-radiologica-em-equipamentos-arco-c-*,/blog/protecao-radiologica-equipamentos-arco-c,301,"Migrated article"
-/posts/?dt=5-procedimentos-simples-para-garantir-a-confiabilidade-do-seu-ultrassom-*,/fisica-medica/controle-de-qualidade/ultrassom,301,"Closest current technical page"
-/posts/?dt=controle-de-qualidade-em-ultrassom-sua-clinica-esta-atendendo-a-instrucao-normativa-96-da-anvisa-*,/fisica-medica/controle-de-qualidade/ultrassom,301,"Closest current technical page"
-/posts/?dt=densidade-mamaria-na-mamografia-*,/fisica-medica/controle-de-qualidade/mamografia,301,"Closest current technical page"
-/posts/?dt=fatores-que-afetam-a-detectividade-do-cancer-de-mama-*,/fisica-medica/controle-de-qualidade/mamografia,301,"Closest current technical page"
-/posts/?dt=tomografia-computadorizada-nao-deve-ser-usada-*,/fisica-medica/controle-de-qualidade/tomografia,301,"Closest current technical page"
-/posts/?dt=o-que-86-estudos-clinicos-dizem-sobre-ia-na-reducao-de-dose-em-tc-*,/fisica-medica/controle-de-qualidade/tomografia,301,"Closest current technical page"
-/posts/?dt=tc-por-contagem-de-fotons-*,/fisica-medica/controle-de-qualidade/tomografia,301,"Closest current technical page"
-/posts/?dt=25-anos-de-avancos-em-tc-*,/fisica-medica/controle-de-qualidade/tomografia,301,"Closest current technical page"
-/posts/?dt=tamanho-do-paciente-importa-*,/fisica-medica/controle-de-qualidade/tomografia,301,"Closest current technical page"
-/posts/?dt=ia-generativa-reduz-dose-em-angiografia-dsa-*,/fisica-medica/controle-de-qualidade/fluoroscopia-arco-c-angiografia,301,"Closest current technical page"
-/posts/?dt=gerenciamento-da-dose-de-radiacao-do-paciente-em-radiologia-intervencionista-*,/protecao-radiologica,301,"Closest current radioprotection silo"
-/posts/?dt=dose-no-cristalino-em-radiologia-intervencionista-*,/protecao-radiologica,301,"Closest current radioprotection silo"
-/posts/?dt=dose-no-cristalino-em-procedimentos-intervencionistas-*,/protecao-radiologica,301,"Closest current radioprotection silo"
-/posts/?dt=alara-9-sociedades-medicas-*,/protecao-radiologica,301,"Closest current radioprotection silo"
-/posts/?dt=acr-endossa-posicao-da-aapm-*,/protecao-radiologica,301,"Closest current radioprotection silo"
-/posts/?dt=icrp-e-iaea-revisam-o-sistema-de-protecao-radiologica-*,/protecao-radiologica,301,"Closest current radioprotection silo"
-/posts/?dt=norma-cnen-nn-3-01-revisada-*,/protecao-radiologica,301,"Closest current radioprotection silo"
-/posts/?dt=monitoramento-digital-da-exposicao-do-paciente-*,/protecao-radiologica,301,"Closest current radioprotection silo"
-/posts/?dt=risco-de-catarata-induzida-por-radiacao-*,/protecao-radiologica,301,"Closest current radioprotection silo"
-/posts/?dt=historico-de-dosimetria-do-trabalhador-*,/protecao-radiologica,301,"Closest current radioprotection silo"
-/posts/?dt=dosimetro-instadose-*,/protecao-radiologica,301,"Closest current radioprotection silo"
-/posts/?dt=publicacao-das-nacoes-unidas-sobre-efeitos-da-radiacao-*,/protecao-radiologica,301,"Closest current radioprotection silo"
-/posts/?dt=o-comentario-27-da-ncrp-*,/protecao-radiologica,301,"Closest current radioprotection silo"
-/posts/?dt=ia-na-radioprotecao-*,/protecao-radiologica,301,"Closest current radioprotection silo"
-/posts/?dt=exames-radiologicos-na-gravidez-*,/blog,301,"Historical informational article without one-to-one replacement"
-/posts/?dt=medicao-de-tempo-de-irradiacao-e-kilovoltagem-em-equipamentos-periapicais-*,/blog,301,"Historical technical article without one-to-one replacement"
-/posts/?dt=sobre-qualidade-formas-de-evidenciar-reunioes-e-treinamentos-realizados-virtualmente-*,/blog,301,"Historical article without one-to-one replacement"
-/posts/?dt=validade-de-treinamentos-online-ppr-digital-*,/protecao-radiologica/treinamentos,301,"Closest current training page"
-/posts/?dt=estudo-global-revela-grande-variacao-nas-doses-de-radiacao-em-imagem-cardiaca-*,/blog,301,"Historical informational article without one-to-one replacement"
-/posts/?dt=fda-nega-peticao-para-isentar-ia-de-revisao-pre-mercado-em-radiologia-*,/blog,301,"Historical informational article without one-to-one replacement"
-/posts/?dt=*,/blog,301_fallback,"Catch-all for legacy article URLs not present in the discovery set"
+/,/,keep,Home remains home
+/index.html,/,301,Legacy home alias
+/contato.html,/#contato,301,Closest equivalent contact section
+/empresa.html,/sobre,301,Institutional company page
+/pericia.html,/servicos,301,No one-to-one page in current scope; service catalogue is the closest destination
+/radio.html,/protecao-radiologica,301,Closest radiological protection silo
+/saude.html,/servicos,301,Closest current service catalogue
+/posts/?ct=conversando-sobre-radioprotecao-*,/blog,301,Legacy blog category and pagination
+/posts/?dt=25-anos-de-avancos-em-tc-permitiram-reduzir-doses-por-fator-de-2-a-10-mostra-revisao-no-ajr-*,/blog/25-anos-de-avancos-em-tc-permitiram-reduzir-doses-por-fator-de-2-a-10-mostra-revisao-no-ajr,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=5-procedimentos-simples-para-garantir-a-confiabilidade-do-seu-ultrassom-*,/blog/5-procedimentos-simples-para-garantir-a-confiabilidade-do-seu-ultrassom,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=aapm-rpt-260-sobre-a-utilizacao-de-dispositivos-moveis-para-visualizacao-de-imagens-medicas-*,/blog/aapm-rpt-260-sobre-a-utilizacao-de-dispositivos-moveis-para-visualizacao-de-imagens-medicas,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=acr-endossa-posicao-da-aapm-sobre-descontinuacao-da-blindagem-de-gonadas-e-fetal-durante-procedimentos-radiologicos-*,/blog/acr-endossa-posicao-da-aapm-sobre-descontinuacao-da-blindagem-de-gonadas-e-fetal-durante-procedimentos-radiologicos,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=alara-9-sociedades-medicas-lancam-nova-doutrina-de-radioprotecao-em-fluoroscopia-*,/blog/alara-9-sociedades-medicas-lancam-nova-doutrina-de-radioprotecao-em-fluoroscopia,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=consult-fortalece-educacao-continuada-com-nova-plataforma-de-cursos-digitais-*,/blog/educacao-continuada-cursos-digitais-radioprotecao,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=controle-de-qualidade-e-levantamento-radiometrico-o-check-up-que-mantem-sua-radiologia-segura-regular-e-previsivel-*,/blog/controle-de-qualidade-e-levantamento-radiometrico-o-check-up-que-mantem-sua-radiologia-segura-regular-e-previsivel,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=controle-de-qualidade-em-ultrassom-sua-clinica-esta-atendendo-a-instrucao-normativa-96-da-anvisa-*,/blog/controle-de-qualidade-em-ultrassom-sua-clinica-esta-atendendo-a-instrucao-normativa-96-da-anvisa,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=densidade-mamaria-na-mamografia-como-ela-afeta-os-indicadores-de-performance-nos-programas-de-rastreamento-*,/blog/densidade-mamaria-na-mamografia-como-ela-afeta-os-indicadores-de-performance-nos-programas-de-rastreamento,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=dose-no-cristalino-em-procedimentos-intervencionistas-monitorar-antes-que-o-limite-chegue-*,/blog/dose-no-cristalino-em-procedimentos-intervencionistas-monitorar-antes-que-o-limite-chegue,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=dose-no-cristalino-em-radiologia-intervencionista-como-medir-de-verdade-*,/blog/dose-no-cristalino-em-radiologia-intervencionista-como-medir-de-verdade,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=dosimetro-instadose-leitura-complementar-confiavel-por-um-preco-acessivel-*,/blog/dosimetro-instadose-leitura-complementar-confiavel-por-um-preco-acessivel,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=estudo-global-revela-grande-variacao-nas-doses-de-radiacao-em-imagem-cardiaca-*,/blog/estudo-global-revela-grande-variacao-nas-doses-de-radiacao-em-imagem-cardiaca,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=exames-radiologicos-na-gravidez-*,/blog/exames-radiologicos-na-gravidez,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=fatores-que-afetam-a-detectividade-do-cancer-de-mama-na-tomosintese-de-mama-e-mamografia-em-pacientes-com-seios-densos-*,/blog/fatores-que-afetam-a-detectividade-do-cancer-de-mama-na-tomosintese-de-mama-e-mamografia-em-pacientes-com-seios-densos,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=fda-concede-designacao-breakthrough-a-ias-generativas-que-redigem-laudos-radiologicos-*,/blog/fda-concede-designacao-breakthrough-a-ias-generativas-que-redigem-laudos-radiologicos,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=fda-nega-peticao-para-isentar-ia-de-revisao-pre-mercado-em-radiologia-o-que-isso-significa-para-o-setor-*,/blog/fda-nega-peticao-para-isentar-ia-de-revisao-pre-mercado-em-radiologia-o-que-isso-significa-para-o-setor,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=gerenciamento-da-dose-de-radiacao-do-paciente-em-radiologia-intervencionista-*,/blog/gerenciamento-da-dose-de-radiacao-do-paciente-em-radiologia-intervencionista,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=historico-de-dosimetria-do-trabalhador-*,/blog/historico-de-dosimetria-do-trabalhador,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=ia-generativa-reduz-dose-em-angiografia-dsa-ensaio-clinico-com-mais-de-46-mil-pacientes-*,/blog/ia-generativa-reduz-dose-em-angiografia-dsa-ensaio-clinico-com-mais-de-46-mil-pacientes,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=ia-na-radioprotecao-a-aiea-quer-inteligencia-integrada-nao-automacao-cega-*,/blog/ia-na-radioprotecao-a-aiea-quer-inteligencia-integrada-nao-automacao-cega,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=iaea-publica-novos-guias-de-seguranca-para-protecao-radiologica-de-pacientes-e-trabalhadores-*,/blog/iaea-publica-novos-guias-de-seguranca-para-protecao-radiologica-de-pacientes-e-trabalhadores,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=icrp-e-iaea-revisam-o-sistema-de-protecao-radiologica-o-que-muda-depois-da-publicacao-103-*,/blog/icrp-e-iaea-revisam-o-sistema-de-protecao-radiologica-o-que-muda-depois-da-publicacao-103,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=indo-alem-do-controle-de-qualidade-na-radiologia-diagnostica-*,/blog/indo-alem-do-controle-de-qualidade-na-radiologia-diagnostica,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=inteligencia-artificial-e-reducao-de-dose-em-tc-o-que-dizem-86-estudos-clinicos-*,/blog/inteligencia-artificial-e-reducao-de-dose-em-tc-o-que-dizem-86-estudos-clinicos,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=medicao-de-tempo-de-irradiacao-e-kilovoltagem-em-equipamentos-periapicais-*,/blog/medicao-de-tempo-de-irradiacao-e-kilovoltagem-em-equipamentos-periapicais,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=monitoramento-digital-da-exposicao-do-paciente-as-primeiras-diretrizes-internacionais-chegaram-e-sua-instituicao-deveria-conhece-las-*,/blog/monitoramento-digital-da-exposicao-do-paciente-as-primeiras-diretrizes-internacionais-chegaram-e-sua-instituicao-deveria-conhece-las,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=norma-cnen-nn-3-01-revisada-o-que-muda-na-pratica-para-os-servicos-que-usam-radiacao-ionizante-*,/blog/norma-cnen-nn-3-01-revisada-o-que-muda-na-pratica-para-os-servicos-que-usam-radiacao-ionizante,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=o-comentario-27-da-ncrp-sobre-a-aplicacao-do-modelo-linear-sem-limiar-*,/blog/o-comentario-27-da-ncrp-sobre-a-aplicacao-do-modelo-linear-sem-limiar,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=o-papel-dos-pops-na-sustentabilidade-de-uma-organizacao-*,/blog/o-papel-dos-pops-na-sustentabilidade-de-uma-organizacao,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=o-que-86-estudos-clinicos-dizem-sobre-ia-na-reducao-de-dose-em-tc-*,/blog/o-que-86-estudos-clinicos-dizem-sobre-ia-na-reducao-de-dose-em-tc,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=o-que-cinco-anos-de-evidencia-clinica-dizem-sobre-ia-para-reducao-de-dose-em-tc-*,/blog/o-que-cinco-anos-de-evidencia-clinica-dizem-sobre-ia-para-reducao-de-dose-em-tc,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=protecao-radiologica-em-equipamentos-arco-c-*,/blog/protecao-radiologica-equipamentos-arco-c,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=publicacao-das-nacoes-unidas-sobre-efeitos-da-radiacao-e-fontes-*,/blog/publicacao-das-nacoes-unidas-sobre-efeitos-da-radiacao-e-fontes,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=publicado-iaea-hhs-47-um-guia-pratico-de-controle-de-qualidade-de-equipamentos-*,/blog/iaea-hhs-47-controle-qualidade-equipamentos,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=revisao-de-2020-2025-quantifica-ia-reduz-de-40-a-90-da-dose-em-tc-com-ressalvas-importantes-*,/blog/revisao-de-2020-2025-quantifica-ia-reduz-de-40-a-90-da-dose-em-tc-com-ressalvas-importantes,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=risco-de-catarata-induzida-por-radiacao-investigacao-da-exposicao-a-radiacao-na-lente-ocular-durante-procedimentos-endo-urologicos-*,/blog/risco-de-catarata-induzida-por-radiacao-investigacao-da-exposicao-a-radiacao-na-lente-ocular-durante-procedimentos-endo-urologicos,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=sobre-qualidade-formas-de-evidenciar-reunioes-e-treinamentos-realizados-virtualmente-*,/blog/sobre-qualidade-formas-de-evidenciar-reunioes-e-treinamentos-realizados-virtualmente,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=tamanho-do-paciente-importa-efeito-da-modulacao-de-corrente-na-ssde-e-na-qualidade-da-imagem-na-tc-de-rastreamento-de-cancer-de-pulmao-em-baixa-dose-*,/blog/tamanho-do-paciente-importa-efeito-da-modulacao-de-corrente-na-ssde-e-na-qualidade-da-imagem-na-tc-de-rastreamento-de-cancer-de-pulmao-em-baixa-dose,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=tc-de-contagem-de-fotons-reduz-dose-em-66-na-avaliacao-de-cancer-de-pulmao-*,/blog/tc-de-contagem-de-fotons-reduz-dose-em-66-na-avaliacao-de-cancer-de-pulmao,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=tc-por-contagem-de-fotons-a-nova-era-do-diagnostico-por-imagem-chega-ao-mercado-*,/blog/tc-por-contagem-de-fotons-a-nova-era-do-diagnostico-por-imagem-chega-ao-mercado,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=tc-por-contagem-de-fotons-reduz-55-da-dose-em-cancer-de-pulmao-e-tambem-o-contraste-*,/blog/tc-por-contagem-de-fotons-reduz-55-da-dose-em-cancer-de-pulmao-e-tambem-o-contraste,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=tomografia-com-detectores-de-contagem-de-fotons-consolida-reducoes-de-dose-de-2-a-10-vezes-*,/blog/tomografia-com-detectores-de-contagem-de-fotons-consolida-reducoes-de-dose-de-2-a-10-vezes,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=tomografia-computadorizada-nao-deve-ser-usada-como-primeira-opcao-em-diagnostico-de-coronavirus-*,/blog/tomografia-computadorizada-nao-deve-ser-usada-como-primeira-opcao-em-diagnostico-de-coronavirus,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=tomografia-por-contagem-de-fotons-consolida-ganhos-de-dose-em-2026-evidencia-clinica-por-regiao-anatomica-*,/blog/tomografia-por-contagem-de-fotons-consolida-ganhos-de-dose-em-2026-evidencia-clinica-por-regiao-anatomica,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=validade-de-treinamentos-online-ppr-digital-e-a-digitalizacao-de-documentos-*,/blog/validade-de-treinamentos-online-ppr-digital-e-a-digitalizacao-de-documentos,301,Historical article migrated in full; one-to-one redirect
+/posts/?dt=*,/blog,301_fallback,Safety fallback only for legacy article URLs not present in the verified 46-post inventory
