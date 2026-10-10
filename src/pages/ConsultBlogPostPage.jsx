@@ -44,7 +44,7 @@ export default function ConsultBlogPostPage() {
         <article>
           <header className="relative overflow-hidden bg-[#075653] text-white">
             <div className="absolute inset-0">
-              <img src={post.coverImage} alt="" className="h-full w-full object-cover opacity-18" />
+              <img src={post.coverImage} alt={post.title} className="h-full w-full object-cover opacity-18" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#064946] via-[#075653]/95 to-[#075653]/78" />
             </div>
             <div className="relative mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
