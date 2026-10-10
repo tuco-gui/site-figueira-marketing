@@ -36,7 +36,7 @@ const EQUIPMENT = {
   'aparelho-anestesia': { title:'Aparelho de anestesia — parte ventilatória', electromedical:true, parameters:['Fluxo','Volume','Pressões','PEEP','Concentração de O₂'], caveat:'Esta avaliação não inclui medição da concentração do agente anestésico.' },
   'cpap-bipap': { title:'CPAP e BiPAP', electromedical:true, parameters:['Fluxo','Pressão'] },
   'fluxometro-manometro-o2': { title:'Fluxômetro e manômetro de O₂', mechanical:true, parameters:['Fluxo','Pressão'] },
-  'concentrador-oxigenio': { title:'Concentrador de oxigênio', electromedical:true, parameters:['Parâmetros de desempenho definidos conforme o modelo e o escopo técnico aplicável'] },
+  'concentrador-oxigenio': { title:'Concentrador de oxigênio', electromedical:true, parameters:[], pendingParameters:true },
   autoclave: {
     title:'Autoclave', thermal:true,
     parameters:['Temperatura em múltiplos pontos','Pressão','Letalidade F0','Ciclos de operação'],
@@ -69,7 +69,7 @@ function equipmentIntro(item) {
 }
 
 function equipmentProof(item) {
-  const proof=[['EQUIPAMENTO',item.title],['DESEMPENHO',item.thermal?'Qualificação térmica':'Ensaio documentado'],['RASTREIO','RBC/Inmetro']]
+  const proof=[['EQUIPAMENTO',item.title],['DESEMPENHO',item.thermal?'Qualificação térmica':'Ensaio documentado'],['RASTREABILIDADE','Rastreabilidade RBC']]
   if (item.electromedical) proof.splice(2,0,['SEG. ELÉTRICA','ABNT NBR IEC 62353'])
   return proof
 }
@@ -109,12 +109,14 @@ export default function ConsultEquipmentPage() {
   const reportItems=['Identificação do equipamento','Ensaios e parâmetros medidos','Valores e referências aplicáveis','Conclusão técnica','Eventuais pendências e histórico técnico']
 
   return <ConsultSiteShell><main>
-    <ApprovedInternalHero eyebrow="Consult Engenharia Clínica" title={item.title} description={equipmentIntro(item)} image={CONSULT_IMAGES.engineering}/>
+    <ApprovedInternalHero eyebrow="Consult Engenharia Clínica" title={item.title} description={equipmentIntro(item)} image={CONSULT_IMAGES.engineering} breadcrumbs={[[ 'Início','/consult' ],[ 'Consult Engenharia Clínica','/consult/engenharia-clinica' ],[ item.title,null ]]}/>
     <ApprovedProofStrip items={equipmentProof(item)}/>
     <ApprovedIndependenceBand/>
 
-    <ApprovedLightSection eyebrow="O que é avaliado" title={`Parâmetros verificados em ${item.title}`} intro="A avaliação é organizada de acordo com o equipamento e com os parâmetros aplicáveis ao ensaio." center>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{item.parameters.map((parameter,index)=><div key={parameter} className="rounded-xl border border-black/5 bg-white p-5 shadow-sm"><div className="text-[10px] font-black uppercase tracking-[.18em] text-[#08A77F]">0{index+1}</div><div className="mt-3 text-base font-black text-[#123C3B]">{parameter}</div><p className="mt-2 text-sm leading-6 text-black/55">Parâmetro medido e registrado no documento técnico.</p></div>)}</div>
+    <ApprovedLightSection eyebrow="O que é avaliado" title={item.pendingParameters ? `Ensaio de ${item.title}` : `Parâmetros verificados em ${item.title}`} intro={item.pendingParameters ? 'A avaliação é definida conforme o modelo, a aplicação do equipamento e o escopo técnico do ensaio.' : 'A avaliação é organizada de acordo com o equipamento e com os parâmetros aplicáveis ao ensaio.'} center>
+      {item.pendingParameters
+        ? <div className="mx-auto max-w-3xl rounded-2xl border border-[#CFE4DE] bg-white p-7 text-left shadow-lg shadow-[#075653]/5"><div className="text-[10px] font-black uppercase tracking-[.18em] text-[#08A77F]">Equipamento atendido</div><h2 className="mt-3 text-xl font-black text-[#123C3B]">Concentrador de oxigênio está na lista de equipamentos atendidos</h2><p className="mt-3 text-sm leading-7 text-black/58">A equipe confirma o modelo e a aplicação do equipamento para definir o ensaio e documentar os resultados no laudo técnico.</p></div>
+        : <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{item.parameters.map((parameter,index)=><div key={parameter} className="rounded-xl border border-black/5 bg-white p-5 shadow-sm"><div className="text-[10px] font-black uppercase tracking-[.18em] text-[#08A77F]">0{index+1}</div><div className="mt-3 text-base font-black text-[#123C3B]">{parameter}</div><p className="mt-2 text-sm leading-6 text-black/55">Parâmetro medido e registrado no documento técnico.</p></div>)}</div>}
       {item.caveat&&<div className="mx-auto mt-6 max-w-3xl rounded-xl border-l-4 border-[#08A77F] bg-white p-5 text-sm font-semibold leading-6 text-[#315B58] shadow-sm">{item.caveat}</div>}
     </ApprovedLightSection>
 

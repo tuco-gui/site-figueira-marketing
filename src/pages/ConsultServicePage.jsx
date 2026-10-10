@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
-import { ConsultReportPreview } from '@/components/consult/ConsultTechnicalDesign'
 import {
   ApprovedDarkProcess,
   ApprovedFaq,
@@ -66,7 +65,7 @@ const SERVICES = {
     metric: 'Radiação no entorno e fuga do cabeçote medidas em campo',
     deliverable: 'Resultado do Levantamento Radiométrico',
     deliverableSections: ['Sala e equipamento avaliados','Pontos de medição no entorno','Medição da radiação de fuga','Resultados obtidos','Conclusão técnica da avaliação'],
-    note: 'A Consult confirma a medição das áreas ao redor da sala e da radiação de fuga. O título e o formato exato do documento final seguem o padrão técnico utilizado pela equipe.',
+    note: 'A entrega documenta a sala, o equipamento, os pontos de medição, os resultados obtidos e a conclusão técnica da avaliação.',
     norms: [['RDC 611/2022 — Anvisa','Base sanitária e de proteção radiológica.',RDC_611],['IN aplicável à modalidade','A referência específica depende do equipamento avaliado.',ANVISA_IN]],
     faq: [['Quando esse serviço costuma ser necessário?','O serviço costuma ser necessário em salas novas ou reformadas, após troca de equipamento e em avaliações periódicas.'],['O levantamento substitui projeto de blindagem?','Não. O projeto de blindagem calcula a solução antes da obra ou mudança; o levantamento radiométrico mede a condição do ambiente.']],
   },
@@ -82,23 +81,23 @@ const SERVICES = {
     metric: 'Blindagem calculada antes da execução da obra',
     deliverable: 'Memorial de Cálculo de Blindagem',
     deliverableSections: ['Ambiente e equipamento previstos','Premissas utilizadas no cálculo','Cálculo da blindagem','Barreiras consideradas','Memorial técnico do projeto'],
-    note: 'O próprio serviço é apresentado pela Consult como Memorial de Cálculo de Blindagem. O documento final é dimensionado conforme o ambiente e o equipamento do projeto.',
+    note: 'O memorial registra as premissas, os cálculos e as barreiras consideradas para o ambiente e o equipamento do projeto.',
     norms: [['RDC 611/2022 — Anvisa','Base sanitária para os serviços abrangidos.',RDC_611],['IN aplicável à modalidade','A referência específica depende da tecnologia prevista.',ANVISA_IN]],
     faq: [['Projeto de blindagem e levantamento radiométrico são iguais?','Não. O projeto calcula a solução previamente; o levantamento mede a condição radiométrica do ambiente.'],['Serve apenas para obra nova?','Não. O serviço também se aplica a reforma, expansão e troca de equipamento.']],
   },
   treinamentos: {
     title: 'Treinamentos técnicos', eyebrow: 'Proteção Radiológica', visual: 'technical',
-    intro: 'Capacitação periódica das equipes em radioproteção e segurança em ressonância magnética.',
+    intro: 'Treinamentos em radioproteção e segurança em ressonância magnética, com opções EAD na plataforma de cursos e presencial sob medida.',
     audience: 'Para equipes de radiologia e ressonância magnética que precisam atualizar práticas de proteção e segurança.',
     when: ['Capacitação periódica da equipe','Entrada de novos profissionais','Atualização de rotina','Necessidade de reforçar radioproteção ou segurança em RM'],
-    proof: [['FOCO','Radioproteção'],['TEMA','Segurança em RM'],['FORMATO','Capacitação técnica'],['PÚBLICO','Equipes assistenciais']],
+    proof: [['FOCO','Radioproteção'],['TEMA','Segurança em RM'],['FORMATO','EAD + presencial'],['PÚBLICO','Equipes assistenciais']],
     parameters: [['Tema','Conteúdo definido conforme necessidade'],['Equipe','Público participante'],['Rotina','Aplicação ao contexto da instituição'],['Registro','Escopo de realização documentado conforme contratação']],
     storyTitle: 'Treinamento técnico precisa conversar com a rotina da equipe.',
     story: 'A página deixa de apresentar treinamento como um item genérico e explica que o conteúdo é orientado ao contexto de radioproteção ou segurança em ressonância magnética da instituição.',
-    metric: 'Capacitação técnica direcionada à rotina da equipe',
+    metric: 'Capacitação técnica em EAD e presencial sob medida para a rotina da equipe',
     deliverable: 'Capacitação técnica',
     deliverableSections: ['Tema do treinamento','Público participante','Conteúdo técnico definido para a equipe','Orientações aplicáveis à rotina','Escopo de realização'],
-    note: 'A capacitação pode ser realizada periodicamente conforme a necessidade da instituição e os requisitos aplicáveis.',
+    note: 'A Consult oferece treinamentos EAD na plataforma de cursos e treinamentos presenciais sob medida, conforme o escopo contratado.',
     norms: [['RDC 611/2022 — Anvisa','Referência sanitária central para os serviços de radiologia.',RDC_611],['Requisitos complementares','Variam conforme o tema e a modalidade do treinamento.',ANVISA_IN]],
     faq: [['O treinamento é apenas sobre raios X?','Não. A Consult também realiza treinamento em segurança em ressonância magnética.'],['Há certificado obrigatório?','O formato do entregável depende do treinamento contratado e da necessidade da instituição.']],
   },
@@ -110,7 +109,7 @@ const SERVICES = {
     proof: [['ESCOPO','Apoio documental'],['PROCESSO','Obtenção ou renovação'],['BASE','RDC 611/2022'],['LIMITE','Sem promessa de aprovação']],
     parameters: [['Escopo','Levantamento da situação do serviço'],['Documentos','Organização da documentação aplicável'],['Pendências','Identificação do que precisa ser providenciado'],['Acompanhamento','Suporte dentro do escopo contratado']],
     storyTitle: 'A Consult organiza a parte técnica; a licença continua sendo decisão da autoridade sanitária.',
-    story: 'Essa distinção precisa aparecer claramente no site. O serviço é apoio técnico e documental ao processo, não uma promessa de emissão ou aprovação da licença.',
+    story: 'A Consult presta apoio técnico e documental ao processo de obtenção ou renovação. A análise e a decisão sobre a licença são da autoridade sanitária competente.',
     metric: 'Documentação técnica organizada para o processo sanitário',
     deliverable: 'Apoio documental ao licenciamento',
     deliverableSections: ['Levantamento do escopo do serviço','Organização da documentação técnica aplicável','Identificação de pendências documentais','Referências técnicas relacionadas','Acompanhamento dentro do escopo contratado'],
@@ -145,7 +144,7 @@ export default function ConsultServicePage() {
   }
 
   return <ConsultSiteShell><main>
-    <ApprovedInternalHero eyebrow={service.eyebrow} title={service.title} description={service.intro} image={heroImage(service)}/>
+    <ApprovedInternalHero eyebrow={service.eyebrow} title={service.title} description={service.intro} image={heroImage(service)} breadcrumbs={[[ 'Início','/consult' ],[ service.eyebrow, service.eyebrow==='Proteção Radiológica'?'/consult/protecao-radiologica':'/consult/fisica-medica' ],[ service.title,null ]]}/>
     <ApprovedProofStrip items={service.proof}/>
 
     <ApprovedLightSection eyebrow="Sobre o serviço" title={service.title} intro={service.audience} center>
@@ -168,16 +167,14 @@ export default function ConsultServicePage() {
 
     <ApprovedDarkProcess items={PROCESS}/>
 
-    <ApprovedLightSection eyebrow="Entregável técnico" title={service.deliverable} intro="Veja de forma ilustrativa como o resultado pode ser organizado e quais informações fazem parte da entrega." white>
-      <div className="grid gap-10 lg:grid-cols-[.65fr_1.35fr] lg:items-center">
-        <div>
-          <p className="text-[15px] leading-7 text-black/60">{service.note}</p>
-          <div className="mt-6 rounded-xl border border-[#CFE4DE] bg-[#F4FBFA] p-5">
-            <div className="text-xs font-black uppercase tracking-[.16em] text-[#08A77F]">O que fica documentado</div>
-            <div className="mt-4 space-y-3">{service.deliverableSections.map((item,index)=><div key={item} className="flex gap-3"><span className="font-black text-[#08A77F]">0{index+1}</span><span className="text-sm font-semibold leading-6 text-[#315B58]">{item}</span></div>)}</div>
-          </div>
+    <ApprovedLightSection eyebrow="Entregável técnico" title="O que a entrega documenta" intro={service.note} white>
+      <div className="grid gap-8 lg:grid-cols-[.78fr_1.22fr] lg:items-start">
+        <div className="rounded-2xl bg-[#075653] p-7 text-white shadow-xl shadow-[#075653]/10">
+          <div className="text-[10px] font-bold uppercase tracking-[.22em] text-[#8AE600]">Entregável</div>
+          <h3 className="mt-4 text-2xl font-black leading-tight">{service.deliverable}</h3>
+          <p className="mt-4 text-sm leading-7 text-white/70">A página descreve a entrega real do serviço, sem tabela, valor ou documento fictício.</p>
         </div>
-        <ConsultReportPreview title={service.deliverable} sections={service.deliverableSections} note={service.note}/>
+        <ApprovedList items={service.deliverableSections}/>
       </div>
     </ApprovedLightSection>
 

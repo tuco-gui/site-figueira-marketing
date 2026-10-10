@@ -68,7 +68,7 @@ const AREAS = {
     ],
     process:[['01','Identificar','Modalidade, equipamento, ambiente e objetivo da avaliação.'],['02','Medir','Executar os testes e medições aplicáveis ao escopo.'],['03','Comparar','Analisar os resultados frente à referência pertinente.'],['04','Documentar','Registrar os resultados no documento técnico correspondente.']],
     standards:[['RDC 611/2022','Base sanitária geral para radiologia diagnóstica e intervencionista.',RDC_611],['IN 90 a 97/2021','Referências específicas por modalidade de diagnóstico por imagem.',ANVISA_IN]],
-    faq:[['O Controle de Qualidade é igual para todas as modalidades?','Não. Os testes e referências variam conforme a tecnologia avaliada.'],['O resultado é documentado?','Sim. O Controle de Qualidade gera laudo técnico assinado pelo físico médico.']],
+    faq:[],
     resources:'modalities',
     recurring:['Vistoria mensal','Análise semanal de imagens','Supervisão de proteção radiológica'],
   },
@@ -97,9 +97,9 @@ const AREAS = {
     eyebrow:'Ensaios, calibração e qualificação',
     image: CONSULT_IMAGES.engineering,
     intro:'A Consult realiza ensaios de segurança elétrica, ensaios de desempenho, manutenção preventiva, reverificação e qualificação térmica, com resultado documentado por equipamento.',
-    proof:[['ENTREGA','Laudo por equipamento'],['RESPONSÁVEL','RT habilitado'],['HISTÓRICO','Histórico técnico'],['RASTREIO','RBC/Inmetro']],
+    proof:[['ENTREGA','Laudo por equipamento'],['RESPONSÁVEL','RT habilitado'],['HISTÓRICO','Histórico técnico'],['RASTREABILIDADE','Rastreabilidade RBC']],
     sectionTitle:'Medição independente para decisões mais seguras sobre equipamentos de saúde.',
-    sectionIntro:'A Consult verifica o equipamento por medição, documenta a condição encontrada e preserva o histórico técnico por equipamento.',
+    sectionIntro:'A Consult mede, ensaia e documenta a condição do equipamento. O resultado é emitido por equipamento e incorporado ao histórico técnico da instituição.',
     services:[
       ['Segurança elétrica','Aterramento, isolamento e correntes de fuga.','/consult/engenharia-clinica/seguranca-eletrica',ShieldCheck],
       ['Calibração e ensaio de desempenho','Comparação ponto a ponto com padrões calibrados, com desvios e conformidade documentados.','/consult/engenharia-clinica/desempenho-calibracao',Gauge],
@@ -124,7 +124,7 @@ export default function ConsultAreaLandingPageV3({ fixedSlug }) {
   if(!area) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Área não encontrada</h1><Link to="/consult" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar</Link></main></ConsultSiteShell>
 
   return <ConsultSiteShell><main>
-    <ApprovedInternalHero eyebrow={area.eyebrow} title={area.title} description={area.intro} image={area.image}/>
+    <ApprovedInternalHero eyebrow={area.eyebrow} title={area.title} description={area.intro} image={area.image} breadcrumbs={[[ 'Início','/consult' ],[ area.title,null ]]}/>
     <ApprovedProofStrip items={area.proof}/>
     {slug==='engenharia-clinica' && <ApprovedIndependenceBand/>}
 

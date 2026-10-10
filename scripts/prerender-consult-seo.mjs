@@ -4,6 +4,7 @@ import { dirname, join } from 'node:path'
 const DIST = 'dist'
 const HOMOLOGATION_ORIGIN = 'https://www.figueiramarketing.com.br'
 const SOCIAL_IMAGE = `${HOMOLOGATION_ORIGIN}/consult/approved-national-bg.webp`
+const STATIC_POSTS = JSON.parse(await readFile('src/lib/consultStaticPosts.json','utf8'))
 
 const areas = {
   'fisica-medica': ['Física Médica | Controle de Qualidade e Laudos | Consult','Controle de qualidade, medições e laudos técnicos para diagnóstico por imagem, com atendimento da Consult em todo o Brasil.'],
@@ -21,7 +22,7 @@ const modalities = {
   ultrassom: ['Controle de Qualidade em Ultrassom | IN 96 | Consult','Ensaios de controle de qualidade em ultrassom conforme IN 96/2021, com desempenho e qualidade de imagem documentados.'],
   'ressonancia-magnetica': ['Controle de Qualidade em Ressonância Magnética | Consult','Controle de qualidade em ressonância magnética conforme IN 97/2021, com avaliação de desempenho e qualidade de imagem.'],
   'densitometria-ossea': ['Controle de Qualidade em Densitometria Óssea | Consult','Testes de aceitação e constância em densitometria óssea conforme RDC 611/2022, instruções do fabricante e protocolos reconhecidos.'],
-  'raio-x-veterinario': ['Controle de Qualidade em Raios X Veterinário | Consult','Avaliação técnica de raios X veterinário com base na RDC 611/2022 e IN 90/2021 como referência técnica indicada pela Consult.'],
+  'raio-x-veterinario': ['Controle de Qualidade em Raios X Veterinário | Consult','Avaliação técnica de raios X veterinário com base na RDC 611/2022 e IN 90/2021 como referência técnica.'],
 }
 
 const protection = {
@@ -59,19 +60,6 @@ const equipment = {
   'geladeira-camara-vacina':'Geladeira e câmara de vacina',
 }
 
-const regions = {
-  'sao-paulo':['São Paulo','em São Paulo'],
-  parana:['Paraná','no Paraná'],
-  'mato-grosso-do-sul':['Mato Grosso do Sul','em Mato Grosso do Sul'],
-  'minas-gerais':['Minas Gerais','em Minas Gerais'],
-}
-
-const blog = {
-  'educacao-continuada-cursos-digitais-radioprotecao':['Educação continuada e cursos de radioproteção | Consult','A Consult amplia o acesso a treinamentos online de proteção radiológica, qualidade em radiodiagnóstico e segurança em ressonância magnética.'],
-  'iaea-hhs-47-controle-qualidade-equipamentos':['IAEA HHS 47 e controle de qualidade | Consult','Entenda a importância do guia IAEA HHS 47 para testes de controle de qualidade em radiologia diagnóstica.'],
-  'protecao-radiologica-equipamentos-arco-c':['Proteção radiológica em equipamentos Arco C | Consult','Conteúdo técnico sobre exposição ocupacional, proteção e uso seguro de equipamentos Arco C.'],
-}
-
 const routes = [
   ['/consult','Consult Radiometria e Qualidade | Física Médica e Consult Engenharia Clínica','Medição, ensaio, calibração, qualificação e laudos técnicos em Física Médica, Proteção Radiológica e Consult Engenharia Clínica, com atendimento em todo o Brasil.','website'],
   ['/consult/sobre','Sobre a Consult | Consult Radiometria e Qualidade','Conheça a Consult Radiometria e Qualidade, fundada em 1995, sua atuação técnica, áreas de serviço e estrutura de atendimento.','website'],
@@ -96,13 +84,12 @@ for (const [slug, name] of Object.entries(equipment)) routes.push([
   `Ensaios aplicáveis a ${name}, com medição documentada, padrões com rastreabilidade RBC/Inmetro e laudo por equipamento.`,
   'website',
 ])
-for (const [slug, [name, prep]] of Object.entries(regions)) routes.push([
-  `/consult/atuacao/${slug}`,
-  `Engenharia Clínica e Física Médica ${prep} | Consult`,
-  `Atendimento presencial da Consult ${prep} para Física Médica, Proteção Radiológica e Engenharia Clínica, com medições, ensaios e laudos técnicos.`,
-  'website',
+for (const post of STATIC_POSTS) routes.push([
+  `/consult/blog/${post.slug}`,
+  post.seoTitle || `${post.title} | Consult`,
+  post.seoDescription || post.excerpt || '',
+  'article',
 ])
-for (const [slug, meta] of Object.entries(blog)) routes.push([`/consult/blog/${slug}`,...meta,'article'])
 
 const esc = (value='') => String(value)
   .replace(/&/g,'&amp;')

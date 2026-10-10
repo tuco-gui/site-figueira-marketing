@@ -33,7 +33,7 @@ export default function ConsultLegacyRedirect({ type }) {
   }
 
   if (type === 'region') {
-    return <Navigate to={`/consult/atuacao/${slug}`} replace />
+    return <Navigate to="/consult/servicos" replace />
   }
 
   return <Navigate to="/consult" replace />

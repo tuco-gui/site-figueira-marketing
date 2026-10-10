@@ -1,54 +1,91 @@
 import React, { useState } from 'react'
-import { ArrowRight, FileText, Menu, MessageCircle, X } from 'lucide-react'
+import { ArrowRight, ChevronDown, FileText, Menu, MessageCircle, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const CDN = 'https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305'
-const LOGO = `${CDN}/68d5471e-43b0-4285-8644-3407ac1e09ff.png`
+const LOGO = `${CDN}/68d5471e-43b0-4285-8644-3407ac1f137f.png`
 const WHATSAPP = '5514981610712'
 
 export const CONSULT_COLORS = {
   dark: '#075653', deep: '#064946', green: '#08A77F', mint: '#05D29D', lime: '#8AE600', orange: '#FF6B26', ink: '#123C3B', soft: '#F4FBFA',
 }
 
+const AREAS = [
+  ['Física Médica','/consult/fisica-medica'],
+  ['Proteção Radiológica','/consult/protecao-radiologica'],
+  ['Consult Engenharia Clínica','/consult/engenharia-clinica'],
+]
+
+const DIRECT_SERVICES = [
+  ['Controle de Qualidade','/consult/fisica-medica/controle-de-qualidade'],
+  ['Levantamento radiométrico','/consult/protecao-radiologica/levantamento-radiometrico'],
+  ['Projeto de blindagem','/consult/protecao-radiologica/projeto-blindagem'],
+  ['Programas PPR / PGQ / PEP','/consult/protecao-radiologica/programa-protecao-radiologica'],
+  ['Licenciamento sanitário','/consult/protecao-radiologica/licenciamento-sanitario'],
+  ['Treinamentos','/consult/protecao-radiologica/treinamentos'],
+  ['Segurança elétrica','/consult/engenharia-clinica/seguranca-eletrica'],
+  ['Ensaio de desempenho','/consult/engenharia-clinica/desempenho-calibracao'],
+  ['Manutenção preventiva','/consult/engenharia-clinica/manutencao-preventiva'],
+  ['Qualificação térmica','/consult/engenharia-clinica/qualificacao-termica'],
+]
+
 export function ConsultEyebrow({ children, light = false, center = false }) {
   return <div className={`flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.28em] ${center ? 'justify-center' : ''} ${light ? 'text-white/70' : 'text-[#4D7775]'}`}><span className="h-0.5 w-8 bg-[#8AE600]" />{children}</div>
 }
 
+function DesktopDropdown({ label, href, items, columns = 1 }) {
+  return <div className="group relative">
+    <div className="flex items-center gap-1">
+      <Link to={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</Link>
+      <ChevronDown size={14} className="text-white/55 transition group-hover:rotate-180 group-hover:text-[#8AE600]"/>
+    </div>
+    <div className="pointer-events-none absolute left-1/2 top-full z-[70] w-max -translate-x-1/2 translate-y-2 pt-4 opacity-0 transition duration-150 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100">
+      <div className={`rounded-2xl border border-black/5 bg-white p-3 text-[#123C3B] shadow-2xl shadow-black/15 ${columns===2?'grid w-[560px] grid-cols-2 gap-1':'w-[300px]'}`}>
+        {items.map(([itemLabel,itemHref])=><Link key={itemHref} to={itemHref} className="rounded-xl px-4 py-3 text-sm font-bold leading-5 transition hover:bg-[#F0F9F6] hover:text-[#078B6B]">{itemLabel}</Link>)}
+        {label==='Serviços' && <Link to="/consult/servicos" className="col-span-full mt-1 flex items-center justify-between rounded-xl bg-[#075653] px-4 py-3 text-sm font-extrabold text-white hover:bg-[#064946]"><span>Ver catálogo completo</span><ArrowRight size={15}/></Link>}
+      </div>
+    </div>
+  </div>
+}
+
 export function ConsultHeader() {
   const [open, setOpen] = useState(false)
-  const nav = [
-    ['Início','/consult'],
-    ['Sobre','/consult/sobre'],
-    ['Serviços','/consult/servicos'],
-    ['Blog','/consult/blog'],
-    ['Cursos','https://consultcursos.herospark.co'],
-    ['Portal','https://www.consult.med.br/Portal/'],
-    ['Contato','/consult#contato'],
-  ]
   return <header className="sticky top-0 z-50 border-b border-white/10 bg-[#075653]/95 text-white backdrop-blur" style={{ backgroundColor: 'rgba(7,86,83,.97)', color: '#fff' }}>
     <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
       <Link to="/consult" className="flex items-center" aria-label="Página inicial da Consult"><img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-12 w-auto max-w-[190px] object-contain" /></Link>
-      <nav className="hidden items-center gap-6 lg:flex">
-        {nav.map(([label,href]) => href.startsWith('http')
-          ? <a key={label} href={href} target="_blank" rel="noreferrer" className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
-          : href.startsWith('/consult#')
-            ? <a key={label} href={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
-            : <Link key={label} to={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</Link>
-        )}
+
+      <nav className="hidden items-center gap-5 lg:flex" aria-label="Navegação principal">
+        <Link to="/consult" className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">Início</Link>
+        <Link to="/consult/sobre" className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">Sobre</Link>
+        <DesktopDropdown label="Áreas" href="/consult/servicos" items={AREAS}/>
+        <DesktopDropdown label="Serviços" href="/consult/servicos" items={DIRECT_SERVICES} columns={2}/>
+        <Link to="/consult/blog" className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">Blog</Link>
+        <a href="https://consultcursos.herospark.co" target="_blank" rel="noreferrer" className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">Cursos</a>
+        <a href="https://www.consult.med.br/Portal/" target="_blank" rel="noreferrer" className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">Portal</a>
         <a href="/consult#contato" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#FF6B26] px-4 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-black/10 transition hover:brightness-95">
           <FileText size={16}/> Solicite um orçamento
         </a>
       </nav>
-      <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 lg:hidden" onClick={() => setOpen(v => !v)} aria-label="Abrir menu">{open ? <X size={20}/> : <Menu size={20}/>}</button>
+
+      <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 lg:hidden" onClick={() => setOpen(v => !v)} aria-label={open?'Fechar menu':'Abrir menu'} aria-expanded={open}>{open ? <X size={20}/> : <Menu size={20}/>}</button>
     </div>
-    {open && <div className="border-t border-white/10 bg-[#064946] px-4 py-5 lg:hidden"><div className="mx-auto flex max-w-7xl flex-col gap-1">
-      {nav.map(([label,href]) => href.startsWith('http')
-        ? <a key={label} href={href} target="_blank" rel="noreferrer" onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</a>
-        : href.startsWith('/consult#')
-          ? <a key={label} href={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</a>
-          : <Link key={label} to={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</Link>
-      )}
-      <a href="/consult#contato" onClick={()=>setOpen(false)} className="mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white"><FileText size={16}/> Solicite um orçamento</a>
+
+    {open && <div className="max-h-[calc(100vh-72px)] overflow-y-auto border-t border-white/10 bg-[#064946] px-4 py-5 lg:hidden"><div className="mx-auto flex max-w-7xl flex-col gap-1">
+      <Link to="/consult" onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">Início</Link>
+      <Link to="/consult/sobre" onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">Sobre</Link>
+
+      <div className="mt-2 px-3 text-[10px] font-black uppercase tracking-[.2em] text-[#8AE600]">Áreas</div>
+      {AREAS.map(([label,href])=><Link key={href} to={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-semibold text-white/85 hover:bg-white/5">{label}</Link>)}
+
+      <div className="mt-3 px-3 text-[10px] font-black uppercase tracking-[.2em] text-[#8AE600]">Serviços</div>
+      {DIRECT_SERVICES.map(([label,href])=><Link key={href} to={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-semibold text-white/85 hover:bg-white/5">{label}</Link>)}
+      <Link to="/consult/servicos" onClick={()=>setOpen(false)} className="rounded-lg px-3 py-2.5 text-sm font-extrabold text-[#B8FF51]">Ver catálogo completo</Link>
+
+      <Link to="/consult/blog" onClick={()=>setOpen(false)} className="mt-2 rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">Blog</Link>
+      <a href="https://consultcursos.herospark.co" target="_blank" rel="noreferrer" onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">Cursos</a>
+      <a href="https://www.consult.med.br/Portal/" target="_blank" rel="noreferrer" onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">Portal</a>
+
+      <a href="/consult#contato" onClick={()=>setOpen(false)} className="mt-3 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white"><FileText size={16}/> Solicite um orçamento</a>
     </div></div>}
   </header>
 }
@@ -68,9 +105,7 @@ export function ConsultFooter() {
           <a className="block hover:text-[#8AE600]" href="/consult#contato">Contato</a>
         </div></div>
         <div><h4 className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">Áreas de atuação</h4><div className="mt-4 space-y-2 text-sm text-white/75">
-          <Link className="block hover:text-[#8AE600]" to="/consult/fisica-medica">Física Médica</Link>
-          <Link className="block hover:text-[#8AE600]" to="/consult/protecao-radiologica">Proteção Radiológica</Link>
-          <Link className="block hover:text-[#8AE600]" to="/consult/engenharia-clinica">Consult Engenharia Clínica</Link>
+          {AREAS.map(([label,href])=><Link key={href} className="block hover:text-[#8AE600]" to={href}>{label}</Link>)}
           <Link className="block hover:text-[#8AE600]" to="/consult/normas">Normas e referências</Link>
         </div></div>
         <div><h4 className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">Contato</h4><div className="mt-4 space-y-2 text-sm leading-6 text-white/75">

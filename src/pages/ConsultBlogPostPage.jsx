@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { CalendarDays, ExternalLink } from 'lucide-react'
+import { CalendarDays } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultEyebrow, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
 import { getConsultBlogPost } from '@/lib/consultBlogRepository'
@@ -64,14 +64,6 @@ export default function ConsultBlogPostPage() {
               <div className="mt-6 space-y-6 text-base leading-8 text-[#365A58]">
                 {post.summary.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               </div>
-
-              {post.migrationStatus === 'historical_summary' && post.sourceUrl && (
-                <div className="mt-9 rounded-2xl border border-[#CFE4DE] bg-[#EAF5F2] p-6">
-                  <p className="text-xs font-black uppercase tracking-[.2em] text-[#078B6B]">Acervo histórico</p>
-                  <p className="mt-3 text-sm leading-7 text-[#4D706D]">Este conteúdo está em processo de migração integral para a nova estrutura editorial da Consult. Até a conclusão, a publicação original permanece disponível para consulta.</p>
-                  <a href={post.sourceUrl} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-[#075653]">Ver publicação original <ExternalLink size={14} /></a>
-                </div>
-              )}
             </div>
 
             <aside>
@@ -82,7 +74,7 @@ export default function ConsultBlogPostPage() {
                     <Link key={item.href} to={item.href} className="block rounded-xl bg-[#F4FAF8] px-4 py-3 text-sm font-extrabold leading-5 text-[#075653] transition hover:bg-[#E6F5F0]">{item.label}</Link>
                   ))}
                 </div>
-                <p className="mt-5 border-t border-[#E1ECE9] pt-5 text-xs leading-5 text-[#78908E]">Publicado originalmente por {post.author} em {formatDate(post.publishedAt)}.</p>
+                <p className="mt-5 border-t border-[#E1ECE9] pt-5 text-xs leading-5 text-[#78908E]">Por {post.author} • {formatDate(post.publishedAt)}.</p>
               </div>
             </aside>
           </section>

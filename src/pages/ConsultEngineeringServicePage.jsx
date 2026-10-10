@@ -22,7 +22,7 @@ const SERVICES = {
     intro: 'Medição de resistência de aterramento, resistência de isolamento e correntes de fuga do equipamento e das partes aplicadas ao paciente.',
     storyTitle: 'Segurança elétrica recorrente exige medição e registro técnico.',
     story: 'O ensaio verifica a condição elétrica do equipamento, compara os valores medidos com os limites aplicáveis e documenta o resultado por equipamento.',
-    proof: [['ENSAIO','TSE recorrente e após reparo'],['ENTREGA','Laudo por equipamento'],['BASE','ABNT NBR IEC 62353'],['RASTREIO','RBC/Inmetro']],
+    proof: [['ENSAIO','TSE recorrente e após reparo'],['ENTREGA','Laudo por equipamento'],['BASE','ABNT NBR IEC 62353'],['PADRÕES','Rastreabilidade RBC']],
     when: ['Ensaio recorrente de segurança elétrica','Após reparo ou intervenção técnica','Quando a instituição precisa registrar a condição elétrica do equipamento','Para compor o histórico técnico do equipamento'],
     parameters: [['Aterramento','Resistência medida no equipamento'],['Isolamento','Condição de isolamento elétrico'],['Correntes de fuga','Equipamento e partes aplicadas'],['Conclusão','Valores medidos, limites aplicáveis e resultado']],
     deliverable: 'Laudo de Segurança Elétrica',
@@ -35,7 +35,7 @@ const SERVICES = {
     intro: 'Ensaio de desempenho com comparação ponto a ponto entre o que o equipamento mede ou entrega e uma referência calibrada.',
     storyTitle: 'O desempenho precisa ser demonstrado por comparação objetiva.',
     story: 'O ensaio seleciona os pontos aplicáveis ao equipamento, compara os resultados com a referência correspondente e documenta desvios e conformidade. No corpo técnico, o serviço é tratado como ensaio de desempenho.',
-    proof: [['MÉTODO','Comparação ponto a ponto'],['ENTREGA','Laudo com desvios'],['BASE','Norma do equipamento'],['RASTREIO','RBC/Inmetro']],
+    proof: [['MÉTODO','Comparação ponto a ponto'],['ENTREGA','Laudo com desvios'],['BASE','Norma do equipamento'],['PADRÕES','Rastreabilidade RBC']],
     when: ['Rotina periódica de verificação','Após manutenção ou suspeita de desvio','Quando é necessário documentar o desempenho do equipamento','Para manter histórico técnico das medições'],
     parameters: [['Ponto de ensaio','Grandeza e faixa definidas para o equipamento'],['Valor medido','Resposta observada durante o ensaio'],['Referência','Padrão calibrado utilizado na comparação'],['Conclusão','Desvio e conformidade documentados']],
     deliverable: 'Laudo de Ensaio de Desempenho',
@@ -74,7 +74,7 @@ const SERVICES = {
     intro: 'Mapeamento de temperatura com sensores calibrados durante ciclos de operação, com registros e gráficos para documentar o comportamento térmico do equipamento.',
     storyTitle: 'Qualificação térmica acompanha o comportamento ao longo do ciclo.',
     story: 'A avaliação utiliza pontos de medição distribuídos e registra a evolução da temperatura durante a operação. O resultado é comparado com os critérios aplicáveis ao equipamento e documentado em relatório.',
-    proof: [['MÉTODO','Mapeamento térmico'],['PADRÃO','Sensores calibrados'],['ENTREGA','Relatório + gráficos'],['RASTREIO','RBC/Inmetro']],
+    proof: [['MÉTODO','Mapeamento térmico'],['PADRÃO','Sensores calibrados'],['ENTREGA','Relatório + gráficos'],['PADRÕES','Rastreabilidade RBC']],
     when: ['Qualificação de autoclaves','Qualificação de termodesinfectoras','Mapeamento de geladeiras e câmaras de vacina','Avaliação de estufas, incubadoras e banho-maria de laboratório'],
     parameters: [['Sensores','Pontos de medição distribuídos'],['Ciclo','Comportamento ao longo da operação'],['Temperatura','Registros e curvas geradas'],['Conclusão','Resultado de conformidade conforme a aplicação']],
     deliverable: 'Relatório de Qualificação Térmica',
@@ -99,7 +99,7 @@ export default function ConsultEngineeringServicePage() {
   if (!service) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Serviço não encontrado</h1><Link to="/consult/engenharia-clinica" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Engenharia Clínica</Link></main></ConsultSiteShell>
 
   return <ConsultSiteShell><main>
-    <ApprovedInternalHero eyebrow="Consult Engenharia Clínica" title={service.title} description={service.intro} image={CONSULT_IMAGES.engineering}/>
+    <ApprovedInternalHero eyebrow="Consult Engenharia Clínica" title={service.title} description={service.intro} image={CONSULT_IMAGES.engineering} breadcrumbs={[[ 'Início','/consult' ],[ 'Consult Engenharia Clínica','/consult/engenharia-clinica' ],[ service.title,null ]]}/>
     <ApprovedProofStrip items={service.proof}/>
     <ApprovedIndependenceBand/>
 
@@ -108,7 +108,7 @@ export default function ConsultEngineeringServicePage() {
         <div className="rounded-2xl bg-[#075653] p-7 text-white shadow-xl shadow-[#075653]/10">
           <div className="text-[10px] font-bold uppercase tracking-[.24em] text-[#8AE600]">Entregável técnico</div>
           <h3 className="mt-4 text-2xl font-black leading-tight">{service.deliverable}</h3>
-          <p className="mt-4 text-sm leading-7 text-white/70">Documento emitido por equipamento, assinado pelo responsável técnico e incorporado ao histórico técnico da instituição.</p>
+          <p className="mt-4 text-sm leading-7 text-white/70">Documento emitido por equipamento, assinado pelo responsável técnico e incorporado ao histórico técnico da instituição. Laudo emitido em até 7 dias após as medições.</p>
         </div>
         <div>
           <div className="mb-4 text-xs font-black uppercase tracking-[.18em] text-[#08A77F]">O que é avaliado</div>
@@ -130,7 +130,7 @@ export default function ConsultEngineeringServicePage() {
         <div className="rounded-2xl bg-[#075653] p-7 text-white">
           <div className="text-[10px] font-bold uppercase tracking-[.24em] text-[#8AE600]">Documento</div>
           <h3 className="mt-4 text-2xl font-black">{service.deliverable}</h3>
-          <p className="mt-4 text-sm leading-7 text-white/70">Os padrões utilizados nas medições são apresentados com rastreabilidade RBC/Inmetro.</p>
+          <p className="mt-4 text-sm leading-7 text-white/70">Os padrões utilizados nas medições são apresentados com rastreabilidade RBC/Inmetro. Laudo emitido em até 7 dias após as medições.</p>
         </div>
         <ApprovedList items={service.reportItems}/>
       </div>

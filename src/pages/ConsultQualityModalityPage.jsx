@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
 import {
   ApprovedDarkProcess,
+  ApprovedEditorialPanel,
   ApprovedInternalHero,
   ApprovedLightSection,
   ApprovedList,
@@ -16,58 +17,83 @@ const ANVISA_IN = 'https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2021
 
 const MODALITIES = {
   'raio-x-convencional': {
-    title: 'Controle de Qualidade em Raios X Convencional', short: 'Raios X convencional', norm: 'IN 90/2021',
-    intro: 'Ensaios periódicos para documentar o desempenho do sistema de radiografia convencional, a qualidade de imagem e os parâmetros aplicáveis à modalidade.',
-    focus: [['Desempenho','Verificação dos parâmetros aplicáveis ao equipamento'],['Imagem','Qualidade de imagem dentro do escopo do controle'],['Exposição','Parâmetros relacionados à produção da imagem'],['Laudo','Resultado técnico assinado pelo físico médico']],
+    title: 'Controle de Qualidade em Raios X Convencional',
+    short: 'Raios X convencional',
+    norm: 'IN 90/2021',
+    intro: 'Avaliação técnica periódica de equipamentos de radiografia convencional, organizada pela referência própria da modalidade e documentada em laudo assinado pelo físico médico.',
+    context: 'A radiografia convencional possui critérios próprios de Controle de Qualidade. Por isso, a avaliação não é apresentada como um checklist genérico: o escopo deve seguir a referência técnica aplicável ao equipamento e à modalidade.',
   },
   'fluoroscopia-arco-c-angiografia': {
-    title: 'Controle de Qualidade em Fluoroscopia, Arco C e Angiografia', short: 'Fluoroscopia, Arco C e Angiografia', norm: 'IN 91/2021',
-    intro: 'Controle de qualidade para sistemas de fluoroscopia e radiologia intervencionista, com verificação técnica documentada conforme a modalidade.',
-    focus: [['Funcionamento','Comportamento do sistema durante os ensaios'],['Imagem','Qualidade de imagem aplicável à modalidade'],['Exposição','Parâmetros de exposição avaliados no controle'],['Laudo','Resultado técnico assinado pelo físico médico']],
+    title: 'Controle de Qualidade em Fluoroscopia, Arco C e Angiografia',
+    short: 'Fluoroscopia, Arco C e Angiografia',
+    norm: 'IN 91/2021',
+    intro: 'Avaliação técnica de sistemas de fluoroscopia, arco cirúrgico e angiografia, com referência específica da modalidade e resultados registrados em laudo técnico.',
+    context: 'Sistemas utilizados em fluoroscopia e radiologia intervencionista exigem uma avaliação própria da tecnologia. A Consult separa o escopo desta modalidade e documenta os resultados conforme a referência aplicável.',
   },
   mamografia: {
-    title: 'Controle de Qualidade em Mamografia', short: 'Mamografia', norm: 'IN 92/2021',
-    intro: 'Ensaios de controle de qualidade para mamógrafos, direcionados ao desempenho, qualidade de imagem e parâmetros aplicáveis à mamografia.',
-    focus: [['Equipamento','Desempenho do sistema mamográfico'],['Imagem','Qualidade de imagem da modalidade'],['Exposição','Parâmetros avaliados conforme o controle'],['Laudo','Resultado técnico assinado pelo físico médico']],
+    title: 'Controle de Qualidade em Mamografia',
+    short: 'Mamografia',
+    norm: 'IN 92/2021',
+    intro: 'Controle de Qualidade do sistema mamográfico com avaliação técnica específica da modalidade e documentação dos resultados em laudo assinado pelo físico médico.',
+    context: 'Mamografia não deve ser tratada como uma variação genérica de radiografia. A página mantém a referência própria da modalidade e organiza o resultado técnico em documento específico.',
   },
   tomografia: {
-    title: 'Controle de Qualidade em Tomografia Computadorizada', short: 'Tomografia computadorizada', norm: 'IN 93/2021',
-    intro: 'Controle periódico de tomógrafos com avaliação técnica do desempenho, qualidade de imagem e parâmetros aplicáveis à tomografia computadorizada.',
-    focus: [['Desempenho','Parâmetros aplicáveis ao tomógrafo'],['Imagem','Qualidade de imagem verificada em ensaio'],['Exposição','Parâmetros relacionados à modalidade'],['Laudo','Resultado técnico assinado pelo físico médico']],
+    title: 'Controle de Qualidade em Tomografia Computadorizada',
+    short: 'Tomografia computadorizada',
+    norm: 'IN 93/2021',
+    intro: 'Avaliação periódica de tomógrafos conforme a referência específica da modalidade, com medições analisadas e conclusão documentada em laudo técnico.',
+    context: 'A tomografia computadorizada possui critérios próprios de avaliação. O serviço é estruturado por modalidade, sem misturar parâmetros ou referências de outros equipamentos de imagem.',
   },
   'odontologico-extraoral': {
-    title: 'Controle de Qualidade em Radiologia Odontológica Extraoral', short: 'Odontológico extraoral', norm: 'IN 94/2021',
-    intro: 'Ensaios de controle de qualidade para equipamentos odontológicos extraorais, incluindo sistemas panorâmicos e tomografia odontológica conforme a aplicação.',
-    focus: [['Equipamento','Sistema extraoral avaliado'],['Imagem','Qualidade de imagem da modalidade'],['Exposição','Parâmetros aplicáveis ao ensaio'],['Laudo','Resultado técnico assinado pelo físico médico']],
+    title: 'Controle de Qualidade em Radiologia Odontológica Extraoral',
+    short: 'Odontológico extraoral',
+    norm: 'IN 94/2021',
+    intro: 'Controle de Qualidade de sistemas odontológicos extraorais, incluindo aplicações panorâmicas e tomográficas, conforme a referência específica da modalidade.',
+    context: 'Equipamentos odontológicos extraorais possuem escopo próprio de avaliação. A Consult documenta o resultado da modalidade sem reaproveitar um checklist genérico de outras tecnologias.',
   },
   'odontologico-intraoral': {
-    title: 'Controle de Qualidade em Radiologia Odontológica Intraoral', short: 'Odontológico intraoral', norm: 'IN 95/2021',
-    intro: 'Controle de qualidade para equipamentos de radiologia odontológica intraoral, com resultado documentado conforme a referência aplicável.',
-    focus: [['Equipamento','Sistema intraoral avaliado'],['Imagem','Qualidade da formação da imagem'],['Exposição','Parâmetros aplicáveis ao controle'],['Laudo','Resultado técnico assinado pelo físico médico']],
+    title: 'Controle de Qualidade em Radiologia Odontológica Intraoral',
+    short: 'Odontológico intraoral',
+    norm: 'IN 95/2021',
+    intro: 'Avaliação técnica de equipamentos de radiologia odontológica intraoral, com referência própria e resultado documentado em laudo técnico.',
+    context: 'O Controle de Qualidade intraoral é apresentado como serviço próprio, com referência específica e documentação separada da modalidade extraoral.',
   },
   ultrassom: {
-    title: 'Controle de Qualidade em Ultrassom', short: 'Ultrassom', norm: 'IN 96/2021',
-    intro: 'Ensaios de controle de qualidade em equipamentos de ultrassom para verificar desempenho, qualidade de imagem e funcionamento dentro do escopo da modalidade.',
-    focus: [['Desempenho','Resposta do equipamento nos ensaios aplicáveis'],['Imagem','Qualidade de imagem'],['Funcionamento','Condição funcional dentro do controle'],['Laudo','Resultado técnico assinado pelo físico médico']],
+    title: 'Controle de Qualidade em Ultrassom',
+    short: 'Ultrassom',
+    norm: 'IN 96/2021',
+    intro: 'Controle de Qualidade em equipamentos de ultrassom conforme a referência própria da modalidade, com avaliação técnica e resultado documentado.',
+    context: 'Ultrassom não utiliza o mesmo conjunto de critérios das modalidades que empregam radiação ionizante. Por isso, a página mantém sua referência e seu escopo separados.',
   },
   'ressonancia-magnetica': {
-    title: 'Controle de Qualidade em Ressonância Magnética', short: 'Ressonância magnética', norm: 'IN 97/2021',
-    intro: 'Controle de qualidade em ressonância magnética com verificação técnica de desempenho, qualidade de imagem e funcionamento conforme a referência da modalidade.',
-    focus: [['Desempenho','Parâmetros aplicáveis à ressonância'],['Imagem','Qualidade de imagem'],['Funcionamento','Condição técnica avaliada no controle'],['Laudo','Resultado técnico assinado pelo físico médico']],
+    title: 'Controle de Qualidade em Ressonância Magnética',
+    short: 'Ressonância magnética',
+    norm: 'IN 97/2021',
+    intro: 'Controle de Qualidade em ressonância magnética com avaliação técnica específica da modalidade e registro dos resultados em documento próprio.',
+    context: 'A ressonância magnética possui referência específica e deve ser tratada como tecnologia própria no Controle de Qualidade, sem copiar critérios de radiologia convencional.',
   },
   'densitometria-ossea': {
-    title: 'Controle de Qualidade em Densitometria Óssea', short: 'Densitometria óssea', norm: 'RDC 611/2022',
-    intro: 'Testes de aceitação e de constância conforme a RDC 611/2022, as instruções do fabricante e protocolos reconhecidos.',
-    focus: [['Aceitação','Testes aplicáveis à entrada ou alteração relevante do equipamento'],['Constância','Verificações periódicas conforme o protocolo aplicável'],['Referência','RDC 611/2022, instruções do fabricante e protocolos reconhecidos'],['Laudo','Resultado técnico assinado pelo físico médico']],
+    title: 'Controle de Qualidade em Densitometria Óssea',
+    short: 'Densitometria óssea',
+    norm: 'RDC 611/2022',
+    intro: 'Testes de aceitação e de constância conforme a RDC 611/2022, as instruções do fabricante e protocolos reconhecidos, com resultado documentado.',
+    context: 'A Consult não atribui uma Instrução Normativa específica à densitometria. A base apresentada é a RDC 611/2022, combinada às instruções do fabricante e a protocolos reconhecidos.',
   },
   'raio-x-veterinario': {
-    title: 'Controle de Qualidade em Raios X Veterinário', short: 'Raios X veterinário', norm: 'RDC 611/2022 + IN 90/2021 como referência técnica',
-    intro: 'Avaliação técnica de equipamentos de raios X veterinário considerando a proteção de trabalhadores e público, com a IN 90/2021 utilizada como referência técnica.',
-    focus: [['Equipamento','Sistema veterinário avaliado'],['Imagem','Qualidade de imagem no controle'],['Proteção','Trabalhadores e público considerados no escopo'],['Laudo','Resultado técnico assinado pelo físico médico']],
+    title: 'Controle de Qualidade em Raios X Veterinário',
+    short: 'Raios X veterinário',
+    norm: 'RDC 611/2022 + IN 90/2021 como referência técnica',
+    intro: 'Avaliação técnica de equipamentos de raios X veterinário com a RDC 611/2022 como base e a IN 90/2021 utilizada como referência técnica.',
+    context: 'Na radiologia veterinária, a RDC 611/2022 é considerada na proteção de trabalhadores e do público. A IN 90/2021 é apresentada como referência técnica dos testes, sem afirmar uma aplicação regulatória diferente da definida pela Consult.',
   },
 }
 
-const PROCESS = [['01','Identificar a modalidade','Confirmar equipamento, contexto de uso e referência aplicável.'],['02','Executar os ensaios','Realizar os testes previstos para a modalidade.'],['03','Analisar os resultados','Confrontar as medições com os critérios pertinentes.'],['04','Emitir o laudo','Documentar o resultado e a conclusão técnica.']]
+const PROCESS = [
+  ['01','Confirmar a modalidade','Identificar equipamento, aplicação e referência técnica correspondente.'],
+  ['02','Executar o controle','Realizar os ensaios definidos para a tecnologia e para o equipamento.'],
+  ['03','Analisar os resultados','Confrontar as medições com os critérios aplicáveis à modalidade.'],
+  ['04','Documentar','Emitir o laudo técnico com resultados, referência e conclusão.'],
+]
 
 export default function ConsultQualityModalityPage() {
   const { slug } = useParams()
@@ -81,31 +107,75 @@ export default function ConsultQualityModalityPage() {
 
   if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Modalidade não encontrada</h1><Link to="/consult/fisica-medica/controle-de-qualidade" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Controle de Qualidade</Link></main></ConsultSiteShell>
 
-  const norms=item.norm.startsWith('IN ')
-    ? [['RDC 611/2022 — Anvisa','Base sanitária geral para radiologia diagnóstica e intervencionista.',RDC_611],[`${item.norm} — Anvisa`,`Referência específica indicada para ${item.short}.`,ANVISA_IN]]
-    : [['RDC 611/2022 — Anvisa','Base indicada para esta modalidade.',RDC_611],[item.norm,'Referência técnica aplicável à modalidade.',ANVISA_IN]]
+  const norms = item.norm.startsWith('IN ')
+    ? [
+        ['RDC 611/2022 — Anvisa','Base sanitária geral para radiologia diagnóstica e intervencionista.',RDC_611],
+        [`${item.norm} — Anvisa`,`Referência específica da modalidade ${item.short}.`,ANVISA_IN],
+      ]
+    : [
+        ['RDC 611/2022 — Anvisa','Base indicada para esta modalidade.',RDC_611],
+        [item.norm,'Referência técnica apresentada pela Consult para esta modalidade.',ANVISA_IN],
+      ]
 
   return <ConsultSiteShell><main>
-    <ApprovedInternalHero eyebrow={`Controle de Qualidade • ${item.norm}`} title={item.title} description={item.intro} image={CONSULT_IMAGES.radiology}/>
-    <ApprovedProofStrip items={[[ 'MODALIDADE',item.short ],[ 'NORMA',item.norm ],[ 'ENTREGA','Laudo técnico' ],[ 'RESPONSÁVEL','Físico médico' ]]}/>
+    <ApprovedInternalHero
+      eyebrow={`Controle de Qualidade • ${item.norm}`}
+      title={item.title}
+      description={item.intro}
+      image={CONSULT_IMAGES.radiology}
+      breadcrumbs={[[ 'Início','/consult' ],[ 'Física Médica','/consult/fisica-medica' ],[ 'Controle de Qualidade','/consult/fisica-medica/controle-de-qualidade' ],[ item.short,null ]]}
+    />
 
-    <ApprovedLightSection eyebrow="Controle por modalidade" title={`O que é avaliado em ${item.short}`} intro="Os testes e critérios mudam conforme a tecnologia. Por isso a avaliação considera a referência específica da modalidade." center>
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">{item.focus.map(([label,text])=><div key={label} className="rounded-xl border border-black/5 bg-white p-5 shadow-sm"><div className="text-base font-black text-[#123C3B]">{label}</div><p className="mt-3 text-sm leading-6 text-black/55">{text}</p></div>)}</div>
+    <ApprovedProofStrip items={[
+      ['MODALIDADE',item.short],
+      ['REFERÊNCIA',item.norm],
+      ['ENTREGA','Laudo técnico'],
+      ['RESPONSÁVEL','Físico médico'],
+    ]}/>
+
+    <ApprovedLightSection
+      eyebrow="Controle por modalidade"
+      title="O escopo acompanha a tecnologia — não um template genérico"
+      intro={item.context}
+    >
+      <ApprovedEditorialPanel
+        eyebrow="Estrutura da avaliação"
+        title={`Controle de Qualidade em ${item.short}`}
+        text="Os ensaios são definidos de acordo com a modalidade, o equipamento e a referência técnica aplicável. O resultado registra as medições realizadas, os critérios considerados e a conclusão técnica."
+        image={CONSULT_IMAGES.radiology}
+        items={['Modalidade identificada','Referência própria','Resultados documentados','Conclusão técnica assinada']}
+      />
     </ApprovedLightSection>
 
     <ApprovedDarkProcess items={PROCESS}/>
 
-    <ApprovedLightSection eyebrow="Entregável" title="O que o laudo traz" intro={`Resultado técnico da avaliação de ${item.short}, com os ensaios e critérios aplicáveis à modalidade.`} white>
-      <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
-        <div className="rounded-2xl bg-[#075653] p-7 text-white"><div className="text-[10px] font-bold uppercase tracking-[.2em] text-[#8AE600]">Laudo de Controle de Qualidade</div><h3 className="mt-4 text-2xl font-black">Resultado documentado por modalidade</h3><p className="mt-4 text-sm leading-7 text-white/68">O documento registra os ensaios realizados, os resultados medidos, a referência aplicável e a conclusão técnica assinada pelo físico médico.</p></div>
-        <ApprovedList items={['Identificação do equipamento e da modalidade','Ensaios realizados','Resultados medidos','Referência aplicável','Conclusão técnica e assinatura do físico médico']}/>
+    <ApprovedLightSection
+      eyebrow="Entregável"
+      title="O que o laudo traz"
+      intro={`Resultado técnico do Controle de Qualidade em ${item.short}, apresentado sem tabela fictícia ou valores de exemplo.`}
+      white
+    >
+      <div className="grid gap-8 lg:grid-cols-[.82fr_1.18fr] lg:items-start">
+        <div className="rounded-2xl bg-[#075653] p-7 text-white shadow-xl shadow-[#075653]/10">
+          <div className="text-[10px] font-bold uppercase tracking-[.2em] text-[#8AE600]">Laudo de Controle de Qualidade</div>
+          <h3 className="mt-4 text-2xl font-black">Resultado documentado por modalidade</h3>
+          <p className="mt-4 text-sm leading-7 text-white/70">Laudo emitido em até 7 dias após as medições, com assinatura do físico médico responsável.</p>
+        </div>
+        <ApprovedList items={['Identificação do equipamento e da modalidade','Ensaios realizados conforme o escopo aplicável','Resultados medidos','Referência utilizada na avaliação','Conclusão técnica e assinatura do físico médico']}/>
       </div>
     </ApprovedLightSection>
 
-    <ApprovedLightSection eyebrow="Base normativa" title="Normas e referências" intro="A avaliação combina a base geral da RDC 611/2022 com a referência específica da modalidade." >
+    <ApprovedLightSection
+      eyebrow="Base normativa"
+      title="Normas e referências"
+      intro="A página apresenta a base geral e a referência própria da modalidade, sem atribuir ao serviço uma norma que não se aplica."
+    >
       <ApprovedNormCards items={norms}/>
     </ApprovedLightSection>
 
-    <ConsultCtaBand title={`Precisa de Controle de Qualidade em ${item.short}?`} text="Informe o equipamento e a situação do serviço. A equipe Consult confirma o escopo técnico e a programação da avaliação."/>
+    <ConsultCtaBand
+      title={`Precisa de Controle de Qualidade em ${item.short}?`}
+      text="Informe o equipamento e a situação do serviço. A equipe Consult confirma o escopo técnico e a programação da avaliação."
+    />
   </main></ConsultSiteShell>
 }
