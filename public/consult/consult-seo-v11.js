@@ -64,6 +64,7 @@
   const directAreaMatch = path.match(/^\/consult\/(fisica-medica|protecao-radiologica|engenharia-clinica)$/);
   const oldServiceMatch = path.match(/^\/consult\/servicos\/([^/]+)$/);
   const siloServiceMatch = path.match(/^\/consult\/fisica-medica\/([^/]+)$/);
+  const protectionServiceMatch = path.match(/^\/consult\/protecao-radiologica\/([^/]+)$/);
   const modalityMatch = path.match(/^\/consult\/fisica-medica\/controle-de-qualidade\/([^/]+)$/);
   const engineeringMatch = path.match(/^\/consult\/engenharia-clinica\/([^/]+)$/);
   const oldEquipmentMatch = path.match(/^\/consult\/equipamentos\/([^/]+)$/);
@@ -125,13 +126,20 @@
     schemaType = "Service";
     canonicalPath = `/consult/${areaSlug}`;
     crumbs.push([title.replace(/ \| .*$/,""),canonicalPath]);
+  } else if (protectionServiceMatch && serviceMeta[protectionServiceMatch[1]]) {
+    const slug = protectionServiceMatch[1];
+    [title,description] = serviceMeta[slug];
+    keywords = `${slug.replaceAll("-"," ")}, Proteção Radiológica, Consult`;
+    schemaType = "Service";
+    canonicalPath = `/consult/protecao-radiologica/${slug}`;
+    crumbs.push(["Proteção Radiológica","/consult/protecao-radiologica"],[title.replace(/ \| .*$/,""),canonicalPath]);
   } else if ((oldServiceMatch || siloServiceMatch) && serviceMeta[(oldServiceMatch || siloServiceMatch)[1]]) {
     const slug = (oldServiceMatch || siloServiceMatch)[1];
     [title,description] = serviceMeta[slug];
     keywords = `${slug.replaceAll("-"," ")}, Física Médica, Proteção Radiológica, Consult`;
     schemaType = "Service";
-    if (oldServiceMatch) canonicalPath = `/consult/fisica-medica/${slug}`;
-    crumbs.push(["Física Médica","/consult/areas/fisica-medica"],[title.replace(/ \| .*$/,""),canonicalPath]);
+    if (oldServiceMatch) canonicalPath = ["programa-protecao-radiologica","levantamento-radiometrico","projeto-blindagem","treinamentos","licenciamento-sanitario"].includes(slug) ? `/consult/protecao-radiologica/${slug}` : `/consult/fisica-medica/${slug}`;
+    crumbs.push(["Física Médica","/consult/fisica-medica"],[title.replace(/ \| .*$/,""),canonicalPath]);
   } else if (engineeringMatch && engineeringMeta[engineeringMatch[1]]) {
     [title,description] = engineeringMeta[engineeringMatch[1]];
     keywords = `${engineeringMatch[1].replaceAll("-"," ")}, Engenharia Clínica, laudo técnico, Consult`;
