@@ -81,7 +81,7 @@ export function ConsultFooter() {
           <p>Atendimento: 8h às 17h</p>
         </div></div>
       </div>
-      <div className="pt-6 text-xs text-white/45">© 2026 Consult Radiometria e Qualidade. Todos os direitos reservados.</div>
+      <div className="flex flex-col gap-2 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between"><span>© 2026 Consult Radiometria e Qualidade. Todos os direitos reservados.</span><Link className="hover:text-white" to="/consult/politica-de-privacidade">Política de Privacidade</Link></div>
     </div>
   </footer>
 }
