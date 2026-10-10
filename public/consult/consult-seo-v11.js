@@ -73,7 +73,19 @@
   const siloRegionMatch = path.match(/^\/consult\/atuacao\/([^/]+)$/);
   const blogMatch = path.match(/^\/consult\/blog\/([^/]+)$/);
 
-  if (path === "/consult/materiais") {
+  if (path === "/consult/sobre") {
+    title = "Sobre a Consult | Consult Radiometria e Qualidade";
+    description = "Conheça a Consult Radiometria e Qualidade, fundada em 1995, sua atuação técnica, áreas de serviço e estrutura de atendimento.";
+    keywords = "Consult Radiometria e Qualidade, sobre, Física Médica, Proteção Radiológica, Engenharia Clínica";
+    schemaType = "AboutPage";
+    crumbs.push(["Sobre",path]);
+  } else if (path === "/consult/servicos") {
+    title = "Serviços | Consult Radiometria e Qualidade";
+    description = "Catálogo de serviços da Consult em Física Médica, Proteção Radiológica e Consult Engenharia Clínica.";
+    keywords = "serviços Consult, Física Médica, Proteção Radiológica, Engenharia Clínica";
+    schemaType = "CollectionPage";
+    crumbs.push(["Serviços",path]);
+  } else if (path === "/consult/materiais") {
     title = "Materiais Técnicos | Consult Radiometria e Qualidade";
     description = "Guias e materiais técnicos da Consult sobre Física Médica, Proteção Radiológica, Controle de Qualidade e Engenharia Clínica.";
     keywords = "materiais técnicos Consult, Física Médica, Proteção Radiológica, Engenharia Clínica";

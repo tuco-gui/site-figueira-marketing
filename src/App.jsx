@@ -17,6 +17,8 @@ const StackDigital = lazy(() => import('@/pages/StackDigital'))
 const PartnerLandingPage = lazy(() => import('@/pages/PartnerLandingPage'))
 
 const ConsultProposal = lazy(() => import('@/pages/ConsultProposal'))
+const ConsultAboutPage = lazy(() => import('@/pages/ConsultAboutPage'))
+const ConsultServicesPage = lazy(() => import('@/pages/ConsultServicesPage'))
 const ConsultAreaLandingPageV3 = lazy(() => import('@/pages/ConsultAreaLandingPageV3'))
 const ConsultServicePage = lazy(() => import('@/pages/ConsultServicePage'))
 const ConsultEngineeringServicePage = lazy(() => import('@/pages/ConsultEngineeringServicePage'))
@@ -92,6 +94,8 @@ function App() {
             <Deferred consult>
               <Routes>
                 <Route index element={<ConsultProposal />} />
+                <Route path="sobre" element={<ConsultAboutPage />} />
+                <Route path="servicos" element={<ConsultServicesPage />} />
 
                 <Route path="fisica-medica" element={<ConsultAreaLandingPageV3 fixedSlug="fisica-medica" />} />
                 <Route path="protecao-radiologica" element={<ConsultAreaLandingPageV3 fixedSlug="protecao-radiologica" />} />

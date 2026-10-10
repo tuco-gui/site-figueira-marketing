@@ -15,7 +15,6 @@ import {
   Monitor,
   PawPrint,
   Phone,
-  Search,
   Settings,
   ShieldCheck,
   Smile,
@@ -193,12 +192,13 @@ function Header() {
   const [open, setOpen] = useState(false);
 
   const nav = [
-    ["Início", "/consult#inicio"],
-    ["Sobre", "/consult#sobre"],
-    ["Serviços", "/consult#areas"],
+    ["Início", "/consult"],
+    ["Sobre", "/consult/sobre"],
+    ["Serviços", "/consult/servicos"],
     ["Blog", "/consult/blog"],
     ["Cursos", "https://consultcursos.herospark.co"],
     ["Portal", "https://www.consult.med.br/Portal/"],
+    ["Contato", "/consult#contato"],
   ];
 
   return (
@@ -220,7 +220,6 @@ function Header() {
               {label}
             </a>
           ))}
-          <Search className="h-4 w-4 text-white/80" />
           <a
             href="/consult#contato"
             className="inline-flex items-center gap-2 rounded-lg bg-[#FF6B26] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-black/10 transition hover:brightness-95"
@@ -390,8 +389,8 @@ function Footer() {
             </h4>
             <div className="mt-4 space-y-2 text-sm text-white/75">
               <a className="block hover:text-[#8AE600]" href="/consult#inicio">Início</a>
-              <a className="block hover:text-[#8AE600]" href="/consult#sobre">Sobre</a>
-              <a className="block hover:text-[#8AE600]" href="/consult#areas">Serviços</a>
+              <Link className="block hover:text-[#8AE600]" to="/consult/sobre">Sobre</Link>
+              <Link className="block hover:text-[#8AE600]" to="/consult/servicos">Serviços</Link>
               <a className="block hover:text-[#8AE600]" href="/consult#conteudos">Conteúdos</a>
               <a className="block hover:text-[#8AE600]" href="/consult#contato">Contato</a>
             </div>

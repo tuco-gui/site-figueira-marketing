@@ -18,11 +18,12 @@ export function ConsultHeader() {
   const [open, setOpen] = useState(false)
   const nav = [
     ['Início','/consult'],
-    ['Sobre','/consult#sobre'],
-    ['Serviços','/consult#areas'],
+    ['Sobre','/consult/sobre'],
+    ['Serviços','/consult/servicos'],
     ['Blog','/consult/blog'],
     ['Cursos','https://consultcursos.herospark.co'],
     ['Portal','https://www.consult.med.br/Portal/'],
+    ['Contato','/consult#contato'],
   ]
   return <header className="sticky top-0 z-50 border-b border-white/10 bg-[#075653]/95 text-white backdrop-blur" style={{ backgroundColor: 'rgba(7,86,83,.97)', color: '#fff' }}>
     <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
@@ -59,8 +60,8 @@ export function ConsultFooter() {
         <div><img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-14 w-auto max-w-[220px] object-contain"/><p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65">Soluções técnicas para a área da saúde, com foco em segurança, qualidade e conformidade.</p></div>
         <div><h4 className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">Navegação</h4><div className="mt-4 space-y-2 text-sm text-white/75">
           <Link className="block hover:text-[#8AE600]" to="/consult">Início</Link>
-          <a className="block hover:text-[#8AE600]" href="/consult#sobre">Sobre</a>
-          <a className="block hover:text-[#8AE600]" href="/consult#areas">Serviços</a>
+          <Link className="block hover:text-[#8AE600]" to="/consult/sobre">Sobre</Link>
+          <Link className="block hover:text-[#8AE600]" to="/consult/servicos">Serviços</Link>
           <Link className="block hover:text-[#8AE600]" to="/consult/blog">Blog</Link>
           <a className="block hover:text-[#8AE600]" href="https://consultcursos.herospark.co" target="_blank" rel="noreferrer">Cursos</a>
           <a className="block hover:text-[#8AE600]" href="https://www.consult.med.br/Portal/" target="_blank" rel="noreferrer">Portal de Arquivos</a>
