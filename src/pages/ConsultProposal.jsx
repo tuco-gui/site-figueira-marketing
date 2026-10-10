@@ -54,6 +54,7 @@ const PHONE = "(14) 98161-0712";
 const ADDRESS =
   "Sede: Matão/SP · Atendimento: Av. Dr. Vital Brasil, 1060, sala 205 – Botucatu Home Trade Center, Botucatu/SP";
 const EMAIL = "radiometria@consult.med.br";
+const LEAD_ENDPOINT = "https://jinhjdvrjvmammumbacz.supabase.co/functions/v1/consult-lead";
 
 const waUrl = (message) =>
   `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
@@ -278,22 +279,88 @@ function SectionEyebrow({ children, dark = false, center = false }) {
 }
 
 function ContactForm() {
-  const submit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const message = [
-      "Olá, equipe Consult. Gostaria de conversar sobre uma necessidade técnica.",
-      "",
-      `Nome: ${data.get("nome") || ""}`,
-      `E-mail: ${data.get("email") || ""}`,
-      `Instituição: ${data.get("instituicao") || ""}`,
-      `Telefone: ${data.get("telefone") || ""}`,
-      `Assunto: ${data.get("assunto") || ""}`,
-      `Mensagem: ${data.get("mensagem") || ""}`,
-    ].join("\n");
+  const [status, setStatus] = useState("idle");
+  const [error, setError] = useState("");
 
-    window.open(waUrl(message), "_blank", "noopener,noreferrer");
+  const submit = async (event) => {
+    event.preventDefault();
+    if (status === "sending") return;
+
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const params = new URLSearchParams(window.location.search);
+
+    setStatus("sending");
+    setError("");
+
+    try {
+      const response = await fetch(LEAD_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "contact_form",
+          name: data.get("nome") || "",
+          email: data.get("email") || "",
+          institution: data.get("instituicao") || "",
+          phone: data.get("telefone") || "",
+          service: data.get("assunto") || "",
+          message: data.get("mensagem") || "",
+          website: data.get("website") || "",
+          source: "formulario_site",
+          page_path: window.location.pathname,
+          referrer: document.referrer || "",
+          utm_source: params.get("utm_source") || "",
+          utm_medium: params.get("utm_medium") || "",
+          utm_campaign: params.get("utm_campaign") || "",
+          utm_content: params.get("utm_content") || "",
+          utm_term: params.get("utm_term") || "",
+        }),
+      });
+
+      const result = await response.json().catch(() => ({}));
+      if (!response.ok || !result?.ok) throw new Error(result?.error || "Não foi possível enviar sua mensagem.");
+
+      try {
+        sessionStorage.setItem("consult_lead_contact", JSON.stringify({
+          name: String(data.get("nome") || ""),
+          phone: String(data.get("telefone") || ""),
+        }));
+      } catch {}
+
+      form.reset();
+      setStatus("success");
+      window.dataLayer?.push?.({
+        event: "lead_form_success",
+        site: "consult",
+        lead_id: result?.lead_id || null,
+        email_sent: Boolean(result?.email_sent),
+      });
+    } catch (submitError) {
+      setStatus("error");
+      setError(submitError instanceof Error ? submitError.message : "Não foi possível enviar sua mensagem.");
+    }
   };
+
+  if (status === "success") {
+    return (
+      <div role="status" className="rounded-2xl bg-white p-7 text-[#123C3B] shadow-2xl shadow-black/10">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[#E5F6F1] text-[#08A77F]">
+          <CheckCircle2 className="h-6 w-6" />
+        </div>
+        <h3 className="mt-5 text-xl font-black">Mensagem recebida</h3>
+        <p className="mt-3 text-sm leading-7 text-black/60">
+          Seus dados foram registrados e encaminhados para a equipe Consult. Retornaremos pelos canais informados.
+        </p>
+        <button
+          type="button"
+          onClick={() => setStatus("idle")}
+          className="mt-5 inline-flex min-h-11 items-center justify-center rounded-xl border border-[#08A77F] px-5 py-2.5 text-sm font-extrabold text-[#075653]"
+        >
+          Enviar outra mensagem
+        </button>
+      </div>
+    );
+  }
 
   return (
     <form
@@ -303,13 +370,20 @@ function ContactForm() {
     >
       <h3 className="text-lg font-extrabold">Envie uma mensagem</h3>
       <p className="mt-1 text-xs leading-relaxed text-black/50">
-        Preencha os dados abaixo e nossa equipe dará continuidade pelo WhatsApp.
+        Preencha os dados abaixo. A equipe Consult receberá sua solicitação e fará o retorno pelos canais informados.
       </p>
+
+      <div className="hidden" aria-hidden="true">
+        <label htmlFor="consult-website">Website</label>
+        <input id="consult-website" name="website" tabIndex={-1} autoComplete="off" />
+      </div>
 
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
         <input
           name="nome"
           required
+          autoComplete="name"
+          aria-label="Nome completo"
           placeholder="Nome completo *"
           className="h-11 rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]"
         />
@@ -317,29 +391,40 @@ function ContactForm() {
           name="email"
           type="email"
           required
+          autoComplete="email"
+          aria-label="E-mail"
           placeholder="E-mail *"
           className="h-11 rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]"
         />
         <input
           name="instituicao"
+          autoComplete="organization"
+          aria-label="Instituição ou empresa"
           placeholder="Instituição / Empresa"
           className="h-11 rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]"
         />
         <input
           name="telefone"
           required
+          type="tel"
+          autoComplete="tel"
+          aria-label="Telefone ou WhatsApp"
           placeholder="Telefone / WhatsApp *"
           className="h-11 rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]"
         />
       </div>
 
+      <label htmlFor="consult-assunto" className="sr-only">Assunto do contato</label>
       <select
+        id="consult-assunto"
         name="assunto"
+        required
+        aria-label="Assunto do contato"
         className="mt-3 h-11 w-full rounded-lg border border-black/10 bg-white px-3 text-sm outline-none focus:border-[#08A77F]"
         defaultValue=""
       >
         <option value="" disabled>
-          Como podemos ajudar?
+          Como podemos ajudar? *
         </option>
         <option>Física Médica</option>
         <option>Proteção Radiológica</option>
@@ -352,24 +437,30 @@ function ContactForm() {
       <textarea
         name="mensagem"
         rows={4}
+        aria-label="Mensagem"
         placeholder="Conte mais sobre sua necessidade..."
         className="mt-3 w-full resize-none rounded-lg border border-black/10 px-3 py-3 text-sm outline-none focus:border-[#08A77F]"
       />
 
+      {status === "error" && (
+        <p role="alert" className="mt-3 rounded-lg bg-red-50 px-3 py-2 text-xs font-semibold text-red-700">{error}</p>
+      )}
+
       <button
         type="submit"
-        className="mt-3 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-lg bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white transition hover:brightness-95"
+        disabled={status === "sending"}
+        className="mt-3 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-lg bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white transition hover:brightness-95 disabled:cursor-wait disabled:opacity-70"
       >
-        Enviar mensagem
-        <ArrowRight className="h-4 w-4" />
+        {status === "sending" ? "Enviando..." : "Enviar mensagem"}
+        {status !== "sending" && <ArrowRight className="h-4 w-4" />}
       </button>
-      <p className="mt-3 text-center text-[10px] text-black/40">
-        Seus dados serão usados somente para retorno sobre este contato.
+      <p className="mt-3 text-center text-[10px] leading-5 text-black/45">
+        Seus dados serão usados para atender esta solicitação. Consulte nossa{" "}
+        <Link to="/consult/politica-de-privacidade" className="font-bold underline">Política de Privacidade</Link>.
       </p>
     </form>
   );
 }
-
 function Footer() {
   return (
     <footer className="bg-[#064946] text-white">
@@ -447,6 +538,7 @@ function Footer() {
 
         <div className="flex flex-col gap-3 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 Consult Radiometria e Qualidade. Todos os direitos reservados.</span>
+          <Link className="hover:text-white" to="/consult/politica-de-privacidade">Política de Privacidade</Link>
         </div>
       </div>
     </footer>
