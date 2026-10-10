@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
 import { ConsultReportPreview } from '@/components/consult/ConsultTechnicalDesign'
 import {
@@ -15,6 +15,8 @@ import {
 
 const RDC_611 = 'https://anvisalegis.datalegis.net/action/TematicaAction.php?acao=abrirVinculos&cod_menu=8457&cod_modulo=135&cotematica=18518373'
 const ANVISA_IN = 'https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2021/anvisa-avanca-na-consolidacao-de-suas-normas'
+
+const PROTECTION_SLUGS = new Set(['programa-protecao-radiologica','levantamento-radiometrico','projeto-blindagem','treinamentos','licenciamento-sanitario'])
 
 const SERVICES = {
   'controle-qualidade': {
@@ -127,6 +129,7 @@ function heroImage(service) {
 
 export default function ConsultServicePage() {
   const { slug } = useParams()
+  const location = useLocation()
   const service = useMemo(() => SERVICES[slug], [slug])
 
   useEffect(() => {
@@ -136,6 +139,10 @@ export default function ConsultServicePage() {
   }, [service])
 
   if (!service) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Serviço não encontrado</h1><Link to="/consult" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para a Consult</Link></main></ConsultSiteShell>
+
+  if (PROTECTION_SLUGS.has(slug) && location.pathname.startsWith('/consult/fisica-medica/')) {
+    return <Navigate to={`/consult/protecao-radiologica/${slug}`} replace />
+  }
 
   return <ConsultSiteShell><main>
     <ApprovedInternalHero eyebrow={service.eyebrow} title={service.title} description={service.intro} image={heroImage(service)}/>

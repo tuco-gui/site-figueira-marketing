@@ -1,12 +1,11 @@
 import React, { useEffect, useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
-import { ConsultReportPreview } from '@/components/consult/ConsultTechnicalDesign'
 import {
   ApprovedDarkProcess,
-  ApprovedFaq,
   ApprovedInternalHero,
   ApprovedLightSection,
+  ApprovedList,
   ApprovedNormCards,
   ApprovedProofStrip,
   CONSULT_IMAGES,
@@ -58,8 +57,8 @@ const MODALITIES = {
   },
   'densitometria-ossea': {
     title: 'Controle de Qualidade em Densitometria Óssea', short: 'Densitometria óssea', norm: 'RDC 611/2022',
-    intro: 'Controle de qualidade para densitômetros ósseos com base na RDC 611/2022, sem Instrução Normativa específica para esta modalidade.',
-    focus: [['Equipamento','Densitômetro identificado no escopo'],['Desempenho','Testes aplicáveis à modalidade'],['Referência','RDC 611/2022 como base informada'],['Laudo','Resultado técnico assinado pelo físico médico']],
+    intro: 'Testes de aceitação e de constância conforme a RDC 611/2022, as instruções do fabricante e protocolos reconhecidos.',
+    focus: [['Aceitação','Testes aplicáveis à entrada ou alteração relevante do equipamento'],['Constância','Verificações periódicas conforme o protocolo aplicável'],['Referência','RDC 611/2022, instruções do fabricante e protocolos reconhecidos'],['Laudo','Resultado técnico assinado pelo físico médico']],
   },
   'raio-x-veterinario': {
     title: 'Controle de Qualidade em Raios X Veterinário', short: 'Raios X veterinário', norm: 'RDC 611/2022 + IN 90/2021 como referência técnica',
@@ -96,10 +95,10 @@ export default function ConsultQualityModalityPage() {
 
     <ApprovedDarkProcess items={PROCESS}/>
 
-    <ApprovedLightSection eyebrow="Entregável" title="Laudo de Controle de Qualidade" intro={`Resultado técnico da avaliação de ${item.short}, com os ensaios e critérios aplicáveis à modalidade.`} white>
-      <div className="grid gap-10 lg:grid-cols-[.65fr_1.35fr] lg:items-center">
-        <div className="rounded-2xl bg-[#075653] p-7 text-white"><div className="text-[10px] font-bold uppercase tracking-[.2em] text-[#8AE600]">O que fica registrado</div><h3 className="mt-4 text-2xl font-black">Resultados do Controle de Qualidade</h3><p className="mt-4 text-sm leading-7 text-white/68">Equipamento e modalidade, ensaios realizados, resultados medidos, referência aplicável e conclusão técnica assinada pelo físico médico.</p></div>
-        <ConsultReportPreview title={`CQ — ${item.short}`} sections={['Equipamento e modalidade','Ensaios realizados','Resultados medidos','Referência aplicável','Conclusão e assinatura do físico médico']} note="Exemplo ilustrativo sem dados reais."/>
+    <ApprovedLightSection eyebrow="Entregável" title="O que o laudo traz" intro={`Resultado técnico da avaliação de ${item.short}, com os ensaios e critérios aplicáveis à modalidade.`} white>
+      <div className="grid gap-8 lg:grid-cols-[.8fr_1.2fr] lg:items-start">
+        <div className="rounded-2xl bg-[#075653] p-7 text-white"><div className="text-[10px] font-bold uppercase tracking-[.2em] text-[#8AE600]">Laudo de Controle de Qualidade</div><h3 className="mt-4 text-2xl font-black">Resultado documentado por modalidade</h3><p className="mt-4 text-sm leading-7 text-white/68">O documento registra os ensaios realizados, os resultados medidos, a referência aplicável e a conclusão técnica assinada pelo físico médico.</p></div>
+        <ApprovedList items={['Identificação do equipamento e da modalidade','Ensaios realizados','Resultados medidos','Referência aplicável','Conclusão técnica e assinatura do físico médico']}/>
       </div>
     </ApprovedLightSection>
 
@@ -107,7 +106,6 @@ export default function ConsultQualityModalityPage() {
       <ApprovedNormCards items={norms}/>
     </ApprovedLightSection>
 
-    <ApprovedFaq items={[[`Qual é a referência para ${item.short}?`,item.norm],['O resultado é documentado?','Sim. O Controle de Qualidade gera laudo técnico assinado pelo físico médico.'],['A página substitui a avaliação técnica?','Não. O conteúdo explica o serviço; o escopo final depende do equipamento e da situação da instituição.']]}/>
     <ConsultCtaBand title={`Precisa de Controle de Qualidade em ${item.short}?`} text="Informe o equipamento e a situação do serviço. A equipe Consult confirma o escopo técnico e a programação da avaliação."/>
   </main></ConsultSiteShell>
 }

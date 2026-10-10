@@ -100,6 +100,7 @@ function App() {
                 <Route path="fisica-medica/controle-de-qualidade" element={<ConsultQualityIndexPage />} />
                 <Route path="fisica-medica/controle-de-qualidade/:slug" element={<ConsultQualityModalityPage />} />
                 <Route path="fisica-medica/:slug" element={<ConsultServicePage />} />
+                <Route path="protecao-radiologica/:slug" element={<ConsultServicePage />} />
                 <Route path="engenharia-clinica/equipamentos/:slug" element={<ConsultEquipmentPage />} />
                 <Route path="engenharia-clinica/:slug" element={<ConsultEngineeringServicePage />} />
                 <Route path="atuacao/:slug" element={<ConsultRegionPage />} />

@@ -63,13 +63,14 @@ const AREAS = {
     sectionIntro:'Raios X, mamografia, tomografia, ultrassom e ressonância magnética não são avaliados da mesma forma. A Consult aplica a referência correspondente à tecnologia e documenta o resultado técnico.',
     services:[
       ['Controle de Qualidade','Verificação de dose, qualidade de imagem e funcionamento conforme a modalidade.','/consult/fisica-medica/controle-de-qualidade',Gauge],
-      ['Levantamento radiométrico','Medição da radiação no entorno da sala e avaliação da radiação de fuga.','/consult/fisica-medica/levantamento-radiometrico',Activity],
-      ['Projeto de blindagem','Cálculo e memorial técnico antes de obra, reforma ou troca de equipamento.','/consult/fisica-medica/projeto-blindagem',ShieldCheck],
+      ['Levantamento radiométrico','Medição da radiação no entorno da sala e avaliação da radiação de fuga.','/consult/protecao-radiologica/levantamento-radiometrico',Activity],
+      ['Projeto de blindagem','Cálculo e memorial técnico antes de obra, reforma ou troca de equipamento.','/consult/protecao-radiologica/projeto-blindagem',ShieldCheck],
     ],
     process:[['01','Identificar','Modalidade, equipamento, ambiente e objetivo da avaliação.'],['02','Medir','Executar os testes e medições aplicáveis ao escopo.'],['03','Comparar','Analisar os resultados frente à referência pertinente.'],['04','Documentar','Registrar os resultados no documento técnico correspondente.']],
     standards:[['RDC 611/2022','Base sanitária geral para radiologia diagnóstica e intervencionista.',RDC_611],['IN 90 a 97/2021','Referências específicas por modalidade de diagnóstico por imagem.',ANVISA_IN]],
     faq:[['O Controle de Qualidade é igual para todas as modalidades?','Não. Os testes e referências variam conforme a tecnologia avaliada.'],['O resultado é documentado?','Sim. O Controle de Qualidade gera laudo técnico assinado pelo físico médico.']],
     resources:'modalities',
+    recurring:['Vistoria mensal','Análise semanal de imagens','Supervisão de proteção radiológica'],
   },
   'protecao-radiologica': {
     title:'Proteção Radiológica',
@@ -80,11 +81,11 @@ const AREAS = {
     sectionTitle:'Proteção radiológica começa antes do problema.',
     sectionIntro:'A segurança depende da relação entre ambiente, equipamento, barreiras, equipe e documentação. Cada serviço atende uma etapa diferente dessa rotina.',
     services:[
-      ['Programa de Proteção Radiológica','Elaboração e acompanhamento do programa do serviço.','/consult/fisica-medica/programa-protecao-radiologica',FileText],
-      ['Levantamento radiométrico','Medição das condições radiométricas do ambiente.','/consult/fisica-medica/levantamento-radiometrico',Activity],
-      ['Projeto de blindagem','Memorial de cálculo para obra, reforma, expansão ou troca de equipamento.','/consult/fisica-medica/projeto-blindagem',ShieldCheck],
-      ['Treinamentos','Capacitação em radioproteção e segurança em ressonância magnética.','/consult/fisica-medica/treinamentos',Stethoscope],
-      ['Licenciamento sanitário','Apoio técnico e documental para obtenção ou renovação.','/consult/fisica-medica/licenciamento-sanitario',CheckCircle2],
+      ['Programa de Proteção Radiológica','Elaboração e acompanhamento do programa do serviço.','/consult/protecao-radiologica/programa-protecao-radiologica',FileText],
+      ['Levantamento radiométrico','Medição das condições radiométricas do ambiente.','/consult/protecao-radiologica/levantamento-radiometrico',Activity],
+      ['Projeto de blindagem','Memorial de cálculo para obra, reforma, expansão ou troca de equipamento.','/consult/protecao-radiologica/projeto-blindagem',ShieldCheck],
+      ['Treinamentos','Capacitação em radioproteção e segurança em ressonância magnética.','/consult/protecao-radiologica/treinamentos',Stethoscope],
+      ['Licenciamento sanitário','Apoio técnico e documental para obtenção ou renovação.','/consult/protecao-radiologica/licenciamento-sanitario',CheckCircle2],
     ],
     process:[['01','Mapear','Entender sala, equipamento, equipe e situação documental.'],['02','Avaliar','Realizar medições, cálculos ou revisão documental conforme a necessidade.'],['03','Organizar','Estruturar evidências e documentação técnica aplicável.'],['04','Orientar','Entregar o resultado e os próximos passos dentro do escopo contratado.']],
     standards:[['RDC 611/2022','Base sanitária e de proteção radiológica.',RDC_611],['IN 90 a 97/2021','Referências específicas conforme modalidade e equipamento.',ANVISA_IN]],
@@ -135,6 +136,10 @@ export default function ConsultAreaLandingPageV3({ fixedSlug }) {
 
     {area.resources==='modalities'&&<ApprovedLightSection eyebrow="Controle de Qualidade" title="Encontre a modalidade do seu equipamento" intro="Cada tecnologia possui uma referência específica para o Controle de Qualidade." white>
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">{MODALITIES.map(([label,norm,href])=><Link key={href} to={href} className="rounded-xl border border-black/5 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"><div className="text-base font-black text-[#123C3B]">{label}</div><div className="mt-2 text-xs font-extrabold text-[#08A77F]">{norm}</div><div className="mt-4 text-sm font-extrabold text-[#08A77F]">Ver detalhes</div></Link>)}</div>
+    </ApprovedLightSection>}
+
+    {area.recurring&&<ApprovedLightSection eyebrow="Programas recorrentes" title="Acompanhamento contínuo em Física Médica" intro="Além dos serviços avulsos, a Consult também estrutura rotinas recorrentes conforme a necessidade da instituição.">
+      <ApprovedList items={area.recurring}/>
     </ApprovedLightSection>}
 
     {area.resources==='equipment'&&<ApprovedLightSection eyebrow="Equipamentos atendidos" title="Ensaios organizados por tipo de equipamento" intro="Os equipamentos eletromédicos recebem ensaio de segurança elétrica conforme aplicabilidade. Acesse a página específica para conhecer os parâmetros medidos e o resultado documentado." white>
