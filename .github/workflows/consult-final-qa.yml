@@ -1,0 +1,80 @@
+name: Consult final QA
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'src/**'
+      - 'public/consult/**'
+      - 'scripts/**'
+      - 'index.html'
+      - 'vercel.json'
+      - 'package.json'
+      - '.github/workflows/consult-final-qa.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-screenshot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout exact PR commit
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+
+      - name: Build candidate
+        run: npm run build
+
+      - name: Install Chromium for visual QA
+        run: npx --yes playwright@1.55.0 install --with-deps chromium
+
+      - name: Start local preview
+        run: |
+          npm run preview -- --host 127.0.0.1 --port 4173 > /tmp/consult-vite.log 2>&1 &
+          echo $! > /tmp/consult-vite.pid
+          for i in {1..30}; do
+            curl -fsS http://127.0.0.1:4173/consult >/dev/null && exit 0
+            sleep 1
+          done
+          cat /tmp/consult-vite.log
+          exit 1
+
+      - name: Capture desktop screenshots
+        run: |
+          mkdir -p qa-screenshots
+          npx --yes playwright@1.55.0 screenshot --browser=chromium --full-page --viewport-size="1440,1000" http://127.0.0.1:4173/consult/servicos qa-screenshots/01-servicos-desktop.png
+          npx --yes playwright@1.55.0 screenshot --browser=chromium --full-page --viewport-size="1440,1000" http://127.0.0.1:4173/consult/fisica-medica/controle-de-qualidade qa-screenshots/02-cq-index-desktop.png
+          npx --yes playwright@1.55.0 screenshot --browser=chromium --full-page --viewport-size="1440,1000" http://127.0.0.1:4173/consult/fisica-medica/controle-de-qualidade/fluoroscopia-arco-c-angiografia qa-screenshots/03-fluoroscopia-desktop.png
+          npx --yes playwright@1.55.0 screenshot --browser=chromium --full-page --viewport-size="1440,1000" http://127.0.0.1:4173/consult/engenharia-clinica qa-screenshots/04-engenharia-clinica-desktop.png
+          npx --yes playwright@1.55.0 screenshot --browser=chromium --full-page --viewport-size="1440,1000" http://127.0.0.1:4173/consult/engenharia-clinica/manutencao-preventiva qa-screenshots/05-preventiva-desktop.png
+
+      - name: Capture mobile screenshots
+        run: |
+          npx --yes playwright@1.55.0 screenshot --browser=chromium --full-page --device="iPhone 13" http://127.0.0.1:4173/consult/servicos qa-screenshots/06-servicos-mobile.png
+          npx --yes playwright@1.55.0 screenshot --browser=chromium --full-page --device="iPhone 13" http://127.0.0.1:4173/consult/fisica-medica/controle-de-qualidade/fluoroscopia-arco-c-angiografia qa-screenshots/07-fluoroscopia-mobile.png
+
+      - name: Verify generated sitemap
+        run: |
+          test -f dist/consult/sitemap.xml
+          echo "URLs: $(grep -c '<url>' dist/consult/sitemap.xml)"
+          echo "Blog articles: $(grep -c '/consult/blog/' dist/consult/sitemap.xml)"
+
+      - name: Upload QA screenshots
+        uses: actions/upload-artifact@v4
+        with:
+          name: consult-final-qa-screenshots
+          path: qa-screenshots/
+          if-no-files-found: error
+          retention-days: 7
