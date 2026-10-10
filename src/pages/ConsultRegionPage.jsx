@@ -57,7 +57,7 @@ export default function ConsultRegionPage() {
           <div className="absolute inset-0 opacity-60" style={{backgroundImage:'radial-gradient(circle at 82% 25%, rgba(138,230,0,.16), transparent 24%), linear-gradient(128deg, transparent 40%, rgba(5,210,157,.13) 100%)'}}/>
           <div className="relative mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-20">
             <Link to="/consult" className="text-sm font-bold text-white/58 hover:text-white">Consult Radiometria e Qualidade</Link>
-            <p className="mt-8 text-[10px] font-black uppercase tracking-[.28em] text-[#8AE600]">Atuação presencial confirmada</p>
+            <p className="mt-8 text-[10px] font-black uppercase tracking-[.28em] text-[#8AE600]">Atuação presencial</p>
             <h1 className="mt-4 max-w-5xl text-4xl font-black leading-[1.02] tracking-[-.04em] sm:text-5xl lg:text-6xl">Consult {region.location}</h1>
             <p className="mt-6 max-w-3xl text-base leading-8 text-white/80 md:text-lg">Física Médica, Proteção Radiológica e Consult Engenharia Clínica com medição, ensaios, calibração, qualificação e documentação técnica.</p>
             <div className="mt-7 flex flex-wrap gap-2">{region.sede && <span className="inline-flex items-center gap-2 rounded-full border border-white/16 bg-white/7 px-4 py-2 text-sm font-bold"><MapPin size={16} className="text-[#8AE600]"/> Sede em Matão/SP</span>}<span className="rounded-full border border-white/16 bg-white/7 px-4 py-2 text-sm font-bold">Atendimento presencial</span></div>
@@ -74,8 +74,7 @@ export default function ConsultRegionPage() {
 
         <section className="bg-[#F4FAF8]"><div className="mx-auto grid max-w-7xl gap-8 px-5 py-14 md:px-8 md:py-16 lg:grid-cols-[.55fr_1.45fr]"><div><ConsultEyebrow>Cobertura</ConsultEyebrow><h2 className="mt-3 text-3xl font-black tracking-tight text-[#075653]">Atuação presencial por região</h2><p className="mt-4 text-sm leading-7 text-[#607D7A]">A Consult realiza atendimento presencial em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais, com sede em Matão/SP.</p></div><div className="grid gap-3 sm:grid-cols-2">{Object.entries(REGIONS).map(([key,item]) => <Link key={key} to={`/consult/atuacao/${key}`} className={`rounded-[18px] border p-5 transition ${key===slug?'border-[#075653] bg-[#075653] text-white':'border-[#D4E6E1] bg-white text-[#365A58] hover:border-[#08A77F]'}`}><span className={`text-[10px] font-black uppercase tracking-[.18em] ${key===slug?'text-[#8AE600]':'text-[#08A77F]'}`}>{item.uf}</span><div className="mt-2 text-lg font-black">{item.state}</div>{item.sede && <div className={`mt-2 text-xs ${key===slug?'text-white/60':'text-[#78908E]'}`}>Sede em Matão/SP</div>}</Link>)}</div></div></section>
 
-        <section className="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-16"><div className="rounded-[24px] border border-[#DCEAE7] bg-white p-7 shadow-[0_16px_45px_rgba(7,86,83,.07)] md:p-9"><ConsultEyebrow>Atendimento regional</ConsultEyebrow><h2 className="mt-4 text-2xl font-black text-[#075653]">Cobertura técnica sem confundir atendimento com sede</h2><p className="mt-3 max-w-4xl text-sm leading-7 text-[#607D7A]">Estas páginas apresentam a cobertura de atendimento da Consult. A existência de atendimento em um estado não significa que haja filial ou sede física naquele local.</p></div></section>
-
+  
         <ConsultCtaBand title={`Precisa de atendimento ${region.location}?`} text="Explique o serviço ou equipamento que precisa ser avaliado e a equipe Consult orienta o próximo passo." />
       </main>
     </ConsultSiteShell>
