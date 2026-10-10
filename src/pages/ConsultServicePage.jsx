@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo } from 'react'
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
-import { ConsultReportPreview } from '@/components/consult/ConsultTechnicalDesign'
 import {
   ApprovedDarkProcess,
   ApprovedFaq,
@@ -29,14 +28,13 @@ const SERVICES = {
     proof: [['ESCOPO','Dose, imagem e funcionamento'],['ENTREGA','Laudo técnico assinado'],['BASE','RDC 611/2022'],['MODALIDADES','IN 90 a 97/2021']],
     parameters: [['Dose','Medições aplicáveis à modalidade'],['Qualidade de imagem','Parâmetros específicos do equipamento'],['Funcionamento','Verificação do desempenho previsto'],['Documentação','Resultado registrado em laudo técnico']],
     storyTitle: 'Controle de qualidade não é um selo genérico de aprovação.',
-    story: 'O serviço precisa responder, por medição, como o equipamento está se comportando dentro dos parâmetros aplicáveis à sua modalidade. Por isso a página separa modalidade, referência normativa, ensaio e resultado documentado, em vez de tratar todos os equipamentos como se fossem iguais.',
+    story: 'A avaliação combina medições específicas da modalidade, referência normativa e resultado documentado. Tecnologias diferentes exigem ensaios e critérios próprios.',
     metric: 'Dose, qualidade de imagem e funcionamento verificados em ensaio',
     deliverable: 'Laudo de Controle de Qualidade',
     deliverableSections: ['Equipamento e modalidade avaliados','Testes realizados','Resultados medidos','Referência aplicável à modalidade','Resultado técnico e assinatura do físico médico'],
-    note: 'A composição é ilustrativa. O Controle de Qualidade gera laudo assinado pelo físico médico; o formato final depende da modalidade e do equipamento.',
-    norms: [['RDC 611/2022 — Anvisa','Base sanitária para serviços de radiologia diagnóstica e intervencionista.',RDC_611],['IN 90 a 97/2021 — Anvisa','Requisitos específicos por modalidade e equipamento.',ANVISA_IN]],
+        norms: [['RDC 611/2022 — Anvisa','Base sanitária para serviços de radiologia diagnóstica e intervencionista.',RDC_611],['IN 90 a 97/2021 — Anvisa','Requisitos específicos por modalidade e equipamento.',ANVISA_IN]],
     equipmentNorms: [['Raios X médico convencional','IN 90/2021'],['Fluoroscopia, arco cirúrgico e angiógrafo','IN 91/2021'],['Mamógrafo','IN 92/2021'],['Tomógrafo','IN 93/2021'],['Raios X odontológico extraoral','IN 94/2021'],['Raios X odontológico intraoral','IN 95/2021'],['Ultrassom','IN 96/2021'],['Ressonância magnética','IN 97/2021'],['Densitômetro ósseo','RDC 611/2022'],['Raios X veterinário','RDC 611/2022 + IN 90/2021 como referência técnica']],
-    faq: [['Controle de qualidade e calibração são a mesma coisa?','Não. Nesta página, Controle de Qualidade é tratado dentro do escopo de Física Médica e radiodiagnóstico. A Engenharia Clínica possui uma frente própria de ensaio de desempenho e calibração para equipamentos biomédicos.'],['A norma é a mesma para todos os equipamentos?','Não. A RDC 611/2022 é a base geral e as Instruções Normativas 90 a 97/2021 variam conforme a modalidade.'],['O resultado fica documentado?','Sim. O Controle de Qualidade gera laudo assinado pelo físico médico.']],
+    faq: [['Controle de qualidade e calibração são a mesma coisa?','Não. O Controle de Qualidade integra o escopo de Física Médica e radiodiagnóstico. A Engenharia Clínica possui uma frente própria de ensaio de desempenho para equipamentos biomédicos.'],['A norma é a mesma para todos os equipamentos?','Não. A RDC 611/2022 é a base geral e as Instruções Normativas 90 a 97/2021 variam conforme a modalidade.']],
   },
   'programa-protecao-radiologica': {
     title: 'Programa de Proteção Radiológica', eyebrow: 'Proteção Radiológica', visual: 'shield',
@@ -46,7 +44,7 @@ const SERVICES = {
     proof: [['OBJETIVO','Estruturar a proteção radiológica'],['ENTREGA','Programa e acompanhamento'],['BASE','RDC 611/2022'],['PÚBLICO','Serviços de radiologia']],
     parameters: [['Serviço','Caracterização da operação'],['Responsabilidades','Papéis e rotinas aplicáveis'],['Documentação','Registros exigidos pelo programa'],['Acompanhamento','Atualização conforme mudanças do serviço']],
     storyTitle: 'Um programa útil precisa refletir a operação real do serviço.',
-    story: 'A proposta não é entregar um arquivo genérico. O Programa de Proteção Radiológica deve conversar com a modalidade, o ambiente, a equipe e as responsabilidades aplicáveis ao serviço de radiologia.',
+    story: 'O Programa de Proteção Radiológica deve refletir a modalidade, o ambiente, a equipe e as responsabilidades aplicáveis ao serviço de radiologia.',
     metric: 'Programa estruturado e acompanhado conforme o serviço',
     deliverable: 'Programa de Proteção Radiológica',
     deliverableSections: ['Identificação do serviço','Escopo do programa','Rotinas e responsabilidades aplicáveis','Documentação necessária ao acompanhamento','Atualizações conforme mudanças do serviço'],
@@ -62,12 +60,11 @@ const SERVICES = {
     proof: [['MEDIÇÃO','Radiação no entorno'],['VERIFICAÇÃO','Fuga do cabeçote'],['BASE','RDC 611/2022'],['SAÍDA','Resultado documentado']],
     parameters: [['Ambiente','Pontos definidos ao redor da sala'],['Equipamento','Condição avaliada durante a medição'],['Fuga','Radiação de fuga do cabeçote'],['Conclusão','Resultado técnico documentado']],
     storyTitle: 'Blindagem e proteção precisam ser verificadas por medição, não por percepção.',
-    story: 'O levantamento radiométrico transforma a condição do ambiente em dados mensuráveis. A página deve deixar claro onde se mede, por que se mede e como esse resultado é documentado para a instituição.',
+    story: 'O levantamento radiométrico transforma a condição do ambiente em dados mensuráveis, registrando os pontos avaliados, a radiação no entorno e a radiação de fuga do cabeçote.',
     metric: 'Radiação no entorno e fuga do cabeçote medidas em campo',
     deliverable: 'Resultado do Levantamento Radiométrico',
     deliverableSections: ['Sala e equipamento avaliados','Pontos de medição no entorno','Medição da radiação de fuga','Resultados obtidos','Conclusão técnica da avaliação'],
-    note: 'A Consult confirma a medição das áreas ao redor da sala e da radiação de fuga. O título e o formato exato do documento final seguem o padrão técnico utilizado pela equipe.',
-    norms: [['RDC 611/2022 — Anvisa','Base sanitária e de proteção radiológica.',RDC_611],['IN aplicável à modalidade','A referência específica depende do equipamento avaliado.',ANVISA_IN]],
+        norms: [['RDC 611/2022 — Anvisa','Base sanitária e de proteção radiológica.',RDC_611],['IN aplicável à modalidade','A referência específica depende do equipamento avaliado.',ANVISA_IN]],
     faq: [['Quando esse serviço costuma ser necessário?','O serviço costuma ser necessário em salas novas ou reformadas, após troca de equipamento e em avaliações periódicas.'],['O levantamento substitui projeto de blindagem?','Não. O projeto de blindagem calcula a solução antes da obra ou mudança; o levantamento radiométrico mede a condição do ambiente.']],
   },
   'projeto-blindagem': {
@@ -94,7 +91,7 @@ const SERVICES = {
     proof: [['FOCO','Radioproteção'],['TEMA','Segurança em RM'],['FORMATO','Capacitação técnica'],['PÚBLICO','Equipes assistenciais']],
     parameters: [['Tema','Conteúdo definido conforme necessidade'],['Equipe','Público participante'],['Rotina','Aplicação ao contexto da instituição'],['Registro','Escopo de realização documentado conforme contratação']],
     storyTitle: 'Treinamento técnico precisa conversar com a rotina da equipe.',
-    story: 'A página deixa de apresentar treinamento como um item genérico e explica que o conteúdo é orientado ao contexto de radioproteção ou segurança em ressonância magnética da instituição.',
+    story: 'O conteúdo é orientado ao contexto de radioproteção ou segurança em ressonância magnética da instituição, com cursos EAD e treinamento presencial sob medida.',
     metric: 'Capacitação técnica direcionada à rotina da equipe',
     deliverable: 'Capacitação técnica',
     deliverableSections: ['Tema do treinamento','Público participante','Conteúdo técnico definido para a equipe','Orientações aplicáveis à rotina','Escopo de realização'],
@@ -110,7 +107,7 @@ const SERVICES = {
     proof: [['ESCOPO','Apoio documental'],['PROCESSO','Obtenção ou renovação'],['BASE','RDC 611/2022'],['LIMITE','Sem promessa de aprovação']],
     parameters: [['Escopo','Levantamento da situação do serviço'],['Documentos','Organização da documentação aplicável'],['Pendências','Identificação do que precisa ser providenciado'],['Acompanhamento','Suporte dentro do escopo contratado']],
     storyTitle: 'A Consult organiza a parte técnica; a licença continua sendo decisão da autoridade sanitária.',
-    story: 'Essa distinção precisa aparecer claramente no site. O serviço é apoio técnico e documental ao processo, não uma promessa de emissão ou aprovação da licença.',
+    story: 'O serviço oferece apoio técnico e documental ao processo. A emissão ou aprovação da licença permanece sob decisão da autoridade sanitária competente.',
     metric: 'Documentação técnica organizada para o processo sanitário',
     deliverable: 'Apoio documental ao licenciamento',
     deliverableSections: ['Levantamento do escopo do serviço','Organização da documentação técnica aplicável','Identificação de pendências documentais','Referências técnicas relacionadas','Acompanhamento dentro do escopo contratado'],
@@ -168,17 +165,8 @@ export default function ConsultServicePage() {
 
     <ApprovedDarkProcess items={PROCESS}/>
 
-    <ApprovedLightSection eyebrow="Entregável técnico" title={service.deliverable} intro="Veja de forma ilustrativa como o resultado pode ser organizado e quais informações fazem parte da entrega." white>
-      <div className="grid gap-10 lg:grid-cols-[.65fr_1.35fr] lg:items-center">
-        <div>
-          <p className="text-[15px] leading-7 text-black/60">{service.note}</p>
-          <div className="mt-6 rounded-xl border border-[#CFE4DE] bg-[#F4FBFA] p-5">
-            <div className="text-xs font-black uppercase tracking-[.16em] text-[#08A77F]">O que fica documentado</div>
-            <div className="mt-4 space-y-3">{service.deliverableSections.map((item,index)=><div key={item} className="flex gap-3"><span className="font-black text-[#08A77F]">0{index+1}</span><span className="text-sm font-semibold leading-6 text-[#315B58]">{item}</span></div>)}</div>
-          </div>
-        </div>
-        <ConsultReportPreview title={service.deliverable} sections={service.deliverableSections} note={service.note}/>
-      </div>
+    <ApprovedLightSection eyebrow="Entregável técnico" title={service.deliverable} intro="O documento registra o escopo executado, os resultados e as referências aplicáveis ao serviço." white>
+      <ApprovedList items={service.deliverableSections}/>
     </ApprovedLightSection>
 
     {service.equipmentNorms && <ApprovedLightSection eyebrow="Controle de Qualidade" title="Referência técnica por modalidade" intro="A RDC 611/2022 estabelece a base geral e as Instruções Normativas variam de acordo com a tecnologia avaliada.">
