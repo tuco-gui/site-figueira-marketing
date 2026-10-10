@@ -12,6 +12,8 @@ import ConsultQualityIndexPage from '@/pages/ConsultQualityIndexPage'
 import ConsultQualityModalityPage from '@/pages/ConsultQualityModalityPage'
 import ConsultBlogPage from '@/pages/ConsultBlogPage'
 import ConsultBlogPostPage from '@/pages/ConsultBlogPostPage'
+import ConsultNormsPage from '@/pages/ConsultNormsPage'
+import ConsultMaterialsPage from '@/pages/ConsultMaterialsPage'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -33,6 +35,8 @@ export default function App() {
       <Route path="/politica-de-privacidade" element={<ConsultPrivacyPage />} />
       <Route path="/blog" element={<ConsultBlogPage />} />
       <Route path="/blog/:slug" element={<ConsultBlogPostPage />} />
+      <Route path="/normas" element={<ConsultNormsPage />} />
+      <Route path="/materiais" element={<ConsultMaterialsPage />} />
       <Route path="/fisica-medica" element={<ConsultAreaLandingPageV3 fixedSlug="fisica-medica" />} />
       <Route path="/protecao-radiologica" element={<ConsultAreaLandingPageV3 fixedSlug="protecao-radiologica" />} />
       <Route path="/engenharia-clinica" element={<ConsultAreaLandingPageV3 fixedSlug="engenharia-clinica" />} />
