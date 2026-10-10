@@ -204,14 +204,14 @@
 
   const isFigueiraTest = /(^|\.)figueiramarketing\.com\.br$/i.test(location.hostname) || /vercel\.app$/i.test(location.hostname);
   setMeta('meta[name="robots"]',"name","robots",isFigueiraTest ? "noindex, nofollow" : "index, follow");
+  const socialImage = `${location.origin}/consult/approved-national-bg.webp`;
+  setMeta('meta[property="og:image"]',"property","og:image",socialImage);
+  setMeta('meta[property="og:image:alt"]',"property","og:image:alt","Consult Radiometria e Qualidade");
+  setMeta('meta[name="twitter:image"]',"name","twitter:image",socialImage);
 
   let canonical = document.head.querySelector('link[rel="canonical"]');
-  if (isFigueiraTest) {
-    if (canonical) canonical.remove();
-  } else {
-    if (!canonical) { canonical = document.createElement("link"); canonical.rel = "canonical"; document.head.appendChild(canonical); }
-    canonical.href = `${location.origin}${canonicalPath}`;
-  }
+  if (!canonical) { canonical = document.createElement("link"); canonical.rel = "canonical"; document.head.appendChild(canonical); }
+  canonical.href = `${location.origin}${canonicalPath}`;
 
   const oldLd = document.getElementById("consult-route-ldjson");
   if (oldLd) oldLd.remove();

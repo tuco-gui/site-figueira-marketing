@@ -7,6 +7,16 @@ const AREA_PATHS = {
   'engenharia-clinica': '/consult/engenharia-clinica',
 }
 
+const SERVICE_PATHS = {
+  'controle-qualidade': '/consult/fisica-medica/controle-de-qualidade',
+  'controle-de-qualidade': '/consult/fisica-medica/controle-de-qualidade',
+  'programa-protecao-radiologica': '/consult/protecao-radiologica/programa-protecao-radiologica',
+  'levantamento-radiometrico': '/consult/protecao-radiologica/levantamento-radiometrico',
+  'projeto-blindagem': '/consult/protecao-radiologica/projeto-blindagem',
+  treinamentos: '/consult/protecao-radiologica/treinamentos',
+  'licenciamento-sanitario': '/consult/protecao-radiologica/licenciamento-sanitario',
+}
+
 export default function ConsultLegacyRedirect({ type }) {
   const { slug } = useParams()
 
@@ -15,7 +25,7 @@ export default function ConsultLegacyRedirect({ type }) {
   }
 
   if (type === 'service') {
-    return <Navigate to={`/consult/fisica-medica/${slug}`} replace />
+    return <Navigate to={SERVICE_PATHS[slug] || '/consult/servicos'} replace />
   }
 
   if (type === 'equipment') {
