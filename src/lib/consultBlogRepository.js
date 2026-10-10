@@ -2,6 +2,7 @@ import { CONSULT_PROJECT } from './consultProject'
 import STATIC_POSTS from './consultStaticPosts.json'
 
 const SEED_POSTS = STATIC_POSTS
+const FULL_STATIC_BY_SLUG = new Map(SEED_POSTS.filter((post) => post.migrationStatus === 'historical_full').map((post) => [post.slug, post]))
 
 function sortByDate(posts) {
   return [...posts].sort((a, b) => new Date(b.publishedAt || 0) - new Date(a.publishedAt || 0))
@@ -66,7 +67,21 @@ async function fetchPublishedPosts() {
   })
   if (!response.ok) throw new Error(`Consult blog backend returned ${response.status}`)
   const rows = await response.json()
-  return Array.isArray(rows) ? rows.map(mapRow) : []
+  if (!Array.isArray(rows)) return []
+  return rows.map(mapRow).map((post) => {
+    const fullStatic = FULL_STATIC_BY_SLUG.get(post.slug)
+    if (post.migrationStatus !== 'historical_summary' || !fullStatic) return post
+    return {
+      ...post,
+      excerpt: post.excerpt || fullStatic.excerpt || '',
+      summary: Array.isArray(fullStatic.summary) ? fullStatic.summary : post.summary,
+      coverImage: post.coverImage || fullStatic.coverImage || '',
+      relatedLinks: normalizeRelatedLinks(fullStatic.relatedLinks || post.relatedLinks),
+      sourceUrl: null,
+      migrationStatus: 'historical_full',
+      contentSource: 'supabase_with_full_static_migration',
+    }
+  })
 }
 
 export function getConsultBlogSeedPosts() {
