@@ -47,7 +47,7 @@ export function ApprovedIndependenceBand() {
     <div className="mx-auto grid max-w-7xl gap-4 px-4 py-5 sm:px-6 lg:grid-cols-[1fr_auto] lg:items-center lg:px-8">
       <div>
         <div className="text-[10px] font-black uppercase tracking-[.22em] text-[#8AE600]">Verificação independente</div>
-        <p className="mt-2 max-w-4xl text-sm leading-6 text-white/78">A Consult não conserta e não vende peças. O laudo aponta a condição do equipamento e a instituição resolve com o fornecedor que preferir.</p>
+        <p className="mt-2 max-w-4xl text-sm leading-6 text-white/78">A Consult faz manutenção preventiva quando contratada. Não fazemos manutenção corretiva e não vendemos peças. O laudo documenta a condição do equipamento e a instituição decide como tratar eventuais pendências.</p>
       </div>
       <div className="text-xs font-extrabold text-white/55">Sem vínculo com empresas de conserto</div>
     </div>
