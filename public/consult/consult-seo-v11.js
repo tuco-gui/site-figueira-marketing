@@ -73,7 +73,13 @@
   const siloRegionMatch = path.match(/^\/consult\/atuacao\/([^/]+)$/);
   const blogMatch = path.match(/^\/consult\/blog\/([^/]+)$/);
 
-  if (path === "/consult/sobre") {
+  if (path === "/consult/politica-de-privacidade") {
+    title = "Política de Privacidade | Consult Radiometria e Qualidade";
+    description = "Política de Privacidade do site da Consult: dados coletados, finalidades, segurança, cookies e direitos previstos na LGPD.";
+    keywords = "política de privacidade Consult, LGPD, dados pessoais";
+    schemaType = "WebPage";
+    crumbs.push(["Política de Privacidade",path]);
+  } else if (path === "/consult/sobre") {
     title = "Sobre a Consult | Consult Radiometria e Qualidade";
     description = "Conheça a Consult Radiometria e Qualidade, fundada em 1995, sua atuação técnica, áreas de serviço e estrutura de atendimento.";
     keywords = "Consult Radiometria e Qualidade, sobre, Física Médica, Proteção Radiológica, Engenharia Clínica";
