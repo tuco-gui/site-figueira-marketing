@@ -20,7 +20,7 @@ export function ApprovedInternalHero({ eyebrow, title, description, image = CONS
         <h1 className="max-w-3xl text-4xl font-black leading-[1.02] tracking-[-0.035em] sm:text-5xl lg:text-6xl">{title}</h1>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/82 lg:text-lg">{description}</p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a href="#contato" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white shadow-xl shadow-black/10 transition hover:brightness-95"><FileText className="h-4 w-4"/>{primaryLabel}<ArrowRight className="h-4 w-4"/></a>
+          <a href="/#contato" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white shadow-xl shadow-black/10 transition hover:brightness-95"><FileText className="h-4 w-4"/>{primaryLabel}<ArrowRight className="h-4 w-4"/></a>
           <a href={`https://wa.me/5514981610712?text=${message}`} target="_blank" rel="noreferrer" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/70 px-6 py-3 text-sm font-extrabold text-[#B8FF51] transition hover:bg-[#8AE600] hover:text-[#075653]"><MessageCircle className="h-4 w-4"/>{secondaryLabel}</a>
         </div>
       </div>
