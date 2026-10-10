@@ -29,7 +29,7 @@ const sections = [
   ]],
   ['Seus direitos e contato', [
     'Você pode solicitar informações, correção, atualização ou outras providências previstas na LGPD em relação aos seus dados.',
-    'Para assuntos de privacidade e dados pessoais, utilize o e-mail radiometria@consult.med.br.',
+    'A Consult indica Matheus Alvarez (matheus@consult.med.br) e Amanda (amanda@consult.med.br) como responsáveis pelo atendimento às solicitações sobre dados pessoais. Também é possível contatar radiometria@consult.med.br.',
   ]],
 ]
 
