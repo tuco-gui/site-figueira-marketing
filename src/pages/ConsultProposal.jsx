@@ -113,7 +113,7 @@ const differentials = [
   { icon: MapPin, title: "Visitas in loco + assessoria online", text: "Atendimento em todo o Brasil, com equipes em campo em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais." },
   { icon: FileText, title: "Prazo definido para o laudo", text: "Laudo emitido em até 7 dias após as medições." },
   { icon: ShieldCheck, title: "Conformidade técnica", text: "Alinhamento com as normas vigentes da Anvisa e da Vigilância Sanitária." },
-  { icon: Settings, title: "Um só fornecedor técnico", text: "Radiologia e demais equipamentos na mesma visita, com o mesmo padrão de laudo e o mesmo responsável técnico." },
+  { icon: Settings, title: "Um só fornecedor técnico", text: "Radiologia e demais equipamentos na mesma visita, conforme disponibilidade da agenda na sua região." },
 ];
 
 const audiences = [
