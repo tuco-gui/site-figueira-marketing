@@ -1,0 +1,24 @@
+name: Consult standalone build
+
+on:
+  pull_request:
+    paths:
+      - 'consult-standalone/**'
+      - '.github/workflows/consult-standalone-build.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: consult-standalone
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Install dependencies
+        run: npm install --no-audit --no-fund
+      - name: Build standalone
+        run: npm run build
