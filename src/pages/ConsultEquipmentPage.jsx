@@ -36,7 +36,7 @@ const EQUIPMENT = {
   'aparelho-anestesia': { title:'Aparelho de anestesia — parte ventilatória', electromedical:true, parameters:['Fluxo','Volume','Pressões','PEEP','Concentração de O₂'], caveat:'Esta avaliação não inclui medição da concentração do agente anestésico.' },
   'cpap-bipap': { title:'CPAP e BiPAP', electromedical:true, parameters:['Fluxo','Pressão'] },
   'fluxometro-manometro-o2': { title:'Fluxômetro e manômetro de O₂', mechanical:true, parameters:['Fluxo','Pressão'] },
-  'concentrador-oxigenio': { title:'Concentrador de oxigênio', electromedical:true, parameters:['Concentração de O₂','Fluxo de saída'] },
+  'concentrador-oxigenio': { title:'Concentrador de oxigênio', electromedical:true, parameters:['Parâmetros de desempenho definidos conforme o modelo e o escopo técnico aplicável'] },
   autoclave: {
     title:'Autoclave', thermal:true,
     parameters:['Temperatura em múltiplos pontos','Pressão','Letalidade F0','Ciclos de operação'],
