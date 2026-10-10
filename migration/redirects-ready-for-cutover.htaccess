@@ -1,0 +1,66 @@
+# Consult — redirects preparados para o cutover
+# NÃO ATIVAR antes de o domínio consult.med.br apontar para o novo site.
+# Gerado em 2026-10-10 a partir do inventário público e das URLs históricas conhecidas.
+
+Options -MultiViews
+RewriteEngine On
+
+# Páginas estáticas históricas
+RewriteRule ^index\.html$ / [R=301,L]
+RewriteRule ^contato\.html$ /#contato [R=301,L,NE]
+RewriteRule ^empresa\.html$ /sobre [R=301,L]
+RewriteRule ^pericia\.html$ /servicos [R=301,L]
+RewriteRule ^radio\.html$ /protecao-radiologica [R=301,L]
+RewriteRule ^saude\.html$ /servicos [R=301,L]
+
+# Categoria histórica do blog e paginação
+RewriteCond %{QUERY_STRING} ^ct=conversando-sobre-radioprotecao- [NC]
+RewriteRule ^posts/?$ /blog [R=301,L,QSD]
+
+# Artigos migrados 1:1
+RewriteCond %{QUERY_STRING} ^dt=consult-fortalece-educacao-continuada-com-nova-plataforma-de-cursos-digitais- [NC]
+RewriteRule ^posts/?$ /blog/educacao-continuada-cursos-digitais-radioprotecao [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=publicado-iaea-hhs-47-um-guia-pratico-de-controle-de-qualidade-de-equipamentos- [NC]
+RewriteRule ^posts/?$ /blog/iaea-hhs-47-controle-qualidade-equipamentos [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=protecao-radiologica-em-equipamentos-arco-c- [NC]
+RewriteRule ^posts/?$ /blog/protecao-radiologica-equipamentos-arco-c [R=301,L,QSD]
+
+# Ultrassom
+RewriteCond %{QUERY_STRING} ^dt=(5-procedimentos-simples-para-garantir-a-confiabilidade-do-seu-ultrassom|controle-de-qualidade-em-ultrassom-sua-clinica-esta-atendendo-a-instrucao-normativa-96-da-anvisa)- [NC]
+RewriteRule ^posts/?$ /fisica-medica/controle-de-qualidade/ultrassom [R=301,L,QSD]
+
+# Mamografia
+RewriteCond %{QUERY_STRING} ^dt=(densidade-mamaria-na-mamografia|fatores-que-afetam-a-detectividade-do-cancer-de-mama)- [NC]
+RewriteRule ^posts/?$ /fisica-medica/controle-de-qualidade/mamografia [R=301,L,QSD]
+
+# Tomografia
+RewriteCond %{QUERY_STRING} ^dt=(tomografia-computadorizada-nao-deve-ser-usada|o-que-86-estudos-clinicos-dizem-sobre-ia-na-reducao-de-dose-em-tc|tc-por-contagem-de-fotons|25-anos-de-avancos-em-tc|tamanho-do-paciente-importa)- [NC]
+RewriteRule ^posts/?$ /fisica-medica/controle-de-qualidade/tomografia [R=301,L,QSD]
+
+# Fluoroscopia / angiografia
+RewriteCond %{QUERY_STRING} ^dt=ia-generativa-reduz-dose-em-angiografia-dsa- [NC]
+RewriteRule ^posts/?$ /fisica-medica/controle-de-qualidade/fluoroscopia-arco-c-angiografia [R=301,L,QSD]
+
+# Treinamento
+RewriteCond %{QUERY_STRING} ^dt=validade-de-treinamentos-online-ppr-digital- [NC]
+RewriteRule ^posts/?$ /protecao-radiologica/treinamentos [R=301,L,QSD]
+
+# Conteúdo histórico de radioproteção sem artigo 1:1
+RewriteCond %{QUERY_STRING} ^dt=(historico-de-dosimetria-do-trabalhador|ia-na-radioprotecao|dosimetro-instadose|gerenciamento-da-dose-de-radiacao-do-paciente-em-radiologia-intervencionista|publicacao-das-nacoes-unidas-sobre-efeitos-da-radiacao|dose-no-cristalino-em-radiologia-intervencionista|alara-9-sociedades-medicas|dose-no-cristalino-em-procedimentos-intervencionistas|o-comentario-27-da-ncrp|acr-endossa-posicao-da-aapm|icrp-e-iaea-revisam-o-sistema-de-protecao-radiologica|norma-cnen-nn-3-01-revisada|monitoramento-digital-da-exposicao-do-paciente|risco-de-catarata-induzida-por-radiacao)- [NC]
+RewriteRule ^posts/?$ /protecao-radiologica [R=301,L,QSD]
+
+# Demais artigos históricos sem equivalente 1:1
+RewriteCond %{QUERY_STRING} ^dt= [NC]
+RewriteRule ^posts/?$ /blog [R=301,L,QSD]
+
+# Arquivos/diretórios reais do novo build
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Páginas pré-renderizadas: /sobre -> /sobre.html
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# Fallback React Router
+RewriteRule ^ index.html [L]
