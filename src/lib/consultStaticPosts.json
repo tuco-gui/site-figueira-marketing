@@ -1,5 +1,95 @@
 [
   {
+    "id": "editorial-como-ler-laudo-engenharia-clinica",
+    "slug": "como-ler-laudo-engenharia-clinica",
+    "title": "Como ler um laudo de Engenharia Clínica",
+    "category": "Engenharia Clínica",
+    "publishedAt": "2026-10-07 21:21:08.03874+00",
+    "author": "Consult",
+    "excerpt": "Valores medidos, referências, resultado e pendências: entenda a estrutura básica do documento técnico entregue por equipamento.",
+    "summary": [
+      "Um laudo técnico precisa permitir que a instituição entenda o que foi ensaiado, qual valor foi medido, qual referência foi utilizada e qual foi o resultado da avaliação.",
+      "Na Consult Engenharia Clínica, o documento é emitido por equipamento, assinado pelo responsável técnico e mantém o histórico técnico do ensaio. Os padrões utilizados nas medições são apresentados com rastreabilidade RBC/Inmetro.",
+      "Quando existe uma pendência, o laudo registra a condição encontrada. A Consult não faz manutenção corretiva e não vende peças. A instituição decide como resolver e, quando necessário, pode contratar a reverificação para repetir o ensaio após a correção."
+    ],
+    "coverImage": "",
+    "relatedLinks": [
+      {
+        "href": "/engenharia-clinica",
+        "label": "Engenharia Clínica"
+      },
+      {
+        "href": "/engenharia-clinica/seguranca-eletrica",
+        "label": "Segurança elétrica"
+      }
+    ],
+    "sourceUrl": null,
+    "migrationStatus": null,
+    "seoTitle": "Como ler um laudo de Engenharia Clínica | Consult",
+    "seoDescription": "Entenda valores medidos, referências, resultado, pendências e rastreabilidade RBC/Inmetro em um laudo técnico por equipamento.",
+    "contentSource": "local_static"
+  },
+  {
+    "id": "editorial-o-que-vigilancia-sanitaria-pede-radiologia",
+    "slug": "o-que-vigilancia-sanitaria-pede-radiologia",
+    "title": "O que a Vigilância Sanitária costuma verificar em serviços de radiologia?",
+    "category": "Normas Sanitárias",
+    "publishedAt": "2026-10-07 21:21:08.03874+00",
+    "author": "Consult",
+    "excerpt": "A documentação e os testes variam conforme modalidade e situação do serviço. Veja como organizar a leitura sem transformar uma lista geral em exigência universal.",
+    "summary": [
+      "A fiscalização sanitária considera a legislação aplicável ao serviço, à modalidade e ao contexto da instituição. Na radiologia diagnóstica e intervencionista, a RDC 611/2022 estabelece a base geral e as Instruções Normativas 90 a 97/2021 detalham requisitos conforme a tecnologia.",
+      "Entre os temas que podem fazer parte da verificação estão a documentação do serviço, o Programa de Proteção Radiológica, registros de Controle de Qualidade, condições radiométricas do ambiente e evidências relacionadas ao licenciamento. A combinação exata depende da modalidade e da situação da instituição.",
+      "A Consult atua com medições, testes, programas e apoio documental dentro do escopo contratado. A autoridade sanitária é quem define a análise e a decisão do processo de licenciamento."
+    ],
+    "coverImage": "",
+    "relatedLinks": [
+      {
+        "href": "/normas",
+        "label": "Normas e referências"
+      },
+      {
+        "href": "/protecao-radiologica",
+        "label": "Proteção Radiológica"
+      }
+    ],
+    "sourceUrl": null,
+    "migrationStatus": null,
+    "seoTitle": "Vigilância Sanitária e radiologia: o que pode ser verificado | Consult",
+    "seoDescription": "RDC 611/2022, IN 90 a 97 e documentação técnica em serviços de radiologia: entenda os principais pontos de atenção.",
+    "contentSource": "local_static"
+  },
+  {
+    "id": "editorial-prazo-ensaio-laudo-tecnico",
+    "slug": "prazo-ensaio-laudo-tecnico",
+    "title": "Quanto tempo leva um ensaio e quando o laudo fica pronto?",
+    "category": "Dúvidas frequentes",
+    "publishedAt": "2026-10-07 21:21:08.03874+00",
+    "author": "Consult",
+    "excerpt": "A programação depende do escopo e da quantidade de equipamentos; após as medições, o laudo é emitido em até 7 dias.",
+    "summary": [
+      "O tempo de programação do atendimento depende do tipo de serviço, da quantidade de equipamentos ou ambientes, das condições de acesso e das informações necessárias ao escopo.",
+      "Em Controle de Qualidade, levantamento radiométrico, ensaios de Engenharia Clínica e qualificações térmicas, a equipe primeiro confirma o que será avaliado e qual referência técnica se aplica. Depois vêm a execução e a análise dos resultados.",
+      "Após as medições, o laudo é emitido em até 7 dias. Para planejar a visita, informe o serviço, os equipamentos e a situação da instituição."
+    ],
+    "coverImage": "",
+    "relatedLinks": [
+      {
+        "href": "/servicos",
+        "label": "Serviços"
+      },
+      {
+        "href": "/#contato",
+        "label": "Contato"
+      }
+    ],
+    "sourceUrl": null,
+    "migrationStatus": null,
+    "seoTitle": "Prazo de ensaio e emissão de laudo técnico | Consult",
+    "seoDescription": "A programação depende do escopo; após as medições, o laudo técnico da Consult é emitido em até 7 dias.",
+    "contentSource": "local_static"
+  },
+  {
     "id": "legacy-revisao-de-2020-2025-quantifica-ia-reduz-de-40-a-90-da-dose-em-tc-com-ressalvas-importantes",
     "slug": "revisao-de-2020-2025-quantifica-ia-reduz-de-40-a-90-da-dose-em-tc-com-ressalvas-importantes",
     "title": "Revisão de 2020–2025 quantifica: IA reduz de 40% a 90% da dose em TC com ressalvas importantes",
