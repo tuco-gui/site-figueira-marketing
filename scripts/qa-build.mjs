@@ -27,6 +27,7 @@ const lower=combined.toLocaleLowerCase('pt-BR')
 // O gate editorial abaixo verifica o código/páginas técnicas e exclui os chunks do blog.
 const policyText=textFiles
   .filter(path=>!/ConsultBlog|consultBlogRepository/i.test(path))
+  .filter(path=>!/[\\/]blog[\\/]/i.test(path))
   .map(path=>contents.get(path) || '')
   .join('\n')
 const policyLower=policyText.toLocaleLowerCase('pt-BR')
