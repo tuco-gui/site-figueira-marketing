@@ -56,6 +56,19 @@ const ADDRESS =
 const EMAIL = "radiometria@consult.med.br";
 const LEAD_ENDPOINT = "https://jinhjdvrjvmammumbacz.supabase.co/functions/v1/consult-lead";
 
+const SERVICE_MENU_LINKS = [
+  ["Controle de Qualidade", "/fisica-medica/controle-de-qualidade"],
+  ["Levantamento radiométrico", "/protecao-radiologica/levantamento-radiometrico"],
+  ["Projeto de blindagem", "/protecao-radiologica/projeto-blindagem"],
+  ["Programas (PPR/PGQ/PEP)", "/protecao-radiologica/programa-protecao-radiologica"],
+  ["Licenciamento", "/protecao-radiologica/licenciamento-sanitario"],
+  ["Treinamentos", "/protecao-radiologica/treinamentos"],
+  ["Segurança elétrica", "/engenharia-clinica/seguranca-eletrica"],
+  ["Ensaio de desempenho", "/engenharia-clinica/desempenho-calibracao"],
+  ["Manutenção preventiva", "/engenharia-clinica/manutencao-preventiva"],
+  ["Qualificação térmica", "/engenharia-clinica/qualificacao-termica"],
+];
+
 const waUrl = (message) =>
   `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(message)}`;
 
@@ -195,7 +208,6 @@ function Header() {
   const nav = [
     ["Início", "/"],
     ["Sobre", "/sobre"],
-    ["Serviços", "/servicos"],
     ["Blog", "/blog"],
     ["Cursos", "https://consultcursos.herospark.co"],
     ["Portal", "https://www.consult.med.br/Portal/"],
@@ -210,7 +222,7 @@ function Header() {
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
-          {nav.map(([label, href], index) => (
+          {nav.slice(0,2).map(([label, href], index) => (
             <a
               key={label}
               href={href}
@@ -220,6 +232,20 @@ function Header() {
             >
               {label}
             </a>
+          ))}
+          <div className="group relative">
+            <a href="/servicos" className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">Serviços</a>
+            <div className="invisible absolute left-1/2 top-full z-50 mt-3 w-[330px] -translate-x-1/2 rounded-2xl border border-white/10 bg-[#064946] p-2 opacity-0 shadow-2xl transition group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+              <a href="/servicos" className="block rounded-xl px-3 py-2.5 text-xs font-black uppercase tracking-[.12em] text-[#8AE600] hover:bg-white/5">Ver todos os serviços</a>
+              <div className="grid grid-cols-2 gap-1">
+                {SERVICE_MENU_LINKS.map(([label, href]) => (
+                  <a key={href} href={href} className="rounded-lg px-3 py-2.5 text-xs font-semibold leading-5 text-white/82 hover:bg-white/5 hover:text-white">{label}</a>
+                ))}
+              </div>
+            </div>
+          </div>
+          {nav.slice(2).map(([label, href]) => (
+            <a key={label} href={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
           ))}
           <a
             href="#contato"
@@ -241,15 +267,17 @@ function Header() {
       {open && (
         <div className="border-t border-white/10 bg-[#064946] px-4 py-5 lg:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-1">
-            {nav.map(([label, href]) => (
-              <a
-                key={label}
-                href={href}
-                onClick={() => setOpen(false)}
-                className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5"
-              >
-                {label}
-              </a>
+            {nav.slice(0,2).map(([label, href]) => (
+              <a key={label} href={href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</a>
+            ))}
+            <a href="/servicos" onClick={() => setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-extrabold text-[#8AE600] hover:bg-white/5">Serviços</a>
+            <div className="grid grid-cols-1 gap-1 border-l border-white/10 pl-3">
+              {SERVICE_MENU_LINKS.map(([label, href]) => (
+                <a key={href} href={href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-2 text-xs font-semibold text-white/72 hover:bg-white/5 hover:text-white">{label}</a>
+              ))}
+            </div>
+            {nav.slice(2).map(([label, href]) => (
+              <a key={label} href={href} onClick={() => setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</a>
             ))}
             <a
               href="#contato"
