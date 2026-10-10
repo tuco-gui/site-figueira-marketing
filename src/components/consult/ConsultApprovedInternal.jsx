@@ -25,7 +25,7 @@ export function ApprovedInternalHero({ eyebrow, title, description, image = CONS
         </div>
       </div>
       <div className="relative min-h-[340px] overflow-hidden lg:min-h-full">
-        <img src={image} alt="" className="absolute inset-0 h-full w-full scale-105 object-cover object-center"/>
+        <img src={image} alt={`${title} — Consult Radiometria e Qualidade`} className="absolute inset-0 h-full w-full scale-105 object-cover object-center"/>
         <div className="absolute inset-0 bg-gradient-to-r from-[#075653] via-[#075653]/25 to-transparent lg:from-[#075653]/62"/>
         <div className="absolute bottom-0 right-0 h-28 w-3/4 rounded-tl-[100%] bg-[#05D29D]/90"/>
         <div className="absolute bottom-0 right-0 h-16 w-1/2 rounded-tl-[100%] bg-[#8AE600]"/>
