@@ -138,8 +138,9 @@
     [title,description] = serviceMeta[slug];
     keywords = `${slug.replaceAll("-"," ")}, Física Médica, Proteção Radiológica, Consult`;
     schemaType = "Service";
-    if (oldServiceMatch) canonicalPath = ["programa-protecao-radiologica","levantamento-radiometrico","projeto-blindagem","treinamentos","licenciamento-sanitario"].includes(slug) ? `/consult/protecao-radiologica/${slug}` : `/consult/fisica-medica/${slug}`;
-    crumbs.push(["Física Médica","/consult/fisica-medica"],[title.replace(/ \| .*$/,""),canonicalPath]);
+    const isProtection = ["programa-protecao-radiologica","levantamento-radiometrico","projeto-blindagem","treinamentos","licenciamento-sanitario"].includes(slug);
+    canonicalPath = isProtection ? `/consult/protecao-radiologica/${slug}` : `/consult/fisica-medica/${slug}`;
+    crumbs.push([isProtection ? "Proteção Radiológica" : "Física Médica",isProtection ? "/consult/protecao-radiologica" : "/consult/fisica-medica"],[title.replace(/ \| .*$/,""),canonicalPath]);
   } else if (engineeringMatch && engineeringMeta[engineeringMatch[1]]) {
     [title,description] = engineeringMeta[engineeringMatch[1]];
     keywords = `${engineeringMatch[1].replaceAll("-"," ")}, Engenharia Clínica, laudo técnico, Consult`;
