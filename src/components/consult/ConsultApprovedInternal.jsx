@@ -8,7 +8,7 @@ export const CONSULT_IMAGES = {
   engineering: 'https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/5ba954a4-90f8-4e55-a0d3-4b15ac1f137f.jpg',
 }
 
-export function ApprovedInternalHero({ eyebrow, title, description, image = CONSULT_IMAGES.radiology, primaryLabel = 'Solicite um orçamento', secondaryLabel = 'Falar no WhatsApp' }) {
+export function ApprovedInternalHero({ eyebrow, title, description, image = CONSULT_IMAGES.radiology, primaryLabel = 'Solicite um orçamento', secondaryLabel = 'Falar no WhatsApp', breadcrumbs = [] }) {
   const message = encodeURIComponent(`Olá, equipe Consult. Gostaria de conversar sobre ${title}.`)
   return <section className="relative overflow-hidden bg-[#075653] text-white">
     <div className="absolute inset-0 opacity-45" style={{backgroundImage:`url("${CONSULT_IMAGES.protection}")`,backgroundSize:'cover',backgroundPosition:'left bottom'}}/>
@@ -16,6 +16,9 @@ export function ApprovedInternalHero({ eyebrow, title, description, image = CONS
     <div className="absolute left-16 top-6 h-32 w-32 rounded-full border border-dashed border-white/10"/>
     <div className="relative mx-auto grid min-h-[560px] max-w-7xl items-stretch lg:grid-cols-[1.02fr_.98fr]">
       <div className="flex flex-col justify-center px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+        {breadcrumbs.length > 0 && <nav aria-label="Breadcrumb" className="mb-5 flex flex-wrap items-center gap-2 text-[11px] font-semibold text-white/55">
+          {breadcrumbs.map(([label,href],index)=><React.Fragment key={label}><span aria-hidden="true" className={index===0?'hidden':''}>/</span>{href?<a href={href} className="transition hover:text-[#8AE600]">{label}</a>:<span className="text-white/80">{label}</span>}</React.Fragment>)}
+        </nav>}
         <div className="mb-5 text-[10px] font-bold uppercase tracking-[0.3em] text-white/65">{eyebrow}</div>
         <h1 className="max-w-3xl text-4xl font-black leading-[1.02] tracking-[-0.035em] sm:text-5xl lg:text-6xl">{title}</h1>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/82 lg:text-lg">{description}</p>
@@ -86,6 +89,47 @@ export function ApprovedFaq({ items = [] }) {
 
 export function ApprovedNormCards({ items = [] }) {
   return <div className="grid gap-5 md:grid-cols-2">{items.map(([label,text,href])=><a key={label} href={href} target="_blank" rel="noreferrer" className="group rounded-xl border border-black/5 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"><div className="flex items-start justify-between gap-4"><div className="flex h-11 w-11 items-center justify-center rounded-full bg-[#08A77F] text-white"><FileText className="h-5 w-5"/></div><ArrowRight className="h-4 w-4 text-[#08A77F]"/></div><h3 className="mt-5 text-lg font-black text-[#123C3B]">{label}</h3><p className="mt-2 text-sm leading-6 text-black/55">{text}</p></a>)}</div>
+}
+
+
+export function ApprovedMediaCards({ items = [], columns = 'three' }) {
+  const grid = columns === 'five'
+    ? 'sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5'
+    : columns === 'two'
+      ? 'md:grid-cols-2'
+      : 'md:grid-cols-2 lg:grid-cols-3'
+  return <div className={`grid gap-5 ${grid}`}>
+    {items.map((item)=>{
+      const { title, text, href, image, Icon = ShieldCheck, badge, cta = 'Saiba mais' } = item
+      return <a key={href || title} href={href || '#'} className="group overflow-hidden rounded-xl border border-black/5 bg-white shadow-lg shadow-[#075653]/5 transition hover:-translate-y-1 hover:shadow-xl">
+        {image && <div className="relative h-36 overflow-hidden bg-[#DCEEEB]">
+          <img src={image} alt="" aria-hidden="true" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]"/>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#064946]/55 via-transparent to-transparent"/>
+          {badge && <span className="absolute bottom-3 left-3 rounded-full bg-white/95 px-3 py-1 text-[10px] font-black uppercase tracking-[.12em] text-[#075653] shadow-sm">{badge}</span>}
+        </div>}
+        <div className="p-5 sm:p-6">
+          <div className="flex items-start gap-3">
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#08A77F] text-white shadow-sm"><Icon className="h-[22px] w-[22px]" strokeWidth={2.2}/></span>
+            <h3 className="pt-1 text-[17px] font-black leading-6 text-[#123C3B]">{title}</h3>
+          </div>
+          {text && <p className="mt-4 text-[13px] leading-6 text-black/55">{text}</p>}
+          <span className="mt-5 inline-flex items-center gap-2 text-sm font-extrabold text-[#08A77F]">{cta}<ArrowRight className="h-4 w-4 transition group-hover:translate-x-1"/></span>
+        </div>
+      </a>
+    })}
+  </div>
+}
+
+export function ApprovedEditorialPanel({ eyebrow, title, text, items = [], image }) {
+  return <div className="grid overflow-hidden rounded-2xl border border-black/5 bg-white shadow-lg shadow-[#075653]/5 lg:grid-cols-[.86fr_1.14fr]">
+    {image && <div className="relative min-h-[260px] overflow-hidden bg-[#DCEEEB]"><img src={image} alt="" aria-hidden="true" className="absolute inset-0 h-full w-full object-cover"/><div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#064946]/15"/></div>}
+    <div className="p-7 sm:p-9 lg:p-10">
+      <div className="text-[10px] font-black uppercase tracking-[.22em] text-[#08A77F]">{eyebrow}</div>
+      <h3 className="mt-3 text-2xl font-black tracking-[-.02em] text-[#123C3B] sm:text-3xl">{title}</h3>
+      {text && <p className="mt-4 text-sm leading-7 text-black/58">{text}</p>}
+      {items.length>0 && <div className="mt-6 grid gap-3 sm:grid-cols-2">{items.map((item,index)=><div key={item} className="flex items-start gap-3 rounded-xl bg-[#F4FBFA] px-4 py-3"><span className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[#E5F6F1] text-[10px] font-black text-[#08A77F]">0{index+1}</span><span className="text-sm font-extrabold leading-5 text-[#315B58]">{item}</span></div>)}</div>}
+    </div>
+  </div>
 }
 
 export function ApprovedOutcome({ children }) {
