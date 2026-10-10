@@ -28,7 +28,7 @@ export default function ConsultAboutPage() {
       </div>
     </ApprovedLightSection>
 
-    <ApprovedLightSection eyebrow="Responsabilidade técnica" title="Documentação técnica assinada por profissional habilitado" intro="A responsabilidade técnica é aplicada conforme o serviço executado, com documentos emitidos por equipamento ou modalidade e assinatura do profissional habilitado." white>
+    <ApprovedLightSection eyebrow="Responsabilidade técnica" title="Matheus Alvarez — responsável técnico" intro="Matheus Alvarez integra a responsabilidade técnica da Consult. Os documentos são emitidos conforme o serviço executado, por equipamento ou modalidade, com assinatura do profissional habilitado." white>
       <div className="grid gap-5 md:grid-cols-2">
         <div className="rounded-2xl bg-[#075653] p-7 text-white"><UsersRound className="h-8 w-8 text-[#8AE600]"/><h3 className="mt-4 text-xl font-black">Responsável técnico habilitado</h3><p className="mt-3 text-sm leading-7 text-white/70">Laudos e documentos técnicos seguem a responsabilidade profissional aplicável a cada serviço.</p></div>
         <div className="rounded-2xl border border-black/5 bg-white p-7 shadow-sm"><MapPin className="h-8 w-8 text-[#08A77F]"/><h3 className="mt-4 text-xl font-black text-[#123C3B]">Estrutura de atendimento</h3><p className="mt-3 text-sm leading-7 text-black/55">Sede em Matão/SP e atendimento em Botucatu/SP, com atuação nacional e equipes em campo em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais.</p></div>
