@@ -1,4 +1,4 @@
-import { lazy, Suspense, useEffect, useState } from 'react'
+import { lazy, Suspense } from 'react'
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
@@ -50,150 +50,6 @@ const SolucoesSobMedida = lazy(() => import('@/pages/solutions/SolucoesSobMedida
 const Retencao = lazy(() => import('@/pages/solutions/Retencao'))
 
 
-/**
- * Captura o contato antes de abrir links do WhatsApp em todas as páginas Consult.
- * Mantém as âncoras e os CTAs aprovados, sem duplicar a interface em cada página.
- */
-function ConsultWhatsAppGate() {
-  const [url, setUrl] = useState('')
-  const [context, setContext] = useState('')
-  const [name, setName] = useState('')
-  const [phone, setPhone] = useState('')
-  const [email, setEmail] = useState('')
-  const [busy, setBusy] = useState(false)
-  const [error, setError] = useState('')
-  const [result, setResult] = useState(null)
-
-  useEffect(() => {
-    const intercept = (event) => {
-      if (event.defaultPrevented || event.button !== 0) return
-      const anchor = event.target?.closest?.('a[href]')
-      if (!anchor || anchor.dataset.consultWhatsappVerified === 'true') return
-      let parsed
-      try { parsed = new URL(anchor.href, window.location.origin) } catch { return }
-      const host = parsed.hostname.toLowerCase()
-      if (host !== 'wa.me' && host !== 'api.whatsapp.com' && host !== 'web.whatsapp.com') return
-      event.preventDefault()
-      event.stopPropagation()
-      setUrl(parsed.href)
-      setContext(anchor.getAttribute('aria-label') || anchor.textContent?.trim() || 'WhatsApp')
-      setError('')
-      setResult(null)
-      try {
-        const saved = JSON.parse(sessionStorage.getItem('consult_lead_contact') || '{}')
-        setName(saved.name || '')
-        setPhone(saved.phone || '')
-      } catch {}
-    }
-    document.addEventListener('click', intercept, true)
-    return () => document.removeEventListener('click', intercept, true)
-  }, [])
-
-  useEffect(() => {
-    if (!url) return
-    const onEscape = (event) => {
-      if (event.key === 'Escape' && !busy) setUrl('')
-    }
-    document.addEventListener('keydown', onEscape)
-    return () => document.removeEventListener('keydown', onEscape)
-  }, [url, busy])
-
-  const submit = async (event) => {
-    event.preventDefault()
-    if (busy || !url) return
-    setBusy(true)
-    setError('')
-    try {
-      const params = new URLSearchParams(window.location.search)
-      const request = await fetch('https://jinhjdvrjvmammumbacz.supabase.co/functions/v1/consult-lead', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          type: 'whatsapp_intent',
-          name: name.trim(),
-          phone: phone.trim(),
-          email: email.trim(),
-          service: context.slice(0, 160),
-          source: 'whatsapp_site',
-          page_path: window.location.pathname,
-          referrer: document.referrer || '',
-          utm_source: params.get('utm_source') || '',
-          utm_medium: params.get('utm_medium') || '',
-          utm_campaign: params.get('utm_campaign') || '',
-          utm_content: params.get('utm_content') || '',
-          utm_term: params.get('utm_term') || '',
-        }),
-      })
-      const data = await request.json().catch(() => ({}))
-      if (!request.ok || !data.ok || !data.registered) {
-        throw new Error(data.error || 'Não foi possível registrar seu contato.')
-      }
-      try { sessionStorage.setItem('consult_lead_contact', JSON.stringify({ name: name.trim(), phone: phone.trim() })) } catch {}
-      setResult({ emailSent: Boolean(data.email_sent), leadId: data.lead_id || null })
-    } catch (problem) {
-      setError(problem?.message || 'Não foi possível registrar seu contato. Tente novamente.')
-    } finally {
-      setBusy(false)
-    }
-  }
-
-  if (!url) return null
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/65 p-4" role="presentation">
-      <div role="dialog" aria-modal="true" aria-labelledby="consult-whatsapp-gate-title" className="w-full max-w-md rounded-2xl bg-white p-6 text-[#123C3B] shadow-2xl sm:p-8">
-        <div className="flex items-start justify-between gap-4">
-          <h2 id="consult-whatsapp-gate-title" className="text-2xl font-black tracking-tight">
-            {result ? 'Contato registrado' : 'Antes de falar no WhatsApp'}
-          </h2>
-          <button type="button" aria-label="Fechar" disabled={busy} onClick={() => setUrl('')} className="rounded-lg px-2 py-1 text-xl text-[#123C3B] hover:bg-black/5">×</button>
-        </div>
-        {result ? (
-          <div className="mt-4">
-            <p className="text-sm leading-6 text-black/70">
-              {result.emailSent
-                ? 'Recebemos seus dados e notificamos a equipe Consult. Agora você pode continuar pelo WhatsApp.'
-                : 'Seus dados foram registrados, mas não foi possível confirmar o aviso por e-mail. Você ainda pode continuar pelo WhatsApp.'}
-            </p>
-            <a
-              data-consult-whatsapp-verified="true"
-              href={url}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => {
-                window.dataLayer?.push?.({
-                  event: 'whatsapp_click',
-                  site: 'consult',
-                  lead_id: result.leadId,
-                })
-                setUrl('')
-              }}
-              className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white hover:brightness-110"
-            >Continuar para o WhatsApp</a>
-          </div>
-        ) : (
-          <form onSubmit={submit} className="mt-4 space-y-4">
-            <p className="text-sm leading-6 text-black/65">Informe seus dados para registrarmos a solicitação antes de iniciar a conversa.</p>
-            <label className="block text-sm font-semibold">Nome *
-              <input autoFocus required minLength={2} maxLength={120} autoComplete="name" value={name} onChange={(event) => setName(event.target.value)} className="mt-1 w-full rounded-xl border border-black/15 p-3 outline-none focus:border-[#08A77F]"/>
-            </label>
-            <label className="block text-sm font-semibold">Telefone / WhatsApp *
-              <input required type="tel" minLength={8} maxLength={40} autoComplete="tel" value={phone} onChange={(event) => setPhone(event.target.value)} className="mt-1 w-full rounded-xl border border-black/15 p-3 outline-none focus:border-[#08A77F]"/>
-            </label>
-            <label className="block text-sm font-semibold">E-mail (opcional)
-              <input type="email" maxLength={180} autoComplete="email" value={email} onChange={(event) => setEmail(event.target.value)} className="mt-1 w-full rounded-xl border border-black/15 p-3 outline-none focus:border-[#08A77F]"/>
-            </label>
-            {error && <p role="alert" className="text-sm font-semibold text-red-700">{error}</p>}
-            <p className="text-xs leading-5 text-black/60">Os dados serão usados para atender à sua solicitação. Leia nossa <a href="/consult/politica-de-privacidade" className="font-bold text-[#075653] underline">Política de Privacidade</a>.</p>
-            <button type="submit" disabled={busy} className="min-h-12 w-full rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white disabled:opacity-60">
-              {busy ? 'Registrando contato...' : 'Registrar e continuar'}
-            </button>
-          </form>
-        )}
-      </div>
-    </div>
-  )
-}
-
 function RouteFallback({ consult = false }) {
   return (
     <div className={`min-h-screen flex items-center justify-center px-6 ${consult ? 'bg-[#075653] text-white' : 'bg-black text-white'}`}>
@@ -238,7 +94,6 @@ function App() {
           </Route>
           <Route path="/consult/*" element={
             <Deferred consult>
-              <ConsultWhatsAppGate />
               <Routes>
                 <Route index element={<ConsultProposal />} />
                 <Route path="sobre" element={<ConsultAboutPage />} />
