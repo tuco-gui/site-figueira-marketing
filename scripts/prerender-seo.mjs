@@ -22,7 +22,7 @@ const modalities = {
   ultrassom: ['Controle de Qualidade em Ultrassom | IN 96 | Consult','Ensaios de controle de qualidade em ultrassom conforme IN 96/2021, com desempenho e qualidade de imagem documentados.'],
   'ressonancia-magnetica': ['Controle de Qualidade em Ressonância Magnética | Consult','Controle de qualidade em ressonância magnética conforme IN 97/2021, com avaliação de desempenho e qualidade de imagem.'],
   'densitometria-ossea': ['Controle de Qualidade em Densitometria Óssea | Consult','Testes de aceitação e constância em densitometria óssea conforme RDC 611/2022, instruções do fabricante e protocolos reconhecidos.'],
-  'raio-x-veterinario': ['Controle de Qualidade em Raios X Veterinário | Consult','Avaliação técnica de raios X veterinário com base na RDC 611/2022 e IN 90/2021 como referência técnica indicada pela Consult.'],
+  'raio-x-veterinario': ['Controle de Qualidade em Raios X Veterinário | Consult','Avaliação técnica de raios X veterinário com base na RDC 611/2022, usando a IN 90/2021 como referência técnica dos testes.'],
 }
 
 const protection = {
