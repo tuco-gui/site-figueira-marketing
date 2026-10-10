@@ -141,7 +141,7 @@ export default function ConsultQualityModalityPage() {
       <ApprovedEditorialPanel
         eyebrow="Estrutura da avaliação"
         title={`Controle de Qualidade em ${item.short}`}
-        text="A página apresenta somente o que é sustentado pela referência técnica e pelo escopo aprovado pela Consult. A relação detalhada dos ensaios deve seguir a lista final da modalidade, sem substituir essa lista por categorias genéricas."
+        text="Os ensaios são definidos de acordo com a modalidade, o equipamento e a referência técnica aplicável. O resultado registra as medições realizadas, os critérios considerados e a conclusão técnica."
         image={CONSULT_IMAGES.radiology}
         items={['Modalidade identificada','Referência própria','Resultados documentados','Conclusão técnica assinada']}
       />
