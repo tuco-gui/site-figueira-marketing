@@ -1,6 +1,6 @@
 # Consult — redirects preparados para o cutover
 # NÃO ATIVAR antes de o domínio consult.med.br apontar para o novo site.
-# Gerado em 2026-10-10 a partir do inventário público e das URLs históricas conhecidas.
+# Gerado em 2026-10-10 a partir do inventário público e da migração integral de 46 artigos históricos.
 
 Options -MultiViews
 RewriteEngine On
@@ -17,39 +17,101 @@ RewriteRule ^saude\.html$ /servicos [R=301,L]
 RewriteCond %{QUERY_STRING} ^ct=conversando-sobre-radioprotecao- [NC]
 RewriteRule ^posts/?$ /blog [R=301,L,QSD]
 
-# Artigos migrados 1:1
+# Artigos históricos migrados integralmente — 301 um a um
+RewriteCond %{QUERY_STRING} ^dt=25-anos-de-avancos-em-tc-permitiram-reduzir-doses-por-fator-de-2-a-10-mostra-revisao-no-ajr- [NC]
+RewriteRule ^posts/?$ /blog/25-anos-de-avancos-em-tc-permitiram-reduzir-doses-por-fator-de-2-a-10-mostra-revisao-no-ajr [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=5-procedimentos-simples-para-garantir-a-confiabilidade-do-seu-ultrassom- [NC]
+RewriteRule ^posts/?$ /blog/5-procedimentos-simples-para-garantir-a-confiabilidade-do-seu-ultrassom [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=aapm-rpt-260-sobre-a-utilizacao-de-dispositivos-moveis-para-visualizacao-de-imagens-medicas- [NC]
+RewriteRule ^posts/?$ /blog/aapm-rpt-260-sobre-a-utilizacao-de-dispositivos-moveis-para-visualizacao-de-imagens-medicas [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=acr-endossa-posicao-da-aapm-sobre-descontinuacao-da-blindagem-de-gonadas-e-fetal-durante-procedimentos-radiologicos- [NC]
+RewriteRule ^posts/?$ /blog/acr-endossa-posicao-da-aapm-sobre-descontinuacao-da-blindagem-de-gonadas-e-fetal-durante-procedimentos-radiologicos [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=alara-9-sociedades-medicas-lancam-nova-doutrina-de-radioprotecao-em-fluoroscopia- [NC]
+RewriteRule ^posts/?$ /blog/alara-9-sociedades-medicas-lancam-nova-doutrina-de-radioprotecao-em-fluoroscopia [R=301,L,QSD]
 RewriteCond %{QUERY_STRING} ^dt=consult-fortalece-educacao-continuada-com-nova-plataforma-de-cursos-digitais- [NC]
 RewriteRule ^posts/?$ /blog/educacao-continuada-cursos-digitais-radioprotecao [R=301,L,QSD]
-RewriteCond %{QUERY_STRING} ^dt=publicado-iaea-hhs-47-um-guia-pratico-de-controle-de-qualidade-de-equipamentos- [NC]
-RewriteRule ^posts/?$ /blog/iaea-hhs-47-controle-qualidade-equipamentos [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=controle-de-qualidade-e-levantamento-radiometrico-o-check-up-que-mantem-sua-radiologia-segura-regular-e-previsivel- [NC]
+RewriteRule ^posts/?$ /blog/controle-de-qualidade-e-levantamento-radiometrico-o-check-up-que-mantem-sua-radiologia-segura-regular-e-previsivel [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=controle-de-qualidade-em-ultrassom-sua-clinica-esta-atendendo-a-instrucao-normativa-96-da-anvisa- [NC]
+RewriteRule ^posts/?$ /blog/controle-de-qualidade-em-ultrassom-sua-clinica-esta-atendendo-a-instrucao-normativa-96-da-anvisa [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=densidade-mamaria-na-mamografia-como-ela-afeta-os-indicadores-de-performance-nos-programas-de-rastreamento- [NC]
+RewriteRule ^posts/?$ /blog/densidade-mamaria-na-mamografia-como-ela-afeta-os-indicadores-de-performance-nos-programas-de-rastreamento [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=dose-no-cristalino-em-procedimentos-intervencionistas-monitorar-antes-que-o-limite-chegue- [NC]
+RewriteRule ^posts/?$ /blog/dose-no-cristalino-em-procedimentos-intervencionistas-monitorar-antes-que-o-limite-chegue [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=dose-no-cristalino-em-radiologia-intervencionista-como-medir-de-verdade- [NC]
+RewriteRule ^posts/?$ /blog/dose-no-cristalino-em-radiologia-intervencionista-como-medir-de-verdade [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=dosimetro-instadose-leitura-complementar-confiavel-por-um-preco-acessivel- [NC]
+RewriteRule ^posts/?$ /blog/dosimetro-instadose-leitura-complementar-confiavel-por-um-preco-acessivel [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=estudo-global-revela-grande-variacao-nas-doses-de-radiacao-em-imagem-cardiaca- [NC]
+RewriteRule ^posts/?$ /blog/estudo-global-revela-grande-variacao-nas-doses-de-radiacao-em-imagem-cardiaca [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=exames-radiologicos-na-gravidez- [NC]
+RewriteRule ^posts/?$ /blog/exames-radiologicos-na-gravidez [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=fatores-que-afetam-a-detectividade-do-cancer-de-mama-na-tomosintese-de-mama-e-mamografia-em-pacientes-com-seios-densos- [NC]
+RewriteRule ^posts/?$ /blog/fatores-que-afetam-a-detectividade-do-cancer-de-mama-na-tomosintese-de-mama-e-mamografia-em-pacientes-com-seios-densos [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=fda-concede-designacao-breakthrough-a-ias-generativas-que-redigem-laudos-radiologicos- [NC]
+RewriteRule ^posts/?$ /blog/fda-concede-designacao-breakthrough-a-ias-generativas-que-redigem-laudos-radiologicos [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=fda-nega-peticao-para-isentar-ia-de-revisao-pre-mercado-em-radiologia-o-que-isso-significa-para-o-setor- [NC]
+RewriteRule ^posts/?$ /blog/fda-nega-peticao-para-isentar-ia-de-revisao-pre-mercado-em-radiologia-o-que-isso-significa-para-o-setor [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=gerenciamento-da-dose-de-radiacao-do-paciente-em-radiologia-intervencionista- [NC]
+RewriteRule ^posts/?$ /blog/gerenciamento-da-dose-de-radiacao-do-paciente-em-radiologia-intervencionista [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=historico-de-dosimetria-do-trabalhador- [NC]
+RewriteRule ^posts/?$ /blog/historico-de-dosimetria-do-trabalhador [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=ia-generativa-reduz-dose-em-angiografia-dsa-ensaio-clinico-com-mais-de-46-mil-pacientes- [NC]
+RewriteRule ^posts/?$ /blog/ia-generativa-reduz-dose-em-angiografia-dsa-ensaio-clinico-com-mais-de-46-mil-pacientes [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=ia-na-radioprotecao-a-aiea-quer-inteligencia-integrada-nao-automacao-cega- [NC]
+RewriteRule ^posts/?$ /blog/ia-na-radioprotecao-a-aiea-quer-inteligencia-integrada-nao-automacao-cega [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=iaea-publica-novos-guias-de-seguranca-para-protecao-radiologica-de-pacientes-e-trabalhadores- [NC]
+RewriteRule ^posts/?$ /blog/iaea-publica-novos-guias-de-seguranca-para-protecao-radiologica-de-pacientes-e-trabalhadores [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=icrp-e-iaea-revisam-o-sistema-de-protecao-radiologica-o-que-muda-depois-da-publicacao-103- [NC]
+RewriteRule ^posts/?$ /blog/icrp-e-iaea-revisam-o-sistema-de-protecao-radiologica-o-que-muda-depois-da-publicacao-103 [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=indo-alem-do-controle-de-qualidade-na-radiologia-diagnostica- [NC]
+RewriteRule ^posts/?$ /blog/indo-alem-do-controle-de-qualidade-na-radiologia-diagnostica [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=inteligencia-artificial-e-reducao-de-dose-em-tc-o-que-dizem-86-estudos-clinicos- [NC]
+RewriteRule ^posts/?$ /blog/inteligencia-artificial-e-reducao-de-dose-em-tc-o-que-dizem-86-estudos-clinicos [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=medicao-de-tempo-de-irradiacao-e-kilovoltagem-em-equipamentos-periapicais- [NC]
+RewriteRule ^posts/?$ /blog/medicao-de-tempo-de-irradiacao-e-kilovoltagem-em-equipamentos-periapicais [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=monitoramento-digital-da-exposicao-do-paciente-as-primeiras-diretrizes-internacionais-chegaram-e-sua-instituicao-deveria-conhece-las- [NC]
+RewriteRule ^posts/?$ /blog/monitoramento-digital-da-exposicao-do-paciente-as-primeiras-diretrizes-internacionais-chegaram-e-sua-instituicao-deveria-conhece-las [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=norma-cnen-nn-3-01-revisada-o-que-muda-na-pratica-para-os-servicos-que-usam-radiacao-ionizante- [NC]
+RewriteRule ^posts/?$ /blog/norma-cnen-nn-3-01-revisada-o-que-muda-na-pratica-para-os-servicos-que-usam-radiacao-ionizante [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=o-comentario-27-da-ncrp-sobre-a-aplicacao-do-modelo-linear-sem-limiar- [NC]
+RewriteRule ^posts/?$ /blog/o-comentario-27-da-ncrp-sobre-a-aplicacao-do-modelo-linear-sem-limiar [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=o-papel-dos-pops-na-sustentabilidade-de-uma-organizacao- [NC]
+RewriteRule ^posts/?$ /blog/o-papel-dos-pops-na-sustentabilidade-de-uma-organizacao [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=o-que-86-estudos-clinicos-dizem-sobre-ia-na-reducao-de-dose-em-tc- [NC]
+RewriteRule ^posts/?$ /blog/o-que-86-estudos-clinicos-dizem-sobre-ia-na-reducao-de-dose-em-tc [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=o-que-cinco-anos-de-evidencia-clinica-dizem-sobre-ia-para-reducao-de-dose-em-tc- [NC]
+RewriteRule ^posts/?$ /blog/o-que-cinco-anos-de-evidencia-clinica-dizem-sobre-ia-para-reducao-de-dose-em-tc [R=301,L,QSD]
 RewriteCond %{QUERY_STRING} ^dt=protecao-radiologica-em-equipamentos-arco-c- [NC]
 RewriteRule ^posts/?$ /blog/protecao-radiologica-equipamentos-arco-c [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=publicacao-das-nacoes-unidas-sobre-efeitos-da-radiacao-e-fontes- [NC]
+RewriteRule ^posts/?$ /blog/publicacao-das-nacoes-unidas-sobre-efeitos-da-radiacao-e-fontes [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=publicado-iaea-hhs-47-um-guia-pratico-de-controle-de-qualidade-de-equipamentos- [NC]
+RewriteRule ^posts/?$ /blog/iaea-hhs-47-controle-qualidade-equipamentos [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=revisao-de-2020-2025-quantifica-ia-reduz-de-40-a-90-da-dose-em-tc-com-ressalvas-importantes- [NC]
+RewriteRule ^posts/?$ /blog/revisao-de-2020-2025-quantifica-ia-reduz-de-40-a-90-da-dose-em-tc-com-ressalvas-importantes [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=risco-de-catarata-induzida-por-radiacao-investigacao-da-exposicao-a-radiacao-na-lente-ocular-durante-procedimentos-endo-urologicos- [NC]
+RewriteRule ^posts/?$ /blog/risco-de-catarata-induzida-por-radiacao-investigacao-da-exposicao-a-radiacao-na-lente-ocular-durante-procedimentos-endo-urologicos [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=sobre-qualidade-formas-de-evidenciar-reunioes-e-treinamentos-realizados-virtualmente- [NC]
+RewriteRule ^posts/?$ /blog/sobre-qualidade-formas-de-evidenciar-reunioes-e-treinamentos-realizados-virtualmente [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=tamanho-do-paciente-importa-efeito-da-modulacao-de-corrente-na-ssde-e-na-qualidade-da-imagem-na-tc-de-rastreamento-de-cancer-de-pulmao-em-baixa-dose- [NC]
+RewriteRule ^posts/?$ /blog/tamanho-do-paciente-importa-efeito-da-modulacao-de-corrente-na-ssde-e-na-qualidade-da-imagem-na-tc-de-rastreamento-de-cancer-de-pulmao-em-baixa-dose [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=tc-de-contagem-de-fotons-reduz-dose-em-66-na-avaliacao-de-cancer-de-pulmao- [NC]
+RewriteRule ^posts/?$ /blog/tc-de-contagem-de-fotons-reduz-dose-em-66-na-avaliacao-de-cancer-de-pulmao [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=tc-por-contagem-de-fotons-a-nova-era-do-diagnostico-por-imagem-chega-ao-mercado- [NC]
+RewriteRule ^posts/?$ /blog/tc-por-contagem-de-fotons-a-nova-era-do-diagnostico-por-imagem-chega-ao-mercado [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=tc-por-contagem-de-fotons-reduz-55-da-dose-em-cancer-de-pulmao-e-tambem-o-contraste- [NC]
+RewriteRule ^posts/?$ /blog/tc-por-contagem-de-fotons-reduz-55-da-dose-em-cancer-de-pulmao-e-tambem-o-contraste [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=tomografia-com-detectores-de-contagem-de-fotons-consolida-reducoes-de-dose-de-2-a-10-vezes- [NC]
+RewriteRule ^posts/?$ /blog/tomografia-com-detectores-de-contagem-de-fotons-consolida-reducoes-de-dose-de-2-a-10-vezes [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=tomografia-computadorizada-nao-deve-ser-usada-como-primeira-opcao-em-diagnostico-de-coronavirus- [NC]
+RewriteRule ^posts/?$ /blog/tomografia-computadorizada-nao-deve-ser-usada-como-primeira-opcao-em-diagnostico-de-coronavirus [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=tomografia-por-contagem-de-fotons-consolida-ganhos-de-dose-em-2026-evidencia-clinica-por-regiao-anatomica- [NC]
+RewriteRule ^posts/?$ /blog/tomografia-por-contagem-de-fotons-consolida-ganhos-de-dose-em-2026-evidencia-clinica-por-regiao-anatomica [R=301,L,QSD]
+RewriteCond %{QUERY_STRING} ^dt=validade-de-treinamentos-online-ppr-digital-e-a-digitalizacao-de-documentos- [NC]
+RewriteRule ^posts/?$ /blog/validade-de-treinamentos-online-ppr-digital-e-a-digitalizacao-de-documentos [R=301,L,QSD]
 
-# Ultrassom
-RewriteCond %{QUERY_STRING} ^dt=(5-procedimentos-simples-para-garantir-a-confiabilidade-do-seu-ultrassom|controle-de-qualidade-em-ultrassom-sua-clinica-esta-atendendo-a-instrucao-normativa-96-da-anvisa)- [NC]
-RewriteRule ^posts/?$ /fisica-medica/controle-de-qualidade/ultrassom [R=301,L,QSD]
-
-# Mamografia
-RewriteCond %{QUERY_STRING} ^dt=(densidade-mamaria-na-mamografia|fatores-que-afetam-a-detectividade-do-cancer-de-mama)- [NC]
-RewriteRule ^posts/?$ /fisica-medica/controle-de-qualidade/mamografia [R=301,L,QSD]
-
-# Tomografia
-RewriteCond %{QUERY_STRING} ^dt=(tomografia-computadorizada-nao-deve-ser-usada|o-que-86-estudos-clinicos-dizem-sobre-ia-na-reducao-de-dose-em-tc|tc-por-contagem-de-fotons|25-anos-de-avancos-em-tc|tamanho-do-paciente-importa)- [NC]
-RewriteRule ^posts/?$ /fisica-medica/controle-de-qualidade/tomografia [R=301,L,QSD]
-
-# Fluoroscopia / angiografia
-RewriteCond %{QUERY_STRING} ^dt=ia-generativa-reduz-dose-em-angiografia-dsa- [NC]
-RewriteRule ^posts/?$ /fisica-medica/controle-de-qualidade/fluoroscopia-arco-c-angiografia [R=301,L,QSD]
-
-# Treinamento
-RewriteCond %{QUERY_STRING} ^dt=validade-de-treinamentos-online-ppr-digital- [NC]
-RewriteRule ^posts/?$ /protecao-radiologica/treinamentos [R=301,L,QSD]
-
-# Conteúdo histórico de radioproteção sem artigo 1:1
-RewriteCond %{QUERY_STRING} ^dt=(historico-de-dosimetria-do-trabalhador|ia-na-radioprotecao|dosimetro-instadose|gerenciamento-da-dose-de-radiacao-do-paciente-em-radiologia-intervencionista|publicacao-das-nacoes-unidas-sobre-efeitos-da-radiacao|dose-no-cristalino-em-radiologia-intervencionista|alara-9-sociedades-medicas|dose-no-cristalino-em-procedimentos-intervencionistas|o-comentario-27-da-ncrp|acr-endossa-posicao-da-aapm|icrp-e-iaea-revisam-o-sistema-de-protecao-radiologica|norma-cnen-nn-3-01-revisada|monitoramento-digital-da-exposicao-do-paciente|risco-de-catarata-induzida-por-radiacao)- [NC]
-RewriteRule ^posts/?$ /protecao-radiologica [R=301,L,QSD]
-
-# Demais artigos históricos sem equivalente 1:1
+# Fallback de segurança para qualquer URL histórica não inventariada
 RewriteCond %{QUERY_STRING} ^dt= [NC]
 RewriteRule ^posts/?$ /blog [R=301,L,QSD]
 
