@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { ConsultHeader } from "@/components/consult/ConsultSiteShell";
 import { Link, useParams } from "react-router-dom";
 import {
   ArrowLeft,
@@ -550,7 +551,7 @@ export default function ConsultProposal() {
 
   return (
     <div className="min-h-screen bg-white font-sans text-[#123C3B]">
-      <Header />
+      <ConsultHeader />
 
       <main>
         <section
@@ -580,7 +581,7 @@ export default function ConsultProposal() {
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/82 lg:text-lg">
                 Segurança, desempenho e rastreabilidade dos equipamentos de saúde,
-                comprovados em laudo técnico. Atuamos com Física Médica, Proteção
+                documentados em laudo técnico. Atuamos com Física Médica, Proteção
                 Radiológica, Controle de Qualidade e Engenharia Clínica para
                 hospitais, clínicas, centros de diagnóstico por imagem, odontologia,
                 medicina veterinária e outras instituições de saúde.
