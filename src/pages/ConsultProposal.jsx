@@ -94,15 +94,15 @@ const serviceAreas = [
   {
     slug: "engenharia-clinica",
     title: "Consult Engenharia Clínica",
-    summary: "Gestão de equipamentos, manutenção técnica, testes de segurança e suporte para ciclo de vida dos ativos em saúde.",
+    summary: "Ensaios de segurança elétrica e desempenho, manutenção preventiva, reverificação e qualificação térmica com laudo por equipamento.",
     image: AREA_ENGINEERING_IMAGE,
-    intro: "Apoio técnico para instituições que precisam organizar, acompanhar e tomar decisões mais seguras sobre seus equipamentos e tecnologias em saúde.",
+    intro: "Ensaios e medições para documentar segurança e desempenho de equipamentos de saúde, com histórico técnico por equipamento.",
     bullets: [
-      "Gestão e inventário de equipamentos",
-      "Avaliação técnica e suporte à aquisição",
-      "Testes de segurança e desempenho",
-      "Acompanhamento de manutenção e documentação",
-      "Apoio ao planejamento do ciclo de vida dos ativos",
+      "Ensaio de segurança elétrica",
+      "Ensaio de desempenho",
+      "Manutenção preventiva",
+      "Reverificação",
+      "Qualificação térmica",
     ],
     Icon: Wrench,
   },
@@ -114,7 +114,7 @@ const differentials = [
   { icon: MapPin, title: "Visitas in loco + assessoria online", text: "Atendimento em todo o Brasil, com equipes em campo em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais." },
   { icon: FileText, title: "Prazo definido para o laudo", text: "Laudo emitido em até 7 dias após as medições." },
   { icon: ShieldCheck, title: "Conformidade técnica", text: "Alinhamento com as normas vigentes da Anvisa e da Vigilância Sanitária." },
-  { icon: Settings, title: "Um só fornecedor técnico", text: "Radiologia e demais equipamentos na mesma visita, com o mesmo padrão de laudo e o mesmo responsável técnico." },
+  { icon: Settings, title: "Mesma visita", text: "Radiologia e demais equipamentos na mesma visita, conforme disponibilidade da agenda na sua região." },
 ];
 
 const audiences = [
