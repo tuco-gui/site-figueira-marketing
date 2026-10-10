@@ -68,7 +68,7 @@ function ConsultWhatsAppGate() {
     const intercept = (event) => {
       if (event.defaultPrevented || event.button !== 0) return
       const anchor = event.target?.closest?.('a[href]')
-      if (!anchor) return
+      if (!anchor || anchor.dataset.consultWhatsappVerified === 'true') return
       let parsed
       try { parsed = new URL(anchor.href, window.location.origin) } catch { return }
       const host = parsed.hostname.toLowerCase()
@@ -128,7 +128,7 @@ function ConsultWhatsAppGate() {
       if (!request.ok || !data.ok || !data.registered) {
         throw new Error(data.error || 'Não foi possível registrar seu contato.')
       }
-      sessionStorage.setItem('consult_lead_contact', JSON.stringify({ name: name.trim(), phone: phone.trim() }))
+      try { sessionStorage.setItem('consult_lead_contact', JSON.stringify({ name: name.trim(), phone: phone.trim() })) } catch {}
       setResult({ emailSent: Boolean(data.email_sent), leadId: data.lead_id || null })
     } catch (problem) {
       setError(problem?.message || 'Não foi possível registrar seu contato. Tente novamente.')
@@ -155,6 +155,7 @@ function ConsultWhatsAppGate() {
                 : 'Seus dados foram registrados, mas não foi possível confirmar o aviso por e-mail. Você ainda pode continuar pelo WhatsApp.'}
             </p>
             <a
+              data-consult-whatsapp-verified="true"
               href={url}
               target="_blank"
               rel="noopener noreferrer"
