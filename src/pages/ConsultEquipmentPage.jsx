@@ -96,13 +96,13 @@ export default function ConsultEquipmentPage() {
   const { slug } = useParams()
   const item = useMemo(() => EQUIPMENT[slug], [slug])
 
-  if (item?.redirectTo) return <Navigate to={item.redirectTo} replace />
-
   useEffect(() => {
-    if (!item) return
+    if (!item || item.redirectTo) return
     document.title = `Ensaio de ${item.title} | Consult Engenharia Clínica`
     document.querySelector('meta[name="description"]')?.setAttribute('content', equipmentIntro(item))
   }, [item])
+
+  if (item?.redirectTo) return <Navigate to={item.redirectTo} replace />
 
   if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Equipamento não encontrado</h1><Link to="/consult/engenharia-clinica" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Engenharia Clínica</Link></main></ConsultSiteShell>
 
