@@ -6,21 +6,21 @@ import { ApprovedInternalHero, ApprovedLightSection, CONSULT_IMAGES } from '@/co
 
 const GROUPS=[
   ['Física Médica',[
-    ['Controle de Qualidade','/consult/fisica-medica/controle-de-qualidade',Gauge],
+    ['Controle de Qualidade','/fisica-medica/controle-de-qualidade',Gauge],
   ]],
   ['Proteção Radiológica',[
-    ['Programa de Proteção Radiológica','/consult/protecao-radiologica/programa-protecao-radiologica',FileText],
-    ['Levantamento radiométrico','/consult/protecao-radiologica/levantamento-radiometrico',Activity],
-    ['Projeto de blindagem','/consult/protecao-radiologica/projeto-blindagem',ShieldCheck],
-    ['Treinamentos','/consult/protecao-radiologica/treinamentos',Stethoscope],
-    ['Licenciamento sanitário','/consult/protecao-radiologica/licenciamento-sanitario',FileText],
+    ['Programa de Proteção Radiológica','/protecao-radiologica/programa-protecao-radiologica',FileText],
+    ['Levantamento radiométrico','/protecao-radiologica/levantamento-radiometrico',Activity],
+    ['Projeto de blindagem','/protecao-radiologica/projeto-blindagem',ShieldCheck],
+    ['Treinamentos','/protecao-radiologica/treinamentos',Stethoscope],
+    ['Licenciamento sanitário','/protecao-radiologica/licenciamento-sanitario',FileText],
   ]],
   ['Consult Engenharia Clínica',[
-    ['Ensaio de segurança elétrica','/consult/engenharia-clinica/seguranca-eletrica',ShieldCheck],
-    ['Calibração e ensaio de desempenho','/consult/engenharia-clinica/desempenho-calibracao',Gauge],
-    ['Manutenção preventiva','/consult/engenharia-clinica/manutencao-preventiva',Wrench],
-    ['Reverificação','/consult/engenharia-clinica/reverificacao',Activity],
-    ['Qualificação térmica','/consult/engenharia-clinica/qualificacao-termica',Thermometer],
+    ['Ensaio de segurança elétrica','/engenharia-clinica/seguranca-eletrica',ShieldCheck],
+    ['Calibração e ensaio de desempenho','/engenharia-clinica/desempenho-calibracao',Gauge],
+    ['Manutenção preventiva','/engenharia-clinica/manutencao-preventiva',Wrench],
+    ['Reverificação','/engenharia-clinica/reverificacao',Activity],
+    ['Qualificação térmica','/engenharia-clinica/qualificacao-termica',Thermometer],
   ]],
 ]
 

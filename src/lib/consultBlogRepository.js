@@ -19,8 +19,8 @@ const SEED_POSTS = [
     ],
     coverImage: `${CDN}/5ba952d9-c3e4-48d7-9dc0-4716ac1f137f.jpg`,
     relatedLinks: [
-      { label: 'Treinamentos', href: '/consult/servicos/treinamentos' },
-      { label: 'Proteção Radiológica', href: '/consult/areas/protecao-radiologica' },
+      { label: 'Treinamentos', href: '/servicos/treinamentos' },
+      { label: 'Proteção Radiológica', href: '/areas/protecao-radiologica' },
     ],
     sourceUrl: 'http://www.consult.med.br/posts/?dt=consult-fortalece-educacao-continuada-com-nova-plataforma-de-cursos-digitais-M1RmNTNHUnRGSjNnbkRKaTA4RTdoUT09',
     migrationStatus: 'historical_summary',
@@ -39,8 +39,8 @@ const SEED_POSTS = [
     ],
     coverImage: `${CDN}/5ba95360-34a0-449d-9a24-4836ac1f137f.jpg`,
     relatedLinks: [
-      { label: 'Controle de Qualidade', href: '/consult/servicos/controle-qualidade' },
-      { label: 'Física Médica', href: '/consult/areas/fisica-medica' },
+      { label: 'Controle de Qualidade', href: '/servicos/controle-qualidade' },
+      { label: 'Física Médica', href: '/areas/fisica-medica' },
     ],
     sourceUrl: 'http://www.consult.med.br/posts/?dt=publicado-iaea-hhs-47-um-guia-pratico-de-controle-de-qualidade-de-equipamentos-Nk8wSnFob1pNSC9qYXdmTVFFdEtLQT09',
     migrationStatus: 'historical_summary',
@@ -59,8 +59,8 @@ const SEED_POSTS = [
     ],
     coverImage: `${CDN}/5ba954a4-90f8-4e55-a0d3-4b15ac1f137f.jpg`,
     relatedLinks: [
-      { label: 'Proteção Radiológica', href: '/consult/areas/protecao-radiologica' },
-      { label: 'Treinamentos', href: '/consult/servicos/treinamentos' },
+      { label: 'Proteção Radiológica', href: '/areas/protecao-radiologica' },
+      { label: 'Treinamentos', href: '/servicos/treinamentos' },
     ],
     sourceUrl: 'http://www.consult.med.br/posts/?dt=protecao-radiologica-em-equipamentos-arco-c-NS9kS1lkbXlWaG5mTEJGNmlUZnhUdz09',
     migrationStatus: 'historical_summary',

@@ -138,10 +138,10 @@ export default function ConsultServicePage() {
     document.querySelector('meta[name="description"]')?.setAttribute('content', service.intro)
   }, [service])
 
-  if (!service) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Serviço não encontrado</h1><Link to="/consult" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para a Consult</Link></main></ConsultSiteShell>
+  if (!service) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Serviço não encontrado</h1><Link to="/" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para a Consult</Link></main></ConsultSiteShell>
 
-  if (PROTECTION_SLUGS.has(slug) && location.pathname.startsWith('/consult/fisica-medica/')) {
-    return <Navigate to={`/consult/protecao-radiologica/${slug}`} replace />
+  if (PROTECTION_SLUGS.has(slug) && location.pathname.startsWith('/fisica-medica/')) {
+    return <Navigate to={`/protecao-radiologica/${slug}`} replace />
   }
 
   return <ConsultSiteShell><main>

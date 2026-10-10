@@ -1,0 +1,14 @@
+Options -MultiViews
+RewriteEngine On
+
+# Sirva arquivos e diretórios reais sem reescrita.
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Rotas pré-renderizadas: /sobre -> /sobre.html
+RewriteCond %{DOCUMENT_ROOT}/$1.html -f
+RewriteRule ^(.+?)/?$ $1.html [L]
+
+# Fallback SPA para rotas dinâmicas e navegação do React Router.
+RewriteRule ^ index.html [L]

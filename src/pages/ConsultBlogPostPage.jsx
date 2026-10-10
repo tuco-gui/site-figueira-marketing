@@ -32,7 +32,7 @@ export default function ConsultBlogPostPage() {
       <ConsultSiteShell>
         <main className="mx-auto max-w-4xl px-5 py-24 text-center">
           <h1 className="text-4xl font-black text-[#075653]">Conteúdo não encontrado</h1>
-          <Link to="/consult/blog" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar ao blog</Link>
+          <Link to="/blog" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar ao blog</Link>
         </main>
       </ConsultSiteShell>
     )
@@ -48,7 +48,7 @@ export default function ConsultBlogPostPage() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#064946] via-[#075653]/95 to-[#075653]/78" />
             </div>
             <div className="relative mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
-              <Link to="/consult/blog" className="text-sm font-bold text-white/62 hover:text-white">Blog técnico</Link>
+              <Link to="/blog" className="text-sm font-bold text-white/62 hover:text-white">Blog técnico</Link>
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <span className="rounded-full bg-[#8AE600] px-3 py-1.5 text-[10px] font-black uppercase tracking-[.14em] text-[#075653]">{post.category}</span>
                 <span className="inline-flex items-center gap-2 text-xs font-bold text-white/60"><CalendarDays size={14} /> {formatDate(post.publishedAt)}</span>

@@ -69,7 +69,7 @@ export default function ConsultQualityIndexPage() {
             {MODALITIES.map(([label,norm,slug]) => (
               <Link
                 key={slug}
-                to={`/consult/fisica-medica/controle-de-qualidade/${slug}`}
+                to={`/fisica-medica/controle-de-qualidade/${slug}`}
                 className="group rounded-2xl border border-[#D7E8E3] bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:border-[#08A77F] hover:shadow-lg"
               >
                 <div className="text-lg font-black text-[#123C3B]">{label}</div>

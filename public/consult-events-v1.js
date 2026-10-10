@@ -1,5 +1,5 @@
 (() => {
-  const isConsult = () => window.location.pathname.startsWith('/consult');
+  const isConsult = () => window.location.pathname.startsWith('/');
   if (!isConsult()) return;
 
   const LEAD_ENDPOINT = 'https://jinhjdvrjvmammumbacz.supabase.co/functions/v1/consult-lead';
@@ -8,9 +8,9 @@
 
   const cleanText = (value = '') => String(value).replace(/\s+/g, ' ').trim().slice(0, 160);
   const pageType = (path = window.location.pathname) => {
-    if (path === '/consult' || path === '/consult/') return 'home';
-    if (path === '/consult/sobre') return 'about';
-    if (path === '/consult/servicos') return 'services';
+    if (path === '/' || path === '/') return 'home';
+    if (path === '/sobre') return 'about';
+    if (path === '/servicos') return 'services';
     if (/^\/consult\/fisica-medica\/controle-de-qualidade\//.test(path)) return 'quality_modality';
     if (/^\/consult\/fisica-medica/.test(path)) return 'physics';
     if (/^\/consult\/protecao-radiologica/.test(path)) return 'radiological_protection';
@@ -157,7 +157,7 @@
 
     const privacy = document.createElement('p');
     privacy.style.cssText = 'margin:14px 0 0;color:#758684;font-size:11px;line-height:1.45';
-    privacy.innerHTML = 'Os dados serão usados para atender este contato. <a href="/consult/politica-de-privacidade" style="color:#075653;font-weight:700;text-decoration:underline">Política de Privacidade</a>.';
+    privacy.innerHTML = 'Os dados serão usados para atender este contato. <a href="/politica-de-privacidade" style="color:#075653;font-weight:700;text-decoration:underline">Política de Privacidade</a>.';
 
     actions.append(cancel, submit);
     form.append(nameLabel, name, phoneLabel, phone, error, actions, privacy);

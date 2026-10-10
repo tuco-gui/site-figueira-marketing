@@ -82,7 +82,7 @@ export default function ConsultBlogPage() {
             <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
               {filtered.map((post) => (
                 <article key={post.id} className="group overflow-hidden rounded-[24px] border border-[#DCEAE7] bg-white shadow-[0_16px_45px_rgba(7,86,83,.08)] transition hover:-translate-y-1 hover:shadow-[0_22px_55px_rgba(7,86,83,.14)]">
-                  <Link to={`/consult/blog/${post.slug}`} className="block">
+                  <Link to={`/blog/${post.slug}`} className="block">
                     <div className="relative h-56 overflow-hidden bg-[#075653]">
                       {post.coverImage ? <img src={post.coverImage} alt={post.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]" /> : null}
                       <div className="absolute inset-0 bg-gradient-to-t from-[#043F3D]/82 via-[#043F3D]/10 to-transparent" />
@@ -111,9 +111,9 @@ export default function ConsultBlogPage() {
             </div>
             <div className="grid gap-3 sm:grid-cols-3">
               {[
-                ['Física Médica', '/consult/areas/fisica-medica'],
-                ['Proteção Radiológica', '/consult/areas/protecao-radiologica'],
-                ['Engenharia Clínica', '/consult/areas/engenharia-clinica'],
+                ['Física Médica', '/areas/fisica-medica'],
+                ['Proteção Radiológica', '/areas/protecao-radiologica'],
+                ['Engenharia Clínica', '/areas/engenharia-clinica'],
               ].map(([label, href]) => (
                 <Link key={href} to={href} className="rounded-2xl border border-[#CFE4DE] bg-white p-5 text-base font-black text-[#075653] shadow-sm transition hover:border-[#08A77F] hover:shadow-md">{label}</Link>
               ))}

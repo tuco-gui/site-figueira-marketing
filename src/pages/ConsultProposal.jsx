@@ -132,7 +132,7 @@ const articles = [
     title: "Consult fortalece educação continuada com nova plataforma de cursos digitais",
     text: "Conheça a plataforma de treinamentos da Consult para atualização em radioproteção e segurança.",
     image: ARTICLE_TRAINING_IMAGE,
-    href: "/consult/blog/educacao-continuada-cursos-digitais-radioprotecao",
+    href: "/blog/educacao-continuada-cursos-digitais-radioprotecao",
   },
   {
     tag: "CONTROLE DE QUALIDADE",
@@ -140,7 +140,7 @@ const articles = [
     title: "Publicado IAEA HHS 47, um guia prático de controle de qualidade de equipamentos",
     text: "Material técnico de referência para testes de controle de qualidade em radiologia diagnóstica.",
     image: ARTICLE_IAEA_IMAGE,
-    href: "/consult/blog/iaea-hhs-47-controle-qualidade-equipamentos",
+    href: "/blog/iaea-hhs-47-controle-qualidade-equipamentos",
   },
   {
     tag: "RADIOPROTEÇÃO",
@@ -148,7 +148,7 @@ const articles = [
     title: "Proteção radiológica em equipamentos Arco C",
     text: "Conteúdo técnico sobre proteção radiológica em procedimentos que utilizam equipamentos Arco C.",
     image: ARTICLE_ARC_IMAGE,
-    href: "/consult/blog/protecao-radiologica-equipamentos-arco-c",
+    href: "/blog/protecao-radiologica-equipamentos-arco-c",
   },
 ];
 
@@ -168,7 +168,7 @@ function usePageMeta(title) {
       document.createElement("meta");
     const previousRobots = robots.getAttribute("content");
     robots.setAttribute("name", "robots");
-    robots.setAttribute("content", "noindex,nofollow");
+    robots.setAttribute("content", "index,follow");
     if (!robots.parentNode) document.head.appendChild(robots);
     document.title = title;
 
@@ -193,19 +193,19 @@ function Header() {
   const [open, setOpen] = useState(false);
 
   const nav = [
-    ["Início", "/consult"],
-    ["Sobre", "/consult/sobre"],
-    ["Serviços", "/consult/servicos"],
-    ["Blog", "/consult/blog"],
+    ["Início", "/"],
+    ["Sobre", "/sobre"],
+    ["Serviços", "/servicos"],
+    ["Blog", "/blog"],
     ["Cursos", "https://consultcursos.herospark.co"],
     ["Portal", "https://www.consult.med.br/Portal/"],
-    ["Contato", "/consult#contato"],
+    ["Contato", "#contato"],
   ];
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#075653]/95 text-white backdrop-blur">
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/consult" className="flex items-center">
+        <Link to="/" className="flex items-center">
           <Logo className="h-12 w-auto max-w-[190px]" />
         </Link>
 
@@ -222,7 +222,7 @@ function Header() {
             </a>
           ))}
           <a
-            href="/consult#contato"
+            href="#contato"
             className="inline-flex items-center gap-2 rounded-lg bg-[#FF6B26] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-black/10 transition hover:brightness-95"
           >
             Solicite um orçamento
@@ -252,7 +252,7 @@ function Header() {
               </a>
             ))}
             <a
-              href="/consult#contato"
+              href="#contato"
               onClick={() => setOpen(false)}
               className="mt-3 inline-flex items-center justify-center gap-2 rounded-lg bg-[#FF6B26] px-5 py-3 text-sm font-bold text-white"
             >
@@ -456,7 +456,7 @@ function ContactForm() {
       </button>
       <p className="mt-3 text-center text-[10px] leading-5 text-black/45">
         Seus dados serão usados para atender esta solicitação. Consulte nossa{" "}
-        <Link to="/consult/politica-de-privacidade" className="font-bold underline">Política de Privacidade</Link>.
+        <Link to="/politica-de-privacidade" className="font-bold underline">Política de Privacidade</Link>.
       </p>
     </form>
   );
@@ -479,11 +479,11 @@ function Footer() {
               Navegação
             </h4>
             <div className="mt-4 space-y-2 text-sm text-white/75">
-              <a className="block hover:text-[#8AE600]" href="/consult#inicio">Início</a>
-              <Link className="block hover:text-[#8AE600]" to="/consult/sobre">Sobre</Link>
-              <Link className="block hover:text-[#8AE600]" to="/consult/servicos">Serviços</Link>
-              <a className="block hover:text-[#8AE600]" href="/consult#conteudos">Conteúdos</a>
-              <a className="block hover:text-[#8AE600]" href="/consult#contato">Contato</a>
+              <a className="block hover:text-[#8AE600]" href="#inicio">Início</a>
+              <Link className="block hover:text-[#8AE600]" to="/sobre">Sobre</Link>
+              <Link className="block hover:text-[#8AE600]" to="/servicos">Serviços</Link>
+              <a className="block hover:text-[#8AE600]" href="#conteudos">Conteúdos</a>
+              <a className="block hover:text-[#8AE600]" href="#contato">Contato</a>
             </div>
           </div>
 
@@ -496,7 +496,7 @@ function Footer() {
                 <Link
                   key={area.slug}
                   className="block hover:text-[#8AE600]"
-                  to={`/consult/${area.slug}`}
+                  to={`/${area.slug}`}
                 >
                   {area.title}
                 </Link>
@@ -538,7 +538,7 @@ function Footer() {
 
         <div className="flex flex-col gap-3 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 Consult Radiometria e Qualidade. Todos os direitos reservados.</span>
-          <Link className="hover:text-white" to="/consult/politica-de-privacidade">Política de Privacidade</Link>
+          <Link className="hover:text-white" to="/politica-de-privacidade">Política de Privacidade</Link>
         </div>
       </div>
     </footer>
@@ -686,7 +686,7 @@ export default function ConsultProposal() {
               {serviceAreas.map((area) => {
                 const Icon = area.Icon;
                 return (
-                  <Link key={area.slug} to={`/consult/${area.slug}`} className="group overflow-hidden rounded-xl border border-black/5 bg-white shadow-lg shadow-[#075653]/5 transition hover:-translate-y-1 hover:shadow-xl">
+                  <Link key={area.slug} to={`/${area.slug}`} className="group overflow-hidden rounded-xl border border-black/5 bg-white shadow-lg shadow-[#075653]/5 transition hover:-translate-y-1 hover:shadow-xl">
                     <div className="relative h-52 overflow-hidden bg-[#DCEEEB]">
                       <img src={area.image} alt={area.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]" />
                     </div>
@@ -712,7 +712,7 @@ export default function ConsultProposal() {
 
         <section className="relative isolate overflow-hidden bg-[#075653] text-white">
           <img
-            src="/consult/approved-national-bg.webp"
+            src="/approved-national-bg.webp"
             alt=""
             aria-hidden="true"
             className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-55"
@@ -765,7 +765,7 @@ export default function ConsultProposal() {
 
               <div className="relative z-[5] mx-auto flex h-[300px] w-full max-w-[390px] items-center justify-center sm:h-[320px] lg:h-[340px]">
                 <img
-                  src="/consult/approved-national-map.webp"
+                  src="/approved-national-map.webp"
                   alt="Mapa do Brasil representando a cobertura nacional da Consult Radiometria e Qualidade."
                   className="block h-full w-auto max-w-full object-contain [mask-image:radial-gradient(ellipse_88%_94%_at_50%_50%,black_74%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_88%_94%_at_50%_50%,black_74%,transparent_100%)] lg:translate-x-2"
                 />
@@ -833,7 +833,7 @@ export default function ConsultProposal() {
                 <h2 className="text-4xl font-black tracking-[-0.03em] sm:text-5xl">Conteúdo técnico e <span className="text-[#79D900]">atualizações</span></h2>
                 <p className="mt-3 text-[15px] text-black/55">Artigos, novidades e insights sobre radiometria, qualidade e segurança em saúde.</p>
               </div>
-              <a href="/consult/blog" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full border border-[#08A77F] px-6 py-3 text-sm font-bold text-[#08A77F] transition hover:bg-[#08A77F] hover:text-white">Ver todos os conteúdos <ArrowRight className="h-4 w-4" /></a>
+              <a href="/blog" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full border border-[#08A77F] px-6 py-3 text-sm font-bold text-[#08A77F] transition hover:bg-[#08A77F] hover:text-white">Ver todos os conteúdos <ArrowRight className="h-4 w-4" /></a>
             </div>
             <div className="mt-9 grid gap-5 lg:grid-cols-3">
               {articles.map((article) => (
@@ -953,7 +953,7 @@ export function ConsultAreaPage() {
         <div className="mx-auto max-w-3xl px-4 py-24 text-center">
           <h1 className="text-3xl font-black">Área não encontrada</h1>
           <Link
-            to="/consult"
+            to="/"
             className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#08A77F] px-5 py-3 font-bold text-white"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -982,7 +982,7 @@ export function ConsultAreaPage() {
           />
           <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
             <Link
-              to="/consult#areas"
+              to="#areas"
               className="inline-flex items-center gap-2 text-sm font-bold text-white/70 hover:text-white"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -1063,7 +1063,7 @@ export function ConsultAreaPage() {
               </div>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row lg:mt-0">
                 <a
-                  href="/consult#contato"
+                  href="#contato"
                   className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-6 py-3 text-sm font-extrabold"
                 >
                   Agendar reunião

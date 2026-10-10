@@ -1,12 +1,12 @@
 (() => {
-  const PATH_OK = /^\/consult(?:\/|$)/;
+  const PATH_OK = /^\//;
   if (!PATH_OK.test(window.location.pathname)) return;
 
   const REGION_LINKS = {
-    "São Paulo": "/consult/atuacao/sao-paulo",
-    "Paraná": "/consult/atuacao/parana",
-    "Mato Grosso do Sul": "/consult/atuacao/mato-grosso-do-sul",
-    "Minas Gerais": "/consult/atuacao/minas-gerais",
+    "São Paulo": "/atuacao/sao-paulo",
+    "Paraná": "/atuacao/parana",
+    "Mato Grosso do Sul": "/atuacao/mato-grosso-do-sul",
+    "Minas Gerais": "/atuacao/minas-gerais",
   };
 
   function normalize(value) {
@@ -14,7 +14,7 @@
   }
 
   function linkCoverageStates() {
-    if (window.location.pathname !== "/consult") return;
+    if (window.location.pathname !== "/") return;
 
     const headings = Array.from(document.querySelectorAll("section h2"));
     const heading = headings.find((node) => /Atendimento presencial em SP, PR, MS e MG|Atendimento em todo o Brasil/i.test(normalize(node.textContent)));

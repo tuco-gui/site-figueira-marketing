@@ -1,5 +1,5 @@
 (() => {
-  const PATH_OK = /^\/consult(?:\/|$)/;
+  const PATH_OK = /^\//;
   if (!PATH_OK.test(window.location.pathname)) return;
 
   const GEOJSON_URL = "https://cdn.jsdelivr.net/gh/codeforamerica/click_that_hood@master/public/data/brazil-states.geojson";
@@ -69,7 +69,7 @@
   }
 
   function alignHomepageHero() {
-    if (window.location.pathname !== "/consult") return;
+    if (window.location.pathname !== "/") return;
     const h1 = document.querySelector("main h1, #root h1");
     if (!h1) return;
 

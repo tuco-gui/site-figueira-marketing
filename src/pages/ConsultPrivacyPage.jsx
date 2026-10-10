@@ -58,7 +58,7 @@ export default function ConsultPrivacyPage() {
         </section>)}
         <div className="text-sm leading-7 text-black/55">
           <p><strong>Última atualização:</strong> 10 de outubro de 2026.</p>
-          <p className="mt-2">Para voltar ao site, <Link to="/consult" className="font-extrabold text-[#08A77F] underline">acesse a página inicial da Consult</Link>.</p>
+          <p className="mt-2">Para voltar ao site, <Link to="/" className="font-extrabold text-[#08A77F] underline">acesse a página inicial da Consult</Link>.</p>
         </div>
       </div>
     </ApprovedLightSection>

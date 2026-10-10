@@ -47,7 +47,7 @@ const EQUIPMENT = {
     parameters:['Temperatura em múltiplos pontos','Letalidade A0','Ciclo de operação'],
     norms:[['ABNT NBR ISO 15883','Referência aplicável a termodesinfectoras.',ABNT],['ABNT NBR IEC 61010','Referência de segurança elétrica aplicável ao equipamento.',ABNT]],
   },
-  'termodesinfectora-estufa': { redirectTo:'/consult/engenharia-clinica/equipamentos/termodesinfectora' },
+  'termodesinfectora-estufa': { redirectTo:'/engenharia-clinica/equipamentos/termodesinfectora' },
   'estufa-banho-maria': {
     title:'Estufa e banho-maria de laboratório', thermal:true,
     parameters:['Estabilidade de temperatura','Uniformidade de temperatura'],
@@ -104,7 +104,7 @@ export default function ConsultEquipmentPage() {
 
   if (item?.redirectTo) return <Navigate to={item.redirectTo} replace />
 
-  if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Equipamento não encontrado</h1><Link to="/consult/engenharia-clinica" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Engenharia Clínica</Link></main></ConsultSiteShell>
+  if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Equipamento não encontrado</h1><Link to="/engenharia-clinica" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Engenharia Clínica</Link></main></ConsultSiteShell>
 
   const reportItems=['Identificação do equipamento','Ensaios e parâmetros medidos','Valores e referências aplicáveis','Conclusão técnica','Eventuais pendências e histórico técnico']
 

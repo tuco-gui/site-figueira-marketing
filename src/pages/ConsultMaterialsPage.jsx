@@ -7,21 +7,21 @@ const MATERIALS = [
   {
     title: 'Mapa de normas por modalidade',
     text: 'RDC 611/2022 e a relação das IN 90 a 97/2021 com as modalidades de diagnóstico por imagem atendidas pela Consult.',
-    href: '/consult/materiais/mapa-normas-radiologia',
+    href: '/materiais/mapa-normas-radiologia',
     tag: 'Física Médica',
     Icon: FileText,
   },
   {
     title: 'CQ, radiometria ou blindagem?',
     text: 'Um guia visual para entender quando cada serviço entra no ciclo de uma sala ou equipamento de radiologia.',
-    href: '/consult/materiais/guia-servicos-radiologia',
+    href: '/materiais/guia-servicos-radiologia',
     tag: 'Proteção Radiológica',
     Icon: GitBranch,
   },
   {
     title: 'Modelos de sinalização técnica',
     text: 'Referências visuais de placas para radioproteção, acesso controlado e ressonância magnética, sujeitas à validação técnica.',
-    href: '/consult/materiais/modelos-sinalizacao',
+    href: '/materiais/modelos-sinalizacao',
     tag: 'Material gratuito',
     Icon: ShieldCheck,
   },
@@ -37,7 +37,7 @@ export default function ConsultMaterialsPage() {
     <section className="relative overflow-hidden bg-[#075653] text-white">
       <div className="absolute inset-0 opacity-70" style={{backgroundImage:'radial-gradient(circle at 82% 25%, rgba(138,230,0,.15), transparent 24%), linear-gradient(125deg, transparent 42%, rgba(5,210,157,.12) 100%)'}} />
       <div className="relative mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
-        <Link to="/consult" className="text-sm font-bold text-white/55 hover:text-white">Consult Radiometria e Qualidade</Link>
+        <Link to="/" className="text-sm font-bold text-white/55 hover:text-white">Consult Radiometria e Qualidade</Link>
         <div className="mt-9 flex items-center gap-3 text-[10px] font-black uppercase tracking-[.26em] text-[#8AE600]"><span className="h-px w-10 bg-[#8AE600]"/>Materiais gratuitos</div>
         <h1 className="mt-5 max-w-5xl text-4xl font-black leading-[.98] tracking-[-.045em] sm:text-5xl lg:text-[66px]">Conteúdo técnico para consultar antes de decidir.</h1>
         <p className="mt-6 max-w-3xl text-lg leading-8 text-white/72">Guias próprios da Consult organizados a partir de referências técnicas, sem substituir a norma oficial nem a avaliação de cada caso.</p>

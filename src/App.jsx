@@ -1,20 +1,5 @@
-import { lazy, Suspense } from 'react'
-import { Toaster } from "@/components/ui/toaster"
-import { QueryClientProvider } from '@tanstack/react-query'
-import { queryClientInstance } from '@/lib/query-client'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import PageNotFound from './lib/PageNotFound'
-import ScrollToTop from './components/ScrollToTop'
-
-import SiteLayout from '@/components/layout/SiteLayout'
-import Home from '@/pages/Home'
-
-const Sobre = lazy(() => import('@/pages/Sobre'))
-const Cases = lazy(() => import('@/pages/Cases'))
-const Contato = lazy(() => import('@/pages/Contato'))
-const GrowthMarketing = lazy(() => import('@/pages/GrowthMarketing'))
-const StackDigital = lazy(() => import('@/pages/StackDigital'))
-const PartnerLandingPage = lazy(() => import('@/pages/PartnerLandingPage'))
+import { lazy, Suspense, useEffect } from 'react'
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 
 const ConsultProposal = lazy(() => import('@/pages/ConsultProposal'))
 const ConsultAboutPage = lazy(() => import('@/pages/ConsultAboutPage'))
@@ -36,102 +21,52 @@ const ConsultBlogPage = lazy(() => import('@/pages/ConsultBlogPage'))
 const ConsultBlogPostPage = lazy(() => import('@/pages/ConsultBlogPostPage'))
 const ConsultLegacyRedirect = lazy(() => import('@/pages/ConsultLegacyRedirect'))
 
-const EstrategiaGrowth = lazy(() => import('@/pages/solutions/EstrategiaGrowth'))
-const Gestao = lazy(() => import('@/pages/solutions/Gestao'))
-const MidiaPaga = lazy(() => import('@/pages/solutions/MidiaPaga'))
-const Criativos = lazy(() => import('@/pages/solutions/Criativos'))
-const PaginasConversao = lazy(() => import('@/pages/solutions/PaginasConversao'))
-const CRM = lazy(() => import('@/pages/solutions/CRM'))
-const Automacoes = lazy(() => import('@/pages/solutions/Automacoes'))
-const AgentesIA = lazy(() => import('@/pages/solutions/AgentesIA'))
-const DadosBI = lazy(() => import('@/pages/solutions/DadosBI'))
-const Tecnologia = lazy(() => import('@/pages/solutions/Tecnologia'))
-const SolucoesSobMedida = lazy(() => import('@/pages/solutions/SolucoesSobMedida'))
-const Retencao = lazy(() => import('@/pages/solutions/Retencao'))
-
-function RouteFallback({ consult = false }) {
-  return (
-    <div className={`min-h-screen flex items-center justify-center px-6 ${consult ? 'bg-[#075653] text-white' : 'bg-black text-white'}`}>
-      <div className="text-center">
-        <div className={`mx-auto h-8 w-8 animate-spin rounded-full border-2 ${consult ? 'border-white/25 border-t-[#8AE600]' : 'border-white/20 border-t-white'}`} />
-        <p className="mt-4 text-sm font-semibold text-white/70">Carregando...</p>
-      </div>
-    </div>
-  )
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }), [pathname])
+  return null
 }
 
-function Deferred({ children, consult = false }) {
-  return <Suspense fallback={<RouteFallback consult={consult} />}>{children}</Suspense>
+function Loading() {
+  return <div className="flex min-h-screen items-center justify-center bg-[#075653] text-white"><div className="text-center"><div className="mx-auto h-8 w-8 animate-spin rounded-full border-2 border-white/25 border-t-[#8AE600]"/><p className="mt-4 text-sm font-semibold text-white/70">Carregando...</p></div></div>
 }
 
-function App() {
-  return (
-    <QueryClientProvider client={queryClientInstance}>
-      <Router>
-        <ScrollToTop />
-        <Routes>
-          <Route element={<SiteLayout />}>
-            <Route path="/" element={<Home />} />
-            <Route path="/sobre" element={<Deferred><Sobre /></Deferred>} />
-            <Route path="/cases" element={<Deferred><Cases /></Deferred>} />
-            <Route path="/contato" element={<Deferred><Contato /></Deferred>} />
-            <Route path="/recursos/growth-marketing" element={<Deferred><GrowthMarketing /></Deferred>} />
-            <Route path="/stack-digital" element={<Deferred><StackDigital /></Deferred>} />
-            <Route path="/stack-digital/:partner" element={<Deferred><PartnerLandingPage /></Deferred>} />
-            <Route path="/solucoes/estrategia-growth" element={<Deferred><EstrategiaGrowth /></Deferred>} />
-            <Route path="/solucoes/gestao" element={<Deferred><Gestao /></Deferred>} />
-            <Route path="/solucoes/midia-paga" element={<Deferred><MidiaPaga /></Deferred>} />
-            <Route path="/solucoes/criativos" element={<Deferred><Criativos /></Deferred>} />
-            <Route path="/solucoes/paginas-conversao" element={<Deferred><PaginasConversao /></Deferred>} />
-            <Route path="/solucoes/crm" element={<Deferred><CRM /></Deferred>} />
-            <Route path="/solucoes/automacoes" element={<Deferred><Automacoes /></Deferred>} />
-            <Route path="/solucoes/agentes-ia" element={<Deferred><AgentesIA /></Deferred>} />
-            <Route path="/solucoes/dados-bi" element={<Deferred><DadosBI /></Deferred>} />
-            <Route path="/solucoes/tecnologia" element={<Deferred><Tecnologia /></Deferred>} />
-            <Route path="/solucoes/solucoes-sob-medida" element={<Deferred><SolucoesSobMedida /></Deferred>} />
-            <Route path="/solucoes/retencao" element={<Deferred><Retencao /></Deferred>} />
-          </Route>
-          <Route path="/consult/*" element={
-            <Deferred consult>
-              <Routes>
-                <Route index element={<ConsultProposal />} />
-                <Route path="sobre" element={<ConsultAboutPage />} />
-                <Route path="servicos" element={<ConsultServicesPage />} />
-                <Route path="politica-de-privacidade" element={<ConsultPrivacyPage />} />
-
-                <Route path="fisica-medica" element={<ConsultAreaLandingPageV3 fixedSlug="fisica-medica" />} />
-                <Route path="protecao-radiologica" element={<ConsultAreaLandingPageV3 fixedSlug="protecao-radiologica" />} />
-                <Route path="engenharia-clinica" element={<ConsultAreaLandingPageV3 fixedSlug="engenharia-clinica" />} />
-
-                <Route path="fisica-medica/controle-de-qualidade" element={<ConsultQualityIndexPage />} />
-                <Route path="fisica-medica/controle-de-qualidade/:slug" element={<ConsultQualityModalityPage />} />
-                <Route path="fisica-medica/:slug" element={<ConsultServicePage />} />
-                <Route path="protecao-radiologica/:slug" element={<ConsultServicePage />} />
-                <Route path="engenharia-clinica/equipamentos/:slug" element={<ConsultEquipmentPage />} />
-                <Route path="engenharia-clinica/:slug" element={<ConsultEngineeringServicePage />} />
-                <Route path="atuacao/:slug" element={<ConsultRegionPage />} />
-
-                <Route path="normas" element={<ConsultNormsPage />} />
-                <Route path="materiais" element={<ConsultMaterialsPage />} />
-                <Route path="materiais/mapa-normas-radiologia" element={<ConsultNormMapResourcePage />} />
-                <Route path="materiais/guia-servicos-radiologia" element={<ConsultRadiologyServiceGuidePage />} />
-                <Route path="materiais/modelos-sinalizacao" element={<ConsultSignageMaterialPage />} />
-                <Route path="blog" element={<ConsultBlogPage />} />
-                <Route path="blog/:slug" element={<ConsultBlogPostPage />} />
-
-                <Route path="areas/:slug" element={<ConsultLegacyRedirect type="area" />} />
-                <Route path="servicos/:slug" element={<ConsultLegacyRedirect type="service" />} />
-                <Route path="equipamentos/:slug" element={<ConsultLegacyRedirect type="equipment" />} />
-                <Route path="regioes/:slug" element={<ConsultLegacyRedirect type="region" />} />
-              </Routes>
-            </Deferred>
-          } />
-          <Route path="*" element={<PageNotFound />} />
-        </Routes>
-        <Toaster />
-      </Router>
-    </QueryClientProvider>
-  )
+function NotFound() {
+  return <div className="flex min-h-screen items-center justify-center bg-[#F4FBFA] px-6 text-center text-[#123C3B]"><div><h1 className="text-4xl font-black">Página não encontrada</h1><a className="mt-6 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white" href="/">Voltar ao início</a></div></div>
 }
 
-export default App
+export default function App() {
+  return <BrowserRouter><ScrollToTop/><Suspense fallback={<Loading/>}><Routes>
+    <Route path="/" element={<ConsultProposal/>}/>
+    <Route path="/sobre" element={<ConsultAboutPage/>}/>
+    <Route path="/servicos" element={<ConsultServicesPage/>}/>
+    <Route path="/politica-de-privacidade" element={<ConsultPrivacyPage/>}/>
+
+    <Route path="/fisica-medica" element={<ConsultAreaLandingPageV3 fixedSlug="fisica-medica"/>}/>
+    <Route path="/protecao-radiologica" element={<ConsultAreaLandingPageV3 fixedSlug="protecao-radiologica"/>}/>
+    <Route path="/engenharia-clinica" element={<ConsultAreaLandingPageV3 fixedSlug="engenharia-clinica"/>}/>
+
+    <Route path="/fisica-medica/controle-de-qualidade" element={<ConsultQualityIndexPage/>}/>
+    <Route path="/fisica-medica/controle-de-qualidade/:slug" element={<ConsultQualityModalityPage/>}/>
+    <Route path="/fisica-medica/:slug" element={<ConsultServicePage/>}/>
+    <Route path="/protecao-radiologica/:slug" element={<ConsultServicePage/>}/>
+    <Route path="/engenharia-clinica/equipamentos/:slug" element={<ConsultEquipmentPage/>}/>
+    <Route path="/engenharia-clinica/:slug" element={<ConsultEngineeringServicePage/>}/>
+    <Route path="/atuacao/:slug" element={<ConsultRegionPage/>}/>
+
+    <Route path="/normas" element={<ConsultNormsPage/>}/>
+    <Route path="/materiais" element={<ConsultMaterialsPage/>}/>
+    <Route path="/materiais/mapa-normas-radiologia" element={<ConsultNormMapResourcePage/>}/>
+    <Route path="/materiais/guia-servicos-radiologia" element={<ConsultRadiologyServiceGuidePage/>}/>
+    <Route path="/materiais/modelos-sinalizacao" element={<ConsultSignageMaterialPage/>}/>
+    <Route path="/blog" element={<ConsultBlogPage/>}/>
+    <Route path="/blog/:slug" element={<ConsultBlogPostPage/>}/>
+
+    <Route path="/areas/:slug" element={<ConsultLegacyRedirect type="area"/>}/>
+    <Route path="/servicos/:slug" element={<ConsultLegacyRedirect type="service"/>}/>
+    <Route path="/equipamentos/:slug" element={<ConsultLegacyRedirect type="equipment"/>}/>
+    <Route path="/regioes/:slug" element={<ConsultLegacyRedirect type="region"/>}/>
+    <Route path="/consult/*" element={<Navigate to="/" replace/>}/>
+    <Route path="*" element={<NotFound/>}/>
+  </Routes></Suspense></BrowserRouter>
+}
