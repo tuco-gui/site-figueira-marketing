@@ -14,7 +14,7 @@
     "programa-protecao-radiologica": ["Programa de Proteção Radiológica | Consult","Elaboração e acompanhamento do Programa de Proteção Radiológica para serviços de radiologia diagnóstica e intervencionista."],
     "levantamento-radiometrico": ["Levantamento Radiométrico | Consult","Medição da radiação nas áreas ao redor da sala e avaliação da radiação de fuga do cabeçote, com resultado técnico documentado."],
     "projeto-blindagem": ["Projeto de Blindagem Radiológica | Consult","Cálculo técnico e memorial de blindagem para obras, reformas, expansões ou troca de equipamentos de radiologia."],
-    treinamentos: ["Treinamentos em Radioproteção e Segurança em RM | Consult","Capacitação periódica de equipes em radioproteção e segurança em ressonância magnética."],
+    treinamentos: ["Treinamentos em Radioproteção e Segurança em RM | Consult","Treinamentos EAD e presenciais sob medida em radioproteção e segurança em ressonância magnética."],
     "licenciamento-sanitario": ["Licenciamento Sanitário para Radiologia | Consult","Apoio técnico e documental para obtenção ou renovação de licença da vigilância sanitária."],
   };
 
@@ -35,7 +35,7 @@
     "odontologico-intraoral": ["CQ em Radiologia Odontológica Intraoral | Consult","Controle de qualidade em radiologia odontológica intraoral conforme RDC 611/2022 e IN 95/2021."],
     ultrassom: ["Controle de Qualidade em Ultrassom | IN 96 | Consult","Ensaios de controle de qualidade em ultrassom conforme IN 96/2021, com desempenho e qualidade de imagem documentados."],
     "ressonancia-magnetica": ["Controle de Qualidade em Ressonância Magnética | Consult","Controle de qualidade em ressonância magnética conforme IN 97/2021, com avaliação de desempenho e qualidade de imagem."],
-    "densitometria-ossea": ["Controle de Qualidade em Densitometria Óssea | Consult","Controle de qualidade em densitometria óssea dentro da base geral da RDC 611/2022, conforme escopo técnico da Consult."],
+    "densitometria-ossea": ["Controle de Qualidade em Densitometria Óssea | Consult","Testes de aceitação e constância conforme a RDC 611/2022, as instruções do fabricante e protocolos reconhecidos."],
     "raio-x-veterinario": ["Controle de Qualidade em Raios X Veterinário | Consult","Avaliação técnica de raios X veterinário com base na RDC 611/2022 e IN 90/2021 como referência técnica."],
   };
 
@@ -55,6 +55,8 @@
 
   let title = "Consult Radiometria e Qualidade | Física Médica e Consult Engenharia Clínica";
   let description = "Medição, ensaio, calibração, qualificação e laudos técnicos em Física Médica, Proteção Radiológica e Consult Engenharia Clínica, com atendimento em todo o Brasil.";
+  const prerenderedTitle = document.title;
+  const prerenderedDescription = document.querySelector('meta[name="description"]')?.getAttribute('content') || "";
   let keywords = "Consult Radiometria e Qualidade, Física Médica, Proteção Radiológica, Engenharia Clínica, laudo técnico";
   let schemaType = "WebPage";
   let canonicalPath = path;
@@ -132,11 +134,17 @@
     keywords = `${blogMatch[1].replaceAll("-"," ")}, Consult, conteúdo técnico`;
     schemaType = "Article";
     crumbs.push(["Blog","/consult/blog"],[title.replace(/ \| .*$/,""),path]);
+  } else if (blogMatch) {
+    title = prerenderedTitle || title;
+    description = prerenderedDescription || description;
+    keywords = `${blogMatch[1].replaceAll("-"," ")}, Consult, conteúdo técnico`;
+    schemaType = "Article";
+    crumbs.push(["Blog","/consult/blog"],[title.replace(/ \| .*$/,""),path]);
   } else if (modalityMatch && modalityMeta[modalityMatch[1]]) {
     [title,description] = modalityMeta[modalityMatch[1]];
     keywords = `${modalityMatch[1].replaceAll("-"," ")}, controle de qualidade, RDC 611, Consult`;
     schemaType = "Service";
-    crumbs.push(["Física Médica","/consult/areas/fisica-medica"],["Controle de Qualidade","/consult/fisica-medica/controle-de-qualidade"],[title.replace(/ \| .*$/,""),path]);
+    crumbs.push(["Física Médica","/consult/fisica-medica"],["Controle de Qualidade","/consult/fisica-medica/controle-de-qualidade"],[title.replace(/ \| .*$/,""),path]);
   } else if ((areaMatch || directAreaMatch) && areaMeta[(areaMatch || directAreaMatch)[1]]) {
     const areaSlug = (areaMatch || directAreaMatch)[1];
     [title,description] = areaMeta[areaSlug];
@@ -163,7 +171,7 @@
     [title,description] = engineeringMeta[engineeringMatch[1]];
     keywords = `${engineeringMatch[1].replaceAll("-"," ")}, Engenharia Clínica, laudo técnico, Consult`;
     schemaType = "Service";
-    crumbs.push(["Engenharia Clínica","/consult/areas/engenharia-clinica"],[title.replace(/ \| .*$/,""),path]);
+    crumbs.push(["Consult Engenharia Clínica","/consult/engenharia-clinica"],[title.replace(/ \| .*$/,""),path]);
   } else if ((oldEquipmentMatch || siloEquipmentMatch) && equipmentNames[(oldEquipmentMatch || siloEquipmentMatch)[1]]) {
     const slug = (oldEquipmentMatch || siloEquipmentMatch)[1];
     const name = equipmentNames[slug];
@@ -172,7 +180,7 @@
     keywords = `${name}, ensaio de desempenho, segurança elétrica, Engenharia Clínica, Consult`;
     schemaType = "Service";
     if (oldEquipmentMatch) canonicalPath = `/consult/engenharia-clinica/equipamentos/${slug}`;
-    crumbs.push(["Engenharia Clínica","/consult/areas/engenharia-clinica"],["Equipamentos","/consult/areas/engenharia-clinica#equipamentos"],[name,canonicalPath]);
+    crumbs.push(["Consult Engenharia Clínica","/consult/engenharia-clinica"],["Equipamentos","/consult/engenharia-clinica#equipamentos"],[name,canonicalPath]);
   } else if ((oldRegionMatch || siloRegionMatch) && regionNames[(oldRegionMatch || siloRegionMatch)[1]]) {
     const slug = (oldRegionMatch || siloRegionMatch)[1];
     const [name,prep] = regionNames[slug];
