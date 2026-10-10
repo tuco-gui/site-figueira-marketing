@@ -15,6 +15,7 @@ export default function ConsultAboutPage() {
       title="Medição, laudo técnico e responsabilidade em saúde"
       description="Fundada em 1995, a Consult atua em Física Médica do Radiodiagnóstico desde 2013 e reúne hoje Física Médica, Proteção Radiológica e Consult Engenharia Clínica."
       image={CONSULT_IMAGES.radiology}
+      breadcrumbs={[[ 'Início','/consult' ],[ 'Sobre',null ]]}
     />
     <ApprovedProofStrip items={[[ 'HISTÓRIA','Desde 1995' ],[ 'FÍSICA MÉDICA','Desde 2013' ],[ 'ATUAÇÃO','Todo o Brasil' ],[ 'EQUIPES EM CAMPO','SP • PR • MS • MG' ]]}/>
 
@@ -30,7 +31,7 @@ export default function ConsultAboutPage() {
 
     <ApprovedLightSection eyebrow="Responsabilidade técnica" title="Documentação técnica assinada por profissional habilitado" intro="A responsabilidade técnica é aplicada conforme o serviço executado, com documentos emitidos por equipamento ou modalidade e assinatura do profissional habilitado." white>
       <div className="grid gap-5 md:grid-cols-2">
-        <div className="rounded-2xl bg-[#075653] p-7 text-white"><UsersRound className="h-8 w-8 text-[#8AE600]"/><h3 className="mt-4 text-xl font-black">Responsável técnico habilitado</h3><p className="mt-3 text-sm leading-7 text-white/70">Laudos e documentos técnicos seguem a responsabilidade profissional aplicável a cada serviço.</p></div>
+        <div className="rounded-2xl bg-[#075653] p-7 text-white"><UsersRound className="h-8 w-8 text-[#8AE600]"/><div className="mt-4 text-[10px] font-black uppercase tracking-[.2em] text-[#8AE600]">Responsável técnico</div><h3 className="mt-2 text-xl font-black">Matheus Alvarez</h3><p className="mt-3 text-sm leading-7 text-white/70">Responsável técnico da Consult. Laudos e documentos técnicos seguem a responsabilidade profissional aplicável a cada serviço.</p></div>
         <div className="rounded-2xl border border-black/5 bg-white p-7 shadow-sm"><MapPin className="h-8 w-8 text-[#08A77F]"/><h3 className="mt-4 text-xl font-black text-[#123C3B]">Estrutura de atendimento</h3><p className="mt-3 text-sm leading-7 text-black/55">Sede em Matão/SP e atendimento em Botucatu/SP, com atuação nacional e equipes em campo em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais.</p></div>
       </div>
     </ApprovedLightSection>
