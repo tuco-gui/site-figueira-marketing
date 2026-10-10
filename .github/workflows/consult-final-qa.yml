@@ -62,8 +62,8 @@ jobs:
 
       - name: Capture mobile screenshots
         run: |
-          npx --yes playwright@1.55.0 screenshot --browser=chromium --full-page --device="iPhone 13" http://127.0.0.1:4173/consult/servicos qa-screenshots/06-servicos-mobile.png
-          npx --yes playwright@1.55.0 screenshot --browser=chromium --full-page --device="iPhone 13" http://127.0.0.1:4173/consult/fisica-medica/controle-de-qualidade/fluoroscopia-arco-c-angiografia qa-screenshots/07-fluoroscopia-mobile.png
+          npx --yes playwright@1.55.0 screenshot --browser=chromium --full-page --viewport-size="390,844" http://127.0.0.1:4173/consult/servicos qa-screenshots/06-servicos-mobile.png
+          npx --yes playwright@1.55.0 screenshot --browser=chromium --full-page --viewport-size="390,844" http://127.0.0.1:4173/consult/fisica-medica/controle-de-qualidade/fluoroscopia-arco-c-angiografia qa-screenshots/07-fluoroscopia-mobile.png
 
       - name: Verify generated sitemap
         run: |
@@ -72,6 +72,7 @@ jobs:
           echo "Blog articles: $(grep -c '/consult/blog/' dist/consult/sitemap.xml)"
 
       - name: Upload QA screenshots
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: consult-final-qa-screenshots
