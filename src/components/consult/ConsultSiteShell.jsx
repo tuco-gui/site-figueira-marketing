@@ -43,7 +43,7 @@ export function ConsultHeader() {
       <nav className="hidden items-center gap-6 lg:flex">
         {nav.slice(0,2).map(([label,href]) => href.startsWith('http')
           ? <a key={label} href={href} target="_blank" rel="noreferrer" className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
-          : href.startsWith('#')
+          : href.includes('#')
             ? <a key={label} href={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
             : <Link key={label} to={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</Link>
         )}
@@ -58,7 +58,7 @@ export function ConsultHeader() {
         </div>
         {nav.slice(2).map(([label,href]) => href.startsWith('http')
           ? <a key={label} href={href} target="_blank" rel="noreferrer" className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
-          : href.startsWith('#')
+          : href.includes('#')
             ? <a key={label} href={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
             : <Link key={label} to={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</Link>
         )}
