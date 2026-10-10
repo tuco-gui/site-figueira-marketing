@@ -31,6 +31,7 @@ const forbidden=[
   'escopo confirmado','a página não promete','SEO local com responsabilidade'
 ]
 for(const term of forbidden){
+  const escaped=term.replace(/[.*+?^${}()|[\\]\\\\]/g,'\\for(const term of forbidden){
   if(combined.toLocaleLowerCase('pt-BR').includes(term.toLocaleLowerCase('pt-BR'))){
     errors.push(`Termo proibido encontrado no build: ${term}`)
   }
@@ -38,7 +39,14 @@ for(const term of forbidden){
 
 for(const pattern of ['href="/consult','href=\'/consult','to="/consult','to=\'/consult']){
   if(combined.includes(pattern)) errors.push(`Dependência do prefixo /consult encontrada: ${pattern}`)
+}')
+  const properName=/^[A-Z][A-Za-z]+$/.test(term)
+  const re=new RegExp(properName ? '\\b'+escaped+'\\b' : escaped,'iu')
+  if(re.test(combined)) errors.push(`Termo proibido encontrado no build: ${term}`)
 }
+
+const legacyPrefix=/(?:href|to)=["']\\/consult(?:\\/|["'#?])/iu
+if(legacyPrefix.test(combined)) errors.push('Dependência real do prefixo /consult encontrada em link/rota pública')
 
 const htmlFiles=files.filter(p=>p.endsWith('.html'))
 for(const path of htmlFiles){
