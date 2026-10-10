@@ -4,6 +4,7 @@ import { dirname, join } from 'node:path'
 const DIST = 'dist'
 const ORIGIN = 'https://www.consult.med.br'
 const SOCIAL_IMAGE = `${ORIGIN}/approved-national-bg.webp`
+const STATIC_POSTS = JSON.parse(await readFile('src/lib/consultStaticPosts.json', 'utf8'))
 
 const areas = {
   'fisica-medica': ['Física Médica | Controle de Qualidade e Laudos | Consult','Controle de qualidade, medições e laudos técnicos para diagnóstico por imagem, com atendimento da Consult em todo o Brasil.','Service'],
@@ -54,12 +55,6 @@ const regions = {
   'mato-grosso-do-sul':['Mato Grosso do Sul','em Mato Grosso do Sul'], 'minas-gerais':['Minas Gerais','em Minas Gerais'],
 }
 
-const blog = {
-  'educacao-continuada-cursos-digitais-radioprotecao':['Educação continuada e cursos de radioproteção | Consult','A Consult amplia o acesso a treinamentos online de proteção radiológica, qualidade em radiodiagnóstico e segurança em ressonância magnética.'],
-  'iaea-hhs-47-controle-qualidade-equipamentos':['IAEA HHS 47 e controle de qualidade | Consult','Entenda a importância do guia IAEA HHS 47 para testes de controle de qualidade em radiologia diagnóstica.'],
-  'protecao-radiologica-equipamentos-arco-c':['Proteção radiológica em equipamentos Arco C | Consult','Conteúdo técnico sobre exposição ocupacional, proteção e uso seguro de equipamentos Arco C.'],
-}
-
 const routes = [
   ['/','Consult Radiometria e Qualidade | Física Médica e Consult Engenharia Clínica','Medição, ensaio, calibração, qualificação e laudos técnicos em Física Médica, Proteção Radiológica e Consult Engenharia Clínica, com atendimento em todo o Brasil.','WebPage'],
   ['/sobre','Sobre a Consult | Consult Radiometria e Qualidade','Conheça a Consult Radiometria e Qualidade, fundada em 1995, sua atuação técnica, áreas de serviço e estrutura de atendimento.','AboutPage'],
@@ -80,7 +75,7 @@ for (const [slug,[title,description]] of Object.entries(protection)) routes.push
 for (const [slug,[title,description]] of Object.entries(engineering)) routes.push([`/engenharia-clinica/${slug}`,title,description,'Service'])
 for (const [slug,name] of Object.entries(equipment)) routes.push([`/engenharia-clinica/equipamentos/${slug}`,`Ensaio de ${name} | Consult Engenharia Clínica`,`Ensaios aplicáveis a ${name}, com medição documentada, padrões com rastreabilidade RBC/Inmetro e laudo por equipamento.`,'Service'])
 for (const [slug,[name,prep]] of Object.entries(regions)) routes.push([`/atuacao/${slug}`,`Engenharia Clínica e Física Médica ${prep} | Consult`,`Atendimento presencial da Consult ${prep} para Física Médica, Proteção Radiológica e Engenharia Clínica, com medições, ensaios e laudos técnicos.`,'Service'])
-for (const [slug,[title,description]] of Object.entries(blog)) routes.push([`/blog/${slug}`,title,description,'Article'])
+for (const post of STATIC_POSTS) routes.push([`/blog/${post.slug}`, post.seoTitle || `${post.title} | Consult`, post.seoDescription || post.excerpt || '', 'Article'])
 
 const esc=(v='')=>String(v).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
 const replaceOrInsert=(html,re,value)=>re.test(html)?html.replace(re,value):html.replace('</head>',`  ${value}\n  </head>`)
