@@ -8,17 +8,17 @@
 
   const cleanText = (value = '') => String(value).replace(/\s+/g, ' ').trim().slice(0, 160);
   const pageType = (path = window.location.pathname) => {
-    if (path === '/' || path === '/') return 'home';
+    if (path === '/') return 'home';
     if (path === '/sobre') return 'about';
     if (path === '/servicos') return 'services';
-    if (/^\/consult\/fisica-medica\/controle-de-qualidade\//.test(path)) return 'quality_modality';
-    if (/^\/consult\/fisica-medica/.test(path)) return 'physics';
-    if (/^\/consult\/protecao-radiologica/.test(path)) return 'radiological_protection';
-    if (/^\/consult\/engenharia-clinica\/equipamentos\//.test(path)) return 'equipment';
-    if (/^\/consult\/engenharia-clinica/.test(path)) return 'engineering_service';
-    if (/^\/consult\/atuacao\//.test(path)) return 'region';
-    if (/^\/consult\/blog\//.test(path)) return 'blog_article';
-    if (/^\/consult\/blog/.test(path)) return 'blog';
+    if (/^\/fisica-medica\/controle-de-qualidade\//.test(path)) return 'quality_modality';
+    if (/^\/fisica-medica/.test(path)) return 'physics';
+    if (/^\/protecao-radiologica/.test(path)) return 'radiological_protection';
+    if (/^\/engenharia-clinica\/equipamentos\//.test(path)) return 'equipment';
+    if (/^\/engenharia-clinica/.test(path)) return 'engineering_service';
+    if (/^\/atuacao\//.test(path)) return 'region';
+    if (/^\/blog\//.test(path)) return 'blog_article';
+    if (/^\/blog/.test(path)) return 'blog';
     return 'other';
   };
 
@@ -210,8 +210,8 @@
     if (/agende|reuni[aã]o/i.test(label) || /#contato$/i.test(href)) return ['meeting_cta_click', { link_url: href, link_text: label }];
     if (/^mailto:/i.test(href)) return ['email_click', { link_url: href, link_text: label }];
     if (/^tel:/i.test(href)) return ['phone_click', { link_url: href, link_text: label }];
-    if (/^\/consult\/blog\//.test(href)) return ['blog_article_click', { link_url: href, link_text: label }];
-    if (/^\/consult\/(fisica-medica|protecao-radiologica|engenharia-clinica|servicos|atuacao)\//.test(href)) return ['technical_content_click', { link_url: href, link_text: label }];
+    if (/^\/blog\//.test(href)) return ['blog_article_click', { link_url: href, link_text: label }];
+    if (/^\/(fisica-medica|protecao-radiologica|engenharia-clinica|servicos|atuacao)\//.test(href)) return ['technical_content_click', { link_url: href, link_text: label }];
     return null;
   };
 
