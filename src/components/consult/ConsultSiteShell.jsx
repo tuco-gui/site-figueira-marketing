@@ -58,7 +58,7 @@ export function ConsultServiceQuickLinks({ mobile = false, onNavigate = () => {}
     </summary>
     <div className={mobile
       ? 'mb-3 rounded-xl border border-white/15 bg-[#075653] px-3 py-4'
-      : 'absolute left-0 top-full z-[80] mt-2 w-[620px] max-w-[calc(100vw-3rem)] rounded-2xl border border-[#D5E9E3] bg-white p-5 text-[#123C3B] shadow-2xl'}>
+      : 'absolute left-1/2 top-full z-[80] mt-2 max-h-[calc(100dvh-6rem)] w-[620px] max-w-[calc(100vw-3rem)] -translate-x-1/2 overflow-y-auto overscroll-contain rounded-2xl border border-[#D5E9E3] bg-white p-5 text-[#123C3B] shadow-2xl'}>
       <Link to="/consult/servicos" onClick={go} className={mobile ? 'block rounded-lg px-2 py-2 text-sm font-bold text-[#B8FF51]' : 'block rounded-lg bg-[#EAF6F1] px-3 py-2 text-sm font-extrabold text-[#075653] hover:bg-[#D7F1E5]'}>
         Ver catálogo completo de serviços
       </Link>
@@ -113,9 +113,9 @@ export function ConsultHeader() {
           <FileText size={16}/> Solicite um orçamento
         </a>
       </nav>
-      <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 lg:hidden" onClick={() => setOpen(v => !v)} aria-label="Abrir menu">{open ? <X size={20}/> : <Menu size={20}/>}</button>
+      <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 lg:hidden" onClick={() => setOpen(v => !v)} aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} aria-controls="consult-internal-mobile-menu">{open ? <X size={20}/> : <Menu size={20}/>}</button>
     </div>
-    {open && <div className="border-t border-white/10 bg-[#064946] px-4 py-5 lg:hidden"><div className="mx-auto flex max-w-7xl flex-col gap-1">
+    {open && <div id="consult-internal-mobile-menu" className="max-h-[calc(100dvh-73px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#064946] px-4 py-5 lg:hidden"><div className="mx-auto flex max-w-7xl flex-col gap-1">
       {nav.map(([label,href]) => label === 'Serviços'
         ? <div key={label}><Link to={href} onClick={()=>setOpen(false)} className="block rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">Serviços</Link><ConsultServiceQuickLinks mobile onNavigate={()=>setOpen(false)}/></div>
         : href.startsWith('http')

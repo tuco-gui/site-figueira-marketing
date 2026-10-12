@@ -238,14 +238,16 @@ function Header() {
         <button
           className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 lg:hidden"
           onClick={() => setOpen((value) => !value)}
-          aria-label="Abrir menu"
+          aria-label={open ? "Fechar menu" : "Abrir menu"}
+          aria-expanded={open}
+          aria-controls="consult-home-mobile-menu"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
         </button>
       </div>
 
       {open && (
-        <div className="border-t border-white/10 bg-[#064946] px-4 py-5 lg:hidden">
+        <div id="consult-home-mobile-menu" className="max-h-[calc(100dvh-73px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#064946] px-4 py-5 lg:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-1">
             {nav.map(([label, href]) => label === "Serviços" ? (
               <div key={label}>
