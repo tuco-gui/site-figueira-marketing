@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { ArrowRight, FileText, Menu, MessageCircle, X } from 'lucide-react'
+import { ArrowRight, ChevronDown, FileText, Menu, MessageCircle, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const CDN = 'https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305'
@@ -12,6 +12,78 @@ export const CONSULT_COLORS = {
 
 export function ConsultEyebrow({ children, light = false, center = false }) {
   return <div className={`flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.28em] ${center ? 'justify-center' : ''} ${light ? 'text-white/70' : 'text-[#4D7775]'}`}><span className="h-0.5 w-8 bg-[#8AE600]" />{children}</div>
+}
+
+
+// Acesso rápido solicitado pela Consult em 09/10/2026.
+// O item "Serviços" do cabeçalho continua levando ao catálogo completo.
+export const CONSULT_DIRECT_SERVICES = [
+  { heading: 'Física Médica', links: [
+    ['Controle de Qualidade', '/consult/fisica-medica/controle-de-qualidade'],
+  ] },
+  { heading: 'Proteção Radiológica', links: [
+    ['Levantamento radiométrico', '/consult/protecao-radiologica/levantamento-radiometrico'],
+    ['Projeto de blindagem', '/consult/protecao-radiologica/projeto-blindagem'],
+    ['Programas (PPR/PGQ/PEP)', '/consult/protecao-radiologica/programa-protecao-radiologica'],
+    ['Licenciamento', '/consult/protecao-radiologica/licenciamento-sanitario'],
+    ['Treinamentos', '/consult/protecao-radiologica/treinamentos'],
+  ] },
+  { heading: 'Consult Engenharia Clínica', links: [
+    ['Segurança elétrica', '/consult/engenharia-clinica/seguranca-eletrica'],
+    ['Ensaio de desempenho', '/consult/engenharia-clinica/desempenho-calibracao'],
+    ['Manutenção preventiva', '/consult/engenharia-clinica/manutencao-preventiva'],
+    ['Qualificação térmica', '/consult/engenharia-clinica/qualificacao-termica'],
+  ] },
+]
+export const CONSULT_DIRECT_AREAS = [
+  ['Física Médica', '/consult/fisica-medica'],
+  ['Proteção Radiológica', '/consult/protecao-radiologica'],
+  ['Consult Engenharia Clínica', '/consult/engenharia-clinica'],
+]
+
+export function ConsultServiceQuickLinks({ mobile = false, onNavigate = () => {} }) {
+  const go = (event) => {
+    event.currentTarget.closest('details')?.removeAttribute('open')
+    onNavigate()
+  }
+  return <details className={mobile ? 'group rounded-lg' : 'group relative'}>
+    <summary
+      aria-label={mobile ? 'Mostrar acesso direto aos serviços' : 'Abrir lista de serviços'}
+      className={mobile
+        ? 'flex min-h-11 cursor-pointer list-none items-center justify-between rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5 [&::-webkit-details-marker]:hidden'
+        : 'flex h-11 w-7 cursor-pointer list-none items-center justify-center rounded-md text-white/90 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#8AE600] [&::-webkit-details-marker]:hidden'}
+    >
+      {mobile && <span>Acesso direto aos serviços</span>}
+      <ChevronDown size={16} className="transition-transform group-open:rotate-180" aria-hidden="true"/>
+    </summary>
+    <div className={mobile
+      ? 'mb-3 rounded-xl border border-white/15 bg-[#075653] px-3 py-4'
+      : 'absolute left-0 top-full z-[80] mt-2 w-[620px] max-w-[calc(100vw-3rem)] rounded-2xl border border-[#D5E9E3] bg-white p-5 text-[#123C3B] shadow-2xl'}>
+      <Link to="/consult/servicos" onClick={go} className={mobile ? 'block rounded-lg px-2 py-2 text-sm font-bold text-[#B8FF51]' : 'block rounded-lg bg-[#EAF6F1] px-3 py-2 text-sm font-extrabold text-[#075653] hover:bg-[#D7F1E5]'}>
+        Ver catálogo completo de serviços
+      </Link>
+      <div className={mobile ? 'mt-3 grid gap-4' : 'mt-4 grid grid-cols-3 gap-5'}>
+        {CONSULT_DIRECT_SERVICES.map((group) => <section key={group.heading}>
+          <p className={mobile ? 'mb-2 px-2 text-xs font-black uppercase tracking-wide text-[#B8FF51]' : 'mb-2 text-xs font-black uppercase tracking-wide text-[#075653]'}>{group.heading}</p>
+          {group.links.map(([label, href]) => <Link key={href} to={href} onClick={go} className={mobile
+            ? 'block rounded-md px-2 py-2 text-sm leading-5 text-white/90 hover:bg-white/10'
+            : 'block rounded-md px-2 py-2 text-sm leading-5 text-[#315B58] hover:bg-[#F0F8F4]'}>
+            {label}
+          </Link>)}
+        </section>)}
+      </div>
+      <div className={mobile ? 'mt-3 border-t border-white/15 pt-3' : 'mt-4 border-t border-[#D5E9E3] pt-3'}>
+        <p className={mobile ? 'px-2 text-xs font-bold text-[#B8FF51]' : 'text-xs font-bold text-[#075653]'}>Áreas de atuação</p>
+        <div className={mobile ? 'mt-2 grid gap-1' : 'mt-2 grid grid-cols-3 gap-2'}>
+          {CONSULT_DIRECT_AREAS.map(([label, href]) => <Link key={href} to={href} onClick={go} className={mobile
+            ? 'block rounded-md px-2 py-2 text-sm text-white/85 hover:bg-white/10'
+            : 'block rounded-md px-2 py-2 text-xs font-semibold text-[#315B58] hover:bg-[#F0F8F4]'}>
+            {label}
+          </Link>)}
+        </div>
+      </div>
+    </div>
+  </details>
 }
 
 export function ConsultHeader() {
@@ -29,11 +101,13 @@ export function ConsultHeader() {
     <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
       <Link to="/consult" className="flex items-center" aria-label="Página inicial da Consult"><img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-12 w-auto max-w-[190px] object-contain" /></Link>
       <nav className="hidden items-center gap-6 lg:flex">
-        {nav.map(([label,href]) => href.startsWith('http')
-          ? <a key={label} href={href} target="_blank" rel="noreferrer" className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
-          : href.startsWith('/consult#')
-            ? <a key={label} href={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
-            : <Link key={label} to={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</Link>
+        {nav.map(([label,href]) => label === 'Serviços'
+          ? <div key={label} className="flex items-center gap-0"><Link to={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">Serviços</Link><ConsultServiceQuickLinks/></div>
+          : href.startsWith('http')
+            ? <a key={label} href={href} target="_blank" rel="noreferrer" className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
+            : href.startsWith('/consult#')
+              ? <a key={label} href={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
+              : <Link key={label} to={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</Link>
         )}
         <a href="/consult#contato" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#FF6B26] px-4 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-black/10 transition hover:brightness-95">
           <FileText size={16}/> Solicite um orçamento
@@ -42,11 +116,13 @@ export function ConsultHeader() {
       <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 lg:hidden" onClick={() => setOpen(v => !v)} aria-label="Abrir menu">{open ? <X size={20}/> : <Menu size={20}/>}</button>
     </div>
     {open && <div className="border-t border-white/10 bg-[#064946] px-4 py-5 lg:hidden"><div className="mx-auto flex max-w-7xl flex-col gap-1">
-      {nav.map(([label,href]) => href.startsWith('http')
-        ? <a key={label} href={href} target="_blank" rel="noreferrer" onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</a>
-        : href.startsWith('/consult#')
-          ? <a key={label} href={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</a>
-          : <Link key={label} to={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</Link>
+      {nav.map(([label,href]) => label === 'Serviços'
+        ? <div key={label}><Link to={href} onClick={()=>setOpen(false)} className="block rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">Serviços</Link><ConsultServiceQuickLinks mobile onNavigate={()=>setOpen(false)}/></div>
+        : href.startsWith('http')
+          ? <a key={label} href={href} target="_blank" rel="noreferrer" onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</a>
+          : href.startsWith('/consult#')
+            ? <a key={label} href={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</a>
+            : <Link key={label} to={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</Link>
       )}
       <a href="/consult#contato" onClick={()=>setOpen(false)} className="mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white"><FileText size={16}/> Solicite um orçamento</a>
     </div></div>}
