@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { ConsultServiceQuickLinks } from '@/components/consult/ConsultSiteShell';
 import {
   ArrowLeft,
   ArrowRight,
@@ -210,7 +211,12 @@ function Header() {
         </Link>
 
         <nav className="hidden items-center gap-7 lg:flex">
-          {nav.map(([label, href], index) => (
+          {nav.map(([label, href], index) => label === "Serviços" ? (
+            <div key={label} className="flex items-center gap-0">
+              <a href={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">Serviços</a>
+              <ConsultServiceQuickLinks />
+            </div>
+          ) : (
             <a
               key={label}
               href={href}
@@ -241,7 +247,12 @@ function Header() {
       {open && (
         <div className="border-t border-white/10 bg-[#064946] px-4 py-5 lg:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-1">
-            {nav.map(([label, href]) => (
+            {nav.map(([label, href]) => label === "Serviços" ? (
+              <div key={label}>
+                <a href={href} onClick={() => setOpen(false)} className="block rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">Serviços</a>
+                <ConsultServiceQuickLinks mobile onNavigate={() => setOpen(false)} />
+              </div>
+            ) : (
               <a
                 key={label}
                 href={href}
@@ -505,8 +516,8 @@ function Footer() {
                   {area.title}
                 </Link>
               ))}
-              <span className="block">Controle de Qualidade</span>
-              <span className="block">Treinamentos</span>
+              <Link className="block hover:text-[#8AE600]" to="/consult/fisica-medica/controle-de-qualidade">Controle de Qualidade</Link>
+              <Link className="block hover:text-[#8AE600]" to="/consult/protecao-radiologica/treinamentos">Treinamentos</Link>
             </div>
           </div>
 
