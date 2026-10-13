@@ -9,11 +9,14 @@
   min-width: 0;
 }
 
-.consult-responsive .max-w-7xl {
+.consult-responsive .max-w-7xl,
+.consult-responsive main article > header > .max-w-5xl,
+.consult-responsive main article > section.max-w-5xl {
   width: 100%;
   max-width: none;
   padding-inline: var(--consult-gutter);
 }
+.consult-responsive main article > section.max-w-5xl > div:first-child { max-width: 76ch; }
 
 .consult-responsive [id$="mobile-menu"] {
   padding-inline: var(--consult-gutter);
