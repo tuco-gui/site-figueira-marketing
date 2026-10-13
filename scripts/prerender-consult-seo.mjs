@@ -25,6 +25,7 @@ const modalities = {
 }
 
 const protection = {
+  programas: ['Programas PPR, PGQ e PEP | Consult Radiometria e Qualidade','Programas de Proteção Radiológica, Garantia da Qualidade e Educação Permanente, com acompanhamento recorrente em Física Médica.'],
   'programa-protecao-radiologica': ['Programa de Proteção Radiológica | Consult','Elaboração e acompanhamento do Programa de Proteção Radiológica para serviços de radiologia diagnóstica e intervencionista.'],
   'levantamento-radiometrico': ['Levantamento Radiométrico | Consult','Medição da radiação nas áreas ao redor da sala e avaliação da radiação de fuga do cabeçote, com resultado técnico documentado.'],
   'projeto-blindagem': ['Projeto de Blindagem Radiológica | Consult','Cálculo técnico e memorial de blindagem para obras, reformas, expansões ou troca de equipamentos de radiologia.'],

@@ -9,6 +9,7 @@
   };
 
   const serviceMeta = {
+    programas: ["Programas PPR, PGQ e PEP | Consult Radiometria e Qualidade","Programas de Proteção Radiológica, Garantia da Qualidade e Educação Permanente, com acompanhamento recorrente em Física Médica."],
     "controle-qualidade": ["Controle de Qualidade em Radiologia | RDC 611 | Consult","Testes de qualidade em radiodiagnóstico conforme RDC 611/2022 e INs 90 a 97, com laudo técnico assinado pelo físico médico."],
     "controle-de-qualidade": ["Controle de Qualidade em Diagnóstico por Imagem | Consult","Controle de Qualidade por modalidade, com referências específicas, medições documentadas e laudo técnico assinado pelo físico médico."],
     "programa-protecao-radiologica": ["Programa de Proteção Radiológica | Consult","Elaboração e acompanhamento do Programa de Proteção Radiológica para serviços de radiologia diagnóstica e intervencionista."],

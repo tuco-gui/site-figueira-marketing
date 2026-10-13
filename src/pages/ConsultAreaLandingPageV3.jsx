@@ -63,6 +63,7 @@ const AREAS = {
     sectionIntro:'Raios X, mamografia, tomografia, ultrassom e ressonância magnética não são avaliados da mesma forma. A Consult aplica a referência correspondente à tecnologia e documenta o resultado técnico.',
     services:[
       ['Controle de Qualidade','Verificação de dose, qualidade de imagem e funcionamento conforme a modalidade.','/consult/fisica-medica/controle-de-qualidade',Gauge],
+      ['Programas (PPR/PGQ/PEP)','Programas de radiologia e acompanhamento recorrente da instituição.','/consult/protecao-radiologica/programas',FileText],
       ['Levantamento radiométrico','Medição da radiação no entorno da sala e avaliação da radiação de fuga.','/consult/protecao-radiologica/levantamento-radiometrico',Activity],
       ['Projeto de blindagem','Cálculo e memorial técnico antes de obra, reforma ou troca de equipamento.','/consult/protecao-radiologica/projeto-blindagem',ShieldCheck],
     ],
@@ -81,7 +82,7 @@ const AREAS = {
     sectionTitle:'Proteção radiológica começa antes do problema.',
     sectionIntro:'A segurança depende da relação entre ambiente, equipamento, barreiras, equipe e documentação. Cada serviço atende uma etapa diferente dessa rotina.',
     services:[
-      ['Programa de Proteção Radiológica','Elaboração e acompanhamento do programa do serviço.','/consult/protecao-radiologica/programa-protecao-radiologica',FileText],
+      ['Programas (PPR/PGQ/PEP)','Proteção radiológica, garantia da qualidade e educação permanente.','/consult/protecao-radiologica/programas',FileText],
       ['Levantamento radiométrico','Medição das condições radiométricas do ambiente.','/consult/protecao-radiologica/levantamento-radiometrico',Activity],
       ['Projeto de blindagem','Memorial de cálculo para obra, reforma, expansão ou troca de equipamento.','/consult/protecao-radiologica/projeto-blindagem',ShieldCheck],
       ['Treinamentos','Capacitação em radioproteção e segurança em ressonância magnética.','/consult/protecao-radiologica/treinamentos',Stethoscope],
@@ -140,6 +141,7 @@ export default function ConsultAreaLandingPageV3({ fixedSlug }) {
 
     {area.recurring&&<ApprovedLightSection eyebrow="Programas recorrentes" title="Acompanhamento contínuo em Física Médica" intro="Além dos serviços avulsos, a Consult também estrutura rotinas recorrentes conforme a necessidade da instituição.">
       <ApprovedList items={area.recurring}/>
+      <a href="/consult/protecao-radiologica/programas#acompanhamento-recorrente" className="mt-6 inline-flex min-h-11 items-center rounded-lg border border-[#08A77F] px-5 py-3 text-sm font-extrabold text-[#075653] hover:bg-[#E5F6F1]">Conheça os programas e o acompanhamento recorrente</a>
     </ApprovedLightSection>}
 
     {area.resources==='equipment'&&<ApprovedLightSection eyebrow="Equipamentos atendidos" title="Ensaios organizados por tipo de equipamento" intro="Os equipamentos eletromédicos recebem ensaio de segurança elétrica conforme aplicabilidade. Acesse a página específica para conhecer os parâmetros medidos e o resultado documentado." white>

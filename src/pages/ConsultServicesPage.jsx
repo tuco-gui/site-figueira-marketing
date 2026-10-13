@@ -9,7 +9,7 @@ const GROUPS=[
     ['Controle de Qualidade','/consult/fisica-medica/controle-de-qualidade',Gauge],
   ]],
   ['Proteção Radiológica',[
-    ['Programa de Proteção Radiológica','/consult/protecao-radiologica/programa-protecao-radiologica',FileText],
+    ['Programas (PPR/PGQ/PEP)','/consult/protecao-radiologica/programas',FileText],
     ['Levantamento radiométrico','/consult/protecao-radiologica/levantamento-radiometrico',Activity],
     ['Projeto de blindagem','/consult/protecao-radiologica/projeto-blindagem',ShieldCheck],
     ['Treinamentos','/consult/protecao-radiologica/treinamentos',Stethoscope],

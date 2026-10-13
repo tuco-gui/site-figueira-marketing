@@ -24,7 +24,7 @@ export const CONSULT_DIRECT_SERVICES = [
   { heading: 'Proteção Radiológica', links: [
     ['Levantamento radiométrico', '/consult/protecao-radiologica/levantamento-radiometrico'],
     ['Projeto de blindagem', '/consult/protecao-radiologica/projeto-blindagem'],
-    ['Programas (PPR/PGQ/PEP)', '/consult/protecao-radiologica/programa-protecao-radiologica'],
+    ['Programas (PPR/PGQ/PEP)', '/consult/protecao-radiologica/programas'],
     ['Licenciamento', '/consult/protecao-radiologica/licenciamento-sanitario'],
     ['Treinamentos', '/consult/protecao-radiologica/treinamentos'],
   ] },
