@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
 import {
   ApprovedFaq,
@@ -55,6 +55,16 @@ const FAQ = [
 ]
 
 export default function ConsultProgramsPage() {
+  const { hash } = useLocation()
+
+  useEffect(() => {
+    const id = hash.slice(1)
+    if (id !== 'acompanhamento-recorrente' && !PROGRAMS.some(program => program.id === id)) return
+    // A rota é carregada sob demanda; só rolar quando suas seções já existem.
+    const frame = window.requestAnimationFrame(() => document.getElementById(id)?.scrollIntoView())
+    return () => window.cancelAnimationFrame(frame)
+  }, [hash])
+
   useEffect(() => {
     const url = `${window.location.origin}/consult/protecao-radiologica/programas`
     const restore = []
