@@ -86,7 +86,14 @@ export function ConsultServiceQuickLinks({ mobile = false, onNavigate = () => {}
   </details>
 }
 
-export function ConsultHeader() {
+function ConsultHorizontalBrand() {
+  return <span className="inline-flex items-center gap-2.5 text-white">
+    <span aria-hidden="true" className="block h-[54px] w-[44px] shrink-0" style={{backgroundImage:`url("${LOGO}")`,backgroundSize:'160px 85.5px',backgroundPosition:'-61px -1px',backgroundRepeat:'no-repeat'}}/>
+    <span><span className="block text-[27px] font-extrabold leading-none tracking-tight">Consult</span><span className="mt-1.5 block text-[7px] font-medium uppercase tracking-[.18em]">Radiometria e Qualidade</span></span>
+  </span>
+}
+
+export function ConsultHeader({ horizontalBrand = false }) {
   const [open, setOpen] = useState(false)
   const nav = [
     ['Início','/consult'],
@@ -99,8 +106,8 @@ export function ConsultHeader() {
   ]
   return <header className="sticky top-0 z-50 border-b border-white/10 bg-[#075653]/95 text-white backdrop-blur" style={{ backgroundColor: 'rgba(7,86,83,.97)', color: '#fff' }}>
     <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-      <Link to="/consult" className="flex items-center" aria-label="Página inicial da Consult"><img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-12 w-auto max-w-[190px] object-contain" /></Link>
-      <nav className="hidden items-center gap-6 lg:flex">
+      <Link to="/consult" className="flex items-center" aria-label="Página inicial da Consult">{horizontalBrand ? <ConsultHorizontalBrand/> : <img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-12 w-auto max-w-[190px] object-contain" />}</Link>
+      <nav className={`hidden items-center gap-6 ${horizontalBrand ? 'xl:flex' : 'lg:flex'}`}>
         {nav.map(([label,href]) => label === 'Serviços'
           ? <div key={label} className="flex items-center gap-0"><Link to={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">Serviços</Link><ConsultServiceQuickLinks/></div>
           : href.startsWith('http')
@@ -113,9 +120,9 @@ export function ConsultHeader() {
           <FileText size={16}/> Solicite um orçamento
         </a>
       </nav>
-      <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 lg:hidden" onClick={() => setOpen(v => !v)} aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} aria-controls="consult-internal-mobile-menu">{open ? <X size={20}/> : <Menu size={20}/>}</button>
+      <button type="button" className={`inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 ${horizontalBrand ? 'xl:hidden' : 'lg:hidden'}`} onClick={() => setOpen(v => !v)} aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} aria-controls="consult-internal-mobile-menu">{open ? <X size={20}/> : <Menu size={20}/>}</button>
     </div>
-    {open && <div id="consult-internal-mobile-menu" className="max-h-[calc(100dvh-73px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#064946] px-4 py-5 lg:hidden"><div className="mx-auto flex max-w-7xl flex-col gap-1">
+    {open && <div id="consult-internal-mobile-menu" className={`max-h-[calc(100dvh-73px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#064946] px-4 py-5 ${horizontalBrand ? 'xl:hidden' : 'lg:hidden'}`}><div className="mx-auto flex max-w-7xl flex-col gap-1">
       {nav.map(([label,href]) => label === 'Serviços'
         ? <div key={label}><Link to={href} onClick={()=>setOpen(false)} className="block rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">Serviços</Link><ConsultServiceQuickLinks mobile onNavigate={()=>setOpen(false)}/></div>
         : href.startsWith('http')
@@ -129,11 +136,11 @@ export function ConsultHeader() {
   </header>
 }
 
-export function ConsultFooter() {
+export function ConsultFooter({ horizontalBrand = false }) {
   return <footer className="bg-[#064946] text-white">
     <div className="mx-auto max-w-7xl px-4 pb-8 pt-12 sm:px-6 lg:px-8">
       <div className="grid gap-10 border-b border-white/10 pb-10 lg:grid-cols-[1.2fr_.7fr_.8fr_1.2fr]">
-        <div><img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-14 w-auto max-w-[220px] object-contain"/><p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65">Soluções técnicas para a área da saúde, com foco em segurança, qualidade e conformidade.</p></div>
+        <div>{horizontalBrand ? <ConsultHorizontalBrand/> : <img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-14 w-auto max-w-[220px] object-contain"/>}<p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65">Soluções técnicas para a área da saúde, com foco em segurança, qualidade e conformidade.</p></div>
         <div><h4 className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">Navegação</h4><div className="mt-4 space-y-2 text-sm text-white/75">
           <Link className="block hover:text-[#8AE600]" to="/consult">Início</Link>
           <Link className="block hover:text-[#8AE600]" to="/consult/sobre">Sobre</Link>
@@ -176,6 +183,6 @@ export function ConsultCtaBand({ title = 'Precisa avaliar uma necessidade técni
   </section>
 }
 
-export function ConsultSiteShell({ children }) {
-  return <div className="min-h-screen bg-white font-sans text-[#123C3B]"><ConsultHeader />{children}<ConsultFooter /></div>
+export function ConsultSiteShell({ children, horizontalBrand = false }) {
+  return <div className="min-h-screen bg-white font-sans text-[#123C3B]"><ConsultHeader horizontalBrand={horizontalBrand}/>{children}<ConsultFooter horizontalBrand={horizontalBrand}/></div>
 }
