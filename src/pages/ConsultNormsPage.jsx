@@ -1,3 +1,4 @@
+import { ABNT_IEC_62353_URL } from '@/lib/consultNormReferences'
 import React, { useEffect } from 'react'
 import { ExternalLink, FileText, ShieldCheck } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -24,7 +25,7 @@ const GROUPS = [
     intro: 'Referências gerais para gerenciamento de tecnologias, segurança elétrica e desempenho de equipamentos.',
     items: [
       ['RDC 509/2021 — Anvisa','Base geral indicada para gerenciamento de tecnologias em saúde.','https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2021/rdc0509_27_05_2021.pdf'],
-      ['ABNT NBR IEC 62353','Referência para ensaio recorrente de segurança elétrica e após reparo. Consulte a edição vigente no Catálogo ABNT.','https://www.abntcatalogo.com.br/pav.aspx'],
+      ['ABNT NBR IEC 62353','Referência para ensaio recorrente de segurança elétrica e após reparo. Consulte a edição vigente no Catálogo ABNT.',ABNT_IEC_62353_URL],
       ['Família ABNT NBR IEC 60601','Normas gerais e particulares aplicáveis conforme o tipo de equipamento e o ensaio de desempenho. Consulte a edição vigente no Catálogo ABNT.','https://www.abntcatalogo.com.br/pav.aspx'],
     ],
   },

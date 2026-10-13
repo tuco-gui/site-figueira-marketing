@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
 import ConsultElectricalSafetyLayout from '@/components/consult/ConsultElectricalSafetyLayout'
+import { ABNT_IEC_62353_URL } from '@/lib/consultNormReferences'
 import {
   ApprovedDarkProcess,
   ApprovedFaq,
@@ -28,7 +29,7 @@ const SERVICES = {
     parameters: [['Aterramento','Resistência medida no equipamento'],['Isolamento','Condição de isolamento elétrico'],['Correntes de fuga','Equipamento e partes aplicadas'],['Conclusão','Valores medidos, limites aplicáveis e resultado']],
     deliverable: 'Laudo de Segurança Elétrica',
     reportItems: ['Identificação do equipamento','Valores medidos em cada ensaio','Limites e referência aplicável','Resultado aprovado ou reprovado','Assinatura do responsável técnico e histórico técnico'],
-    norms: [['ABNT NBR IEC 62353','Referência para ensaio recorrente e após reparo.',ABNT],['RDC 509/2021 — Anvisa','Base geral para gerenciamento de tecnologias em saúde.',RDC_509]],
+    norms: [['ABNT NBR IEC 62353','Referência para ensaio recorrente e após reparo.',ABNT_IEC_62353_URL],['RDC 509/2021 — Anvisa','Base geral para gerenciamento de tecnologias em saúde.',RDC_509]],
     faq: [['O ensaio é apenas visual?','Não. O serviço inclui medições de aterramento, isolamento e correntes de fuga, conforme aplicabilidade.'],['O laudo mostra apenas um status final?','Não. O documento registra os valores medidos, os limites aplicáveis e a conclusão técnica.']],
   },
   'desempenho-calibracao': {

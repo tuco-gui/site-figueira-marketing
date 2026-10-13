@@ -1,3 +1,4 @@
+import { ABNT_IEC_62353_URL } from '@/lib/consultNormReferences'
 import React, { useEffect, useMemo } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
@@ -19,7 +20,7 @@ const PNI = 'https://www.gov.br/saude/pt-br/composicao/svsa/pni/rede-de-frio/pub
 const ABNT = 'https://www.abntcatalogo.com.br/'
 
 const ELECTROMEDICAL_NORMS = [
-  ['ABNT NBR IEC 62353','Referência para ensaio de segurança elétrica recorrente e após reparo.',ABNT],
+  ['ABNT NBR IEC 62353','Referência para ensaio de segurança elétrica recorrente e após reparo.',ABNT_IEC_62353_URL],
   ['Família ABNT NBR IEC 60601','Norma particular aplicável conforme o tipo de equipamento.',ABNT],
   ['RDC 509/2021 — Anvisa','Base geral para gerenciamento de tecnologias em saúde.',RDC_509],
 ]
