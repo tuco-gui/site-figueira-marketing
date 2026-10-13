@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { ConsultServiceQuickLinks } from '@/components/consult/ConsultSiteShell';
+import { updateConsultPageMeta } from '@/lib/consultPageMeta';
 import {
   ArrowLeft,
   ArrowRight,
@@ -161,7 +162,7 @@ function WhatsAppIcon({ className = "h-4 w-4" }) {
   );
 }
 
-function usePageMeta(title) {
+function usePageMeta(title, description, image) {
   useEffect(() => {
     const previousTitle = document.title;
     const robots =
@@ -171,13 +172,13 @@ function usePageMeta(title) {
     robots.setAttribute("name", "robots");
     robots.setAttribute("content", "noindex,nofollow");
     if (!robots.parentNode) document.head.appendChild(robots);
-    document.title = title;
+    updateConsultPageMeta({ title, description, image });
 
     return () => {
       document.title = previousTitle;
       if (previousRobots) robots.setAttribute("content", previousRobots);
     };
-  }, [title]);
+  }, [title, description, image]);
 }
 
 function Logo({ className = "" }) {
@@ -563,7 +564,7 @@ function Footer() {
 }
 
 export default function ConsultProposal() {
-  usePageMeta("Consult Radiometria e Qualidade | Física Médica, Proteção Radiológica e Consult Engenharia Clínica");
+  usePageMeta("Consult Radiometria e Qualidade | Física Médica, Proteção Radiológica e Consult Engenharia Clínica", "Medição, ensaio, calibração, qualificação e laudos técnicos em Física Médica, Proteção Radiológica e Consult Engenharia Clínica, com atendimento em todo o Brasil.", HERO_IMAGE);
   const { hash } = useLocation();
 
   // This page mounts lazily. Scroll only after its anchor exists, including

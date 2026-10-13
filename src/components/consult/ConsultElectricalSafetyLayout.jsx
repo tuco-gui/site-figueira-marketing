@@ -33,6 +33,7 @@ export default function ConsultElectricalSafetyLayout({ service, process }) {
       </div>
       <div className="safety-container safety-hero-inner">
         <div className="safety-hero-copy">
+          <nav className="safety-breadcrumb" aria-label="Navegação estrutural"><Link to="/consult">Início</Link><span aria-hidden="true">/</span><Link to="/consult/engenharia-clinica">Consult Engenharia Clínica</Link><span aria-hidden="true">/</span><span aria-current="page">Segurança elétrica</span></nav>
           <Eyebrow>Consult Engenharia Clínica</Eyebrow>
           <h1>Ensaio de<br/><span>segurança elétrica</span></h1>
           <p>{service.intro}</p>

@@ -34,7 +34,7 @@ const protection = {
 }
 
 const engineering = {
-  'seguranca-eletrica': ['Ensaio de segurança elétrica | Consult Engenharia Clínica','Medição de aterramento, isolamento e correntes de fuga conforme ABNT NBR IEC 62353, com laudo por equipamento.'],
+  'seguranca-eletrica': ['Ensaio de segurança elétrica | Consult Engenharia Clínica','Medição de resistência de aterramento, resistência de isolamento e correntes de fuga do equipamento e das partes aplicadas ao paciente.'],
   'desempenho-calibracao': ['Calibração e Ensaio de Desempenho | Consult','Ensaio de desempenho com comparação ponto a ponto, documentação de valores, desvios e conformidade, com padrões de rastreabilidade RBC/Inmetro.'],
   'manutencao-preventiva': ['Manutenção Preventiva | Consult Engenharia Clínica','Limpeza, lubrificação e testes de funcionamento, com atividades e pendências documentadas em laudo por equipamento.'],
   reverificacao: ['Reverificação de Equipamentos | Consult Engenharia Clínica','Novo ensaio após tratamento de uma pendência, com emissão de laudo atualizado e histórico técnico.'],
@@ -118,6 +118,7 @@ function replaceOrInsert(html, regex, value) {
 
 function render(base, route, title, description, ogType) {
   const canonical = `${HOMOLOGATION_ORIGIN}${route}`
+  const socialImage = route === '/consult' ? 'https://images.pexels.com/photos/7089017/pexels-photo-7089017.jpeg?auto=compress&cs=tinysrgb&w=1600' : route === '/consult/engenharia-clinica/seguranca-eletrica' ? `${HOMOLOGATION_ORIGIN}/consult/seguranca-eletrica-hero-v1.webp` : SOCIAL_IMAGE
   let html = base
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(title)}</title>`)
   html = replaceOrInsert(html, /<meta\s+name=["']description["'][^>]*>/i, `<meta name="description" content="${esc(description)}" />`)
@@ -128,12 +129,12 @@ function render(base, route, title, description, ogType) {
   html = replaceOrInsert(html, /<meta\s+property=["']og:type["'][^>]*>/i, `<meta property="og:type" content="${ogType}" />`)
   html = replaceOrInsert(html, /<meta\s+property=["']og:site_name["'][^>]*>/i, '<meta property="og:site_name" content="Consult Radiometria e Qualidade" />')
   html = replaceOrInsert(html, /<meta\s+property=["']og:url["'][^>]*>/i, `<meta property="og:url" content="${canonical}" />`)
-  html = replaceOrInsert(html, /<meta\s+property=["']og:image["'][^>]*>/i, `<meta property="og:image" content="${SOCIAL_IMAGE}" />`)
+  html = replaceOrInsert(html, /<meta\s+property=["']og:image["'][^>]*>/i, `<meta property="og:image" content="${socialImage}" />`)
   html = replaceOrInsert(html, /<meta\s+property=["']og:image:alt["'][^>]*>/i, '<meta property="og:image:alt" content="Consult Radiometria e Qualidade" />')
   html = replaceOrInsert(html, /<meta\s+name=["']twitter:card["'][^>]*>/i, '<meta name="twitter:card" content="summary_large_image" />')
   html = replaceOrInsert(html, /<meta\s+name=["']twitter:title["'][^>]*>/i, `<meta name="twitter:title" content="${esc(title)}" />`)
   html = replaceOrInsert(html, /<meta\s+name=["']twitter:description["'][^>]*>/i, `<meta name="twitter:description" content="${esc(description)}" />`)
-  html = replaceOrInsert(html, /<meta\s+name=["']twitter:image["'][^>]*>/i, `<meta name="twitter:image" content="${SOCIAL_IMAGE}" />`)
+  html = replaceOrInsert(html, /<meta\s+name=["']twitter:image["'][^>]*>/i, `<meta name="twitter:image" content="${socialImage}" />`)
   html = replaceOrInsert(html, /<link\s+rel=["']canonical["'][^>]*>/i, `<link rel="canonical" href="${canonical}" />`)
   return html
 }

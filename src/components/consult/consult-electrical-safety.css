@@ -9,6 +9,8 @@
 .consult-electrical-safety .safety-hero { position:relative; overflow:hidden; background:#004749 url('https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/5ba954a4-90f8-4e55-a0d3-4b15ac1f137f.jpg') left center/cover; color:white; }
 .consult-electrical-safety .safety-hero-inner { position:relative; z-index:2; min-height:clamp(610px, 40vw, 900px); display:flex; align-items:center; padding-block:64px; }
 .consult-electrical-safety .safety-hero-copy { width:45%; max-width:none; }
+.consult-electrical-safety .safety-breadcrumb { display:flex; flex-wrap:wrap; gap:6px 9px; margin-bottom:22px; font-size:12px; line-height:1.6; color:#c7dedf; }
+.consult-electrical-safety .safety-breadcrumb a:hover { color:#fff; text-decoration:underline; text-underline-offset:3px; }
 .consult-electrical-safety .safety-hero .safety-eyebrow { color:#c7dedf; }
 .consult-electrical-safety .safety-hero h1 { margin:30px 0 0; font-size:var(--consult-h1); line-height:1.06; letter-spacing:-.035em; font-weight:800; }
 .consult-electrical-safety .safety-hero h1 span { color:#97e71e; }

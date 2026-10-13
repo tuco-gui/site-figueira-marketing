@@ -20,7 +20,7 @@
   };
 
   const engineeringMeta = {
-    "seguranca-eletrica": ["Ensaio de segurança elétrica | Consult Engenharia Clínica","Medição de aterramento, isolamento e correntes de fuga conforme ABNT NBR IEC 62353, com laudo por equipamento."],
+    "seguranca-eletrica": ["Ensaio de segurança elétrica | Consult Engenharia Clínica","Medição de resistência de aterramento, resistência de isolamento e correntes de fuga do equipamento e das partes aplicadas ao paciente."],
     "desempenho-calibracao": ["Calibração e Ensaio de Desempenho | Consult","Ensaio de desempenho com comparação ponto a ponto, documentação de valores, desvios e conformidade, com padrões de rastreabilidade RBC/Inmetro."],
     "manutencao-preventiva": ["Manutenção Preventiva | Consult Engenharia Clínica","Limpeza, lubrificação e testes de funcionamento, com atividades e pendências documentadas em laudo por equipamento."],
     reverificacao: ["Reverificação de Equipamentos | Consult Engenharia Clínica","Novo ensaio após tratamento de uma pendência, com emissão de laudo atualizado e histórico técnico."],
@@ -205,7 +205,7 @@
 
   const isFigueiraTest = /(^|\.)figueiramarketing\.com\.br$/i.test(location.hostname) || /vercel\.app$/i.test(location.hostname);
   setMeta('meta[name="robots"]',"name","robots",isFigueiraTest ? "noindex, nofollow" : "index, follow");
-  const socialImage = `${location.origin}/consult/approved-national-bg.webp`;
+  const socialImage = path === "/consult" ? "https://images.pexels.com/photos/7089017/pexels-photo-7089017.jpeg?auto=compress&cs=tinysrgb&w=1600" : path === "/consult/engenharia-clinica/seguranca-eletrica" ? `${location.origin}/consult/seguranca-eletrica-hero-v1.webp` : `${location.origin}/consult/approved-national-bg.webp`;
   setMeta('meta[property="og:image"]',"property","og:image",socialImage);
   setMeta('meta[property="og:image:alt"]',"property","og:image:alt","Consult Radiometria e Qualidade");
   setMeta('meta[name="twitter:image"]',"name","twitter:image",socialImage);

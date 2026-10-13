@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
 import ConsultElectricalSafetyLayout from '@/components/consult/ConsultElectricalSafetyLayout'
 import { ABNT_IEC_62353_URL } from '@/lib/consultNormReferences'
+import { updateConsultPageMeta } from '@/lib/consultPageMeta'
 import {
   ApprovedDarkProcess,
   ApprovedFaq,
@@ -94,9 +95,12 @@ export default function ConsultEngineeringServicePage() {
 
   useEffect(() => {
     if (!service) return
-    document.title = `${service.title} | Consult Engenharia Clínica`
-    document.querySelector('meta[name="description"]')?.setAttribute('content', service.intro)
-  }, [service])
+    updateConsultPageMeta({
+      title: `${service.title} | Consult Engenharia Clínica`,
+      description: service.intro,
+      image: slug === 'seguranca-eletrica' ? '/consult/seguranca-eletrica-hero-v1.webp' : undefined,
+    })
+  }, [service, slug])
 
   if (!service) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Serviço não encontrado</h1><Link to="/consult/engenharia-clinica" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Engenharia Clínica</Link></main></ConsultSiteShell>
 
