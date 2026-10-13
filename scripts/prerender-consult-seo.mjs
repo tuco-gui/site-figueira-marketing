@@ -34,7 +34,7 @@ const protection = {
 }
 
 const engineering = {
-  'seguranca-eletrica': ['Ensaio de Segurança Elétrica IEC 62353 | Consult','Medição de aterramento, isolamento e correntes de fuga conforme ABNT NBR IEC 62353, com laudo por equipamento.'],
+  'seguranca-eletrica': ['Ensaio de segurança elétrica | Consult Engenharia Clínica','Medição de aterramento, isolamento e correntes de fuga conforme ABNT NBR IEC 62353, com laudo por equipamento.'],
   'desempenho-calibracao': ['Calibração e Ensaio de Desempenho | Consult','Ensaio de desempenho com comparação ponto a ponto, documentação de valores, desvios e conformidade, com padrões de rastreabilidade RBC/Inmetro.'],
   'manutencao-preventiva': ['Manutenção Preventiva | Consult Engenharia Clínica','Limpeza, lubrificação e testes de funcionamento, com atividades e pendências documentadas em laudo por equipamento.'],
   reverificacao: ['Reverificação de Equipamentos | Consult Engenharia Clínica','Novo ensaio após tratamento de uma pendência, com emissão de laudo atualizado e histórico técnico.'],
@@ -74,7 +74,7 @@ const blog = {
 }
 
 const routes = [
-  ['/consult','Consult Radiometria e Qualidade | Física Médica e Consult Engenharia Clínica','Medição, ensaio, calibração, qualificação e laudos técnicos em Física Médica, Proteção Radiológica e Consult Engenharia Clínica, com atendimento em todo o Brasil.','website'],
+  ['/consult','Consult Radiometria e Qualidade | Física Médica, Proteção Radiológica e Consult Engenharia Clínica','Medição, ensaio, calibração, qualificação e laudos técnicos em Física Médica, Proteção Radiológica e Consult Engenharia Clínica, com atendimento em todo o Brasil.','website'],
   ['/consult/sobre','Sobre a Consult | Consult Radiometria e Qualidade','Conheça a Consult Radiometria e Qualidade, fundada em 1995, sua atuação técnica, áreas de serviço e estrutura de atendimento.','website'],
   ['/consult/servicos','Serviços | Consult Radiometria e Qualidade','Catálogo de serviços da Consult em Física Médica, Proteção Radiológica e Consult Engenharia Clínica.','website'],
   ['/consult/politica-de-privacidade','Política de Privacidade | Consult Radiometria e Qualidade','Política de Privacidade do site da Consult: dados coletados, finalidades, segurança, cookies e direitos previstos na LGPD.','website'],

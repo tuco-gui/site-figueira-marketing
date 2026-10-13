@@ -86,7 +86,7 @@ const SERVICES = {
   },
 }
 
-const PROCESS = [['01','Identificar','Confirmar equipamento, aplicação, histórico e ensaio necessário.'],['02','Medir','Executar as medições com padrões calibrados e rastreabilidade RBC/Inmetro.'],['03','Comparar','Analisar os valores frente à referência aplicável ao equipamento.'],['04','Documentar','Emitir o resultado por equipamento e preservar o histórico técnico.']]
+const PROCESS = [['01','Identificar','Confirmar equipamento, aplicação, histórico e ensaio necessário.'],['02','Medir','Executar as medições utilizando padrões com rastreabilidade RBC/Inmetro.'],['03','Comparar','Analisar os valores frente à referência aplicável ao equipamento.'],['04','Documentar','Emitir o resultado por equipamento e preservar o histórico técnico.']]
 
 export default function ConsultEngineeringServicePage() {
   const { slug } = useParams()

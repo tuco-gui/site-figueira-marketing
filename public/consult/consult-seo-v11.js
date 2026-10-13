@@ -20,7 +20,7 @@
   };
 
   const engineeringMeta = {
-    "seguranca-eletrica": ["Ensaio de Segurança Elétrica IEC 62353 | Consult","Medição de aterramento, isolamento e correntes de fuga conforme ABNT NBR IEC 62353, com laudo por equipamento."],
+    "seguranca-eletrica": ["Ensaio de segurança elétrica | Consult Engenharia Clínica","Medição de aterramento, isolamento e correntes de fuga conforme ABNT NBR IEC 62353, com laudo por equipamento."],
     "desempenho-calibracao": ["Calibração e Ensaio de Desempenho | Consult","Ensaio de desempenho com comparação ponto a ponto, documentação de valores, desvios e conformidade, com padrões de rastreabilidade RBC/Inmetro."],
     "manutencao-preventiva": ["Manutenção Preventiva | Consult Engenharia Clínica","Limpeza, lubrificação e testes de funcionamento, com atividades e pendências documentadas em laudo por equipamento."],
     reverificacao: ["Reverificação de Equipamentos | Consult Engenharia Clínica","Novo ensaio após tratamento de uma pendência, com emissão de laudo atualizado e histórico técnico."],
@@ -54,7 +54,7 @@
     "protecao-radiologica-equipamentos-arco-c":["Proteção radiológica em equipamentos Arco C | Consult","Conteúdo técnico sobre exposição ocupacional, proteção e uso seguro de equipamentos Arco C."],
   };
 
-  let title = "Consult Radiometria e Qualidade | Física Médica e Consult Engenharia Clínica";
+  let title = "Consult Radiometria e Qualidade | Física Médica, Proteção Radiológica e Consult Engenharia Clínica";
   let description = "Medição, ensaio, calibração, qualificação e laudos técnicos em Física Médica, Proteção Radiológica e Consult Engenharia Clínica, com atendimento em todo o Brasil.";
   let keywords = "Consult Radiometria e Qualidade, Física Médica, Proteção Radiológica, Engenharia Clínica, laudo técnico";
   let schemaType = "WebPage";

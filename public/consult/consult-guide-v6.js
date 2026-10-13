@@ -28,10 +28,10 @@
     ],
     [
       "Gestão de equipamentos, manutenção técnica, testes de segurança e suporte para ciclo de vida dos ativos em saúde.",
-      "Ensaios, calibração e qualificação de equipamentos médico-assistenciais, com resultado documentado em laudo técnico independente.",
+      "Ensaios de segurança elétrica e desempenho, manutenção preventiva, reverificação e qualificação térmica, com laudo por equipamento e histórico técnico.",
     ],
     ["Gestão e inventário de equipamentos", "Ensaio de segurança elétrica"],
-    ["Avaliação técnica e suporte à aquisição", "Ensaio de desempenho (calibração)"],
+    ["Avaliação técnica e suporte à aquisição", "Ensaio de desempenho"],
     ["Testes de segurança e desempenho", "Manutenção preventiva conforme plano do fabricante"],
     ["Acompanhamento de manutenção e documentação", "Reverificação após correção de pendências"],
     ["Apoio ao planejamento do ciclo de vida dos ativos", "Qualificação térmica"],
@@ -66,39 +66,6 @@
         }
       }
     });
-  }
-
-  function alignHomepageHero() {
-    if (window.location.pathname !== "/consult") return;
-    const h1 = document.querySelector("main h1, #root h1");
-    if (!h1) return;
-
-    const current = normalizeText(h1.textContent);
-    if (current.includes("Soluções técnicas para a área da saúde") || h1.dataset.consultGuide === "1") {
-      h1.textContent = "Segurança, desempenho e rastreabilidade dos equipamentos de saúde, comprovados em laudo técnico";
-      h1.dataset.consultGuide = "1";
-
-      const section = h1.closest("section") || h1.parentElement;
-      if (section) {
-        const paragraphs = Array.from(section.querySelectorAll("p"));
-        const intro = paragraphs.find((p) =>
-          normalizeText(p.textContent).includes("Atuamos com Física Médica")
-        );
-        if (intro) {
-          intro.textContent = "A Consult é uma empresa de medição e laudo técnico para serviços de saúde. Verificamos se os equipamentos estão seguros e funcionando dentro da norma e documentamos o resultado em laudo técnico.";
-        }
-      }
-    }
-
-    document.title = "Consult Radiometria e Qualidade | Medição, ensaios e laudos técnicos";
-    const description = "Medição, ensaios, calibração, qualificação e laudos técnicos para serviços de saúde. Física Médica, Proteção Radiológica e Consult Engenharia Clínica.";
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement("meta");
-      meta.setAttribute("name", "description");
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute("content", description);
   }
 
   function findCoverageSection() {
@@ -152,8 +119,8 @@
       if (actions) actions.classList.add("cnv5-actions");
       primary.classList.add("cnv5-meeting");
       primary.setAttribute("href", "#contato");
-      primary.setAttribute("aria-label", "Agende uma reunião");
-      primary.innerHTML = `${calendarIcon}<span>Agende uma reunião</span>`;
+      primary.setAttribute("aria-label", "Solicite um orçamento");
+      primary.innerHTML = `${calendarIcon}<span>Solicite um orçamento</span>`;
       primary.dataset.cnv5Label = "1";
       if (actions && actions.nextElementSibling) actions.nextElementSibling.classList.add("cnv5-tagline");
     }
@@ -343,7 +310,6 @@
   function enhance() {
     if (!PATH_OK.test(window.location.pathname)) return;
     replaceKnownText(document.getElementById("root") || document);
-    alignHomepageHero();
 
     const section = findCoverageSection();
     if (!section) return;

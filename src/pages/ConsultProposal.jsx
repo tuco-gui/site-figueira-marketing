@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { ConsultServiceQuickLinks } from '@/components/consult/ConsultSiteShell';
 import {
   ArrowLeft,
@@ -38,7 +38,8 @@ const CDN =
   "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305";
 
 const LOGO = `${CDN}/68d5471e-43b0-4285-8644-3407ac1e09ff.png`;
-const HERO_IMAGE = `${CDN}/5ba95360-34a0-449d-9a24-4836ac1f137f.jpg`;
+// MART PRODUCTION / Pexels 7089017; Pexels license. Illustrative MRI equipment.
+const HERO_IMAGE = "https://images.pexels.com/photos/7089017/pexels-photo-7089017.jpeg?auto=compress&cs=tinysrgb&w=1600";
 const BG_A = `${CDN}/5ba952d9-c3e4-48d7-9dc0-4716ac1f137f.jpg`;
 const BG_B = `${CDN}/5ba954a4-90f8-4e55-a0d3-4b15ac1f137f.jpg`;
 const APPROVED_MOCKUP = "https://figueira-prospect-assets.vercel.app/consult-home-aprovada.png";
@@ -93,7 +94,7 @@ const serviceAreas = [
   {
     slug: "engenharia-clinica",
     title: "Consult Engenharia Clínica",
-    summary: "Gestão de equipamentos, manutenção técnica, testes de segurança e suporte para ciclo de vida dos ativos em saúde.",
+    summary: "Ensaios de segurança elétrica e desempenho, manutenção preventiva, reverificação e qualificação térmica, com laudo por equipamento e histórico técnico.",
     image: AREA_ENGINEERING_IMAGE,
     intro: "Apoio técnico para instituições que precisam organizar, acompanhar e tomar decisões mais seguras sobre seus equipamentos e tecnologias em saúde.",
     bullets: [
@@ -382,7 +383,7 @@ function ContactForm() {
     <form
       id="contato-form"
       onSubmit={submit}
-      className="rounded-2xl bg-white p-5 text-[#123C3B] shadow-2xl shadow-black/10 sm:p-7"
+      className="scroll-mt-28 rounded-2xl bg-white p-5 text-[#123C3B] shadow-2xl shadow-black/10 sm:p-7"
     >
       <h3 className="text-lg font-extrabold">Envie uma mensagem</h3>
       <p className="mt-1 text-xs leading-relaxed text-black/50">
@@ -562,7 +563,21 @@ function Footer() {
 }
 
 export default function ConsultProposal() {
-  usePageMeta("Consult Radiometria e Qualidade | Física Médica, Proteção Radiológica e Engenharia Clínica");
+  usePageMeta("Consult Radiometria e Qualidade | Física Médica, Proteção Radiológica e Consult Engenharia Clínica");
+  const { hash } = useLocation();
+
+  // This page mounts lazily. Scroll only after its anchor exists, including
+  // direct arrivals from service pages and reloads with a contact hash.
+  useEffect(() => {
+    if (!hash) return;
+    let id;
+    try { id = decodeURIComponent(hash.slice(1)); }
+    catch { id = hash.slice(1); }
+    const frame = window.requestAnimationFrame(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "instant", block: "start" });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [hash]);
 
   return (
     <div className="min-h-screen bg-white font-sans text-[#123C3B]">
@@ -625,8 +640,9 @@ export default function ConsultProposal() {
 
             <div className="consult-hero-media relative min-h-[360px] overflow-hidden lg:min-h-full">
               <img
-                src={AREA_PHYS_IMAGE}
-                alt="Equipamento de diagnóstico por imagem em ambiente de saúde"
+                src={HERO_IMAGE}
+                alt="Imagem ilustrativa de equipamento de ressonância magnética em ambiente hospitalar"
+                fetchPriority="high"
                 className="absolute inset-0 h-full w-full scale-110 object-cover object-center"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-[#075653] via-[#075653]/30 to-transparent lg:from-[#075653]/70" />
@@ -668,7 +684,7 @@ export default function ConsultProposal() {
               <h2 className="text-4xl font-black tracking-[-0.03em] sm:text-5xl">Por que escolher a <span className="text-[#79D900]">Consult?</span></h2>
               <p className="mx-auto mt-3 max-w-3xl text-[15px] leading-relaxed text-black/60">
                 Fundada em 1995, a Consult atua em Física Médica do Radiodiagnóstico desde 2013.
-                <br className="hidden sm:block" /> Mais que serviços, oferecemos parceria técnica e compromisso com a sua segurança.
+                <br className="hidden sm:block" /> Medição independente, rastreabilidade e laudos técnicos para apoiar decisões seguras e conformes.
               </p>
             </div>
             <div className="mt-9 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
@@ -719,8 +735,8 @@ export default function ConsultProposal() {
               })}
             </div>
             <div className="mt-9 flex justify-center">
-              <a href="#contato" className="inline-flex min-h-[48px] items-center justify-center gap-3 rounded-full border-2 border-[#08A77F] px-7 py-3 text-sm font-extrabold text-[#075653] transition hover:bg-[#08A77F] hover:text-white">
-                Solicite uma avaliação <ArrowRight className="h-4 w-4" />
+              <a href="/consult/servicos" className="inline-flex min-h-[48px] items-center justify-center gap-3 rounded-full border-2 border-[#08A77F] px-7 py-3 text-sm font-extrabold text-[#075653] transition hover:bg-[#08A77F] hover:text-white">
+                Conheça todos os nossos serviços <ArrowRight className="h-4 w-4" />
               </a>
             </div>
           </div>
@@ -867,7 +883,7 @@ export default function ConsultProposal() {
           </div>
         </section>
 
-        <section id="contato" className="relative overflow-hidden bg-[#075653] text-white">
+        <section id="contato" className="scroll-mt-28 relative overflow-hidden bg-[#075653] text-white">
           <div
             className="absolute inset-0 opacity-35"
             style={{
