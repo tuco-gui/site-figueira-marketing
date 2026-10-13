@@ -5,6 +5,7 @@ import { queryClientInstance } from '@/lib/query-client'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import PageNotFound from './lib/PageNotFound'
 import ScrollToTop from './components/ScrollToTop'
+import '@/components/consult/consult-responsive.css'
 
 import SiteLayout from '@/components/layout/SiteLayout'
 import Home from '@/pages/Home'
@@ -95,6 +96,7 @@ function App() {
           </Route>
           <Route path="/consult/*" element={
             <Deferred consult>
+              <div className="consult-responsive">
               <Routes>
                 <Route index element={<ConsultProposal />} />
                 <Route path="sobre" element={<ConsultAboutPage />} />
@@ -127,6 +129,7 @@ function App() {
                 <Route path="equipamentos/:slug" element={<ConsultLegacyRedirect type="equipment" />} />
                 <Route path="regioes/:slug" element={<ConsultLegacyRedirect type="region" />} />
               </Routes>
+              </div>
             </Deferred>
           } />
           <Route path="*" element={<PageNotFound />} />

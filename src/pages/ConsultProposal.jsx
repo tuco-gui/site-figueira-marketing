@@ -5,7 +5,6 @@ import {
   ArrowLeft,
   ArrowRight,
   Building2,
-  CalendarDays,
   CheckCircle2,
   FileText,
   HeartPulse,
@@ -210,7 +209,7 @@ function Header() {
           <Logo className="h-12 w-auto max-w-[190px]" />
         </Link>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-7 xl:flex">
           {nav.map(([label, href], index) => label === "Serviços" ? (
             <div key={label} className="flex items-center gap-0">
               <a href={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">Serviços</a>
@@ -236,7 +235,7 @@ function Header() {
         </nav>
 
         <button
-          className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 lg:hidden"
+          className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 xl:hidden"
           onClick={() => setOpen((value) => !value)}
           aria-label={open ? "Fechar menu" : "Abrir menu"}
           aria-expanded={open}
@@ -247,7 +246,7 @@ function Header() {
       </div>
 
       {open && (
-        <div id="consult-home-mobile-menu" className="max-h-[calc(100dvh-73px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#064946] px-4 py-5 lg:hidden">
+        <div id="consult-home-mobile-menu" className="max-h-[calc(100dvh-73px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#064946] px-4 py-5 xl:hidden">
           <div className="mx-auto flex max-w-7xl flex-col gap-1">
             {nav.map(([label, href]) => label === "Serviços" ? (
               <div key={label}>
@@ -585,8 +584,8 @@ export default function ConsultProposal() {
           <div className="absolute -left-28 top-20 h-72 w-72 rounded-full border border-white/5" />
           <div className="absolute left-16 top-6 h-32 w-32 rounded-full border border-dashed border-white/10" />
 
-          <div className="relative mx-auto grid min-h-[580px] max-w-7xl items-stretch lg:grid-cols-[1.02fr_.98fr]">
-            <div className="flex flex-col justify-center px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
+          <div className="relative mx-auto grid consult-edge-hero min-h-[580px] max-w-7xl items-stretch lg:grid-cols-[1.02fr_.98fr]">
+            <div className="consult-hero-copy flex flex-col justify-center px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
               <div className="mb-5 text-[10px] font-bold uppercase tracking-[0.3em] text-white/65">
                 SEGURANÇA HOJE. SAÚDE SEMPRE.
               </div>
@@ -624,7 +623,7 @@ export default function ConsultProposal() {
               </div>
             </div>
 
-            <div className="relative min-h-[360px] overflow-hidden lg:min-h-full">
+            <div className="consult-hero-media relative min-h-[360px] overflow-hidden lg:min-h-full">
               <img
                 src={AREA_PHYS_IMAGE}
                 alt="Equipamento de diagnóstico por imagem em ambiente de saúde"

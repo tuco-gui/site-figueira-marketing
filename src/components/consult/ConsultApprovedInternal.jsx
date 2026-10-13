@@ -14,8 +14,8 @@ export function ApprovedInternalHero({ eyebrow, title, description, image = CONS
     <div className="absolute inset-0 opacity-45" style={{backgroundImage:`url("${CONSULT_IMAGES.protection}")`,backgroundSize:'cover',backgroundPosition:'left bottom'}}/>
     <div className="absolute -left-28 top-20 h-72 w-72 rounded-full border border-white/5"/>
     <div className="absolute left-16 top-6 h-32 w-32 rounded-full border border-dashed border-white/10"/>
-    <div className="relative mx-auto grid min-h-[560px] max-w-7xl items-stretch lg:grid-cols-[1.02fr_.98fr]">
-      <div className="flex flex-col justify-center px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
+    <div className="relative mx-auto grid consult-edge-hero min-h-[560px] max-w-7xl items-stretch lg:grid-cols-[1.02fr_.98fr]">
+      <div className="consult-hero-copy flex flex-col justify-center px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
         <div className="mb-5 text-[10px] font-bold uppercase tracking-[0.3em] text-white/65">{eyebrow}</div>
         <h1 className="max-w-3xl text-4xl font-black leading-[1.02] tracking-[-0.035em] sm:text-5xl lg:text-6xl">{title}</h1>
         <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/82 lg:text-lg">{description}</p>
@@ -24,7 +24,7 @@ export function ApprovedInternalHero({ eyebrow, title, description, image = CONS
           <a href={`https://wa.me/5514981610712?text=${message}`} target="_blank" rel="noreferrer" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/70 px-6 py-3 text-sm font-extrabold text-[#B8FF51] transition hover:bg-[#8AE600] hover:text-[#075653]"><MessageCircle className="h-4 w-4"/>{secondaryLabel}</a>
         </div>
       </div>
-      <div className="relative min-h-[340px] overflow-hidden lg:min-h-full">
+      <div className="consult-hero-media relative min-h-[340px] overflow-hidden lg:min-h-full">
         <img src={image} alt={`${title} — Consult Radiometria e Qualidade`} className="absolute inset-0 h-full w-full scale-105 object-cover object-center"/>
         <div className="absolute inset-0 bg-gradient-to-r from-[#075653] via-[#075653]/25 to-transparent lg:from-[#075653]/62"/>
         <div className="absolute bottom-0 right-0 h-28 w-3/4 rounded-tl-[100%] bg-[#05D29D]/90"/>

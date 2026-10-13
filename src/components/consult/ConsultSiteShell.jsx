@@ -107,7 +107,7 @@ export function ConsultHeader({ horizontalBrand = false }) {
   return <header className="sticky top-0 z-50 border-b border-white/10 bg-[#075653]/95 text-white backdrop-blur" style={{ backgroundColor: 'rgba(7,86,83,.97)', color: '#fff' }}>
     <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
       <Link to="/consult" className="flex items-center" aria-label="Página inicial da Consult">{horizontalBrand ? <ConsultHorizontalBrand/> : <img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-12 w-auto max-w-[190px] object-contain" />}</Link>
-      <nav className={`hidden items-center gap-6 ${horizontalBrand ? 'xl:flex' : 'lg:flex'}`}>
+      <nav className={`hidden items-center gap-6 xl:flex`}>
         {nav.map(([label,href]) => label === 'Serviços'
           ? <div key={label} className="flex items-center gap-0"><Link to={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">Serviços</Link><ConsultServiceQuickLinks/></div>
           : href.startsWith('http')
@@ -120,9 +120,9 @@ export function ConsultHeader({ horizontalBrand = false }) {
           <FileText size={16}/> Solicite um orçamento
         </a>
       </nav>
-      <button type="button" className={`inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 ${horizontalBrand ? 'xl:hidden' : 'lg:hidden'}`} onClick={() => setOpen(v => !v)} aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} aria-controls="consult-internal-mobile-menu">{open ? <X size={20}/> : <Menu size={20}/>}</button>
+      <button type="button" className={`inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 xl:hidden`} onClick={() => setOpen(v => !v)} aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} aria-controls="consult-internal-mobile-menu">{open ? <X size={20}/> : <Menu size={20}/>}</button>
     </div>
-    {open && <div id="consult-internal-mobile-menu" className={`max-h-[calc(100dvh-73px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#064946] px-4 py-5 ${horizontalBrand ? 'xl:hidden' : 'lg:hidden'}`}><div className="mx-auto flex max-w-7xl flex-col gap-1">
+    {open && <div id="consult-internal-mobile-menu" className={`max-h-[calc(100dvh-73px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#064946] px-4 py-5 xl:hidden`}><div className="mx-auto flex max-w-7xl flex-col gap-1">
       {nav.map(([label,href]) => label === 'Serviços'
         ? <div key={label}><Link to={href} onClick={()=>setOpen(false)} className="block rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">Serviços</Link><ConsultServiceQuickLinks mobile onNavigate={()=>setOpen(false)}/></div>
         : href.startsWith('http')
