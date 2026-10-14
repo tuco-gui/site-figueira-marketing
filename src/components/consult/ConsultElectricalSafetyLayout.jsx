@@ -37,6 +37,7 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
     'esfigmomanometro-mapa': ['Esfigmomanômetro', 'digital e MAPA'],
     'desfibrilador-cardioversor-dea': ['Desfibrilador,', 'cardioversor e DEA'],
     'marca-passo-transcutaneo': ['Marca-passo', 'transcutâneo'],
+    'bisturi-eletrico': ['Bisturi elétrico', '(eletrocautério)'],
   }
   const heading = headings[slug] || ['Ensaio de', 'segurança elétrica']
 
