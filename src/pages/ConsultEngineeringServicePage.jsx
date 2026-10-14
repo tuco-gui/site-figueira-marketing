@@ -43,7 +43,7 @@ const SERVICES = {
     parameters: [['Ponto de ensaio','Grandeza e faixa definidas para o equipamento'],['Valor medido','Resposta observada durante o ensaio'],['Referência','Padrão calibrado utilizado na comparação'],['Conclusão','Desvio e conformidade documentados']],
     deliverable: 'Laudo de Ensaio de Desempenho',
     reportItems: ['Identificação do equipamento','Pontos ensaiados e valores medidos','Valores de referência','Desvios encontrados','Conclusão de conformidade e histórico técnico'],
-    norms: [['Família ABNT NBR IEC 60601','Norma particular aplicável conforme o tipo de equipamento.',ABNT],['RDC 509/2021 — Anvisa','Base geral para gerenciamento de tecnologias em saúde.',RDC_509]],
+    norms: [['Família ABNT NBR IEC 60601','Norma particular aplicável conforme o tipo de equipamento.',null],['RDC 509/2021 — Anvisa','Base geral para gerenciamento de tecnologias em saúde.',RDC_509]],
     faq: [['Ensaio de desempenho significa ajustar o equipamento?','Não necessariamente. O serviço mede e compara o desempenho, registrando os resultados e desvios encontrados.'],['A mesma referência vale para todos os equipamentos?','Não. A avaliação considera o tipo de equipamento, seu manual e a norma particular aplicável.'],['Como é descrita a rastreabilidade?','Os padrões utilizados são apresentados como padrões com rastreabilidade RBC/Inmetro.']],
   },
   'manutencao-preventiva': {
@@ -96,15 +96,15 @@ export default function ConsultEngineeringServicePage() {
   useEffect(() => {
     if (!service) return
     updateConsultPageMeta({
-      title: `${service.title} | Consult Engenharia Clínica`,
+      title: slug === 'desempenho-calibracao' ? 'Calibração e Ensaio de Desempenho | Consult' : `${service.title} | Consult Engenharia Clínica`,
       description: service.intro,
-      image: slug === 'seguranca-eletrica' ? '/consult/seguranca-eletrica-hero-v1.webp' : undefined,
+      image: (slug === 'seguranca-eletrica' || slug === 'desempenho-calibracao') ? '/consult/seguranca-eletrica-hero-v1.webp' : undefined,
     })
   }, [service, slug])
 
   if (!service) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Serviço não encontrado</h1><Link to="/consult/engenharia-clinica" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Engenharia Clínica</Link></main></ConsultSiteShell>
 
-  if (slug === 'seguranca-eletrica') return <ConsultElectricalSafetyLayout service={service} process={PROCESS}/>
+  if (slug === 'seguranca-eletrica' || slug === 'desempenho-calibracao') return <ConsultElectricalSafetyLayout service={service} process={PROCESS} slug={slug}/>
 
   return <ConsultSiteShell><main>
     <ApprovedInternalHero eyebrow="Consult Engenharia Clínica" title={service.title} description={service.intro} image={CONSULT_IMAGES.engineering}/>
