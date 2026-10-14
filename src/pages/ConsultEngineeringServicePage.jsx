@@ -17,7 +17,6 @@ import {
 } from '@/components/consult/ConsultApprovedInternal'
 
 const RDC_509 = 'https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2021/rdc0509_27_05_2021.pdf'
-const ABNT = 'https://www.abntcatalogo.com.br/'
 
 const SERVICES = {
   'seguranca-eletrica': {
@@ -82,7 +81,7 @@ const SERVICES = {
     parameters: [['Sensores','Pontos de medição distribuídos'],['Ciclo','Comportamento ao longo da operação'],['Temperatura','Registros e curvas geradas'],['Conclusão','Resultado de conformidade conforme a aplicação']],
     deliverable: 'Relatório de Qualificação Térmica',
     reportItems: ['Identificação do equipamento e do ciclo','Pontos de medição utilizados','Registros e gráficos de temperatura','Critérios aplicáveis à avaliação','Conclusão de conformidade e histórico técnico'],
-    norms: [['ABNT NBR ISO 17665','Referência aplicável à esterilização por calor úmido em autoclaves.',ABNT],['ABNT NBR ISO 15883','Referência aplicável a termodesinfectoras.',ABNT],['ABNT NBR IEC 61010','Referência de segurança para equipamentos laboratoriais quando aplicável.',ABNT]],
+    norms: [['ABNT NBR ISO 17665','Referência aplicável à esterilização por calor úmido em autoclaves.',null],['ABNT NBR ISO 15883','Referência aplicável a termodesinfectoras.',null],['ABNT NBR IEC 61010','Referência de segurança para equipamentos laboratoriais quando aplicável.',null]],
     faq: [['Qualificação térmica é apenas uma leitura de temperatura?','Não. A avaliação acompanha o comportamento durante o ciclo, com pontos de medição distribuídos e registros ao longo do tempo.'],['O relatório inclui gráficos?','Sim. O relatório apresenta os registros, gráficos e a conclusão técnica da avaliação.']],
   },
 }
@@ -93,6 +92,7 @@ const SERVICE_META_TITLES = {
   'desempenho-calibracao': 'Calibração e Ensaio de Desempenho | Consult',
   'manutencao-preventiva': 'Manutenção Preventiva | Consult Engenharia Clínica',
   reverificacao: 'Reverificação de Equipamentos | Consult Engenharia Clínica',
+  'qualificacao-termica': 'Qualificação Térmica | Consult Engenharia Clínica',
 }
 
 export default function ConsultEngineeringServicePage() {
@@ -104,7 +104,7 @@ export default function ConsultEngineeringServicePage() {
     updateConsultPageMeta({
       title: SERVICE_META_TITLES[slug] || `${service.title} | Consult Engenharia Clínica`,
       description: service.intro,
-      image: ['seguranca-eletrica', 'desempenho-calibracao', 'manutencao-preventiva', 'reverificacao'].includes(slug) ? '/consult/seguranca-eletrica-hero-v1.webp' : undefined,
+      image: ['seguranca-eletrica', 'desempenho-calibracao', 'manutencao-preventiva', 'reverificacao', 'qualificacao-termica'].includes(slug) ? '/consult/seguranca-eletrica-hero-v1.webp' : undefined,
     })
   }, [service, slug])
 
@@ -115,8 +115,13 @@ export default function ConsultEngineeringServicePage() {
     ['02','Executar','Realizar limpeza e lubrificação previstas para o equipamento.'],
     ['03','Testar','Verificar o funcionamento após as ações preventivas.'],
     ['04','Documentar','Registrar atividades, peças gastas ou vencidas e pendências no laudo por equipamento.'],
+  ] : slug === 'qualificacao-termica' ? [
+    ['01','Identificar','Confirmar equipamento, ciclo e critérios aplicáveis.'],
+    ['02','Mapear','Distribuir sensores calibrados nos pontos de medição.'],
+    ['03','Registrar','Acompanhar as temperaturas durante o ciclo de operação.'],
+    ['04','Documentar','Apresentar registros, gráficos e conclusão de conformidade.'],
   ] : PROCESS
-  if (['seguranca-eletrica', 'desempenho-calibracao', 'manutencao-preventiva', 'reverificacao'].includes(slug)) return <ConsultElectricalSafetyLayout service={service} process={process} slug={slug}/>
+  if (['seguranca-eletrica', 'desempenho-calibracao', 'manutencao-preventiva', 'reverificacao', 'qualificacao-termica'].includes(slug)) return <ConsultElectricalSafetyLayout service={service} process={process} slug={slug}/>
 
   return <ConsultSiteShell><main>
     <ApprovedInternalHero eyebrow="Consult Engenharia Clínica" title={service.title} description={service.intro} image={CONSULT_IMAGES.engineering}/>

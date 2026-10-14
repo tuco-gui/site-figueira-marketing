@@ -81,12 +81,12 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
     </section>
 
     <section className="safety-process">
-      <div className="safety-container"><div className="safety-section-heading"><Eyebrow>Como funciona</Eyebrow><Title accent="ao laudo técnico">{slug === 'manutencao-preventiva' ? 'Da manutenção' : 'Do ensaio'}</Title></div><ol className="safety-process-grid">{process.map(([num, title, text]) => <li key={num}><span className="safety-step-number">{num}</span><h3>{title}</h3><p>{text}</p></li>)}</ol></div>
+      <div className="safety-container"><div className="safety-section-heading"><Eyebrow>Como funciona</Eyebrow><Title accent={slug === 'qualificacao-termica' ? 'ao relatório técnico' : 'ao laudo técnico'}>{slug === 'manutencao-preventiva' ? 'Da manutenção' : slug === 'qualificacao-termica' ? 'Do mapeamento' : 'Do ensaio'}</Title></div><ol className="safety-process-grid">{process.map(([num, title, text]) => <li key={num}><span className="safety-step-number">{num}</span><h3>{title}</h3><p>{text}</p></li>)}</ol></div>
     </section>
 
     <section className="safety-section safety-section-soft">
       <div className="safety-container safety-report-grid">
-        <div><Eyebrow>O que você recebe</Eyebrow><Title accent="traz">O que o laudo</Title><p className="safety-section-intro">{service.deliverable}, emitido por equipamento, assinado pelo responsável técnico e incorporado ao histórico técnico da instituição.</p></div>
+        <div><Eyebrow>O que você recebe</Eyebrow><Title accent="traz">{slug === 'qualificacao-termica' ? 'O que o relatório' : 'O que o laudo'}</Title><p className="safety-section-intro">{service.deliverable}, emitido por equipamento, assinado pelo responsável técnico e incorporado ao histórico técnico da instituição.</p></div>
         <ul className="safety-report-list">{service.reportItems.map(text => <li key={text}><ClipboardCheck size={22}/><span>{text}</span></li>)}</ul>
       </div>
     </section>
