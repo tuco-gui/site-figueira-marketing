@@ -101,7 +101,7 @@ export default function ConsultEquipmentPage() {
 
   useEffect(() => {
     if (!item || item.redirectTo) return
-    if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo') {
+    if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo' || slug === 'oximetro-pulso') {
       updateConsultPageMeta({
         title: `Ensaio de ${item.title} | Consult Engenharia Clínica`,
         description: `Ensaios aplicáveis a ${item.title}, com medição documentada, padrões com rastreabilidade RBC/Inmetro e laudo por equipamento.`,
@@ -119,10 +119,11 @@ export default function ConsultEquipmentPage() {
 
   const reportItems=['Identificação do equipamento','Ensaios e parâmetros medidos','Valores e referências aplicáveis','Conclusão técnica','Eventuais pendências e histórico técnico']
 
-  if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo') {
+  if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo' || slug === 'oximetro-pulso') {
     const service = {
       title: item.title,
       intro: equipmentIntro(item),
+      caveat: item.caveat,
       story: 'A avaliação é organizada de acordo com o equipamento e com os parâmetros aplicáveis ao ensaio.',
       parameters: item.parameters.map(parameter => [parameter, 'Parâmetro medido e registrado no documento técnico.']),
       proof: equipmentProof(item),

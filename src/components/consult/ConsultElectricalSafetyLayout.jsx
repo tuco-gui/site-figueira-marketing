@@ -33,6 +33,7 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
     'qualificacao-termica': ['Qualificação', 'térmica'],
     'monitor-multiparametrico': ['Monitor', 'multiparamétrico'],
     eletrocardiografo: ['', 'Eletrocardiógrafo'],
+    'oximetro-pulso': ['Oxímetro', 'de pulso'],
   }
   const heading = headings[slug] || ['Ensaio de', 'segurança elétrica']
 
@@ -72,6 +73,7 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
         <div className="safety-card-grid" style={service.parameters.length === 1 ? { gridTemplateColumns: 'minmax(0, 1fr)', maxWidth: 640, marginInline: 'auto' } : undefined}>
           {service.parameters.map(([label, text], i) => { const Icon = ICONS[i % ICONS.length]; return <article className="safety-card" key={label}><div className="safety-card-top"><span className="safety-icon"><Icon size={32}/></span><h3>{label}</h3></div><p>{text}</p></article> })}
         </div>
+        {service.caveat && <aside className="safety-card" style={{ marginTop: 24, borderLeft: '4px solid #00b68c' }}><p>{service.caveat}</p></aside>}
       </div>
     </section>
 
