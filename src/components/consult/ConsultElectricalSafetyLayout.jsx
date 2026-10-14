@@ -35,6 +35,7 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
     eletrocardiografo: ['', 'Eletrocardiógrafo'],
     'oximetro-pulso': ['Oxímetro', 'de pulso'],
     'esfigmomanometro-mapa': ['Esfigmomanômetro', 'digital e MAPA'],
+    'desfibrilador-cardioversor-dea': ['Desfibrilador,', 'cardioversor e DEA'],
   }
   const heading = headings[slug] || ['Ensaio de', 'segurança elétrica']
 
