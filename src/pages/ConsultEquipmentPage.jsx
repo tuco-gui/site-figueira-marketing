@@ -1,4 +1,6 @@
 import { ABNT_IEC_62353_URL } from '@/lib/consultNormReferences'
+import ConsultElectricalSafetyLayout from '@/components/consult/ConsultElectricalSafetyLayout'
+import { updateConsultPageMeta } from '@/lib/consultPageMeta'
 import React, { useEffect, useMemo } from 'react'
 import { Link, Navigate, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
@@ -99,15 +101,39 @@ export default function ConsultEquipmentPage() {
 
   useEffect(() => {
     if (!item || item.redirectTo) return
+    if (slug === 'monitor-multiparametrico') {
+      updateConsultPageMeta({
+        title: `Ensaio de ${item.title} | Consult Engenharia Clínica`,
+        description: `Ensaios aplicáveis a ${item.title}, com medição documentada, padrões com rastreabilidade RBC/Inmetro e laudo por equipamento.`,
+        image: CONSULT_IMAGES.engineering,
+      })
+      return
+    }
     document.title = `Ensaio de ${item.title} | Consult Engenharia Clínica`
     document.querySelector('meta[name="description"]')?.setAttribute('content', equipmentIntro(item))
-  }, [item])
+  }, [item, slug])
 
   if (item?.redirectTo) return <Navigate to={item.redirectTo} replace />
 
   if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Equipamento não encontrado</h1><Link to="/consult/engenharia-clinica" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Engenharia Clínica</Link></main></ConsultSiteShell>
 
   const reportItems=['Identificação do equipamento','Ensaios e parâmetros medidos','Valores e referências aplicáveis','Conclusão técnica','Eventuais pendências e histórico técnico']
+
+  if (slug === 'monitor-multiparametrico') {
+    const service = {
+      title: item.title,
+      intro: equipmentIntro(item),
+      story: 'A avaliação é organizada de acordo com o equipamento e com os parâmetros aplicáveis ao ensaio.',
+      parameters: item.parameters.map(parameter => [parameter, 'Parâmetro medido e registrado no documento técnico.']),
+      proof: equipmentProof(item),
+      deliverable: 'Laudo técnico',
+      reportItems,
+      // ABNT share links expire; keep references visible until a stable specific ficha is verified.
+      norms: equipmentNorms(item).map(([title, text, href]) => [title, text, href === ABNT || href === ABNT_IEC_62353_URL ? null : href]),
+      faq: equipmentFaq(item).map(([question, answer]) => [question, question === 'Como é apresentada a rastreabilidade?' ? 'São utilizados padrões com rastreabilidade RBC/Inmetro.' : answer]),
+    }
+    return <ConsultElectricalSafetyLayout service={service} process={FLOW} slug={slug} showWhen={false}/>
+  }
 
   return <ConsultSiteShell><main>
     <ApprovedInternalHero eyebrow="Consult Engenharia Clínica" title={item.title} description={equipmentIntro(item)} image={CONSULT_IMAGES.engineering}/>

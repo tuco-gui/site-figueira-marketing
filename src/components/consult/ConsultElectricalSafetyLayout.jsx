@@ -24,13 +24,14 @@ function Actions({ title }) {
   </div>
 }
 
-export default function ConsultElectricalSafetyLayout({ service, process, slug = 'seguranca-eletrica' }) {
+export default function ConsultElectricalSafetyLayout({ service, process, slug = 'seguranca-eletrica', showWhen = true }) {
   const safety = slug === 'seguranca-eletrica'
   const headings = {
     'desempenho-calibracao': ['Calibração e ensaio', 'de desempenho'],
     'manutencao-preventiva': ['Manutenção', 'preventiva'],
     reverificacao: ['', 'Reverificação'],
     'qualificacao-termica': ['Qualificação', 'térmica'],
+    'monitor-multiparametrico': ['Monitor', 'multiparamétrico'],
   }
   const heading = headings[slug] || ['Ensaio de', 'segurança elétrica']
 
@@ -73,12 +74,12 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
       </div>
     </section>
 
-    <section className="safety-section safety-section-white">
+    {showWhen && <section className="safety-section safety-section-white">
       <div className="safety-container safety-when-grid">
         <div><Eyebrow>Quando contratar</Eyebrow><Title accent="avaliar o equipamento?">Quando é necessário</Title><p className="safety-section-intro">{slug === 'manutencao-preventiva' ? 'A manutenção considera o equipamento, sua aplicação e o plano do fabricante.' : 'O ensaio considera o equipamento, sua aplicação e o histórico técnico da instituição.'}</p><Link className="safety-text-link" to="/consult/engenharia-clinica">Conheça a Consult Engenharia Clínica</Link></div>
         <ul className="safety-check-list">{service.when.map(text => <li key={text}><span><Check size={18}/></span>{text}</li>)}</ul>
       </div>
-    </section>
+    </section>}
 
     <section className="safety-process">
       <div className="safety-container"><div className="safety-section-heading"><Eyebrow>Como funciona</Eyebrow><Title accent={slug === 'qualificacao-termica' ? 'ao relatório técnico' : 'ao laudo técnico'}>{slug === 'manutencao-preventiva' ? 'Da manutenção' : slug === 'qualificacao-termica' ? 'Do mapeamento' : 'Do ensaio'}</Title></div><ol className="safety-process-grid">{process.map(([num, title, text]) => <li key={num}><span className="safety-step-number">{num}</span><h3>{title}</h3><p>{text}</p></li>)}</ol></div>
