@@ -89,6 +89,12 @@ const SERVICES = {
 
 const PROCESS = [['01','Identificar','Confirmar equipamento, aplicação, histórico e ensaio necessário.'],['02','Medir','Executar as medições utilizando padrões com rastreabilidade RBC/Inmetro.'],['03','Comparar','Analisar os valores frente à referência aplicável ao equipamento.'],['04','Documentar','Emitir o resultado por equipamento e preservar o histórico técnico.']]
 
+const SERVICE_META_TITLES = {
+  'desempenho-calibracao': 'Calibração e Ensaio de Desempenho | Consult',
+  'manutencao-preventiva': 'Manutenção Preventiva | Consult Engenharia Clínica',
+  reverificacao: 'Reverificação de Equipamentos | Consult Engenharia Clínica',
+}
+
 export default function ConsultEngineeringServicePage() {
   const { slug } = useParams()
   const service = useMemo(() => SERVICES[slug], [slug])
@@ -96,9 +102,9 @@ export default function ConsultEngineeringServicePage() {
   useEffect(() => {
     if (!service) return
     updateConsultPageMeta({
-      title: slug === 'desempenho-calibracao' ? 'Calibração e Ensaio de Desempenho | Consult' : slug === 'manutencao-preventiva' ? 'Manutenção Preventiva | Consult Engenharia Clínica' : `${service.title} | Consult Engenharia Clínica`,
+      title: SERVICE_META_TITLES[slug] || `${service.title} | Consult Engenharia Clínica`,
       description: service.intro,
-      image: ['seguranca-eletrica', 'desempenho-calibracao', 'manutencao-preventiva'].includes(slug) ? '/consult/seguranca-eletrica-hero-v1.webp' : undefined,
+      image: ['seguranca-eletrica', 'desempenho-calibracao', 'manutencao-preventiva', 'reverificacao'].includes(slug) ? '/consult/seguranca-eletrica-hero-v1.webp' : undefined,
     })
   }, [service, slug])
 
@@ -110,7 +116,7 @@ export default function ConsultEngineeringServicePage() {
     ['03','Testar','Verificar o funcionamento após as ações preventivas.'],
     ['04','Documentar','Registrar atividades, peças gastas ou vencidas e pendências no laudo por equipamento.'],
   ] : PROCESS
-  if (['seguranca-eletrica', 'desempenho-calibracao', 'manutencao-preventiva'].includes(slug)) return <ConsultElectricalSafetyLayout service={service} process={process} slug={slug}/>
+  if (['seguranca-eletrica', 'desempenho-calibracao', 'manutencao-preventiva', 'reverificacao'].includes(slug)) return <ConsultElectricalSafetyLayout service={service} process={process} slug={slug}/>
 
   return <ConsultSiteShell><main>
     <ApprovedInternalHero eyebrow="Consult Engenharia Clínica" title={service.title} description={service.intro} image={CONSULT_IMAGES.engineering}/>
