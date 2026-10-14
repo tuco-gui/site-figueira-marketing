@@ -37,7 +37,7 @@ const SERVICES = {
     title: 'Calibração e ensaio de desempenho',
     intro: 'Ensaio de desempenho com comparação ponto a ponto entre o que o equipamento mede ou entrega e uma referência calibrada.',
     storyTitle: 'O desempenho precisa ser demonstrado por comparação objetiva.',
-    story: 'O ensaio seleciona os pontos aplicáveis ao equipamento, compara os resultados com a referência correspondente e documenta desvios e conformidade. No corpo técnico, o serviço é tratado como ensaio de desempenho.',
+    story: 'O ensaio seleciona os pontos aplicáveis ao equipamento, compara os resultados com a referência correspondente e documenta desvios e conformidade.',
     proof: [['MÉTODO','Comparação ponto a ponto'],['ENTREGA','Laudo com desvios'],['BASE','Norma do equipamento'],['RASTREIO','RBC/Inmetro']],
     when: ['Rotina periódica de verificação','Após manutenção ou suspeita de desvio','Quando é necessário documentar o desempenho do equipamento','Para manter histórico técnico das medições'],
     parameters: [['Ponto de ensaio','Grandeza e faixa definidas para o equipamento'],['Valor medido','Resposta observada durante o ensaio'],['Referência','Padrão calibrado utilizado na comparação'],['Conclusão','Desvio e conformidade documentados']],
