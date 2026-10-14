@@ -1,0 +1,559 @@
+{
+  "sourceOrigin": "http://www.consult.med.br",
+  "retrievedAt": "2026-10-14",
+  "status": "prepared_not_applied_to_final_domain",
+  "redirects": [
+    {
+      "from": "http://www.consult.med.br/posts/?dt=dose-no-cristalino-em-radiologia-intervencionista-como-medir-de-verdade-QmZLdEJmUXpXUDVRYUdQRlBwRjlqUT09",
+      "to": "/consult/blog/dose-no-cristalino-em-radiologia-intervencionista-como-medir-de-verdade",
+      "finalPath": "/blog/dose-no-cristalino-em-radiologia-intervencionista-como-medir-de-verdade",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=o-que-86-estudos-clinicos-dizem-sobre-ia-na-reducao-de-dose-em-tc-UDlkcmhMU0wyb0lMZmdvOVlYcktEdz09",
+      "to": "/consult/blog/o-que-86-estudos-clinicos-dizem-sobre-ia-na-reducao-de-dose-em-tc",
+      "finalPath": "/blog/o-que-86-estudos-clinicos-dizem-sobre-ia-na-reducao-de-dose-em-tc",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=dose-no-cristalino-em-procedimentos-intervencionistas-monitorar-antes-que-o-limite-chegue-V2VQSEZJdTZneUtNYmlIcHp2RzhxQT09",
+      "to": "/consult/blog/dose-no-cristalino-em-procedimentos-intervencionistas-monitorar-antes-que-o-limite-chegue",
+      "finalPath": "/blog/dose-no-cristalino-em-procedimentos-intervencionistas-monitorar-antes-que-o-limite-chegue",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=monitoramento-digital-da-exposicao-do-paciente-as-primeiras-diretrizes-internacionais-chegaram-e-sua-instituicao-deveria-conhece-las-Sis1dXhmWGNQRm5vdkpmTDF5ZXQ4Zz09",
+      "to": "/consult/blog/monitoramento-digital-da-exposicao-do-paciente-as-primeiras-diretrizes-internacionais-chegaram-e-sua-instituicao-deveria-conhece-las",
+      "finalPath": "/blog/monitoramento-digital-da-exposicao-do-paciente-as-primeiras-diretrizes-internacionais-chegaram-e-sua-instituicao-deveria-conhece-las",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=iaea-publica-novos-guias-de-seguranca-para-protecao-radiologica-de-pacientes-e-trabalhadores-TDhTVmhkOWx6c09YRXVQejRjYkNFQT09",
+      "to": "/consult/blog/iaea-publica-novos-guias-de-seguranca-para-protecao-radiologica-de-pacientes-e-trabalhadores",
+      "finalPath": "/blog/iaea-publica-novos-guias-de-seguranca-para-protecao-radiologica-de-pacientes-e-trabalhadores",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=25-anos-de-avancos-em-tc-permitiram-reduzir-doses-por-fator-de-2-a-10-mostra-revisao-no-ajr-a1hsTDlUemZMRWZrMXRJMURtK2JnZz09",
+      "to": "/consult/blog/25-anos-de-avancos-em-tc-permitiram-reduzir-doses-por-fator-de-2-a-10-mostra-revisao-no-ajr",
+      "finalPath": "/blog/25-anos-de-avancos-em-tc-permitiram-reduzir-doses-por-fator-de-2-a-10-mostra-revisao-no-ajr",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=fda-concede-designacao-breakthrough-a-ias-generativas-que-redigem-laudos-radiologicos-emdEbk9wbEtQQ0xVSUdJZ1JpeUIydz09",
+      "to": "/consult/blog/fda-concede-designacao-breakthrough-a-ias-generativas-que-redigem-laudos-radiologicos",
+      "finalPath": "/blog/fda-concede-designacao-breakthrough-a-ias-generativas-que-redigem-laudos-radiologicos",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=tomografia-com-detectores-de-contagem-de-fotons-consolida-reducoes-de-dose-de-2-a-10-vezes-eXppN0F4SWVINVhqbmZIdHI1SmJ6dz09",
+      "to": "/consult/blog/tomografia-com-detectores-de-contagem-de-fotons-consolida-reducoes-de-dose-de-2-a-10-vezes",
+      "finalPath": "/blog/tomografia-com-detectores-de-contagem-de-fotons-consolida-reducoes-de-dose-de-2-a-10-vezes",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=estudo-global-revela-grande-variacao-nas-doses-de-radiacao-em-imagem-cardiaca-WHNTa0Uremt5VWdrdTZzZVIxZmlpQT09",
+      "to": "/consult/blog/estudo-global-revela-grande-variacao-nas-doses-de-radiacao-em-imagem-cardiaca",
+      "finalPath": "/blog/estudo-global-revela-grande-variacao-nas-doses-de-radiacao-em-imagem-cardiaca",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=ia-generativa-reduz-dose-em-angiografia-dsa-ensaio-clinico-com-mais-de-46-mil-pacientes-TkpaMzZPT2xCYjV4MzAzYk93eldRQT09",
+      "to": "/consult/blog/ia-generativa-reduz-dose-em-angiografia-dsa-ensaio-clinico-com-mais-de-46-mil-pacientes",
+      "finalPath": "/blog/ia-generativa-reduz-dose-em-angiografia-dsa-ensaio-clinico-com-mais-de-46-mil-pacientes",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=fda-nega-peticao-para-isentar-ia-de-revisao-pre-mercado-em-radiologia-o-que-isso-significa-para-o-setor-MHNYS0tOd2o4bXNza0NTOUhSb080QT09",
+      "to": "/consult/blog/fda-nega-peticao-para-isentar-ia-de-revisao-pre-mercado-em-radiologia-o-que-isso-significa-para-o-setor",
+      "finalPath": "/blog/fda-nega-peticao-para-isentar-ia-de-revisao-pre-mercado-em-radiologia-o-que-isso-significa-para-o-setor",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=alara-9-sociedades-medicas-lancam-nova-doutrina-de-radioprotecao-em-fluoroscopia-V0VMYXQ2NncxUkgrUW5kRFlXb2paQT09",
+      "to": "/consult/blog/alara-9-sociedades-medicas-lancam-nova-doutrina-de-radioprotecao-em-fluoroscopia",
+      "finalPath": "/blog/alara-9-sociedades-medicas-lancam-nova-doutrina-de-radioprotecao-em-fluoroscopia",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=controle-de-qualidade-em-ultrassom-sua-clinica-esta-atendendo-a-instrucao-normativa-96-da-anvisa-RXFycUhVWE82Y2tvejNKR3NmeDRzZz09",
+      "to": "/consult/blog/controle-de-qualidade-em-ultrassom-sua-clinica-esta-atendendo-a-instrucao-normativa-96-da-anvisa",
+      "finalPath": "/blog/controle-de-qualidade-em-ultrassom-sua-clinica-esta-atendendo-a-instrucao-normativa-96-da-anvisa",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=consult-fortalece-educacao-continuada-com-nova-plataforma-de-cursos-digitais-M1RmNTNHUnRGSjNnbkRKaTA4RTdoUT09",
+      "to": "/consult/blog/educacao-continuada-cursos-digitais-radioprotecao",
+      "finalPath": "/blog/educacao-continuada-cursos-digitais-radioprotecao",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=tc-por-contagem-de-fotons-a-nova-era-do-diagnostico-por-imagem-chega-ao-mercado-S21NYVVOTGZITXQ4MkVjUWlheVFwUT09",
+      "to": "/consult/blog/tc-por-contagem-de-fotons-a-nova-era-do-diagnostico-por-imagem-chega-ao-mercado",
+      "finalPath": "/blog/tc-por-contagem-de-fotons-a-nova-era-do-diagnostico-por-imagem-chega-ao-mercado",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=validade-de-treinamentos-online-ppr-digital-e-a-digitalizacao-de-documentos-bHFHZ2tPRThMUHpnQUZ1S1NrNW9EZz09",
+      "to": "/consult/blog/validade-de-treinamentos-online-ppr-digital-e-a-digitalizacao-de-documentos",
+      "finalPath": "/blog/validade-de-treinamentos-online-ppr-digital-e-a-digitalizacao-de-documentos",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=medicao-de-tempo-de-irradiacao-e-kilovoltagem-em-equipamentos-periapicais-Qi9vcnl4ekYvd3hMaW42eTlOZmQ1Zz09",
+      "to": "/consult/blog/medicao-de-tempo-de-irradiacao-e-kilovoltagem-em-equipamentos-periapicais",
+      "finalPath": "/blog/medicao-de-tempo-de-irradiacao-e-kilovoltagem-em-equipamentos-periapicais",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=indo-alem-do-controle-de-qualidade-na-radiologia-diagnostica-dERrQWlpQ29zZlA3UVRVeU1aTlJrdz09",
+      "to": "/consult/blog/indo-alem-do-controle-de-qualidade-na-radiologia-diagnostica",
+      "finalPath": "/blog/indo-alem-do-controle-de-qualidade-na-radiologia-diagnostica",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=gerenciamento-da-dose-de-radiacao-do-paciente-em-radiologia-intervencionista-dThvWUNsclA4SVNxV081YjVNS1hJdz09",
+      "to": "/consult/blog/gerenciamento-da-dose-de-radiacao-do-paciente-em-radiologia-intervencionista",
+      "finalPath": "/blog/gerenciamento-da-dose-de-radiacao-do-paciente-em-radiologia-intervencionista",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=acr-endossa-posicao-da-aapm-sobre-descontinuacao-da-blindagem-de-gonadas-e-fetal-durante-procedimentos-radiologicos-elRZVGRleFNEelZhTGI1RFlKWXZkQT09",
+      "to": "/consult/blog/acr-endossa-posicao-da-aapm-sobre-descontinuacao-da-blindagem-de-gonadas-e-fetal-durante-procedimentos-radiologicos",
+      "finalPath": "/blog/acr-endossa-posicao-da-aapm-sobre-descontinuacao-da-blindagem-de-gonadas-e-fetal-durante-procedimentos-radiologicos",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=acr-endossa-posicao-da-aapm-sobre-descontinuacao-da-blindagem-de-gonadas-e-fetal-durante-procedimentos-radiologicos-eWhZaVFkbWd0U3dvSmJjU3JicGNMQT09",
+      "to": "/consult/blog/acr-endossa-posicao-da-aapm-sobre-descontinuacao-da-blindagem-de-gonadas-e-fetal-durante-procedimentos-radiologicos",
+      "finalPath": "/blog/acr-endossa-posicao-da-aapm-sobre-descontinuacao-da-blindagem-de-gonadas-e-fetal-durante-procedimentos-radiologicos",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=densidade-mamaria-na-mamografia-como-ela-afeta-os-indicadores-de-performance-nos-programas-de-rastreamento-U0JRTVI1eWoyWTJsdTZjemROaDgyZz09",
+      "to": "/consult/blog/densidade-mamaria-na-mamografia-como-ela-afeta-os-indicadores-de-performance-nos-programas-de-rastreamento",
+      "finalPath": "/blog/densidade-mamaria-na-mamografia-como-ela-afeta-os-indicadores-de-performance-nos-programas-de-rastreamento",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=fatores-que-afetam-a-detectividade-do-cancer-de-mama-na-tomosintese-de-mama-e-mamografia-em-pacientes-com-seios-densos-bVZhbWl3aG1rSzJCQ0FCd2VGQ1p4QT09",
+      "to": "/consult/blog/fatores-que-afetam-a-detectividade-do-cancer-de-mama-na-tomosintese-de-mama-e-mamografia-em-pacientes-com-seios-densos",
+      "finalPath": "/blog/fatores-que-afetam-a-detectividade-do-cancer-de-mama-na-tomosintese-de-mama-e-mamografia-em-pacientes-com-seios-densos",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=protecao-radiologica-em-equipamentos-arco-c-NS9kS1lkbXlWaG5mTEJGNmlUZnhUdz09",
+      "to": "/consult/blog/protecao-radiologica-equipamentos-arco-c",
+      "finalPath": "/blog/protecao-radiologica-equipamentos-arco-c",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=aapm-rpt-260-sobre-a-utilizacao-de-dispositivos-moveis-para-visualizacao-de-imagens-medicas-ZlhuM1czUXJNdy9jZS9DNWFFVGJvQT09",
+      "to": "/consult/blog/aapm-rpt-260-sobre-a-utilizacao-de-dispositivos-moveis-para-visualizacao-de-imagens-medicas",
+      "finalPath": "/blog/aapm-rpt-260-sobre-a-utilizacao-de-dispositivos-moveis-para-visualizacao-de-imagens-medicas",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=risco-de-catarata-induzida-por-radiacao-investigacao-da-exposicao-a-radiacao-na-lente-ocular-durante-procedimentos-endo-urologicos-MFE0cGVYUE15RDIvNHl4Q21tMzByQT09",
+      "to": "/consult/blog/risco-de-catarata-induzida-por-radiacao-investigacao-da-exposicao-a-radiacao-na-lente-ocular-durante-procedimentos-endo-urologicos",
+      "finalPath": "/blog/risco-de-catarata-induzida-por-radiacao-investigacao-da-exposicao-a-radiacao-na-lente-ocular-durante-procedimentos-endo-urologicos",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=o-comentario-27-da-ncrp-sobre-a-aplicacao-do-modelo-linear-sem-limiar-Y1VvL2pLYlZMcmhGUVUwc0xESCs0Zz09",
+      "to": "/consult/blog/o-comentario-27-da-ncrp-sobre-a-aplicacao-do-modelo-linear-sem-limiar",
+      "finalPath": "/blog/o-comentario-27-da-ncrp-sobre-a-aplicacao-do-modelo-linear-sem-limiar",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=exames-radiologicos-na-gravidez-ZmU5MldCTGZzVWVicEVvWjlBSzBnUT09",
+      "to": "/consult/blog/exames-radiologicos-na-gravidez",
+      "finalPath": "/blog/exames-radiologicos-na-gravidez",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=publicacao-das-nacoes-unidas-sobre-efeitos-da-radiacao-e-fontes-eHp4WWNyQkN6dlNIRDNjNVV3YUFIUT09",
+      "to": "/consult/blog/publicacao-das-nacoes-unidas-sobre-efeitos-da-radiacao-e-fontes",
+      "finalPath": "/blog/publicacao-das-nacoes-unidas-sobre-efeitos-da-radiacao-e-fontes",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=tc-por-contagem-de-fotons-reduz-55-da-dose-em-cancer-de-pulmao-e-tambem-o-contraste-dXNSK0lrZ09SeW9ZZUtPYnlsR2syZz09",
+      "to": "/consult/blog/tc-por-contagem-de-fotons-reduz-55-da-dose-em-cancer-de-pulmao-e-tambem-o-contraste",
+      "finalPath": "/blog/tc-por-contagem-de-fotons-reduz-55-da-dose-em-cancer-de-pulmao-e-tambem-o-contraste",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=icrp-e-iaea-revisam-o-sistema-de-protecao-radiologica-o-que-muda-depois-da-publicacao-103-SEl1U3didzNoK2ZtVjlmRGRWaStnQT09",
+      "to": "/consult/blog/icrp-e-iaea-revisam-o-sistema-de-protecao-radiologica-o-que-muda-depois-da-publicacao-103",
+      "finalPath": "/blog/icrp-e-iaea-revisam-o-sistema-de-protecao-radiologica-o-que-muda-depois-da-publicacao-103",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=revisao-de-2020-2025-quantifica-ia-reduz-de-40-a-90-da-dose-em-tc-com-ressalvas-importantes-U2tyQzMzM2IrYzJVUW4vcDhZaW5KQT09",
+      "to": "/consult/blog/revisao-de-2020-2025-quantifica-ia-reduz-de-40-a-90-da-dose-em-tc-com-ressalvas-importantes",
+      "finalPath": "/blog/revisao-de-2020-2025-quantifica-ia-reduz-de-40-a-90-da-dose-em-tc-com-ressalvas-importantes",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=ia-na-radioprotecao-a-aiea-quer-inteligencia-integrada-nao-automacao-cega-ZWdQaGczQXBPVngycm81OHFEVlBmQT09",
+      "to": "/consult/blog/ia-na-radioprotecao-a-aiea-quer-inteligencia-integrada-nao-automacao-cega",
+      "finalPath": "/blog/ia-na-radioprotecao-a-aiea-quer-inteligencia-integrada-nao-automacao-cega",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=pacientes-com-exames-recorrentes-a-dose-que-ninguem-esta-somando-REt6bExqL1RJV2pJa05YSlQrWnVRdz09",
+      "to": "/consult/blog/pacientes-com-exames-recorrentes-a-dose-que-ninguem-esta-somando",
+      "finalPath": "/blog/pacientes-com-exames-recorrentes-a-dose-que-ninguem-esta-somando",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=tomografia-por-contagem-de-fotons-consolida-ganhos-de-dose-em-2026-evidencia-clinica-por-regiao-anatomica-eWt3QU44UHlhd3dsRVZ0anpILzN2QT09",
+      "to": "/consult/blog/tomografia-por-contagem-de-fotons-consolida-ganhos-de-dose-em-2026-evidencia-clinica-por-regiao-anatomica",
+      "finalPath": "/blog/tomografia-por-contagem-de-fotons-consolida-ganhos-de-dose-em-2026-evidencia-clinica-por-regiao-anatomica",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=europa-publica-nova-recomendacao-euratom-sobre-niveis-de-referencia-diagnostica-o-que-isso-significa-para-o-servico-brasileiro-L2JZUEkwWWJ6Yzc5Yi9UY296ZVFHZz09",
+      "to": "/consult/blog/europa-publica-nova-recomendacao-euratom-sobre-niveis-de-referencia-diagnostica-o-que-isso-significa-para-o-servico-brasileiro",
+      "finalPath": "/blog/europa-publica-nova-recomendacao-euratom-sobre-niveis-de-referencia-diagnostica-o-que-isso-significa-para-o-servico-brasileiro",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=icrp-publica-perspectiva-sobre-ia-em-radioprotecao-onde-a-tecnologia-ja-entrega-e-onde-ainda-nao-d3N0TVJEWVdPNFFPWGNIbU56eDduZz09",
+      "to": "/consult/blog/icrp-publica-perspectiva-sobre-ia-em-radioprotecao-onde-a-tecnologia-ja-entrega-e-onde-ainda-nao",
+      "finalPath": "/blog/icrp-publica-perspectiva-sobre-ia-em-radioprotecao-onde-a-tecnologia-ja-entrega-e-onde-ainda-nao",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=dosimetria-em-tempo-real-mostra-como-posicao-da-barreira-e-angulacao-do-feixe-definem-a-dose-no-cristalino-do-intervencionista-aldjZEx5TkF4dFdqWGRka0d5QldRQT09",
+      "to": "/consult/blog/dosimetria-em-tempo-real-mostra-como-posicao-da-barreira-e-angulacao-do-feixe-definem-a-dose-no-cristalino-do-intervencionista",
+      "finalPath": "/blog/dosimetria-em-tempo-real-mostra-como-posicao-da-barreira-e-angulacao-do-feixe-definem-a-dose-no-cristalino-do-intervencionista",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=inteligencia-artificial-e-reducao-de-dose-em-tc-o-que-dizem-86-estudos-clinicos-Vy9QV2RvZ2FLUmRndmRibnUwL2EwZz09",
+      "to": "/consult/blog/inteligencia-artificial-e-reducao-de-dose-em-tc-o-que-dizem-86-estudos-clinicos",
+      "finalPath": "/blog/inteligencia-artificial-e-reducao-de-dose-em-tc-o-que-dizem-86-estudos-clinicos",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=norma-cnen-nn-3-01-revisada-o-que-muda-na-pratica-para-os-servicos-que-usam-radiacao-ionizante-MHMraVRKMkF2N1FibEt4Q0FSTG56QT09",
+      "to": "/consult/blog/norma-cnen-nn-3-01-revisada-o-que-muda-na-pratica-para-os-servicos-que-usam-radiacao-ionizante",
+      "finalPath": "/blog/norma-cnen-nn-3-01-revisada-o-que-muda-na-pratica-para-os-servicos-que-usam-radiacao-ionizante",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=bonn-call-for-action-o-novo-mapa-global-da-radioprotecao-em-medicina-K3ZEdFYyTWV5anN6MXFva255MG9vQT09",
+      "to": "/consult/blog/bonn-call-for-action-o-novo-mapa-global-da-radioprotecao-em-medicina",
+      "finalPath": "/blog/bonn-call-for-action-o-novo-mapa-global-da-radioprotecao-em-medicina",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=primeiras-diretrizes-internacionais-de-monitoramento-digital-da-exposicao-de-pacientes-o-fim-das-planilhas-manuais-VVRCaVZibE9TRVZiL250QUFCRFM5QT09",
+      "to": "/consult/blog/primeiras-diretrizes-internacionais-de-monitoramento-digital-da-exposicao-de-pacientes-o-fim-das-planilhas-manuais",
+      "finalPath": "/blog/primeiras-diretrizes-internacionais-de-monitoramento-digital-da-exposicao-de-pacientes-o-fim-das-planilhas-manuais",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=tc-de-contagem-de-fotons-reduz-dose-em-66-no-manejo-do-cancer-de-pulmao-UGpydnZqc3NJOVc2dFpvRnFoa2lpUT09",
+      "to": "/consult/blog/tc-de-contagem-de-fotons-reduz-dose-em-66-no-manejo-do-cancer-de-pulmao",
+      "finalPath": "/blog/tc-de-contagem-de-fotons-reduz-dose-em-66-no-manejo-do-cancer-de-pulmao",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=nova-era-da-imagem-medica-iaea-publica-orientacao-atualizada-sobre-protecao-radiologica-de-pacientes-RHlUZ1NCbXJaYk5uTXdxbFRtLzhJQT09",
+      "to": "/consult/blog/nova-era-da-imagem-medica-iaea-publica-orientacao-atualizada-sobre-protecao-radiologica-de-pacientes",
+      "finalPath": "/blog/nova-era-da-imagem-medica-iaea-publica-orientacao-atualizada-sobre-protecao-radiologica-de-pacientes",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=o-que-cinco-anos-de-evidencia-clinica-dizem-sobre-ia-para-reducao-de-dose-em-tc-VjFsS3lLSFBPY1NkRXhMckkyTmU0QT09",
+      "to": "/consult/blog/o-que-cinco-anos-de-evidencia-clinica-dizem-sobre-ia-para-reducao-de-dose-em-tc",
+      "finalPath": "/blog/o-que-cinco-anos-de-evidencia-clinica-dizem-sobre-ia-para-reducao-de-dose-em-tc",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=nova-norma-ansn-3-02-redefine-os-servicos-de-radioprotecao-no-brasil-N1BmYzBYeExGV1JBNXpZZ1NMNFNIdz09",
+      "to": "/consult/blog/nova-norma-ansn-3-02-redefine-os-servicos-de-radioprotecao-no-brasil",
+      "finalPath": "/blog/nova-norma-ansn-3-02-redefine-os-servicos-de-radioprotecao-no-brasil",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=inteligencia-artificial-e-dose-em-tc-o-que-a-revisao-de-86-estudos-realmente-mostrou-emFhYzNoQmJrbzJCOU4zL2l5SVVuUT09",
+      "to": "/consult/blog/inteligencia-artificial-e-dose-em-tc-o-que-a-revisao-de-86-estudos-realmente-mostrou",
+      "finalPath": "/blog/inteligencia-artificial-e-dose-em-tc-o-que-a-revisao-de-86-estudos-realmente-mostrou",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=resolucao-cfm-2-454-2026-em-vigor-o-que-muda-para-quem-usa-ia-em-diagnostico-por-imagem-YVJ6K0JrL1JBc1l4SFlmZTkxRFpBQT09",
+      "to": "/consult/blog/resolucao-cfm-2-454-2026-em-vigor-o-que-muda-para-quem-usa-ia-em-diagnostico-por-imagem",
+      "finalPath": "/blog/resolucao-cfm-2-454-2026-em-vigor-o-que-muda-para-quem-usa-ia-em-diagnostico-por-imagem",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=tc-de-contagem-de-fotons-reduz-dose-em-66-na-avaliacao-de-cancer-de-pulmao-NUFDVXR2QVltZWJENmJHTSs2cFgrUT09",
+      "to": "/consult/blog/tc-de-contagem-de-fotons-reduz-dose-em-66-na-avaliacao-de-cancer-de-pulmao",
+      "finalPath": "/blog/tc-de-contagem-de-fotons-reduz-dose-em-66-na-avaliacao-de-cancer-de-pulmao",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=tomografia-por-contagem-de-fotons-corta-55-da-dose-em-cancer-de-pulmao-o-que-muda-na-pratica-Q3pSN0N1Tkh3Z0NobnVQNEdhOXBLUT09",
+      "to": "/consult/blog/tomografia-por-contagem-de-fotons-corta-55-da-dose-em-cancer-de-pulmao-o-que-muda-na-pratica",
+      "finalPath": "/blog/tomografia-por-contagem-de-fotons-corta-55-da-dose-em-cancer-de-pulmao-o-que-muda-na-pratica",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=ia-para-reducao-de-dose-em-tc-o-que-86-estudos-realmente-demonstraram-ZThnaXhRUnd1cVNySmpJOUVDSnpVUT09",
+      "to": "/consult/blog/ia-para-reducao-de-dose-em-tc-o-que-86-estudos-realmente-demonstraram",
+      "finalPath": "/blog/ia-para-reducao-de-dose-em-tc-o-que-86-estudos-realmente-demonstraram",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=tc-por-contagem-de-fotons-1-36-msv-contra-4-04-msv-em-estudo-prospectivo-Q0hKYjdZOUFrZnRVOXh2eEN6N2xyUT09",
+      "to": "/consult/blog/tc-por-contagem-de-fotons-1-36-msv-contra-4-04-msv-em-estudo-prospectivo",
+      "finalPath": "/blog/tc-por-contagem-de-fotons-1-36-msv-contra-4-04-msv-em-estudo-prospectivo",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=cristalino-na-hemodinamica-por-que-o-limite-de-20-msv-ano-ainda-e-descumprido-VGczR04yZE5UcHZvY0IwZVk4RWVVZz09",
+      "to": "/consult/blog/cristalino-na-hemodinamica-por-que-o-limite-de-20-msv-ano-ainda-e-descumprido",
+      "finalPath": "/blog/cristalino-na-hemodinamica-por-que-o-limite-de-20-msv-ano-ainda-e-descumprido",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=doses-de-tc-caem-21-8-nos-eua-o-que-os-novos-niveis-de-referencia-dizem-sobre-o-seu-servico-Rm9YQ2NEMGJZdXduNnBlSi9IOHdsQT09",
+      "to": "/consult/blog/doses-de-tc-caem-21-8-nos-eua-o-que-os-novos-niveis-de-referencia-dizem-sobre-o-seu-servico",
+      "finalPath": "/blog/doses-de-tc-caem-21-8-nos-eua-o-que-os-novos-niveis-de-referencia-dizem-sobre-o-seu-servico",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=nteligencia-artificial-para-reducao-de-dose-em-tc-o-que-dizem-cinco-anos-de-evidencia-clinica-MUdjWGh6VDdEMEhHdnFKemtYMFg0Zz09",
+      "to": "/consult/blog/nteligencia-artificial-para-reducao-de-dose-em-tc-o-que-dizem-cinco-anos-de-evidencia-clinica",
+      "finalPath": "/blog/nteligencia-artificial-para-reducao-de-dose-em-tc-o-que-dizem-cinco-anos-de-evidencia-clinica",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=novo-marco-regulatorio-da-radioprotecao-no-brasil-resolucao-cnen-344-2025-parecer-cfm-2-2026-e-o-que-muda-para-os-servicos-aDVuMDFlcDFJbldrV0xpSEVmVFA2UT09",
+      "to": "/consult/blog/novo-marco-regulatorio-da-radioprotecao-no-brasil-resolucao-cnen-344-2025-parecer-cfm-2-2026-e-o-que-muda-para-os-servicos",
+      "finalPath": "/blog/novo-marco-regulatorio-da-radioprotecao-no-brasil-resolucao-cnen-344-2025-parecer-cfm-2-2026-e-o-que-muda-para-os-servicos",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=dose-no-cristalino-em-radiologia-intervencionista-estudo-multicentrico-expoe-lacunas-na-protecao-ocupacional-d0NFSUhBcTdsc1NYWXpYTFRzUjNiZz09",
+      "to": "/consult/blog/dose-no-cristalino-em-radiologia-intervencionista-estudo-multicentrico-expoe-lacunas-na-protecao-ocupacional",
+      "finalPath": "/blog/dose-no-cristalino-em-radiologia-intervencionista-estudo-multicentrico-expoe-lacunas-na-protecao-ocupacional",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=anvisa-atualiza-lista-de-radiofarmacos-e-estimula-registro-no-brasil-KzY5bk5zWkJjZnp4R1hIM0c1VjNWdz09",
+      "to": "/consult/blog/anvisa-atualiza-lista-de-radiofarmacos-e-estimula-registro-no-brasil",
+      "finalPath": "/blog/anvisa-atualiza-lista-de-radiofarmacos-e-estimula-registro-no-brasil",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=tc-de-contagem-de-fotons-menos-dose-menos-contraste-e-mais-diagnostico-no-cancer-de-pulmao-anhudWZNZ2FqbGs0ZkZVcFVwSGZSUT09",
+      "to": "/consult/blog/tc-de-contagem-de-fotons-menos-dose-menos-contraste-e-mais-diagnostico-no-cancer-de-pulmao",
+      "finalPath": "/blog/tc-de-contagem-de-fotons-menos-dose-menos-contraste-e-mais-diagnostico-no-cancer-de-pulmao",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=tc-em-pacientes-de-trauma-estudo-populacional-encontra-relacao-dose-dependente-com-cancer-RWdibVFEY2VPOGRkUEJKOGIyUjB6dz09",
+      "to": "/consult/blog/tc-em-pacientes-de-trauma-estudo-populacional-encontra-relacao-dose-dependente-com-cancer",
+      "finalPath": "/blog/tc-em-pacientes-de-trauma-estudo-populacional-encontra-relacao-dose-dependente-com-cancer",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=reconstrucao-por-deep-learning-reduz-dose-em-tc-de-cranio-sem-comprometer-qualidade-diagnostica-WTN6aXRGUStnTU83RG9UVEYrZUExZz09",
+      "to": "/consult/blog/reconstrucao-por-deep-learning-reduz-dose-em-tc-de-cranio-sem-comprometer-qualidade-diagnostica",
+      "finalPath": "/blog/reconstrucao-por-deep-learning-reduz-dose-em-tc-de-cranio-sem-comprometer-qualidade-diagnostica",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=inteligencia-artificial-na-reducao-de-dose-em-tc-revisao-confirma-reducoes-de-ate-50-sem-perda-diagnostica-VlhDT1dUR0hqN2NIY2N2S1MrM2JqQT09",
+      "to": "/consult/blog/inteligencia-artificial-na-reducao-de-dose-em-tc-revisao-confirma-reducoes-de-ate-50-sem-perda-diagnostica",
+      "finalPath": "/blog/inteligencia-artificial-na-reducao-de-dose-em-tc-revisao-confirma-reducoes-de-ate-50-sem-perda-diagnostica",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=primeiras-diretrizes-internacionais-para-monitoramento-da-exposicao-do-paciente-na-imagem-medica-o-papel-da-digitalizacao-bFMxUk5RMlE0ZGtKZ1dycGNXSE5lUT09",
+      "to": "/consult/blog/primeiras-diretrizes-internacionais-para-monitoramento-da-exposicao-do-paciente-na-imagem-medica-o-papel-da-digitalizacao",
+      "finalPath": "/blog/primeiras-diretrizes-internacionais-para-monitoramento-da-exposicao-do-paciente-na-imagem-medica-o-papel-da-digitalizacao",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=rastreamento-de-cancer-de-pulmao-com-tc-de-baixa-dose-radioprotecao-em-foco-no-ecr-2026-bDB4NTBuVGs5cUpEVERSRmFTekVCQT09",
+      "to": "/consult/blog/rastreamento-de-cancer-de-pulmao-com-tc-de-baixa-dose-radioprotecao-em-foco-no-ecr-2026",
+      "finalPath": "/blog/rastreamento-de-cancer-de-pulmao-com-tc-de-baixa-dose-radioprotecao-em-foco-no-ecr-2026",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=novas-diretrizes-para-protecao-ocupacional-na-radiologia-intervencionista-o-que-mudou-desde-2010-L0tsV2Zkd3U0amh3NFAvT1ZOaFhoUT09",
+      "to": "/consult/blog/novas-diretrizes-para-protecao-ocupacional-na-radiologia-intervencionista-o-que-mudou-desde-2010",
+      "finalPath": "/blog/novas-diretrizes-para-protecao-ocupacional-na-radiologia-intervencionista-o-que-mudou-desde-2010",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=reconstrucao-por-aprendizado-profundo-na-tc-estudos-de-2026-confirmam-reducao-de-dose-de-ate-75-V2ZRRmoxYWlCU1RiWkQ1N2V0ajFydz09",
+      "to": "/consult/blog/reconstrucao-por-aprendizado-profundo-na-tc-estudos-de-2026-confirmam-reducao-de-dose-de-ate-75",
+      "finalPath": "/blog/reconstrucao-por-aprendizado-profundo-na-tc-estudos-de-2026-confirmam-reducao-de-dose-de-ate-75",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=registro-de-dose-em-fluoroscopia-diagnostica-desafios-e-avancos-no-benchmarking-institucional-bjAwZG14a1ZhOVpaZURiTWl6TkU5dz09",
+      "to": "/consult/blog/registro-de-dose-em-fluoroscopia-diagnostica-desafios-e-avancos-no-benchmarking-institucional",
+      "finalPath": "/blog/registro-de-dose-em-fluoroscopia-diagnostica-desafios-e-avancos-no-benchmarking-institucional",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=dose-versus-acuracia-diagnostica-o-equilibrio-impossivel-ou-quase-da-radiologia-bjVtL3Y3VXVxVG1xekt3MGc5Q3hRUT09",
+      "to": "/consult/blog/dose-versus-acuracia-diagnostica-o-equilibrio-impossivel-ou-quase-da-radiologia",
+      "finalPath": "/blog/dose-versus-acuracia-diagnostica-o-equilibrio-impossivel-ou-quase-da-radiologia",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=niveis-de-referencia-de-diagnostico-em-radiologia-intervencionista-revisao-sistematica-brasileira-e-atualizacao-internacional-SjhBOWU1VDJpTWRJWFlKN1dKbklkUT09",
+      "to": "/consult/blog/niveis-de-referencia-de-diagnostico-em-radiologia-intervencionista-revisao-sistematica-brasileira-e-atualizacao-internacional",
+      "finalPath": "/blog/niveis-de-referencia-de-diagnostico-em-radiologia-intervencionista-revisao-sistematica-brasileira-e-atualizacao-internacional",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=acr-e-siim-aprovam-primeiro-parametro-pratico-para-ia-em-imagem-medica-N1dvV2dsRkl2WXhEeW1VNTlMYmdxUT09",
+      "to": "/consult/blog/acr-e-siim-aprovam-primeiro-parametro-pratico-para-ia-em-imagem-medica",
+      "finalPath": "/blog/acr-e-siim-aprovam-primeiro-parametro-pratico-para-ia-em-imagem-medica",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=ia-em-radiologia-em-2026-do-entusiasmo-as-evidencias-e-os-riscos-que-ninguem-esta-falando-WXF5M09tMXlaVU82Z2psSVNiTWRQZz09",
+      "to": "/consult/blog/ia-em-radiologia-em-2026-do-entusiasmo-as-evidencias-e-os-riscos-que-ninguem-esta-falando",
+      "finalPath": "/blog/ia-em-radiologia-em-2026-do-entusiasmo-as-evidencias-e-os-riscos-que-ninguem-esta-falando",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=cnen-atualiza-norma-3-01-principais-mudancas-que-todo-profissional-de-radioprotecao-precisa-conhecer-VUo3Z0toQm81QzU3c05XYldZTlpCZz09",
+      "to": "/consult/blog/cnen-atualiza-norma-3-01-principais-mudancas-que-todo-profissional-de-radioprotecao-precisa-conhecer",
+      "finalPath": "/blog/cnen-atualiza-norma-3-01-principais-mudancas-que-todo-profissional-de-radioprotecao-precisa-conhecer",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=aiea-realiza-simposio-internacional-de-dosimetria-medica-em-outubro-de-2026-o-que-esperar-do-idos-2026-VnRiZyttZVdzUUpHcXN5ZjlaM21UUT09",
+      "to": "/consult/blog/aiea-realiza-simposio-internacional-de-dosimetria-medica-em-outubro-de-2026-o-que-esperar-do-idos-2026",
+      "finalPath": "/blog/aiea-realiza-simposio-internacional-de-dosimetria-medica-em-outubro-de-2026-o-que-esperar-do-idos-2026",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=nova-norma-cnen-nn-3-01-o-que-muda-para-os-servicos-de-radiologia-no-brasil-ZHpObXg5R2U1dXU5M0ROYTZhNlRSZz09",
+      "to": "/consult/blog/nova-norma-cnen-nn-3-01-o-que-muda-para-os-servicos-de-radiologia-no-brasil",
+      "finalPath": "/blog/nova-norma-cnen-nn-3-01-o-que-muda-para-os-servicos-de-radiologia-no-brasil",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=marlin-como-aprender-com-incidentes-em-radiologia-para-proteger-os-pacientes-a0VZY3V2TTlkdzVqSkc0YzB0VmkxQT09",
+      "to": "/consult/blog/marlin-como-aprender-com-incidentes-em-radiologia-para-proteger-os-pacientes",
+      "finalPath": "/blog/marlin-como-aprender-com-incidentes-em-radiologia-para-proteger-os-pacientes",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=bonn-o-novo-marco-global-para-a-radioprotecao-em-medicina-OXF4Q0dia2JpUzRyczdCSVh3dXhCdz09",
+      "to": "/consult/blog/bonn-o-novo-marco-global-para-a-radioprotecao-em-medicina",
+      "finalPath": "/blog/bonn-o-novo-marco-global-para-a-radioprotecao-em-medicina",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=aiea-publica-guia-definitivo-para-implementacao-de-ia-em-imagem-medica-QXZjUjF2WENGL2VSa2pwL0VDWGlCZz09",
+      "to": "/consult/blog/aiea-publica-guia-definitivo-para-implementacao-de-ia-em-imagem-medica",
+      "finalPath": "/blog/aiea-publica-guia-definitivo-para-implementacao-de-ia-em-imagem-medica",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=novo-radiometro-de-luminescencia-otimizado-com-nanoparticulas-de-ouro-para-radiografia-Nlpzc2didnVyaWlzS3orV0JLWXRnQT09",
+      "to": "/consult/blog/novo-radiometro-de-luminescencia-otimizado-com-nanoparticulas-de-ouro-para-radiografia",
+      "finalPath": "/blog/novo-radiometro-de-luminescencia-otimizado-com-nanoparticulas-de-ouro-para-radiografia",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=publicado-artigo-da-geracao-de-tc-sintetica-craniana-por-aprendizado-multitarefa-em-rms-de-diferentes-forcas-de-campo-bDM1QkxyZWY3UDRjQnpmbGQ2c0EzUT09",
+      "to": "/consult/blog/publicado-artigo-da-geracao-de-tc-sintetica-craniana-por-aprendizado-multitarefa-em-rms-de-diferentes-forcas-de-campo",
+      "finalPath": "/blog/publicado-artigo-da-geracao-de-tc-sintetica-craniana-por-aprendizado-multitarefa-em-rms-de-diferentes-forcas-de-campo",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=inteligencia-artificial-no-radiodiagnostico-da-promessa-a-pratica-e-o-que-a-resolucao-cfm-2-454-2026-muda-para-voce-RmpwVWxWWUtUbUFWRlExbXVrVW1odz09",
+      "to": "/consult/blog/inteligencia-artificial-no-radiodiagnostico-da-promessa-a-pratica-e-o-que-a-resolucao-cfm-2-454-2026-muda-para-voce",
+      "finalPath": "/blog/inteligencia-artificial-no-radiodiagnostico-da-promessa-a-pratica-e-o-que-a-resolucao-cfm-2-454-2026-muda-para-voce",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=o-papel-dos-pops-na-sustentabilidade-de-uma-organizacao-QmZBUHNwZXJHL2hOSi83dUtsWjR3dz09",
+      "to": "/consult/blog/o-papel-dos-pops-na-sustentabilidade-de-uma-organizacao",
+      "finalPath": "/blog/o-papel-dos-pops-na-sustentabilidade-de-uma-organizacao",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=sobre-qualidade-formas-de-evidenciar-reunioes-e-treinamentos-realizados-virtualmente-NmRoYlRuMDZpOStTTzdvVU5LZXZjZz09",
+      "to": "/consult/blog/sobre-qualidade-formas-de-evidenciar-reunioes-e-treinamentos-realizados-virtualmente",
+      "finalPath": "/blog/sobre-qualidade-formas-de-evidenciar-reunioes-e-treinamentos-realizados-virtualmente",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=tomografia-computadorizada-nao-deve-ser-usada-como-primeira-opcao-em-diagnostico-de-coronavirus-VXhuZGtSeTdLVjVoeWJVUHJmOUpRUT09",
+      "to": "/consult/blog/tomografia-computadorizada-nao-deve-ser-usada-como-primeira-opcao-em-diagnostico-de-coronavirus",
+      "finalPath": "/blog/tomografia-computadorizada-nao-deve-ser-usada-como-primeira-opcao-em-diagnostico-de-coronavirus",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=tamanho-do-paciente-importa-efeito-da-modulacao-de-corrente-na-ssde-e-na-qualidade-da-imagem-na-tc-de-rastreamento-de-cancer-de-pulmao-em-baixa-dose-cVhUQUJtSlJ0eW9zVHVmUTVXc0c1QT09",
+      "to": "/consult/blog/tamanho-do-paciente-importa-efeito-da-modulacao-de-corrente-na-ssde-e-na-qualidade-da-imagem-na-tc-de-rastreamento-de-cancer-de-pulmao-em-baixa-dose",
+      "finalPath": "/blog/tamanho-do-paciente-importa-efeito-da-modulacao-de-corrente-na-ssde-e-na-qualidade-da-imagem-na-tc-de-rastreamento-de-cancer-de-pulmao-em-baixa-dose",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=5-procedimentos-simples-para-garantir-a-confiabilidade-do-seu-ultrassom-d3dseEF0OEZyR3kzKzJ2S1E3OEdtZz09",
+      "to": "/consult/blog/5-procedimentos-simples-para-garantir-a-confiabilidade-do-seu-ultrassom",
+      "finalPath": "/blog/5-procedimentos-simples-para-garantir-a-confiabilidade-do-seu-ultrassom",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=clinicas-odontologicas-voces-estao-fazendo-controle-de-qualidade-no-raios-x-L0tPcHNKSUUyeUsraURJbDlnQnp1Zz09",
+      "to": "/consult/blog/clinicas-odontologicas-voces-estao-fazendo-controle-de-qualidade-no-raios-x",
+      "finalPath": "/blog/clinicas-odontologicas-voces-estao-fazendo-controle-de-qualidade-no-raios-x",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=controle-de-qualidade-e-levantamento-radiometrico-o-check-up-que-mantem-sua-radiologia-segura-regular-e-previsivel-cEJvU09nRUpxVEY4b1YwdTF3aEVRZz09",
+      "to": "/consult/blog/controle-de-qualidade-e-levantamento-radiometrico-o-check-up-que-mantem-sua-radiologia-segura-regular-e-previsivel",
+      "finalPath": "/blog/controle-de-qualidade-e-levantamento-radiometrico-o-check-up-que-mantem-sua-radiologia-segura-regular-e-previsivel",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=dosimetro-instadose-leitura-complementar-confiavel-por-um-preco-acessivel-NkJFYmhzUlJGaWFRSFUwbWk1cTMxZz09",
+      "to": "/consult/blog/dosimetro-instadose-leitura-complementar-confiavel-por-um-preco-acessivel",
+      "finalPath": "/blog/dosimetro-instadose-leitura-complementar-confiavel-por-um-preco-acessivel",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=5-dicas-para-gerenciar-a-manutencao-de-equipmentos-de-imagem-c3lZK1oreDRoQjVNOGpJZkpjSzUrUT09",
+      "to": "/consult/blog/5-dicas-para-gerenciar-a-manutencao-de-equipmentos-de-imagem",
+      "finalPath": "/blog/5-dicas-para-gerenciar-a-manutencao-de-equipmentos-de-imagem",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=historico-de-dosimetria-do-trabalhador-d01nTThqQmg4Sis2NStJTkluaFUxdz09",
+      "to": "/consult/blog/historico-de-dosimetria-do-trabalhador",
+      "finalPath": "/blog/historico-de-dosimetria-do-trabalhador",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=importancia-das-certificacoes-em-estabelecimentos-de-saude-principais-certificadoras-e-como-se-preparar-dnNuV0tZL2VpQ2VFdlExSWxBelJRZz09",
+      "to": "/consult/blog/importancia-das-certificacoes-em-estabelecimentos-de-saude-principais-certificadoras-e-como-se-preparar",
+      "finalPath": "/blog/importancia-das-certificacoes-em-estabelecimentos-de-saude-principais-certificadoras-e-como-se-preparar",
+      "statusCode": 301
+    },
+    {
+      "from": "http://www.consult.med.br/posts/?dt=publicado-iaea-hhs-47-um-guia-pratico-de-controle-de-qualidade-de-equipamentos-Nk8wSnFob1pNSC9qYXdmTVFFdEtLQT09",
+      "to": "/consult/blog/iaea-hhs-47-controle-qualidade-equipamentos",
+      "finalPath": "/blog/iaea-hhs-47-controle-qualidade-equipamentos",
+      "statusCode": 301
+    }
+  ]
+}

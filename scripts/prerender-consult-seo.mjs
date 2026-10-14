@@ -1,6 +1,7 @@
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 
+const legacyPosts = JSON.parse(await readFile('src/data/consultLegacyPosts.json', 'utf8'))
 const DIST = 'dist'
 const HOMOLOGATION_ORIGIN = 'https://www.figueiramarketing.com.br'
 const SOCIAL_IMAGE = `${HOMOLOGATION_ORIGIN}/consult/approved-national-bg.webp`
@@ -67,11 +68,6 @@ const regions = {
   'minas-gerais':['Minas Gerais','em Minas Gerais'],
 }
 
-const blog = {
-  'educacao-continuada-cursos-digitais-radioprotecao':['Educação continuada e cursos de radioproteção | Consult','A Consult amplia o acesso a treinamentos online de proteção radiológica, qualidade em radiodiagnóstico e segurança em ressonância magnética.'],
-  'iaea-hhs-47-controle-qualidade-equipamentos':['IAEA HHS 47 e controle de qualidade | Consult','Entenda a importância do guia IAEA HHS 47 para testes de controle de qualidade em radiologia diagnóstica.'],
-  'protecao-radiologica-equipamentos-arco-c':['Proteção radiológica em equipamentos Arco C | Consult','Conteúdo técnico sobre exposição ocupacional, proteção e uso seguro de equipamentos Arco C.'],
-}
 
 const routes = [
   ['/consult','Consult Radiometria e Qualidade | Física Médica, Proteção Radiológica e Consult Engenharia Clínica','Medição, ensaio, calibração, qualificação e laudos técnicos em Física Médica, Proteção Radiológica e Consult Engenharia Clínica, com atendimento em todo o Brasil.','website'],
@@ -103,7 +99,7 @@ for (const [slug, [name, prep]] of Object.entries(regions)) routes.push([
   `Atendimento presencial da Consult ${prep} para Física Médica, Proteção Radiológica e Engenharia Clínica, com medições, ensaios e laudos técnicos.`,
   'website',
 ])
-for (const [slug, meta] of Object.entries(blog)) routes.push([`/consult/blog/${slug}`,...meta,'article'])
+for (const post of legacyPosts) routes.push([`/consult/blog/${post.slug}`, `${post.title} | Consult`, post.excerpt, 'article'])
 
 const esc = (value='') => String(value)
   .replace(/&/g,'&amp;')
@@ -118,7 +114,8 @@ function replaceOrInsert(html, regex, value) {
 
 function render(base, route, title, description, ogType) {
   const canonical = `${HOMOLOGATION_ORIGIN}${route}`
-  const socialImage = route === '/consult' ? 'https://images.pexels.com/photos/7089017/pexels-photo-7089017.jpeg?auto=compress&cs=tinysrgb&w=1600' : route === '/consult/engenharia-clinica/seguranca-eletrica' ? `${HOMOLOGATION_ORIGIN}/consult/seguranca-eletrica-hero-v1.webp` : SOCIAL_IMAGE
+  const article = legacyPosts.find(post => route === `/consult/blog/${post.slug}`)
+  const socialImage = article?.coverImage ? `${HOMOLOGATION_ORIGIN}${article.coverImage}` : route.startsWith('/consult/engenharia-clinica') ? `${HOMOLOGATION_ORIGIN}/consult/seguranca-eletrica-hero-v1.webp` : SOCIAL_IMAGE
   let html = base
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(title)}</title>`)
   html = replaceOrInsert(html, /<meta\s+name=["']description["'][^>]*>/i, `<meta name="description" content="${esc(description)}" />`)

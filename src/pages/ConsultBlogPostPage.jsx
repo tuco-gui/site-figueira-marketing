@@ -1,10 +1,12 @@
+import { updateConsultPageMeta } from '@/lib/consultPageMeta'
 import React, { useEffect, useState } from 'react'
-import { CalendarDays, ExternalLink } from 'lucide-react'
+import { CalendarDays } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultEyebrow, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
 import { getConsultBlogPost } from '@/lib/consultBlogRepository'
 
 function formatDate(value) {
+  if (!value) return null
   return new Date(value).toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' })
 }
 
@@ -13,15 +15,16 @@ export default function ConsultBlogPostPage() {
   const [post, setPost] = useState(undefined)
 
   useEffect(() => {
-    getConsultBlogPost(slug).then((result) => {
-      setPost(result)
-      if (result) {
-        document.title = `${result.title} | Consult`
-        const description = document.querySelector('meta[name="description"]')
-        description?.setAttribute('content', result.excerpt)
-      }
-    })
+    let active = true
+    setPost(undefined)
+    getConsultBlogPost(slug).then(result => { if (active) setPost(result) })
+    return () => { active = false }
   }, [slug])
+
+  useEffect(() => {
+    if (post) updateConsultPageMeta({ title: `${post.title} | Consult`, description: post.excerpt, image: post.coverImage })
+  }, [post])
+
 
   if (post === undefined) {
     return <ConsultSiteShell><main className="mx-auto max-w-5xl px-5 py-24 text-center text-[#607D7A]">Carregando conteúdo...</main></ConsultSiteShell>
@@ -51,7 +54,7 @@ export default function ConsultBlogPostPage() {
               <Link to="/consult/blog" className="text-sm font-bold text-white/62 hover:text-white">Blog técnico</Link>
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <span className="rounded-full bg-[#8AE600] px-3 py-1.5 text-[10px] font-black uppercase tracking-[.14em] text-[#075653]">{post.category}</span>
-                <span className="inline-flex items-center gap-2 text-xs font-bold text-white/60"><CalendarDays size={14} /> {formatDate(post.publishedAt)}</span>
+                <span className="inline-flex items-center gap-2 text-xs font-bold text-white/60">{post.publishedAt && <><CalendarDays size={14}/> {formatDate(post.publishedAt)}</>}</span>
               </div>
               <h1 className="mt-5 max-w-4xl text-4xl font-black leading-[1.05] tracking-[-.04em] md:text-5xl">{post.title}</h1>
               <p className="mt-6 max-w-3xl text-lg leading-8 text-white/78">{post.excerpt}</p>
@@ -62,16 +65,9 @@ export default function ConsultBlogPostPage() {
             <div>
               <ConsultEyebrow>Acervo técnico</ConsultEyebrow>
               <div className="mt-6 space-y-6 text-base leading-8 text-[#365A58]">
-                {post.summary.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+                {post.contentHtml ? <div className="consult-article-content" dangerouslySetInnerHTML={{__html:post.contentHtml}}/> : post.summary.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               </div>
 
-              {post.migrationStatus === 'historical_summary' && post.sourceUrl && (
-                <div className="mt-9 rounded-2xl border border-[#CFE4DE] bg-[#EAF5F2] p-6">
-                  <p className="text-xs font-black uppercase tracking-[.2em] text-[#078B6B]">Acervo histórico</p>
-                  <p className="mt-3 text-sm leading-7 text-[#4D706D]">Este conteúdo está em processo de migração integral para a nova estrutura editorial da Consult. Até a conclusão, a publicação original permanece disponível para consulta.</p>
-                  <a href={post.sourceUrl} target="_blank" rel="noreferrer" className="mt-4 inline-flex items-center gap-2 text-sm font-extrabold text-[#075653]">Ver publicação original <ExternalLink size={14} /></a>
-                </div>
-              )}
             </div>
 
             <aside>
@@ -82,7 +78,7 @@ export default function ConsultBlogPostPage() {
                     <Link key={item.href} to={item.href} className="block rounded-xl bg-[#F4FAF8] px-4 py-3 text-sm font-extrabold leading-5 text-[#075653] transition hover:bg-[#E6F5F0]">{item.label}</Link>
                   ))}
                 </div>
-                <p className="mt-5 border-t border-[#E1ECE9] pt-5 text-xs leading-5 text-[#78908E]">Publicado originalmente por {post.author} em {formatDate(post.publishedAt)}.</p>
+                <p className="mt-5 border-t border-[#E1ECE9] pt-5 text-xs leading-5 text-[#78908E]">Publicado originalmente por {post.author}{post.publishedAt ? ` em ${formatDate(post.publishedAt)}` : ''}.</p>
               </div>
             </aside>
           </section>

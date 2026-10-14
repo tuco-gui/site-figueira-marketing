@@ -5,11 +5,13 @@ import { ConsultEyebrow, ConsultSiteShell } from '@/components/consult/ConsultSi
 import { getConsultBlogCategories, getConsultBlogPosts, getConsultBlogSeedPosts } from '@/lib/consultBlogRepository'
 
 function formatDate(value) {
+  if (!value) return ''
   return new Date(value).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }).replace('.', '')
 }
 
 export default function ConsultBlogPage() {
   const [posts, setPosts] = useState(() => getConsultBlogSeedPosts())
+  const [visibleCount, setVisibleCount] = useState(12)
   const [search, setSearch] = useState('')
   const [category, setCategory] = useState('Todos')
 
@@ -25,7 +27,6 @@ export default function ConsultBlogPage() {
   }, [])
 
   const categories = useMemo(() => ['Todos', ...getConsultBlogCategories(posts)], [posts])
-  const hasHistoricalSummaries = useMemo(() => posts.some((post) => post.migrationStatus === 'historical_summary'), [posts])
   const filtered = useMemo(() => posts.filter((post) => {
     const term = search.trim().toLocaleLowerCase('pt-BR')
     const matchesSearch = !term || `${post.title} ${post.excerpt} ${post.category}`.toLocaleLowerCase('pt-BR').includes(term)
@@ -53,16 +54,18 @@ export default function ConsultBlogPage() {
           </div>
         </section>
 
+
+
         <section className="bg-[#F4FAF8]">
           <div className="mx-auto max-w-7xl px-5 py-10 md:px-8">
             <div className="grid gap-4 rounded-2xl border border-[#D9E9E5] bg-white p-4 shadow-sm md:grid-cols-[1fr_auto] md:items-center md:p-5">
               <label className="relative block">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#62817E]" size={18} />
-                <input value={search} onChange={(event) => setSearch(event.target.value)} placeholder="Buscar no blog..." className="h-12 w-full rounded-xl border border-[#DDEBE8] bg-[#F8FBFA] pl-11 pr-4 text-sm outline-none transition focus:border-[#08A77F]" />
+                <input aria-label="Buscar artigos no blog" value={search} onChange={(event) => {setSearch(event.target.value);setVisibleCount(12)}} placeholder="Buscar no blog..." className="h-12 w-full rounded-xl border border-[#DDEBE8] bg-[#F8FBFA] pl-11 pr-4 text-sm outline-none transition focus:border-[#08A77F]" />
               </label>
               <div className="flex flex-wrap gap-2">
                 {categories.map((item) => (
-                  <button type="button" key={item} onClick={() => setCategory(item)} className={`rounded-full px-4 py-2 text-xs font-extrabold transition ${category === item ? 'bg-[#075653] text-white' : 'border border-[#DDEBE8] bg-white text-[#496C69] hover:border-[#08A77F]'}`}>{item}</button>
+                  <button type="button" key={item} onClick={() => {setCategory(item);setVisibleCount(12)}} className={`rounded-full px-4 py-2 text-xs font-extrabold transition ${category === item ? 'bg-[#075653] text-white' : 'border border-[#DDEBE8] bg-white text-[#496C69] hover:border-[#08A77F]'}`}>{item}</button>
                 ))}
               </div>
             </div>
@@ -75,21 +78,21 @@ export default function ConsultBlogPage() {
               <ConsultEyebrow>Artigos</ConsultEyebrow>
               <h2 className="mt-3 text-3xl font-black tracking-tight text-[#075653] md:text-4xl">Acervo técnico da Consult</h2>
             </div>
-            <p className="max-w-xl text-sm leading-6 text-[#607D7A]">{hasHistoricalSummaries ? 'Parte do acervo histórico está sendo migrada integralmente para a nova estrutura editorial.' : 'Artigos técnicos organizados por área, serviço e tema para facilitar a consulta.'}</p>
+            <p className="max-w-xl text-sm leading-6 text-[#607D7A]">Artigos técnicos organizados por área, serviço e tema para facilitar a consulta.</p>
           </div>
 
           {filtered.length ? (
             <div className="mt-8 grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {filtered.map((post) => (
+              {filtered.slice(0, visibleCount).map((post) => (
                 <article key={post.id} className="group overflow-hidden rounded-[24px] border border-[#DCEAE7] bg-white shadow-[0_16px_45px_rgba(7,86,83,.08)] transition hover:-translate-y-1 hover:shadow-[0_22px_55px_rgba(7,86,83,.14)]">
                   <Link to={`/consult/blog/${post.slug}`} className="block">
                     <div className="relative h-56 overflow-hidden bg-[#075653]">
-                      {post.coverImage ? <img src={post.coverImage} alt={post.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]" /> : null}
+                      {post.coverImage ? <img src={post.coverImage} alt={post.title} loading="lazy" decoding="async" className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]" /> : null}
                       <div className="absolute inset-0 bg-gradient-to-t from-[#043F3D]/82 via-[#043F3D]/10 to-transparent" />
                       <span className="absolute left-5 top-5 rounded-full bg-[#8AE600] px-3 py-1.5 text-[10px] font-black uppercase tracking-[.13em] text-[#075653]">{post.category}</span>
                     </div>
                     <div className="p-6">
-                      <div className="flex items-center gap-2 text-xs font-bold text-[#78908E]"><CalendarDays size={14} /> {formatDate(post.publishedAt)}</div>
+                      <div className="flex items-center gap-2 text-xs font-bold text-[#78908E]">{post.publishedAt && <><CalendarDays size={14}/> {formatDate(post.publishedAt)}</>}</div>
                       <h3 className="mt-4 text-xl font-black leading-7 text-[#075653] transition group-hover:text-[#08A77F]">{post.title}</h3>
                       <p className="mt-3 text-sm leading-6 text-[#607D7A]">{post.excerpt}</p>
                       <span className="mt-5 inline-flex text-sm font-extrabold text-[#075653]">Ler conteúdo</span>
@@ -101,6 +104,7 @@ export default function ConsultBlogPage() {
           ) : (
             <div className="mt-8 rounded-2xl border border-[#DCEAE7] bg-[#F7FBFA] px-6 py-14 text-center text-sm text-[#607D7A]">Nenhum conteúdo encontrado com esses filtros.</div>
           )}
+          {filtered.length > visibleCount && <button type="button" onClick={() => setVisibleCount(count => count + 12)} className="mx-auto mt-10 flex min-h-12 items-center rounded-full border border-[#00896e] px-7 py-3 font-bold text-[#00896e]">Ver mais artigos</button>}
         </section>
 
         <section className="bg-[#EAF5F2]">

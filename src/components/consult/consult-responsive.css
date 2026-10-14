@@ -73,3 +73,15 @@
   .consult-responsive { --consult-gutter: 20px; }
   .consult-responsive .consult-hero-copy > .flex { flex-direction: column; }
 }
+
+/* Imported Consult articles keep their original structure inside the reading grid. */
+.consult-responsive .consult-article-content { max-width:76ch; overflow-wrap:anywhere; }
+.consult-responsive .consult-article-content :is(p,ul,ol,table,figure,h2,h3) { margin-block:1.2em; }
+.consult-responsive .consult-article-content img { display:block; max-width:100%; height:auto; margin-inline:auto; border-radius:14px; }
+.consult-responsive .consult-article-content a { color:#008468; text-decoration:underline; text-underline-offset:3px; }
+.consult-responsive .consult-article-content ul { list-style:disc; padding-left:1.5em; }
+.consult-responsive .consult-article-content ol { list-style:decimal; padding-left:1.5em; }
+.consult-responsive .consult-article-content table { display:block; overflow-x:auto; border-collapse:collapse; }
+.consult-responsive .consult-article-content td,.consult-responsive .consult-article-content th { border:1px solid #d5e6e1; padding:12px; }
+.consult-responsive .consult-article-content :is(strong,span,a,td,th) { overflow-wrap:anywhere; }
+.consult-responsive .consult-article-content pre { white-space:pre-wrap; overflow-wrap:anywhere; font:inherit; }

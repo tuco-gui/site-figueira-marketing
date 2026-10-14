@@ -5,8 +5,8 @@ const ORIGIN = 'https://www.figueiramarketing.com.br'
 export function updateConsultPageMeta({ title, description, image }) {
   const path = window.location.pathname.replace(/\/+$/, '')
   const canonical = `${ORIGIN}${path}`
-  document.title = title
-  const values = { 'og:title': title, 'twitter:title': title, 'og:url': canonical }
+  if (document.title !== title) document.title = title
+  const values = { 'og:title': title, 'twitter:title': title, 'og:url': canonical, 'og:type': path.startsWith('/consult/blog/') ? 'article' : 'website' }
   if (description) Object.assign(values, { description, 'og:description': description, 'twitter:description': description })
   if (image) {
     const url = new URL(image, ORIGIN).href

@@ -1,4 +1,5 @@
 import { CONSULT_PROJECT } from './consultProject'
+import LEGACY_POSTS from '@/data/consultLegacyPosts.json'
 
 const CDN = 'https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305'
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
@@ -122,13 +123,22 @@ async function fetchPublishedPosts() {
 }
 
 export function getConsultBlogSeedPosts() {
-  return sortByDate(SEED_POSTS.map((post) => ({ ...post, contentSource: 'local_seed' })))
+  const existing = new Map(SEED_POSTS.map(post => [post.slug, post]))
+  return sortByDate(LEGACY_POSTS.map(post => ({ ...post, publishedAt: post.publishedAt || existing.get(post.slug)?.publishedAt || null, category: existing.get(post.slug)?.category || post.category, relatedLinks: existing.get(post.slug)?.relatedLinks || post.relatedLinks, contentSource: 'legacy_full_import' })))
 }
 
 export async function getConsultBlogPosts() {
   try {
     const backendPosts = await fetchPublishedPosts()
-    if (backendPosts?.length) return sortByDate(backendPosts)
+    if (backendPosts?.length) {
+      const posts = new Map(getConsultBlogSeedPosts().map(post => [post.slug, post]))
+      for (const post of backendPosts) {
+        // The full original takes precedence over old migration summaries.
+        if (posts.has(post.slug) || [...posts.values()].some(item => item.sourceUrl && item.sourceUrl === post.sourceUrl)) continue
+        posts.set(post.slug, post)
+      }
+      return sortByDate([...posts.values()])
+    }
   } catch (error) {
     console.warn('[Consult Blog] Supabase indisponível; usando fallback editorial local.', error)
   }
@@ -136,6 +146,8 @@ export async function getConsultBlogPosts() {
 }
 
 export async function getConsultBlogPost(slug) {
+  const original = getConsultBlogSeedPosts().find(post => post.slug === slug)
+  if (original) return original
   const posts = await getConsultBlogPosts()
   return posts.find((post) => post.slug === slug) || null
 }
