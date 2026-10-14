@@ -75,13 +75,13 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
 
     <section className="safety-section safety-section-white">
       <div className="safety-container safety-when-grid">
-        <div><Eyebrow>Quando contratar</Eyebrow><Title accent="avaliar o equipamento?">Quando é necessário</Title><p className="safety-section-intro">O ensaio considera o equipamento, sua aplicação e o histórico técnico da instituição.</p><Link className="safety-text-link" to="/consult/engenharia-clinica">Conheça a Consult Engenharia Clínica</Link></div>
+        <div><Eyebrow>Quando contratar</Eyebrow><Title accent="avaliar o equipamento?">Quando é necessário</Title><p className="safety-section-intro">{slug === 'manutencao-preventiva' ? 'A manutenção considera o equipamento, sua aplicação e o plano do fabricante.' : 'O ensaio considera o equipamento, sua aplicação e o histórico técnico da instituição.'}</p><Link className="safety-text-link" to="/consult/engenharia-clinica">Conheça a Consult Engenharia Clínica</Link></div>
         <ul className="safety-check-list">{service.when.map(text => <li key={text}><span><Check size={18}/></span>{text}</li>)}</ul>
       </div>
     </section>
 
     <section className="safety-process">
-      <div className="safety-container"><div className="safety-section-heading"><Eyebrow>Como funciona</Eyebrow><Title accent="ao laudo técnico">Do ensaio</Title></div><ol className="safety-process-grid">{process.map(([num, title, text]) => <li key={num}><span className="safety-step-number">{num}</span><h3>{title}</h3><p>{text}</p></li>)}</ol></div>
+      <div className="safety-container"><div className="safety-section-heading"><Eyebrow>Como funciona</Eyebrow><Title accent="ao laudo técnico">{slug === 'manutencao-preventiva' ? 'Da manutenção' : 'Do ensaio'}</Title></div><ol className="safety-process-grid">{process.map(([num, title, text]) => <li key={num}><span className="safety-step-number">{num}</span><h3>{title}</h3><p>{text}</p></li>)}</ol></div>
     </section>
 
     <section className="safety-section safety-section-soft">
@@ -101,7 +101,7 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
       <div className="safety-container safety-faq-grid"><div><Eyebrow>Dúvidas frequentes</Eyebrow><Title accent="técnica">Informação</Title></div><div className="safety-faq-list">{service.faq.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}</div></div>
     </section>
 
-    <section className="safety-contact"><div className="safety-container"><div><Eyebrow>Vamos conversar?</Eyebrow><Title accent="equipe">Fale com nossa</Title><p>Informe o equipamento e a situação da instituição. A equipe Consult orienta o ensaio e o escopo técnico aplicável.</p><Actions title={service.title}/></div><div className="safety-contact-note"><FileText size={42}/><strong>Laudo emitido em até 7 dias após as medições.</strong><p>Atendimento das 8h às 17h</p><a href="tel:+5514981610712">(14) 98161-0712</a></div></div></section>
+    <section className="safety-contact"><div className="safety-container"><div><Eyebrow>Vamos conversar?</Eyebrow><Title accent="equipe">Fale com nossa</Title><p>Informe o equipamento e a situação da instituição. A equipe Consult orienta {slug === 'manutencao-preventiva' ? 'o serviço' : 'o ensaio'} e o escopo técnico aplicável.</p><Actions title={service.title}/></div><div className="safety-contact-note"><FileText size={42}/><strong>Laudo emitido em até 7 dias após as medições.</strong><p>Atendimento das 8h às 17h</p><a href="tel:+5514981610712">(14) 98161-0712</a></div></div></section>
 
 
     <section className="safety-brand-band"><div className="safety-container"><p><strong>Mais do que serviços,</strong><br/>compromisso com vidas mais seguras.</p><span>Consult<br/>Radiometria e Qualidade</span></div></section>

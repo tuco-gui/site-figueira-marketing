@@ -96,15 +96,21 @@ export default function ConsultEngineeringServicePage() {
   useEffect(() => {
     if (!service) return
     updateConsultPageMeta({
-      title: slug === 'desempenho-calibracao' ? 'Calibração e Ensaio de Desempenho | Consult' : `${service.title} | Consult Engenharia Clínica`,
+      title: slug === 'desempenho-calibracao' ? 'Calibração e Ensaio de Desempenho | Consult' : slug === 'manutencao-preventiva' ? 'Manutenção Preventiva | Consult Engenharia Clínica' : `${service.title} | Consult Engenharia Clínica`,
       description: service.intro,
-      image: (slug === 'seguranca-eletrica' || slug === 'desempenho-calibracao') ? '/consult/seguranca-eletrica-hero-v1.webp' : undefined,
+      image: ['seguranca-eletrica', 'desempenho-calibracao', 'manutencao-preventiva'].includes(slug) ? '/consult/seguranca-eletrica-hero-v1.webp' : undefined,
     })
   }, [service, slug])
 
   if (!service) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Serviço não encontrado</h1><Link to="/consult/engenharia-clinica" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Engenharia Clínica</Link></main></ConsultSiteShell>
 
-  if (slug === 'seguranca-eletrica' || slug === 'desempenho-calibracao') return <ConsultElectricalSafetyLayout service={service} process={PROCESS} slug={slug}/>
+  const process = slug === 'manutencao-preventiva' ? [
+    ['01','Identificar','Confirmar equipamento, histórico e plano de manutenção do fabricante.'],
+    ['02','Executar','Realizar limpeza e lubrificação previstas para o equipamento.'],
+    ['03','Testar','Verificar o funcionamento após as ações preventivas.'],
+    ['04','Documentar','Registrar atividades, peças gastas ou vencidas e pendências no laudo por equipamento.'],
+  ] : PROCESS
+  if (['seguranca-eletrica', 'desempenho-calibracao', 'manutencao-preventiva'].includes(slug)) return <ConsultElectricalSafetyLayout service={service} process={process} slug={slug}/>
 
   return <ConsultSiteShell><main>
     <ApprovedInternalHero eyebrow="Consult Engenharia Clínica" title={service.title} description={service.intro} image={CONSULT_IMAGES.engineering}/>
