@@ -32,6 +32,7 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
     reverificacao: ['', 'Reverificação'],
     'qualificacao-termica': ['Qualificação', 'térmica'],
     'monitor-multiparametrico': ['Monitor', 'multiparamétrico'],
+    eletrocardiografo: ['', 'Eletrocardiógrafo'],
   }
   const heading = headings[slug] || ['Ensaio de', 'segurança elétrica']
 
@@ -68,7 +69,7 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
     <section className="safety-section safety-section-soft">
       <div className="safety-container">
         <div className="safety-section-heading"><Eyebrow>O que é avaliado</Eyebrow><Title accent="em laudo técnico">{safety ? 'Segurança elétrica documentada' : service.title.replace(/^Calibração e ensaio/, 'Ensaio')}</Title><p>{service.story}</p></div>
-        <div className="safety-card-grid">
+        <div className="safety-card-grid" style={service.parameters.length === 1 ? { gridTemplateColumns: 'minmax(0, 1fr)', maxWidth: 640, marginInline: 'auto' } : undefined}>
           {service.parameters.map(([label, text], i) => { const Icon = ICONS[i % ICONS.length]; return <article className="safety-card" key={label}><div className="safety-card-top"><span className="safety-icon"><Icon size={32}/></span><h3>{label}</h3></div><p>{text}</p></article> })}
         </div>
       </div>
