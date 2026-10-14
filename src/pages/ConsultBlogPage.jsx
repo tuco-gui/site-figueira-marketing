@@ -1,3 +1,4 @@
+import { updateConsultPageMeta } from '@/lib/consultPageMeta'
 import React, { useEffect, useMemo, useState } from 'react'
 import { CalendarDays, Search } from 'lucide-react'
 import { Link } from 'react-router-dom'
@@ -16,9 +17,11 @@ export default function ConsultBlogPage() {
   const [category, setCategory] = useState('Todos')
 
   useEffect(() => {
-    document.title = 'Blog técnico | Consult Radiometria e Qualidade'
-    const description = document.querySelector('meta[name="description"]')
-    description?.setAttribute('content', 'Conteúdos técnicos da Consult sobre Física Médica, Proteção Radiológica, controle de qualidade, Engenharia Clínica e segurança em serviços de saúde.')
+    updateConsultPageMeta({
+      title: 'Blog técnico | Consult Radiometria e Qualidade',
+      description: 'Conteúdos técnicos da Consult sobre Física Médica, Proteção Radiológica, controle de qualidade, Engenharia Clínica e segurança em serviços de saúde.',
+      image: '/consult/approved-national-bg.webp',
+    })
     let active = true
     getConsultBlogPosts().then((items) => {
       if (active && items.length) setPosts(items)
