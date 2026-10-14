@@ -34,6 +34,7 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
     'monitor-multiparametrico': ['Monitor', 'multiparamétrico'],
     eletrocardiografo: ['', 'Eletrocardiógrafo'],
     'oximetro-pulso': ['Oxímetro', 'de pulso'],
+    'esfigmomanometro-mapa': ['Esfigmomanômetro', 'digital e MAPA'],
   }
   const heading = headings[slug] || ['Ensaio de', 'segurança elétrica']
 
