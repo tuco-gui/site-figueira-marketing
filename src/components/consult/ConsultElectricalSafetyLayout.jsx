@@ -27,7 +27,7 @@ function Actions({ title }) {
 export default function ConsultElectricalSafetyLayout({ service, process, slug = 'seguranca-eletrica' }) {
   const safety = slug === 'seguranca-eletrica'
   const headings = {
-    'desempenho-calibracao': ['Calibração e ensaio de', 'desempenho'],
+    'desempenho-calibracao': ['Calibração e ensaio', 'de desempenho'],
     'manutencao-preventiva': ['Manutenção', 'preventiva'],
     reverificacao: ['', 'Reverificação'],
     'qualificacao-termica': ['Qualificação', 'térmica'],
