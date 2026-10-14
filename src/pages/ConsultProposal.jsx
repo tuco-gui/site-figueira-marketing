@@ -38,7 +38,7 @@ const BRAND = {
 const CDN =
   "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305";
 
-const LOGO = `${CDN}/68d5471e-43b0-4285-8644-3407ac1e09ff.png`;
+const LOGO = "/consult/logo-oficial.png";
 // MART PRODUCTION / Pexels 7089017; Pexels license. Illustrative MRI equipment.
 const HERO_IMAGE = "https://images.pexels.com/photos/7089017/pexels-photo-7089017.jpeg?auto=compress&cs=tinysrgb&w=1600";
 const BG_A = `${CDN}/5ba952d9-c3e4-48d7-9dc0-4716ac1f137f.jpg`;

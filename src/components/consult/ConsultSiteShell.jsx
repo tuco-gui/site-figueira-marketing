@@ -2,8 +2,7 @@ import React, { useState } from 'react'
 import { ArrowRight, ChevronDown, FileText, Menu, MessageCircle, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
-const CDN = 'https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305'
-const LOGO = `${CDN}/68d5471e-43b0-4285-8644-3407ac1e09ff.png`
+const LOGO = '/consult/logo-oficial.png'
 const WHATSAPP = '5514981610712'
 
 export const CONSULT_COLORS = {
@@ -88,7 +87,7 @@ export function ConsultServiceQuickLinks({ mobile = false, onNavigate = () => {}
 
 function ConsultHorizontalBrand() {
   return <span className="inline-flex items-center gap-2.5 text-white">
-    <span aria-hidden="true" className="block h-[54px] w-[44px] shrink-0" style={{backgroundImage:`url("${LOGO}")`,backgroundSize:'160px 85.5px',backgroundPosition:'-61px -1px',backgroundRepeat:'no-repeat'}}/>
+    <img src="/consult/logo-simbolo-oficial.png" alt="" aria-hidden="true" width="44" height="48" className="h-12 w-11 shrink-0 object-contain"/>
     <span><span className="block text-[27px] font-extrabold leading-none tracking-tight">Consult</span><span className="mt-1.5 block text-[7px] font-medium uppercase tracking-[.18em]">Radiometria e Qualidade</span></span>
   </span>
 }
