@@ -49,7 +49,7 @@ const equipment = {
   'esfigmomanometro-mapa':'Esfigmomanômetro digital e MAPA',
   'desfibrilador-cardioversor-dea':'Desfibrilador, cardioversor e DEA',
   'marca-passo-transcutaneo':'Marca-passo transcutâneo',
-  'bisturi-eletrico':'Bisturi elétrico',
+  'bisturi-eletrico':'Bisturi elétrico (eletrocautério)',
   'ventilador-pulmonar':'Ventilador pulmonar',
   'aparelho-anestesia':'Aparelho de anestesia',
   'cpap-bipap':'CPAP e BiPAP',
