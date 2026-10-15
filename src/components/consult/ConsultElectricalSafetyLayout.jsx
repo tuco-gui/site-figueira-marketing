@@ -38,6 +38,7 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
     'desfibrilador-cardioversor-dea': ['Desfibrilador,', 'cardioversor e DEA'],
     'marca-passo-transcutaneo': ['Marca-passo', 'transcutâneo'],
     'bisturi-eletrico': ['Bisturi elétrico', '(eletrocautério)'],
+    'ventilador-pulmonar': ['Ventilador', 'pulmonar'],
   }
   const heading = headings[slug] || ['Ensaio de', 'segurança elétrica']
 
