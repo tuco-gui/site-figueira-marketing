@@ -57,7 +57,7 @@ const equipment = {
   'concentrador-oxigenio':'Concentrador de oxigênio',
   autoclave:'Autoclave',
   termodesinfectora:'Termodesinfectora',
-  'estufa-banho-maria':'Estufa e banho-maria de laboratório',
+  'estufa-banho-maria':'Estufas e incubadoras de laboratório',
   'geladeira-camara-vacina':'Geladeira e câmara de vacina',
 }
 
@@ -87,10 +87,11 @@ for (const [slug, meta] of Object.entries(areas)) routes.push([`/consult/${slug}
 for (const [slug, meta] of Object.entries(modalities)) routes.push([`/consult/fisica-medica/controle-de-qualidade/${slug}`,...meta,'website'])
 for (const [slug, meta] of Object.entries(protection)) routes.push([`/consult/protecao-radiologica/${slug}`,...meta,'website'])
 for (const [slug, meta] of Object.entries(engineering)) routes.push([`/consult/engenharia-clinica/${slug}`,...meta,'website'])
+const thermalEquipment = new Set(['autoclave', 'termodesinfectora', 'estufa-banho-maria', 'geladeira-camara-vacina'])
 for (const [slug, name] of Object.entries(equipment)) routes.push([
   `/consult/engenharia-clinica/equipamentos/${slug}`,
-  slug === 'autoclave' ? `Qualificação térmica de ${name} | Consult Engenharia Clínica` : `Ensaio de ${name} | Consult Engenharia Clínica`,
-  slug === 'autoclave' ? `Qualificação térmica de ${name}, com medições documentadas, relatório por equipamento e padrões com rastreabilidade RBC/Inmetro.` : `Ensaios aplicáveis a ${name}, com medição documentada, padrões com rastreabilidade RBC/Inmetro e laudo por equipamento.`,
+  thermalEquipment.has(slug) ? `Qualificação térmica de ${name} | Consult Engenharia Clínica` : `Ensaio de ${name} | Consult Engenharia Clínica`,
+  thermalEquipment.has(slug) ? `Qualificação térmica de ${name}, com medições documentadas, relatório por equipamento e padrões com rastreabilidade RBC/Inmetro.` : `Ensaios aplicáveis a ${name}, com medição documentada, padrões com rastreabilidade RBC/Inmetro e laudo por equipamento.`,
   'website',
 ])
 for (const [slug, [name, prep]] of Object.entries(regions)) routes.push([

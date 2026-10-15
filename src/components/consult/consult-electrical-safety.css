@@ -155,7 +155,8 @@
 }
 
 /* Mechanical equipment has three proof items and one technical reference. */
-.consult-electrical-safety.safety-mechanical-equipment .safety-norm-grid { grid-template-columns:minmax(0,1fr); max-width:640px; margin-inline:auto; }
+.consult-electrical-safety.safety-mechanical-equipment .safety-norm-grid,
+.consult-electrical-safety.safety-thermal-equipment .safety-norm-grid:has(> :only-child) { grid-template-columns:minmax(0,1fr); max-width:640px; margin-inline:auto; }
 @media(min-width:900px) {
   .consult-electrical-safety:is(.safety-mechanical-equipment, .safety-thermal-equipment) .safety-proof-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
 }

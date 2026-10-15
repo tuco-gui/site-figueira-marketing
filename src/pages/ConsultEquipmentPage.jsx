@@ -52,7 +52,7 @@ const EQUIPMENT = {
   },
   'termodesinfectora-estufa': { redirectTo:'/consult/engenharia-clinica/equipamentos/termodesinfectora' },
   'estufa-banho-maria': {
-    title:'Estufa e banho-maria de laboratório', thermal:true,
+    title:'Estufas e incubadoras de laboratório', thermal:true,
     parameters:['Estabilidade de temperatura','Uniformidade de temperatura'],
     norms:[['ABNT NBR IEC 61010','Referência de segurança elétrica aplicável a equipamentos de laboratório.',ABNT]],
   },
@@ -101,10 +101,10 @@ export default function ConsultEquipmentPage() {
 
   useEffect(() => {
     if (!item || item.redirectTo) return
-    if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo' || slug === 'oximetro-pulso' || slug === 'esfigmomanometro-mapa' || slug === 'desfibrilador-cardioversor-dea' || slug === 'marca-passo-transcutaneo' || slug === 'bisturi-eletrico' || slug === 'ventilador-pulmonar' || slug === 'aparelho-anestesia' || slug === 'cpap-bipap' || slug === 'fluxometro-manometro-o2' || slug === 'concentrador-oxigenio' || slug === 'autoclave') {
+    if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo' || slug === 'oximetro-pulso' || slug === 'esfigmomanometro-mapa' || slug === 'desfibrilador-cardioversor-dea' || slug === 'marca-passo-transcutaneo' || slug === 'bisturi-eletrico' || slug === 'ventilador-pulmonar' || slug === 'aparelho-anestesia' || slug === 'cpap-bipap' || slug === 'fluxometro-manometro-o2' || slug === 'concentrador-oxigenio' || slug === 'autoclave' || slug === 'termodesinfectora' || slug === 'estufa-banho-maria' || slug === 'geladeira-camara-vacina') {
       updateConsultPageMeta({
-        title: `${slug === 'autoclave' ? 'Qualificação térmica' : 'Ensaio'} de ${item.title} | Consult Engenharia Clínica`,
-        description: slug === 'autoclave' ? equipmentIntro(item) : `Ensaios aplicáveis a ${item.title}, com medição documentada, padrões com rastreabilidade RBC/Inmetro e laudo por equipamento.`,
+        title: `${item.thermal ? 'Qualificação térmica' : 'Ensaio'} de ${item.title} | Consult Engenharia Clínica`,
+        description: item.thermal ? equipmentIntro(item) : `Ensaios aplicáveis a ${item.title}, com medição documentada, padrões com rastreabilidade RBC/Inmetro e laudo por equipamento.`,
         image: CONSULT_IMAGES.engineering,
       })
       return
@@ -119,7 +119,7 @@ export default function ConsultEquipmentPage() {
 
   const reportItems=['Identificação do equipamento','Ensaios e parâmetros medidos','Valores e referências aplicáveis','Conclusão técnica','Eventuais pendências e histórico técnico']
 
-  if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo' || slug === 'oximetro-pulso' || slug === 'esfigmomanometro-mapa' || slug === 'desfibrilador-cardioversor-dea' || slug === 'marca-passo-transcutaneo' || slug === 'bisturi-eletrico' || slug === 'ventilador-pulmonar' || slug === 'aparelho-anestesia' || slug === 'cpap-bipap' || slug === 'fluxometro-manometro-o2' || slug === 'concentrador-oxigenio' || slug === 'autoclave') {
+  if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo' || slug === 'oximetro-pulso' || slug === 'esfigmomanometro-mapa' || slug === 'desfibrilador-cardioversor-dea' || slug === 'marca-passo-transcutaneo' || slug === 'bisturi-eletrico' || slug === 'ventilador-pulmonar' || slug === 'aparelho-anestesia' || slug === 'cpap-bipap' || slug === 'fluxometro-manometro-o2' || slug === 'concentrador-oxigenio' || slug === 'autoclave' || slug === 'termodesinfectora' || slug === 'estufa-banho-maria' || slug === 'geladeira-camara-vacina') {
     const service = {
       title: item.title,
       intro: equipmentIntro(item),

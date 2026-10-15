@@ -46,6 +46,9 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
     'fluxometro-manometro-o2': ['Fluxômetro', 'e manômetro de O₂'],
     'concentrador-oxigenio': ['Concentrador', 'de oxigênio'],
     autoclave: ['', 'Autoclave'],
+    termodesinfectora: ['', 'Termodesinfectora'],
+    'estufa-banho-maria': ['Estufas e incubadoras', 'de laboratório'],
+    'geladeira-camara-vacina': ['Geladeira', 'e câmara de vacina'],
   }
   const heading = headings[slug] || ['Ensaio de', 'segurança elétrica']
 

@@ -48,7 +48,7 @@ const EQUIPMENT = [
   ['Concentrador de oxigênio','/consult/engenharia-clinica/equipamentos/concentrador-oxigenio'],
   ['Autoclave','/consult/engenharia-clinica/equipamentos/autoclave'],
   ['Termodesinfectora','/consult/engenharia-clinica/equipamentos/termodesinfectora'],
-  ['Estufa e banho-maria de laboratório','/consult/engenharia-clinica/equipamentos/estufa-banho-maria'],
+  ['Estufas e incubadoras de laboratório','/consult/engenharia-clinica/equipamentos/estufa-banho-maria'],
   ['Geladeira e câmara de vacina','/consult/engenharia-clinica/equipamentos/geladeira-camara-vacina'],
 ]
 
