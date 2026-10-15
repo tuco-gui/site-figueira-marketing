@@ -40,6 +40,7 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
     'bisturi-eletrico': ['Bisturi elétrico', '(eletrocautério)'],
     'ventilador-pulmonar': ['Ventilador', 'pulmonar'],
     'aparelho-anestesia': ['Aparelho de anestesia', '— parte ventilatória'],
+    'cpap-bipap': ['CPAP', 'e BiPAP'],
   }
   const heading = headings[slug] || ['Ensaio de', 'segurança elétrica']
 
