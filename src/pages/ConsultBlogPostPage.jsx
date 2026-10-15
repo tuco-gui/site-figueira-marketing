@@ -1,6 +1,7 @@
 import { updateConsultPageMeta } from '@/lib/consultPageMeta'
 import React, { useEffect, useState } from 'react'
 import ReactMarkdown from 'react-markdown'
+import '@/components/consult/consult-blog-article.css'
 import { CalendarDays } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultEyebrow, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
@@ -65,13 +66,13 @@ export default function ConsultBlogPostPage() {
   return (
     <ConsultSiteShell>
       <main>
-        <article>
+        <article className="consult-blog-article">
           <header className="relative overflow-hidden bg-[#075653] text-white">
             <div className="absolute inset-0">
               <img src={post.coverImage} alt="" aria-hidden="true" className="h-full w-full object-cover opacity-18" />
               <div className="absolute inset-0 bg-gradient-to-r from-[#064946] via-[#075653]/95 to-[#075653]/78" />
             </div>
-            <div className="relative mx-auto max-w-5xl px-5 py-16 md:px-8 md:py-20">
+            <div className="consult-article-heading relative">
               <Link to="/consult/blog" className="text-sm font-bold text-white/62 hover:text-white">Blog técnico</Link>
               <div className="mt-7 flex flex-wrap items-center gap-3">
                 <span className="rounded-full bg-[#8AE600] px-3 py-1.5 text-[10px] font-black uppercase tracking-[.14em] text-[#075653]">{post.category}</span>
@@ -82,17 +83,17 @@ export default function ConsultBlogPostPage() {
             </div>
           </header>
 
-          <section className="mx-auto grid max-w-5xl gap-10 px-5 py-12 md:grid-cols-[1fr_250px] md:px-8 md:py-16">
-            <div>
+          <section className="consult-article-layout">
+            <div className="consult-article-reading">
               <ConsultEyebrow>{post.category}</ConsultEyebrow>
               {post.coverImage && !post.contentHtml && <figure className="mt-6"><img src={post.coverImage} alt={post.coverAlt || post.title} className="w-full rounded-2xl" width={post.coverImage.includes('radiodiagnostico') ? 1600 : 1448} height={post.coverImage.includes('radiodiagnostico') ? 1067 : 1086}/><figcaption className="mt-2 text-sm text-[#607D7A]">Imagem ilustrativa.</figcaption></figure>}
-              <div className="mt-6 space-y-6 text-base leading-8 text-[#365A58]">
+              <div className="consult-article-body mt-6 space-y-6 text-[#365A58]">
                 {post.contentHtml ? <div className="consult-article-content" dangerouslySetInnerHTML={{__html:post.contentHtml}}/> : post.contentMarkdown ? <div className="consult-article-content"><ReactMarkdown components={{ h2: ({children}) => <h2 className="text-2xl font-extrabold leading-tight text-[#075653]">{children}</h2>, h3: ({children}) => <h3 className="text-xl font-bold text-[#075653]">{children}</h3> }}>{post.contentMarkdown}</ReactMarkdown></div> : post.summary.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
               </div>
 
             </div>
 
-            <aside>
+            <aside className="consult-article-related">
               <div className="sticky top-24 rounded-2xl border border-[#DCEAE7] bg-white p-5 shadow-sm">
                 <p className="text-xs font-black uppercase tracking-[.18em] text-[#08A77F]">Relacionados</p>
                 <div className="mt-4 space-y-3">

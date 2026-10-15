@@ -78,10 +78,8 @@ export default function ConsultBlogPage() {
         <section className="mx-auto max-w-7xl px-5 py-12 md:px-8 md:py-16">
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <ConsultEyebrow>Artigos</ConsultEyebrow>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-[#075653] md:text-4xl">Artigos por tema</h2>
+              <h2 aria-live="polite" aria-atomic="true" className="text-3xl font-black tracking-tight text-[#075653] md:text-4xl">{category === 'Todos' ? (search.trim() ? 'Resultados da busca' : 'Todos os artigos') : category}</h2>
             </div>
-            <p className="max-w-xl text-sm leading-6 text-[#607D7A]">Artigos técnicos organizados por área, serviço e tema para facilitar a consulta.</p>
           </div>
 
           {filtered.length ? (
