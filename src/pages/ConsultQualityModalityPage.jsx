@@ -71,22 +71,46 @@ const MODALITIES = {
 
 const PROCESS = [['01','Identificar a modalidade','Confirmar equipamento, contexto de uso e referência aplicável.'],['02','Executar os ensaios','Realizar os testes previstos para a modalidade.'],['03','Analisar os resultados','Confrontar as medições com os critérios pertinentes.'],['04','Emitir o laudo','Documentar o resultado e a conclusão técnica.']]
 
+const PRESENTATIONS = {
+  // PURPLE24 / Pexels 7617612; stock photo, not a Consult installation.
+  'raio-x-convencional': {
+    seoTitle: 'Controle de Qualidade em Raios X | IN 90 | Consult',
+    seoDescription: 'Controle de qualidade em radiografia convencional conforme RDC 611/2022 e IN 90/2021, com laudo técnico.',
+    image: '/consult/raios-x-convencional-hero.jpg', imageWidth: 1600, imageHeight: 1080,
+    imageAlt: 'Imagem ilustrativa de uma sala de radiografia convencional com equipamento de raios X e mesa de exame',
+    eyebrow: 'Física Médica', heading: ['Controle de Qualidade em', 'Raios X convencional'],
+    normHref: 'https://www.cevs.rs.gov.br/upload/arquivos/202107/08065734-in902021radiografiaconvencional.pdf',
+    normDescription: 'Referência específica para radiografia médica convencional.',
+  },
+  // Drnabeelmohdkk1 / Wikimedia Commons, New Alma Hospital; CC0 1.0.
+  'fluoroscopia-arco-c-angiografia': {
+    seoTitle: 'CQ em Fluoroscopia e Arco C | IN 91 | Consult',
+    seoDescription: 'Controle de qualidade em fluoroscopia, arco cirúrgico e angiografia conforme RDC 611/2022 e IN 91/2021.',
+    image: '/consult/fluoroscopia-arco-c-hero.jpg', imageWidth: 960, imageHeight: 1440,
+    imageAlt: 'Imagem ilustrativa de equipamento Arco C em sala cirúrgica', imagePosition: '50% 70%',
+    eyebrow: 'Controle de Qualidade', heading: ['Fluoroscopia,', 'Arco C e Angiografia'],
+    normHref: 'https://www.cevs.rs.gov.br/upload/arquivos/202107/08070116-in912021fluoroscopiaradiologiaintervencionista.pdf',
+    normDescription: 'Referência específica para sistemas de fluoroscopia e radiologia intervencionista.',
+  },
+}
+
 export default function ConsultQualityModalityPage() {
   const { slug } = useParams()
   const item = useMemo(() => MODALITIES[slug], [slug])
+  const presentation = PRESENTATIONS[slug]
 
   useEffect(() => {
     if (!item) return
-    if (slug === 'raio-x-convencional') {
-      updateConsultPageMeta({ title: 'Controle de Qualidade em Raios X | IN 90 | Consult', description: 'Controle de qualidade em radiografia convencional conforme RDC 611/2022 e IN 90/2021, com laudo técnico.', image: '/consult/raios-x-convencional-hero.jpg' })
+    if (presentation) {
+      updateConsultPageMeta({ title: presentation.seoTitle, description: presentation.seoDescription, image: presentation.image })
       return
     }
     updateConsultPageMeta({ title: `${item.title} | Consult`, description: item.intro, image: CONSULT_IMAGES.radiology })
-  }, [item, slug])
+  }, [item, presentation])
 
   if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Modalidade não encontrada</h1><Link to="/consult/fisica-medica/controle-de-qualidade" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Controle de Qualidade</Link></main></ConsultSiteShell>
 
-  if (slug === 'raio-x-convencional') return <ConsultQualityModalityLayout item={item} process={PROCESS}/>
+  if (presentation) return <ConsultQualityModalityLayout item={item} process={PROCESS} presentation={presentation}/>
 
   const norms=item.norm.startsWith('IN ')
     ? [['RDC 611/2022 — Anvisa','Base sanitária geral para radiologia diagnóstica e intervencionista.',RDC_611],[`${item.norm} — Anvisa`,`Referência específica indicada para ${item.short}.`,ANVISA_IN]]
