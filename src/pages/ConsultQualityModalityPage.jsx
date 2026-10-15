@@ -81,8 +81,7 @@ export default function ConsultQualityModalityPage() {
       updateConsultPageMeta({ title: 'Controle de Qualidade em Raios X | IN 90 | Consult', description: 'Controle de qualidade em radiografia convencional conforme RDC 611/2022 e IN 90/2021, com laudo técnico.', image: '/consult/raios-x-convencional-hero.jpg' })
       return
     }
-    document.title = `${item.title} | Consult`
-    document.querySelector('meta[name="description"]')?.setAttribute('content', item.intro)
+    updateConsultPageMeta({ title: `${item.title} | Consult`, description: item.intro, image: CONSULT_IMAGES.radiology })
   }, [item, slug])
 
   if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Modalidade não encontrada</h1><Link to="/consult/fisica-medica/controle-de-qualidade" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Controle de Qualidade</Link></main></ConsultSiteShell>
