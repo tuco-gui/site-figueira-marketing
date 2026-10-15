@@ -90,7 +90,7 @@ function equipmentFaq(item) {
     ['O resultado fica no histórico do equipamento?','Sim. O laudo é emitido por equipamento e incorporado ao histórico técnico da instituição.'],
   ]
   if (item.electromedical) faq.splice(1,0,['O equipamento recebe ensaio de segurança elétrica?','Sim. Para os equipamentos eletromédicos, o ensaio de segurança elétrica segue a ABNT NBR IEC 62353 conforme aplicabilidade.'])
-  if (item.mechanical) faq.splice(1,0,['O fluxômetro e o manômetro de O₂ recebem selo de segurança elétrica?','Não. Esses equipamentos são mecânicos e a página apresenta o ensaio de desempenho sem selo de TSE.'])
+  if (item.mechanical) faq.splice(1,0,['O que é avaliado no fluxômetro e manômetro de O₂?','Fluxo e pressão. A avaliação considera o equipamento mecânico e registra o resultado do ensaio de desempenho.'])
   if (item.thermal) faq.splice(1,0,['Qual referência é usada para segurança elétrica?','Nas páginas térmicas e laboratoriais, a referência de segurança elétrica é a ABNT NBR IEC 61010 quando aplicável, sem uso da IEC 62353 como base desta página.'])
   return faq
 }
@@ -101,7 +101,7 @@ export default function ConsultEquipmentPage() {
 
   useEffect(() => {
     if (!item || item.redirectTo) return
-    if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo' || slug === 'oximetro-pulso' || slug === 'esfigmomanometro-mapa' || slug === 'desfibrilador-cardioversor-dea' || slug === 'marca-passo-transcutaneo' || slug === 'bisturi-eletrico' || slug === 'ventilador-pulmonar' || slug === 'aparelho-anestesia' || slug === 'cpap-bipap') {
+    if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo' || slug === 'oximetro-pulso' || slug === 'esfigmomanometro-mapa' || slug === 'desfibrilador-cardioversor-dea' || slug === 'marca-passo-transcutaneo' || slug === 'bisturi-eletrico' || slug === 'ventilador-pulmonar' || slug === 'aparelho-anestesia' || slug === 'cpap-bipap' || slug === 'fluxometro-manometro-o2') {
       updateConsultPageMeta({
         title: `Ensaio de ${item.title} | Consult Engenharia Clínica`,
         description: `Ensaios aplicáveis a ${item.title}, com medição documentada, padrões com rastreabilidade RBC/Inmetro e laudo por equipamento.`,
@@ -119,7 +119,7 @@ export default function ConsultEquipmentPage() {
 
   const reportItems=['Identificação do equipamento','Ensaios e parâmetros medidos','Valores e referências aplicáveis','Conclusão técnica','Eventuais pendências e histórico técnico']
 
-  if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo' || slug === 'oximetro-pulso' || slug === 'esfigmomanometro-mapa' || slug === 'desfibrilador-cardioversor-dea' || slug === 'marca-passo-transcutaneo' || slug === 'bisturi-eletrico' || slug === 'ventilador-pulmonar' || slug === 'aparelho-anestesia' || slug === 'cpap-bipap') {
+  if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo' || slug === 'oximetro-pulso' || slug === 'esfigmomanometro-mapa' || slug === 'desfibrilador-cardioversor-dea' || slug === 'marca-passo-transcutaneo' || slug === 'bisturi-eletrico' || slug === 'ventilador-pulmonar' || slug === 'aparelho-anestesia' || slug === 'cpap-bipap' || slug === 'fluxometro-manometro-o2') {
     const service = {
       title: item.title,
       intro: equipmentIntro(item),

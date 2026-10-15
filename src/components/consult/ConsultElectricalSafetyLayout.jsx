@@ -41,10 +41,11 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
     'ventilador-pulmonar': ['Ventilador', 'pulmonar'],
     'aparelho-anestesia': ['Aparelho de anestesia', '— parte ventilatória'],
     'cpap-bipap': ['CPAP', 'e BiPAP'],
+    'fluxometro-manometro-o2': ['Fluxômetro', 'e manômetro de O₂'],
   }
   const heading = headings[slug] || ['Ensaio de', 'segurança elétrica']
 
-  return <div className="consult-electrical-safety"><ConsultSiteShell horizontalBrand><main>
+  return <div className={`consult-electrical-safety${slug === 'fluxometro-manometro-o2' ? ' safety-mechanical-equipment' : ''}`}><ConsultSiteShell horizontalBrand><main>
     <section className="safety-hero">
       <svg width="0" height="0" aria-hidden="true"><defs><clipPath id="consult-safety-photo-curve" clipPathUnits="objectBoundingBox"><path d="M.18,0H1V1H0C.19,.7,-.08,.32,.18,0Z"/></clipPath></defs></svg>
       <div className="safety-hero-photo">
