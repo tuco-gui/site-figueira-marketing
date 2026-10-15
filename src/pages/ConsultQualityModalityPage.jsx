@@ -72,6 +72,16 @@ const MODALITIES = {
 const PROCESS = [['01','Identificar a modalidade','Confirmar equipamento, contexto de uso e referência aplicável.'],['02','Executar os ensaios','Realizar os testes previstos para a modalidade.'],['03','Analisar os resultados','Confrontar as medições com os critérios pertinentes.'],['04','Emitir o laudo','Documentar o resultado e a conclusão técnica.']]
 
 const PRESENTATIONS = {
+  // National Cancer Institute / Unsplash 0izFVmwJ5pw; illustrative stock photo.
+  mamografia: {
+    seoTitle: 'Controle de Qualidade em Mamografia | IN 92 | Consult',
+    seoDescription: 'Ensaios de controle de qualidade em mamografia conforme RDC 611/2022 e IN 92/2021, com resultado técnico documentado.',
+    image: '/consult/mamografia-hero.jpg', imageWidth: 1600, imageHeight: 1280,
+    imageAlt: 'Imagem ilustrativa de profissional posicionando paciente em equipamento de mamografia',
+    eyebrow: 'Física Médica', heading: ['Controle de Qualidade em', 'Mamografia'],
+    normHref: 'https://www.cevs.rs.gov.br/upload/arquivos/202511/19131331-in-92-2021-anvisa-mamografia.PDF',
+    normDescription: 'Referência específica para sistemas de mamografia.',
+  },
   // PURPLE24 / Pexels 7617612; stock photo, not a Consult installation.
   'raio-x-convencional': {
     seoTitle: 'Controle de Qualidade em Raios X | IN 90 | Consult',
