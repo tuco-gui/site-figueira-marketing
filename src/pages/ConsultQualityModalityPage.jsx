@@ -1,5 +1,7 @@
 import React, { useEffect, useMemo } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import ConsultQualityModalityLayout from '@/components/consult/ConsultQualityModalityLayout'
+import { updateConsultPageMeta } from '@/lib/consultPageMeta'
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
 import {
   ApprovedDarkProcess,
@@ -75,11 +77,17 @@ export default function ConsultQualityModalityPage() {
 
   useEffect(() => {
     if (!item) return
+    if (slug === 'raio-x-convencional') {
+      updateConsultPageMeta({ title: 'Controle de Qualidade em Raios X | IN 90 | Consult', description: 'Controle de qualidade em radiografia convencional conforme RDC 611/2022 e IN 90/2021, com laudo técnico.', image: '/consult/raios-x-convencional-hero.jpg' })
+      return
+    }
     document.title = `${item.title} | Consult`
     document.querySelector('meta[name="description"]')?.setAttribute('content', item.intro)
-  }, [item])
+  }, [item, slug])
 
   if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Modalidade não encontrada</h1><Link to="/consult/fisica-medica/controle-de-qualidade" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Controle de Qualidade</Link></main></ConsultSiteShell>
+
+  if (slug === 'raio-x-convencional') return <ConsultQualityModalityLayout item={item} process={PROCESS}/>
 
   const norms=item.norm.startsWith('IN ')
     ? [['RDC 611/2022 — Anvisa','Base sanitária geral para radiologia diagnóstica e intervencionista.',RDC_611],[`${item.norm} — Anvisa`,`Referência específica indicada para ${item.short}.`,ANVISA_IN]]
