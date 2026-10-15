@@ -72,6 +72,16 @@ const MODALITIES = {
 const PROCESS = [['01','Identificar a modalidade','Confirmar equipamento, contexto de uso e referência aplicável.'],['02','Executar os ensaios','Realizar os testes previstos para a modalidade.'],['03','Analisar os resultados','Confrontar as medições com os critérios pertinentes.'],['04','Emitir o laudo','Documentar o resultado e a conclusão técnica.']]
 
 const PRESENTATIONS = {
+  // Pexels 13176453; illustrative stock photo, not a Consult installation.
+  tomografia: {
+    seoTitle: 'Controle de Qualidade em Tomografia | IN 93 | Consult',
+    seoDescription: 'Controle de qualidade em tomografia computadorizada conforme RDC 611/2022 e IN 93/2021.',
+    image: '/consult/tomografia-hero.jpg', imageWidth: 1600, imageHeight: 2400,
+    imageAlt: 'Imagem ilustrativa de tomógrafo computadorizado com mesa de exame em sala de radiodiagnóstico', imagePosition: '50% 70%',
+    eyebrow: 'Controle de Qualidade', heading: ['Tomografia', 'computadorizada'],
+    normHref: 'https://cevs.rs.gov.br/upload/arquivos/202107/08070428-in932021tomografiacomputadorizada.pdf',
+    normDescription: 'Referência específica para sistemas de tomografia computadorizada médica.',
+  },
   // National Cancer Institute / Unsplash 0izFVmwJ5pw; illustrative stock photo.
   mamografia: {
     seoTitle: 'Controle de Qualidade em Mamografia | IN 92 | Consult',
