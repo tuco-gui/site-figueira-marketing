@@ -72,6 +72,16 @@ const MODALITIES = {
 const PROCESS = [['01','Identificar a modalidade','Confirmar equipamento, contexto de uso e referência aplicável.'],['02','Executar os ensaios','Realizar os testes previstos para a modalidade.'],['03','Analisar os resultados','Confrontar as medições com os critérios pertinentes.'],['04','Emitir o laudo','Documentar o resultado e a conclusão técnica.']]
 
 const PRESENTATIONS = {
+  // Pavel Danilyuk / Pexels 6812430; illustrative stock photo.
+  'odontologico-extraoral': {
+    seoTitle: 'CQ em Radiologia Odontológica Extraoral | Consult',
+    seoDescription: 'Controle de qualidade em radiologia odontológica extraoral conforme RDC 611/2022 e IN 94/2021.',
+    image: '/consult/odontologico-extraoral-hero.jpg', imageWidth: 1600, imageHeight: 1068,
+    imageAlt: 'Imagem ilustrativa de equipamento panorâmico de radiologia odontológica extraoral',
+    eyebrow: 'Controle de Qualidade', heading: ['Radiologia odontológica', 'extraoral'],
+    normHref: 'https://www.cevs.rs.gov.br/upload/arquivos/202107/08070619-in942021radiologiaodontologicaextraoral.pdf',
+    normDescription: 'Referência específica para sistemas de radiologia odontológica extraoral.',
+  },
   // Pexels 13176453; illustrative stock photo, not a Consult installation.
   tomografia: {
     seoTitle: 'Controle de Qualidade em Tomografia | IN 93 | Consult',
