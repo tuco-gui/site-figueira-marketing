@@ -51,7 +51,7 @@ const equipment = {
   'marca-passo-transcutaneo':'Marca-passo transcutâneo',
   'bisturi-eletrico':'Bisturi elétrico (eletrocautério)',
   'ventilador-pulmonar':'Ventilador pulmonar',
-  'aparelho-anestesia':'Aparelho de anestesia',
+  'aparelho-anestesia':'Aparelho de anestesia — parte ventilatória',
   'cpap-bipap':'CPAP e BiPAP',
   'fluxometro-manometro-o2':'Fluxômetro e manômetro de O₂',
   'concentrador-oxigenio':'Concentrador de oxigênio',

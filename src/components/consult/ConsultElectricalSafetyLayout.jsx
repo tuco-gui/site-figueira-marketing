@@ -39,6 +39,7 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
     'marca-passo-transcutaneo': ['Marca-passo', 'transcutâneo'],
     'bisturi-eletrico': ['Bisturi elétrico', '(eletrocautério)'],
     'ventilador-pulmonar': ['Ventilador', 'pulmonar'],
+    'aparelho-anestesia': ['Aparelho de anestesia', '— parte ventilatória'],
   }
   const heading = headings[slug] || ['Ensaio de', 'segurança elétrica']
 
