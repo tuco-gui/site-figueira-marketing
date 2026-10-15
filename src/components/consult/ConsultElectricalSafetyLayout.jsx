@@ -42,6 +42,7 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
     'aparelho-anestesia': ['Aparelho de anestesia', '— parte ventilatória'],
     'cpap-bipap': ['CPAP', 'e BiPAP'],
     'fluxometro-manometro-o2': ['Fluxômetro', 'e manômetro de O₂'],
+    'concentrador-oxigenio': ['Concentrador', 'de oxigênio'],
   }
   const heading = headings[slug] || ['Ensaio de', 'segurança elétrica']
 
