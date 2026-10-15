@@ -101,10 +101,10 @@ export default function ConsultEquipmentPage() {
 
   useEffect(() => {
     if (!item || item.redirectTo) return
-    if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo' || slug === 'oximetro-pulso' || slug === 'esfigmomanometro-mapa' || slug === 'desfibrilador-cardioversor-dea' || slug === 'marca-passo-transcutaneo' || slug === 'bisturi-eletrico' || slug === 'ventilador-pulmonar' || slug === 'aparelho-anestesia' || slug === 'cpap-bipap' || slug === 'fluxometro-manometro-o2' || slug === 'concentrador-oxigenio') {
+    if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo' || slug === 'oximetro-pulso' || slug === 'esfigmomanometro-mapa' || slug === 'desfibrilador-cardioversor-dea' || slug === 'marca-passo-transcutaneo' || slug === 'bisturi-eletrico' || slug === 'ventilador-pulmonar' || slug === 'aparelho-anestesia' || slug === 'cpap-bipap' || slug === 'fluxometro-manometro-o2' || slug === 'concentrador-oxigenio' || slug === 'autoclave') {
       updateConsultPageMeta({
-        title: `Ensaio de ${item.title} | Consult Engenharia Clínica`,
-        description: `Ensaios aplicáveis a ${item.title}, com medição documentada, padrões com rastreabilidade RBC/Inmetro e laudo por equipamento.`,
+        title: `${slug === 'autoclave' ? 'Qualificação térmica' : 'Ensaio'} de ${item.title} | Consult Engenharia Clínica`,
+        description: slug === 'autoclave' ? equipmentIntro(item) : `Ensaios aplicáveis a ${item.title}, com medição documentada, padrões com rastreabilidade RBC/Inmetro e laudo por equipamento.`,
         image: CONSULT_IMAGES.engineering,
       })
       return
@@ -119,19 +119,23 @@ export default function ConsultEquipmentPage() {
 
   const reportItems=['Identificação do equipamento','Ensaios e parâmetros medidos','Valores e referências aplicáveis','Conclusão técnica','Eventuais pendências e histórico técnico']
 
-  if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo' || slug === 'oximetro-pulso' || slug === 'esfigmomanometro-mapa' || slug === 'desfibrilador-cardioversor-dea' || slug === 'marca-passo-transcutaneo' || slug === 'bisturi-eletrico' || slug === 'ventilador-pulmonar' || slug === 'aparelho-anestesia' || slug === 'cpap-bipap' || slug === 'fluxometro-manometro-o2' || slug === 'concentrador-oxigenio') {
+  if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo' || slug === 'oximetro-pulso' || slug === 'esfigmomanometro-mapa' || slug === 'desfibrilador-cardioversor-dea' || slug === 'marca-passo-transcutaneo' || slug === 'bisturi-eletrico' || slug === 'ventilador-pulmonar' || slug === 'aparelho-anestesia' || slug === 'cpap-bipap' || slug === 'fluxometro-manometro-o2' || slug === 'concentrador-oxigenio' || slug === 'autoclave') {
     const service = {
       title: item.title,
       intro: equipmentIntro(item),
       caveat: item.caveat,
+      thermal: item.thermal,
       story: 'A avaliação é organizada de acordo com o equipamento e com os parâmetros aplicáveis ao ensaio.',
       parameters: item.parameters.map(parameter => slug === 'concentrador-oxigenio' ? ['Ensaio de desempenho', parameter] : [parameter, 'Parâmetro medido e registrado no documento técnico.']),
-      proof: equipmentProof(item),
-      deliverable: 'Laudo técnico',
+      proof: equipmentProof(item).map(([label, value]) => [item.thermal && label === 'DESEMPENHO' ? 'RELATÓRIO' : label, value]),
+      deliverable: item.thermal ? 'Relatório de Qualificação Térmica' : 'Laudo técnico',
       reportItems,
       // ABNT share links expire; keep references visible until a stable specific ficha is verified.
       norms: equipmentNorms(item).map(([title, text, href]) => [title, text, href === ABNT || href === ABNT_IEC_62353_URL ? null : href]),
-      faq: equipmentFaq(item).map(([question, answer]) => [question, question === 'Como é apresentada a rastreabilidade?' ? 'São utilizados padrões com rastreabilidade RBC/Inmetro.' : answer]),
+      faq: equipmentFaq(item).map(([question, answer]) => {
+        const text = question === 'Como é apresentada a rastreabilidade?' ? 'São utilizados padrões com rastreabilidade RBC/Inmetro.' : item.thermal && question === 'Qual referência é usada para segurança elétrica?' ? 'A ABNT NBR IEC 61010 é a referência para segurança elétrica quando aplicável ao equipamento térmico ou de laboratório.' : answer
+        return item.thermal ? [question.replaceAll('laudo', 'relatório'), text.replaceAll('laudo', 'relatório')] : [question, text]
+      }),
     }
     return <ConsultElectricalSafetyLayout service={service} process={FLOW} slug={slug} showWhen={false}/>
   }

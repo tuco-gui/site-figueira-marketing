@@ -89,8 +89,8 @@ for (const [slug, meta] of Object.entries(protection)) routes.push([`/consult/pr
 for (const [slug, meta] of Object.entries(engineering)) routes.push([`/consult/engenharia-clinica/${slug}`,...meta,'website'])
 for (const [slug, name] of Object.entries(equipment)) routes.push([
   `/consult/engenharia-clinica/equipamentos/${slug}`,
-  `Ensaio de ${name} | Consult Engenharia Clínica`,
-  `Ensaios aplicáveis a ${name}, com medição documentada, padrões com rastreabilidade RBC/Inmetro e laudo por equipamento.`,
+  slug === 'autoclave' ? `Qualificação térmica de ${name} | Consult Engenharia Clínica` : `Ensaio de ${name} | Consult Engenharia Clínica`,
+  slug === 'autoclave' ? `Qualificação térmica de ${name}, com medições documentadas, relatório por equipamento e padrões com rastreabilidade RBC/Inmetro.` : `Ensaios aplicáveis a ${name}, com medição documentada, padrões com rastreabilidade RBC/Inmetro e laudo por equipamento.`,
   'website',
 ])
 for (const [slug, [name, prep]] of Object.entries(regions)) routes.push([
