@@ -1,5 +1,7 @@
 import { CONSULT_PROJECT } from './consultProject'
 import LEGACY_POSTS from '@/data/consultLegacyPosts.json'
+import BLOG_CATEGORIES from '@/data/consultBlogCategories.json'
+import EDITORIAL_POSTS from '@/data/consultEditorialPosts.json'
 
 const CDN = 'https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305'
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL
@@ -96,6 +98,10 @@ function mapRow(row) {
     author: row.author || 'Consult',
     excerpt: row.excerpt || '',
     summary: markdownToParagraphs(row.content_markdown),
+    contentMarkdown: normalizeEditorialText(row.content_markdown),
+    metadata: row.metadata || {},
+    coverAlt: row.metadata?.cover_alt || '',
+    updatedAt: row.metadata?.editorial_revision ? row.updated_at : null,
     coverImage: row.cover_url || '',
     relatedLinks: Array.isArray(row.related_links) ? row.related_links : [],
     sourceUrl: row.source_url || null,
@@ -112,8 +118,8 @@ function canUseBackend() {
 
 async function fetchPublishedPosts() {
   if (!canUseBackend()) return null
-  const select = ['id','slug','title','category','published_at','author','excerpt','content_markdown','cover_url','related_links','source_url','metadata','seo_title','seo_description'].join(',')
-  const params = new URLSearchParams({ client_id: `eq.${CONSULT_PROJECT.clientId}`, status: 'eq.published', is_public: 'eq.true', select, order: 'published_at.desc' })
+  const select = ['id','slug','title','category','published_at','author','excerpt','content_markdown','cover_url','related_links','source_url','metadata','seo_title','seo_description','updated_at'].join(',')
+  const params = new URLSearchParams({ client_id: `eq.${CONSULT_PROJECT.clientId}`, project_id: `eq.${CONSULT_PROJECT.projectId}`, status: 'eq.published', is_public: 'eq.true', select, order: 'published_at.desc' })
   const response = await fetch(`${SUPABASE_URL}/rest/v1/${CONSULT_PROJECT.content.publicTable}?${params.toString()}`, {
     headers: { apikey: SUPABASE_KEY, Accept: 'application/json' },
   })
@@ -124,7 +130,7 @@ async function fetchPublishedPosts() {
 
 export function getConsultBlogSeedPosts() {
   const existing = new Map(SEED_POSTS.map(post => [post.slug, post]))
-  return sortByDate(LEGACY_POSTS.map(post => ({ ...post, publishedAt: post.publishedAt || existing.get(post.slug)?.publishedAt || null, category: existing.get(post.slug)?.category || post.category, relatedLinks: existing.get(post.slug)?.relatedLinks || post.relatedLinks, contentSource: 'legacy_full_import' })))
+  return sortByDate([...EDITORIAL_POSTS, ...LEGACY_POSTS.map(post => ({ ...post, publishedAt: post.publishedAt || existing.get(post.slug)?.publishedAt || null, category: BLOG_CATEGORIES[post.slug] || post.category, relatedLinks: existing.get(post.slug)?.relatedLinks || post.relatedLinks, contentSource: 'legacy_full_import' }))])
 }
 
 export async function getConsultBlogPosts() {
@@ -134,7 +140,7 @@ export async function getConsultBlogPosts() {
       const posts = new Map(getConsultBlogSeedPosts().map(post => [post.slug, post]))
       for (const post of backendPosts) {
         // The full original takes precedence over old migration summaries.
-        if (posts.has(post.slug) || [...posts.values()].some(item => item.sourceUrl && item.sourceUrl === post.sourceUrl)) continue
+        if (LEGACY_POSTS.some(item => item.slug === post.slug || (item.sourceUrl && item.sourceUrl === post.sourceUrl))) continue
         posts.set(post.slug, post)
       }
       return sortByDate([...posts.values()])
@@ -146,12 +152,12 @@ export async function getConsultBlogPosts() {
 }
 
 export async function getConsultBlogPost(slug) {
-  const original = getConsultBlogSeedPosts().find(post => post.slug === slug)
+  const original = getConsultBlogSeedPosts().find(post => post.slug === slug && post.contentSource === 'legacy_full_import')
   if (original) return original
   const posts = await getConsultBlogPosts()
   return posts.find((post) => post.slug === slug) || null
 }
 
-export function getConsultBlogCategories(posts = SEED_POSTS) {
+export function getConsultBlogCategories(posts = getConsultBlogSeedPosts()) {
   return [...new Set(posts.map((post) => post.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, 'pt-BR'))
 }

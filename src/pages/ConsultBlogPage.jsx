@@ -61,14 +61,14 @@ export default function ConsultBlogPage() {
 
         <section className="bg-[#F4FAF8]">
           <div className="mx-auto max-w-7xl px-5 py-10 md:px-8">
-            <div className="grid gap-4 rounded-2xl border border-[#D9E9E5] bg-white p-4 shadow-sm md:grid-cols-[1fr_auto] md:items-center md:p-5">
+            <div className="grid gap-4 rounded-2xl border border-[#D9E9E5] bg-white p-4 shadow-sm lg:grid-cols-[minmax(240px,.8fr)_minmax(0,1.8fr)] lg:items-center md:p-5">
               <label className="relative block">
                 <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-[#62817E]" size={18} />
                 <input aria-label="Buscar artigos no blog" value={search} onChange={(event) => {setSearch(event.target.value);setVisibleCount(12)}} placeholder="Buscar no blog..." className="h-12 w-full rounded-xl border border-[#DDEBE8] bg-[#F8FBFA] pl-11 pr-4 text-sm outline-none transition focus:border-[#08A77F]" />
               </label>
               <div className="flex flex-wrap gap-2">
                 {categories.map((item) => (
-                  <button type="button" key={item} onClick={() => {setCategory(item);setVisibleCount(12)}} className={`rounded-full px-4 py-2 text-xs font-extrabold transition ${category === item ? 'bg-[#075653] text-white' : 'border border-[#DDEBE8] bg-white text-[#496C69] hover:border-[#08A77F]'}`}>{item}</button>
+                  <button type="button" key={item} aria-pressed={category === item} onClick={() => {setCategory(item);setVisibleCount(12)}} className={`rounded-full px-4 py-2 text-xs font-extrabold transition ${category === item ? 'bg-[#075653] text-white' : 'border border-[#DDEBE8] bg-white text-[#496C69] hover:border-[#08A77F]'}`}>{item}</button>
                 ))}
               </div>
             </div>
@@ -79,7 +79,7 @@ export default function ConsultBlogPage() {
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <ConsultEyebrow>Artigos</ConsultEyebrow>
-              <h2 className="mt-3 text-3xl font-black tracking-tight text-[#075653] md:text-4xl">Acervo técnico da Consult</h2>
+              <h2 className="mt-3 text-3xl font-black tracking-tight text-[#075653] md:text-4xl">Artigos por tema</h2>
             </div>
             <p className="max-w-xl text-sm leading-6 text-[#607D7A]">Artigos técnicos organizados por área, serviço e tema para facilitar a consulta.</p>
           </div>

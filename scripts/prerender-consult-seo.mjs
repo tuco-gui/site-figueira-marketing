@@ -2,6 +2,8 @@ import { readFile, writeFile, mkdir } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 
 const legacyPosts = JSON.parse(await readFile('src/data/consultLegacyPosts.json', 'utf8'))
+const editorialPosts = JSON.parse(await readFile('src/data/consultEditorialPosts.json', 'utf8'))
+const blogPosts = [...legacyPosts, ...editorialPosts]
 const DIST = 'dist'
 const HOMOLOGATION_ORIGIN = 'https://www.figueiramarketing.com.br'
 const SOCIAL_IMAGE = `${HOMOLOGATION_ORIGIN}/consult/approved-national-bg.webp`
@@ -100,7 +102,7 @@ for (const [slug, [name, prep]] of Object.entries(regions)) routes.push([
   `Atendimento presencial da Consult ${prep} para Física Médica, Proteção Radiológica e Engenharia Clínica, com medições, ensaios e laudos técnicos.`,
   'website',
 ])
-for (const post of legacyPosts) routes.push([`/consult/blog/${post.slug}`, `${post.title} | Consult`, post.excerpt, 'article'])
+for (const post of blogPosts) routes.push([`/consult/blog/${post.slug}`, post.seoTitle || `${post.title} | Consult`, post.seoDescription || post.excerpt, 'article'])
 
 const esc = (value='') => String(value)
   .replace(/&/g,'&amp;')
@@ -115,7 +117,7 @@ function replaceOrInsert(html, regex, value) {
 
 function render(base, route, title, description, ogType) {
   const canonical = `${HOMOLOGATION_ORIGIN}${route}`
-  const article = legacyPosts.find(post => route === `/consult/blog/${post.slug}`)
+  const article = blogPosts.find(post => route === `/consult/blog/${post.slug}`)
   const socialImage = article?.coverImage ? `${HOMOLOGATION_ORIGIN}${article.coverImage}` : route.startsWith('/consult/engenharia-clinica') ? `${HOMOLOGATION_ORIGIN}/consult/seguranca-eletrica-hero-v1.webp` : SOCIAL_IMAGE
   let html = base
   html = html.replace(/<title>[\s\S]*?<\/title>/i, `<title>${esc(title)}</title>`)
@@ -134,6 +136,17 @@ function render(base, route, title, description, ogType) {
   html = replaceOrInsert(html, /<meta\s+name=["']twitter:description["'][^>]*>/i, `<meta name="twitter:description" content="${esc(description)}" />`)
   html = replaceOrInsert(html, /<meta\s+name=["']twitter:image["'][^>]*>/i, `<meta name="twitter:image" content="${socialImage}" />`)
   html = replaceOrInsert(html, /<link\s+rel=["']canonical["'][^>]*>/i, `<link rel="canonical" href="${canonical}" />`)
+  if (article && editorialPosts.some(post => post.slug === article.slug)) {
+    const schema = JSON.stringify({
+      '@context': 'https://schema.org', '@type': 'BlogPosting',
+      headline: article.title, description: article.seoDescription || article.excerpt,
+      image: socialImage, datePublished: article.publishedAt, dateModified: article.updatedAt,
+      author: { '@type': 'Organization', name: article.author },
+      publisher: { '@type': 'Organization', name: 'Consult Radiometria e Qualidade' },
+      articleSection: article.category, mainEntityOfPage: canonical,
+    }).replace(/</g, '\\u003c')
+    html = html.replace('</head>', `<script type="application/ld+json" data-consult-blog="article">${schema}</script>\n</head>`)
+  }
   return html
 }
 
