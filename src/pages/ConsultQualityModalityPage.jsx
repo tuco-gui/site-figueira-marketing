@@ -142,6 +142,41 @@ const PRESENTATIONS = {
     normHref: 'https://www.cevs.rs.gov.br/upload/arquivos/202107/08070116-in912021fluoroscopiaradiologiaintervencionista.pdf',
     normDescription: 'Referência específica para sistemas de fluoroscopia e radiologia intervencionista.',
   },
+  // Imagens ilustrativas (geradas); uso apenas ilustrativo, não são instalações/equipe/equipamentos da Consult.
+  ultrassom: {
+    seoTitle: 'Controle de Qualidade em Ultrassom | IN 96 | Consult',
+    seoDescription: 'Controle de qualidade em ultrassom conforme RDC 611/2022 e IN 96/2021, com resultado técnico documentado.',
+    image: '/consult/ultrassom-hero.jpg', imageWidth: 1672, imageHeight: 941,
+    imageAlt: 'Imagem ilustrativa de equipamento de ultrassonografia em sala clínica',
+    eyebrow: 'Controle de Qualidade', heading: ['Controle de Qualidade em', 'Ultrassom'],
+    normHref: IN_URLS['ultrassom'],
+    normDescription: 'Referência específica para sistemas de ultrassom.',
+  },
+  'ressonancia-magnetica': {
+    seoTitle: 'CQ em Ressonância Magnética | IN 97 | Consult',
+    seoDescription: 'Controle de qualidade em ressonância magnética conforme RDC 611/2022 e IN 97/2021.',
+    image: '/consult/ressonancia-magnetica-hero.jpg', imageWidth: 1672, imageHeight: 941,
+    imageAlt: 'Imagem ilustrativa de equipamento de ressonância magnética em sala de exame',
+    eyebrow: 'Controle de Qualidade', heading: ['Ressonância', 'magnética'],
+    normHref: IN_URLS['ressonancia-magnetica'],
+    normDescription: 'Referência específica para sistemas de ressonância magnética.',
+  },
+  'densitometria-ossea': {
+    seoTitle: 'CQ em Densitometria Óssea | RDC 611 | Consult',
+    seoDescription: 'Controle de qualidade em densitometria óssea conforme a RDC 611/2022, instruções do fabricante e protocolos reconhecidos.',
+    image: '/consult/densitometria-ossea-hero.jpg', imageWidth: 1672, imageHeight: 941,
+    imageAlt: 'Imagem ilustrativa de densitômetro ósseo (DXA) em sala clínica',
+    eyebrow: 'Controle de Qualidade', heading: ['Densitometria', 'óssea'],
+    norms: [['RDC 611/2022 — Anvisa', 'Base sanitária aplicável à modalidade. Não há IN específica indicada para densitometria óssea.', RDC_611]],
+  },
+  'raio-x-veterinario': {
+    seoTitle: 'CQ em Raios X Veterinário | RDC 611 | Consult',
+    seoDescription: 'Controle de qualidade em raios X veterinário conforme a RDC 611/2022, com a IN 90/2021 como referência técnica.',
+    image: '/consult/raio-x-veterinario-hero.jpg', imageWidth: 1672, imageHeight: 941,
+    imageAlt: 'Imagem ilustrativa de sala de raios X veterinário com tubo e mesa',
+    eyebrow: 'Controle de Qualidade', heading: ['Raios X', 'veterinário'],
+    norms: [['RDC 611/2022 — Anvisa', 'Base sanitária aplicável à proteção de trabalhadores e público.', RDC_611], ['IN 90/2021 — referência técnica', 'Referência técnica utilizada para os ensaios do equipamento de raios X.', IN_URLS['raio-x-convencional']]],
+  },
 }
 
 export default function ConsultQualityModalityPage() {
