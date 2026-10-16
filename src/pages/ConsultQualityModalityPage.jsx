@@ -91,6 +91,17 @@ const PRESENTATIONS = {
     normHref: 'https://www.cevs.rs.gov.br/upload/arquivos/202107/08070619-in942021radiologiaodontologicaextraoral.pdf',
     normDescription: 'Referência específica para sistemas de radiologia odontológica extraoral.',
   },
+  // Imagem ilustrativa (gerada), representando um conjunto de raios X odontológico intraoral.
+  // Uso apenas ilustrativo; não é instalação, equipe ou equipamento da Consult.
+  'odontologico-intraoral': {
+    seoTitle: 'CQ em Radiologia Odontológica Intraoral | Consult',
+    seoDescription: 'Controle de qualidade em radiologia odontológica intraoral conforme RDC 611/2022 e IN 95/2021.',
+    image: '/consult/odontologico-intraoral-hero.jpg', imageWidth: 1928, imageHeight: 815, imagePosition: '50% 45%',
+    imageAlt: 'Imagem ilustrativa de equipamento de radiologia odontológica intraoral',
+    eyebrow: 'Controle de Qualidade', heading: ['Radiologia odontológica', 'intraoral'],
+    normHref: IN_URLS['odontologico-intraoral'],
+    normDescription: 'Referência específica para sistemas de radiologia odontológica intraoral.',
+  },
   // Pexels 13176453; illustrative stock photo, not a Consult installation.
   tomografia: {
     seoTitle: 'Controle de Qualidade em Tomografia | IN 93 | Consult',
@@ -130,6 +141,41 @@ const PRESENTATIONS = {
     eyebrow: 'Controle de Qualidade', heading: ['Fluoroscopia,', 'Arco C e Angiografia'],
     normHref: 'https://www.cevs.rs.gov.br/upload/arquivos/202107/08070116-in912021fluoroscopiaradiologiaintervencionista.pdf',
     normDescription: 'Referência específica para sistemas de fluoroscopia e radiologia intervencionista.',
+  },
+  // Imagens ilustrativas (geradas); uso apenas ilustrativo, não são instalações/equipe/equipamentos da Consult.
+  ultrassom: {
+    seoTitle: 'Controle de Qualidade em Ultrassom | IN 96 | Consult',
+    seoDescription: 'Ensaios de controle de qualidade em ultrassom conforme IN 96/2021, com desempenho e qualidade de imagem documentados.',
+    image: '/consult/ultrassom-hero.jpg', imageWidth: 1672, imageHeight: 941,
+    imageAlt: 'Imagem ilustrativa de equipamento de ultrassonografia em sala clínica',
+    eyebrow: 'Controle de Qualidade', heading: ['Controle de Qualidade em', 'Ultrassom'],
+    normHref: IN_URLS['ultrassom'],
+    normDescription: 'Referência específica para sistemas de ultrassom.',
+  },
+  'ressonancia-magnetica': {
+    seoTitle: 'Controle de Qualidade em Ressonância Magnética | Consult',
+    seoDescription: 'Controle de qualidade em ressonância magnética conforme IN 97/2021, com avaliação de desempenho e qualidade de imagem.',
+    image: '/consult/ressonancia-magnetica-hero.jpg', imageWidth: 1672, imageHeight: 941,
+    imageAlt: 'Imagem ilustrativa de equipamento de ressonância magnética em sala de exame',
+    eyebrow: 'Controle de Qualidade', heading: ['Ressonância', 'magnética'],
+    normHref: IN_URLS['ressonancia-magnetica'],
+    normDescription: 'Referência específica para sistemas de ressonância magnética.',
+  },
+  'densitometria-ossea': {
+    seoTitle: 'Controle de Qualidade em Densitometria Óssea | Consult',
+    seoDescription: 'Testes de aceitação e constância em densitometria óssea conforme RDC 611/2022, instruções do fabricante e protocolos reconhecidos.',
+    image: '/consult/densitometria-ossea-hero.jpg', imageWidth: 1672, imageHeight: 941,
+    imageAlt: 'Imagem ilustrativa de densitômetro ósseo (DXA) em sala clínica',
+    eyebrow: 'Controle de Qualidade', heading: ['Densitometria', 'óssea'],
+    norms: [['RDC 611/2022 — Anvisa', 'Base sanitária aplicável à modalidade. Não há IN específica indicada para densitometria óssea.', RDC_611]],
+  },
+  'raio-x-veterinario': {
+    seoTitle: 'Controle de Qualidade em Raios X Veterinário | Consult',
+    seoDescription: 'Avaliação técnica de raios X veterinário com base na RDC 611/2022 e IN 90/2021 como referência técnica.',
+    image: '/consult/raio-x-veterinario-hero.jpg', imageWidth: 1672, imageHeight: 941,
+    imageAlt: 'Imagem ilustrativa de sala de raios X veterinário com tubo e mesa',
+    eyebrow: 'Controle de Qualidade', heading: ['Raios X', 'veterinário'],
+    norms: [['RDC 611/2022 — Anvisa', 'Base sanitária aplicável à proteção de trabalhadores e público.', RDC_611], ['IN 90/2021 — referência técnica', 'Referência técnica utilizada para os ensaios do equipamento de raios X.', IN_URLS['raio-x-convencional']]],
   },
 }
 
