@@ -91,6 +91,17 @@ const PRESENTATIONS = {
     normHref: 'https://www.cevs.rs.gov.br/upload/arquivos/202107/08070619-in942021radiologiaodontologicaextraoral.pdf',
     normDescription: 'Referência específica para sistemas de radiologia odontológica extraoral.',
   },
+  // TODO(asset): substituir por foto REALMENTE intraoral aprovada (equipamento de raios X odontológico intraoral),
+  // com crédito/licença e definir imageWidth/imageHeight conforme o arquivo. NÃO reutilizar a imagem extraoral.
+  'odontologico-intraoral': {
+    seoTitle: 'CQ em Radiologia Odontológica Intraoral | Consult',
+    seoDescription: 'Controle de qualidade em radiologia odontológica intraoral conforme RDC 611/2022 e IN 95/2021.',
+    image: '/consult/odontologico-intraoral-hero.jpg',
+    imageAlt: 'Imagem ilustrativa de equipamento de radiologia odontológica intraoral',
+    eyebrow: 'Controle de Qualidade', heading: ['Radiologia odontológica', 'intraoral'],
+    normHref: IN_URLS['odontologico-intraoral'],
+    normDescription: 'Referência específica para sistemas de radiologia odontológica intraoral.',
+  },
   // Pexels 13176453; illustrative stock photo, not a Consult installation.
   tomografia: {
     seoTitle: 'Controle de Qualidade em Tomografia | IN 93 | Consult',
