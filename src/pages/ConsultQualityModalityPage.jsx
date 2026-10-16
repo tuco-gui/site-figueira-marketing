@@ -14,7 +14,16 @@ import {
 } from '@/components/consult/ConsultApprovedInternal'
 
 const RDC_611 = 'https://anvisalegis.datalegis.net/action/TematicaAction.php?acao=abrirVinculos&cod_menu=8457&cod_modulo=135&cotematica=18518373'
-const ANVISA_IN = 'https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2021/anvisa-avanca-na-consolidacao-de-suas-normas'
+const IN_URLS = {
+  'raio-x-convencional': 'https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=9431&cod_modulo=310&link=S&numeroAto=00000090&orgao=DC%2FANVISA%2FMS&seqAto=000&tipo=INM&valorAno=2021',
+  'fluoroscopia-arco-c-angiografia': 'https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=8542&cod_modulo=310&link=S&numeroAto=00000091&orgao=DC%2FANVISA%2FMS&seqAto=000&tipo=INM&valorAno=2021',
+  mamografia: 'https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=9431&cod_modulo=310&link=S&numeroAto=00000092&orgao=DC%2FANVISA%2FMS&seqAto=000&tipo=INM&valorAno=2021',
+  tomografia: 'https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=abrirTextoAto&codTipo=&cod_menu=1696&cod_modulo=134&desItem=&desItemFim=&numeroAto=00000093&orgao=DC%2FANVISA%2FMS&pesquisa=true&seqAto=000&tipo=INM&valorAno=2021',
+  'odontologico-extraoral': 'https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=9431&cod_modulo=310&link=S&numeroAto=00000094&orgao=DC%2FANVISA%2FMS&seqAto=000&tipo=INM&valorAno=2021',
+  'odontologico-intraoral': 'https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=abrirTextoAto&codTipo=&cod_menu=1696&cod_modulo=134&desItem=&desItemFim=&numeroAto=00000095&orgao=DC%2FANVISA%2FMS&pesquisa=true&seqAto=000&tipo=INM&valorAno=2021',
+  ultrassom: 'https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=8542&cod_modulo=310&link=S&numeroAto=00000096&orgao=DC%2FANVISA%2FMS&seqAto=000&tipo=INM&valorAno=2021',
+  'ressonancia-magnetica': 'https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=9431&cod_modulo=310&link=S&numeroAto=00000097&orgao=DC%2FANVISA%2FMS&seqAto=000&tipo=INM&valorAno=2021',
+}
 
 const MODALITIES = {
   'raio-x-convencional': {
@@ -142,9 +151,11 @@ export default function ConsultQualityModalityPage() {
 
   if (presentation) return <ConsultQualityModalityLayout item={item} process={PROCESS} presentation={presentation}/>
 
-  const norms=item.norm.startsWith('IN ')
-    ? [['RDC 611/2022 — Anvisa','Base sanitária geral para radiologia diagnóstica e intervencionista.',RDC_611],[`${item.norm} — Anvisa`,`Referência específica indicada para ${item.short}.`,ANVISA_IN]]
-    : [['RDC 611/2022 — Anvisa','Base indicada para esta modalidade.',RDC_611],[item.norm,'Referência técnica aplicável à modalidade.',ANVISA_IN]]
+  const norms = slug === 'densitometria-ossea'
+    ? [['RDC 611/2022 — Anvisa','Base sanitária aplicável à modalidade. Não há IN específica indicada para densitometria óssea.',RDC_611]]
+    : slug === 'raio-x-veterinario'
+      ? [['RDC 611/2022 — Anvisa','Base sanitária aplicável à proteção de trabalhadores e público.',RDC_611],['IN 90/2021 — referência técnica','Referência técnica utilizada para os ensaios do equipamento de raios X.',IN_URLS['raio-x-convencional']]]
+      : [['RDC 611/2022 — Anvisa','Base sanitária geral para radiologia diagnóstica e intervencionista.',RDC_611],[`${item.norm} — Anvisa`,`Referência específica para ${item.short}.`,IN_URLS[slug]]]
 
   return <ConsultSiteShell><main>
     <ApprovedInternalHero eyebrow={`Controle de Qualidade • ${item.norm}`} title={item.title} description={item.intro} image={CONSULT_IMAGES.radiology}/>
