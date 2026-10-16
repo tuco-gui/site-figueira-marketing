@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useId } from 'react'
 import { ArrowRight, CheckCircle2, FileText, MessageCircle, ShieldCheck, Settings, UsersRound } from 'lucide-react'
 import { ConsultEyebrow } from '@/components/consult/ConsultSiteShell'
+import './consult-electrical-safety.css'
+import './consult-quality-index.css'
 
 export const CONSULT_IMAGES = {
   radiology: 'https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/5ba95360-34a0-449d-9a24-4836ac1f137f.jpg',
@@ -9,30 +11,35 @@ export const CONSULT_IMAGES = {
 }
 
 export function ApprovedInternalHero({ eyebrow, title, description, image = CONSULT_IMAGES.radiology, primaryLabel = 'Solicite um orçamento', secondaryLabel = 'Falar no WhatsApp' }) {
+  const curveId = `consult-internal-curve-${useId().replace(/:/g, '')}`
   const message = encodeURIComponent(`Olá, equipe Consult. Gostaria de conversar sobre ${title}.`)
-  return <section className="relative overflow-hidden bg-[#075653] text-white">
-    <div className="absolute inset-0 opacity-45" style={{backgroundImage:`url("${CONSULT_IMAGES.protection}")`,backgroundSize:'cover',backgroundPosition:'left bottom'}}/>
-    <div className="absolute -left-28 top-20 h-72 w-72 rounded-full border border-white/5"/>
-    <div className="absolute left-16 top-6 h-32 w-32 rounded-full border border-dashed border-white/10"/>
-    <div className="relative mx-auto grid consult-edge-hero min-h-[560px] max-w-7xl items-stretch lg:grid-cols-[1.02fr_.98fr]">
-      <div className="consult-hero-copy flex flex-col justify-center px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mb-5 text-[10px] font-bold uppercase tracking-[0.3em] text-white/65">{eyebrow}</div>
-        <h1 className="max-w-3xl text-4xl font-black leading-[1.02] tracking-[-0.035em] sm:text-5xl lg:text-6xl">{title}</h1>
-        <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/82 lg:text-lg">{description}</p>
-        <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-          <a href="/consult#contato" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white shadow-xl shadow-black/10 transition hover:brightness-95"><FileText className="h-4 w-4"/>{primaryLabel}<ArrowRight className="h-4 w-4"/></a>
-          <a href={`https://wa.me/5514981610712?text=${message}`} target="_blank" rel="noreferrer" className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-xl border border-[#8AE600]/70 px-6 py-3 text-sm font-extrabold text-[#B8FF51] transition hover:bg-[#8AE600] hover:text-[#075653]"><MessageCircle className="h-4 w-4"/>{secondaryLabel}</a>
+  const photos = {
+    [CONSULT_IMAGES.radiology]: ['/consult/radiodiagnostico-hero.jpg', 'Imagem ilustrativa de equipamento de diagnóstico por imagem'],
+    [CONSULT_IMAGES.protection]: ['/consult/raios-x-convencional-hero.jpg', 'Imagem ilustrativa de sala de radiologia'],
+    [CONSULT_IMAGES.engineering]: ['/consult/seguranca-eletrica-hero-v1.webp', 'Imagem ilustrativa de ensaio em equipamento eletromédico'],
+  }
+  const [photo, alt] = photos[image] || [image, `Imagem ilustrativa: ${title}`]
+  const words = title.split(' ')
+  const highlight = words.splice(-Math.min(2, words.length)).join(' ')
+  return <div className="consult-electrical-safety consult-quality-index consult-internal-hero">
+    <section className="safety-hero">
+      <svg width="0" height="0" aria-hidden="true"><defs><clipPath id={curveId} clipPathUnits="objectBoundingBox"><path d="M.18,0H1V1H0C.19,.7,-.08,.32,.18,0Z"/></clipPath></defs></svg>
+      <div className="safety-hero-photo" style={{ '--consult-photo-curve': `url(#${curveId})` }}>
+        <img src={photo} alt={alt} fetchPriority="high"/>
+        <svg className="safety-photo-ribbon" viewBox="0 0 700 180" preserveAspectRatio="none" aria-hidden="true"><path d="M0,180C150,72,395,10,700,0V180Z" fill="#00B68C"/><path d="M300,180C405,80,558,44,700,32V180Z" fill="#02D69E"/><path d="M480,180C470,125,540,30,700,0V180Z" fill="#96ED17"/></svg>
+      </div>
+      <div className="safety-container safety-hero-inner"><div className="safety-hero-copy">
+        <div className="safety-eyebrow"><span/>{eyebrow}</div>
+        <h1>{words.length > 0 && <>{words.join(' ')} </>}<span>{highlight}</span></h1>
+        <p>{description}</p>
+        <div className="safety-actions">
+          <a href="/consult#contato" className="safety-button safety-button-primary"><FileText size={19}/>{primaryLabel}</a>
+          <a href={`https://wa.me/5514981610712?text=${message}`} target="_blank" rel="noreferrer" className="safety-button safety-button-whatsapp"><MessageCircle size={21}/>{secondaryLabel}</a>
         </div>
-      </div>
-      <div className="consult-hero-media relative min-h-[340px] overflow-hidden lg:min-h-full">
-        <img src={image} alt={`${title} — Consult Radiometria e Qualidade`} className="absolute inset-0 h-full w-full scale-105 object-cover object-center"/>
-        <div className="absolute inset-0 bg-gradient-to-r from-[#075653] via-[#075653]/25 to-transparent lg:from-[#075653]/62"/>
-        <div className="absolute bottom-0 right-0 h-28 w-3/4 rounded-tl-[100%] bg-[#05D29D]/90"/>
-        <div className="absolute bottom-0 right-0 h-16 w-1/2 rounded-tl-[100%] bg-[#8AE600]"/>
-        <div className="absolute right-7 top-7 hidden max-w-[170px] border-l-2 border-[#8AE600] pl-4 text-[10px] font-bold uppercase tracking-[0.24em] text-white/75 sm:block">Tecnologia, qualidade e segurança em saúde</div>
-      </div>
-    </div>
-  </section>
+        <div className="safety-hero-signature"><span/>Tecnologia, qualidade e segurança em saúde</div>
+      </div></div>
+    </section>
+  </div>
 }
 
 export function ApprovedProofStrip({ items = [] }) {

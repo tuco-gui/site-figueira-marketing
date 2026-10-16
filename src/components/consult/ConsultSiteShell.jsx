@@ -92,7 +92,7 @@ function ConsultHorizontalBrand() {
   </span>
 }
 
-export function ConsultHeader({ horizontalBrand = false }) {
+export function ConsultHeader({ horizontalBrand = true }) {
   const [open, setOpen] = useState(false)
   const nav = [
     ['Início','/consult'],
@@ -135,7 +135,7 @@ export function ConsultHeader({ horizontalBrand = false }) {
   </header>
 }
 
-export function ConsultFooter({ horizontalBrand = false }) {
+export function ConsultFooter({ horizontalBrand = true }) {
   return <footer className="bg-[#064946] text-white">
     <div className="mx-auto max-w-7xl px-4 pb-8 pt-12 sm:px-6 lg:px-8">
       <div className="grid gap-10 border-b border-white/10 pb-10 lg:grid-cols-[1.2fr_.7fr_.8fr_1.2fr]">
@@ -182,6 +182,6 @@ export function ConsultCtaBand({ title = 'Precisa avaliar uma necessidade técni
   </section>
 }
 
-export function ConsultSiteShell({ children, horizontalBrand = false }) {
+export function ConsultSiteShell({ children, horizontalBrand = true }) {
   return <div className="min-h-screen bg-white font-sans text-[#123C3B]"><ConsultHeader horizontalBrand={horizontalBrand}/>{children}<ConsultFooter horizontalBrand={horizontalBrand}/></div>
 }

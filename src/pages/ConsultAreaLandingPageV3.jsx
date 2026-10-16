@@ -1,3 +1,4 @@
+import { ABNT_IEC_62353_URL, ANVISA_MODALITY_REFERENCES } from '@/lib/consultNormReferences'
 import React, { useEffect, useMemo } from 'react'
 import { Activity, CheckCircle2, FileText, Gauge, ShieldCheck, Stethoscope, Thermometer, Wrench } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
@@ -16,7 +17,6 @@ import {
 } from '@/components/consult/ConsultApprovedInternal'
 
 const RDC_611 = 'https://anvisalegis.datalegis.net/action/TematicaAction.php?acao=abrirVinculos&cod_menu=8457&cod_modulo=135&cotematica=18518373'
-const ANVISA_IN = 'https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2021/anvisa-avanca-na-consolidacao-de-suas-normas'
 const RDC_509 = 'https://bvsms.saude.gov.br/bvs/saudelegis/anvisa/2021/rdc0509_27_05_2021.pdf'
 const ABNT = 'https://www.abntcatalogo.com.br/'
 
@@ -68,7 +68,7 @@ const AREAS = {
       ['Projeto de blindagem','Cálculo e memorial técnico antes de obra, reforma ou troca de equipamento.','/consult/protecao-radiologica/projeto-blindagem',ShieldCheck],
     ],
     process:[['01','Identificar','Modalidade, equipamento, ambiente e objetivo da avaliação.'],['02','Medir','Executar os testes e medições aplicáveis ao escopo.'],['03','Comparar','Analisar os resultados frente à referência pertinente.'],['04','Documentar','Registrar os resultados no documento técnico correspondente.']],
-    standards:[['RDC 611/2022','Base sanitária geral para radiologia diagnóstica e intervencionista.',RDC_611],['IN 90 a 97/2021','Referências específicas por modalidade de diagnóstico por imagem.',ANVISA_IN]],
+    standards:[['RDC 611/2022','Base sanitária geral para radiologia diagnóstica e intervencionista.',RDC_611],...ANVISA_MODALITY_REFERENCES],
     faq:[['O Controle de Qualidade é igual para todas as modalidades?','Não. Os testes e referências variam conforme a tecnologia avaliada.'],['O resultado é documentado?','Sim. O Controle de Qualidade gera laudo técnico assinado pelo físico médico.']],
     resources:'modalities',
     recurring:['Vistoria mensal','Análise semanal de imagens','Supervisão de proteção radiológica'],
@@ -89,7 +89,7 @@ const AREAS = {
       ['Licenciamento sanitário','Apoio técnico e documental para obtenção ou renovação.','/consult/protecao-radiologica/licenciamento-sanitario',CheckCircle2],
     ],
     process:[['01','Mapear','Entender sala, equipamento, equipe e situação documental.'],['02','Avaliar','Realizar medições, cálculos ou revisão documental conforme a necessidade.'],['03','Organizar','Estruturar evidências e documentação técnica aplicável.'],['04','Orientar','Entregar o resultado e os próximos passos dentro do escopo contratado.']],
-    standards:[['RDC 611/2022','Base sanitária e de proteção radiológica.',RDC_611],['IN 90 a 97/2021','Referências específicas conforme modalidade e equipamento.',ANVISA_IN]],
+    standards:[['RDC 611/2022','Base sanitária e de proteção radiológica.',RDC_611],...ANVISA_MODALITY_REFERENCES],
     faq:[['Levantamento radiométrico e projeto de blindagem são a mesma coisa?','Não. O projeto dimensiona a proteção antes da execução; o levantamento mede a condição radiométrica do ambiente.'],['A Consult garante a licença sanitária?','Não. A Consult presta apoio técnico e documental; a decisão compete à autoridade sanitária.']],
     resources:'situations',
   },
@@ -109,7 +109,7 @@ const AREAS = {
       ['Qualificação térmica','Mapeamento de temperatura com sensores calibrados e relatório.','/consult/engenharia-clinica/qualificacao-termica',Thermometer],
     ],
     process:[['01','Identificar','Equipamento, modelo, histórico e ensaio necessário.'],['02','Medir','Executar as medições com padrões calibrados e rastreabilidade RBC/Inmetro.'],['03','Comparar','Analisar valores medidos frente à referência aplicável.'],['04','Emitir','Documentar o resultado e preservar o histórico técnico.']],
-    standards:[['RDC 509/2021','Base geral para gerenciamento de tecnologias em saúde.',RDC_509],['ABNT NBR IEC 62353','Referência para segurança elétrica recorrente e após reparo.',ABNT],['Família ABNT NBR IEC 60601','Normas particulares conforme equipamento.',ABNT]],
+    standards:[['RDC 509/2021','Base geral para gerenciamento de tecnologias em saúde.',RDC_509],['ABNT NBR IEC 62353','Referência para segurança elétrica recorrente e após reparo.',ABNT_IEC_62353_URL],['Família ABNT NBR IEC 60601','Normas particulares conforme equipamento.',ABNT]],
     faq:[['Como fica o histórico dos equipamentos?','O resultado é emitido por equipamento e incorporado ao histórico técnico da instituição.'],['Como é apresentada a rastreabilidade metrológica?','Os padrões utilizados são apresentados com rastreabilidade RBC/Inmetro.']],
     resources:'equipment',
   },

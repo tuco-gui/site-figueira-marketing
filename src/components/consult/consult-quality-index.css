@@ -4,3 +4,8 @@
 .consult-quality-index .cq-modality-link:hover { border-color:#00896e; box-shadow:0 8px 24px #00474912; }
 .consult-quality-index .cq-reference { font-weight:700; color:#008468; }
 .consult-quality-index .cq-modality-link .safety-text-link { margin-top:auto; padding-top:24px; }
+
+.consult-internal-hero .safety-hero-photo { clip-path:var(--consult-photo-curve); }
+@media(max-width:899px) {
+  .consult-internal-hero .safety-hero-photo { clip-path:none; }
+}
