@@ -98,7 +98,7 @@ const AREAS = {
     eyebrow:'Ensaios, calibração e qualificação',
     image: CONSULT_IMAGES.engineering,
     intro:'A Consult realiza ensaios de segurança elétrica, ensaios de desempenho, manutenção preventiva, reverificação e qualificação térmica, com resultado documentado por equipamento.',
-    proof:[['ENTREGA','Laudo por equipamento'],['RESPONSÁVEL','RT habilitado'],['HISTÓRICO','Histórico técnico'],['RASTREIO','RBC/Inmetro']],
+    proof:[['ENTREGA','Laudo por equipamento'],['RESPONSÁVEL','RT habilitado'],['HISTÓRICO','Histórico técnico'],['RASTREIO','Rastreabilidade RBC']],
     sectionTitle:'Medição independente para decisões mais seguras sobre equipamentos de saúde.',
     sectionIntro:'A Consult verifica o equipamento por medição, documenta a condição encontrada e preserva o histórico técnico por equipamento.',
     services:[
