@@ -78,6 +78,26 @@ const MODALITIES = {
   },
 }
 
+
+/**
+ * Exemplos educativos extraídos das referências normativas por modalidade.
+ * NÃO são checklist contratado, portfólio confirmado ou lista completa de ensaios da Consult.
+ * Os ensaios efetivamente realizados dependem da configuração do sistema, aplicabilidade,
+ * fabricante e escopo técnico acordado. A lista comercial final depende da Consult.
+ */
+const NORMATIVE_TEST_EXAMPLES = {
+  'raio-x-convencional': ['Exatidão dos indicadores de distância foco-receptor', 'Alinhamento e campo luminoso', 'Qualidade de imagem: resolução espacial e baixo contraste', 'Valores representativos de dose'],
+  'fluoroscopia-arco-c-angiografia': ['Taxa de kerma no ar e indicadores de exposição, quando aplicáveis', 'Resolução espacial e baixo contraste em fluoroscopia', 'Exatidão da tensão do tubo e tempo acumulado', 'Integridade dos acessórios de proteção'],
+  mamografia: ['Controle automático de exposição', 'Qualidade de imagem e condições do receptor', 'Condições de compressão e acessórios do mamógrafo', 'Avaliações previstas para a tecnologia empregada'],
+  tomografia: ['Exatidão e uniformidade do número de CT', 'Ruído e resolução espacial', 'Espessura de corte e posicionamento da mesa', 'Indicadores de dose, quando aplicáveis'],
+  'odontologico-extraoral': ['Camada semirredutora e tensão do tubo', 'Reprodutibilidade da tensão', 'Uniformidade da imagem, conforme a tecnologia', 'Valores representativos de dose, conforme a aplicação'],
+  'odontologico-intraoral': ['Camada semirredutora', 'Exatidão da tensão do tubo', 'Exatidão do tempo de exposição', 'Condições do processamento, quando aplicável'],
+  ultrassom: ['Uniformidade da imagem e zona morta', 'Profundidade de penetração e zona focal', 'Resolução axial e lateral', 'Exatidão de medidas e avaliação Doppler, quando aplicável'],
+  'ressonancia-magnetica': ['Resolução espacial da imagem', 'Relação sinal-ruído conforme bobina e método aplicável', 'Qualidade da imagem e critérios de aceitação do sistema', 'Requisitos de segurança e controle de acesso ao ambiente'],
+  'densitometria-ossea': ['Testes de aceitação previstos pelo fabricante', 'Verificações de constância previstas pelo fabricante', 'Avaliação conforme protocolos reconhecidos', 'Registro documental dos resultados aplicáveis'],
+  'raio-x-veterinario': ['Parâmetros do gerador e do sistema de imagem, conforme aplicabilidade', 'Qualidade da imagem conforme o equipamento', 'Referências técnicas de radiografia convencional da IN 90/2021', 'Proteção radiológica de trabalhadores e público'],
+}
+
 const PROCESS = [['01','Identificar a modalidade','Confirmar equipamento, contexto de uso e referência aplicável.'],['02','Executar os ensaios','Realizar os testes previstos para a modalidade.'],['03','Analisar os resultados','Confrontar as medições com os critérios pertinentes.'],['04','Emitir o laudo','Documentar o resultado e a conclusão técnica.']]
 
 const PRESENTATIONS = {
@@ -195,7 +215,7 @@ export default function ConsultQualityModalityPage() {
 
   if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Modalidade não encontrada</h1><Link to="/consult/fisica-medica/controle-de-qualidade" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Controle de Qualidade</Link></main></ConsultSiteShell>
 
-  if (presentation) return <ConsultQualityModalityLayout item={item} process={PROCESS} presentation={presentation}/>
+  if (presentation) return <ConsultQualityModalityLayout item={item} process={PROCESS} presentation={presentation} normativeExamples={NORMATIVE_TEST_EXAMPLES[slug]}/>
 
   const norms = slug === 'densitometria-ossea'
     ? [['RDC 611/2022 — Anvisa','Base sanitária aplicável à modalidade. Não há IN específica indicada para densitometria óssea.',RDC_611]]

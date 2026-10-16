@@ -21,7 +21,7 @@ function Actions({ title }) {
   </div>
 }
 
-export default function ConsultQualityModalityLayout({ item, process, presentation }) {
+export default function ConsultQualityModalityLayout({ item, process, presentation, normativeExamples = [] }) {
   return <div className="consult-electrical-safety consult-quality-index"><ConsultSiteShell horizontalBrand><main>
     <section className="safety-hero">
       <svg width="0" height="0" aria-hidden="true"><defs><clipPath id="consult-safety-photo-curve" clipPathUnits="objectBoundingBox"><path d="M.18,0H1V1H0C.19,.7,-.08,.32,.18,0Z"/></clipPath></defs></svg>
@@ -47,6 +47,8 @@ export default function ConsultQualityModalityLayout({ item, process, presentati
       <div className="safety-section-heading"><Eyebrow>Controle por modalidade</Eyebrow><h2 className="safety-title">O que é avaliado em <span>{item.short}</span></h2><p>Os testes e critérios mudam conforme a tecnologia. Por isso a avaliação considera a referência específica da modalidade.</p></div>
       <div className="safety-card-grid">{item.focus.map(([label, text], i) => { const Icon = ICONS[i]; return <article className="safety-card" key={label}><div className="safety-card-top"><span className="safety-icon"><Icon size={30}/></span><h3>{label}</h3></div><p>{text}</p></article> })}</div>
     </div></section>
+
+    {normativeExamples.length > 0 && <section className="safety-section safety-section-white"><div className="safety-container"><div className="safety-section-heading"><Eyebrow>Referência técnica</Eyebrow><h2 className="safety-title">Exemplos de <span>verificações normativas</span></h2><p>Exemplos previstos em normas e protocolos pertinentes à modalidade. A seleção real depende do equipamento, fabricante e escopo contratado. Esta não é uma lista de ensaios confirmados como serviço da Consult.</p></div><ul className="safety-report-list">{normativeExamples.map(test => <li key={test}><ClipboardCheck size={22}/><span>{test}</span></li>)}</ul></div></section>}
 
     <section className="safety-process"><div className="safety-container">
       <div className="safety-section-heading"><Eyebrow>Como funciona</Eyebrow><h2 className="safety-title">Da avaliação <span>ao laudo técnico</span></h2></div>
