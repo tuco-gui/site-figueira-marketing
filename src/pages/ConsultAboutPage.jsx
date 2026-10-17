@@ -18,7 +18,8 @@ export default function ConsultAboutPage() {
     />
     <ApprovedProofStrip items={[[ 'HISTÓRIA','Desde 1995' ],[ 'FÍSICA MÉDICA','Desde 2013' ],[ 'ATUAÇÃO','Todo o Brasil' ],[ 'EQUIPES EM CAMPO','SP • PR • MS • MG' ]]}/>
 
-    <ApprovedLightSection eyebrow="Quem somos" title="Técnica para transformar medição em decisão" intro="A Consult verifica condições técnicas, documenta resultados e organiza evidências para apoiar instituições de saúde em segurança, desempenho e conformidade." center>
+    <ApprovedLightSection eyebrow="Quem somos" title="Técnica para transformar medição em decisão" intro="Fundada em 1995, a Consult atua em Física Médica do Radiodiagnóstico desde 2013. Medimos, ensaiamos e documentamos os equipamentos de hospitais, clínicas de imagem, consultórios odontológicos, serviços veterinários e instituições de ensino, com laudo técnico por equipamento." center>
+      <p className="mx-auto mb-8 max-w-4xl text-center text-sm leading-7 text-[#315B58]">Hoje a Consult atende também os equipamentos médico-assistenciais com a Consult Engenharia Clínica: segurança elétrica, ensaio de desempenho, manutenção preventiva e qualificação térmica. Assim, a mesma equipe que cuida da radiologia pode avaliar os demais equipamentos da instituição, com o mesmo padrão de laudo. Atendemos em todo o Brasil, com equipes em campo em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais.</p>
       <div className="grid gap-5 md:grid-cols-3">
         {[
           [ShieldCheck,'Física Médica','Controle de Qualidade, medições e laudos técnicos para diagnóstico por imagem.'],
