@@ -88,11 +88,11 @@ const SERVICES = {
   },
   treinamentos: {
     title: 'Treinamentos técnicos', eyebrow: 'Proteção Radiológica', visual: 'technical',
-    intro: 'Capacitação periódica das equipes em radioproteção e segurança em ressonância magnética.',
+    intro: 'Treinamentos em radioproteção e segurança em ressonância magnética, com certificado: EAD na plataforma Consult Cursos, presencial sob medida ou turmas online ao vivo conforme disponibilidade.',
     audience: 'Para equipes de radiologia e ressonância magnética que precisam atualizar práticas de proteção e segurança.',
     when: ['Capacitação periódica da equipe','Entrada de novos profissionais','Atualização de rotina','Necessidade de reforçar radioproteção ou segurança em RM'],
     proof: [['FOCO','Radioproteção'],['TEMA','Segurança em RM'],['FORMATO','Capacitação técnica'],['PÚBLICO','Equipes assistenciais']],
-    parameters: [['Tema','Conteúdo definido conforme necessidade'],['Equipe','Público participante'],['Rotina','Aplicação ao contexto da instituição'],['Registro','Escopo de realização documentado conforme contratação']],
+    parameters: [['Segurança em Ressonância Magnética','Controle de acesso, triagem e prevenção de acidentes'],['Proteção Radiológica','Profissionais de serviços com radiação ionizante'],['Radioproteção em Centro Cirúrgico','Enfermagem e equipes que trabalham com arco cirúrgico'],['Dosimetria e Radioproteção Básica','Uso do dosímetro e fundamentos de proteção'],['CQ Diário em Mamografia','Teste diário exigido pela IN 92'],['Física do Ultrassom','Profissionais que operam ultrassom'],['Supervisor das Aplicações das Técnicas Radiológicas','Supervisão técnica do serviço']],
     storyTitle: 'Treinamento técnico precisa conversar com a rotina da equipe.',
     story: 'O conteúdo de cada treinamento considera a rotina da instituição e as práticas de radioproteção ou segurança em ressonância magnética necessárias à equipe.',
     metric: 'Capacitação técnica direcionada à rotina da equipe',
