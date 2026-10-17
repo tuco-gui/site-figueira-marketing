@@ -46,7 +46,7 @@ const PROGRAMS = [
   },
 ]
 
-const RECURRING = ['Vistoria mensal', 'Análise semanal de imagens', 'Supervisão de proteção radiológica']
+const RECURRING = ['Programa de qualidade com vistoria mensal ou semestral para radiologia, tomografia, mamografia e ultrassom', 'Acompanhamento do teste diário de qualidade de imagem em mamografia (IN 92), conforme disponibilidade regional', 'Análise semanal de imagens de tomografia e ressonância enviadas em DICOM pela instituição', 'Supervisão de proteção radiológica com visitas semanais', 'Prestação mensal de serviços de Física Médica: PPR, PGQ, PEP, controle de qualidade, levantamento radiométrico, dosimetria, relatórios, treinamentos e suporte regulatório', 'Participação em comitê de radioproteção']
 
 const FAQ = [
   ['PPR, PGQ e PEP são o mesmo programa?', 'São programas com objetivos distintos: proteção radiológica, garantia da qualidade e educação permanente da equipe. A necessidade de cada um deve considerar a modalidade e a operação da instituição.'],
