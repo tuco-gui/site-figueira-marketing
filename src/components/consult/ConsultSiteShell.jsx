@@ -101,7 +101,7 @@ export function ConsultHeader({ horizontalBrand = true }) {
     ['Serviços','/consult/servicos'],
     ['Blog','/consult/blog'],
     ['Cursos','https://consultcursos.herospark.co'],
-    ['Portal','https://www.consult.med.br/Portal/'],
+    ['Portal','https://radiationqa.com.br/login'],
     ['Contato','/consult#contato'],
   ]
   return <header className="sticky top-0 z-50 border-b border-white/10 bg-[#075653]/95 text-white backdrop-blur" style={{ backgroundColor: 'rgba(7,86,83,.97)', color: '#fff' }}>
@@ -147,7 +147,7 @@ export function ConsultFooter({ horizontalBrand = true }) {
           <Link className="block hover:text-[#8AE600]" to="/consult/servicos">Serviços</Link>
           <Link className="block hover:text-[#8AE600]" to="/consult/blog">Blog</Link>
           <a className="block hover:text-[#8AE600]" href="https://consultcursos.herospark.co" target="_blank" rel="noreferrer">Cursos</a>
-          <a className="block hover:text-[#8AE600]" href="https://www.consult.med.br/Portal/" target="_blank" rel="noreferrer">Portal de Arquivos</a>
+          <a className="block hover:text-[#8AE600]" href="https://radiationqa.com.br/login" target="_blank" rel="noreferrer">Portal de Arquivos</a>
           <a className="block hover:text-[#8AE600]" href="/consult#contato">Contato</a>
         </div></div>
         <div><h4 className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">Áreas de atuação</h4><div className="mt-4 space-y-2 text-sm text-white/75">
@@ -157,8 +157,8 @@ export function ConsultFooter({ horizontalBrand = true }) {
           <Link className="block hover:text-[#8AE600]" to="/consult/normas">Normas e referências</Link>
         </div></div>
         <div><h4 className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">Contato</h4><div className="mt-4 space-y-2 text-sm leading-6 text-white/75">
-          <p>Sede: Matão/SP</p>
-          <p>Atendimento: Av. Dr. Vital Brasil, 1060, sala 205 – Botucatu Home Trade Center, Botucatu/SP</p>
+          <div className="space-y-1"><p className="font-bold text-white">Sede</p><p>Matão/SP</p></div>
+          <div className="space-y-1 border-t border-white/15 pt-3"><p className="font-bold text-white">Unidade de atendimento em Botucatu</p><p>Av. Dr. Vital Brasil, 1060, sala 205 – Botucatu Home Trade Center, Botucatu/SP</p></div>
           <a className="block hover:text-[#8AE600]" href="tel:+5514981610712">(14) 98161-0712</a>
           <a className="block hover:text-[#8AE600]" href="mailto:radiometria@consult.med.br">radiometria@consult.med.br</a>
           <p>Atendimento: 8h às 17h</p>
