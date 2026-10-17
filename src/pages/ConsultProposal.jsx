@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { ConsultServiceQuickLinks } from '@/components/consult/ConsultSiteShell';
+import ConsultCookieNotice from '@/components/consult/ConsultCookieNotice';
 import { updateConsultPageMeta } from '@/lib/consultPageMeta';
 import {
   ArrowLeft,
@@ -952,6 +953,7 @@ export default function ConsultProposal() {
       </main>
 
       <Footer />
+      <ConsultCookieNotice />
 
       <a
         href={waUrl("Olá, equipe Consult. Gostaria de falar com vocês.")}
