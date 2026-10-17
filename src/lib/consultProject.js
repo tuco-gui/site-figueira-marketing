@@ -4,7 +4,7 @@ export const CONSULT_PROJECT = {
   clientSlug: 'consult',
   siteBasePath: '/consult',
   blogBasePath: '/consult/blog',
-  portalUrl: 'https://clientes.figueiramarketing.com.br/consult',
+  portalUrl: 'https://radiationqa.com.br/login',
   homologationUrl: 'https://www.figueiramarketing.com.br/consult',
   reports: {
     location: 'client_portal',
