@@ -28,18 +28,18 @@ const ELECTROMEDICAL_NORMS = [
 ]
 
 const EQUIPMENT = {
-  'monitor-multiparametrico': { title:'Monitor multiparamétrico', electromedical:true, parameters:['ECG','PNI (pressão não invasiva)','Pressão invasiva','Temperatura','Respiração','SpO₂'] },
-  eletrocardiografo: { title:'Eletrocardiógrafo', electromedical:true, parameters:['Resposta a ritmos cardíacos simulados'] },
+  'monitor-multiparametrico': { title:'Monitor multiparamétrico', electromedical:true, parameters:['ECG (frequência, amplitude e arritmias)','Respiração','Temperatura','PNI','Pressão invasiva','SpO₂ e frequência de pulso'] },
+  eletrocardiografo: { title:'Eletrocardiógrafo', electromedical:true, parameters:['Sinais de ECG simulados em 12 derivações: frequência, amplitude e arritmias'] },
   'oximetro-pulso': { title:'Oxímetro de pulso', electromedical:true, parameters:['SpO₂ simulada','Frequência de pulso simulada'], caveat:'O ensaio avalia sinais simulados e não determina a exatidão do sensor em uso no paciente.' },
-  'esfigmomanometro-mapa': { title:'Esfigmomanômetro digital e MAPA', electromedical:true, parameters:['Pressão sistólica simulada','Pressão diastólica simulada'] },
+  'esfigmomanometro-mapa': { title:'Esfigmomanômetro digital e MAPA', electromedical:true, parameters:['Pressão sistólica simulada','Pressão diastólica simulada','Frequência cardíaca','Teste de vazamento'] },
   'desfibrilador-cardioversor-dea': { title:'Desfibrilador, cardioversor e DEA', electromedical:true, parameters:['Energia entregue','Tempo de carga','Atraso no modo sincronizado','Resposta ao ECG'] },
   'marca-passo-transcutaneo': { title:'Marca-passo transcutâneo', electromedical:true, parameters:['Tensão','Corrente','Frequência em diferentes cargas'] },
   'bisturi-eletrico': { title:'Bisturi elétrico (eletrocautério)', electromedical:true, parameters:['Potência entregue em diferentes cargas','Fuga de alta frequência'] },
-  'ventilador-pulmonar': { title:'Ventilador pulmonar', electromedical:true, parameters:['Fluxo','Volume','Pressões','PEEP','Concentração de O₂'] },
-  'aparelho-anestesia': { title:'Aparelho de anestesia — parte ventilatória', electromedical:true, parameters:['Fluxo','Volume','Pressões','PEEP','Concentração de O₂'], caveat:'Esta avaliação não inclui medição da concentração do agente anestésico.' },
+  'ventilador-pulmonar': { title:'Ventilador pulmonar', electromedical:true, parameters:['Volume corrente e volume-minuto','Fluxo','Pressão de pico','PEEP','Frequência respiratória','Relação I:E','Concentração de O₂'] },
+  'aparelho-anestesia': { title:'Aparelho de anestesia — parte ventilatória', electromedical:true, parameters:['Volume corrente e volume-minuto','Fluxo','Pressão de pico','PEEP','Frequência respiratória','Relação I:E','Concentração de O₂'], caveat:'Esta avaliação não inclui medição da concentração do agente anestésico.' },
   'cpap-bipap': { title:'CPAP e BiPAP', electromedical:true, parameters:['Fluxo','Pressão'] },
   'fluxometro-manometro-o2': { title:'Fluxômetro e manômetro de O₂', mechanical:true, parameters:['Fluxo','Pressão'] },
-  'concentrador-oxigenio': { title:'Concentrador de oxigênio', electromedical:true, parameters:['Parâmetros de desempenho definidos conforme o modelo e o escopo técnico aplicável'] },
+  'concentrador-oxigenio': { title:'Concentrador de oxigênio', electromedical:true, parameters:['Concentração de O₂','Fluxo'] },
   autoclave: {
     title:'Autoclave', thermal:true,
     parameters:['Temperatura em múltiplos pontos','Pressão','Letalidade F0','Ciclos de operação'],
