@@ -6,6 +6,7 @@ const EVENT = 'consult:cookie-consent'
 const initial = { necessary: true, analytics: false, marketing: false }
 
 function storedChoice() {
+  if (typeof window === 'undefined') return null
   try {
     const data = JSON.parse(window.localStorage.getItem(KEY) || 'null')
     if (data && data.version === 1 && typeof data.analytics === 'boolean' && typeof data.marketing === 'boolean') return data
