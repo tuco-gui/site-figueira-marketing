@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ArrowRight, ChevronDown, FileText, Menu, MessageCircle, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import ConsultCookieNotice from './ConsultCookieNotice'
 
 const LOGO = '/consult/logo-oficial.png'
 const WHATSAPP = '5514981610712'
@@ -183,5 +184,5 @@ export function ConsultCtaBand({ title = 'Precisa avaliar uma necessidade técni
 }
 
 export function ConsultSiteShell({ children, horizontalBrand = true }) {
-  return <div className="min-h-screen bg-white font-sans text-[#123C3B]"><ConsultHeader horizontalBrand={horizontalBrand}/>{children}<ConsultFooter horizontalBrand={horizontalBrand}/></div>
+  return <div className="min-h-screen bg-white font-sans text-[#123C3B]"><ConsultHeader horizontalBrand={horizontalBrand}/>{children}<ConsultFooter horizontalBrand={horizontalBrand}/><ConsultCookieNotice/></div>
 }
