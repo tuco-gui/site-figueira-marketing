@@ -316,6 +316,9 @@ function ContactForm() {
         body: JSON.stringify({
           type: "contact_form",
           name: data.get("nome") || "",
+          city_state: data.get("cidade_uf") || "",
+          equipment: data.get("equipamentos") || "",
+          consent: data.get("consentimento") === "on",
           email: data.get("email") || "",
           institution: data.get("instituicao") || "",
           phone: data.get("telefone") || "",
@@ -406,22 +409,9 @@ function ContactForm() {
           placeholder="Nome completo *"
           className="h-11 rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]"
         />
-        <input
-          name="email"
-          type="email"
-          required
-          autoComplete="email"
-          aria-label="E-mail"
-          placeholder="E-mail *"
-          className="h-11 rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]"
-        />
-        <input
-          name="instituicao"
-          autoComplete="organization"
-          aria-label="Instituição ou empresa"
-          placeholder="Instituição / Empresa"
-          className="h-11 rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]"
-        />
+        <input name="instituicao" required autoComplete="organization" aria-label="Instituição" placeholder="Instituição *" className="h-11 rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]" />
+        <input name="cidade_uf" required aria-label="Cidade e estado" placeholder="Cidade / UF *" className="h-11 rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]" />
+        <input name="email" type="email" autoComplete="email" aria-label="E-mail (opcional)" placeholder="E-mail (opcional)" className="h-11 rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]" />
         <input
           name="telefone"
           required
@@ -445,14 +435,10 @@ function ContactForm() {
         <option value="" disabled>
           Como podemos ajudar? *
         </option>
-        <option>Física Médica</option>
-        <option>Proteção Radiológica</option>
-        <option>Consult Engenharia Clínica</option>
-        <option>Controle de Qualidade</option>
-        <option>Treinamentos</option>
-        <option>Outro assunto</option>
+        {['Controle de Qualidade','Levantamento radiométrico','Projeto de blindagem','Programas (PPR/PGQ/PEP)','Licenciamento sanitário','Segurança elétrica','Ensaio de desempenho','Manutenção preventiva','Qualificação térmica','Treinamentos','Outro'].map(label => <option key={label} value={label}>{label}</option>)}
       </select>
 
+      <input name="equipamentos" aria-label="Equipamentos e quantidade (opcional)" placeholder="Equipamentos e quantidade (opcional)" className="mt-3 h-11 w-full rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]" />
       <textarea
         name="mensagem"
         rows={4}
@@ -461,6 +447,7 @@ function ContactForm() {
         className="mt-3 w-full resize-none rounded-lg border border-black/10 px-3 py-3 text-sm outline-none focus:border-[#08A77F]"
       />
 
+      <label className="mt-3 flex items-start gap-2 text-xs leading-5 text-[#315B58]"><input type="checkbox" name="consentimento" required className="mt-1" /><span>Li a <Link to="/consult/politica-de-privacidade" className="font-bold underline">Política de Privacidade</Link> e autorizo o contato da Consult sobre esta solicitação. *</span></label>
       {status === "error" && (
         <p role="alert" className="mt-3 rounded-lg bg-red-50 px-3 py-2 text-xs font-semibold text-red-700">{error}</p>
       )}
@@ -470,7 +457,7 @@ function ContactForm() {
         disabled={status === "sending"}
         className="mt-3 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-lg bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white transition hover:brightness-95 disabled:cursor-wait disabled:opacity-70"
       >
-        {status === "sending" ? "Enviando..." : "Enviar mensagem"}
+        {status === "sending" ? "Enviando..." : "Solicitar orçamento"}
         {status !== "sending" && <ArrowRight className="h-4 w-4" />}
       </button>
       <p className="mt-3 text-center text-[10px] leading-5 text-black/45">
