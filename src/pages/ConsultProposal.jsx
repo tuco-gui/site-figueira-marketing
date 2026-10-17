@@ -599,11 +599,10 @@ export default function ConsultProposal() {
                 para a área da <span className="text-[#8AE600]">saúde</span>
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/82 lg:text-lg">
-                Segurança, desempenho e rastreabilidade dos equipamentos de saúde,
-                documentados em laudo técnico. Atuamos com Física Médica, Proteção
-                Radiológica, Controle de Qualidade e Engenharia Clínica para
-                hospitais, clínicas, centros de diagnóstico por imagem, odontologia,
-                medicina veterinária e outras instituições de saúde.
+                Controle de qualidade, proteção radiológica e ensaios em equipamentos
+                médico-assistenciais para hospitais, clínicas, consultórios
+                odontológicos e veterinários, com laudo técnico em até 7 dias
+                após as medições.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
