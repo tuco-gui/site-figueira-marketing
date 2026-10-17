@@ -164,7 +164,7 @@ export function ConsultFooter({ horizontalBrand = true }) {
           <p>Atendimento: 8h às 17h</p>
         </div></div>
       </div>
-      <div className="flex flex-col gap-2 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between"><span>© 2026 Consult Radiometria e Qualidade. Todos os direitos reservados.</span><Link className="hover:text-white" to="/consult/politica-de-privacidade">Política de Privacidade</Link><button type="button" onClick={() => window.dispatchEvent(new Event("consult:open-cookie-settings"))} className="text-left hover:text-white">Preferências de cookies</button></div>
+      <div className="flex flex-col gap-2 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between"><span>© 2026 Consult Radiometria e Qualidade S/S. Todos os direitos reservados.</span><Link className="hover:text-white" to="/consult/politica-de-privacidade">Política de Privacidade</Link><button type="button" onClick={() => window.dispatchEvent(new Event("consult:open-cookie-settings"))} className="text-left hover:text-white">Preferências de cookies</button></div>
     </div>
   </footer>
 }
