@@ -81,7 +81,7 @@ const MODALITIES = {
 
 /**
  * Exemplos educativos extraídos das referências normativas por modalidade.
- * NÃO são checklist contratado, portfólio confirmado ou lista completa de ensaios da Consult.
+ * Estes exemplos devem ser substituídos pelas listas finais aprovadas da Consult.
  * Os ensaios efetivamente realizados dependem da configuração do sistema, aplicabilidade,
  * fabricante e escopo técnico acordado. A lista comercial final depende da Consult.
  */
