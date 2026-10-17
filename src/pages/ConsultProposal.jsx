@@ -349,12 +349,17 @@ function ContactForm() {
       form.reset();
       setEmailSent(Boolean(result?.email_sent));
       setStatus("success");
-      window.dataLayer?.push?.({
-        event: "lead_form_success",
-        site: "consult",
-        lead_id: result?.lead_id || null,
-        email_sent: Boolean(result?.email_sent),
-      });
+      try {
+        const cookieChoice = JSON.parse(window.localStorage.getItem('consult-cookie-consent-v1') || 'null');
+        if (cookieChoice?.analytics === true) {
+          window.dataLayer?.push?.({
+            event: "lead_form_success",
+            site: "consult",
+            lead_id: result?.lead_id || null,
+            email_sent: Boolean(result?.email_sent),
+          });
+        }
+      } catch { /* sem evento analítico sem consentimento verificável */ }
     } catch (submitError) {
       setStatus("error");
       setError(submitError instanceof Error ? submitError.message : "Não foi possível enviar sua mensagem.");
@@ -545,6 +550,7 @@ function Footer() {
         <div className="flex flex-col gap-3 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 Consult Radiometria e Qualidade. Todos os direitos reservados.</span>
           <Link className="hover:text-white" to="/consult/politica-de-privacidade">Política de Privacidade</Link>
+          <button type="button" className="text-left hover:text-white" onClick={() => window.dispatchEvent(new Event("consult:open-cookie-settings"))}>Preferências de cookies</button>
         </div>
       </div>
     </footer>
