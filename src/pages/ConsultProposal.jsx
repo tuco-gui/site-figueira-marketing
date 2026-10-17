@@ -45,11 +45,11 @@ const BG_A = `${CDN}/5ba952d9-c3e4-48d7-9dc0-4716ac1f137f.jpg`;
 const BG_B = `${CDN}/5ba954a4-90f8-4e55-a0d3-4b15ac1f137f.jpg`;
 const APPROVED_MOCKUP = "https://figueira-prospect-assets.vercel.app/consult-home-aprovada.png";
 const AREA_PHYS_IMAGE = "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/5ba95360-34a0-449d-9a24-4836ac1f137f.jpg";
-const AREA_PROTECTION_IMAGE = "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/5ba952d9-c3e4-48d7-9dc0-4716ac1f137f.jpg";
-const AREA_ENGINEERING_IMAGE = "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/5ba954a4-90f8-4e55-a0d3-4b15ac1f137f.jpg";
-const ARTICLE_TRAINING_IMAGE = "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/5ba952d9-c3e4-48d7-9dc0-4716ac1f137f.jpg";
+const AREA_PROTECTION_IMAGE = "/consult/raios-x-convencional-hero.jpg";
+const AREA_ENGINEERING_IMAGE = "/consult/seguranca-eletrica-hero-v1.webp";
+const ARTICLE_TRAINING_IMAGE = "/consult/ressonancia-magnetica-hero.jpg";
 const ARTICLE_IAEA_IMAGE = "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/5ba95360-34a0-449d-9a24-4836ac1f137f.jpg";
-const ARTICLE_ARC_IMAGE = "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/5ba954a4-90f8-4e55-a0d3-4b15ac1f137f.jpg";
+const ARTICLE_ARC_IMAGE = "/consult/fluoroscopia-arco-c-hero.jpg";
 
 const WHATSAPP = "5514981610712";
 const PHONE = "(14) 98161-0712";
