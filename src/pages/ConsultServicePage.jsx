@@ -189,6 +189,7 @@ export default function ConsultServicePage() {
       <ApprovedNormCards items={service.norms}/>
     </ApprovedLightSection>
 
+    {slug === 'treinamentos' && <ApprovedLightSection eyebrow="Consult Cursos" title="EAD, presencial e online ao vivo" intro="Aulas gravadas com certificado na plataforma Consult Cursos ou capacitação presencial sob medida. Turmas online ao vivo também podem ser organizadas. Os preços ficam somente na plataforma." white><a href="https://consultcursos.herospark.co/" target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center rounded-xl bg-[#075653] px-6 py-3 text-sm font-extrabold text-white">Conhecer os cursos EAD</a></ApprovedLightSection>}
     <ApprovedFaq items={service.faq}/>
     <ConsultCtaBand title={`Precisa de ${service.title}?`} text="Conte a situação da sua instituição. A equipe Consult confirma o escopo técnico e orienta o próximo passo."/>
   </main></ConsultSiteShell>
