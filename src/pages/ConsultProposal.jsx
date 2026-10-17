@@ -647,10 +647,10 @@ export default function ConsultProposal() {
         <section className="border-b border-black/5 bg-white">
           <div className="mx-auto grid max-w-7xl divide-y divide-black/10 px-4 py-4 sm:grid-cols-2 sm:divide-x sm:divide-y-0 sm:px-6 lg:grid-cols-4 lg:px-8">
             {[
-              [ShieldCheck, "Mais segurança", "para pacientes e profissionais"],
-              [FileText, "Conformidade", "com as normas vigentes"],
-              [Settings, "Tecnologia", "a serviço da qualidade"],
-              [UsersRound, "Desde 1995", "de mercado"],
+              [ShieldCheck, "Desde 1995", "Física Médica do Radiodiagnóstico desde 2013"],
+              [UsersRound, "+400 instituições", "atendidas nos últimos 12 meses"],
+              [Settings, "+1.500 atendimentos", "por ano, entre controles, levantamentos e ensaios"],
+              [FileText, "Até 7 dias", "para emissão do laudo após as medições"],
             ].map(([Icon, title, text]) => (
               <div key={title} className="flex items-center gap-3 px-3 py-4 sm:px-5">
                 <Icon className="h-8 w-8 shrink-0 text-[#08A77F]" />
