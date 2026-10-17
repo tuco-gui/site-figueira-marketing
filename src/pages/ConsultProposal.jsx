@@ -54,8 +54,7 @@ const ARTICLE_ARC_IMAGE = "/consult/fluoroscopia-arco-c-hero.jpg";
 
 const WHATSAPP = "5514981610712";
 const PHONE = "(14) 98161-0712";
-const ADDRESS =
-  "Sede: Matão/SP · Atendimento: Av. Dr. Vital Brasil, 1060, sala 205 – Botucatu Home Trade Center, Botucatu/SP";
+const ADDRESS_BOTUCATU = "Av. Dr. Vital Brasil, 1060, sala 205 – Botucatu Home Trade Center, Botucatu/SP";
 const EMAIL = "radiometria@consult.med.br";
 const LEAD_ENDPOINT = "https://jinhjdvrjvmammumbacz.supabase.co/functions/v1/consult-lead";
 
@@ -201,7 +200,7 @@ function Header() {
     ["Serviços", "/consult/servicos"],
     ["Blog", "/consult/blog"],
     ["Cursos", "https://consultcursos.herospark.co"],
-    ["Portal", "https://www.consult.med.br/Portal/"],
+    ["Portal", "https://radiationqa.com.br/login"],
     ["Contato", "/consult#contato"],
   ];
 
@@ -524,7 +523,7 @@ function Footer() {
             <div className="mt-4 space-y-3 text-sm text-white/75">
               <div className="flex gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[#8AE600]" />
-                <span>{ADDRESS}</span>
+                <span className="block space-y-3"><span className="block"><strong className="block text-white">Sede</strong>Matão/SP</span><span className="block border-t border-white/15 pt-3"><strong className="block text-white">Unidade de atendimento em Botucatu</strong>{ADDRESS_BOTUCATU}</span></span>
               </div>
               <a className="flex gap-2 hover:text-white" href="tel:+5514981610712">
                 <Phone className="h-4 w-4 shrink-0 text-[#8AE600]" />
