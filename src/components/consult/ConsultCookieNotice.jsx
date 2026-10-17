@@ -15,13 +15,16 @@ function storedChoice() {
 }
 
 export default function ConsultCookieNotice() {
-  const [choice, setChoice] = useState(() => storedChoice())
-  const [open, setOpen] = useState(() => !storedChoice())
+  const [choice, setChoice] = useState(null)
+  const [open, setOpen] = useState(false)
   const [customize, setCustomize] = useState(false)
   const [analytics, setAnalytics] = useState(false)
   const [marketing, setMarketing] = useState(false)
 
   useEffect(() => {
+    const saved = storedChoice()
+    setChoice(saved)
+    setOpen(!saved)
     const reopen = () => { setCustomize(true); setOpen(true) }
     window.addEventListener('consult:open-cookie-settings', reopen)
     return () => window.removeEventListener('consult:open-cookie-settings', reopen)
