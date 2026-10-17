@@ -86,16 +86,71 @@ const MODALITIES = {
  * fabricante e escopo técnico acordado. A lista comercial final depende da Consult.
  */
 const NORMATIVE_TEST_EXAMPLES = {
-  'raio-x-convencional': ['Exatidão dos indicadores de distância foco-receptor', 'Alinhamento e campo luminoso', 'Qualidade de imagem: resolução espacial e baixo contraste', 'Valores representativos de dose'],
-  'fluoroscopia-arco-c-angiografia': ['Taxa de kerma no ar e indicadores de exposição, quando aplicáveis', 'Resolução espacial e baixo contraste em fluoroscopia', 'Exatidão da tensão do tubo e tempo acumulado', 'Integridade dos acessórios de proteção'],
-  mamografia: ['Controle automático de exposição', 'Qualidade de imagem e condições do receptor', 'Condições de compressão e acessórios do mamógrafo', 'Avaliações previstas para a tecnologia empregada'],
-  tomografia: ['Exatidão e uniformidade do número de CT', 'Ruído e resolução espacial', 'Espessura de corte e posicionamento da mesa', 'Indicadores de dose, quando aplicáveis'],
-  'odontologico-extraoral': ['Camada semirredutora e tensão do tubo', 'Reprodutibilidade da tensão', 'Uniformidade da imagem, conforme a tecnologia', 'Valores representativos de dose, conforme a aplicação'],
-  'odontologico-intraoral': ['Camada semirredutora', 'Exatidão da tensão do tubo', 'Exatidão do tempo de exposição', 'Condições do processamento, quando aplicável'],
-  ultrassom: ['Uniformidade da imagem e zona morta', 'Profundidade de penetração e zona focal', 'Resolução axial e lateral', 'Exatidão de medidas e avaliação Doppler, quando aplicável'],
-  'ressonancia-magnetica': ['Resolução espacial da imagem', 'Relação sinal-ruído conforme bobina e método aplicável', 'Qualidade da imagem e critérios de aceitação do sistema', 'Requisitos de segurança e controle de acesso ao ambiente'],
-  'densitometria-ossea': ['Testes de aceitação previstos pelo fabricante', 'Verificações de constância previstas pelo fabricante', 'Avaliação conforme protocolos reconhecidos', 'Registro documental dos resultados aplicáveis'],
-  'raio-x-veterinario': ['Parâmetros do gerador e do sistema de imagem, conforme aplicabilidade', 'Qualidade da imagem conforme o equipamento', 'Referências técnicas de radiografia convencional da IN 90/2021', 'Proteção radiológica de trabalhadores e público'],
+  "raio-x-convencional": [
+    "Gerador e tubo: tensão kVp, tempo, kerma no ar, rendimento e camada semirredutora",
+    "Geometria: distância foco-receptor, campo luminoso, alinhamento do feixe e grade",
+    "Controle automático de exposição: reprodutibilidade e compensação de espessuras",
+    "Imagem: resolução, uniformidade, artefatos, distorção, indicadores CR/DR, sensibilidade CR e apagamento",
+    "Visualização: monitores, negatoscópios e iluminância",
+    "Dose e proteção: dose representativa, chassis, EPIs, levantamento radiométrico e fuga"
+  ],
+  "fluoroscopia-arco-c-angiografia": [
+    "Dose: taxas de kerma, modos de operação, PKA e ponto de referência",
+    "Gerador: tensão, tempo acumulado, camada semirredutora e controle automático de intensidade",
+    "Imagem: resolução espacial, baixo contraste e distorção",
+    "Geometria e segurança: distância foco-pele, feixe, colimação, alarme cine, EPIs, levantamento e fuga"
+  ],
+  "mamografia": [
+    "Dose e gerador: dose glandular, tensão, tempo, rendimento, camada semirredutora e exposição automática",
+    "Compressão e geometria: compressão, bandeja, espessura e colimação",
+    "Imagem: simulador, resolução, contraste-ruído, uniformidade e artefatos",
+    "Laudo e proteção: monitores, negatoscópios, iluminância, EPIs, levantamento e fuga",
+    "Acompanhamento do teste diário de qualidade de imagem (IN 92)"
+  ],
+  "tomografia": [
+    "Imagem: número de CT, uniformidade, ruído, resolução, espessura e artefatos",
+    "Dose: doses representativas, CTDI/DLP e modulação de corrente",
+    "Mecânica: mesa, lasers, plano irradiado e tensão",
+    "Laudo e proteção: monitores, negatoscópios, iluminância, EPIs e levantamento radiométrico"
+  ],
+  "odontologico-extraoral": [
+    "Gerador: tensão e tempo, kerma no ar, camada semirredutora e campo",
+    "Dose: valores representativos e indicador",
+    "Feixe cônico: número CT/densidade, uniformidade e ruído",
+    "Imagem e visualização: artefatos, CR/DR, apagamento, monitores e iluminância",
+    "Proteção: EPIs e levantamento radiométrico"
+  ],
+  "odontologico-intraoral": [
+    "Gerador e dose: tensão, tempo, camada semirredutora, linearidade/reprodutibilidade do kerma e dose",
+    "Geometria: tamanho de campo e distância foco-pele",
+    "Imagem: qualidade, artefatos e apagamento digital",
+    "Proteção: EPIs, levantamento radiométrico e fuga"
+  ],
+  "ultrassom": [
+    "Imagem: uniformidade, zona morta, penetração e zona focal",
+    "Exatidão das medidas de distância vertical e horizontal",
+    "Resolução axial/lateral, objetos anecoicos e baixo contraste",
+    "Doppler: velocidade e sensibilidade quando houver",
+    "Avaliação por transdutor com simulador de tecido"
+  ],
+  "ressonancia-magnetica": [
+    "Campo: frequência central e homogeneidade do campo estático",
+    "Imagem: sinal-ruído, uniformidade e resolução de alto contraste",
+    "Geometria: posição e espessura de corte",
+    "Artefatos e imagem residual (ghosting)",
+    "Blindagem de radiofrequência",
+    "Monitores, negatoscópios e iluminância"
+  ],
+  "densitometria-ossea": [
+    "Aceitação e constância conforme RDC 611, fabricante e protocolos reconhecidos",
+    "Acompanhamento do teste com simulador",
+    "Levantamento radiométrico e radiação de fuga"
+  ],
+  "raio-x-veterinario": [
+    "Testes aplicáveis da IN 90 como referência técnica",
+    "Proteção dos trabalhadores e público conforme RDC 611",
+    "Levantamento radiométrico e radiação de fuga, inclusive em equipamentos móveis"
+  ]
 }
 
 const PROCESS = [['01','Identificar a modalidade','Confirmar equipamento, contexto de uso e referência aplicável.'],['02','Executar os ensaios','Realizar os testes previstos para a modalidade.'],['03','Analisar os resultados','Confrontar as medições com os critérios pertinentes.'],['04','Emitir o laudo','Documentar o resultado e a conclusão técnica.']]
