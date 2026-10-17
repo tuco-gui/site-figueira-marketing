@@ -5,7 +5,7 @@ import { ApprovedInternalHero, ApprovedLightSection, CONSULT_IMAGES } from '@/co
 
 const sections = [
   ['Quais dados podem ser coletados', [
-    'Dados informados em formulários, como nome, e-mail, telefone, instituição, assunto e mensagem.',
+    'Dados informados no pedido de orçamento: nome, instituição, cidade/UF, telefone/WhatsApp, serviço de interesse e, opcionalmente, e-mail, equipamentos e mensagem.',
     'Antes de abrir o WhatsApp, o site pode solicitar nome e telefone para registrar a origem do contato e evitar perda de leads.',
     'Dados técnicos de navegação necessários à segurança e ao funcionamento do site, como página de origem, navegador e um identificador técnico derivado do endereço IP para prevenção de abuso. O endereço IP bruto não é armazenado no cadastro de leads.',
   ]],
@@ -13,11 +13,11 @@ const sections = [
     'Responder solicitações de contato, orçamento ou atendimento técnico.',
     'Encaminhar o contato para a área adequada e registrar o histórico comercial da solicitação.',
     'Proteger o formulário contra abuso, automação maliciosa e excesso de tentativas.',
-    'Mensurar navegação e desempenho apenas quando ferramentas de analytics estiverem ativas e houver a gestão de consentimento aplicável.',
+    'Mensurar o uso do site com ferramentas de análise somente quando forem ativadas e mediante o consentimento aplicável.',
   ]],
   ['Compartilhamento e operadores', [
     'Os dados podem ser processados por provedores de hospedagem, banco de dados, segurança e envio transacional necessários ao funcionamento do site e ao atendimento.',
-    'A Consult não vende os dados recebidos pelo site.',
+    'A Consult não vende nem cede dados pessoais para fins comerciais de terceiros.',
   ]],
   ['Retenção e segurança', [
     'Os dados são mantidos pelo período necessário para atender a solicitação, cumprir obrigações aplicáveis e preservar registros comerciais e técnicos legítimos.',
@@ -26,6 +26,11 @@ const sections = [
   ['Cookies e analytics', [
     'Na homologação atual não há ferramenta externa de analytics ou publicidade ativa no código da Consult.',
     'Se ferramentas de analytics ou tags que dependam de consentimento forem ativadas, o site está preparado para solicitar a escolha do visitante antes de liberar esse tipo de medição.',
+  ]],
+  ['Base legal e direitos', [
+    'Solicitações de orçamento são tratadas para procedimentos preliminares a contrato, nos termos do art. 7º, V, da LGPD, e outras bases legais pertinentes.',
+    'Cookies de análise e publicidade, quando habilitados, exigem consentimento prévio e podem ser recusados ou ajustados nas preferências de cookies.',
+    'Você pode solicitar confirmação, acesso, correção, anonimização, exclusão, portabilidade e informações sobre compartilhamento, além de revogar seu consentimento, conforme a LGPD.',
   ]],
   ['Seus direitos e contato', [
     'Você pode solicitar informações, correção, atualização ou outras providências previstas na LGPD em relação aos seus dados.',
