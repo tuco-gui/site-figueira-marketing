@@ -48,6 +48,10 @@ const PROGRAMS = [
 
 const RECURRING = ['Programa de qualidade com vistoria mensal ou semestral para radiologia, tomografia, mamografia e ultrassom', 'Acompanhamento do teste diário de qualidade de imagem em mamografia (IN 92), conforme disponibilidade regional', 'Análise semanal de imagens de tomografia e ressonância enviadas em DICOM pela instituição', 'Supervisão de proteção radiológica com visitas semanais', 'Prestação mensal de serviços de Física Médica: PPR, PGQ, PEP, controle de qualidade, levantamento radiométrico, dosimetria, relatórios, treinamentos e suporte regulatório', 'Participação em comitê de radioproteção']
 
+const COMPLEMENTARY_CONTROLS = ['Monitores de laudo e negatoscópios', 'Placas de imagem e sistemas de digitalização (CR)', 'Aventais, protetores de tireoide e óculos plumbíferos (controle de EPIs)', 'Transdutores de ultrassom e modo Doppler', 'Mamógrafo com mesa de biópsia', 'Litotripsia']
+const MRI_SERVICES = ['Verificação da blindagem de radiofrequência', 'Programa de zoneamento de áreas em ressonância magnética (zonas I a IV)', 'Descritivo técnico para compra de equipamento de ressonância magnética']
+const OCCUPATIONAL_STUDIES = ['Avaliação da exposição da equipe de centro cirúrgico ao longo de 12 meses', 'Estudo dosimétrico ocupacional em hemodinâmica']
+
 const FAQ = [
   ['PPR, PGQ e PEP são o mesmo programa?', 'São programas com objetivos distintos: proteção radiológica, garantia da qualidade e educação permanente da equipe. A necessidade de cada um deve considerar a modalidade e a operação da instituição.'],
   ['O acompanhamento se limita a serviços avulsos?', 'Além dos serviços avulsos, a Consult oferece acompanhamento recorrente com vistoria mensal, análise semanal de imagens e supervisão de proteção radiológica, conforme o escopo contratado.'],
@@ -134,6 +138,10 @@ export default function ConsultProgramsPage() {
         <ApprovedList items={RECURRING}/>
       </ApprovedLightSection>
     </div>
+
+    <ApprovedLightSection eyebrow="Controles complementares" title="Verificações específicas e estudos de exposição" intro="A Consult também atende demandas técnicas complementares, conforme a instituição e o escopo acordado." white>
+      <div className="grid gap-8 md:grid-cols-3"><div><h3 className="mb-3 text-lg font-black text-[#075653]">Controles complementares</h3><ApprovedList items={COMPLEMENTARY_CONTROLS}/></div><div><h3 className="mb-3 text-lg font-black text-[#075653]">Ressonância magnética</h3><ApprovedList items={MRI_SERVICES}/></div><div><h3 className="mb-3 text-lg font-black text-[#075653]">Dose ocupacional</h3><ApprovedList items={OCCUPATIONAL_STUDIES}/></div></div>
+    </ApprovedLightSection>
 
     <ApprovedLightSection eyebrow="Base normativa" title="Referência para os programas de radiologia" intro="A RDC 611/2022 reúne requisitos para os programas de qualidade, educação permanente e proteção radiológica, conforme sua aplicação ao serviço." white>
       <ApprovedNormCards items={[
