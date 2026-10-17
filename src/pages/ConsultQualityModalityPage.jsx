@@ -81,21 +81,73 @@ const MODALITIES = {
 
 /**
  * Exemplos educativos extraídos das referências normativas por modalidade.
- * NÃO são checklist contratado, portfólio confirmado ou lista completa de ensaios da Consult.
+ * Estes exemplos devem ser substituídos pelas listas finais aprovadas da Consult.
  * Os ensaios efetivamente realizados dependem da configuração do sistema, aplicabilidade,
  * fabricante e escopo técnico acordado. A lista comercial final depende da Consult.
  */
-const NORMATIVE_TEST_EXAMPLES = {
-  'raio-x-convencional': ['Exatidão dos indicadores de distância foco-receptor', 'Alinhamento e campo luminoso', 'Qualidade de imagem: resolução espacial e baixo contraste', 'Valores representativos de dose'],
-  'fluoroscopia-arco-c-angiografia': ['Taxa de kerma no ar e indicadores de exposição, quando aplicáveis', 'Resolução espacial e baixo contraste em fluoroscopia', 'Exatidão da tensão do tubo e tempo acumulado', 'Integridade dos acessórios de proteção'],
-  mamografia: ['Controle automático de exposição', 'Qualidade de imagem e condições do receptor', 'Condições de compressão e acessórios do mamógrafo', 'Avaliações previstas para a tecnologia empregada'],
-  tomografia: ['Exatidão e uniformidade do número de CT', 'Ruído e resolução espacial', 'Espessura de corte e posicionamento da mesa', 'Indicadores de dose, quando aplicáveis'],
-  'odontologico-extraoral': ['Camada semirredutora e tensão do tubo', 'Reprodutibilidade da tensão', 'Uniformidade da imagem, conforme a tecnologia', 'Valores representativos de dose, conforme a aplicação'],
-  'odontologico-intraoral': ['Camada semirredutora', 'Exatidão da tensão do tubo', 'Exatidão do tempo de exposição', 'Condições do processamento, quando aplicável'],
-  ultrassom: ['Uniformidade da imagem e zona morta', 'Profundidade de penetração e zona focal', 'Resolução axial e lateral', 'Exatidão de medidas e avaliação Doppler, quando aplicável'],
-  'ressonancia-magnetica': ['Resolução espacial da imagem', 'Relação sinal-ruído conforme bobina e método aplicável', 'Qualidade da imagem e critérios de aceitação do sistema', 'Requisitos de segurança e controle de acesso ao ambiente'],
-  'densitometria-ossea': ['Testes de aceitação previstos pelo fabricante', 'Verificações de constância previstas pelo fabricante', 'Avaliação conforme protocolos reconhecidos', 'Registro documental dos resultados aplicáveis'],
-  'raio-x-veterinario': ['Parâmetros do gerador e do sistema de imagem, conforme aplicabilidade', 'Qualidade da imagem conforme o equipamento', 'Referências técnicas de radiografia convencional da IN 90/2021', 'Proteção radiológica de trabalhadores e público'],
+const APPROVED_MODALITY_TESTS = {
+  "raio-x-convencional": [
+    "Gerador e tubo: exatidão e reprodutibilidade da tensão (kVp), exatidão e reprodutibilidade do tempo de exposição, reprodutibilidade e linearidade do kerma no ar, rendimento do tubo, camada semirredutora.",
+    "Geometria: distância foco-receptor, campo luminoso, alinhamento do eixo central do feixe, alinhamento de grade.",
+    "Controle automático de exposição: reprodutibilidade e compensação para diferentes espessuras.",
+    "Imagem: resolução espacial, uniformidade, artefatos, qualidade da imagem, distorção geométrica e indicador de dose do detector (CR e DR), diferença de sensibilidade entre placas (CR), efetividade do apagamento.",
+    "Laudo e visualização: luminância e uniformidade de monitores e negatoscópios, iluminância da sala de laudos.",
+    "Dose e proteção: valores representativos de dose, integridade de chassis, acessórios e EPIs, levantamento radiométrico, radiação de fuga do cabeçote."
+  ],
+  "fluoroscopia-arco-c-angiografia": [
+    "Dose: máxima taxa de kerma no ar, taxas de kerma de referência nos modos baixo, normal e alto, exatidão do indicador de PKA e do kerma no ponto de referência.",
+    "Gerador: exatidão da tensão, tempo de exposição acumulado, camada semirredutora, reprodutibilidade do controle automático de intensidade.",
+    "Imagem: resolução espacial, resolução de baixo contraste, distorção geométrica.",
+    "Geometria e segurança: distância mínima foco-pele, alinhamento do feixe, colimação, sinal sonoro no modo cine, integridade de EPIs e proteção coletiva, levantamento radiométrico, radiação de fuga."
+  ],
+  "mamografia": [
+    "Dose e gerador: dose glandular média, exatidão e reprodutibilidade da tensão, tempo máximo de exposição, rendimento, camada semirredutora, reprodutibilidade e compensação do controle automático de exposição.",
+    "Compressão e geometria: sistema de compressão, alinhamento da bandeja, indicação de espessura, colimação.",
+    "Imagem: qualidade da imagem com simulador, resolução espacial, razão contraste-ruído, uniformidade, artefatos.",
+    "Laudo e proteção: monitores e negatoscópios, iluminância da sala, acessórios e EPIs, levantamento radiométrico, radiação de fuga.",
+    "Inclui o acompanhamento do teste diário de qualidade de imagem exigido pela IN 92 (ver Programas)."
+  ],
+  "tomografia": [
+    "Imagem: exatidão e uniformidade do número de CT, ruído, resolução espacial, espessura de corte, artefatos.",
+    "Dose: valores representativos de dose, indicador de dose (CTDI/DLP), modulação de corrente para diferentes espessuras.",
+    "Mecânica: deslocamento e posicionamento da mesa, coincidência dos lasers com o plano irradiado, exatidão da tensão.",
+    "Laudo e proteção: monitores, negatoscópios, iluminância da sala, acessórios e EPIs, levantamento radiométrico."
+  ],
+  "odontologico-extraoral": [
+    "Exatidão e reprodutibilidade da tensão e do tempo, reprodutibilidade do kerma no ar, camada semirredutora, campo de radiação.",
+    "Valores representativos de dose e indicador de dose.",
+    "Tomografia de feixe cônico: número CT ou densidade, uniformidade e ruído.",
+    "Imagem e laudo: artefatos, uniformidade (CR e DR), efetividade do apagamento, monitores, negatoscópios, iluminância.",
+    "Proteção: acessórios e EPIs, levantamento radiométrico."
+  ],
+  "odontologico-intraoral": [
+    "Exatidão da tensão e do tempo de exposição, camada semirredutora, linearidade e reprodutibilidade do kerma no ar, valor representativo de dose.",
+    "Tamanho de campo e distância foco-pele.",
+    "Qualidade da imagem, artefatos, efetividade do apagamento (digital).",
+    "Acessórios e EPIs, levantamento radiométrico, radiação de fuga."
+  ],
+  "ultrassom": [
+    "Uniformidade da imagem, zona morta, profundidade de penetração, zona focal.",
+    "Exatidão das medidas de distância vertical e horizontal.",
+    "Resolução axial e lateral, visualização de objetos anecoicos, sensibilidade a baixo contraste.",
+    "Doppler, quando houver: acurácia de velocidade e sensibilidade.",
+    "Avaliação por transdutor, com simulador de tecido."
+  ],
+  "ressonancia-magnetica": [
+    "Frequência central e homogeneidade do campo estático.",
+    "Razão sinal-ruído, uniformidade, resolução espacial de alto contraste.",
+    "Exatidão geométrica, da posição e da espessura de corte.",
+    "Artefatos e imagem residual (ghosting).",
+    "Verificação da blindagem de radiofrequência.",
+    "Monitores, negatoscópios e iluminância da sala de laudos."
+  ],
+  "densitometria-ossea": [
+    "Testes de aceitação e de constância conforme a RDC 611/2022, as instruções do fabricante e protocolos reconhecidos, incluindo o acompanhamento do teste com simulador, levantamento radiométrico e radiação de fuga."
+  ],
+  "raio-x-veterinario": [
+    "Avaliação do equipamento com os testes da IN 90/2021 aplicáveis, como referência técnica, e da proteção de trabalhadores e público conforme a RDC 611/2022.",
+    "Inclui levantamento radiométrico e radiação de fuga, também para equipamentos móveis."
+  ]
 }
 
 const PROCESS = [['01','Identificar a modalidade','Confirmar equipamento, contexto de uso e referência aplicável.'],['02','Executar os ensaios','Realizar os testes previstos para a modalidade.'],['03','Analisar os resultados','Confrontar as medições com os critérios pertinentes.'],['04','Emitir o laudo','Documentar o resultado e a conclusão técnica.']]
@@ -215,7 +267,7 @@ export default function ConsultQualityModalityPage() {
 
   if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Modalidade não encontrada</h1><Link to="/consult/fisica-medica/controle-de-qualidade" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Controle de Qualidade</Link></main></ConsultSiteShell>
 
-  if (presentation) return <ConsultQualityModalityLayout item={item} process={PROCESS} presentation={presentation} normativeExamples={NORMATIVE_TEST_EXAMPLES[slug]}/>
+  if (presentation) return <ConsultQualityModalityLayout item={item} process={PROCESS} presentation={presentation} normativeExamples={APPROVED_MODALITY_TESTS[slug]}/>
 
   const norms = slug === 'densitometria-ossea'
     ? [['RDC 611/2022 — Anvisa','Base sanitária aplicável à modalidade. Não há IN específica indicada para densitometria óssea.',RDC_611]]

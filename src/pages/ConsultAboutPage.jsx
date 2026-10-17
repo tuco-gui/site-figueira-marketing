@@ -18,7 +18,8 @@ export default function ConsultAboutPage() {
     />
     <ApprovedProofStrip items={[[ 'HISTÓRIA','Desde 1995' ],[ 'FÍSICA MÉDICA','Desde 2013' ],[ 'ATUAÇÃO','Todo o Brasil' ],[ 'EQUIPES EM CAMPO','SP • PR • MS • MG' ]]}/>
 
-    <ApprovedLightSection eyebrow="Quem somos" title="Técnica para transformar medição em decisão" intro="A Consult verifica condições técnicas, documenta resultados e organiza evidências para apoiar instituições de saúde em segurança, desempenho e conformidade." center>
+    <ApprovedLightSection eyebrow="Quem somos" title="Técnica para transformar medição em decisão" intro="Fundada em 1995, a Consult atua em Física Médica do Radiodiagnóstico desde 2013. Medimos, ensaiamos e documentamos os equipamentos de hospitais, clínicas de imagem, consultórios odontológicos, serviços veterinários e instituições de ensino, com laudo técnico por equipamento." center>
+      <p className="mx-auto mb-8 max-w-4xl text-center text-sm leading-7 text-[#315B58]">Hoje a Consult atende também os equipamentos médico-assistenciais com a Consult Engenharia Clínica: segurança elétrica, ensaio de desempenho, manutenção preventiva e qualificação térmica. Assim, a mesma equipe que cuida da radiologia pode avaliar os demais equipamentos da instituição, com o mesmo padrão de laudo. Atendemos em todo o Brasil, com equipes em campo em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais.</p>
       <div className="grid gap-5 md:grid-cols-3">
         {[
           [ShieldCheck,'Física Médica','Controle de Qualidade, medições e laudos técnicos para diagnóstico por imagem.'],
@@ -28,9 +29,9 @@ export default function ConsultAboutPage() {
       </div>
     </ApprovedLightSection>
 
-    <ApprovedLightSection eyebrow="Responsabilidade técnica" title="Matheus Alvarez — responsável técnico" intro="Matheus Alvarez é o responsável técnico indicado pela Consult. Os documentos são emitidos conforme o serviço executado, com assinatura profissional aplicável." white>
+    <ApprovedLightSection eyebrow="Responsabilidade técnica" title="Matheus Alvarez — Físico Médico e Engenheiro" intro="Sócio da Consult Radiometria e Qualidade, com experiência em Física Médica, Proteção Radiológica, Controle de Qualidade e Engenharia Clínica." white>
       <div className="grid gap-5 md:grid-cols-2">
-        <div className="rounded-2xl bg-[#075653] p-7 text-white"><UsersRound className="h-8 w-8 text-[#8AE600]"/><h3 className="mt-4 text-xl font-black">Responsável técnico habilitado</h3><p className="mt-3 text-sm leading-7 text-white/70">Laudos e documentos técnicos seguem a responsabilidade profissional aplicável a cada serviço.</p></div>
+        <div className="rounded-2xl bg-[#075653] p-7 text-white"><UsersRound className="h-8 w-8 text-[#8AE600]"/><h3 className="mt-4 text-xl font-black">Formação e especializações</h3><p className="mt-3 text-sm leading-7 text-white/85">Graduado em Física Médica, Engenharia Elétrica e Engenharia de Produção. Mestre e doutor em Biologia Geral e Aplicada pela UNESP, com pós-doutorado pela Faculdade de Medicina de Botucatu (UNESP). Especialista em Física Médica do Radiodiagnóstico pela ABFM, com pós-graduações em Engenharia Clínica, Engenharia da Qualidade e Sistemas de Energia.</p></div>
         <div className="rounded-2xl border border-black/5 bg-white p-7 shadow-sm"><MapPin className="h-8 w-8 text-[#08A77F]"/><h3 className="mt-4 text-xl font-black text-[#123C3B]">Estrutura de atendimento</h3><p className="mt-3 text-sm leading-7 text-black/55">Sede em Matão/SP e atendimento em Botucatu/SP, com atuação nacional e equipes em campo em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais.</p></div>
       </div>
     </ApprovedLightSection>

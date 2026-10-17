@@ -4,33 +4,73 @@ import { ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
 import { ApprovedInternalHero, ApprovedLightSection, CONSULT_IMAGES } from '@/components/consult/ConsultApprovedInternal'
 
 const sections = [
-  ['Quais dados podem ser coletados', [
-    'Dados informados em formulários, como nome, e-mail, telefone, instituição, assunto e mensagem.',
-    'Antes de abrir o WhatsApp, o site pode solicitar nome e telefone para registrar a origem do contato e evitar perda de leads.',
-    'Dados técnicos de navegação necessários à segurança e ao funcionamento do site, como página de origem, navegador e um identificador técnico derivado do endereço IP para prevenção de abuso. O endereço IP bruto não é armazenado no cadastro de leads.',
-  ]],
-  ['Para que os dados são usados', [
-    'Responder solicitações de contato, orçamento ou atendimento técnico.',
-    'Encaminhar o contato para a área adequada e registrar o histórico comercial da solicitação.',
-    'Proteger o formulário contra abuso, automação maliciosa e excesso de tentativas.',
-    'Mensurar navegação e desempenho apenas quando ferramentas de analytics estiverem ativas e houver a gestão de consentimento aplicável.',
-  ]],
-  ['Compartilhamento e operadores', [
-    'Os dados podem ser processados por provedores de hospedagem, banco de dados, segurança e envio transacional necessários ao funcionamento do site e ao atendimento.',
-    'A Consult não vende os dados recebidos pelo site.',
-  ]],
-  ['Retenção e segurança', [
-    'Os dados são mantidos pelo período necessário para atender a solicitação, cumprir obrigações aplicáveis e preservar registros comerciais e técnicos legítimos.',
-    'São adotadas medidas de acesso restrito e proteção compatíveis com a finalidade dos dados tratados.',
-  ]],
-  ['Cookies e analytics', [
-    'Na homologação atual não há ferramenta externa de analytics ou publicidade ativa no código da Consult.',
-    'Se ferramentas de analytics ou tags que dependam de consentimento forem ativadas, o site está preparado para solicitar a escolha do visitante antes de liberar esse tipo de medição.',
-  ]],
-  ['Seus direitos e contato', [
-    'Você pode solicitar informações, correção, atualização ou outras providências previstas na LGPD em relação aos seus dados.',
-    'A Consult indica Matheus Alvarez (matheus@consult.med.br) e Amanda (amanda@consult.med.br) como responsáveis pelo atendimento às solicitações sobre dados pessoais. Também é possível contatar radiometria@consult.med.br.',
-  ]],
+  [
+    "1. Quem somos",
+    [
+      "O site é mantido pela Consult Radiometria e Qualidade S/S, com sede em Matão/SP e atendimento na Av. Dr. Vital Brasil, 1060, sala 205, Botucatu/SP. A Consult é controladora dos dados pessoais tratados por meio deste site, nos termos da Lei 13.709/2018 (LGPD)."
+    ]
+  ],
+  [
+    "2. Que dados coletamos",
+    [
+      "No formulário de orçamento: nome, instituição, cidade/UF, telefone/WhatsApp, serviço solicitado e, opcionalmente, e-mail, equipamentos e mensagem.",
+      "Na navegação, podem ser utilizados dados técnicos como página de origem, tipo de navegador e identificador derivado do IP para segurança e prevenção de abuso. O IP bruto não é armazenado no cadastro de leads.",
+      "O site pode pedir nome e telefone antes de abrir o WhatsApp para registrar o contato."
+    ]
+  ],
+  [
+    "3. Para que usamos",
+    [
+      "Responder solicitações, elaborar orçamentos, agendar atendimentos e manter o relacionamento comercial solicitado pela instituição.",
+      "Proteger os canais de contato contra abusos e registrar o histórico da solicitação.",
+      "Ferramentas de análise e publicidade somente serão ativadas quando instaladas e, para recursos não essenciais, após o consentimento correspondente. Na homologação não há tags externas de análise/publicidade ativas."
+    ]
+  ],
+  [
+    "4. Base legal",
+    [
+      "Tratamos informações para procedimentos preliminares a contrato solicitados pelo titular (art. 7º, V, da LGPD), para legítimos interesses pertinentes (art. 7º, IX) e, no caso de cookies não essenciais, mediante consentimento (art. 7º, I)."
+    ]
+  ],
+  [
+    "5. Compartilhamento",
+    [
+      "A Consult não vende nem cede dados pessoais para fins comerciais de terceiros.",
+      "Dados podem ser processados por prestadores de hospedagem, banco de dados, segurança e e-mail necessários ao atendimento, ou compartilhados quando a lei ou autoridade competente exigir."
+    ]
+  ],
+  [
+    "6. Retenção e segurança",
+    [
+      "As informações ficam armazenadas pelo tempo necessário para atender a solicitação, manter histórico comercial legítimo ou cumprir obrigações legais; depois, são excluídas ou anonimizadas conforme aplicável.",
+      "São adotadas medidas técnicas e administrativas para reduzir riscos de acesso não autorizado, perda ou alteração."
+    ]
+  ],
+  [
+    "7. Direitos dos titulares",
+    [
+      "Você pode solicitar confirmação de tratamento, acesso, correção, anonimização, exclusão, portabilidade, informações sobre compartilhamento e revogação de consentimento, conforme o art. 18 da LGPD."
+    ]
+  ],
+  [
+    "8. Cookies e preferências",
+    [
+      "Cookies estritamente necessários apoiam o funcionamento e as escolhas de privacidade. Cookies opcionais para análise ou publicidade dependem de escolha prévia do visitante.",
+      "É possível aceitar, recusar ou personalizar essas categorias no aviso de cookies e rever a decisão posteriormente em “Preferências de cookies”."
+    ]
+  ],
+  [
+    "9. Responsáveis e contato",
+    [
+      "Matheus Alvarez: matheus@consult.med.br. Amanda: amanda@consult.med.br. Para contatos gerais: radiometria@consult.med.br."
+    ]
+  ],
+  [
+    "10. Atualizações",
+    [
+      "Esta política poderá ser revisada conforme os recursos efetivamente utilizados no site. A data da última atualização é informada abaixo."
+    ]
+  ]
 ]
 
 export default function ConsultPrivacyPage() {
@@ -57,7 +97,7 @@ export default function ConsultPrivacyPage() {
           </ul>
         </section>)}
         <div className="text-sm leading-7 text-black/55">
-          <p><strong>Última atualização:</strong> 10 de outubro de 2026.</p>
+          <p><strong>Última atualização:</strong> 16 de outubro de 2026.</p>
           <p className="mt-2">Para voltar ao site, <Link to="/consult" className="font-extrabold text-[#08A77F] underline">acesse a página inicial da Consult</Link>.</p>
         </div>
       </div>

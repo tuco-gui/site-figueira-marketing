@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { ArrowRight, ChevronDown, FileText, Menu, MessageCircle, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import ConsultCookieNotice from './ConsultCookieNotice'
 
 const LOGO = '/consult/logo-oficial.png'
 const WHATSAPP = '5514981610712'
@@ -163,7 +164,7 @@ export function ConsultFooter({ horizontalBrand = true }) {
           <p>Atendimento: 8h às 17h</p>
         </div></div>
       </div>
-      <div className="flex flex-col gap-2 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between"><span>© 2026 Consult Radiometria e Qualidade. Todos os direitos reservados.</span><Link className="hover:text-white" to="/consult/politica-de-privacidade">Política de Privacidade</Link></div>
+      <div className="flex flex-col gap-2 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between"><span>© 2026 Consult Radiometria e Qualidade S/S. Todos os direitos reservados.</span><Link className="hover:text-white" to="/consult/politica-de-privacidade">Política de Privacidade</Link><button type="button" onClick={() => window.dispatchEvent(new Event("consult:open-cookie-settings"))} className="text-left hover:text-white">Preferências de cookies</button></div>
     </div>
   </footer>
 }
@@ -183,5 +184,5 @@ export function ConsultCtaBand({ title = 'Precisa avaliar uma necessidade técni
 }
 
 export function ConsultSiteShell({ children, horizontalBrand = true }) {
-  return <div className="min-h-screen bg-white font-sans text-[#123C3B]"><ConsultHeader horizontalBrand={horizontalBrand}/>{children}<ConsultFooter horizontalBrand={horizontalBrand}/></div>
+  return <div className="min-h-screen bg-white font-sans text-[#123C3B]"><ConsultHeader horizontalBrand={horizontalBrand}/>{children}<ConsultFooter horizontalBrand={horizontalBrand}/><ConsultCookieNotice/></div>
 }

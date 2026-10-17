@@ -88,11 +88,11 @@ const SERVICES = {
   },
   treinamentos: {
     title: 'Treinamentos técnicos', eyebrow: 'Proteção Radiológica', visual: 'technical',
-    intro: 'Capacitação periódica das equipes em radioproteção e segurança em ressonância magnética.',
+    intro: 'Treinamentos em radioproteção e segurança em ressonância magnética, com certificado: EAD na plataforma Consult Cursos, presencial sob medida ou turmas online ao vivo conforme disponibilidade.',
     audience: 'Para equipes de radiologia e ressonância magnética que precisam atualizar práticas de proteção e segurança.',
     when: ['Capacitação periódica da equipe','Entrada de novos profissionais','Atualização de rotina','Necessidade de reforçar radioproteção ou segurança em RM'],
     proof: [['FOCO','Radioproteção'],['TEMA','Segurança em RM'],['FORMATO','Capacitação técnica'],['PÚBLICO','Equipes assistenciais']],
-    parameters: [['Tema','Conteúdo definido conforme necessidade'],['Equipe','Público participante'],['Rotina','Aplicação ao contexto da instituição'],['Registro','Escopo de realização documentado conforme contratação']],
+    parameters: [['Segurança em Ressonância Magnética','Controle de acesso, triagem e prevenção de acidentes'],['Proteção Radiológica','Profissionais de serviços com radiação ionizante'],['Radioproteção em Centro Cirúrgico','Enfermagem e equipes que trabalham com arco cirúrgico'],['Dosimetria e Radioproteção Básica','Uso do dosímetro e fundamentos de proteção'],['CQ Diário em Mamografia','Teste diário exigido pela IN 92'],['Física do Ultrassom','Profissionais que operam ultrassom'],['Supervisor das Aplicações das Técnicas Radiológicas','Supervisão técnica do serviço']],
     storyTitle: 'Treinamento técnico precisa conversar com a rotina da equipe.',
     story: 'O conteúdo de cada treinamento considera a rotina da instituição e as práticas de radioproteção ou segurança em ressonância magnética necessárias à equipe.',
     metric: 'Capacitação técnica direcionada à rotina da equipe',
@@ -189,6 +189,7 @@ export default function ConsultServicePage() {
       <ApprovedNormCards items={service.norms}/>
     </ApprovedLightSection>
 
+    {slug === 'treinamentos' && <ApprovedLightSection eyebrow="Consult Cursos" title="EAD, presencial e online ao vivo" intro="Aulas gravadas com certificado na plataforma Consult Cursos ou capacitação presencial sob medida. Turmas online ao vivo também podem ser organizadas. Os preços ficam somente na plataforma." white><a href="https://consultcursos.herospark.co/" target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center rounded-xl bg-[#075653] px-6 py-3 text-sm font-extrabold text-white">Conhecer os cursos EAD</a></ApprovedLightSection>}
     <ApprovedFaq items={service.faq}/>
     <ConsultCtaBand title={`Precisa de ${service.title}?`} text="Conte a situação da sua instituição. A equipe Consult confirma o escopo técnico e orienta o próximo passo."/>
   </main></ConsultSiteShell>

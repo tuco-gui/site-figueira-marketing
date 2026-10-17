@@ -28,37 +28,37 @@ const ELECTROMEDICAL_NORMS = [
 ]
 
 const EQUIPMENT = {
-  'monitor-multiparametrico': { title:'Monitor multiparamétrico', electromedical:true, parameters:['ECG','PNI (pressão não invasiva)','Pressão invasiva','Temperatura','Respiração','SpO₂'] },
-  eletrocardiografo: { title:'Eletrocardiógrafo', electromedical:true, parameters:['Resposta a ritmos cardíacos simulados'] },
-  'oximetro-pulso': { title:'Oxímetro de pulso', electromedical:true, parameters:['SpO₂ simulada','Frequência de pulso simulada'], caveat:'O ensaio avalia sinais simulados e não determina a exatidão do sensor em uso no paciente.' },
-  'esfigmomanometro-mapa': { title:'Esfigmomanômetro digital e MAPA', electromedical:true, parameters:['Pressão sistólica simulada','Pressão diastólica simulada'] },
+  'monitor-multiparametrico': { title:'Monitor multiparamétrico', electromedical:true, parameters:['ECG (frequência, amplitude e arritmias)','Respiração','Temperatura','PNI','Pressão invasiva','SpO₂ e frequência de pulso'] },
+  eletrocardiografo: { title:'Eletrocardiógrafo', electromedical:true, parameters:['Sinais de ECG simulados em 12 derivações: frequência, amplitude e arritmias'] },
+  'oximetro-pulso': { title:'Oxímetro de pulso', electromedical:true, parameters:['SpO₂ simulada','Frequência de pulso simulada','Curvas dos principais fabricantes de sensores'], caveat:'O ensaio avalia sinais simulados e não determina a exatidão do sensor em uso no paciente.' },
+  'esfigmomanometro-mapa': { title:'Esfigmomanômetro digital e MAPA', electromedical:true, conditionalElectrical:true, parameters:['Pressão sistólica simulada','Pressão diastólica simulada','Frequência cardíaca','Teste de vazamento'] },
   'desfibrilador-cardioversor-dea': { title:'Desfibrilador, cardioversor e DEA', electromedical:true, parameters:['Energia entregue','Tempo de carga','Atraso no modo sincronizado','Resposta ao ECG'] },
-  'marca-passo-transcutaneo': { title:'Marca-passo transcutâneo', electromedical:true, parameters:['Tensão','Corrente','Frequência em diferentes cargas'] },
-  'bisturi-eletrico': { title:'Bisturi elétrico (eletrocautério)', electromedical:true, parameters:['Potência entregue em diferentes cargas','Fuga de alta frequência'] },
-  'ventilador-pulmonar': { title:'Ventilador pulmonar', electromedical:true, parameters:['Fluxo','Volume','Pressões','PEEP','Concentração de O₂'] },
-  'aparelho-anestesia': { title:'Aparelho de anestesia — parte ventilatória', electromedical:true, parameters:['Fluxo','Volume','Pressões','PEEP','Concentração de O₂'], caveat:'Esta avaliação não inclui medição da concentração do agente anestésico.' },
+  'marca-passo-transcutaneo': { title:'Marca-passo transcutâneo', electromedical:true, parameters:['Amplitude e frequência dos pulsos em diferentes cargas'] },
+  'bisturi-eletrico': { title:'Bisturi elétrico (eletrocautério)', electromedical:true, parameters:['Potência entregue em diferentes cargas, modos monopolar e bipolar','Corrente de fuga de alta frequência'] },
+  'ventilador-pulmonar': { title:'Ventilador pulmonar', electromedical:true, parameters:['Volume corrente e volume-minuto','Fluxo','Pressão de pico','PEEP','Frequência respiratória','Relação I:E','Concentração de O₂'] },
+  'aparelho-anestesia': { title:'Aparelho de anestesia — parte ventilatória', electromedical:true, parameters:['Volume corrente e volume-minuto','Fluxo','Pressão de pico','PEEP','Frequência respiratória','Relação I:E','Concentração de O₂'], caveat:'Esta avaliação não inclui medição da concentração do agente anestésico.' },
   'cpap-bipap': { title:'CPAP e BiPAP', electromedical:true, parameters:['Fluxo','Pressão'] },
-  'fluxometro-manometro-o2': { title:'Fluxômetro e manômetro de O₂', mechanical:true, parameters:['Fluxo','Pressão'] },
-  'concentrador-oxigenio': { title:'Concentrador de oxigênio', electromedical:true, parameters:['Parâmetros de desempenho definidos conforme o modelo e o escopo técnico aplicável'] },
+  'fluxometro-manometro-o2': { title:'Fluxômetro e manômetro (O₂ e ar comprimido)', mechanical:true, parameters:['Fluxo','Pressão'] },
+  'concentrador-oxigenio': { title:'Concentrador de oxigênio', electromedical:true, parameters:['Concentração de O₂','Fluxo'] },
   autoclave: {
     title:'Autoclave', thermal:true,
-    parameters:['Temperatura em múltiplos pontos','Pressão','Letalidade F0','Ciclos de operação'],
+    parameters:['Qualificação de instalação, operação e desempenho (QI, QO e QD)','Temperatura e pressão na câmara vazia e com carga','Ciclos repetidos por condição','Letalidade F0'],
     norms:[['ABNT NBR ISO 17665','Referência para esterilização por calor úmido.',ABNT],['ABNT NBR IEC 61010','Referência de segurança elétrica aplicável ao equipamento.',ABNT]],
   },
   termodesinfectora: {
     title:'Termodesinfectora', thermal:true,
-    parameters:['Temperatura em múltiplos pontos','Letalidade A0','Ciclo de operação'],
+    parameters:['Qualificação de instalação, operação e desempenho (QI, QO e QD)','Distribuição de temperatura nos ciclos','Letalidade A0'],
     norms:[['ABNT NBR ISO 15883','Referência aplicável a termodesinfectoras.',ABNT],['ABNT NBR IEC 61010','Referência de segurança elétrica aplicável ao equipamento.',ABNT]],
   },
   'termodesinfectora-estufa': { redirectTo:'/consult/engenharia-clinica/equipamentos/termodesinfectora' },
   'estufa-banho-maria': {
     title:'Estufas e incubadoras de laboratório', thermal:true,
-    parameters:['Estabilidade de temperatura','Uniformidade de temperatura'],
+    parameters:['Estabilidade e uniformidade de temperatura','Mapeamento do volume útil'],
     norms:[['ABNT NBR IEC 61010','Referência de segurança elétrica aplicável a equipamentos de laboratório.',ABNT]],
   },
   'geladeira-camara-vacina': {
     title:'Geladeira e câmara de vacina', thermal:true,
-    parameters:['Mapeamento de temperatura','Estabilidade térmica','Uniformidade térmica'],
+    parameters:['Mapeamento de temperatura com câmara vazia e com carga','Abertura de porta','Queda de energia e tempo de recuperação'],
     norms:[['RDC 197/2017','Referência para serviços de vacinação.',RDC_197],['Manual da Rede de Frio do PNI','Referência para conservação e rede de frio.',PNI],['ABNT NBR IEC 61010','Referência de segurança elétrica quando aplicável.',ABNT]],
   },
 }
@@ -68,12 +68,12 @@ const FLOW = [['01','Identificar','Confirmar equipamento, modelo, aplicação e 
 function equipmentIntro(item) {
   if (item.thermal) return `Qualificação térmica de ${item.title}, com medições documentadas, relatório por equipamento e padrões com rastreabilidade RBC/Inmetro.`
   if (item.mechanical) return `Ensaio de desempenho de ${item.title}, com medição documentada, laudo por equipamento e padrões com rastreabilidade RBC/Inmetro.`
-  return `Ensaios de segurança elétrica e desempenho de ${item.title}, com medição documentada, laudo por equipamento e padrões com rastreabilidade RBC/Inmetro.`
+  return `${item.conditionalElectrical ? 'Ensaios de desempenho e segurança elétrica quando ligado à rede' : 'Ensaios de segurança elétrica e desempenho'} de ${item.title}, com medição documentada, laudo por equipamento e padrões com rastreabilidade RBC/Inmetro.`
 }
 
 function equipmentProof(item) {
   const proof=[['EQUIPAMENTO',item.title],['DESEMPENHO',item.thermal?'Qualificação térmica':'Ensaio documentado'],['RASTREIO','RBC/Inmetro']]
-  if (item.electromedical) proof.splice(2,0,['SEG. ELÉTRICA','ABNT NBR IEC 62353'])
+  if (item.electromedical) proof.splice(2,0,['SEG. ELÉTRICA',item.conditionalElectrical ? 'IEC 62353 quando ligado à rede' : 'ABNT NBR IEC 62353'])
   return proof
 }
 
@@ -92,6 +92,7 @@ function equipmentFaq(item) {
   if (item.electromedical) faq.splice(1,0,['O equipamento recebe ensaio de segurança elétrica?','Sim. Para os equipamentos eletromédicos, o ensaio de segurança elétrica segue a ABNT NBR IEC 62353 conforme aplicabilidade.'])
   if (item.mechanical) faq.splice(1,0,['O que é avaliado no fluxômetro e manômetro de O₂?','Fluxo e pressão. A avaliação considera o equipamento mecânico e registra o resultado do ensaio de desempenho.'])
   if (item.thermal) faq.splice(1,0,['Qual referência é usada para segurança elétrica?','Nas páginas térmicas e laboratoriais, a referência de segurança elétrica é a ABNT NBR IEC 61010 quando aplicável, sem uso da IEC 62353 como base desta página.'])
+  if (item.title === 'Autoclave') faq.push(['A Consult realiza inspeção NR-13 em autoclaves?', 'Sim, como serviço adicional quando a autoclave é enquadrada como vaso de pressão: análise documental, inspeção de segurança e emissão de relatório conforme os requisitos aplicáveis da NR-13.'])
   return faq
 }
 
@@ -117,7 +118,7 @@ export default function ConsultEquipmentPage() {
 
   if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Equipamento não encontrado</h1><Link to="/consult/engenharia-clinica" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Engenharia Clínica</Link></main></ConsultSiteShell>
 
-  const reportItems=['Identificação do equipamento','Ensaios e parâmetros medidos','Valores e referências aplicáveis','Conclusão técnica','Eventuais pendências e histórico técnico']
+  const reportItems=['Identificação do fabricante, modelo, número de série e patrimônio','Ensaios realizados e parâmetros avaliados','Valor medido, referência e tolerância de cada parâmetro','Resultado aprovado ou com pendência, com descrição das pendências','Padrões utilizados, com rastreabilidade RBC/Inmetro','Data, assinatura do responsável técnico e data sugerida para o próximo ensaio']
 
   if (slug === 'monitor-multiparametrico' || slug === 'eletrocardiografo' || slug === 'oximetro-pulso' || slug === 'esfigmomanometro-mapa' || slug === 'desfibrilador-cardioversor-dea' || slug === 'marca-passo-transcutaneo' || slug === 'bisturi-eletrico' || slug === 'ventilador-pulmonar' || slug === 'aparelho-anestesia' || slug === 'cpap-bipap' || slug === 'fluxometro-manometro-o2' || slug === 'concentrador-oxigenio' || slug === 'autoclave' || slug === 'termodesinfectora' || slug === 'estufa-banho-maria' || slug === 'geladeira-camara-vacina') {
     const service = {

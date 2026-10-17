@@ -7,7 +7,7 @@ import './consult-quality-index.css'
 
 const RDC_611 = 'https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=abrirTextoAto&codTipo=&cod_menu=1696&cod_modulo=134&desItem=&desItemFim=&numeroAto=00000611&orgao=RDC/DC/ANVISA/MS&pesquisa=true&seqAto=000&tipo=RDC&valorAno=2022'
 const ICONS = [Activity, Image, ScanLine, ClipboardCheck]
-const REPORT_ITEMS = ['Identificação do equipamento e da modalidade', 'Ensaios realizados', 'Resultados medidos', 'Referência aplicável', 'Conclusão técnica e assinatura do físico médico']
+const REPORT_ITEMS = ['Identificação do serviço, equipamento e modalidade', 'Testes realizados com valor medido, referência e tolerância aplicável', 'Resultado de cada teste e conclusão', 'Não conformidades e orientações', 'Instrumentos utilizados com rastreabilidade RBC/Inmetro', 'Data e assinatura do físico médico responsável']
 
 function Eyebrow({ children }) {
   return <div className="safety-eyebrow"><span/>{children}</div>
@@ -48,7 +48,7 @@ export default function ConsultQualityModalityLayout({ item, process, presentati
       <div className="safety-card-grid">{item.focus.map(([label, text], i) => { const Icon = ICONS[i]; return <article className="safety-card" key={label}><div className="safety-card-top"><span className="safety-icon"><Icon size={30}/></span><h3>{label}</h3></div><p>{text}</p></article> })}</div>
     </div></section>
 
-    {normativeExamples.length > 0 && <section className="safety-section safety-section-white"><div className="safety-container"><div className="safety-section-heading"><Eyebrow>Referência técnica</Eyebrow><h2 className="safety-title">Exemplos de <span>verificações normativas</span></h2><p>Exemplos previstos em normas e protocolos pertinentes à modalidade. A seleção real depende do equipamento, fabricante e escopo contratado. Esta não é uma lista de ensaios confirmados como serviço da Consult.</p></div><ul className="safety-report-list">{normativeExamples.map(test => <li key={test}><ClipboardCheck size={22}/><span>{test}</span></li>)}</ul></div></section>}
+    {normativeExamples.length > 0 && <section className="safety-section safety-section-white"><div className="safety-container"><div className="safety-section-heading"><Eyebrow>Referência técnica</Eyebrow><h2 className="safety-title">O que <span>avaliamos</span></h2><p>Ensaios previstos no conteúdo técnico aprovado pela Consult. São executados os testes aplicáveis ao equipamento e à tecnologia de imagem (filme, CR ou DR), conforme a norma e o escopo.</p></div><ul className="safety-report-list">{normativeExamples.map(test => <li key={test}><ClipboardCheck size={22}/><span>{test}</span></li>)}</ul></div></section>}
 
     <section className="safety-process"><div className="safety-container">
       <div className="safety-section-heading"><Eyebrow>Como funciona</Eyebrow><h2 className="safety-title">Da avaliação <span>ao laudo técnico</span></h2></div>
@@ -59,6 +59,14 @@ export default function ConsultQualityModalityLayout({ item, process, presentati
       <div><Eyebrow>O que você recebe</Eyebrow><h2 className="safety-title">O que o laudo <span>traz</span></h2><p className="safety-section-intro">O documento registra os ensaios realizados, os resultados medidos, a referência aplicável e a conclusão técnica assinada pelo físico médico.</p></div>
       <ul className="safety-report-list">{REPORT_ITEMS.map(text => <li key={text}><ClipboardCheck size={22}/><span>{text}</span></li>)}</ul>
     </div></section>
+
+    <section className="safety-section safety-section-soft"><div className="safety-container"><div className="safety-section-heading"><Eyebrow>Dúvidas frequentes</Eyebrow><h2 className="safety-title">Perguntas sobre <span>Controle de Qualidade</span></h2></div><div className="grid gap-3">{[
+      ['Com que frequência o Controle de Qualidade é feito?', 'Na instalação (aceitação), na periodicidade definida pela IN da modalidade e após reparos que afetem o desempenho.'],
+      ['O que preciso deixar disponível na visita?', 'Equipamento livre durante os testes, operador e acesso à sala, ao monitor de laudo e ao sistema de imagem.'],
+      ['O equipamento fica parado?', 'Sim, durante os testes. O tempo estimado é informado no agendamento para adequar a rotina da instituição.'],
+      ['E se um teste não passar?', 'O laudo registra a não conformidade e a orientação. Após correção pelo fornecedor de manutenção, a Consult refaz o teste.'],
+      ['Em quanto tempo recebo o laudo?', 'Em até 7 dias após as medições.'],
+    ].map(([question, answer]) => <details key={question} className="rounded-xl border border-[#CFE4DE] bg-white p-4"><summary className="cursor-pointer font-bold text-[#075653]">{question}</summary><p className="mt-3 text-sm leading-6 text-[#315B58]">{answer}</p></details>)}</div></div></section>
 
     <section className="safety-section safety-section-soft"><div className="safety-container">
       <div className="safety-section-heading"><Eyebrow>Base normativa</Eyebrow><h2 className="safety-title">Normas e <span>referências</span></h2><p>A avaliação combina a base geral da RDC 611/2022 com a referência específica da modalidade.</p></div>

@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import { ConsultServiceQuickLinks } from '@/components/consult/ConsultSiteShell';
+import ConsultCookieNotice from '@/components/consult/ConsultCookieNotice';
 import { updateConsultPageMeta } from '@/lib/consultPageMeta';
 import {
   ArrowLeft,
@@ -45,11 +46,11 @@ const BG_A = `${CDN}/5ba952d9-c3e4-48d7-9dc0-4716ac1f137f.jpg`;
 const BG_B = `${CDN}/5ba954a4-90f8-4e55-a0d3-4b15ac1f137f.jpg`;
 const APPROVED_MOCKUP = "https://figueira-prospect-assets.vercel.app/consult-home-aprovada.png";
 const AREA_PHYS_IMAGE = "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/5ba95360-34a0-449d-9a24-4836ac1f137f.jpg";
-const AREA_PROTECTION_IMAGE = "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/5ba952d9-c3e4-48d7-9dc0-4716ac1f137f.jpg";
-const AREA_ENGINEERING_IMAGE = "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/5ba954a4-90f8-4e55-a0d3-4b15ac1f137f.jpg";
-const ARTICLE_TRAINING_IMAGE = "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/5ba952d9-c3e4-48d7-9dc0-4716ac1f137f.jpg";
+const AREA_PROTECTION_IMAGE = "/consult/raios-x-convencional-hero.jpg";
+const AREA_ENGINEERING_IMAGE = "/consult/seguranca-eletrica-hero-v1.webp";
+const ARTICLE_TRAINING_IMAGE = "/consult/ressonancia-magnetica-hero.jpg";
 const ARTICLE_IAEA_IMAGE = "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/5ba95360-34a0-449d-9a24-4836ac1f137f.jpg";
-const ARTICLE_ARC_IMAGE = "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/5ba954a4-90f8-4e55-a0d3-4b15ac1f137f.jpg";
+const ARTICLE_ARC_IMAGE = "/consult/fluoroscopia-arco-c-hero.jpg";
 
 const WHATSAPP = "5514981610712";
 const PHONE = "(14) 98161-0712";
@@ -315,6 +316,9 @@ function ContactForm() {
         body: JSON.stringify({
           type: "contact_form",
           name: data.get("nome") || "",
+          city_state: data.get("cidade_uf") || "",
+          equipment: data.get("equipamentos") || "",
+          consent: data.get("consentimento") === "on",
           email: data.get("email") || "",
           institution: data.get("instituicao") || "",
           phone: data.get("telefone") || "",
@@ -345,12 +349,17 @@ function ContactForm() {
       form.reset();
       setEmailSent(Boolean(result?.email_sent));
       setStatus("success");
-      window.dataLayer?.push?.({
-        event: "lead_form_success",
-        site: "consult",
-        lead_id: result?.lead_id || null,
-        email_sent: Boolean(result?.email_sent),
-      });
+      try {
+        const cookieChoice = JSON.parse(window.localStorage.getItem('consult-cookie-consent-v1') || 'null');
+        if (cookieChoice?.analytics === true) {
+          window.dataLayer?.push?.({
+            event: "lead_form_success",
+            site: "consult",
+            lead_id: result?.lead_id || null,
+            email_sent: Boolean(result?.email_sent),
+          });
+        }
+      } catch { /* sem evento analítico sem consentimento verificável */ }
     } catch (submitError) {
       setStatus("error");
       setError(submitError instanceof Error ? submitError.message : "Não foi possível enviar sua mensagem.");
@@ -405,22 +414,9 @@ function ContactForm() {
           placeholder="Nome completo *"
           className="h-11 rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]"
         />
-        <input
-          name="email"
-          type="email"
-          required
-          autoComplete="email"
-          aria-label="E-mail"
-          placeholder="E-mail *"
-          className="h-11 rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]"
-        />
-        <input
-          name="instituicao"
-          autoComplete="organization"
-          aria-label="Instituição ou empresa"
-          placeholder="Instituição / Empresa"
-          className="h-11 rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]"
-        />
+        <input name="instituicao" required autoComplete="organization" aria-label="Instituição" placeholder="Instituição *" className="h-11 rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]" />
+        <input name="cidade_uf" required aria-label="Cidade e estado" placeholder="Cidade / UF *" className="h-11 rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]" />
+        <input name="email" type="email" autoComplete="email" aria-label="E-mail (opcional)" placeholder="E-mail (opcional)" className="h-11 rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]" />
         <input
           name="telefone"
           required
@@ -444,14 +440,10 @@ function ContactForm() {
         <option value="" disabled>
           Como podemos ajudar? *
         </option>
-        <option>Física Médica</option>
-        <option>Proteção Radiológica</option>
-        <option>Consult Engenharia Clínica</option>
-        <option>Controle de Qualidade</option>
-        <option>Treinamentos</option>
-        <option>Outro assunto</option>
+        {['Controle de Qualidade','Levantamento radiométrico','Projeto de blindagem','Programas (PPR/PGQ/PEP)','Licenciamento sanitário','Segurança elétrica','Ensaio de desempenho','Manutenção preventiva','Qualificação térmica','Treinamentos','Outro'].map(label => <option key={label} value={label}>{label}</option>)}
       </select>
 
+      <input name="equipamentos" aria-label="Equipamentos e quantidade (opcional)" placeholder="Equipamentos e quantidade (opcional)" className="mt-3 h-11 w-full rounded-lg border border-black/10 px-3 text-sm outline-none focus:border-[#08A77F]" />
       <textarea
         name="mensagem"
         rows={4}
@@ -460,6 +452,7 @@ function ContactForm() {
         className="mt-3 w-full resize-none rounded-lg border border-black/10 px-3 py-3 text-sm outline-none focus:border-[#08A77F]"
       />
 
+      <label className="mt-3 flex items-start gap-2 text-xs leading-5 text-[#315B58]"><input type="checkbox" name="consentimento" required className="mt-1" /><span>Li a <Link to="/consult/politica-de-privacidade" className="font-bold underline">Política de Privacidade</Link> e autorizo o contato da Consult sobre esta solicitação. *</span></label>
       {status === "error" && (
         <p role="alert" className="mt-3 rounded-lg bg-red-50 px-3 py-2 text-xs font-semibold text-red-700">{error}</p>
       )}
@@ -469,7 +462,7 @@ function ContactForm() {
         disabled={status === "sending"}
         className="mt-3 inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-lg bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white transition hover:brightness-95 disabled:cursor-wait disabled:opacity-70"
       >
-        {status === "sending" ? "Enviando..." : "Enviar mensagem"}
+        {status === "sending" ? "Enviando..." : "Solicitar orçamento"}
         {status !== "sending" && <ArrowRight className="h-4 w-4" />}
       </button>
       <p className="mt-3 text-center text-[10px] leading-5 text-black/45">
@@ -555,8 +548,9 @@ function Footer() {
         </div>
 
         <div className="flex flex-col gap-3 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
-          <span>© 2026 Consult Radiometria e Qualidade. Todos os direitos reservados.</span>
+          <span>© 2026 Consult Radiometria e Qualidade S/S. Todos os direitos reservados.</span>
           <Link className="hover:text-white" to="/consult/politica-de-privacidade">Política de Privacidade</Link>
+          <button type="button" className="text-left hover:text-white" onClick={() => window.dispatchEvent(new Event("consult:open-cookie-settings"))}>Preferências de cookies</button>
         </div>
       </div>
     </footer>
@@ -611,11 +605,10 @@ export default function ConsultProposal() {
                 para a área da <span className="text-[#8AE600]">saúde</span>
               </h1>
               <p className="mt-6 max-w-2xl text-base leading-relaxed text-white/82 lg:text-lg">
-                Segurança, desempenho e rastreabilidade dos equipamentos de saúde,
-                documentados em laudo técnico. Atuamos com Física Médica, Proteção
-                Radiológica, Controle de Qualidade e Engenharia Clínica para
-                hospitais, clínicas, centros de diagnóstico por imagem, odontologia,
-                medicina veterinária e outras instituições de saúde.
+                Controle de qualidade, proteção radiológica e ensaios em equipamentos
+                médico-assistenciais para hospitais, clínicas, consultórios
+                odontológicos e veterinários, com laudo técnico em até 7 dias
+                após as medições.
               </p>
 
               <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -659,10 +652,10 @@ export default function ConsultProposal() {
         <section className="border-b border-black/5 bg-white">
           <div className="mx-auto grid max-w-7xl divide-y divide-black/10 px-4 py-4 sm:grid-cols-2 sm:divide-x sm:divide-y-0 sm:px-6 lg:grid-cols-4 lg:px-8">
             {[
-              [ShieldCheck, "Mais segurança", "para pacientes e profissionais"],
-              [FileText, "Conformidade", "com as normas vigentes"],
-              [Settings, "Tecnologia", "a serviço da qualidade"],
-              [UsersRound, "Desde 1995", "de mercado"],
+              [ShieldCheck, "Desde 1995", "Física Médica do Radiodiagnóstico desde 2013"],
+              [UsersRound, "+400 instituições", "atendidas nos últimos 12 meses"],
+              [Settings, "+1.500 atendimentos", "por ano, entre controles, levantamentos e ensaios"],
+              [FileText, "Até 7 dias", "para emissão do laudo após as medições"],
             ].map(([Icon, title, text]) => (
               <div key={title} className="flex items-center gap-3 px-3 py-4 sm:px-5">
                 <Icon className="h-8 w-8 shrink-0 text-[#08A77F]" />
@@ -952,6 +945,7 @@ export default function ConsultProposal() {
       </main>
 
       <Footer />
+      <ConsultCookieNotice />
 
       <a
         href={waUrl("Olá, equipe Consult. Gostaria de falar com vocês.")}
