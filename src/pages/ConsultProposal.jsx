@@ -736,12 +736,6 @@ export default function ConsultProposal() {
         </section>
 
         <section id="consult-cobertura-nacional" className="relative isolate overflow-hidden bg-[#075653] text-white">
-          <img
-            src="/consult/approved-national-bg.webp"
-            alt=""
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 h-full w-full object-cover opacity-55"
-          />
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(4,84,80,.96)_0%,rgba(4,84,80,.88)_34%,rgba(3,70,67,.66)_67%,rgba(3,63,60,.80)_100%)]" />
 
           <div className="relative mx-auto flex min-h-[560px] max-w-[1760px] items-center px-6 py-14 sm:min-h-[620px] sm:px-10 sm:py-16 lg:min-h-[680px] lg:px-10 lg:py-16 xl:px-14">
