@@ -735,7 +735,7 @@ export default function ConsultProposal() {
           </div>
         </section>
 
-        <section className="relative isolate overflow-hidden bg-[#075653] text-white">
+        <section id="consult-cobertura-nacional" className="relative isolate overflow-hidden bg-[#075653] text-white">
           <img
             src="/consult/approved-national-bg.webp"
             alt=""
@@ -790,9 +790,9 @@ export default function ConsultProposal() {
 
               <div className="relative z-[5] mx-auto flex h-[400px] w-full max-w-[520px] items-center justify-center sm:h-[500px] lg:h-[560px] xl:h-[610px] xl:max-w-[620px]">
                 <img
-                  src="/consult/mapa-brasil-vetorial.svg"
+                  src="/consult/mapa-brasil-vetorial.svg?v=20261020-pulso2"
                   alt="Mapa vetorial completo do Brasil, com SP, PR, MS e MG destacados como regiões principais; atendimento disponível em todo o país."
-                  className="block h-full w-auto max-w-full object-contain drop-shadow-[0_8px_18px_rgba(0,0,0,.18)]"
+                  className="consult-national-map block h-full w-full object-contain drop-shadow-[0_8px_18px_rgba(0,0,0,.18)]"
                 />
               </div>
 
