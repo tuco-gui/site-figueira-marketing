@@ -112,7 +112,7 @@ const serviceAreas = [
 const differentials = [
   { icon: UsersRound, title: "Equipe técnica especializada", text: "Profissionais qualificados e com ampla experiência nas áreas de radiometria, física médica e qualidade." },
   { icon: MessageCircle, title: "Atendimento consultivo", text: "Escuta ativa e soluções personalizadas para a realidade de cada instituição." },
-  { icon: MapPin, title: "Visitas in loco + assessoria online", text: "Atendimento em todo o Brasil, com equipes em campo em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais." },
+  { icon: MapPin, title: "Visitas in loco + assessoria online", text: "Atendemos instituições de saúde em todas as regiões do Brasil. São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais são nossas principais regiões de atuação." },
   { icon: FileText, title: "Prazo definido para o laudo", text: "Laudo emitido em até 7 dias após as medições." },
   { icon: ShieldCheck, title: "Conformidade técnica", text: "Alinhamento com as normas vigentes da Anvisa e da Vigilância Sanitária." },
   { icon: Settings, title: "Um só fornecedor técnico", text: "Radiologia e demais equipamentos na mesma visita, conforme disponibilidade da agenda na sua região." },
@@ -757,7 +757,7 @@ export default function ConsultProposal() {
                 </h2>
 
                 <p className="mt-5 max-w-[475px] text-[14px] leading-[1.55] text-white/90 sm:text-[15px]">
-                  Atendimento em todo o Brasil, com equipes em campo em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais.
+                  Atendimento em todo o Brasil, com atuação prioritária em SP, PR, MS e MG.
                 </p>
 
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row">
@@ -783,16 +783,16 @@ export default function ConsultProposal() {
                 <div className="mt-7">
                   <span className="block h-[2px] w-10 bg-[#8AE600]" />
                   <p className="mt-3 max-w-[380px] text-[9px] font-bold uppercase leading-[1.75] tracking-[0.32em] text-white/78">
-                    Equipes em campo em quatro estados
+                    Cobertura nacional
                   </p>
                 </div>
               </div>
 
               <div className="relative z-[5] mx-auto flex h-[300px] w-full max-w-[390px] items-center justify-center sm:h-[320px] lg:h-[340px]">
                 <img
-                  src="/consult/approved-national-map.webp"
-                  alt="Mapa do Brasil representando a cobertura nacional da Consult Radiometria e Qualidade."
-                  className="block h-full w-auto max-w-full object-contain [mask-image:radial-gradient(ellipse_88%_94%_at_50%_50%,black_74%,transparent_100%)] [-webkit-mask-image:radial-gradient(ellipse_88%_94%_at_50%_50%,black_74%,transparent_100%)] lg:translate-x-2"
+                  src="/consult/mapa-brasil-vetorial.svg"
+                  alt="Mapa vetorial completo do Brasil, com SP, PR, MS e MG destacados como regiões principais; atendimento disponível em todo o país."
+                  className="block h-full w-auto max-w-full object-contain drop-shadow-[0_8px_18px_rgba(0,0,0,.18)]"
                 />
               </div>
 
@@ -809,7 +809,7 @@ export default function ConsultProposal() {
                       <span className="h-6 w-1.5 rounded-sm bg-[#8AE600]" />
                     </div>
                     <div className="text-[9px] font-black uppercase leading-[1.45] tracking-[0.13em] text-white/92">
-                      Equipes em campo em 4 estados
+                      Principais regiões de atuação
                     </div>
                   </div>
 
