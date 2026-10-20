@@ -11,9 +11,9 @@
   stroke-width: 0.70;
   stroke-linecap: round;
   stroke-linejoin: round;
-  animation: consult-estado-pulso 16.2s ease-in-out infinite;
+  
 }
-#SP, #PR, #MS, #MG { fill: #8AE600; animation-name: consult-principal-pulso; }
+#SP, #PR, #MS, #MG { fill: #8AE600;  }
 @keyframes consult-estado-pulso {
   0%, 5.8%, 100% { fill: #43C7AB; filter: brightness(1); }
   2.8% { fill: #D5FF76; filter: brightness(1.8) drop-shadow(0 0 10px #B8E84F); }
