@@ -59,7 +59,7 @@
 
 /* The existing national banner uses legacy !important rules. Its outer gutter
    follows the same contract, while the approved interior map layout is kept. */
-.consult-responsive section:has(img[src="/consult/approved-national-map.webp"]) > div.relative.mx-auto {
+.consult-responsive section:has(img[src="/consult/mapa-brasil-vetorial.svg"]) > div.relative.mx-auto {
   width: 100% !important;
   max-width: none !important;
   padding-inline: var(--consult-gutter) !important;
