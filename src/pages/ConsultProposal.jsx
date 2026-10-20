@@ -739,7 +739,7 @@ export default function ConsultProposal() {
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(4,84,80,.96)_0%,rgba(4,84,80,.88)_34%,rgba(3,70,67,.66)_67%,rgba(3,63,60,.80)_100%)]" />
 
           <div className="relative mx-auto flex min-h-[560px] max-w-[1760px] items-center px-6 py-14 sm:min-h-[620px] sm:px-10 sm:py-16 lg:min-h-[680px] lg:px-10 lg:py-16 xl:px-14">
-            <div className="grid w-full items-center gap-8 lg:grid-cols-[minmax(0,43fr)_minmax(400px,37fr)_minmax(250px,20fr)] lg:gap-6 xl:gap-9">
+            <div className="grid w-full items-center gap-8 lg:grid-cols-[minmax(0,42fr)_minmax(400px,37fr)_minmax(250px,21fr)] lg:gap-6 xl:gap-9">
               <div className="relative z-10 w-full max-w-[740px] lg:pl-5 xl:pl-9">
                 <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.32em] text-white/78">
                   <span className="h-[2px] w-10 bg-[#8AE600]" />
@@ -782,9 +782,9 @@ export default function ConsultProposal() {
                 </div>
               </div>
 
-              <div className="relative z-[5] mx-auto flex h-[400px] w-full max-w-[520px] items-center justify-center sm:h-[500px] lg:h-[560px] xl:h-[610px] xl:max-w-[620px]">
+              <div className="relative z-[5] mx-auto flex h-[400px] w-full max-w-[520px] items-center justify-center sm:h-[500px] lg:h-[560px] xl:h-[570px] xl:max-w-[580px]">
                 <img
-                  src="/consult/mapa-brasil-vetorial.svg?v=20261020-final3"
+                  src="/consult/mapa-brasil-vetorial.svg?v=20261020-rotas4"
                   alt="Mapa vetorial completo do Brasil, com SP, PR, MS e MG destacados como regiões principais; atendimento disponível em todo o país."
                   className="consult-national-map block h-full w-full object-contain drop-shadow-[0_8px_18px_rgba(0,0,0,.18)]"
                 />
