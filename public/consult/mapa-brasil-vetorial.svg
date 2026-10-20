@@ -558,4 +558,11 @@
             139.839,104.393 142.123,103.537 154.967,76.565 157.108,70.571 159.676,67.574 161.817,63.864" />
     </g>
 </g>
+<g id="consult-service-routes" pointer-events="none" aria-hidden="true"><style>
+.consult-route{fill:none;stroke:#D8FFF4;stroke-width:1.15;stroke-dasharray:3 4;stroke-linecap:round;opacity:0;animation:route-show 24s linear infinite}
+.consult-dot{fill:#F5FFE9;stroke:#8AE600;stroke-width:1;opacity:0;animation:dot-pulse 24s linear infinite}
+@keyframes route-show{0%,1%,13%,100%{opacity:0;stroke-dashoffset:35} 3%,8%{opacity:.85} 11%{opacity:0;stroke-dashoffset:0}}
+@keyframes dot-pulse{0%,7%,12%,100%{opacity:0;filter:none}8%,10%{opacity:1;filter:drop-shadow(0 0 4px #D7FF80)}}
+@media(prefers-reduced-motion:reduce){.consult-route{animation:none;opacity:.3}.consult-dot{animation:none;opacity:1}}
+</style><path class="consult-route" d="M 228 254 Q 159 159.5 90 89" style="animation-delay:0s"/><circle class="consult-dot" cx="90" cy="89" r="3" style="animation-delay:0s"/><path class="consult-route" d="M 258 215 Q 229 143 200 95" style="animation-delay:3s"/><circle class="consult-dot" cx="200" cy="95" r="3" style="animation-delay:3s"/><path class="consult-route" d="M 178 234 Q 141.5 182 105 154" style="animation-delay:6s"/><circle class="consult-dot" cx="105" cy="154" r="3" style="animation-delay:6s"/><path class="consult-route" d="M 206 273 Q 196 290 186 331" style="animation-delay:9s"/><circle class="consult-dot" cx="186" cy="331" r="3" style="animation-delay:9s"/><path class="consult-route" d="M 228 254 Q 257.5 200 287 170" style="animation-delay:12s"/><circle class="consult-dot" cx="287" cy="170" r="3" style="animation-delay:12s"/><path class="consult-route" d="M 258 215 Q 284 150 310 109" style="animation-delay:15s"/><circle class="consult-dot" cx="310" cy="109" r="3" style="animation-delay:15s"/><path class="consult-route" d="M 178 234 Q 200.5 205.5 223 201" style="animation-delay:18s"/><circle class="consult-dot" cx="223" cy="201" r="3" style="animation-delay:18s"/><path class="consult-route" d="M 206 273 Q 207.5 276.5 209 304" style="animation-delay:21s"/><circle class="consult-dot" cx="209" cy="304" r="3" style="animation-delay:21s"/></g>
 </svg>
