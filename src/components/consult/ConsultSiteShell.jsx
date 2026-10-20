@@ -20,13 +20,15 @@ export function ConsultEyebrow({ children, light = false, center = false }) {
 export const CONSULT_DIRECT_SERVICES = [
   { heading: 'Física Médica', links: [
     ['Controle de Qualidade', '/consult/fisica-medica/controle-de-qualidade'],
+    ['Proteção Radiológica', '/consult/protecao-radiologica'],
+    ['  Levantamento radiométrico', '/consult/protecao-radiologica/levantamento-radiometrico'],
+    ['  Projeto de blindagem', '/consult/protecao-radiologica/projeto-blindagem'],
+    ['  Programas (PPR/PGQ/PEP)', '/consult/protecao-radiologica/programas'],
+    ['  Licenciamento', '/consult/protecao-radiologica/licenciamento-sanitario'],
   ] },
-  { heading: 'Proteção Radiológica', links: [
-    ['Levantamento radiométrico', '/consult/protecao-radiologica/levantamento-radiometrico'],
-    ['Projeto de blindagem', '/consult/protecao-radiologica/projeto-blindagem'],
-    ['Programas (PPR/PGQ/PEP)', '/consult/protecao-radiologica/programas'],
-    ['Licenciamento', '/consult/protecao-radiologica/licenciamento-sanitario'],
-    ['Treinamentos', '/consult/protecao-radiologica/treinamentos'],
+  { heading: 'Treinamentos', links: [
+    ['Treinamentos técnicos', '/consult/protecao-radiologica/treinamentos'],
+    ['Segurança em Ressonância Magnética', '/consult/protecao-radiologica/treinamentos'],
   ] },
   { heading: 'Consult Engenharia Clínica', links: [
     ['Segurança elétrica', '/consult/engenharia-clinica/seguranca-eletrica'],
