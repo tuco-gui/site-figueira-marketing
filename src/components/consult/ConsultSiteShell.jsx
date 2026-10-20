@@ -20,11 +20,11 @@ export function ConsultEyebrow({ children, light = false, center = false }) {
 export const CONSULT_DIRECT_SERVICES = [
   { heading: 'Física Médica', links: [
     ['Controle de Qualidade', '/consult/fisica-medica/controle-de-qualidade'],
-    ['Proteção Radiológica', '/consult/protecao-radiologica'],
-    ['  Levantamento radiométrico', '/consult/protecao-radiologica/levantamento-radiometrico'],
-    ['  Projeto de blindagem', '/consult/protecao-radiologica/projeto-blindagem'],
-    ['  Programas (PPR/PGQ/PEP)', '/consult/protecao-radiologica/programas'],
-    ['  Licenciamento', '/consult/protecao-radiologica/licenciamento-sanitario'],
+    ['Proteção Radiológica', '/consult/protecao-radiologica', 'subheading'],
+    ['Levantamento radiométrico', '/consult/protecao-radiologica/levantamento-radiometrico', 'child'],
+    ['Projeto de blindagem', '/consult/protecao-radiologica/projeto-blindagem', 'child'],
+    ['Programas (PPR/PGQ/PEP)', '/consult/protecao-radiologica/programas', 'child'],
+    ['Licenciamento', '/consult/protecao-radiologica/licenciamento-sanitario', 'child'],
   ] },
   { heading: 'Treinamentos', links: [
     ['Treinamentos técnicos', '/consult/protecao-radiologica/treinamentos'],
@@ -39,7 +39,6 @@ export const CONSULT_DIRECT_SERVICES = [
 ]
 export const CONSULT_DIRECT_AREAS = [
   ['Física Médica', '/consult/fisica-medica'],
-  ['Proteção Radiológica', '/consult/protecao-radiologica'],
   ['Consult Engenharia Clínica', '/consult/engenharia-clinica'],
 ]
 
@@ -67,9 +66,14 @@ export function ConsultServiceQuickLinks({ mobile = false, onNavigate = () => {}
       <div className={mobile ? 'mt-3 grid gap-4' : 'mt-4 grid grid-cols-3 gap-5'}>
         {CONSULT_DIRECT_SERVICES.map((group) => <section key={group.heading}>
           <p className={mobile ? 'mb-2 px-2 text-xs font-black uppercase tracking-wide text-[#B8FF51]' : 'mb-2 text-xs font-black uppercase tracking-wide text-[#075653]'}>{group.heading}</p>
-          {group.links.map(([label, href]) => <Link key={href} to={href} onClick={go} className={mobile
-            ? 'block rounded-md px-2 py-2 text-sm leading-5 text-white/90 hover:bg-white/10'
-            : 'block rounded-md px-2 py-2 text-sm leading-5 text-[#315B58] hover:bg-[#F0F8F4]'}>
+          {group.links.map(([label, href, level]) => <Link key={href} to={href} onClick={go} className={[
+            'block rounded-md py-2 text-sm leading-5 transition-colors',
+            level === 'subheading'
+              ? (mobile ? 'mt-2 border-l-[3px] border-[#8AE600] bg-white/10 px-3 font-extrabold text-[#B8FF51]' : 'mt-2 border-l-[3px] border-[#168C76] bg-[#E7F4F0] px-3 font-extrabold text-[#075653]')
+              : level === 'child'
+                ? (mobile ? 'ml-3 border-l border-white/25 pl-3 pr-2 text-white/85 hover:bg-white/10' : 'ml-3 border-l border-[#C9E5DD] pl-3 pr-2 text-[#315B58] hover:bg-[#F0F8F4]')
+                : (mobile ? 'px-2 font-semibold text-white/90 hover:bg-white/10' : 'px-2 font-semibold text-[#315B58] hover:bg-[#F0F8F4]'),
+          ].join(' ')}>
             {label}
           </Link>)}
         </section>)}
