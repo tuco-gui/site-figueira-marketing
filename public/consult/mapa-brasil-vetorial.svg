@@ -13,13 +13,13 @@
   stroke-linejoin: round;
   animation: consult-estado-pulso 16.2s ease-in-out infinite;
 }
-#SP, #PR, #MS, #MG { fill: #B8E84F; animation-name: consult-principal-pulso; }
+#SP, #PR, #MS, #MG { fill: #8AE600; animation-name: consult-principal-pulso; }
 @keyframes consult-estado-pulso {
   0%, 5.8%, 100% { fill: #43C7AB; filter: brightness(1); }
   2.8% { fill: #D5FF76; filter: brightness(1.8) drop-shadow(0 0 10px #B8E84F); }
 }
 @keyframes consult-principal-pulso {
-  0%, 3.0%, 100% { fill: #B8E84F; filter: brightness(1); }
+  0%, 3.0%, 100% { fill: #8AE600; filter: brightness(1); }
   1.4% { fill: #EDFFAE; filter: brightness(1.7) drop-shadow(0 0 12px #D5FF76); }
 }
 #AM { animation-delay: 0.0s; }
