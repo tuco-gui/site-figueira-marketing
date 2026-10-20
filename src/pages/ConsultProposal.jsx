@@ -746,14 +746,14 @@ export default function ConsultProposal() {
 
           <div className="relative mx-auto flex min-h-[560px] max-w-[1760px] items-center px-6 py-14 sm:min-h-[620px] sm:px-10 sm:py-16 lg:min-h-[680px] lg:px-10 lg:py-16 xl:px-14">
             <div className="grid w-full items-center gap-8 lg:grid-cols-[minmax(0,43fr)_minmax(400px,37fr)_minmax(250px,20fr)] lg:gap-6 xl:gap-9">
-              <div className="relative z-10 w-full max-w-[640px]">
+              <div className="relative z-10 w-full max-w-[740px] lg:pl-5 xl:pl-9">
                 <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.32em] text-white/78">
                   <span className="h-[2px] w-10 bg-[#8AE600]" />
                   Onde atuamos
                 </div>
 
-                <h2 className="mt-5 text-[42px] font-black leading-[1.02] tracking-[-0.04em] sm:text-[54px] lg:text-[56px] xl:text-[66px]">
-                  Atendimento em <span className="text-[#8AE600]">todo o Brasil</span>
+                <h2 className="mt-5 text-[clamp(36px,3.9vw,76px)] font-black leading-[1.04] tracking-[-0.04em] [overflow-wrap:normal] [word-break:normal]">
+                  <span className="block whitespace-nowrap">Atendimento</span><span className="block">em <span className="text-[#8AE600]">todo o Brasil</span></span>
                 </h2>
 
                 <p className="mt-7 max-w-[580px] text-[17px] leading-[1.6] text-white/90 sm:text-[19px]">
@@ -790,7 +790,7 @@ export default function ConsultProposal() {
 
               <div className="relative z-[5] mx-auto flex h-[400px] w-full max-w-[520px] items-center justify-center sm:h-[500px] lg:h-[560px] xl:h-[610px] xl:max-w-[620px]">
                 <img
-                  src="/consult/mapa-brasil-vetorial.svg?v=20261020-pulso2"
+                  src="/consult/mapa-brasil-vetorial.svg?v=20261020-final3"
                   alt="Mapa vetorial completo do Brasil, com SP, PR, MS e MG destacados como regiões principais; atendimento disponível em todo o país."
                   className="consult-national-map block h-full w-full object-contain drop-shadow-[0_8px_18px_rgba(0,0,0,.18)]"
                 />
