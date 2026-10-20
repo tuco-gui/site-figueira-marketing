@@ -3,8 +3,53 @@
      xml:space="preserve">
 
     <style type="text/css">
-.state { fill: #5BB8A8; stroke: #075653; stroke-width: .75; stroke-linejoin: round; }
-#SP, #PR, #MS, #MG { fill: #B8E84F; }
+/* Todos os estados representam atendimento nacional. SP, PR, MS e MG: regiões de presença principal. */
+.state {
+  cursor: default;
+  fill: #27B79C;
+  stroke: #D0FFF0;
+  stroke-width: 0.70;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  animation: consult-estado-pulso 27s linear infinite;
+}
+#SP, #PR, #MS, #MG { fill: #B8E84F; animation-name: consult-principal-pulso; }
+@keyframes consult-estado-pulso {
+  0%, 3.0%, 100% { fill: #27B79C; filter: brightness(1); }
+  1.4% { fill: #D5FF76; filter: brightness(1.8) drop-shadow(0 0 5px #B8E84F); }
+}
+@keyframes consult-principal-pulso {
+  0%, 3.0%, 100% { fill: #B8E84F; filter: brightness(1); }
+  1.4% { fill: #EDFFAE; filter: brightness(1.7) drop-shadow(0 0 7px #D5FF76); }
+}
+#AM { animation-delay: 0s; }
+#RR { animation-delay: 0.93s; }
+#AP { animation-delay: 1.86s; }
+#PA { animation-delay: 2.79s; }
+#AC { animation-delay: 3.72s; }
+#RO { animation-delay: 4.65s; }
+#TO { animation-delay: 5.58s; }
+#MA { animation-delay: 6.510000000000001s; }
+#PI { animation-delay: 7.44s; }
+#CE { animation-delay: 8.370000000000001s; }
+#RN { animation-delay: 9.3s; }
+#PB { animation-delay: 10.23s; }
+#PE { animation-delay: 11.16s; }
+#AL { animation-delay: 12.09s; }
+#SE { animation-delay: 13.020000000000001s; }
+#BA { animation-delay: 13.950000000000001s; }
+#MT { animation-delay: 14.88s; }
+#GO { animation-delay: 15.81s; }
+#DF { animation-delay: 16.740000000000002s; }
+#MS { animation-delay: 17.67s; }
+#MG { animation-delay: 18.6s; }
+#ES { animation-delay: 19.53s; }
+#RJ { animation-delay: 20.46s; }
+#SP { animation-delay: 21.39s; }
+#PR { animation-delay: 22.32s; }
+#SC { animation-delay: 23.25s; }
+#RS { animation-delay: 24.18s; }
+@media (prefers-reduced-motion: reduce) { .state { animation: none !important; } }
 </style>
 <g>
     <polygon fill="#F3F3F3" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" points="

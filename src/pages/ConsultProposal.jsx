@@ -641,7 +641,7 @@ export default function ConsultProposal() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#075653] via-[#075653]/30 to-transparent lg:from-[#075653]/70" />
               <div className="absolute bottom-0 right-0 h-24 w-2/3 rounded-tl-[100%] bg-[#05D29D]/90" />
               <div className="absolute bottom-0 right-0 h-14 w-1/2 rounded-tl-[100%] bg-[#8AE600]" />
-              <div className="absolute right-7 top-7 hidden max-w-[150px] border-l-2 border-[#8AE600] pl-4 text-[10px] font-bold uppercase tracking-[0.24em] text-white/70 sm:block">
+              <div className="absolute right-7 top-7 hidden max-w-[150px] border-l-2 border-[#8AE600] pl-4 text-[12px] font-bold uppercase tracking-[0.24em] text-white/70 sm:block">
                 Tecnologia, qualidade e pessoas em saúde
               </div>
             </div>
@@ -744,26 +744,26 @@ export default function ConsultProposal() {
           />
           <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,rgba(4,84,80,.96)_0%,rgba(4,84,80,.88)_34%,rgba(3,70,67,.66)_67%,rgba(3,63,60,.80)_100%)]" />
 
-          <div className="relative mx-auto flex min-h-[560px] max-w-[1680px] items-center px-5 py-14 sm:min-h-[600px] sm:px-8 sm:py-16 lg:min-h-[640px] lg:px-14 lg:py-16 xl:px-16">
-            <div className="grid w-full items-center gap-8 lg:grid-cols-[minmax(0,44fr)_minmax(360px,36fr)_minmax(210px,20fr)] lg:gap-5 xl:gap-8">
-              <div className="relative z-10 max-w-[500px]">
+          <div className="relative mx-auto flex min-h-[560px] max-w-[1760px] items-center px-6 py-14 sm:min-h-[620px] sm:px-10 sm:py-16 lg:min-h-[680px] lg:px-10 lg:py-16 xl:px-14">
+            <div className="grid w-full items-center gap-8 lg:grid-cols-[minmax(0,43fr)_minmax(400px,37fr)_minmax(250px,20fr)] lg:gap-6 xl:gap-9">
+              <div className="relative z-10 w-full max-w-[640px]">
                 <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.32em] text-white/78">
                   <span className="h-[2px] w-10 bg-[#8AE600]" />
                   Onde atuamos
                 </div>
 
-                <h2 className="mt-4 text-[38px] font-black leading-[0.98] tracking-[-0.04em] sm:text-[44px] lg:text-[42px] xl:text-[44px]">
+                <h2 className="mt-5 text-[42px] font-black leading-[1.02] tracking-[-0.04em] sm:text-[54px] lg:text-[56px] xl:text-[66px]">
                   Atendimento em <span className="text-[#8AE600]">todo o Brasil</span>
                 </h2>
 
-                <p className="mt-5 max-w-[475px] text-[14px] leading-[1.55] text-white/90 sm:text-[15px]">
-                  Atendimento em todo o Brasil, com atuação prioritária em SP, PR, MS e MG.
+                <p className="mt-7 max-w-[580px] text-[17px] leading-[1.6] text-white/90 sm:text-[19px]">
+                  Atendemos todo o Brasil. São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais são nossas principais regiões de atuação, com equipes em campo.
                 </p>
 
-                <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
                   <a
                     href="#contato"
-                    className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-4 py-3 text-[12px] font-extrabold whitespace-nowrap text-white shadow-lg shadow-black/20 transition hover:-translate-y-0.5 sm:text-[13px]"
+                    className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-[14px] font-extrabold whitespace-nowrap text-white shadow-lg shadow-black/20 transition hover:-translate-y-0.5 sm:text-[13px]"
                   >
                     <FileText className="h-4 w-4" />
                     Solicite um orçamento
@@ -773,14 +773,14 @@ export default function ConsultProposal() {
                     href={waUrl("Olá, equipe Consult. Gostaria de saber sobre atendimento na minha região.")}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl border-2 border-[#8AE600] bg-[#075653]/35 px-4 py-3 text-[12px] font-extrabold whitespace-nowrap sm:text-[13px] text-white backdrop-blur-[2px] transition hover:bg-[#8AE600] hover:text-[#075653]"
+                    className="inline-flex min-h-[54px] items-center justify-center gap-2 rounded-xl border-2 border-[#8AE600] bg-[#075653]/35 px-5 py-3 text-[14px] font-extrabold whitespace-nowrap sm:text-[13px] text-white backdrop-blur-[2px] transition hover:bg-[#8AE600] hover:text-[#075653]"
                   >
                     <WhatsAppIcon className="h-5 w-5" />
                     Falar no WhatsApp
                   </a>
                 </div>
 
-                <div className="mt-7">
+                <div className="mt-9">
                   <span className="block h-[2px] w-10 bg-[#8AE600]" />
                   <p className="mt-3 max-w-[380px] text-[9px] font-bold uppercase leading-[1.75] tracking-[0.32em] text-white/78">
                     Cobertura nacional
@@ -788,7 +788,7 @@ export default function ConsultProposal() {
                 </div>
               </div>
 
-              <div className="relative z-[5] mx-auto flex h-[340px] w-full max-w-[440px] items-center justify-center sm:h-[420px] lg:h-[500px] xl:h-[540px] xl:max-w-[520px]">
+              <div className="relative z-[5] mx-auto flex h-[400px] w-full max-w-[520px] items-center justify-center sm:h-[500px] lg:h-[560px] xl:h-[610px] xl:max-w-[620px]">
                 <img
                   src="/consult/mapa-brasil-vetorial.svg"
                   alt="Mapa vetorial completo do Brasil, com SP, PR, MS e MG destacados como regiões principais; atendimento disponível em todo o país."
@@ -801,22 +801,22 @@ export default function ConsultProposal() {
                   Conhecimento técnico sem fronteiras
                 </div>
 
-                <div className="rounded-2xl border border-[#13B991] bg-[#043D3B]/78 p-4 shadow-xl shadow-black/15 backdrop-blur-[5px] lg:mt-6">
+                <div className="rounded-2xl border border-[#13B991] bg-[#043D3B]/78 p-5 shadow-xl shadow-black/15 backdrop-blur-[5px] lg:mt-6">
                   <div className="flex items-start gap-3">
                     <div className="flex h-7 items-end gap-[3px] pt-1" aria-hidden="true">
                       <span className="h-2 w-1.5 rounded-sm bg-[#8AE600]" />
                       <span className="h-4 w-1.5 rounded-sm bg-[#8AE600]" />
                       <span className="h-6 w-1.5 rounded-sm bg-[#8AE600]" />
                     </div>
-                    <div className="text-[9px] font-black uppercase leading-[1.45] tracking-[0.13em] text-white/92">
+                    <div className="text-[12px] font-black uppercase leading-[1.45] tracking-[0.13em] text-white/92">
                       Principais regiões de atuação
                     </div>
                   </div>
 
-                  <div className="mt-3 space-y-2 text-[11px] font-medium text-white/95">
+                  <div className="mt-4 space-y-3 text-[14px] font-medium text-white/95">
                     {["São Paulo", "Paraná", "Mato Grosso do Sul", "Minas Gerais"].map((region) => (
                       <div key={region} className="flex items-center gap-2.5">
-                        <span className="flex h-[18px] w-[18px] shrink-0 items-center justify-center rounded-full bg-[#8AE600] text-[10px] font-black text-[#075653]">✓</span>
+                        <span className="flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-full bg-[#8AE600] text-[10px] font-black text-[#075653]">✓</span>
                         <span>{region}</span>
                       </div>
                     ))}
