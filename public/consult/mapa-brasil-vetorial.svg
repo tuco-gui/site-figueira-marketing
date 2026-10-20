@@ -6,49 +6,49 @@
 /* Todos os estados representam atendimento nacional. SP, PR, MS e MG: regiões de presença principal. */
 .state {
   cursor: default;
-  fill: #27B79C;
+  fill: #43C7AB;
   stroke: #D0FFF0;
   stroke-width: 0.70;
   stroke-linecap: round;
   stroke-linejoin: round;
-  animation: consult-estado-pulso 27s linear infinite;
+  animation: consult-estado-pulso 16.2s ease-in-out infinite;
 }
 #SP, #PR, #MS, #MG { fill: #B8E84F; animation-name: consult-principal-pulso; }
 @keyframes consult-estado-pulso {
-  0%, 3.0%, 100% { fill: #27B79C; filter: brightness(1); }
-  1.4% { fill: #D5FF76; filter: brightness(1.8) drop-shadow(0 0 5px #B8E84F); }
+  0%, 5.8%, 100% { fill: #43C7AB; filter: brightness(1); }
+  2.8% { fill: #D5FF76; filter: brightness(1.8) drop-shadow(0 0 10px #B8E84F); }
 }
 @keyframes consult-principal-pulso {
   0%, 3.0%, 100% { fill: #B8E84F; filter: brightness(1); }
-  1.4% { fill: #EDFFAE; filter: brightness(1.7) drop-shadow(0 0 7px #D5FF76); }
+  1.4% { fill: #EDFFAE; filter: brightness(1.7) drop-shadow(0 0 12px #D5FF76); }
 }
-#AM { animation-delay: 0s; }
-#RR { animation-delay: 0.93s; }
-#AP { animation-delay: 1.86s; }
-#PA { animation-delay: 2.79s; }
-#AC { animation-delay: 3.72s; }
-#RO { animation-delay: 4.65s; }
-#TO { animation-delay: 5.58s; }
-#MA { animation-delay: 6.510000000000001s; }
-#PI { animation-delay: 7.44s; }
-#CE { animation-delay: 8.370000000000001s; }
-#RN { animation-delay: 9.3s; }
-#PB { animation-delay: 10.23s; }
-#PE { animation-delay: 11.16s; }
-#AL { animation-delay: 12.09s; }
-#SE { animation-delay: 13.020000000000001s; }
-#BA { animation-delay: 13.950000000000001s; }
-#MT { animation-delay: 14.88s; }
-#GO { animation-delay: 15.81s; }
-#DF { animation-delay: 16.740000000000002s; }
-#MS { animation-delay: 17.67s; }
-#MG { animation-delay: 18.6s; }
-#ES { animation-delay: 19.53s; }
-#RJ { animation-delay: 20.46s; }
-#SP { animation-delay: 21.39s; }
-#PR { animation-delay: 22.32s; }
-#SC { animation-delay: 23.25s; }
-#RS { animation-delay: 24.18s; }
+#AM { animation-delay: 0.0s; }
+#RR { animation-delay: 0.6s; }
+#AP { animation-delay: 1.2s; }
+#PA { animation-delay: 1.8s; }
+#AC { animation-delay: 2.4s; }
+#RO { animation-delay: 3.0s; }
+#TO { animation-delay: 3.6s; }
+#MA { animation-delay: 4.2s; }
+#PI { animation-delay: 4.8s; }
+#CE { animation-delay: 5.4s; }
+#RN { animation-delay: 6.0s; }
+#PB { animation-delay: 6.6s; }
+#PE { animation-delay: 7.2s; }
+#AL { animation-delay: 7.8s; }
+#SE { animation-delay: 8.4s; }
+#BA { animation-delay: 9.0s; }
+#MT { animation-delay: 9.6s; }
+#GO { animation-delay: 10.2s; }
+#DF { animation-delay: 10.8s; }
+#MS { animation-delay: 11.4s; }
+#MG { animation-delay: 12.0s; }
+#ES { animation-delay: 12.6s; }
+#RJ { animation-delay: 13.2s; }
+#SP { animation-delay: 13.8s; }
+#PR { animation-delay: 14.4s; }
+#SC { animation-delay: 15.0s; }
+#RS { animation-delay: 15.6s; }
 @media (prefers-reduced-motion: reduce) { .state { animation: none !important; } }
 </style>
 <g>
