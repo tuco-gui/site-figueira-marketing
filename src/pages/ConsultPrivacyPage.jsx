@@ -4,6 +4,7 @@ import { ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
 import { consultPath } from '@/lib/consultProject'
 import { ApprovedInternalHero, ApprovedLightSection, CONSULT_IMAGES } from '@/components/consult/ConsultApprovedInternal'
 
+/** @type {Array<[string, string[]]>} */
 const sections = [
   [
     "1. Quem somos",

@@ -1,6 +1,9 @@
 import React from "react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 
+/**
+ * @param {{ number: React.ReactNode, label: React.ReactNode, title: React.ReactNode, subtitle?: React.ReactNode, dark?: boolean }} props
+ */
 export default function SectionHeader({ number, label, title, subtitle, dark = false }) {
   return (
     <AnimatedSection className="mb-12 lg:mb-16">

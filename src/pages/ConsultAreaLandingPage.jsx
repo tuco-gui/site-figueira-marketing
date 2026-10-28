@@ -22,6 +22,14 @@ const PHYSICS_IMAGE = `${CDN}/5ba95360-34a0-449d-9a24-4836ac1f137f.jpg`;
 const PROTECTION_IMAGE = `${CDN}/5ba952d9-c3e4-48d7-9dc0-4716ac1f137f.jpg`;
 const ENGINEERING_IMAGE = `${CDN}/5ba954a4-90f8-4e55-a0d3-4b15ac1f137f.jpg`;
 
+/** @type {Array<[React.ElementType, string, string]>} */
+const DIFFERENTIALS = [
+  [FileText, "Laudo por equipamento", "O resultado técnico é documentado e pode ser usado como evidência do serviço realizado."],
+  [Building2, "Equipe técnica própria", "A atuação técnica é executada pela estrutura da Consult, conforme o escopo contratado."],
+  [ShieldCheck, "Independência", "Na Engenharia Clínica, a Consult não vende peças e não atua vinculada à empresa de conserto."],
+  [Gauge, "Rastreabilidade", "Na Engenharia Clínica, os analisadores possuem certificado de calibração com rastreabilidade RBC."],
+]
+
 const RADIOLOGY_EQUIPMENT = [
   "Raios X médico convencional",
   "Fluoroscopia, arco cirúrgico e angiógrafo",
@@ -454,12 +462,7 @@ export default function ConsultAreaLandingPage() {
               <h2 className="mt-3 text-3xl font-black tracking-tight text-[#075653]">Medição e resultado técnico, sem misturar diagnóstico com venda de reparo</h2>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
-              {[
-                [FileText, "Laudo por equipamento", "O resultado técnico é documentado e pode ser usado como evidência do serviço realizado."],
-                [Building2, "Equipe técnica própria", "A atuação técnica é executada pela estrutura da Consult, conforme o escopo contratado."],
-                [ShieldCheck, "Independência", "Na Engenharia Clínica, a Consult não vende peças e não atua vinculada à empresa de conserto."],
-                [Gauge, "Rastreabilidade", "Na Engenharia Clínica, os analisadores possuem certificado de calibração com rastreabilidade RBC."],
-              ].map(([Icon, title, text]) => (
+              {DIFFERENTIALS.map(([Icon, title, text]) => (
                 <article key={title} className="rounded-2xl border border-[#DDEBE8] bg-white p-5">
                   <Icon size={21} className="text-[#078B6B]" />
                   <h3 className="mt-4 font-black text-[#075653]">{title}</h3>

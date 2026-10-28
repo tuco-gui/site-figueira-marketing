@@ -110,7 +110,8 @@ function PartnerLogo({ item }) {
   return <span className="font-display font-black text-lg tracking-tight">{item.name}</span>;
 }
 
-export default function DigitalStack({ variant = "home", compact = false }) {
+/** @param {{ variant?: string, compact?: boolean, dark?: boolean }} props */
+export default function DigitalStack({ variant = "home", compact = false, dark = false }) {
   const data = stackByVariant[variant] || stackByVariant.home;
 
   return (

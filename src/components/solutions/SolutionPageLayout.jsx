@@ -33,6 +33,9 @@ function BrandPattern() {
   );
 }
 
+/**
+ * @param {{ badge: React.ReactNode, title: React.ReactNode, titleAccent: React.ReactNode, description: React.ReactNode, heroImage: string, features?: Array<{ title: React.ReactNode, description: React.ReactNode }>, featureIcon?: React.ElementType, children?: React.ReactNode }} props
+ */
 export default function SolutionPageLayout({
   badge,
   title,

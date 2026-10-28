@@ -13,6 +13,14 @@ const INTRO = 'Avaliação técnica de equipamentos de diagnóstico por imagem c
 const DESCRIPTION = 'Controle de Qualidade por modalidade, com referências específicas, medições documentadas e laudo técnico assinado pelo físico médico.'
 const WHATSAPP = 'https://wa.me/5514981610712?text=' + encodeURIComponent('Olá, equipe Consult. Gostaria de conversar sobre Controle de Qualidade.')
 
+/** @type {Array<[React.ElementType, string, string]>} */
+const PROOF_ITEMS = [
+  [ScanLine, '10 modalidades', 'Diagnóstico por imagem'],
+  [FileText, 'Laudo técnico', 'ENTREGA'],
+  [UserRound, 'Físico médico', 'RESPONSÁVEL'],
+  [ShieldCheck, 'RDC 611/2022', 'BASE'],
+]
+
 const MODALITIES = [
   ['Raios X convencional','IN 90/2021','raio-x-convencional'],
   ['Fluoroscopia, Arco C e angiografia','IN 91/2021','fluoroscopia-arco-c-angiografia'],
@@ -67,7 +75,7 @@ export default function ConsultQualityIndexPage() {
     </section>
 
     <section className="safety-proof" aria-label="Informações do Controle de Qualidade"><div className="safety-container safety-proof-grid">
-      {[[ScanLine, '10 modalidades', 'Diagnóstico por imagem'], [FileText, 'Laudo técnico', 'ENTREGA'], [UserRound, 'Físico médico', 'RESPONSÁVEL'], [ShieldCheck, 'RDC 611/2022', 'BASE']].map(([Icon, title, text]) => <div className="safety-proof-item" key={title}><Icon size={36}/><div><strong>{title}</strong><p>{text}</p></div></div>)}
+      {PROOF_ITEMS.map(([Icon, title, text]) => <div className="safety-proof-item" key={title}><Icon size={36}/><div><strong>{title}</strong><p>{text}</p></div></div>)}
     </div></section>
 
     <section id="modalidades" className="safety-section safety-section-soft" aria-labelledby="modalidades-title"><div className="safety-container">

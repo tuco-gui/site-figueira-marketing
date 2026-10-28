@@ -20,12 +20,15 @@ export function ApprovedInternalHero({ eyebrow, title, description, image = CONS
     [CONSULT_IMAGES.engineering]: ['/consult/seguranca-eletrica-hero-v1.webp', 'Imagem ilustrativa de ensaio em equipamento eletromédico'],
   }
   const [photo, alt] = photos[image] || [image, `Imagem ilustrativa: ${title}`]
+  const photoStyle = /** @type {React.CSSProperties & { '--consult-photo-curve': string }} */ ({
+    '--consult-photo-curve': `url(#${curveId})`,
+  })
   const words = title.split(' ')
   const highlight = words.splice(-Math.min(2, words.length)).join(' ')
   return <div className="consult-electrical-safety consult-quality-index consult-internal-hero">
     <section className="safety-hero">
       <svg width="0" height="0" aria-hidden="true"><defs><clipPath id={curveId} clipPathUnits="objectBoundingBox"><path d="M.18,0H1V1H0C.19,.7,-.08,.32,.18,0Z"/></clipPath></defs></svg>
-      <div className="safety-hero-photo" style={{ '--consult-photo-curve': `url(#${curveId})` }}>
+      <div className="safety-hero-photo" style={photoStyle}>
         <img src={photo} alt={alt} fetchPriority="high"/>
         <svg className="safety-photo-ribbon" viewBox="0 0 700 180" preserveAspectRatio="none" aria-hidden="true"><path d="M0,180C150,72,395,10,700,0V180Z" fill="#00B68C"/><path d="M300,180C405,80,558,44,700,32V180Z" fill="#02D69E"/><path d="M480,180C470,125,540,30,700,0V180Z" fill="#96ED17"/></svg>
       </div>

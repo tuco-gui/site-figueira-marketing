@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 import { CONSULT_PROJECT, consultPath } from './consultProject'
 import LEGACY_POSTS from '@/data/consultLegacyPosts.json'
 import BLOG_CATEGORIES from '@/data/consultBlogCategories.json'
@@ -71,7 +73,7 @@ const SEED_POSTS = [
 ]
 
 function sortByDate(posts) {
-  return [...posts].sort((a, b) => new Date(b.publishedAt || 0) - new Date(a.publishedAt || 0))
+  return [...posts].sort((a, b) => new Date(b.publishedAt || 0).getTime() - new Date(a.publishedAt || 0).getTime())
 }
 
 function normalizeEditorialText(value = '') {

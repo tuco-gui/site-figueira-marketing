@@ -53,6 +53,14 @@ const ARTICLE_TRAINING_IMAGE = "/consult/ressonancia-magnetica-hero.jpg";
 const ARTICLE_IAEA_IMAGE = "https://solutudo-cdn-proxy.soluall.net/prod/adv_ads/570579fa-a210-422e-8a2c-4ebfac1f1305/5ba95360-34a0-449d-9a24-4836ac1f137f.jpg";
 const ARTICLE_ARC_IMAGE = "/consult/fluoroscopia-arco-c-hero.jpg";
 
+/** @type {Array<[React.ElementType, string, string]>} */
+const PROOF_ITEMS = [
+  [ShieldCheck, "Desde 1995", "Física Médica do Radiodiagnóstico desde 2013"],
+  [UsersRound, "+400 instituições", "atendidas nos últimos 12 meses"],
+  [Settings, "+1.500 atendimentos", "por ano, entre controles, levantamentos e ensaios"],
+  [FileText, "Até 7 dias", "para emissão do laudo após as medições"],
+];
+
 const WHATSAPP = "5514981610712";
 const PHONE = "(14) 98161-0712";
 const ADDRESS_BOTUCATU = "Av. Dr. Vital Brasil, 1060, sala 205 – Botucatu Home Trade Center, Botucatu/SP";
@@ -352,7 +360,8 @@ function ContactForm() {
       try {
         const cookieChoice = JSON.parse(window.localStorage.getItem('consult-cookie-consent-v1') || 'null');
         if (cookieChoice?.analytics === true) {
-          window.dataLayer?.push?.({
+          const analyticsWindow = /** @type {{ dataLayer?: Array<Record<string, unknown>> }} */ (window);
+          analyticsWindow.dataLayer?.push?.({
             event: "lead_form_success",
             site: "consult",
             lead_id: result?.lead_id || null,
@@ -651,12 +660,7 @@ export default function ConsultProposal() {
 
         <section className="border-b border-black/5 bg-white">
           <div className="mx-auto grid max-w-7xl divide-y divide-black/10 px-4 py-4 sm:grid-cols-2 sm:divide-x sm:divide-y-0 sm:px-6 lg:grid-cols-4 lg:px-8">
-            {[
-              [ShieldCheck, "Desde 1995", "Física Médica do Radiodiagnóstico desde 2013"],
-              [UsersRound, "+400 instituições", "atendidas nos últimos 12 meses"],
-              [Settings, "+1.500 atendimentos", "por ano, entre controles, levantamentos e ensaios"],
-              [FileText, "Até 7 dias", "para emissão do laudo após as medições"],
-            ].map(([Icon, title, text]) => (
+            {PROOF_ITEMS.map(([Icon, title, text]) => (
               <div key={title} className="flex items-center gap-3 px-3 py-4 sm:px-5">
                 <Icon className="h-8 w-8 shrink-0 text-[#08A77F]" />
                 <div>

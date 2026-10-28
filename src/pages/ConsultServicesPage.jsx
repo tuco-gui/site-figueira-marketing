@@ -5,6 +5,7 @@ import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSi
 import { consultPath } from '@/lib/consultProject'
 import { ApprovedInternalHero, ApprovedLightSection, CONSULT_IMAGES } from '@/components/consult/ConsultApprovedInternal'
 
+/** @type {Array<[string, Array<[string, string, React.ElementType]>]>} */
 const GROUPS=[
   ['Física Médica',[
     ['Controle de Qualidade',consultPath('fisica-medica/controle-de-qualidade'),Gauge],

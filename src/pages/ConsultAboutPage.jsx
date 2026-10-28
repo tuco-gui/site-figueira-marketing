@@ -3,6 +3,13 @@ import { Building2, FileText, MapPin, ShieldCheck, UsersRound } from 'lucide-rea
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
 import { ApprovedInternalHero, ApprovedLightSection, ApprovedProofStrip, CONSULT_IMAGES } from '@/components/consult/ConsultApprovedInternal'
 
+/** @type {Array<[React.ElementType, string, string]>} */
+const ABOUT_CARDS = [
+  [ShieldCheck, 'Física Médica', 'Controle de Qualidade, medições e laudos técnicos para diagnóstico por imagem.'],
+  [FileText, 'Proteção Radiológica', 'Programas, levantamentos, blindagem, treinamentos e apoio documental.'],
+  [Building2, 'Consult Engenharia Clínica', 'Ensaios, manutenção preventiva, reverificação e qualificação térmica com histórico por equipamento.'],
+]
+
 export default function ConsultAboutPage() {
   useEffect(() => {
     document.title='Sobre a Consult | Consult Radiometria e Qualidade'
@@ -21,11 +28,7 @@ export default function ConsultAboutPage() {
     <ApprovedLightSection eyebrow="Quem somos" title="Técnica para transformar medição em decisão" intro="Fundada em 1995, a Consult atua em Física Médica do Radiodiagnóstico desde 2013. Medimos, ensaiamos e documentamos os equipamentos de hospitais, clínicas de imagem, consultórios odontológicos, serviços veterinários e instituições de ensino, com laudo técnico por equipamento." center>
       <p className="mx-auto mb-8 max-w-4xl text-center text-sm leading-7 text-[#315B58]">Hoje a Consult atende também os equipamentos médico-assistenciais com a Consult Engenharia Clínica: segurança elétrica, ensaio de desempenho, manutenção preventiva e qualificação térmica. Assim, a mesma equipe que cuida da radiologia pode avaliar os demais equipamentos da instituição, com o mesmo padrão de laudo. Atendemos em todo o Brasil, com equipes em campo em São Paulo, Paraná, Mato Grosso do Sul e Minas Gerais.</p>
       <div className="grid gap-5 md:grid-cols-3">
-        {[
-          [ShieldCheck,'Física Médica','Controle de Qualidade, medições e laudos técnicos para diagnóstico por imagem.'],
-          [FileText,'Proteção Radiológica','Programas, levantamentos, blindagem, treinamentos e apoio documental.'],
-          [Building2,'Consult Engenharia Clínica','Ensaios, manutenção preventiva, reverificação e qualificação térmica com histórico por equipamento.'],
-        ].map(([Icon,title,text])=><div key={title} className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm"><Icon className="h-8 w-8 text-[#08A77F]"/><h2 className="mt-4 text-xl font-black text-[#123C3B]">{title}</h2><p className="mt-3 text-sm leading-7 text-black/55">{text}</p></div>)}
+        {ABOUT_CARDS.map(([Icon,title,text])=><div key={title} className="rounded-2xl border border-black/5 bg-white p-6 shadow-sm"><Icon className="h-8 w-8 text-[#08A77F]"/><h2 className="mt-4 text-xl font-black text-[#123C3B]">{title}</h2><p className="mt-3 text-sm leading-7 text-black/55">{text}</p></div>)}
       </div>
     </ApprovedLightSection>
 

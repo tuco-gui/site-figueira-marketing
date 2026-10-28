@@ -14,6 +14,7 @@ export function updateConsultPageMeta({ title, description, image }) {
   }
   for (const [key, content] of Object.entries(values)) {
     const attribute = key.startsWith('og:') ? 'property' : 'name'
+    /** @type {HTMLMetaElement | null} */
     let meta = document.querySelector(`meta[${attribute}="${key}"]`)
     if (!meta) {
       meta = document.createElement('meta')
@@ -22,6 +23,7 @@ export function updateConsultPageMeta({ title, description, image }) {
     }
     meta.setAttribute('content', content)
   }
+  /** @type {HTMLLinkElement | null} */
   let link = document.querySelector('link[rel="canonical"]')
   if (!link) {
     link = document.createElement('link')
