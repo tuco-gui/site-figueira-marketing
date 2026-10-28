@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AnimatedSection from "@/components/ui/AnimatedSection";
-import GreenCTA from "@/components/ui/GreenCTA";
 import { Link } from "react-router-dom";
 
 function SolutionGlyph({ index }) {
