@@ -2,6 +2,7 @@ import React, { useEffect, useMemo } from 'react'
 import { CheckCircle2, FileText, MapPin, ShieldCheck } from 'lucide-react'
 import { Link, useParams } from 'react-router-dom'
 import { ConsultCtaBand, ConsultEyebrow, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
+import { consultPath } from '@/lib/consultProject'
 
 const REGIONS = {
   'sao-paulo': { state: 'São Paulo', uf: 'SP', location: 'em São Paulo', sede: true },
@@ -11,19 +12,19 @@ const REGIONS = {
 }
 
 const RADIOLOGY_SERVICES = [
-  ['Controle de qualidade (CQ)', '/consult/servicos/controle-qualidade'],
-  ['Programa de Proteção Radiológica', '/consult/servicos/programa-protecao-radiologica'],
-  ['Levantamento radiométrico', '/consult/servicos/levantamento-radiometrico'],
-  ['Projeto de blindagem', '/consult/servicos/projeto-blindagem'],
-  ['Treinamentos', '/consult/servicos/treinamentos'],
-  ['Licenciamento sanitário', '/consult/servicos/licenciamento-sanitario'],
+  ['Controle de qualidade (CQ)', consultPath('fisica-medica/controle-de-qualidade')],
+  ['Programa de Proteção Radiológica', consultPath('protecao-radiologica/programa-protecao-radiologica')],
+  ['Levantamento radiométrico', consultPath('protecao-radiologica/levantamento-radiometrico')],
+  ['Projeto de blindagem', consultPath('protecao-radiologica/projeto-blindagem')],
+  ['Treinamentos', consultPath('protecao-radiologica/treinamentos')],
+  ['Licenciamento sanitário', consultPath('protecao-radiologica/licenciamento-sanitario')],
 ]
 const ENGINEERING_SERVICES = [
-  ['Ensaio de segurança elétrica', '/consult/engenharia-clinica/seguranca-eletrica'],
-  ['Ensaio de desempenho (calibração)', '/consult/engenharia-clinica/desempenho-calibracao'],
-  ['Manutenção preventiva', '/consult/engenharia-clinica/manutencao-preventiva'],
-  ['Reverificação', '/consult/engenharia-clinica/reverificacao'],
-  ['Qualificação térmica', '/consult/engenharia-clinica/qualificacao-termica'],
+  ['Ensaio de segurança elétrica', consultPath('engenharia-clinica/seguranca-eletrica')],
+  ['Ensaio de desempenho (calibração)', consultPath('engenharia-clinica/desempenho-calibracao')],
+  ['Manutenção preventiva', consultPath('engenharia-clinica/manutencao-preventiva')],
+  ['Reverificação', consultPath('engenharia-clinica/reverificacao')],
+  ['Qualificação térmica', consultPath('engenharia-clinica/qualificacao-termica')],
 ]
 
 function ServiceColumn({ title, eyebrow, items, dark = false }) {

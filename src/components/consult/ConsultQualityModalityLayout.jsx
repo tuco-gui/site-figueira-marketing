@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Activity, ClipboardCheck, FileText, Image, MessageCircle, ScanLine, ShieldCheck, UserRound } from 'lucide-react'
 import { ConsultSiteShell } from './ConsultSiteShell'
+import { consultPath } from '@/lib/consultProject'
 import './consult-electrical-safety.css'
 import './consult-quality-index.css'
 
@@ -16,7 +17,7 @@ function Eyebrow({ children }) {
 function Actions({ title }) {
   const whatsapp = 'https://wa.me/5514981610712?text=' + encodeURIComponent(`Olá, equipe Consult. Gostaria de conversar sobre Controle de Qualidade em ${title}.`)
   return <div className="safety-actions">
-    <a className="safety-button safety-button-primary" href="/consult#contato"><FileText size={19}/>Solicite um orçamento</a>
+    <a className="safety-button safety-button-primary" href={`${consultPath()}#contato`}><FileText size={19}/>Solicite um orçamento</a>
     <a className="safety-button safety-button-whatsapp" href={whatsapp} target="_blank" rel="noreferrer"><MessageCircle size={21}/>Falar no WhatsApp</a>
   </div>
 }
@@ -30,7 +31,7 @@ export default function ConsultQualityModalityLayout({ item, process, presentati
         <svg className="safety-photo-ribbon" viewBox="0 0 700 180" preserveAspectRatio="none" aria-hidden="true"><path d="M0,180C150,72,395,10,700,0V180Z" fill="#00B68C"/><path d="M300,180C405,80,558,44,700,32V180Z" fill="#02D69E"/><path d="M480,180C470,125,540,30,700,0V180Z" fill="#96ED17"/></svg>
       </div>
       <div className="safety-container safety-hero-inner"><div className="safety-hero-copy">
-        <nav className="safety-breadcrumb" aria-label="Navegação estrutural"><Link to="/consult">Início</Link><span aria-hidden="true">/</span><Link to="/consult/fisica-medica/controle-de-qualidade">Controle de Qualidade</Link><span aria-hidden="true">/</span><span aria-current="page">{item.short}</span></nav>
+        <nav className="safety-breadcrumb" aria-label="Navegação estrutural"><Link to={consultPath()}>Início</Link><span aria-hidden="true">/</span><Link to={consultPath('fisica-medica/controle-de-qualidade')}>Controle de Qualidade</Link><span aria-hidden="true">/</span><span aria-current="page">{item.short}</span></nav>
         <Eyebrow>{presentation.eyebrow}</Eyebrow>
         <h1>{presentation.heading[0]}<br/><span>{presentation.heading[1]}</span></h1>
         <p>{item.intro}</p>
@@ -71,7 +72,7 @@ export default function ConsultQualityModalityLayout({ item, process, presentati
     <section className="safety-section safety-section-soft"><div className="safety-container">
       <div className="safety-section-heading"><Eyebrow>Base normativa</Eyebrow><h2 className="safety-title">Normas e <span>referências</span></h2><p>A avaliação combina a base geral da RDC 611/2022 com a referência específica da modalidade.</p></div>
       <div className="safety-card-grid safety-norm-grid">{(presentation.norms || [['RDC 611/2022 — Anvisa', 'Base sanitária geral para radiologia diagnóstica e intervencionista.', RDC_611], [`${item.norm} — Anvisa`, presentation.normDescription, presentation.normHref]]).map(([title, text, href]) => <a className="safety-card safety-norm-card" href={href} target="_blank" rel="noreferrer" key={title}><div className="safety-card-top"><span className="safety-icon"><FileText size={28}/></span><h3>{title}</h3></div><p>{text}</p><span className="safety-text-link">Consultar referência</span></a>)}</div>
-      <Link className="safety-text-link" to="/consult/fisica-medica/controle-de-qualidade">Ver todas as modalidades de Controle de Qualidade</Link>
+      <Link className="safety-text-link" to={consultPath('fisica-medica/controle-de-qualidade')}>Ver todas as modalidades de Controle de Qualidade</Link>
     </div></section>
 
     <section className="safety-contact"><div className="safety-container">

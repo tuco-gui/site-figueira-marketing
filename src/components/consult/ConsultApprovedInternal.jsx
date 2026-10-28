@@ -1,6 +1,7 @@
 import React, { useId } from 'react'
 import { ArrowRight, CheckCircle2, FileText, MessageCircle, ShieldCheck, Settings, UsersRound } from 'lucide-react'
 import { ConsultEyebrow } from '@/components/consult/ConsultSiteShell'
+import { consultPath } from '@/lib/consultProject'
 import './consult-electrical-safety.css'
 import './consult-quality-index.css'
 
@@ -33,7 +34,7 @@ export function ApprovedInternalHero({ eyebrow, title, description, image = CONS
         <h1>{words.length > 0 && <>{words.join(' ')} </>}<span>{highlight}</span></h1>
         <p>{description}</p>
         <div className="safety-actions">
-          <a href="/consult#contato" className="safety-button safety-button-primary"><FileText size={19}/>{primaryLabel}</a>
+          <a href={`${consultPath()}#contato`} className="safety-button safety-button-primary"><FileText size={19}/>{primaryLabel}</a>
           <a href={`https://wa.me/5514981610712?text=${message}`} target="_blank" rel="noreferrer" className="safety-button safety-button-whatsapp"><MessageCircle size={21}/>{secondaryLabel}</a>
         </div>
         <div className="safety-hero-signature"><span/>Tecnologia, qualidade e segurança em saúde</div>

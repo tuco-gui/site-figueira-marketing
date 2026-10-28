@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom'
 import ConsultQualityModalityLayout from '@/components/consult/ConsultQualityModalityLayout'
 import { updateConsultPageMeta } from '@/lib/consultPageMeta'
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
+import { consultPath } from '@/lib/consultProject'
 import {
   ApprovedDarkProcess,
   ApprovedInternalHero,
@@ -265,7 +266,7 @@ export default function ConsultQualityModalityPage() {
     updateConsultPageMeta({ title: `${item.title} | Consult`, description: item.intro, image: CONSULT_IMAGES.radiology })
   }, [item, presentation])
 
-  if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Modalidade não encontrada</h1><Link to="/consult/fisica-medica/controle-de-qualidade" className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Controle de Qualidade</Link></main></ConsultSiteShell>
+  if (!item) return <ConsultSiteShell><main className="mx-auto max-w-4xl px-5 py-24 text-center"><h1 className="text-4xl font-black text-[#075653]">Modalidade não encontrada</h1><Link to={consultPath('fisica-medica/controle-de-qualidade')} className="mt-8 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Voltar para Controle de Qualidade</Link></main></ConsultSiteShell>
 
   if (presentation) return <ConsultQualityModalityLayout item={item} process={PROCESS} presentation={presentation} normativeExamples={APPROVED_MODALITY_TESTS[slug]}/>
 

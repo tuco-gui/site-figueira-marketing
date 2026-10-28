@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 import { Link, useParams } from "react-router-dom";
+import { consultPath } from '@/lib/consultProject';
 import {
   Activity,
   Building2,
@@ -35,21 +36,21 @@ const RADIOLOGY_EQUIPMENT = [
 ];
 
 const ENGINEERING_EQUIPMENT = [
-  ["Monitor multiparamétrico", "/consult/equipamentos/monitor-multiparametrico"],
-  ["Eletrocardiógrafo", "/consult/equipamentos/eletrocardiografo"],
-  ["Oxímetro de pulso", "/consult/equipamentos/oximetro-pulso"],
-  ["Esfigmomanômetro digital e MAPA", "/consult/equipamentos/esfigmomanometro-mapa"],
-  ["Desfibrilador, cardioversor e DEA", "/consult/equipamentos/desfibrilador-cardioversor-dea"],
-  ["Marca-passo transcutâneo", "/consult/equipamentos/marca-passo-transcutaneo"],
-  ["Bisturi elétrico", "/consult/equipamentos/bisturi-eletrico"],
-  ["Ventilador pulmonar", "/consult/equipamentos/ventilador-pulmonar"],
-  ["Aparelho de anestesia", "/consult/equipamentos/aparelho-anestesia"],
-  ["CPAP e BiPAP", "/consult/equipamentos/cpap-bipap"],
-  ["Fluxômetro e manômetro de O₂", "/consult/equipamentos/fluxometro-manometro-o2"],
-  ["Autoclave", "/consult/equipamentos/autoclave"],
-  ["Termodesinfectora e estufa", "/consult/equipamentos/termodesinfectora-estufa"],
-  ["Estufa e banho-maria de laboratório", "/consult/equipamentos/estufa-banho-maria"],
-  ["Geladeira e câmara de vacina", "/consult/equipamentos/geladeira-camara-vacina"],
+  ["Monitor multiparamétrico", consultPath("engenharia-clinica/equipamentos/monitor-multiparametrico")],
+  ["Eletrocardiógrafo", consultPath("engenharia-clinica/equipamentos/eletrocardiografo")],
+  ["Oxímetro de pulso", consultPath("engenharia-clinica/equipamentos/oximetro-pulso")],
+  ["Esfigmomanômetro digital e MAPA", consultPath("engenharia-clinica/equipamentos/esfigmomanometro-mapa")],
+  ["Desfibrilador, cardioversor e DEA", consultPath("engenharia-clinica/equipamentos/desfibrilador-cardioversor-dea")],
+  ["Marca-passo transcutâneo", consultPath("engenharia-clinica/equipamentos/marca-passo-transcutaneo")],
+  ["Bisturi elétrico", consultPath("engenharia-clinica/equipamentos/bisturi-eletrico")],
+  ["Ventilador pulmonar", consultPath("engenharia-clinica/equipamentos/ventilador-pulmonar")],
+  ["Aparelho de anestesia", consultPath("engenharia-clinica/equipamentos/aparelho-anestesia")],
+  ["CPAP e BiPAP", consultPath("engenharia-clinica/equipamentos/cpap-bipap")],
+  ["Fluxômetro e manômetro de O₂", consultPath("engenharia-clinica/equipamentos/fluxometro-manometro-o2")],
+  ["Autoclave", consultPath("engenharia-clinica/equipamentos/autoclave")],
+  ["Termodesinfectora e estufa", consultPath("engenharia-clinica/equipamentos/termodesinfectora-estufa")],
+  ["Estufa e banho-maria de laboratório", consultPath("engenharia-clinica/equipamentos/estufa-banho-maria")],
+  ["Geladeira e câmara de vacina", consultPath("engenharia-clinica/equipamentos/geladeira-camara-vacina")],
 ];
 
 const AREAS = {
@@ -64,19 +65,19 @@ const AREAS = {
       {
         title: "Controle de qualidade (CQ)",
         text: "Testes periódicos para verificar dose, qualidade de imagem e funcionamento dos equipamentos.",
-        href: "/consult/servicos/controle-qualidade",
+         href: consultPath("fisica-medica/controle-de-qualidade"),
         icon: Gauge,
       },
       {
         title: "Levantamento radiométrico",
         text: "Medição da radiação ao redor da sala e avaliação da radiação de fuga do cabeçote.",
-        href: "/consult/servicos/levantamento-radiometrico",
+         href: consultPath("protecao-radiologica/levantamento-radiometrico"),
         icon: Activity,
       },
       {
         title: "Projeto de blindagem",
         text: "Cálculo técnico da blindagem antes de obra, reforma, expansão ou troca de equipamento.",
-        href: "/consult/servicos/projeto-blindagem",
+         href: consultPath("protecao-radiologica/projeto-blindagem"),
         icon: ShieldCheck,
       },
     ],
@@ -114,31 +115,31 @@ const AREAS = {
       {
         title: "Programa de Proteção Radiológica",
         text: "Elaboração e acompanhamento do programa exigido para serviços de radiologia diagnóstica e intervencionista.",
-        href: "/consult/servicos/programa-protecao-radiologica",
+         href: consultPath("protecao-radiologica/programa-protecao-radiologica"),
         icon: ClipboardCheck,
       },
       {
         title: "Levantamento radiométrico",
         text: "Medição das condições radiométricas da sala e das áreas ao redor.",
-        href: "/consult/servicos/levantamento-radiometrico",
+         href: consultPath("protecao-radiologica/levantamento-radiometrico"),
         icon: Activity,
       },
       {
         title: "Projeto de blindagem",
         text: "Memorial de cálculo para construção, reforma, expansão ou troca de equipamento.",
-        href: "/consult/servicos/projeto-blindagem",
+         href: consultPath("protecao-radiologica/projeto-blindagem"),
         icon: ShieldCheck,
       },
       {
         title: "Treinamentos",
         text: "Capacitação periódica das equipes em radioproteção e segurança em ressonância magnética.",
-        href: "/consult/servicos/treinamentos",
+         href: consultPath("protecao-radiologica/treinamentos"),
         icon: Stethoscope,
       },
       {
         title: "Licenciamento sanitário",
         text: "Apoio técnico e documental para obtenção ou renovação da licença da vigilância sanitária.",
-        href: "/consult/servicos/licenciamento-sanitario",
+         href: consultPath("protecao-radiologica/licenciamento-sanitario"),
         icon: FileText,
       },
     ],
@@ -177,31 +178,31 @@ const AREAS = {
       {
         title: "Ensaio de segurança elétrica",
         text: "Aterramento, isolamento e correntes de fuga do equipamento e das partes aplicadas ao paciente.",
-        href: "/consult/engenharia-clinica/seguranca-eletrica",
+         href: consultPath("engenharia-clinica/seguranca-eletrica"),
         icon: ShieldCheck,
       },
       {
         title: "Ensaio de desempenho (calibração)",
         text: "Comparação ponto a ponto do que o equipamento mede ou entrega com analisador ou simulador calibrado.",
-        href: "/consult/engenharia-clinica/desempenho-calibracao",
+         href: consultPath("engenharia-clinica/desempenho-calibracao"),
         icon: Gauge,
       },
       {
         title: "Manutenção preventiva",
         text: "Limpeza, lubrificação e testes de funcionamento. Peças necessárias são registradas como pendência, sem venda ou troca pela Consult.",
-        href: "/consult/engenharia-clinica/manutencao-preventiva",
+         href: consultPath("engenharia-clinica/manutencao-preventiva"),
         icon: Wrench,
       },
       {
         title: "Reverificação",
         text: "Novo ensaio depois que o hospital ou fornecedor escolhido resolve a pendência indicada no laudo anterior.",
-        href: "/consult/engenharia-clinica/reverificacao",
+         href: consultPath("engenharia-clinica/reverificacao"),
         icon: CheckCircle2,
       },
       {
         title: "Qualificação térmica",
         text: "Mapeamento de temperatura durante ciclos de operação para demonstrar desempenho dentro da faixa especificada.",
-        href: "/consult/engenharia-clinica/qualificacao-termica",
+         href: consultPath("engenharia-clinica/qualificacao-termica"),
         icon: Thermometer,
       },
     ],
@@ -231,12 +232,12 @@ function Header() {
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#064946]/95 text-white backdrop-blur">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-5 px-5 py-3 md:px-8">
-        <Link to="/consult" aria-label="Página inicial da Consult">
+         <Link to={consultPath()} aria-label="Página inicial da Consult">
           <img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-10 w-auto object-contain" />
         </Link>
         <div className="flex items-center gap-4 text-sm font-semibold">
-          <Link to="/consult#areas" className="hidden text-white/80 hover:text-white md:inline">Áreas de atuação</Link>
-          <Link to="/consult#contato" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#FF6B26] px-4 py-2.5 text-white">
+           <Link to={`${consultPath()}#areas`} className="hidden text-white/80 hover:text-white md:inline">Áreas de atuação</Link>
+           <Link to={`${consultPath()}#contato`} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#FF6B26] px-4 py-2.5 text-white">
             <CalendarDays size={17} /> Agende uma reunião
           </Link>
         </div>
@@ -292,7 +293,7 @@ export default function ConsultAreaLandingPage() {
         <Header />
         <main className="mx-auto max-w-4xl px-6 py-24 text-center">
           <h1 className="text-4xl font-black">Área não encontrada</h1>
-          <Link to="/consult" className="mt-8 inline-flex font-bold text-[#075653]">Voltar para a Consult</Link>
+         <Link to={consultPath()} className="mt-8 inline-flex font-bold text-[#075653]">Voltar para a Consult</Link>
         </main>
       </div>
     );
@@ -306,16 +307,16 @@ export default function ConsultAreaLandingPage() {
           <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(circle at 72% 18%, #8AE600 0, transparent 18%), linear-gradient(120deg, transparent 40%, #0B756A 100%)" }} />
           <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-12 md:grid-cols-[1.05fr_.95fr] md:items-center md:px-8 md:py-16 lg:py-20">
             <div>
-              <Link to="/consult#areas" className="text-sm font-semibold text-white/70 hover:text-white">Áreas de atuação</Link>
+               <Link to={`${consultPath()}#areas`} className="text-sm font-semibold text-white/70 hover:text-white">Áreas de atuação</Link>
               <p className="mt-7 text-xs font-black uppercase tracking-[0.24em] text-[#8AE600]">{area.eyebrow}</p>
               <h1 className="mt-4 max-w-4xl text-4xl font-black leading-[1.04] tracking-tight md:text-6xl">{area.title}</h1>
               <p className="mt-6 max-w-3xl text-lg font-semibold leading-8 text-white/94">{area.hero}</p>
               <p className="mt-5 max-w-3xl text-sm leading-7 text-white/75 md:text-base">{area.intro}</p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <Link to="/consult#contato" className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white">
+                 <Link to={`${consultPath()}#contato`} className="inline-flex min-h-12 items-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white">
                   <CalendarDays size={18} /> Agende uma reunião
                 </Link>
-                <Link to="/consult#cobertura" className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-white/25 px-5 py-3 text-sm font-bold text-white">
+                 <Link to={`${consultPath()}#cobertura`} className="inline-flex min-h-12 items-center gap-2 rounded-xl border border-white/25 px-5 py-3 text-sm font-bold text-white">
                   <MapPin size={18} /> Ver área de atendimento
                 </Link>
               </div>
@@ -399,7 +400,7 @@ export default function ConsultAreaLandingPage() {
                 <p className="text-xs font-black uppercase tracking-[0.22em] text-[#08A77F]">Equipamentos e modalidades</p>
                 <h2 className="mt-3 text-3xl font-black tracking-tight text-[#075653]">Controle de qualidade por modalidade</h2>
                 <p className="mt-4 text-sm leading-7 text-[#557270]">A base normativa muda conforme o equipamento avaliado. O Controle de Qualidade possui a matriz completa de RDC e Instruções Normativas.</p>
-                <Link to="/consult/servicos/controle-qualidade" className="mt-6 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Ver Controle de Qualidade</Link>
+                 <Link to={consultPath('fisica-medica/controle-de-qualidade')} className="mt-6 inline-flex rounded-xl bg-[#075653] px-5 py-3 text-sm font-extrabold text-white">Ver Controle de Qualidade</Link>
               </div>
               <div className="grid gap-3 sm:grid-cols-2">
                 {RADIOLOGY_EQUIPMENT.map((item) => (
@@ -482,7 +483,7 @@ export default function ConsultAreaLandingPage() {
               <h2 className="mt-2 text-2xl font-black md:text-3xl">Precisa avaliar um serviço ou equipamento?</h2>
               <p className="mt-2 max-w-2xl text-sm leading-6 text-white/75">Converse com a equipe técnica da Consult e explique o que precisa ser verificado.</p>
             </div>
-            <Link to="/consult#contato" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white">
+             <Link to={`${consultPath()}#contato`} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white">
               <CalendarDays size={18} /> Agende uma reunião
             </Link>
           </div>

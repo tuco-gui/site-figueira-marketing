@@ -3,6 +3,7 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { ConsultServiceQuickLinks } from '@/components/consult/ConsultSiteShell';
 import ConsultCookieNotice from '@/components/consult/ConsultCookieNotice';
 import { updateConsultPageMeta } from '@/lib/consultPageMeta';
+import { consultPath } from '@/lib/consultProject';
 import {
   ArrowLeft,
   ArrowRight,
@@ -134,7 +135,7 @@ const articles = [
     title: "Consult fortalece educação continuada com nova plataforma de cursos digitais",
     text: "Conheça a plataforma de treinamentos da Consult para atualização em radioproteção e segurança.",
     image: ARTICLE_TRAINING_IMAGE,
-    href: "/consult/blog/educacao-continuada-cursos-digitais-radioprotecao",
+    href: consultPath("blog/educacao-continuada-cursos-digitais-radioprotecao"),
   },
   {
     tag: "CONTROLE DE QUALIDADE",
@@ -142,7 +143,7 @@ const articles = [
     title: "Publicado IAEA HHS 47, um guia prático de controle de qualidade de equipamentos",
     text: "Material técnico de referência para testes de controle de qualidade em radiologia diagnóstica.",
     image: ARTICLE_IAEA_IMAGE,
-    href: "/consult/blog/iaea-hhs-47-controle-qualidade-equipamentos",
+    href: consultPath("blog/iaea-hhs-47-controle-qualidade-equipamentos"),
   },
   {
     tag: "RADIOPROTEÇÃO",
@@ -150,7 +151,7 @@ const articles = [
     title: "Proteção radiológica em equipamentos Arco C",
     text: "Conteúdo técnico sobre proteção radiológica em procedimentos que utilizam equipamentos Arco C.",
     image: ARTICLE_ARC_IMAGE,
-    href: "/consult/blog/protecao-radiologica-equipamentos-arco-c",
+    href: consultPath("blog/protecao-radiologica-equipamentos-arco-c"),
   },
 ];
 
@@ -195,19 +196,19 @@ function Header() {
   const [open, setOpen] = useState(false);
 
   const nav = [
-    ["Início", "/consult"],
-    ["Sobre", "/consult/sobre"],
-    ["Serviços", "/consult/servicos"],
-    ["Blog", "/consult/blog"],
+    ["Início", consultPath()],
+    ["Sobre", consultPath("sobre")],
+    ["Serviços", consultPath("servicos")],
+    ["Blog", consultPath("blog")],
     ["Cursos", "https://consultcursos.herospark.co"],
     ["Portal", "https://radiationqa.com.br/login"],
-    ["Contato", "/consult#contato"],
+    ["Contato", `${consultPath()}#contato`],
   ];
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#075653]/95 text-white backdrop-blur">
       <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to="/consult" className="flex items-center">
+        <Link to={consultPath()} className="flex items-center">
           <Logo className="h-12 w-auto max-w-[190px]" />
         </Link>
 
@@ -229,7 +230,7 @@ function Header() {
             </a>
           ))}
           <a
-            href="/consult#contato"
+            href={`${consultPath()}#contato`}
             className="inline-flex items-center gap-2 rounded-lg bg-[#FF6B26] px-5 py-3 text-sm font-bold text-white shadow-lg shadow-black/10 transition hover:brightness-95"
           >
             Solicite um orçamento
@@ -266,7 +267,7 @@ function Header() {
               </a>
             ))}
             <a
-              href="/consult#contato"
+              href={`${consultPath()}#contato`}
               onClick={() => setOpen(false)}
               className="mt-3 inline-flex items-center justify-center gap-2 rounded-lg bg-[#FF6B26] px-5 py-3 text-sm font-bold text-white"
             >
@@ -451,7 +452,7 @@ function ContactForm() {
         className="mt-3 w-full resize-none rounded-lg border border-black/10 px-3 py-3 text-sm outline-none focus:border-[#08A77F]"
       />
 
-      <label className="mt-3 flex items-start gap-2 text-xs leading-5 text-[#315B58]"><input type="checkbox" name="consentimento" required className="mt-1" /><span>Li a <Link to="/consult/politica-de-privacidade" className="font-bold underline">Política de Privacidade</Link> e autorizo o contato da Consult sobre esta solicitação. *</span></label>
+      <label className="mt-3 flex items-start gap-2 text-xs leading-5 text-[#315B58]"><input type="checkbox" name="consentimento" required className="mt-1" /><span>Li a <Link to={consultPath('politica-de-privacidade')} className="font-bold underline">Política de Privacidade</Link> e autorizo o contato da Consult sobre esta solicitação. *</span></label>
       {status === "error" && (
         <p role="alert" className="mt-3 rounded-lg bg-red-50 px-3 py-2 text-xs font-semibold text-red-700">{error}</p>
       )}
@@ -466,7 +467,7 @@ function ContactForm() {
       </button>
       <p className="mt-3 text-center text-[10px] leading-5 text-black/45">
         Seus dados serão usados para atender esta solicitação. Consulte nossa{" "}
-        <Link to="/consult/politica-de-privacidade" className="font-bold underline">Política de Privacidade</Link>.
+        <Link to={consultPath('politica-de-privacidade')} className="font-bold underline">Política de Privacidade</Link>.
       </p>
     </form>
   );
@@ -489,11 +490,11 @@ function Footer() {
               Navegação
             </h4>
             <div className="mt-4 space-y-2 text-sm text-white/75">
-              <a className="block hover:text-[#8AE600]" href="/consult#inicio">Início</a>
-              <Link className="block hover:text-[#8AE600]" to="/consult/sobre">Sobre</Link>
-              <Link className="block hover:text-[#8AE600]" to="/consult/servicos">Serviços</Link>
-              <a className="block hover:text-[#8AE600]" href="/consult#conteudos">Conteúdos</a>
-              <a className="block hover:text-[#8AE600]" href="/consult#contato">Contato</a>
+              <a className="block hover:text-[#8AE600]" href={`${consultPath()}#inicio`}>Início</a>
+              <Link className="block hover:text-[#8AE600]" to={consultPath('sobre')}>Sobre</Link>
+              <Link className="block hover:text-[#8AE600]" to={consultPath('servicos')}>Serviços</Link>
+              <a className="block hover:text-[#8AE600]" href={`${consultPath()}#conteudos`}>Conteúdos</a>
+              <a className="block hover:text-[#8AE600]" href={`${consultPath()}#contato`}>Contato</a>
             </div>
           </div>
 
@@ -506,13 +507,13 @@ function Footer() {
                 <Link
                   key={area.slug}
                   className="block hover:text-[#8AE600]"
-                  to={`/consult/${area.slug}`}
+                  to={consultPath(area.slug)}
                 >
                   {area.title}
                 </Link>
               ))}
-              <Link className="block hover:text-[#8AE600]" to="/consult/fisica-medica/controle-de-qualidade">Controle de Qualidade</Link>
-              <Link className="block hover:text-[#8AE600]" to="/consult/protecao-radiologica/treinamentos">Treinamentos</Link>
+              <Link className="block hover:text-[#8AE600]" to={consultPath('fisica-medica/controle-de-qualidade')}>Controle de Qualidade</Link>
+              <Link className="block hover:text-[#8AE600]" to={consultPath('protecao-radiologica/treinamentos')}>Treinamentos</Link>
             </div>
           </div>
 
@@ -548,7 +549,7 @@ function Footer() {
 
         <div className="flex flex-col gap-3 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between">
           <span>© 2026 Consult Radiometria e Qualidade S/S. Todos os direitos reservados.</span>
-          <Link className="hover:text-white" to="/consult/politica-de-privacidade">Política de Privacidade</Link>
+          <Link className="hover:text-white" to={consultPath('politica-de-privacidade')}>Política de Privacidade</Link>
           <button type="button" className="text-left hover:text-white" onClick={() => window.dispatchEvent(new Event("consult:open-cookie-settings"))}>Preferências de cookies</button>
         </div>
       </div>
@@ -711,7 +712,7 @@ export default function ConsultProposal() {
               {serviceAreas.map((area) => {
                 const Icon = area.Icon;
                 return (
-                  <Link key={area.slug} to={`/consult/${area.slug}`} className="group overflow-hidden rounded-xl border border-black/5 bg-white shadow-lg shadow-[#075653]/5 transition hover:-translate-y-1 hover:shadow-xl">
+                  <Link key={area.slug} to={consultPath(area.slug)} className="group overflow-hidden rounded-xl border border-black/5 bg-white shadow-lg shadow-[#075653]/5 transition hover:-translate-y-1 hover:shadow-xl">
                     <div className="relative h-52 overflow-hidden bg-[#DCEEEB]">
                       <img src={area.image} alt={area.title} className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.025]" />
                     </div>
@@ -728,7 +729,7 @@ export default function ConsultProposal() {
               })}
             </div>
             <div className="mt-9 flex justify-center">
-              <a href="/consult/servicos" className="inline-flex min-h-[48px] items-center justify-center gap-3 rounded-full border-2 border-[#08A77F] px-7 py-3 text-sm font-extrabold text-[#075653] transition hover:bg-[#08A77F] hover:text-white">
+              <a href={consultPath('servicos')} className="inline-flex min-h-[48px] items-center justify-center gap-3 rounded-full border-2 border-[#08A77F] px-7 py-3 text-sm font-extrabold text-[#075653] transition hover:bg-[#08A77F] hover:text-white">
                 Conheça todos os nossos serviços <ArrowRight className="h-4 w-4" />
               </a>
             </div>
@@ -852,7 +853,7 @@ export default function ConsultProposal() {
                 <h2 className="text-4xl font-black tracking-[-0.03em] sm:text-5xl">Conteúdo técnico e <span className="text-[#79D900]">atualizações</span></h2>
                 <p className="mt-3 text-[15px] text-black/55">Artigos, novidades e insights sobre radiometria, qualidade e segurança em saúde.</p>
               </div>
-              <a href="/consult/blog" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full border border-[#08A77F] px-6 py-3 text-sm font-bold text-[#08A77F] transition hover:bg-[#08A77F] hover:text-white">Ver todos os conteúdos <ArrowRight className="h-4 w-4" /></a>
+              <a href={consultPath('blog')} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-[46px] items-center justify-center gap-2 rounded-full border border-[#08A77F] px-6 py-3 text-sm font-bold text-[#08A77F] transition hover:bg-[#08A77F] hover:text-white">Ver todos os conteúdos <ArrowRight className="h-4 w-4" /></a>
             </div>
             <div className="mt-9 grid gap-5 lg:grid-cols-3">
               {articles.map((article) => (
@@ -973,7 +974,7 @@ export function ConsultAreaPage() {
         <div className="mx-auto max-w-3xl px-4 py-24 text-center">
           <h1 className="text-3xl font-black">Área não encontrada</h1>
           <Link
-            to="/consult"
+            to={consultPath()}
             className="mt-6 inline-flex items-center gap-2 rounded-xl bg-[#08A77F] px-5 py-3 font-bold text-white"
           >
             <ArrowLeft className="h-4 w-4" />
@@ -1002,7 +1003,7 @@ export function ConsultAreaPage() {
           />
           <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8 lg:py-28">
             <Link
-              to="/consult#areas"
+              to={`${consultPath()}#areas`}
               className="inline-flex items-center gap-2 text-sm font-bold text-white/70 hover:text-white"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -1083,7 +1084,7 @@ export function ConsultAreaPage() {
               </div>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row lg:mt-0">
                 <a
-                  href="/consult#contato"
+                  href={`${consultPath()}#contato`}
                   className="inline-flex min-h-[50px] items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-6 py-3 text-sm font-extrabold"
                 >
                   Agendar reunião

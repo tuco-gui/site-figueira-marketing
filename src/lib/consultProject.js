@@ -19,7 +19,15 @@ export const CONSULT_PROJECT = {
   },
 }
 
+export function getConsultBasePath() {
+  if (typeof window !== 'undefined' && ['consult.med.br', 'www.consult.med.br'].includes(window.location.hostname)) {
+    return ''
+  }
+  return CONSULT_PROJECT.siteBasePath
+}
+
 export function consultPath(path = '') {
   const suffix = String(path || '').replace(/^\/+/, '')
-  return suffix ? `${CONSULT_PROJECT.siteBasePath}/${suffix}` : CONSULT_PROJECT.siteBasePath
+  const base = getConsultBasePath()
+  return suffix ? `${base}/${suffix}` : (base || '/')
 }

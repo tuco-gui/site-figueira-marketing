@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { Activity, ClipboardCheck, FileText, MessageCircle, ScanLine, ShieldCheck, UserRound } from 'lucide-react'
 import { ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
+import { consultPath } from '@/lib/consultProject'
 import { updateConsultPageMeta } from '@/lib/consultPageMeta'
 import '@/components/consult/consult-electrical-safety.css'
 import '@/components/consult/consult-quality-index.css'
@@ -56,7 +57,7 @@ export default function ConsultQualityIndexPage() {
         <svg className="safety-photo-ribbon" viewBox="0 0 700 180" preserveAspectRatio="none" aria-hidden="true"><path d="M0,180C150,72,395,10,700,0V180Z" fill="#00B68C"/><path d="M300,180C405,80,558,44,700,32V180Z" fill="#02D69E"/><path d="M480,180C470,125,540,30,700,0V180Z" fill="#96ED17"/></svg>
       </div>
       <div className="safety-container safety-hero-inner"><div className="safety-hero-copy">
-        <nav className="safety-breadcrumb" aria-label="Navegação estrutural"><Link to="/consult">Início</Link><span aria-hidden="true">/</span><Link to="/consult/fisica-medica">Física Médica</Link><span aria-hidden="true">/</span><span aria-current="page">Controle de Qualidade</span></nav>
+        <nav className="safety-breadcrumb" aria-label="Navegação estrutural"><Link to={consultPath()}>Início</Link><span aria-hidden="true">/</span><Link to={consultPath('fisica-medica')}>Física Médica</Link><span aria-hidden="true">/</span><span aria-current="page">Controle de Qualidade</span></nav>
         <Eyebrow>Física Médica</Eyebrow>
         <h1>Controle de<br/><span>Qualidade</span></h1>
         <p>{INTRO}</p>
@@ -71,7 +72,7 @@ export default function ConsultQualityIndexPage() {
 
     <section id="modalidades" className="safety-section safety-section-soft" aria-labelledby="modalidades-title"><div className="safety-container">
       <div className="safety-section-heading"><Eyebrow>Por modalidade</Eyebrow><h2 id="modalidades-title" className="safety-title">Cada tecnologia possui <span>critérios próprios de avaliação</span></h2><p>Selecione a modalidade para ver a referência técnica, o escopo da avaliação e como o resultado é documentado.</p></div>
-      <div className="safety-card-grid cq-modality-grid">{MODALITIES.map(([label, norm, slug]) => <Link className="safety-card cq-modality-link" key={slug} to={`/consult/fisica-medica/controle-de-qualidade/${slug}`}>
+      <div className="safety-card-grid cq-modality-grid">{MODALITIES.map(([label, norm, slug]) => <Link className="safety-card cq-modality-link" key={slug} to={consultPath(`fisica-medica/controle-de-qualidade/${slug}`)}>
         <div className="safety-card-top"><span className="safety-icon"><ScanLine size={28}/></span><h3>{label}</h3></div>
         <p className="cq-reference">{norm}</p><span className="safety-text-link">Ver modalidade</span>
       </Link>)}</div>
@@ -90,7 +91,7 @@ export default function ConsultQualityIndexPage() {
     <section className="safety-section safety-section-soft"><div className="safety-container">
       <div className="safety-section-heading"><Eyebrow>Base normativa</Eyebrow><h2 className="safety-title">Referências organizadas <span>por tecnologia</span></h2><p>A RDC 611/2022 estabelece a base sanitária geral e as Instruções Normativas complementam os critérios conforme a modalidade.</p></div>
       <div className="safety-card-grid safety-norm-grid">{[['RDC 611/2022 — Anvisa', 'Base sanitária geral para serviços de radiologia diagnóstica e intervencionista.'], ['IN 90 a 97/2021 — Anvisa', 'Referências específicas para as modalidades apresentadas nesta área.']].map(([title, text]) => <article className="safety-card" key={title}><div className="safety-card-top"><span className="safety-icon"><FileText size={28}/></span><h3>{title}</h3></div><p>{text}</p></article>)}</div>
-      <Link className="safety-text-link" to="/consult/normas">Normas e referências</Link>
+      <Link className="safety-text-link" to={consultPath('normas')}>Normas e referências</Link>
     </div></section>
 
     <section className="safety-contact"><div className="safety-container">

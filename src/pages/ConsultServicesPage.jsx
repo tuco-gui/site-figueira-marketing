@@ -2,26 +2,27 @@ import React, { useEffect } from 'react'
 import { Activity, ArrowRight, FileText, Gauge, ShieldCheck, Stethoscope, Thermometer, Wrench } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { ConsultCtaBand, ConsultSiteShell } from '@/components/consult/ConsultSiteShell'
+import { consultPath } from '@/lib/consultProject'
 import { ApprovedInternalHero, ApprovedLightSection, CONSULT_IMAGES } from '@/components/consult/ConsultApprovedInternal'
 
 const GROUPS=[
   ['Física Médica',[
-    ['Controle de Qualidade','/consult/fisica-medica/controle-de-qualidade',Gauge],
-    ['Proteção Radiológica','/consult/protecao-radiologica',ShieldCheck],
-    ['Levantamento radiométrico','/consult/protecao-radiologica/levantamento-radiometrico',Activity],
-    ['Projeto de blindagem','/consult/protecao-radiologica/projeto-blindagem',ShieldCheck],
-    ['Programas (PPR/PGQ/PEP)','/consult/protecao-radiologica/programas',FileText],
-    ['Licenciamento sanitário','/consult/protecao-radiologica/licenciamento-sanitario',FileText],
+    ['Controle de Qualidade',consultPath('fisica-medica/controle-de-qualidade'),Gauge],
+    ['Proteção Radiológica',consultPath('protecao-radiologica'),ShieldCheck],
+    ['Levantamento radiométrico',consultPath('protecao-radiologica/levantamento-radiometrico'),Activity],
+    ['Projeto de blindagem',consultPath('protecao-radiologica/projeto-blindagem'),ShieldCheck],
+    ['Programas (PPR/PGQ/PEP)',consultPath('protecao-radiologica/programas'),FileText],
+    ['Licenciamento sanitário',consultPath('protecao-radiologica/licenciamento-sanitario'),FileText],
   ]],
   ['Treinamentos',[
-    ['Treinamentos técnicos','/consult/protecao-radiologica/treinamentos',Stethoscope],
+    ['Treinamentos técnicos',consultPath('protecao-radiologica/treinamentos'),Stethoscope],
   ]],
   ['Consult Engenharia Clínica',[
-    ['Ensaio de segurança elétrica','/consult/engenharia-clinica/seguranca-eletrica',ShieldCheck],
-    ['Calibração e ensaio de desempenho','/consult/engenharia-clinica/desempenho-calibracao',Gauge],
-    ['Manutenção preventiva','/consult/engenharia-clinica/manutencao-preventiva',Wrench],
-    ['Reverificação','/consult/engenharia-clinica/reverificacao',Activity],
-    ['Qualificação térmica','/consult/engenharia-clinica/qualificacao-termica',Thermometer],
+    ['Ensaio de segurança elétrica',consultPath('engenharia-clinica/seguranca-eletrica'),ShieldCheck],
+    ['Calibração e ensaio de desempenho',consultPath('engenharia-clinica/desempenho-calibracao'),Gauge],
+    ['Manutenção preventiva',consultPath('engenharia-clinica/manutencao-preventiva'),Wrench],
+    ['Reverificação',consultPath('engenharia-clinica/reverificacao'),Activity],
+    ['Qualificação térmica',consultPath('engenharia-clinica/qualificacao-termica'),Thermometer],
   ]],
 ]
 

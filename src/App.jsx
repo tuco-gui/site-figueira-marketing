@@ -67,13 +67,49 @@ function Deferred({ children, consult = false }) {
   return <Suspense fallback={<RouteFallback consult={consult} />}>{children}</Suspense>
 }
 
+function ConsultRoutes() {
+  return <Routes>
+    <Route index element={<ConsultProposal />} />
+    <Route path="sobre" element={<ConsultAboutPage />} />
+    <Route path="servicos" element={<ConsultServicesPage />} />
+    <Route path="politica-de-privacidade" element={<ConsultPrivacyPage />} />
+    <Route path="fisica-medica" element={<ConsultAreaLandingPageV3 fixedSlug="fisica-medica" />} />
+    <Route path="protecao-radiologica" element={<ConsultAreaLandingPageV3 fixedSlug="protecao-radiologica" />} />
+    <Route path="engenharia-clinica" element={<ConsultAreaLandingPageV3 fixedSlug="engenharia-clinica" />} />
+    <Route path="fisica-medica/controle-de-qualidade" element={<ConsultQualityIndexPage />} />
+    <Route path="fisica-medica/controle-de-qualidade/:slug" element={<ConsultQualityModalityPage />} />
+    <Route path="fisica-medica/:slug" element={<ConsultServicePage />} />
+    <Route path="protecao-radiologica/programas" element={<ConsultProgramsPage />} />
+    <Route path="protecao-radiologica/:slug" element={<ConsultServicePage />} />
+    <Route path="engenharia-clinica/equipamentos/:slug" element={<ConsultEquipmentPage />} />
+    <Route path="engenharia-clinica/:slug" element={<ConsultEngineeringServicePage />} />
+    <Route path="atuacao/:slug" element={<ConsultRegionPage />} />
+    <Route path="normas" element={<ConsultNormsPage />} />
+    <Route path="materiais" element={<ConsultMaterialsPage />} />
+    <Route path="materiais/mapa-normas-radiologia" element={<ConsultNormMapResourcePage />} />
+    <Route path="materiais/guia-servicos-radiologia" element={<ConsultRadiologyServiceGuidePage />} />
+    <Route path="materiais/modelos-sinalizacao" element={<ConsultSignageMaterialPage />} />
+    <Route path="blog" element={<ConsultBlogPage />} />
+    <Route path="blog/:slug" element={<ConsultBlogPostPage />} />
+    <Route path="areas/:slug" element={<ConsultLegacyRedirect type="area" />} />
+    <Route path="servicos/:slug" element={<ConsultLegacyRedirect type="service" />} />
+    <Route path="equipamentos/:slug" element={<ConsultLegacyRedirect type="equipment" />} />
+    <Route path="regioes/:slug" element={<ConsultLegacyRedirect type="region" />} />
+  </Routes>
+}
+
+function ConsultApplication() {
+  return <Deferred consult><div className="consult-responsive"><ConsultRoutes /></div></Deferred>
+}
+
 function App() {
+  const consultDomain = typeof window !== 'undefined' && ['consult.med.br', 'www.consult.med.br'].includes(window.location.hostname)
   return (
     <QueryClientProvider client={queryClientInstance}>
       <Router>
         <ScrollToTop />
         <Routes>
-          <Route element={<SiteLayout />}>
+          {!consultDomain && <><Route element={<SiteLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/sobre" element={<Deferred><Sobre /></Deferred>} />
             <Route path="/cases" element={<Deferred><Cases /></Deferred>} />
@@ -93,46 +129,11 @@ function App() {
             <Route path="/solucoes/tecnologia" element={<Deferred><Tecnologia /></Deferred>} />
             <Route path="/solucoes/solucoes-sob-medida" element={<Deferred><SolucoesSobMedida /></Deferred>} />
             <Route path="/solucoes/retencao" element={<Deferred><Retencao /></Deferred>} />
-          </Route>
-          <Route path="/consult/*" element={
-            <Deferred consult>
-              <div className="consult-responsive">
-              <Routes>
-                <Route index element={<ConsultProposal />} />
-                <Route path="sobre" element={<ConsultAboutPage />} />
-                <Route path="servicos" element={<ConsultServicesPage />} />
-                <Route path="politica-de-privacidade" element={<ConsultPrivacyPage />} />
-
-                <Route path="fisica-medica" element={<ConsultAreaLandingPageV3 fixedSlug="fisica-medica" />} />
-                <Route path="protecao-radiologica" element={<ConsultAreaLandingPageV3 fixedSlug="protecao-radiologica" />} />
-                <Route path="engenharia-clinica" element={<ConsultAreaLandingPageV3 fixedSlug="engenharia-clinica" />} />
-
-                <Route path="fisica-medica/controle-de-qualidade" element={<ConsultQualityIndexPage />} />
-                <Route path="fisica-medica/controle-de-qualidade/:slug" element={<ConsultQualityModalityPage />} />
-                <Route path="fisica-medica/:slug" element={<ConsultServicePage />} />
-                <Route path="protecao-radiologica/programas" element={<ConsultProgramsPage />} />
-                <Route path="protecao-radiologica/:slug" element={<ConsultServicePage />} />
-                <Route path="engenharia-clinica/equipamentos/:slug" element={<ConsultEquipmentPage />} />
-                <Route path="engenharia-clinica/:slug" element={<ConsultEngineeringServicePage />} />
-                <Route path="atuacao/:slug" element={<ConsultRegionPage />} />
-
-                <Route path="normas" element={<ConsultNormsPage />} />
-                <Route path="materiais" element={<ConsultMaterialsPage />} />
-                <Route path="materiais/mapa-normas-radiologia" element={<ConsultNormMapResourcePage />} />
-                <Route path="materiais/guia-servicos-radiologia" element={<ConsultRadiologyServiceGuidePage />} />
-                <Route path="materiais/modelos-sinalizacao" element={<ConsultSignageMaterialPage />} />
-                <Route path="blog" element={<ConsultBlogPage />} />
-                <Route path="blog/:slug" element={<ConsultBlogPostPage />} />
-
-                <Route path="areas/:slug" element={<ConsultLegacyRedirect type="area" />} />
-                <Route path="servicos/:slug" element={<ConsultLegacyRedirect type="service" />} />
-                <Route path="equipamentos/:slug" element={<ConsultLegacyRedirect type="equipment" />} />
-                <Route path="regioes/:slug" element={<ConsultLegacyRedirect type="region" />} />
-              </Routes>
-              </div>
-            </Deferred>
-          } />
-          <Route path="*" element={<PageNotFound />} />
+          </Route></>}
+          {consultDomain ? <Route path="/*" element={<ConsultApplication />} /> : <>
+            <Route path="/consult/*" element={<ConsultApplication />} />
+            <Route path="*" element={<PageNotFound />} />
+          </>}
         </Routes>
         <Toaster />
       </Router>

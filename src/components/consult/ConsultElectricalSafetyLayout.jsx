@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { Activity, Check, ClipboardCheck, FileText, History, MessageCircle, ShieldCheck, Unplug, Zap } from 'lucide-react'
 import { ConsultSiteShell } from './ConsultSiteShell'
+import { consultPath } from '@/lib/consultProject'
 import './consult-electrical-safety.css'
 
 const PHOTO = '/consult/seguranca-eletrica-hero-v1.webp'
@@ -19,7 +20,7 @@ function Title({ children, accent }) {
 function Actions({ title }) {
   const wa = 'https://wa.me/5514981610712?text=' + encodeURIComponent(`Olá, equipe Consult. Gostaria de conversar sobre ${title}.`)
   return <div className="safety-actions">
-    <a className="safety-button safety-button-primary" href="/consult#contato"><FileText size={19}/>Solicite um orçamento</a>
+    <a className="safety-button safety-button-primary" href={`${consultPath()}#contato`}><FileText size={19}/>Solicite um orçamento</a>
     <a className="safety-button safety-button-whatsapp" href={wa} target="_blank" rel="noreferrer"><MessageCircle size={21}/>Falar no WhatsApp</a>
   </div>
 }
@@ -61,7 +62,7 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
       </div>
       <div className="safety-container safety-hero-inner">
         <div className="safety-hero-copy">
-          <nav className="safety-breadcrumb" aria-label="Navegação estrutural"><Link to="/consult">Início</Link><span aria-hidden="true">/</span><Link to="/consult/engenharia-clinica">Consult Engenharia Clínica</Link><span aria-hidden="true">/</span><span aria-current="page">{safety ? 'Segurança elétrica' : service.title}</span></nav>
+          <nav className="safety-breadcrumb" aria-label="Navegação estrutural"><Link to={consultPath()}>Início</Link><span aria-hidden="true">/</span><Link to={consultPath('engenharia-clinica')}>Consult Engenharia Clínica</Link><span aria-hidden="true">/</span><span aria-current="page">{safety ? 'Segurança elétrica' : service.title}</span></nav>
           <Eyebrow>Consult Engenharia Clínica</Eyebrow>
           <h1>{heading[0]}{heading[0] && <br/>}<span>{heading[1]}</span></h1>
           <p>{service.intro}</p>
@@ -94,7 +95,7 @@ export default function ConsultElectricalSafetyLayout({ service, process, slug =
 
     {showWhen && <section className="safety-section safety-section-white">
       <div className="safety-container safety-when-grid">
-        <div><Eyebrow>Quando contratar</Eyebrow><Title accent="avaliar o equipamento?">Quando é necessário</Title><p className="safety-section-intro">{slug === 'manutencao-preventiva' ? 'A manutenção considera o equipamento, sua aplicação e o plano do fabricante.' : 'O ensaio considera o equipamento, sua aplicação e o histórico técnico da instituição.'}</p><Link className="safety-text-link" to="/consult/engenharia-clinica">Conheça a Consult Engenharia Clínica</Link></div>
+        <div><Eyebrow>Quando contratar</Eyebrow><Title accent="avaliar o equipamento?">Quando é necessário</Title><p className="safety-section-intro">{slug === 'manutencao-preventiva' ? 'A manutenção considera o equipamento, sua aplicação e o plano do fabricante.' : 'O ensaio considera o equipamento, sua aplicação e o histórico técnico da instituição.'}</p><Link className="safety-text-link" to={consultPath('engenharia-clinica')}>Conheça a Consult Engenharia Clínica</Link></div>
         <ul className="safety-check-list">{service.when.map(text => <li key={text}><span><Check size={18}/></span>{text}</li>)}</ul>
       </div>
     </section>}

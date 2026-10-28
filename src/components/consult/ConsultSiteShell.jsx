@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { ArrowRight, ChevronDown, FileText, Menu, MessageCircle, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import ConsultCookieNotice from './ConsultCookieNotice'
+import { consultPath } from '@/lib/consultProject'
 
 const LOGO = '/consult/logo-oficial.png'
 const WHATSAPP = '5514981610712'
@@ -19,27 +20,27 @@ export function ConsultEyebrow({ children, light = false, center = false }) {
 // O item "Serviços" do cabeçalho continua levando ao catálogo completo.
 export const CONSULT_DIRECT_SERVICES = [
   { heading: 'Física Médica', links: [
-    ['Controle de Qualidade', '/consult/fisica-medica/controle-de-qualidade'],
-    ['Proteção Radiológica', '/consult/protecao-radiologica', 'subheading'],
-    ['Levantamento radiométrico', '/consult/protecao-radiologica/levantamento-radiometrico', 'child'],
-    ['Projeto de blindagem', '/consult/protecao-radiologica/projeto-blindagem', 'child'],
-    ['Programas (PPR/PGQ/PEP)', '/consult/protecao-radiologica/programas', 'child'],
-    ['Licenciamento', '/consult/protecao-radiologica/licenciamento-sanitario', 'child'],
+    ['Controle de Qualidade', consultPath('fisica-medica/controle-de-qualidade')],
+    ['Proteção Radiológica', consultPath('protecao-radiologica'), 'subheading'],
+    ['Levantamento radiométrico', consultPath('protecao-radiologica/levantamento-radiometrico'), 'child'],
+    ['Projeto de blindagem', consultPath('protecao-radiologica/projeto-blindagem'), 'child'],
+    ['Programas (PPR/PGQ/PEP)', consultPath('protecao-radiologica/programas'), 'child'],
+    ['Licenciamento', consultPath('protecao-radiologica/licenciamento-sanitario'), 'child'],
   ] },
   { heading: 'Treinamentos', links: [
-    ['Treinamentos técnicos', '/consult/protecao-radiologica/treinamentos'],
-    ['Segurança em Ressonância Magnética', '/consult/protecao-radiologica/treinamentos'],
+    ['Treinamentos técnicos', consultPath('protecao-radiologica/treinamentos')],
+    ['Segurança em Ressonância Magnética', consultPath('protecao-radiologica/treinamentos')],
   ] },
   { heading: 'Consult Engenharia Clínica', links: [
-    ['Segurança elétrica', '/consult/engenharia-clinica/seguranca-eletrica'],
-    ['Ensaio de desempenho', '/consult/engenharia-clinica/desempenho-calibracao'],
-    ['Manutenção preventiva', '/consult/engenharia-clinica/manutencao-preventiva'],
-    ['Qualificação térmica', '/consult/engenharia-clinica/qualificacao-termica'],
+    ['Segurança elétrica', consultPath('engenharia-clinica/seguranca-eletrica')],
+    ['Ensaio de desempenho', consultPath('engenharia-clinica/desempenho-calibracao')],
+    ['Manutenção preventiva', consultPath('engenharia-clinica/manutencao-preventiva')],
+    ['Qualificação térmica', consultPath('engenharia-clinica/qualificacao-termica')],
   ] },
 ]
 export const CONSULT_DIRECT_AREAS = [
-  ['Física Médica', '/consult/fisica-medica'],
-  ['Consult Engenharia Clínica', '/consult/engenharia-clinica'],
+  ['Física Médica', consultPath('fisica-medica')],
+  ['Consult Engenharia Clínica', consultPath('engenharia-clinica')],
 ]
 
 export function ConsultServiceQuickLinks({ mobile = false, onNavigate = () => {} }) {
@@ -60,7 +61,7 @@ export function ConsultServiceQuickLinks({ mobile = false, onNavigate = () => {}
     <div className={mobile
       ? 'mb-3 rounded-xl border border-white/15 bg-[#075653] px-3 py-4'
       : 'absolute left-1/2 top-full z-[80] mt-2 max-h-[calc(100dvh-6rem)] w-[620px] max-w-[calc(100vw-3rem)] -translate-x-1/2 overflow-y-auto overscroll-contain rounded-2xl border border-[#D5E9E3] bg-white p-5 text-[#123C3B] shadow-2xl'}>
-      <Link to="/consult/servicos" onClick={go} className={mobile ? 'block rounded-lg px-2 py-2 text-sm font-bold text-[#B8FF51]' : 'block rounded-lg bg-[#EAF6F1] px-3 py-2 text-sm font-extrabold text-[#075653] hover:bg-[#D7F1E5]'}>
+      <Link to={consultPath('servicos')} onClick={go} className={mobile ? 'block rounded-lg px-2 py-2 text-sm font-bold text-[#B8FF51]' : 'block rounded-lg bg-[#EAF6F1] px-3 py-2 text-sm font-extrabold text-[#075653] hover:bg-[#D7F1E5]'}>
         Ver catálogo completo de serviços
       </Link>
       <div className={mobile ? 'mt-3 grid gap-4' : 'mt-4 grid grid-cols-3 gap-5'}>
@@ -102,27 +103,27 @@ function ConsultHorizontalBrand() {
 export function ConsultHeader({ horizontalBrand = true }) {
   const [open, setOpen] = useState(false)
   const nav = [
-    ['Início','/consult'],
-    ['Sobre','/consult/sobre'],
-    ['Serviços','/consult/servicos'],
-    ['Blog','/consult/blog'],
+    ['Início',consultPath()],
+    ['Sobre',consultPath('sobre')],
+    ['Serviços',consultPath('servicos')],
+    ['Blog',consultPath('blog')],
     ['Cursos','https://consultcursos.herospark.co'],
     ['Portal','https://radiationqa.com.br/login'],
-    ['Contato','/consult#contato'],
+    ['Contato',`${consultPath()}#contato`],
   ]
   return <header className="sticky top-0 z-50 border-b border-white/10 bg-[#075653]/95 text-white backdrop-blur" style={{ backgroundColor: 'rgba(7,86,83,.97)', color: '#fff' }}>
     <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-      <Link to="/consult" className="flex items-center" aria-label="Página inicial da Consult">{horizontalBrand ? <ConsultHorizontalBrand/> : <img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-12 w-auto max-w-[190px] object-contain" />}</Link>
+        <Link to={consultPath()} className="flex items-center" aria-label="Página inicial da Consult">{horizontalBrand ? <ConsultHorizontalBrand/> : <img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-12 w-auto max-w-[190px] object-contain" />}</Link>
       <nav className={`hidden items-center gap-6 xl:flex`}>
         {nav.map(([label,href]) => label === 'Serviços'
           ? <div key={label} className="flex items-center gap-0"><Link to={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">Serviços</Link><ConsultServiceQuickLinks/></div>
           : href.startsWith('http')
             ? <a key={label} href={href} target="_blank" rel="noreferrer" className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
-            : href.startsWith('/consult#')
+            : href.includes('#')
               ? <a key={label} href={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
               : <Link key={label} to={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</Link>
         )}
-        <a href="/consult#contato" className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#FF6B26] px-4 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-black/10 transition hover:brightness-95">
+        <a href={`${consultPath()}#contato`} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#FF6B26] px-4 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-black/10 transition hover:brightness-95">
           <FileText size={16}/> Solicite um orçamento
         </a>
       </nav>
@@ -133,11 +134,11 @@ export function ConsultHeader({ horizontalBrand = true }) {
         ? <div key={label}><Link to={href} onClick={()=>setOpen(false)} className="block rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">Serviços</Link><ConsultServiceQuickLinks mobile onNavigate={()=>setOpen(false)}/></div>
         : href.startsWith('http')
           ? <a key={label} href={href} target="_blank" rel="noreferrer" onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</a>
-          : href.startsWith('/consult#')
+            : href.includes('#')
             ? <a key={label} href={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</a>
             : <Link key={label} to={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</Link>
       )}
-      <a href="/consult#contato" onClick={()=>setOpen(false)} className="mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white"><FileText size={16}/> Solicite um orçamento</a>
+      <a href={`${consultPath()}#contato`} onClick={()=>setOpen(false)} className="mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white"><FileText size={16}/> Solicite um orçamento</a>
     </div></div>}
   </header>
 }
@@ -148,19 +149,19 @@ export function ConsultFooter({ horizontalBrand = true }) {
       <div className="grid gap-10 border-b border-white/10 pb-10 lg:grid-cols-[1.2fr_.7fr_.8fr_1.2fr]">
         <div>{horizontalBrand ? <ConsultHorizontalBrand/> : <img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-14 w-auto max-w-[220px] object-contain"/>}<p className="mt-4 max-w-sm text-sm leading-relaxed text-white/65">Soluções técnicas para a área da saúde, com foco em segurança, qualidade e conformidade.</p></div>
         <div><h4 className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">Navegação</h4><div className="mt-4 space-y-2 text-sm text-white/75">
-          <Link className="block hover:text-[#8AE600]" to="/consult">Início</Link>
-          <Link className="block hover:text-[#8AE600]" to="/consult/sobre">Sobre</Link>
-          <Link className="block hover:text-[#8AE600]" to="/consult/servicos">Serviços</Link>
-          <Link className="block hover:text-[#8AE600]" to="/consult/blog">Blog</Link>
+          <Link className="block hover:text-[#8AE600]" to={consultPath()}>Início</Link>
+          <Link className="block hover:text-[#8AE600]" to={consultPath('sobre')}>Sobre</Link>
+          <Link className="block hover:text-[#8AE600]" to={consultPath('servicos')}>Serviços</Link>
+          <Link className="block hover:text-[#8AE600]" to={consultPath('blog')}>Blog</Link>
           <a className="block hover:text-[#8AE600]" href="https://consultcursos.herospark.co" target="_blank" rel="noreferrer">Cursos</a>
           <a className="block hover:text-[#8AE600]" href="https://radiationqa.com.br/login" target="_blank" rel="noreferrer">Portal de Arquivos</a>
-          <a className="block hover:text-[#8AE600]" href="/consult#contato">Contato</a>
+          <a className="block hover:text-[#8AE600]" href={`${consultPath()}#contato`}>Contato</a>
         </div></div>
         <div><h4 className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">Áreas de atuação</h4><div className="mt-4 space-y-2 text-sm text-white/75">
-          <Link className="block hover:text-[#8AE600]" to="/consult/fisica-medica">Física Médica</Link>
-          <Link className="block hover:text-[#8AE600]" to="/consult/protecao-radiologica">Proteção Radiológica</Link>
-          <Link className="block hover:text-[#8AE600]" to="/consult/engenharia-clinica">Consult Engenharia Clínica</Link>
-          <Link className="block hover:text-[#8AE600]" to="/consult/normas">Normas e referências</Link>
+          <Link className="block hover:text-[#8AE600]" to={consultPath('fisica-medica')}>Física Médica</Link>
+          <Link className="block hover:text-[#8AE600]" to={consultPath('protecao-radiologica')}>Proteção Radiológica</Link>
+          <Link className="block hover:text-[#8AE600]" to={consultPath('engenharia-clinica')}>Consult Engenharia Clínica</Link>
+          <Link className="block hover:text-[#8AE600]" to={consultPath('normas')}>Normas e referências</Link>
         </div></div>
         <div><h4 className="text-xs font-bold uppercase tracking-[0.18em] text-white/45">Contato</h4><div className="mt-4 space-y-2 text-sm leading-6 text-white/75">
           <div className="space-y-1"><p className="font-bold text-white">Sede</p><p>Matão/SP</p></div>
@@ -170,7 +171,7 @@ export function ConsultFooter({ horizontalBrand = true }) {
           <p>Atendimento: 8h às 17h</p>
         </div></div>
       </div>
-      <div className="flex flex-col gap-2 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between"><span>© 2026 Consult Radiometria e Qualidade S/S. Todos os direitos reservados.</span><Link className="hover:text-white" to="/consult/politica-de-privacidade">Política de Privacidade</Link><button type="button" onClick={() => window.dispatchEvent(new Event("consult:open-cookie-settings"))} className="text-left hover:text-white">Preferências de cookies</button></div>
+      <div className="flex flex-col gap-2 pt-6 text-xs text-white/45 sm:flex-row sm:items-center sm:justify-between"><span>© 2026 Consult Radiometria e Qualidade S/S. Todos os direitos reservados.</span><Link className="hover:text-white" to={consultPath('politica-de-privacidade')}>Política de Privacidade</Link><button type="button" onClick={() => window.dispatchEvent(new Event("consult:open-cookie-settings"))} className="text-left hover:text-white">Preferências de cookies</button></div>
     </div>
   </footer>
 }
@@ -182,7 +183,7 @@ export function ConsultCtaBand({ title = 'Precisa avaliar uma necessidade técni
     <div className="relative mx-auto grid max-w-7xl gap-6 px-5 py-12 md:grid-cols-[1fr_auto] md:items-center md:px-8 md:py-14">
       <div><ConsultEyebrow light>Vamos conversar?</ConsultEyebrow><h2 className="mt-3 text-3xl font-black tracking-[-.03em] md:text-4xl">{title}</h2><p className="mt-3 max-w-3xl text-sm leading-7 text-white/72 md:text-base">{text}</p></div>
       <div className="flex flex-col gap-2 sm:flex-row">
-        <a href="/consult#contato" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white"><FileText size={17}/> Solicite um orçamento <ArrowRight size={15}/></a>
+        <a href={`${consultPath()}#contato`} className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white"><FileText size={17}/> Solicite um orçamento <ArrowRight size={15}/></a>
         <a href={`https://wa.me/${WHATSAPP}?text=${message}`} target="_blank" rel="noreferrer" className="inline-flex min-h-12 items-center justify-center gap-2 rounded-xl border border-[#8AE600]/70 px-5 py-3 text-sm font-extrabold text-[#B8FF51]"><MessageCircle size={17}/> WhatsApp</a>
       </div>
     </div>

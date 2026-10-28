@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { consultPath } from '@/lib/consultProject'
 
 const KEY = 'consult-cookie-consent-v1'
 const EVENT = 'consult:cookie-consent'
@@ -43,7 +44,7 @@ export default function ConsultCookieNotice() {
     {!open && choice && <button type="button" onClick={() => { setAnalytics(choice.analytics); setMarketing(choice.marketing); setCustomize(true); setOpen(true) }} className="fixed bottom-3 left-3 z-[90] rounded-full border border-[#D5E9E3] bg-white px-4 py-2 text-xs font-bold text-[#075653] shadow-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-[#075653]">Cookies</button>}
     {open && <div role="region" aria-label="Preferências de cookies da Consult" className="fixed bottom-0 left-0 right-0 z-[100] border-t border-[#C8DED8] bg-white px-4 py-5 text-[#123C3B] shadow-[0_-10px_45px_rgba(0,0,0,.17)] sm:bottom-5 sm:left-5 sm:right-auto sm:w-[min(540px,calc(100vw-40px))] sm:rounded-2xl sm:border sm:p-6">
       <h2 className="text-lg font-black">Sua privacidade importa</h2>
-      <p className="mt-2 text-sm leading-6 text-[#315B58]">Usamos recursos necessários para o funcionamento do site. Cookies opcionais de análise ou publicidade só poderão ser ativados com seu consentimento. Saiba mais na <Link className="font-bold underline" to="/consult/politica-de-privacidade">Política de Privacidade</Link>.</p>
+      <p className="mt-2 text-sm leading-6 text-[#315B58]">Usamos recursos necessários para o funcionamento do site. Cookies opcionais de análise ou publicidade só poderão ser ativados com seu consentimento. Saiba mais na <Link className="font-bold underline" to={consultPath('politica-de-privacidade')}>Política de Privacidade</Link>.</p>
       {customize && <fieldset className="mt-4 space-y-3 rounded-xl bg-[#F4FBFA] p-4 text-sm">
         <legend className="sr-only">Escolha as categorias de cookies</legend>
         <label className="flex items-center gap-2"><input type="checkbox" checked disabled/> Necessários (sempre ativos)</label>
