@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { LogIn, LogOut, ShieldCheck } from 'lucide-react'
 import SitePostsAdmin from '@/components/consult/SitePostsAdmin'
 import { consultPath } from '@/lib/consultProject'
@@ -7,6 +7,8 @@ import {
   loadConsultAdminContext,
   loginConsultAdmin,
   logoutConsultAdmin,
+  requestConsultAdminPasswordRecovery,
+  resumeConsultAdminPasswordRecovery,
   updateConsultPassword,
   validateNewPassword,
 } from '@/lib/consultAdminAuth'
@@ -39,8 +41,10 @@ function PasswordChange({ session, onComplete, onLogout }) {
 function Login({ onLogin }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [mode, setMode] = useState('login')
   const [busy, setBusy] = useState(false)
   const [error, setError] = useState('')
+  const [recoverySent, setRecoverySent] = useState(false)
 
   async function submit(event) {
     event.preventDefault()
@@ -57,12 +61,65 @@ function Login({ onLogin }) {
     }
   }
 
-  return <main className="consult-admin-auth"><section className="consult-admin-auth-card"><div className="flex items-center gap-3 text-[#075653]"><ShieldCheck size={22} /><span className="consult-admin-kicker">Consult editorial</span></div><h1>Área administrativa</h1><p>Entre com sua conta autorizada para revisar e publicar o blog técnico da Consult.</p><form onSubmit={submit} className="mt-7 space-y-4"><label><span className="consult-admin-label">E-mail</span><input type="email" value={email} onChange={event => setEmail(event.target.value)} autoComplete="username" required className="consult-admin-input" /></label><label><span className="consult-admin-label">Senha</span><input type="password" value={password} onChange={event => setPassword(event.target.value)} autoComplete="current-password" required className="consult-admin-input" /></label>{error && <p role="alert" className="consult-admin-alert consult-admin-alert-error">{error}</p>}<button type="submit" disabled={busy} className="consult-admin-button consult-admin-button-primary w-full"><LogIn size={16} /> {busy ? 'Entrando...' : 'Entrar'}</button></form></section></main>
+  async function requestRecovery(event) {
+    event.preventDefault()
+    setBusy(true)
+    setError('')
+    setRecoverySent(false)
+    try {
+      await requestConsultAdminPasswordRecovery(email)
+      setRecoverySent(true)
+    } catch (err) {
+      setError(err.message || 'Não foi possível solicitar o link. Tente novamente.')
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  const isRecovery = mode === 'recovery'
+  return <main className="consult-admin-auth"><section className="consult-admin-auth-card"><div className="flex items-center gap-3 text-[#075653]"><ShieldCheck size={22} /><span className="consult-admin-kicker">Consult editorial</span></div><h1>Área administrativa</h1><p>{isRecovery ? 'Informe seu e-mail para receber um link seguro de primeiro acesso ou redefinição de senha.' : 'Entre com sua conta autorizada para revisar e publicar o blog técnico da Consult.'}</p><form onSubmit={isRecovery ? requestRecovery : submit} className="mt-7 space-y-4"><label><span className="consult-admin-label">E-mail</span><input type="email" value={email} onChange={event => setEmail(event.target.value)} autoComplete="username" required className="consult-admin-input" /></label>{!isRecovery && <label><span className="consult-admin-label">Senha</span><input type="password" value={password} onChange={event => setPassword(event.target.value)} autoComplete="current-password" required className="consult-admin-input" /></label>}{error && <p role="alert" className="consult-admin-alert consult-admin-alert-error">{error}</p>}{isRecovery && recoverySent && <p role="status" aria-live="polite" className="consult-admin-alert">Se o e-mail corresponder a uma conta ativa, enviaremos um link de acesso.</p>}<button type="submit" disabled={busy} className="consult-admin-button consult-admin-button-primary w-full">{isRecovery ? (busy ? 'Enviando link...' : 'Enviar link por e-mail') : <><LogIn size={16} /> {busy ? 'Entrando...' : 'Entrar'}</>}</button><button type="button" onClick={() => { setMode(isRecovery ? 'login' : 'recovery'); setError(''); setRecoverySent(false) }} className="w-full text-sm font-bold text-[#075653]">{isRecovery ? 'Voltar para o login' : 'Primeiro acesso / Esqueci a senha'}</button></form></section></main>
+}
+
+function readRecoveryTokens() {
+  if (typeof window === 'undefined') return null
+  const fragment = window.location.hash.startsWith('#') ? window.location.hash.slice(1) : window.location.hash
+  const params = new URLSearchParams(fragment)
+  const accessToken = params.get('access_token')
+  if (params.get('type') !== 'recovery' || !accessToken) return null
+  return { accessToken, refreshToken: params.get('refresh_token') || '' }
 }
 
 export default function ConsultAdminPage() {
   const [session, setSession] = useState(null)
   const [context, setContext] = useState(null)
+  const [recoveryTokens] = useState(readRecoveryTokens)
+  const [recoveryStatus, setRecoveryStatus] = useState(recoveryTokens ? 'loading' : 'idle')
+  const [recoveryError, setRecoveryError] = useState('')
+
+  useEffect(() => {
+    if (!recoveryTokens) return undefined
+    let active = true
+    async function resumeRecovery() {
+      try {
+        const nextSession = await resumeConsultAdminPasswordRecovery(recoveryTokens.accessToken, recoveryTokens.refreshToken)
+        const nextContext = await loadConsultAdminContext(nextSession)
+        if (active) {
+          setSession(nextSession)
+          setContext(nextContext)
+          setRecoveryStatus('ready')
+        }
+      } catch (error) {
+        if (active) {
+          setRecoveryError(error.message || 'O link expirou ou não é válido. Solicite outro link de primeiro acesso.')
+          setRecoveryStatus('error')
+        }
+      } finally {
+        window.history.replaceState({}, document.title, window.location.pathname + window.location.search)
+      }
+    }
+    resumeRecovery()
+    return () => { active = false }
+  }, [recoveryTokens])
 
   async function logout() {
     await logoutConsultAdmin(session)
@@ -70,6 +127,8 @@ export default function ConsultAdminPage() {
     setContext(null)
   }
 
+  if (recoveryStatus === 'loading') return <main className="consult-admin-auth"><section className="consult-admin-auth-card"><p className="consult-admin-kicker">Consult editorial</p><h1>Validando seu link...</h1><p>Aguarde enquanto confirmamos seu acesso.</p></section></main>
+  if (recoveryStatus === 'error') return <main className="consult-admin-auth"><section className="consult-admin-auth-card"><p className="consult-admin-kicker">Consult editorial</p><h1>Não foi possível abrir o link.</h1><p role="alert" className="consult-admin-alert consult-admin-alert-error">{recoveryError}</p><a href={consultPath('admin')} className="consult-admin-button consult-admin-button-primary mt-5 w-full">Voltar ao login</a></section></main>
   if (!session || !context) return <Login onLogin={(nextSession, nextContext) => { setSession(nextSession); setContext(nextContext) }} />
   if (isMandatoryPasswordChange(context.profile, session.user)) return <PasswordChange session={session} onComplete={() => {
     setContext(previous => ({ ...previous, profile: { ...previous.profile, must_change_password: false } }))

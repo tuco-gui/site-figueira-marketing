@@ -95,6 +95,30 @@ export async function updateConsultPassword(session, password) {
   if (changed !== true) throw new Error('Não foi possível concluir a atualização de segurança.')
 }
 
+export async function requestConsultAdminPasswordRecovery(email) {
+  requireConfig()
+  const redirectTo = new URL(consultPath('admin'), window.location.origin).toString()
+  const endpoint = new URL(`${SUPABASE_URL}/auth/v1/recover`)
+  endpoint.searchParams.set('redirect_to', redirectTo)
+  const response = await fetch(endpoint.toString(), {
+    method: 'POST',
+    headers: headers(),
+    body: JSON.stringify({ email: String(email || '').trim() }),
+  })
+  await parse(response)
+}
+
+export async function resumeConsultAdminPasswordRecovery(accessToken, refreshToken = '') {
+  requireConfig()
+  if (!accessToken) throw new Error('O link de primeiro acesso está incompleto.')
+  const response = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
+    headers: headers(accessToken),
+  })
+  const user = await parse(response)
+  if (!user?.id) throw new Error('O link de primeiro acesso expirou ou não é válido.')
+  return { access_token: accessToken, refresh_token: refreshToken, user }
+}
+
 export async function logoutConsultAdmin(session) {
   if (!session?.access_token || !SUPABASE_URL || !SUPABASE_KEY) return
   await fetch(`${SUPABASE_URL}/auth/v1/logout`, { method: 'POST', headers: headers(session.access_token) })

@@ -107,6 +107,7 @@ export function ConsultHeader({ horizontalBrand = true }) {
     ['Sobre',consultPath('sobre')],
     ['Serviços',consultPath('servicos')],
     ['Blog',consultPath('blog')],
+    ['Admin',consultPath('admin')],
     ['Cursos','https://consultcursos.herospark.co'],
     ['Portal','https://radiationqa.com.br/login'],
     ['Contato',`${consultPath()}#contato`],
@@ -153,6 +154,7 @@ export function ConsultFooter({ horizontalBrand = true }) {
           <Link className="block hover:text-[#8AE600]" to={consultPath('sobre')}>Sobre</Link>
           <Link className="block hover:text-[#8AE600]" to={consultPath('servicos')}>Serviços</Link>
           <Link className="block hover:text-[#8AE600]" to={consultPath('blog')}>Blog</Link>
+          <Link className="block hover:text-[#8AE600]" to={consultPath('admin')}>Admin</Link>
           <a className="block hover:text-[#8AE600]" href="https://consultcursos.herospark.co" target="_blank" rel="noreferrer">Cursos</a>
           <a className="block hover:text-[#8AE600]" href="https://radiationqa.com.br/login" target="_blank" rel="noreferrer">Portal de Arquivos</a>
           <a className="block hover:text-[#8AE600]" href={`${consultPath()}#contato`}>Contato</a>
