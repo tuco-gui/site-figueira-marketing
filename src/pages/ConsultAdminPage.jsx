@@ -141,5 +141,10 @@ export default function ConsultAdminPage() {
     }))
   }} onLogout={logout} />
 
+  const officialConsultHost = typeof window !== 'undefined' && ['consult.med.br', 'www.consult.med.br'].includes(window.location.hostname)
+  if (!officialConsultHost) {
+    return <ConsultAdminWorkspace session={session} client={context.client} project={context.project} profile={context.profile} onLogout={logout} />
+  }
+
   return <main className="min-h-screen bg-[#F4FAF8]"><header className="border-b border-[#D7E8E3] bg-[#075653] text-white"><div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-4 px-5 py-5 md:px-8"><div><p className="text-[10px] font-black uppercase tracking-[.24em] text-[#B8FF51]">Consult Radiometria e Qualidade</p><h1 className="mt-1 text-2xl font-black">Administração do blog</h1></div><div className="flex flex-wrap gap-2"><a href={consultPath('blog')} className="consult-admin-header-link">Ver blog público</a><button type="button" onClick={logout} className="consult-admin-header-link"><LogOut size={15} /> Sair</button></div></div></header><div className="mx-auto max-w-7xl px-5 py-8 md:px-8 md:py-12"><SitePostsAdmin session={session} client={context.client} project={context.project} profile={context.profile} /></div></main>
 }
