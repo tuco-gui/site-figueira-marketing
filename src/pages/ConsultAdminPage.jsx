@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { LogIn, LogOut, ShieldCheck } from 'lucide-react'
-import SitePostsAdmin from '@/components/consult/SitePostsAdmin'
+import ConsultAdminWorkspace from '@/components/consult/ConsultAdminWorkspace'
 import { consultPath } from '@/lib/consultProject'
 import {
   isMandatoryPasswordChange,
