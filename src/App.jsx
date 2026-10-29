@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import PageNotFound from './lib/PageNotFound'
 import ScrollToTop from './components/ScrollToTop'
 import '@/components/consult/consult-responsive.css'
+import '@/components/consult/consult-admin.css'
 
 import SiteLayout from '@/components/layout/SiteLayout'
 import Home from '@/pages/Home'
@@ -36,6 +37,7 @@ const ConsultRadiologyServiceGuidePage = lazy(() => import('@/pages/ConsultRadio
 const ConsultSignageMaterialPage = lazy(() => import('@/pages/ConsultSignageMaterialPage'))
 const ConsultBlogPage = lazy(() => import('@/pages/ConsultBlogPage'))
 const ConsultBlogPostPage = lazy(() => import('@/pages/ConsultBlogPostPage'))
+const ConsultAdminPage = lazy(() => import('@/pages/ConsultAdminPage'))
 const ConsultLegacyRedirect = lazy(() => import('@/pages/ConsultLegacyRedirect'))
 
 const EstrategiaGrowth = lazy(() => import('@/pages/solutions/EstrategiaGrowth'))
@@ -91,6 +93,7 @@ function ConsultRoutes() {
     <Route path="materiais/modelos-sinalizacao" element={<ConsultSignageMaterialPage />} />
     <Route path="blog" element={<ConsultBlogPage />} />
     <Route path="blog/:slug" element={<ConsultBlogPostPage />} />
+    <Route path="admin" element={<ConsultAdminPage />} />
     <Route path="areas/:slug" element={<ConsultLegacyRedirect type="area" />} />
     <Route path="servicos/:slug" element={<ConsultLegacyRedirect type="service" />} />
     <Route path="equipamentos/:slug" element={<ConsultLegacyRedirect type="equipment" />} />

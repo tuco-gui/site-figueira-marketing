@@ -110,8 +110,14 @@ function mapRow(row) {
     migrationStatus: row.metadata?.migration_status || null,
     seoTitle: row.seo_title || null,
     seoDescription: row.seo_description || null,
+    status: row.status,
+    isPublic: row.is_public === true,
     contentSource: 'supabase_site_posts',
   }
+}
+
+function mapSeedPost(post) {
+  return { ...post, status: 'published', isPublic: true }
 }
 
 function canUseBackend() {
@@ -132,7 +138,10 @@ async function fetchPublishedPosts() {
 
 export function getConsultBlogSeedPosts() {
   const existing = new Map(SEED_POSTS.map(post => [post.slug, post]))
-  return sortByDate([...EDITORIAL_POSTS, ...LEGACY_POSTS.map(post => ({ ...post, publishedAt: post.publishedAt || existing.get(post.slug)?.publishedAt || null, category: BLOG_CATEGORIES[post.slug] || post.category, relatedLinks: existing.get(post.slug)?.relatedLinks || post.relatedLinks, contentSource: 'legacy_full_import' }))])
+  return sortByDate([
+    ...EDITORIAL_POSTS.map(mapSeedPost),
+    ...LEGACY_POSTS.map(post => mapSeedPost({ ...post, publishedAt: post.publishedAt || existing.get(post.slug)?.publishedAt || null, category: BLOG_CATEGORIES[post.slug] || post.category, relatedLinks: existing.get(post.slug)?.relatedLinks || post.relatedLinks, contentSource: 'legacy_full_import' })),
+  ])
 }
 
 export async function getConsultBlogPosts() {
@@ -145,7 +154,7 @@ export async function getConsultBlogPosts() {
         if (LEGACY_POSTS.some(item => item.slug === post.slug || (item.sourceUrl && item.sourceUrl === post.sourceUrl))) continue
         posts.set(post.slug, post)
       }
-      return sortByDate([...posts.values()])
+      return sortByDate([...posts.values()]).filter(post => post.status === 'published' && post.isPublic === true)
     }
   } catch (error) {
     console.warn('[Consult Blog] Supabase indisponível; usando fallback editorial local.', error)
@@ -154,8 +163,6 @@ export async function getConsultBlogPosts() {
 }
 
 export async function getConsultBlogPost(slug) {
-  const original = getConsultBlogSeedPosts().find(post => post.slug === slug && post.contentSource === 'legacy_full_import')
-  if (original) return original
   const posts = await getConsultBlogPosts()
   return posts.find((post) => post.slug === slug) || null
 }
