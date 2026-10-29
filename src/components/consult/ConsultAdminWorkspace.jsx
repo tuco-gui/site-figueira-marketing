@@ -24,6 +24,7 @@ const NAV = [
 
 const RESOURCES = {
   integrations: 'client_integrations',
+  posts: 'site_posts',
   insights: 'seo_insights',
   snapshots: 'analytics_snapshots',
   ads: 'ads_recommendations',
@@ -69,7 +70,7 @@ function headers(token) {
 async function fetchRows(table, token, hasProject = true) {
   const base = import.meta.env.VITE_SUPABASE_URL
   if (!base || !import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY) throw new Error('Supabase da Consult não está configurado.')
-  const params = new URLSearchParams({ select: '*', client_id: 'eq.' + CONSULT_PROJECT.clientId, order: 'created_at.desc', limit: '100' })
+  const params = new URLSearchParams({ select: '*', client_id: 'eq.' + CONSULT_PROJECT.clientId, limit: '100' })
   if (hasProject) params.set('project_id', 'eq.' + CONSULT_PROJECT.projectId)
   const response = await fetch(base + '/rest/v1/' + table + '?' + params.toString(), { headers: headers(token) })
   if (!response.ok) {
