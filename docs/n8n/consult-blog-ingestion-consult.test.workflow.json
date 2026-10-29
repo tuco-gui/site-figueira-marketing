@@ -1,0 +1,41 @@
+{
+  "name": "TEST COPY - Consult Blog Motor",
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "meta": {
+    "fixtureOnly": true,
+    "warning": "Inactive test copy. Do not import into or edit an active production workflow."
+  },
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-test-trigger",
+      "name": "Manual test only",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [240, 300]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{$env.N8N_TEST_INGESTION_URL}}",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [{ "name": "x-consult-ingestion-secret", "value": "={{$env.CONSULT_BLOG_INGESTION_SECRET}}" }]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ { client_id: $env.CONSULT_TEST_CLIENT_ID, project_id: $env.CONSULT_TEST_PROJECT_ID, title: 'TEST - artigo não publicado', slug: 'test-artigo-nao-publicado', content_markdown: '# Teste local', seo_title: 'Teste local', seo_description: 'Fixture de teste do motor editorial.', cover_url: $env.CONSULT_TEST_COVER_URL } }}"
+      },
+      "id": "test-ingestion-request",
+      "name": "POST test ingestion endpoint",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [500, 300]
+    }
+  ],
+  "connections": {
+    "Manual test only": { "main": [[{ "node": "POST test ingestion endpoint", "type": "main", "index": 0 }]] }
+  },
+  "pinData": {}
+}
