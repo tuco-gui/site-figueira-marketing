@@ -159,6 +159,12 @@ for (const [route,title,description,ogType] of routes) {
   await writeFile(file, render(base, route, title, description, ogType), 'utf8')
 }
 
+// Keep the private editorial login directly addressable without listing it in the public sitemap.
+const adminRoute = ['/consult/admin','Administração do Blog | Consult','Área restrita de administração editorial da Consult.','website']
+const adminFile = join(DIST, adminRoute[0].replace(/^\\//,'') + '.html')
+await mkdir(dirname(adminFile), { recursive: true })
+await writeFile(adminFile, render(base, ...adminRoute), 'utf8')
+
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
