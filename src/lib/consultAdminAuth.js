@@ -1,4 +1,4 @@
-import { CONSULT_PROJECT } from './consultProject.js'
+import { CONSULT_PROJECT, consultPath } from './consultProject.js'
 import { getSitePostPermissions } from './sitePostsAdminApi.js'
 
 const SUPABASE_URL = import.meta.env?.VITE_SUPABASE_URL
