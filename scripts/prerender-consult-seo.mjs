@@ -161,7 +161,7 @@ for (const [route,title,description,ogType] of routes) {
 
 // Keep the private editorial login directly addressable without listing it in the public sitemap.
 const adminRoute = ['/consult/admin','Administração do Blog | Consult','Área restrita de administração editorial da Consult.','website']
-const adminFile = join(DIST, adminRoute[0].replace(/^\\//,'') + '.html')
+const adminFile = join(DIST, adminRoute[0].slice(1) + '.html')
 await mkdir(dirname(adminFile), { recursive: true })
 await writeFile(adminFile, render(base, ...adminRoute), 'utf8')
 
