@@ -21,3 +21,89 @@
 .consult-admin-module .consult-admin-alert{display:flex;align-items:center;gap:8px}
 @media(max-width:860px){.consult-admin-radar-grid{grid-template-columns:1fr}}
 @media(max-width:600px){.consult-admin-radar-tools{align-items:stretch;flex-direction:column}.consult-admin-radar-tools label{min-width:0}.consult-admin-index-actions{width:100%}.consult-admin-index-actions button{flex:1}}
+
+/* Performance workspace follows the Taborda dashboard pattern: horizontal tabs,
+   a shared reporting period, KPI rows, trend charts and a printable report. */
+.consult-admin-app{min-height:100vh;background:#f4f4f2;color:#202124}
+.consult-admin-topbar{position:sticky;top:0;z-index:60;min-height:72px;padding:12px clamp(16px,4vw,54px);background:#fff;color:#202124;border-bottom:1px solid #dededb;box-shadow:0 2px 7px rgba(20,20,20,.06)}
+.consult-admin-topbar h1{margin:2px 0 0;color:#202124;font-size:18px;letter-spacing:-.02em}
+.consult-admin-brand-lockup{display:flex;align-items:center;gap:12px}
+.consult-admin-brand-mark{display:grid;width:42px;height:42px;place-items:center;border-radius:50%;background:#b91c1c;color:#fff;font-weight:900;font-size:22px}
+.consult-admin-topbar .consult-admin-kicker{color:#b91c1c;letter-spacing:.12em}
+.consult-admin-top-actions{align-items:center}
+.consult-admin-top-actions .consult-admin-button{min-height:36px;border-color:#d7d7d4;border-radius:7px;color:#343434}
+.consult-admin-sidebar{position:sticky;top:72px;z-index:50;padding:0;background:#b91c1c;border:0;box-shadow:0 2px 5px rgba(30,30,30,.15)}
+.consult-admin-nav-inner{display:flex;max-width:1600px;margin:0 auto;padding:0 clamp(8px,3vw,40px);overflow-x:auto;scrollbar-width:none}
+.consult-admin-nav-inner::-webkit-scrollbar{display:none}
+.consult-admin-nav-item{flex:0 0 auto;width:auto;min-height:52px;justify-content:center;padding:0 15px;border-radius:0;border-bottom:3px solid transparent;color:rgba(255,255,255,.76);font-size:13px;font-weight:700;white-space:nowrap}
+.consult-admin-nav-item svg{color:currentColor}
+.consult-admin-nav-item:hover{background:rgba(255,255,255,.1);color:#fff}
+.consult-admin-nav-item.is-active{background:transparent;color:#fff;box-shadow:none;border-bottom-color:#fff}
+.consult-admin-main{width:min(100%,1560px);margin:0 auto;padding:clamp(18px,3vw,36px) clamp(14px,3vw,40px) 42px}
+.consult-admin-mobile-title{display:none}
+.consult-admin-footer{display:flex;justify-content:space-between;gap:12px;padding:14px clamp(16px,4vw,54px);border-top:1px solid #ddd;background:#fff;color:#6b6b6b;font-size:11px}
+.consult-admin-kicker{color:#b91c1c}
+.consult-admin-module-heading{border-color:#dededb}
+.consult-admin-module-heading h2{color:#202124}
+.consult-admin-metric{border-color:#dededb;border-radius:10px;box-shadow:0 1px 2px rgba(0,0,0,.025)}
+.consult-admin-metric strong{color:#202124}
+.consult-admin-metric p{color:#606060}
+.consult-admin-button-primary{border-color:#b91c1c;background:#b91c1c;color:#fff}
+.consult-admin-performance{gap:18px}
+.consult-admin-performance-heading{align-items:center;padding:0 0 16px}
+.consult-admin-performance-heading h2{margin:3px 0 4px}
+.consult-admin-performance-toolbar{display:grid;gap:0;margin:0 0 4px;border:1px solid #dededb;border-radius:10px;background:#fff;overflow:hidden}
+.consult-admin-performance-tabs{display:flex;gap:0;overflow-x:auto;border-bottom:1px solid #e2e2df;scrollbar-width:thin}
+.consult-admin-performance-tab{display:inline-flex;flex:0 0 auto;align-items:center;gap:8px;min-height:46px;padding:0 16px;border:0;border-bottom:3px solid transparent;background:#fff;color:#555;font-size:13px;font-weight:700;white-space:nowrap;cursor:pointer}
+.consult-admin-performance-tab:hover{color:#b91c1c;background:#fafafa}
+.consult-admin-performance-tab.is-active{border-bottom-color:#b91c1c;color:#b91c1c}
+.consult-admin-date-picker{display:flex;align-items:center;gap:8px;min-height:54px;padding:8px 14px;color:#555;font-size:12px}
+.consult-admin-date-picker select,.consult-admin-date-picker input{min-height:34px;padding:5px 8px;border:1px solid #d7d7d4;border-radius:6px;background:#fff;color:#333;font:inherit}
+.consult-admin-date-picker select{font-weight:700}
+.consult-admin-date-picker button{min-height:34px;padding:0 13px;border:0;border-radius:6px;background:#b91c1c;color:#fff;font-size:12px;font-weight:800;cursor:pointer}
+.consult-admin-date-picker button:disabled{opacity:.55;cursor:wait}
+.consult-admin-period-note{display:flex;flex-wrap:wrap;align-items:center;gap:7px;color:#666;font-size:12px}
+.consult-admin-performance-content{display:grid;gap:18px;animation:consult-report-in .18s ease-out}
+.consult-admin-performance-title h3{margin:0 0 4px;color:#202124;font-size:23px;font-weight:800;letter-spacing:-.025em}
+.consult-admin-performance-title p{margin:0;color:#6a6a6a;font-size:13px;line-height:1.55}
+.consult-admin-kpi-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.consult-admin-kpi-grid .consult-admin-metric{min-height:112px;padding:17px 18px;border-top:3px solid #b91c1c}
+.consult-admin-kpi-grid .consult-admin-metric strong{font-size:27px}
+.consult-admin-report-chart-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.consult-admin-report-chart-grid-equal{align-items:stretch}
+.consult-admin-report-panel{min-width:0;overflow:hidden;border:1px solid #dededb;border-radius:10px;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.025)}
+.consult-admin-report-panel>header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding:17px 18px 12px}
+.consult-admin-report-panel>header h3{margin:0;color:#292929;font-size:15px;font-weight:800}
+.consult-admin-report-panel>header p{margin:4px 0 0;color:#777;font-size:11px;line-height:1.45}
+.consult-admin-report-panel>.recharts-responsive-container{padding:0 10px 10px}
+.consult-admin-report-panel>.consult-admin-table-wrap{margin:0 14px 14px;border-radius:7px}
+.consult-admin-report-copy{margin:0;padding:4px 18px 18px;color:#505050;font-size:13px;line-height:1.7}
+.consult-admin-report-empty{margin:0;padding:16px 18px 20px;color:#777;font-size:12px;line-height:1.6}
+.consult-admin-report-notice{padding:13px 15px;border:1px solid #cfd8e3;border-left:4px solid #52525b;border-radius:7px;background:#fff;color:#4b5563;font-size:12px;line-height:1.6}
+.consult-admin-report-notice.is-warning{border-color:#f0d3a6;border-left-color:#c47718;background:#fffaf2;color:#75480f}
+.consult-admin-report-notice.is-success{border-color:#bddbc6;border-left-color:#27814c;background:#f5fbf6;color:#225f39}
+.consult-admin-report-link{display:inline-block;max-width:270px;overflow-wrap:anywhere;color:#8f1919;text-decoration:underline;text-underline-offset:2px}
+.consult-admin-report-panel .consult-admin-table{font-size:11px}
+.consult-admin-report-panel .consult-admin-table th{background:#f0f0ee;color:#4d4d4d;font-size:10px}
+.consult-admin-report-panel .consult-admin-table td{padding:10px 12px;color:#3f3f3f}
+.consult-admin-diagnostic-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.consult-admin-indexing-embedded .consult-admin-module{gap:16px}
+.consult-admin-indexing-embedded .consult-admin-module-heading{align-items:flex-end}
+.consult-admin-report-actions{align-items:center;padding:0;border:0}
+.consult-admin-printable{display:grid;gap:15px;padding:clamp(20px,4vw,42px);border:1px solid #d8d8d5;border-radius:10px;background:#fff;color:#292929}
+.consult-admin-print-header{padding-bottom:16px;border-bottom:1px solid #d9d9d6}
+.consult-admin-print-header .consult-admin-kicker{margin:0 0 8px;font-weight:900;letter-spacing:.16em}
+.consult-admin-print-header h3{margin:0;color:#202020;font-size:25px}
+.consult-admin-print-header>p:last-child{margin:6px 0 0;color:#777;font-size:12px}
+.consult-admin-printable h4{margin:5px 0 -9px;color:#333;font-size:14px}
+.consult-admin-printable>p{margin:0;color:#505050;font-size:12px;line-height:1.65}
+.consult-admin-printable footer{margin-top:4px;padding-top:12px;border-top:1px solid #ddd;color:#777;font-size:10px}
+.consult-admin-archive{padding:14px 16px;border:1px solid #dededb;border-radius:8px;background:#fff;color:#555;font-size:12px}
+.consult-admin-archive summary{font-weight:800;cursor:pointer}
+.consult-admin-archive p{margin:8px 0 0}
+.consult-admin-spin{display:inline-block;animation:consult-spin .8s linear infinite}
+@keyframes consult-spin{to{transform:rotate(360deg)}}
+@keyframes consult-report-in{from{opacity:.6;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:900px){.consult-admin-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.consult-admin-report-chart-grid{grid-template-columns:1fr}}
+@media(max-width:650px){.consult-admin-topbar{position:relative;align-items:flex-start;flex-direction:column;padding:13px 14px}.consult-admin-topbar h1{font-size:16px}.consult-admin-brand-mark{width:36px;height:36px;font-size:19px}.consult-admin-top-actions{width:100%}.consult-admin-sidebar{top:0}.consult-admin-nav-inner{padding:0 7px}.consult-admin-nav-item{min-height:46px;padding:0 12px;font-size:12px}.consult-admin-main{padding:17px 12px 30px}.consult-admin-date-picker{flex-wrap:wrap}.consult-admin-date-picker select{flex:1 1 100%}.consult-admin-date-picker input{flex:1 1 115px;min-width:0}.consult-admin-date-picker span{display:none}.consult-admin-performance-heading{align-items:flex-start;flex-direction:column}.consult-admin-kpi-grid{gap:8px}.consult-admin-kpi-grid .consult-admin-metric{min-height:92px;padding:12px}.consult-admin-kpi-grid .consult-admin-metric strong{font-size:22px}.consult-admin-performance-title h3{font-size:20px}.consult-admin-diagnostic-grid{grid-template-columns:1fr}.consult-admin-footer{flex-direction:column;padding:12px 14px}}
+@media print{body,.consult-admin-app{background:#fff!important}.consult-admin-topbar,.consult-admin-sidebar,.consult-admin-footer,.consult-admin-performance-heading,.consult-admin-performance-toolbar,.consult-admin-period-note,.consult-admin-report-actions,.consult-admin-archive,.consult-admin-alert,.consult-admin-report-notice{display:none!important}.consult-admin-main{width:100%;max-width:none;margin:0;padding:0}.consult-admin-performance-content{gap:0}.consult-admin-printable{border:0;border-radius:0;padding:0;box-shadow:none}.consult-admin-printable .consult-admin-metrics{break-inside:avoid}.consult-admin-printable table{font-size:9px!important}.consult-admin-printable .consult-admin-table th,.consult-admin-printable .consult-admin-table td{padding:5px 7px!important}.consult-admin-print-header h3{font-size:22px}}
