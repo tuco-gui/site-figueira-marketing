@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { ExternalLink, FilePenLine, Plus, RefreshCw, Save, Share2, Sparkles, Trash2, X } from 'lucide-react'
+import { ExternalLink, FilePenLine, Plus, RefreshCw, Save, Search, Share2, Sparkles, Trash2, X } from 'lucide-react'
 import {
   createSitePostAdmin,
   getSitePostPermissions,
