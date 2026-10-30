@@ -42,7 +42,7 @@ async function geminiModel(key) {
     const data = await response.json()
     const candidates = (data.models || []).filter(item => /flash/i.test(item.name || '') && item.supportedGenerationMethods?.includes('generateContent') && !/preview|experimental/i.test(item.name || ''))
     candidates.sort((a, b) => (b.name || '').localeCompare(a.name || '', undefined, { numeric: true }))
-    cachedGeminiModel = (candidates[0]?.name || 'models/gemini-2.5-flash').replace(/^models\\//, '')
+    cachedGeminiModel = (candidates[0]?.name || 'models/gemini-2.5-flash').replace(/^models\//, '')
     return cachedGeminiModel
   } catch { return 'gemini-2.5-flash' }
 }
