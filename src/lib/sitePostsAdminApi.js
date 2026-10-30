@@ -116,7 +116,7 @@ export function prepareSitePostWrite(post = {}, scope = {}, action = 'draft') {
     excerpt: validateText(post.excerpt, 'Resumo', 500),
     content_markdown: validateText(post.content_markdown, 'Conteúdo', 200000, true),
     author: validateText(post.author, 'Autor', 160),
-    cover_url: validateUrl(post.cover_url, 'Imagem de capa', true),
+    cover_url: validateUrl(post.cover_url, 'Imagem de capa'),
     source_url: validateUrl(post.source_url, 'Fonte'),
     seo_title: validateText(post.seo_title, 'Título SEO', 60, true),
     seo_description: validateText(post.seo_description, 'Descrição SEO', 160, true),
@@ -175,4 +175,22 @@ export async function updateSitePostAdmin(token, id, payload, scope, action = 'd
   })
   const rows = await parse(response)
   return rows?.[0] || null
+}
+
+
+export async function deleteSitePostAdmin(token, id, scope = {}) {
+  requireConfig()
+  if (!id) throw new Error('Artigo inválido.')
+  const permissions = requireScope(scope)
+  if (!permissions.canEdit) throw new Error('Você não tem permissão para excluir artigos.')
+  const params = new URLSearchParams({
+    id: `eq.${id}`,
+    client_id: `eq.${CONSULT_PROJECT.clientId}`,
+    project_id: `eq.${CONSULT_PROJECT.projectId}`,
+  })
+  const response = await fetch(`${SUPABASE_URL}/rest/v1/site_posts?${params.toString()}`, {
+    method: 'DELETE',
+    headers: headers(token, { Prefer: 'return=minimal' }),
+  })
+  return parse(response)
 }
