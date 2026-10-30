@@ -32,7 +32,22 @@ function promptFor(insight) {
   ].join('\n\n')
 }
 
-let cachedGeminiModel = ''\n\nasync function geminiModel(key) {\n  if (process.env.GEMINI_MODEL) return process.env.GEMINI_MODEL\n  if (cachedGeminiModel) return cachedGeminiModel\n  try {\n    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models', { headers: { 'x-goog-api-key': key } })\n    const data = await response.json()\n    const candidates = (data.models || []).filter(item => /flash/i.test(item.name || '') && item.supportedGenerationMethods?.includes('generateContent') && !/preview|experimental/i.test(item.name || ''))\n    candidates.sort((a, b) => (b.name || '').localeCompare(a.name || '', undefined, { numeric: true }))\n    cachedGeminiModel = (candidates[0]?.name || 'models/gemini-2.5-flash').replace(/^models\\//, '')\n    return cachedGeminiModel\n  } catch { return 'gemini-2.5-flash' }\n}\n\nasync function requestGemini(prompt) {
+let cachedGeminiModel = ''
+
+async function geminiModel(key) {
+  if (process.env.GEMINI_MODEL) return process.env.GEMINI_MODEL
+  if (cachedGeminiModel) return cachedGeminiModel
+  try {
+    const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models', { headers: { 'x-goog-api-key': key } })
+    const data = await response.json()
+    const candidates = (data.models || []).filter(item => /flash/i.test(item.name || '') && item.supportedGenerationMethods?.includes('generateContent') && !/preview|experimental/i.test(item.name || ''))
+    candidates.sort((a, b) => (b.name || '').localeCompare(a.name || '', undefined, { numeric: true }))
+    cachedGeminiModel = (candidates[0]?.name || 'models/gemini-2.5-flash').replace(/^models\\//, '')
+    return cachedGeminiModel
+  } catch { return 'gemini-2.5-flash' }
+}
+
+async function requestGemini(prompt) {
   const key = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY
   if (!key) throw Object.assign(new Error('Chave Gemini não configurada no servidor.'), { status: 503 })
   const model = await geminiModel(key)
