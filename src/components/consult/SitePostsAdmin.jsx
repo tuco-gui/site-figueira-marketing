@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { ExternalLink, FilePenLine, Plus, RefreshCw, Save, Share2, Sparkles, Trash2, X } from 'lucide-react'
+import { ExternalLink, FilePenLine, Plus, RefreshCw, Save, Search, Share2, Sparkles, Trash2, X } from 'lucide-react'
 import {
   createSitePostAdmin,
   getSitePostPermissions,
@@ -77,6 +77,7 @@ export default function SitePostsAdmin({ session, client, project, profile, init
   const [aiProviders, setAiProviders] = useState(null)
   const [aiProvider, setAiProvider] = useState('gemini')
   const [generating, setGenerating] = useState(false)
+  const [findingGap, setFindingGap] = useState(false)
   const permissions = useMemo(() => getSitePostPermissions({ profile, client, project }), [profile, client, project])
 
   const seoScore = useMemo(() => {
@@ -134,9 +135,9 @@ export default function SitePostsAdmin({ session, client, project, profile, init
     onInsightConsumed?.()
   }, [initialInsight?.source_url])
 
-  async function generateArticle() {
+  async function generateArticle(sourceOverride = null) {
     if (!permissions.canEdit || generating) return
-    const source = draft.metadata?.generation_source || {
+    const source = sourceOverride || draft.metadata?.generation_source || {
       title: draft.metadata?.source_insight || draft.title,
       excerpt: draft.excerpt || '',
       source_url: draft.source_url || '',
@@ -159,21 +160,23 @@ export default function SitePostsAdmin({ session, client, project, profile, init
       const data = await response.json()
       if (!response.ok) throw new Error(data.error || 'Não foi possível gerar o artigo.')
       const article = data.article
-      setDraft(previous => ({
-        ...previous,
-        title: article.title || previous.title,
-        slug: article.slug || slugify(article.title || previous.title),
-        excerpt: article.excerpt || previous.excerpt,
+      const generatedDraft = {
+        ...draft,
+        title: article.title || draft.title,
+        slug: article.slug || slugify(article.title || draft.title),
+        excerpt: article.excerpt || draft.excerpt,
         content_markdown: article.content_markdown || '',
         seo_title: article.seo_title || article.title || '',
         seo_description: article.seo_description || article.excerpt || '',
-        category: article.category || previous.category,
-        status: 'draft',
+        category: article.category || draft.category,
+        status: 'review',
         is_public: false,
-        metadata: { ...defaultMetadata, ...(previous.metadata || {}), seo_intro: article.seo_intro || article.excerpt || '', keywords: article.keywords || source.keywords || [], tags: article.tags || [], source_insight: source.title, generation_provider: data.provider },
-      }))
+        metadata: { ...defaultMetadata, ...(draft.metadata || {}), seo_intro: article.seo_intro || article.excerpt || '', keywords: article.keywords || source.keywords || [], tags: article.tags || [], source_insight: source.title, generation_provider: data.provider },
+      }
+      setDraft(generatedDraft)
       setSlugTouched(true)
-      setMessage('Artigo gerado como rascunho. Revise dados, fontes e conteúdo antes de enviar para aprovação.')
+      const saved = await persist('review', generatedDraft)
+      setMessage(saved ? 'Artigo gerado e salvo em revisão, aguardando aprovação da equipe.' : 'Artigo gerado. Corrija o erro de salvamento antes de enviar para aprovação.')
     } catch (err) {
       setError(err.message || 'Não foi possível gerar o artigo.')
     } finally {
@@ -181,6 +184,23 @@ export default function SitePostsAdmin({ session, client, project, profile, init
     }
   }
 
+  async function generateFromSeoGap() {
+    if (!permissions.canEdit || generating || findingGap) return
+    setFindingGap(true)
+    setError('')
+    setMessage('')
+    try {
+      const response = await fetch('/api/consult/seo-gaps', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + session.access_token }, body: JSON.stringify({}) })
+      const result = await response.json()
+      if (!response.ok) throw new Error(result.error || 'Não foi possível cruzar Ads e Search Console.')
+      const gap = result.gaps?.[0]
+      if (!gap) { setMessage(result.message || 'Nenhuma oportunidade nova encontrada para o nicho da Consult.'); return }
+      const source = { title: gap.term, excerpt: 'Oportunidade editorial identificada no cruzamento de termos de busca do Google Ads e consultas orgânicas do Search Console nos últimos 30 dias. ' + gap.impressions + ' impressões e ' + gap.clicks + ' cliques pagos; sem cobertura orgânica correspondente.', source_url: '', category: 'Diagnóstico por Imagem', keywords: [gap.term], context: 'O termo é uma oportunidade de busca relacionada ao nicho da Consult. Explique o tema tecnicamente e de forma informativa, sem afirmar que a Consult oferece um serviço não confirmado.', ads_metrics: { impressions: gap.impressions, clicks: gap.clicks, conversions: gap.conversions } }
+      setDraft(previous => ({ ...previous, metadata: { ...defaultMetadata, ...(previous.metadata || {}), generation_source: source, source_insight: source.title } }))
+      await generateArticle(source)
+    } catch (err) { setError(err.message || 'Não foi possível identificar a oportunidade de SEO.') }
+    finally { setFindingGap(false) }
+  }
   function setField(key, value) {
     setDraft(previous => {
       const next = { ...previous, [key]: value }
@@ -242,9 +262,9 @@ export default function SitePostsAdmin({ session, client, project, profile, init
     setMessage('')
   }
 
-  async function persist(action = 'draft') {
+  async function persist(action = 'draft', draftOverride = null) {
     if (saving || !permissions.canEdit) return null
-    const payload = normalizePost(draft)
+    const payload = normalizePost(draftOverride || draft)
     setSaving(true)
     setError('')
     setMessage('')
@@ -303,8 +323,8 @@ export default function SitePostsAdmin({ session, client, project, profile, init
       <nav className="consult-blog-editor-tabs" aria-label="Campos do artigo">{tabs.map(([id,label]) => <button key={id} type="button" onClick={() => setEditorTab(id)} className={editorTab === id ? 'is-active' : ''}>{label}</button>)}</nav>
       {editorTab === 'content' && <section className="consult-ai-generation-card">
         <div className="consult-ai-generation-copy">
-          <div className="consult-ai-generation-title"><Sparkles size={17}/><strong>Motor de conteúdo por Insight</strong></div>
-          <p>Gera um artigo da Consult a partir do Insight selecionado. O texto entra como rascunho e precisa ser revisado antes da aprovação.</p>
+          <div className="consult-ai-generation-title"><Sparkles size={17}/><strong>Motor de conteúdo por Insight e oportunidade SEO</strong></div>
+          <p>Gera artigos a partir dos Insights do setor ou identifica lacunas cruzando termos pagos do Google Ads com consultas do Search Console. O tema precisa ser relacionado à Consult; o texto sempre fica como rascunho para revisão.</p>
         </div>
         <div className="consult-ai-generation-controls">
           <label><span>Provedor de IA</span><select value={aiProvider} onChange={event => setAiProvider(event.target.value)} disabled={generating} className="consult-admin-input">
@@ -313,6 +333,9 @@ export default function SitePostsAdmin({ session, client, project, profile, init
           </select></label>
           <button type="button" onClick={generateArticle} disabled={!permissions.canEdit || generating || !aiProviders?.[aiProvider]} className="consult-admin-button consult-admin-button-primary">
             <Sparkles size={15}/>{generating ? 'Gerando artigo…' : 'Gerar artigo completo'}
+          </button>
+          <button type="button" onClick={generateFromSeoGap} disabled={!permissions.canEdit || generating || findingGap || !aiProviders?.[aiProvider]} className="consult-admin-button">
+            <Search size={15}/>{findingGap ? 'Buscando lacunas Ads + orgânico…' : 'Gerar a partir de Ads + Search Console'}
           </button>
         </div>
         {!aiProviders?.[aiProvider] && <div className="consult-ai-generation-setup">
