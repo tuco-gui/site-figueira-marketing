@@ -1,5 +1,6 @@
 import { handleError, requireConsultReader, sendJson } from './_lib/auth.js'
 import { getGoogleAccessToken } from './_lib/googleOAuth.js'
+import { adsCustomerId, runAdsQuery } from './_lib/googleAds.js'
 
 const SITE_URL = 'https://consult.med.br/'
 const GA4_PROPERTY_ID = process.env.GOOGLE_GA4_PROPERTY_ID || '559383890'
@@ -124,7 +125,7 @@ export default async function handler(req, res) {
         queryError: queries.status === 'unavailable' ? queries.error : null,
         pageError: pages.status === 'unavailable' ? pages.error : null,
       },
-      ads: { status: 'awaiting_mcc_link', message: 'Conta de Ads ainda não vinculada à MCC; sem relatório de campanhas neste painel.' },
+      ads: ads.status === 'available' ? { status: 'available', ...ads.data, message: ads.data.rows.length ? null : 'Conta Consult consultada; não há campanhas com dados no período selecionado.' } : { status: 'unavailable', customerId: adsCustomerId(), message: ads.error },
     })
   } catch (error) {
     return handleError(res, error)
