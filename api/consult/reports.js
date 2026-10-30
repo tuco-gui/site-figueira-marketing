@@ -85,21 +85,45 @@ async function sourceCall(fn) {
   catch (error) { return { status: 'unavailable', error: error.message || 'Falha na consulta.' } }
 }
 
+async function adsReport(window) {
+  const customerId = adsCustomerId()
+  const query = "SELECT campaign.id, campaign.name, campaign.status, metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions FROM campaign WHERE segments.date BETWEEN '" + window.startDate + "' AND '" + window.endDate + "' AND campaign.status != 'REMOVED' ORDER BY metrics.impressions DESC LIMIT 50"
+  const campaigns = await runAdsQuery(query)
+  const rows = campaigns.map(row => ({
+    key: row.campaign?.name || String(row.campaign?.id || ''),
+    status: row.campaign?.status || '',
+    impressions: Number(row.metrics?.impressions || 0),
+    clicks: Number(row.metrics?.clicks || 0),
+    cost: Number(row.metrics?.costMicros || 0) / 1000000,
+    conversions: Number(row.metrics?.conversions || 0),
+  }))
+  const totals = rows.reduce((sum, row) => ({
+    impressions: sum.impressions + row.impressions,
+    clicks: sum.clicks + row.clicks,
+    cost: sum.cost + row.cost,
+    conversions: sum.conversions + row.conversions,
+  }), { impressions: 0, clicks: 0, cost: 0, conversions: 0 })
+  return { customerId, rows, totals }
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'GET') return sendJson(res, 405, { error: 'Método não permitido.' })
   try {
     await requireConsultReader(req)
-    const token = await getGoogleAccessToken()
     const window = reportWindow(req)
-    const [ga4, channels, monthlyTraffic, monthlyOrganic, gscTotals, queries, pages, searchDaily] = await Promise.all([
-      sourceCall(() => ga4Report(token, window)),
-      sourceCall(() => ga4Report(token, window, ['sessionDefaultChannelGroup'])),
-      sourceCall(() => ga4Report(token, window, ['yearMonth'])),
-      sourceCall(() => ga4Report(token, window, ['yearMonth', 'sessionDefaultChannelGroup'])),
-      sourceCall(() => searchAnalytics(token, window, [], 1)),
-      sourceCall(() => searchAnalytics(token, window, ['query'])),
-      sourceCall(() => searchAnalytics(token, window, ['page'])),
-      sourceCall(() => searchAnalytics(token, window, ['date'], 1000)),
+    const tokenResult = await sourceCall(() => getGoogleAccessToken())
+    const token = tokenResult.data
+    const googleCall = fn => token ? sourceCall(fn) : Promise.resolve({ status: 'unavailable', error: tokenResult.error })
+    const [ga4, channels, monthlyTraffic, monthlyOrganic, gscTotals, queries, pages, searchDaily, ads] = await Promise.all([
+      googleCall(() => ga4Report(token, window)),
+      googleCall(() => ga4Report(token, window, ['sessionDefaultChannelGroup'])),
+      googleCall(() => ga4Report(token, window, ['yearMonth'])),
+      googleCall(() => ga4Report(token, window, ['yearMonth', 'sessionDefaultChannelGroup'])),
+      googleCall(() => searchAnalytics(token, window, [], 1)),
+      googleCall(() => searchAnalytics(token, window, ['query'])),
+      googleCall(() => searchAnalytics(token, window, ['page'])),
+      googleCall(() => searchAnalytics(token, window, ['date'], 1000)),
+      sourceCall(() => adsReport(window)),
     ])
     return sendJson(res, 200, {
       generatedAt: new Date().toISOString(),
