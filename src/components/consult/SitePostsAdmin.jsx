@@ -160,21 +160,23 @@ export default function SitePostsAdmin({ session, client, project, profile, init
       const data = await response.json()
       if (!response.ok) throw new Error(data.error || 'Não foi possível gerar o artigo.')
       const article = data.article
-      setDraft(previous => ({
-        ...previous,
-        title: article.title || previous.title,
-        slug: article.slug || slugify(article.title || previous.title),
-        excerpt: article.excerpt || previous.excerpt,
+      const generatedDraft = {
+        ...draft,
+        title: article.title || draft.title,
+        slug: article.slug || slugify(article.title || draft.title),
+        excerpt: article.excerpt || draft.excerpt,
         content_markdown: article.content_markdown || '',
         seo_title: article.seo_title || article.title || '',
         seo_description: article.seo_description || article.excerpt || '',
-        category: article.category || previous.category,
-        status: 'draft',
+        category: article.category || draft.category,
+        status: 'review',
         is_public: false,
-        metadata: { ...defaultMetadata, ...(previous.metadata || {}), seo_intro: article.seo_intro || article.excerpt || '', keywords: article.keywords || source.keywords || [], tags: article.tags || [], source_insight: source.title, generation_provider: data.provider },
-      }))
+        metadata: { ...defaultMetadata, ...(draft.metadata || {}), seo_intro: article.seo_intro || article.excerpt || '', keywords: article.keywords || source.keywords || [], tags: article.tags || [], source_insight: source.title, generation_provider: data.provider },
+      }
+      setDraft(generatedDraft)
       setSlugTouched(true)
-      setMessage('Artigo gerado como rascunho. Revise dados, fontes e conteúdo antes de enviar para aprovação.')
+      const saved = await persist('review', generatedDraft)
+      setMessage(saved ? 'Artigo gerado e salvo em revisão, aguardando aprovação da equipe.' : 'Artigo gerado. Corrija o erro de salvamento antes de enviar para aprovação.')
     } catch (err) {
       setError(err.message || 'Não foi possível gerar o artigo.')
     } finally {
@@ -260,9 +262,9 @@ export default function SitePostsAdmin({ session, client, project, profile, init
     setMessage('')
   }
 
-  async function persist(action = 'draft') {
+  async function persist(action = 'draft', draftOverride = null) {
     if (saving || !permissions.canEdit) return null
-    const payload = normalizePost(draft)
+    const payload = normalizePost(draftOverride || draft)
     setSaving(true)
     setError('')
     setMessage('')
