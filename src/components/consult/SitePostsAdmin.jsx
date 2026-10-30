@@ -76,7 +76,8 @@ export default function SitePostsAdmin({ session, client, project, profile, init
   const [editorTab, setEditorTab] = useState('content')
   const [aiProviders, setAiProviders] = useState(null)
   const [aiProvider, setAiProvider] = useState('gemini')
-  const [generating, setGenerating] = useState(false)\n  const [findingGap, setFindingGap] = useState(false)
+  const [generating, setGenerating] = useState(false)
+  const [findingGap, setFindingGap] = useState(false)
   const permissions = useMemo(() => getSitePostPermissions({ profile, client, project }), [profile, client, project])
 
   const seoScore = useMemo(() => {
@@ -181,7 +182,24 @@ export default function SitePostsAdmin({ session, client, project, profile, init
     }
   }
 
-  async function generateFromSeoGap() {\n    if (!permissions.canEdit || generating || findingGap) return\n    setFindingGap(true)\n    setError('')\n    setMessage('')\n    try {\n      const response = await fetch('/api/consult/seo-gaps', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + session.access_token }, body: JSON.stringify({}) })\n      const result = await response.json()\n      if (!response.ok) throw new Error(result.error || 'Não foi possível cruzar Ads e Search Console.')\n      const gap = result.gaps?.[0]\n      if (!gap) { setMessage(result.message || 'Nenhuma oportunidade nova encontrada para o nicho da Consult.'); return }\n      const source = { title: gap.term, excerpt: 'Oportunidade editorial identificada no cruzamento de termos de busca do Google Ads e consultas orgânicas do Search Console nos últimos 30 dias. ' + gap.impressions + ' impressões e ' + gap.clicks + ' cliques pagos; sem cobertura orgânica correspondente.', source_url: '', category: 'Diagnóstico por Imagem', keywords: [gap.term], context: 'O termo é uma oportunidade de busca relacionada ao nicho da Consult. Explique o tema tecnicamente e de forma informativa, sem afirmar que a Consult oferece um serviço não confirmado.', ads_metrics: { impressions: gap.impressions, clicks: gap.clicks, conversions: gap.conversions } }\n      setDraft(previous => ({ ...previous, metadata: { ...defaultMetadata, ...(previous.metadata || {}), generation_source: source, source_insight: source.title } }))\n      await generateArticle(source)\n    } catch (err) { setError(err.message || 'Não foi possível identificar a oportunidade de SEO.') }\n    finally { setFindingGap(false) }\n  }\n  function setField(key, value) {
+  async function generateFromSeoGap() {
+    if (!permissions.canEdit || generating || findingGap) return
+    setFindingGap(true)
+    setError('')
+    setMessage('')
+    try {
+      const response = await fetch('/api/consult/seo-gaps', { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + session.access_token }, body: JSON.stringify({}) })
+      const result = await response.json()
+      if (!response.ok) throw new Error(result.error || 'Não foi possível cruzar Ads e Search Console.')
+      const gap = result.gaps?.[0]
+      if (!gap) { setMessage(result.message || 'Nenhuma oportunidade nova encontrada para o nicho da Consult.'); return }
+      const source = { title: gap.term, excerpt: 'Oportunidade editorial identificada no cruzamento de termos de busca do Google Ads e consultas orgânicas do Search Console nos últimos 30 dias. ' + gap.impressions + ' impressões e ' + gap.clicks + ' cliques pagos; sem cobertura orgânica correspondente.', source_url: '', category: 'Diagnóstico por Imagem', keywords: [gap.term], context: 'O termo é uma oportunidade de busca relacionada ao nicho da Consult. Explique o tema tecnicamente e de forma informativa, sem afirmar que a Consult oferece um serviço não confirmado.', ads_metrics: { impressions: gap.impressions, clicks: gap.clicks, conversions: gap.conversions } }
+      setDraft(previous => ({ ...previous, metadata: { ...defaultMetadata, ...(previous.metadata || {}), generation_source: source, source_insight: source.title } }))
+      await generateArticle(source)
+    } catch (err) { setError(err.message || 'Não foi possível identificar a oportunidade de SEO.') }
+    finally { setFindingGap(false) }
+  }
+  function setField(key, value) {
     setDraft(previous => {
       const next = { ...previous, [key]: value }
       if (key === 'title' && !slugTouched && !previous.id) next.slug = slugify(value)
