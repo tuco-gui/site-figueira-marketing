@@ -107,3 +107,49 @@
 @media(max-width:900px){.consult-admin-kpi-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.consult-admin-report-chart-grid{grid-template-columns:1fr}}
 @media(max-width:650px){.consult-admin-topbar{position:relative;align-items:flex-start;flex-direction:column;padding:13px 14px}.consult-admin-topbar h1{font-size:16px}.consult-admin-brand-mark{width:36px;height:36px;font-size:19px}.consult-admin-top-actions{width:100%}.consult-admin-sidebar{top:0}.consult-admin-nav-inner{padding:0 7px}.consult-admin-nav-item{min-height:46px;padding:0 12px;font-size:12px}.consult-admin-main{padding:17px 12px 30px}.consult-admin-date-picker{flex-wrap:wrap}.consult-admin-date-picker select{flex:1 1 100%}.consult-admin-date-picker input{flex:1 1 115px;min-width:0}.consult-admin-date-picker span{display:none}.consult-admin-performance-heading{align-items:flex-start;flex-direction:column}.consult-admin-kpi-grid{gap:8px}.consult-admin-kpi-grid .consult-admin-metric{min-height:92px;padding:12px}.consult-admin-kpi-grid .consult-admin-metric strong{font-size:22px}.consult-admin-performance-title h3{font-size:20px}.consult-admin-diagnostic-grid{grid-template-columns:1fr}.consult-admin-footer{flex-direction:column;padding:12px 14px}}
 @media print{body,.consult-admin-app{background:#fff!important}.consult-admin-topbar,.consult-admin-sidebar,.consult-admin-footer,.consult-admin-performance-heading,.consult-admin-performance-toolbar,.consult-admin-period-note,.consult-admin-report-actions,.consult-admin-archive,.consult-admin-alert,.consult-admin-report-notice{display:none!important}.consult-admin-main{width:100%;max-width:none;margin:0;padding:0}.consult-admin-performance-content{gap:0}.consult-admin-printable{border:0;border-radius:0;padding:0;box-shadow:none}.consult-admin-printable .consult-admin-metrics{break-inside:avoid}.consult-admin-printable table{font-size:9px!important}.consult-admin-printable .consult-admin-table th,.consult-admin-printable .consult-admin-table td{padding:5px 7px!important}.consult-admin-print-header h3{font-size:22px}}
+
+/* Consult admin: Taborda-style collapsible left navigation within the Consult site shell. */
+.consult-admin-app-shell{min-height:calc(100vh - 72px);background:#f5f8f7;color:#153c3a}
+.consult-admin-workspace-layout{display:grid;grid-template-columns:252px minmax(0,1fr);min-height:calc(100vh - 72px);transition:grid-template-columns .2s ease}
+.consult-admin-workspace-layout.is-collapsed{grid-template-columns:76px minmax(0,1fr)}
+.consult-admin-app-shell .consult-admin-sidebar{position:sticky;top:72px;align-self:start;height:calc(100vh - 72px);overflow-y:auto;padding:16px 10px;background:#fff;border:0;border-right:1px solid #dbe7e4;box-shadow:none}
+.consult-admin-sidebar-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:38px;margin:0 4px 14px;padding:0 6px}
+.consult-admin-side-title{overflow:hidden;color:#075653;font-size:14px;font-weight:800;white-space:nowrap}
+.consult-admin-sidebar-toggle{display:grid;flex:0 0 34px;width:34px;height:34px;place-items:center;border:1px solid #d7e8e3;border-radius:8px;background:#fff;color:#38605c;cursor:pointer}
+.consult-admin-sidebar-toggle:hover{background:#f0f8f5;color:#075653}
+.consult-admin-app-shell .consult-admin-sidebar nav{display:grid;gap:4px}
+.consult-admin-app-shell .consult-admin-nav-item{min-height:44px;justify-content:flex-start;padding:0 12px;border-radius:8px;background:transparent;color:#3f5e5b;font-size:13px;font-weight:700;white-space:nowrap;overflow:hidden}
+.consult-admin-app-shell .consult-admin-nav-item:hover{background:#f0f8f5;color:#075653}
+.consult-admin-app-shell .consult-admin-nav-item.is-active{background:#e8f5f1;color:#075653;box-shadow:inset 3px 0 #08a77f}
+.consult-admin-app-shell .consult-admin-nav-item span{overflow:hidden;text-overflow:ellipsis}
+.consult-admin-workspace-layout.is-collapsed .consult-admin-side-title{display:none}
+.consult-admin-workspace-layout.is-collapsed .consult-admin-sidebar-heading{justify-content:center;margin-inline:0;padding:0}
+.consult-admin-workspace-layout.is-collapsed .consult-admin-nav-item{justify-content:center;padding:0}
+.consult-admin-workspace-layout.is-collapsed .consult-admin-nav-item span{display:none}
+.consult-admin-app-shell .consult-admin-main{width:auto;max-width:none;min-width:0;margin:0;padding:28px clamp(18px,3vw,42px) 44px}
+.consult-admin-workspace-heading{align-items:center;margin-bottom:22px;padding-bottom:18px}
+.consult-admin-workspace-heading h2{margin-top:2px}
+.consult-admin-app-shell .consult-admin-kicker{color:#08a77f}
+.consult-admin-app-shell .consult-admin-module-heading h2{color:#075653}
+.consult-admin-app-shell .consult-admin-button-primary{background:#075653;border-color:#075653}
+@media(max-width:760px){
+ .consult-admin-workspace-layout,.consult-admin-workspace-layout.is-collapsed{grid-template-columns:62px minmax(0,1fr)}
+ .consult-admin-app-shell .consult-admin-sidebar{padding:12px 6px}
+ .consult-admin-sidebar-heading{justify-content:center;margin:0 0 10px;padding:0}
+ .consult-admin-side-title{display:none}
+ .consult-admin-sidebar-toggle{width:38px;height:38px}
+ .consult-admin-app-shell .consult-admin-nav-item{min-height:46px;justify-content:center;padding:0}
+ .consult-admin-app-shell .consult-admin-nav-item span{display:none}
+ .consult-admin-main{padding:18px 14px}
+}
+@media(max-width:520px){
+ .consult-admin-workspace-layout,.consult-admin-workspace-layout.is-collapsed{grid-template-columns:1fr}
+ .consult-admin-app-shell .consult-admin-sidebar{position:sticky;top:72px;z-index:20;height:auto;padding:6px 10px;border-right:0;border-bottom:1px solid #dbe7e4}
+ .consult-admin-sidebar-heading{justify-content:flex-end;min-height:38px;margin:0 2px 5px}
+ .consult-admin-workspace-layout.is-collapsed .consult-admin-sidebar-heading{justify-content:flex-end}
+ .consult-admin-app-shell .consult-admin-sidebar nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:thin;padding-bottom:3px}
+ .consult-admin-app-shell .consult-admin-nav-item{flex:0 0 42px;width:42px;height:42px}
+ .consult-admin-app-shell .consult-admin-nav-item span{display:none}
+ .consult-admin-app-shell .consult-admin-nav-item.is-active{box-shadow:inset 0 -3px #08a77f}
+ .consult-admin-app-shell .consult-admin-main{padding:16px 12px 30px}
+}

@@ -1,24 +1,25 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import {
-  Activity, BookOpen, ChevronRight, FileBarChart2, Gauge,
-  Lightbulb, Link2, RefreshCw, Tags,
-  Users, UserRound, UsersRound,
+  Activity, BarChart3, BookOpen, ChevronRight, FileBarChart2, Gauge,
+  Lightbulb, Link2, RefreshCw, Tags, Users, UserRound, Search, Megaphone,
+  PanelLeftClose, PanelLeftOpen, CheckCircle2,
 } from 'lucide-react'
 import SitePostsAdmin from '@/components/consult/SitePostsAdmin'
 import ConsultTrendRadar from '@/components/consult/ConsultTrendRadar'
 import ConsultLiveReports from '@/components/consult/ConsultLiveReports'
+import ConsultIndexingReport from '@/components/consult/ConsultIndexingReport'
 import { CONSULT_PROJECT, consultPath } from '@/lib/consultProject'
 
 const NAV = [
-  { id: 'overview', label: 'Visão geral', icon: Gauge },
-  { id: 'reports', label: 'Desempenho', icon: FileBarChart2 },
   { id: 'insights', label: 'Insights', icon: Lightbulb },
-  { id: 'trends', label: 'Radar de tendências', icon: Lightbulb },
   { id: 'blog', label: 'Blog', icon: BookOpen },
+  { id: 'search', label: 'Search Console', icon: Search },
+  { id: 'analytics', label: 'Analytics', icon: BarChart3 },
+  { id: 'ads', label: 'Google Ads', icon: Megaphone },
+  { id: 'indexing', label: 'Indexação', icon: CheckCircle2 },
   { id: 'social', label: 'Posts Social', icon: Activity },
-  { id: 'leads', label: 'Leads', icon: UserRound },
-  { id: 'tags', label: 'Integrações', icon: Tags },
   { id: 'users', label: 'Usuários', icon: Users },
+  { id: 'leads', label: 'Leads', icon: UserRound },
 ]
 
 const RESOURCES = {
@@ -131,7 +132,9 @@ function Dashboard({ posts, data, onNavigate }) {
 }
 
 export default function ConsultAdminWorkspace({ session, client, project, profile, onLogout }) {
-  const [active, setActive] = useState('overview')
+  const [active, setActive] = useState('insights')
+  const [collapsed, setCollapsed] = useState(() => { try { return window.localStorage.getItem('consult-admin-sidebar-collapsed') === 'true' } catch { return false } })
+  useEffect(() => { try { window.localStorage.setItem('consult-admin-sidebar-collapsed', String(collapsed)) } catch {} }, [collapsed])
   const [data, setData] = useState({})
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState({})
@@ -155,32 +158,40 @@ export default function ConsultAdminWorkspace({ session, client, project, profil
 
   useEffect(() => { load() }, [load])
 
-  const title = NAV.find(item => item.id === active)?.label || 'Visão geral'
+  const title = NAV.find(item => item.id === active)?.label || 'Insights'
   const renderModule = () => {
-    if (active === 'overview') return <Dashboard posts={data.posts || []} data={data} onNavigate={setActive} />
     if (active === 'blog') return <SitePostsAdmin session={session} client={client} project={project} profile={profile} />
-    if (active === 'trends') return <ConsultTrendRadar session={session} />
-    if (active === 'reports') return <ConsultLiveReports session={session} snapshots={data.snapshots || []} />
+    if (active === 'insights') return <ConsultTrendRadar session={session} />
+    if (active === 'search') return <ConsultLiveReports key="search" session={session} initialTab="search" hideTabs />
+    if (active === 'analytics') return <ConsultLiveReports key="analytics" session={session} initialTab="ga4" hideTabs />
+    if (active === 'ads') return <ConsultLiveReports key="ads" session={session} initialTab="ads" hideTabs />
+    if (active === 'indexing') return <ConsultIndexingReport session={session} />
     const config = CONFIG[active]
     if (!config) return null
-    const rows = active === 'search'
-      ? (data.snapshots || []).filter(row => /search|console|gsc/i.test(String(row.source || row.provider || row.type || row.category || '')))
-      : active === 'analytics'
-        ? (data.snapshots || []).filter(row => /analytics|ga4/i.test(String(row.source || row.provider || row.type || row.category || '')))
-        : active === 'reports' ? data.snapshots || [] : data[config.table] || []
-    const resourceKey = config.table
-    const noSnapshots = ['search', 'analytics'].includes(active) && rows.length === 0
+    const rows = data[config.table] || []
     return <section className="consult-admin-module">
       <div className="consult-admin-module-heading"><div><p className="consult-admin-kicker">Consult · {title}</p><h2>{config.title}</h2><p>{config.subtitle}</p></div><button type="button" onClick={load} disabled={loading} className="consult-admin-button"><RefreshCw size={15} /> Atualizar</button></div>
-      {(active === 'search' || active === 'analytics' || active === 'ads' || active === 'tags') && <div className="consult-admin-info">Os dados exibidos são os registros disponíveis no Supabase da Consult. Métricas ao vivo dependem da integração correspondente e da sincronização de dados.</div>}
-      <DataTable rows={rows} columns={TABLES[active] || (active === 'reports' ? safeFields(rows[0]) : undefined)} loading={loading} error={error[resourceKey]} emptyText={noSnapshots ? 'Nenhum snapshot desta fonte foi registrado para o projeto. Verifique a conexão e a sincronização da integração.' : undefined} />
+      <DataTable rows={rows} columns={TABLES[active]} loading={loading} error={error[config.table]} />
     </section>
   }
 
-  return <main className="consult-admin-app">
-    <header className="consult-admin-topbar"><div className="consult-admin-brand-lockup"><div className="consult-admin-brand-mark">C</div><div><p className="consult-admin-kicker">Figueira Marketing · Cliente</p><h1>Consult Radiometria e Qualidade</h1></div></div><div className="consult-admin-top-actions"><a className="consult-admin-button" href={consultPath('blog')} target="_blank" rel="noreferrer">Ver blog</a><button type="button" onClick={load} disabled={loading} className="consult-admin-button"><RefreshCw size={15} /> Atualizar</button><button type="button" onClick={onLogout} className="consult-admin-button">Sair</button></div></header>
-    <nav className="consult-admin-sidebar" aria-label="Navegação do painel"><div className="consult-admin-nav-inner">{NAV.map(item => { const Icon = item.icon; return <button key={item.id} type="button" onClick={() => setActive(item.id)} className={'consult-admin-nav-item' + (active === item.id ? ' is-active' : '')} aria-current={active === item.id ? 'page' : undefined}><Icon size={16} /><span>{item.label}</span></button> })}</div></nav>
-    <div className="consult-admin-main"><div className="consult-admin-mobile-title">{title}</div>{renderModule()}</div>
-    <footer className="consult-admin-footer"><span>Painel de desempenho · Consult · homologação</span><span>Relatório por Figueira Marketing</span></footer>
+  return <main className="consult-admin-app consult-admin-app-shell">
+    <div className={'consult-admin-workspace-layout' + (collapsed ? ' is-collapsed' : '')}>
+      <aside className="consult-admin-sidebar" aria-label="Menu administrativo">
+        <div className="consult-admin-sidebar-heading">
+          <span className="consult-admin-side-title">{collapsed ? 'Admin' : 'Administração'}</span>
+          <button type="button" className="consult-admin-sidebar-toggle" onClick={() => setCollapsed(value => !value)} aria-label={collapsed ? 'Expandir menu' : 'Recolher menu'} title={collapsed ? 'Expandir menu' : 'Recolher menu'}>
+            {collapsed ? <PanelLeftOpen size={18}/> : <PanelLeftClose size={18}/>}
+          </button>
+        </div>
+        <nav aria-label="Seções administrativas">
+          {NAV.map(item => { const Icon = item.icon; return <button key={item.id} type="button" onClick={() => setActive(item.id)} className={'consult-admin-nav-item' + (active === item.id ? ' is-active' : '')} aria-current={active === item.id ? 'page' : undefined} title={collapsed ? item.label : undefined}><Icon size={18}/><span>{item.label}</span></button> })}
+        </nav>
+      </aside>
+      <section className="consult-admin-main" aria-label={title}>
+        <div className="consult-admin-module-heading consult-admin-workspace-heading"><div><p className="consult-admin-kicker">Consult · Administração</p><h2>{title}</h2></div>{active !== 'blog' && <button type="button" onClick={load} disabled={loading} className="consult-admin-button"><RefreshCw size={15}/> Atualizar</button>}</div>
+        {renderModule()}
+      </section>
+    </div>
   </main>
 }

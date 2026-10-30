@@ -78,9 +78,9 @@ function ReportTableNotice({ children, tone = 'info' }) {
   return <div className={`consult-admin-report-notice is-${tone}`}>{children}</div>
 }
 
-export default function ConsultLiveReports({ session, snapshots = [] }) {
+export default function ConsultLiveReports({ session, snapshots = [], initialTab = 'overview', hideTabs = false }) {
   const initialRange = useMemo(defaultRange, [])
-  const [activeTab, setActiveTab] = useState('overview')
+  const [activeTab, setActiveTab] = useState(initialTab)
   const [preset, setPreset] = useState('12m')
   const [startDate, setStartDate] = useState(initialRange.startDate)
   const [endDate, setEndDate] = useState(initialRange.endDate)
@@ -162,7 +162,7 @@ export default function ConsultLiveReports({ session, snapshots = [] }) {
   return <section className="consult-admin-module consult-admin-performance">
     <div className="consult-admin-module-heading consult-admin-performance-heading"><div><p className="consult-admin-kicker">Figueira Marketing · Consult</p><h2>Painel de desempenho</h2><p>GA4, Search Console, indexação e resultados de mídia em um relatório único.</p></div><button type="button" onClick={load} disabled={loading} className="consult-admin-button"><span className={loading ? 'consult-admin-spin' : ''}>↻</span> Atualizar dados</button></div>
     <div className="consult-admin-performance-toolbar">
-      <nav className="consult-admin-performance-tabs" aria-label="Seções do painel">{tabs}</nav>
+      {!hideTabs && <nav className="consult-admin-performance-tabs" aria-label="Seções do painel">{tabs}</nav>}
       <div className="consult-admin-date-picker"><CalendarDays size={16}/><select aria-label="Período do relatório" value={preset} onChange={event => choosePreset(event.target.value)}><option value="12m">Últimos 12 meses</option><option value="90d">Últimos 90 dias</option><option value="28d">Últimos 28 dias</option><option value="custom">Personalizado</option></select><input aria-label="Data inicial" type="date" value={startDate} onChange={event => { setPreset('custom'); setStartDate(event.target.value) }}/><span>até</span><input aria-label="Data final" type="date" value={endDate} onChange={event => { setPreset('custom'); setEndDate(event.target.value) }}/><button type="button" onClick={load} disabled={loading}>Aplicar</button></div>
     </div>
     {error && <div role="alert" className="consult-admin-alert consult-admin-alert-error">{error}</div>}
