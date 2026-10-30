@@ -1,28 +1,23 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import {
-  Activity, BarChart3, BookOpen, ChevronRight, FileBarChart2, Gauge,
-  Lightbulb, Link2, ListChecks, Megaphone, RefreshCw, Search, Tags,
+  Activity, BookOpen, ChevronRight, FileBarChart2, Gauge,
+  Lightbulb, Link2, RefreshCw, Tags,
   Users, UserRound, UsersRound,
 } from 'lucide-react'
 import SitePostsAdmin from '@/components/consult/SitePostsAdmin'
 import ConsultTrendRadar from '@/components/consult/ConsultTrendRadar'
-import ConsultIndexingReport from '@/components/consult/ConsultIndexingReport'
 import ConsultLiveReports from '@/components/consult/ConsultLiveReports'
 import { CONSULT_PROJECT, consultPath } from '@/lib/consultProject'
 
 const NAV = [
   { id: 'overview', label: 'Visão geral', icon: Gauge },
+  { id: 'reports', label: 'Desempenho', icon: FileBarChart2 },
   { id: 'insights', label: 'Insights', icon: Lightbulb },
-  { id: 'blog', label: 'Blog', icon: BookOpen },
-  { id: 'search', label: 'Search Console', icon: Search },
   { id: 'trends', label: 'Radar de tendências', icon: Lightbulb },
-  { id: 'analytics', label: 'Analytics', icon: BarChart3 },
-  { id: 'tags', label: 'Mensuração / Tags', icon: Tags },
-  { id: 'ads', label: 'Google Ads', icon: Megaphone },
-  { id: 'indexing', label: 'Indexação', icon: ListChecks },
+  { id: 'blog', label: 'Blog', icon: BookOpen },
   { id: 'social', label: 'Posts Social', icon: Activity },
   { id: 'leads', label: 'Leads', icon: UserRound },
-  { id: 'reports', label: 'Relatórios', icon: FileBarChart2 },
+  { id: 'tags', label: 'Integrações', icon: Tags },
   { id: 'users', label: 'Usuários', icon: Users },
 ]
 
@@ -165,7 +160,6 @@ export default function ConsultAdminWorkspace({ session, client, project, profil
     if (active === 'overview') return <Dashboard posts={data.posts || []} data={data} onNavigate={setActive} />
     if (active === 'blog') return <SitePostsAdmin session={session} client={client} project={project} profile={profile} />
     if (active === 'trends') return <ConsultTrendRadar session={session} />
-    if (active === 'indexing') return <ConsultIndexingReport session={session} />
     if (active === 'reports') return <ConsultLiveReports session={session} snapshots={data.snapshots || []} />
     const config = CONFIG[active]
     if (!config) return null
@@ -184,10 +178,9 @@ export default function ConsultAdminWorkspace({ session, client, project, profil
   }
 
   return <main className="consult-admin-app">
-    <header className="consult-admin-topbar"><div><p className="consult-admin-kicker">Consult Radiometria e Qualidade</p><h1>Administração</h1></div><div className="consult-admin-top-actions"><a className="consult-admin-button" href={consultPath('blog')} target="_blank" rel="noreferrer">Ver blog</a><button type="button" onClick={load} disabled={loading} className="consult-admin-button"><RefreshCw size={15} /> Atualizar</button><button type="button" onClick={onLogout} className="consult-admin-button">Sair</button></div></header>
-    <div className="consult-admin-layout">
-      <aside className="consult-admin-sidebar"><p className="consult-admin-side-title">Consult</p><nav aria-label="Navegação do admin">{NAV.map(item => { const Icon = item.icon; return <button key={item.id} type="button" onClick={() => setActive(item.id)} className={'consult-admin-nav-item' + (active === item.id ? ' is-active' : '')} aria-current={active === item.id ? 'page' : undefined}><Icon size={17} /><span>{item.label}</span></button> })}</nav></aside>
-      <div className="consult-admin-main"><div className="consult-admin-mobile-title">{title}</div>{renderModule()}</div>
-    </div>
+    <header className="consult-admin-topbar"><div className="consult-admin-brand-lockup"><div className="consult-admin-brand-mark">C</div><div><p className="consult-admin-kicker">Figueira Marketing · Cliente</p><h1>Consult Radiometria e Qualidade</h1></div></div><div className="consult-admin-top-actions"><a className="consult-admin-button" href={consultPath('blog')} target="_blank" rel="noreferrer">Ver blog</a><button type="button" onClick={load} disabled={loading} className="consult-admin-button"><RefreshCw size={15} /> Atualizar</button><button type="button" onClick={onLogout} className="consult-admin-button">Sair</button></div></header>
+    <nav className="consult-admin-sidebar" aria-label="Navegação do painel"><div className="consult-admin-nav-inner">{NAV.map(item => { const Icon = item.icon; return <button key={item.id} type="button" onClick={() => setActive(item.id)} className={'consult-admin-nav-item' + (active === item.id ? ' is-active' : '')} aria-current={active === item.id ? 'page' : undefined}><Icon size={16} /><span>{item.label}</span></button> })}</div></nav>
+    <div className="consult-admin-main"><div className="consult-admin-mobile-title">{title}</div>{renderModule()}</div>
+    <footer className="consult-admin-footer"><span>Painel de desempenho · Consult · homologação</span><span>Relatório por Figueira Marketing</span></footer>
   </main>
 }
