@@ -1,5 +1,3 @@
-import { createSign } from 'node:crypto'
-
 let cachedToken = ''
 let expiresAt = 0
 
