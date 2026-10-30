@@ -5,6 +5,9 @@ import {
   Users, UserRound, UsersRound,
 } from 'lucide-react'
 import SitePostsAdmin from '@/components/consult/SitePostsAdmin'
+import ConsultTrendRadar from '@/components/consult/ConsultTrendRadar'
+import ConsultIndexingReport from '@/components/consult/ConsultIndexingReport'
+import ConsultLiveReports from '@/components/consult/ConsultLiveReports'
 import { CONSULT_PROJECT, consultPath } from '@/lib/consultProject'
 
 const NAV = [
@@ -12,6 +15,7 @@ const NAV = [
   { id: 'insights', label: 'Insights', icon: Lightbulb },
   { id: 'blog', label: 'Blog', icon: BookOpen },
   { id: 'search', label: 'Search Console', icon: Search },
+  { id: 'trends', label: 'Radar de tendências', icon: Lightbulb },
   { id: 'analytics', label: 'Analytics', icon: BarChart3 },
   { id: 'tags', label: 'Mensuração / Tags', icon: Tags },
   { id: 'ads', label: 'Google Ads', icon: Megaphone },
@@ -49,6 +53,7 @@ const TABLES = {
 const CONFIG = {
   insights: { title: 'Insights', subtitle: 'Pautas e oportunidades de conteúdo registradas para a Consult.', table: 'insights' },
   search: { title: 'Search Console', subtitle: 'Consultas, páginas e desempenho orgânico vinculados ao projeto.', table: 'snapshots' },
+  trends: { title: 'Radar de tendências', subtitle: 'Tendências de busca no Brasil e notícias recentes dos temas da Consult.', table: 'insights' },
   analytics: { title: 'Analytics', subtitle: 'Métricas de tráfego e comportamento registradas para o projeto.', table: 'snapshots' },
   ads: { title: 'Google Ads', subtitle: 'Recomendações e registros de campanhas associados à conta.', table: 'ads' },
   indexing: { title: 'Indexação', subtitle: 'Histórico de inspeções de URLs e situação de indexação.', table: 'indexing' },
@@ -159,6 +164,9 @@ export default function ConsultAdminWorkspace({ session, client, project, profil
   const renderModule = () => {
     if (active === 'overview') return <Dashboard posts={data.posts || []} data={data} onNavigate={setActive} />
     if (active === 'blog') return <SitePostsAdmin session={session} client={client} project={project} profile={profile} />
+    if (active === 'trends') return <ConsultTrendRadar session={session} />
+    if (active === 'indexing') return <ConsultIndexingReport session={session} />
+    if (active === 'reports') return <ConsultLiveReports session={session} snapshots={data.snapshots || []} />
     const config = CONFIG[active]
     if (!config) return null
     const rows = active === 'search'
