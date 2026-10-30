@@ -12,15 +12,39 @@ const NEWS_TERMS = [
 ]
 
 const NICHE_TERMS = [
-  'radiolog', 'tomograf', 'mamograf', 'ultrassom', 'ressonanc', 'raio x',
-  'radiometr', 'radiacao', 'dosimetr', 'fisica medica', 'equipamento medico',
-  'engenharia clinica', 'controle de qualidade', 'diagnostico por imagem',
-  'proteção radiologica', 'blindagem', 'anvisa', 'levantamento radiometrico',
+  'radiolog', 'radiometr', 'radiacao ionizante', 'protecao radiologica',
+  'dosimetr', 'fisica medica', 'radiodiagnostico', 'tomograf',
+  'mamograf', 'ultrassom diagnostico', 'ressonancia magnetica',
+  'raios x', 'raio x', 'diagnostico por imagem', 'imagem medica',
+  'levantamento radiometrico', 'blindagem radiologica',
 ]
 
+const HEALTHCARE_CONTEXT_TERMS = [
+  'hospital', 'clinica', 'saude', 'medico', 'medica', 'radiolog',
+  'diagnostico por imagem', 'equipamento hospitalar', 'equipamento medico',
+  'servico de imagem', 'radiacao', 'raio x', 'raios x', 'ultrassom',
+  'tomograf', 'mamograf', 'ressonancia',
+]
+
+function normalizeText(value = '') {
+  return String(value).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('pt-BR')
+}
+
 function isConsultNiche(title = '') {
-  const normalized = String(title).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('pt-BR')
-  return NICHE_TERMS.some(term => normalized.includes(term.normalize('NFD').replace(/[\u0300-\u036f]/g, '')))
+  const normalized = normalizeText(title)
+  if (NICHE_TERMS.some(term => normalized.includes(term))) return true
+
+  const healthcareContext = HEALTHCARE_CONTEXT_TERMS.some(term => normalized.includes(term))
+  const clinicalEngineering = normalized.includes('engenharia clinica')
+  const qualityControl = normalized.includes('controle de qualidade')
+  const anvisaRegulation = normalized.includes('anvisa') && healthcareContext
+  const radiologicalShielding = normalized.includes('blindagem') &&
+    /(radiolog|radiacao|raio ?x|tomograf|mamograf)/.test(normalized)
+
+  return (clinicalEngineering && healthcareContext) ||
+    (qualityControl && healthcareContext) ||
+    anvisaRegulation ||
+    radiologicalShielding
 }
 
 function decodeXml(value = '') {
@@ -72,7 +96,7 @@ export default async function handler(req, res) {
     ])
     const trends = results[0].status === 'fulfilled' ? rssItems(results[0].value, 'trends').filter(item => isConsultNiche(item.title)) : []
     const news = results.slice(1).flatMap((result, index) => result.status === 'fulfilled'
-      ? rssItems(result.value, 'news', NEWS_TERMS[index]).filter(item => isConsultNiche(item.title) || isConsultNiche(item.query))
+      ? rssItems(result.value, 'news', NEWS_TERMS[index]).filter(item => isConsultNiche(item.title))
       : [])
     return sendJson(res, 200, {
       generatedAt: new Date().toISOString(),
