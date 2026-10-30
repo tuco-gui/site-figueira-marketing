@@ -209,3 +209,19 @@
 }
 .consult-trend-create-article{margin-top:8px;border:1px solid #cfe4de;border-radius:6px;background:#fff;padding:5px 8px;color:#075653;font-size:10px;font-weight:800;cursor:pointer}
 .consult-trend-create-article:hover{border-color:#08a77f;background:#f3faf7}
+
+.consult-ai-generation-card{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,320px);gap:14px 24px;margin:0 0 18px;padding:18px;border:1px solid #cfe4df;border-radius:12px;background:linear-gradient(135deg,#f2fbf8,#fff)}
+.consult-ai-generation-copy{min-width:0}
+.consult-ai-generation-title{display:flex;align-items:center;gap:8px;color:#075653;font-size:15px}
+.consult-ai-generation-title svg{color:#08a77f}
+.consult-ai-generation-copy p{margin:7px 0 0;color:#58716e;font-size:13px;line-height:1.55}
+.consult-ai-generation-controls{display:flex;align-items:end;gap:10px}
+.consult-ai-generation-controls label{display:grid;flex:1;gap:5px;min-width:0}
+.consult-ai-generation-controls label span{font-size:12px;font-weight:600;color:#315d59}
+.consult-ai-generation-controls .consult-admin-button{white-space:nowrap}
+.consult-ai-generation-setup{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:8px 16px;padding-top:12px;border-top:1px solid #dcebe7;color:#5e7470;font-size:12px}
+.consult-ai-generation-setup a{display:inline-flex;align-items:center;gap:5px;color:#087f70;font-weight:600;text-decoration:none}
+.consult-ai-generation-setup a:hover{text-decoration:underline}
+.consult-ai-generation-setup small{flex-basis:100%;color:#72827f}
+.consult-ai-generation-setup code{padding:2px 5px;border-radius:4px;background:#e4f2ee;color:#075653;font-size:11px}
+@media(max-width:760px){.consult-ai-generation-card{grid-template-columns:1fr}.consult-ai-generation-controls{flex-direction:column;align-items:stretch}.consult-ai-generation-controls .consult-admin-button{justify-content:center}.consult-ai-generation-setup{align-items:flex-start;flex-direction:column}}

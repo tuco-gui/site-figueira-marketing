@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { ExternalLink, FilePenLine, Plus, RefreshCw, Save, Share2, Trash2, X } from 'lucide-react'
+import { ExternalLink, FilePenLine, Plus, RefreshCw, Save, Share2, Sparkles, Trash2, X } from 'lucide-react'
 import {
   createSitePostAdmin,
   getSitePostPermissions,
@@ -74,6 +74,9 @@ export default function SitePostsAdmin({ session, client, project, profile, init
   const [slugTouched, setSlugTouched] = useState(false)
   const [editorOpen, setEditorOpen] = useState(false)
   const [editorTab, setEditorTab] = useState('content')
+  const [aiProviders, setAiProviders] = useState(null)
+  const [aiProvider, setAiProvider] = useState('gemini')
+  const [generating, setGenerating] = useState(false)
   const permissions = useMemo(() => getSitePostPermissions({ profile, client, project }), [profile, client, project])
 
   const seoScore = useMemo(() => {
@@ -105,14 +108,78 @@ export default function SitePostsAdmin({ session, client, project, profile, init
   useEffect(() => { load() }, [session?.access_token, client?.id, project?.id])
 
   useEffect(() => {
+    if (!session?.access_token) return
+    let active = true
+    fetch('/api/consult/ai-providers', { headers: { Authorization: 'Bearer ' + session.access_token }, cache: 'no-store' })
+      .then(response => response.json().then(data => ({ ok: response.ok, data })))
+      .then(({ ok, data }) => {
+        if (!active) return
+        if (ok) {
+          setAiProviders(data.providers || {})
+          setAiProvider(data.defaultProvider || 'gemini')
+        }
+      })
+      .catch(() => { if (active) setAiProviders({}) })
+    return () => { active = false }
+  }, [session?.access_token])
+
+
+  useEffect(() => {
     if (!initialInsight) return
-    setDraft({ ...emptyDraft, title: initialInsight.title || '', slug: slugify(initialInsight.title || ''), excerpt: initialInsight.excerpt || '', content_markdown: '', seo_title: String(initialInsight.title || '').slice(0, 60), seo_description: String(initialInsight.excerpt || initialInsight.title || 'Insight do setor Consult.').slice(0, 160), source_url: initialInsight.source_url || '', category: initialInsight.category || 'Diagnóstico por Imagem', metadata: { ...defaultMetadata, keywords: initialInsight.keywords || [], source_insight: initialInsight.title || '' } })
+    setDraft({ ...emptyDraft, title: initialInsight.title || '', slug: slugify(initialInsight.title || ''), excerpt: initialInsight.excerpt || '', content_markdown: '', seo_title: String(initialInsight.title || '').slice(0, 60), seo_description: String(initialInsight.excerpt || initialInsight.title || 'Insight do setor Consult.').slice(0, 160), source_url: initialInsight.source_url || '', category: initialInsight.category || 'Diagnóstico por Imagem', metadata: { ...defaultMetadata, keywords: initialInsight.keywords || [], source_insight: initialInsight.title || '', generation_source: { title: initialInsight.title || '', excerpt: initialInsight.excerpt || '', source_url: initialInsight.source_url || '', category: initialInsight.category || '', keywords: initialInsight.keywords || [], context: initialInsight.context || '' } } })
     setSlugTouched(false)
     setEditorTab('content')
     setEditorOpen(true)
     setMessage('Rascunho iniciado a partir de um Insight da Consult. Desenvolva o conteúdo e valide as fontes antes da revisão.')
     onInsightConsumed?.()
   }, [initialInsight?.source_url])
+
+  async function generateArticle() {
+    if (!permissions.canEdit || generating) return
+    const source = draft.metadata?.generation_source || {
+      title: draft.metadata?.source_insight || draft.title,
+      excerpt: draft.excerpt || '',
+      source_url: draft.source_url || '',
+      category: draft.category || '',
+      keywords: draft.metadata?.keywords || [],
+    }
+    if (!source.title) {
+      setError('Abra um Insight da Consult e escolha “Criar artigo” para gerar o conteúdo a partir dele.')
+      return
+    }
+    setGenerating(true)
+    setError('')
+    setMessage('')
+    try {
+      const response = await fetch('/api/consult/generate-article', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', Authorization: 'Bearer ' + session.access_token },
+        body: JSON.stringify({ provider: aiProvider, insight: source }),
+      })
+      const data = await response.json()
+      if (!response.ok) throw new Error(data.error || 'Não foi possível gerar o artigo.')
+      const article = data.article
+      setDraft(previous => ({
+        ...previous,
+        title: article.title || previous.title,
+        slug: article.slug || slugify(article.title || previous.title),
+        excerpt: article.excerpt || previous.excerpt,
+        content_markdown: article.content_markdown || '',
+        seo_title: article.seo_title || article.title || '',
+        seo_description: article.seo_description || article.excerpt || '',
+        category: article.category || previous.category,
+        status: 'draft',
+        is_public: false,
+        metadata: { ...defaultMetadata, ...(previous.metadata || {}), seo_intro: article.seo_intro || article.excerpt || '', keywords: article.keywords || source.keywords || [], tags: article.tags || [], source_insight: source.title, generation_provider: data.provider },
+      }))
+      setSlugTouched(true)
+      setMessage('Artigo gerado como rascunho. Revise dados, fontes e conteúdo antes de enviar para aprovação.')
+    } catch (err) {
+      setError(err.message || 'Não foi possível gerar o artigo.')
+    } finally {
+      setGenerating(false)
+    }
+  }
 
   function setField(key, value) {
     setDraft(previous => {
@@ -234,6 +301,27 @@ export default function SitePostsAdmin({ session, client, project, profile, init
     {editorOpen && <section className="consult-blog-editor-card">
       <header className="consult-blog-editor-heading"><div><FilePenLine size={17}/><strong>{draft.id ? 'Editar Artigo' : 'Novo Artigo'}</strong></div><div className="consult-blog-seo-score"><small>Pontuação SEO</small><b>{seoScore}/100</b></div></header>
       <nav className="consult-blog-editor-tabs" aria-label="Campos do artigo">{tabs.map(([id,label]) => <button key={id} type="button" onClick={() => setEditorTab(id)} className={editorTab === id ? 'is-active' : ''}>{label}</button>)}</nav>
+      {editorTab === 'content' && <section className="consult-ai-generation-card">
+        <div className="consult-ai-generation-copy">
+          <div className="consult-ai-generation-title"><Sparkles size={17}/><strong>Motor de conteúdo por Insight</strong></div>
+          <p>Gera um artigo da Consult a partir do Insight selecionado. O texto entra como rascunho e precisa ser revisado antes da aprovação.</p>
+        </div>
+        <div className="consult-ai-generation-controls">
+          <label><span>Provedor de IA</span><select value={aiProvider} onChange={event => setAiProvider(event.target.value)} disabled={generating} className="consult-admin-input">
+            <option value="gemini">Gemini {aiProviders?.gemini ? '— conectado' : '— chave pendente'}</option>
+            <option value="openai">ChatGPT {aiProviders?.openai ? '— conectado' : '— chave pendente'}</option>
+          </select></label>
+          <button type="button" onClick={generateArticle} disabled={!permissions.canEdit || generating || !aiProviders?.[aiProvider]} className="consult-admin-button consult-admin-button-primary">
+            <Sparkles size={15}/>{generating ? 'Gerando artigo…' : 'Gerar artigo completo'}
+          </button>
+        </div>
+        {!aiProviders?.[aiProvider] && <div className="consult-ai-generation-setup">
+          <span>A chave deste provedor ainda não está configurada no servidor. Para testar, crie uma chave na conta Gemini da Consult e cadastre-a como <code>GEMINI_API_KEY</code> nas variáveis do projeto de homologação.</span>
+          <a href="https://aistudio.google.com/apikey" target="_blank" rel="noreferrer">Criar chave Gemini <ExternalLink size={13}/></a>
+          <a href="https://vercel.com/guis-projects-9aec09da/site-figueira-marketing/settings/environment-variables" target="_blank" rel="noreferrer">Abrir variáveis do projeto <ExternalLink size={13}/></a>
+          <small>Para usar ChatGPT depois, configure <code>OPENAI_API_KEY</code>. As chaves ficam no servidor e não são exibidas no navegador.</small>
+        </div>}
+      </section>}
       {editorTab === 'content' && <div className="consult-blog-editor-fields">
         <label className="full"><span>Título *</span><input disabled={!permissions.canEdit} value={draft.title} onChange={event => setField('title', event.target.value)} className="consult-admin-input"/></label>
         <label><span>Slug (URL)</span><input disabled={!permissions.canEdit} value={draft.slug} onChange={event => { setSlugTouched(true); setField('slug', event.target.value) }} className="consult-admin-input"/><small>URL: /blog/{draft.slug || 'seu-artigo'}</small></label>
