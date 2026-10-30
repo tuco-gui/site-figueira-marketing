@@ -5,7 +5,7 @@ import { adsCustomerId, runAdsQuery } from './_lib/googleAds.js'
 const CLIENT_ID = '0b88061b-676d-48fb-846a-2483b0cf8284'
 const PROJECT_ID = '6bf62bce-b7ff-46f1-84e9-07c54689a8e4'
 const SITE_URL = 'https://consult.med.br/'
-const TOPIC = /radiolog|radiograf|tomograf|mamograf|resson.ncia|imagem m.dica|diagn.stico por imagem|radioprote|prote..o radiol.gica|radia..o|dose|f.sica m.dica|engenharia cl.nica|equipamento m.dico|anvisa|iaea|cnen|ultrassom|medicina nuclear|hemodin.mica|fluoroscopia|qualidade em sa.de|radiometria/i
+const TOPIC = /radiolog|radiograf|tomograf|mamograf|resson.ncia|imagem m.dica|diagn.stico por imagem|radioprote|prote..o radiol.gica|radia..o|f.sica m.dica|engenharia cl.nica|equipamento m.dico|anvisa|iaea|cnen|ultrassom|medicina nuclear|hemodin.mica|fluoroscopia|qualidade em sa.de|radiometria/i
 
 const normalize = value => String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('pt-BR').replace(/[^a-z0-9]+/g, ' ').trim()
 
