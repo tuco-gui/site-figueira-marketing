@@ -2,12 +2,26 @@ import { handleError, requireConsultReader, sendJson } from './_lib/auth.js'
 
 const GOOGLE_TRENDS_RSS = 'https://trends.google.com/trending/rss?geo=BR'
 const NEWS_TERMS = [
-  'radiologia diagnóstica',
-  'proteção radiológica',
-  'tomografia computadorizada',
-  'controle de qualidade ultrassom',
-  'engenharia clínica equipamentos médicos',
+  'física médica e proteção radiológica',
+  'radiometria e dosimetria ocupacional',
+  'controle de qualidade em radiologia diagnóstica',
+  'tomografia computadorizada e otimização de dose',
+  'controle de qualidade em ultrassom diagnóstico',
+  'engenharia clínica equipamentos médico-hospitalares',
+  'ANVISA RDC radiologia diagnóstica',
 ]
+
+const NICHE_TERMS = [
+  'radiolog', 'tomograf', 'mamograf', 'ultrassom', 'ressonanc', 'raio x',
+  'radiometr', 'radiacao', 'dosimetr', 'fisica medica', 'equipamento medico',
+  'engenharia clinica', 'controle de qualidade', 'diagnostico por imagem',
+  'proteção radiologica', 'blindagem', 'anvisa', 'levantamento radiometrico',
+]
+
+function isConsultNiche(title = '') {
+  const normalized = String(title).normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('pt-BR')
+  return NICHE_TERMS.some(term => normalized.includes(term.normalize('NFD').replace(/[\u0300-\u036f]/g, '')))
+}
 
 function decodeXml(value = '') {
   return String(value)
@@ -56,9 +70,9 @@ export default async function handler(req, res) {
         return fetchFeed(url)
       }),
     ])
-    const trends = results[0].status === 'fulfilled' ? rssItems(results[0].value, 'trends') : []
+    const trends = results[0].status === 'fulfilled' ? rssItems(results[0].value, 'trends').filter(item => isConsultNiche(item.title)) : []
     const news = results.slice(1).flatMap((result, index) => result.status === 'fulfilled'
-      ? rssItems(result.value, 'news', NEWS_TERMS[index])
+      ? rssItems(result.value, 'news', NEWS_TERMS[index]).filter(item => isConsultNiche(item.title) || isConsultNiche(item.query))
       : [])
     return sendJson(res, 200, {
       generatedAt: new Date().toISOString(),

@@ -1,10 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { ExternalLink, FilePenLine, Plus, RefreshCw, Save } from 'lucide-react'
+import { ExternalLink, FilePenLine, Plus, RefreshCw, Save, Share2, Trash2, X } from 'lucide-react'
 import {
   createSitePostAdmin,
   getSitePostPermissions,
   getSitePostsAdmin,
   updateSitePostAdmin,
+  deleteSitePostAdmin,
 } from '@/lib/sitePostsAdminApi'
 import { CONSULT_PROJECT, consultPath } from '@/lib/consultProject'
 
@@ -63,7 +64,7 @@ function statusLabel(post) {
   return 'Rascunho'
 }
 
-export default function SitePostsAdmin({ session, client, project, profile }) {
+export default function SitePostsAdmin({ session, client, project, profile, initialInsight, onInsightConsumed }) {
   const [posts, setPosts] = useState([])
   const [draft, setDraft] = useState(emptyDraft)
   const [loading, setLoading] = useState(true)
@@ -71,6 +72,8 @@ export default function SitePostsAdmin({ session, client, project, profile }) {
   const [error, setError] = useState('')
   const [message, setMessage] = useState('')
   const [slugTouched, setSlugTouched] = useState(false)
+  const [editorOpen, setEditorOpen] = useState(false)
+  const [editorTab, setEditorTab] = useState('content')
   const permissions = useMemo(() => getSitePostPermissions({ profile, client, project }), [profile, client, project])
 
   const seoScore = useMemo(() => {
@@ -101,6 +104,16 @@ export default function SitePostsAdmin({ session, client, project, profile }) {
 
   useEffect(() => { load() }, [session?.access_token, client?.id, project?.id])
 
+  useEffect(() => {
+    if (!initialInsight) return
+    setDraft({ ...emptyDraft, title: initialInsight.title || '', slug: slugify(initialInsight.title || ''), excerpt: initialInsight.excerpt || '', content_markdown: '', seo_title: String(initialInsight.title || '').slice(0, 60), seo_description: String(initialInsight.excerpt || initialInsight.title || 'Insight do setor Consult.').slice(0, 160), source_url: initialInsight.source_url || '', category: initialInsight.category || 'Diagnóstico por Imagem', metadata: { ...defaultMetadata, keywords: initialInsight.keywords || [], source_insight: initialInsight.title || '' } })
+    setSlugTouched(false)
+    setEditorTab('content')
+    setEditorOpen(true)
+    setMessage('Rascunho iniciado a partir de um Insight da Consult. Desenvolva o conteúdo e valide as fontes antes da revisão.')
+    onInsightConsumed?.()
+  }, [initialInsight?.source_url])
+
   function setField(key, value) {
     setDraft(previous => {
       const next = { ...previous, [key]: value }
@@ -115,6 +128,8 @@ export default function SitePostsAdmin({ session, client, project, profile }) {
 
   function beginNew() {
     if (!permissions.canEdit) return
+    setEditorOpen(true)
+    setEditorTab('content')
     setDraft({ ...emptyDraft, metadata: { ...defaultMetadata } })
     setSlugTouched(false)
     setError('')
@@ -122,8 +137,40 @@ export default function SitePostsAdmin({ session, client, project, profile }) {
   }
 
   function edit(post) {
+    setEditorOpen(true)
+    setEditorTab('content')
     setDraft(normalizePost(post))
     setSlugTouched(true)
+    setError('')
+    setMessage('')
+  }
+
+  async function removePost(post) {
+    if (!permissions.canEdit || !window.confirm(`Excluir o artigo “${post.title}”?`)) return
+    setError('')
+    setMessage('')
+    try {
+      await deleteSitePostAdmin(session.access_token, post.id, { profile, client, project })
+      setPosts(previous => previous.filter(item => item.id !== post.id))
+      if (draft.id === post.id) { setDraft({ ...emptyDraft, metadata: { ...defaultMetadata } }); setEditorOpen(false) }
+      setMessage('Artigo excluído.')
+    } catch (err) {
+      setError(err.message || 'Não foi possível excluir o artigo.')
+    }
+  }
+
+  async function copyPostLink(post) {
+    const url = post.status === 'published' && post.is_public
+      ? new URL(consultPath(`blog/${post.slug}`), window.location.origin).toString()
+      : new URL(consultPath(`admin`), window.location.origin).toString()
+    try { await navigator.clipboard.writeText(url); setMessage('Link copiado.') }
+    catch { setError('Não foi possível copiar o link neste navegador.') }
+  }
+
+  function cancelEditor() {
+    setEditorOpen(false)
+    setDraft({ ...emptyDraft, metadata: { ...defaultMetadata } })
+    setSlugTouched(false)
     setError('')
     setMessage('')
   }
@@ -173,56 +220,70 @@ export default function SitePostsAdmin({ session, client, project, profile }) {
     }
   }
 
-  return (
-    <div className="consult-admin-editor">
-      <div className="flex flex-col gap-5 border-b border-[#D7E8E3] pb-6 md:flex-row md:items-end md:justify-between">
-        <div>
-          <p className="text-[10px] font-black uppercase tracking-[.24em] text-[#08A77F]">Editorial Consult</p>
-          <h2 className="mt-2 text-3xl font-black tracking-[-.04em] text-[#075653]">Blog técnico</h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-[#607D7A]">Conteúdo limitado ao projeto do site Consult. Publicação só fica visível quando o registro está publicado e público.</p>
-        </div>
-        <div className="flex flex-wrap gap-2">
-          <button type="button" onClick={load} disabled={loading} className="consult-admin-button"><RefreshCw size={15} /> Atualizar</button>
-          {permissions.canEdit && <button type="button" onClick={beginNew} className="consult-admin-button consult-admin-button-primary"><Plus size={15} /> Novo artigo</button>}
-        </div>
-      </div>
-
-      {!permissions.canEdit && permissions.canRead && <div className="consult-admin-alert">Seu acesso é somente leitura. Proprietários, gestores e equipe Figueira podem editar, revisar e publicar.</div>}
-      {error && <div className="consult-admin-alert consult-admin-alert-error">{error}</div>}
-      {message && <div className="consult-admin-alert consult-admin-alert-ok">{message}</div>}
-
-      <div className="grid gap-5 lg:grid-cols-[280px_minmax(0,1fr)]">
-        <aside className="overflow-hidden rounded-2xl border border-[#D7E8E3] bg-white">
-          <div className="flex items-center justify-between border-b border-[#E5F0ED] px-4 py-4"><strong className="text-sm text-[#075653]">Artigos</strong><span className="grid h-7 min-w-7 place-items-center rounded-full bg-[#EAF5F2] px-2 text-xs font-black text-[#075653]">{posts.length}</span></div>
-          {loading ? <p className="p-5 text-sm text-[#607D7A]">Carregando...</p> : posts.length ? posts.map(post => (
-            <button key={post.id} type="button" onClick={() => edit(post)} className={`flex w-full items-start gap-3 border-b border-[#EDF4F1] px-4 py-4 text-left last:border-0 hover:bg-[#F4FAF8] ${draft.id === post.id ? 'bg-[#EAF5F2]' : 'bg-white'}`}>
-              <span className={`mt-1 h-2.5 w-2.5 shrink-0 rounded-full ${post.status === 'published' && post.is_public ? 'bg-[#08A77F]' : post.status === 'review' ? 'bg-[#FF6B26]' : 'bg-[#B6C9C5]'}`} />
-              <span className="min-w-0"><strong className="block truncate text-sm text-[#075653]">{post.title}</strong><small className="mt-1 block text-xs text-[#78908E]">{statusLabel(post)} · {formatDate(post.updated_at)}</small></span>
-            </button>
-          )) : <p className="p-5 text-sm text-[#607D7A]">Nenhum artigo cadastrado.</p>}
-        </aside>
-
-        <section className="rounded-2xl border border-[#D7E8E3] bg-white p-5 md:p-7">
-          <div className="flex flex-col gap-3 border-b border-[#E5F0ED] pb-5 sm:flex-row sm:items-center sm:justify-between"><div className="flex items-center gap-2 text-sm font-black text-[#075653]"><FilePenLine size={18} /> {draft.id ? 'Editar artigo' : 'Novo artigo'}</div><span className="rounded-full bg-[#EAF5F2] px-3 py-1.5 text-xs font-black text-[#075653]">SEO {seoScore}/100</span></div>
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            <label className="md:col-span-2"><span className="consult-admin-label">Título</span><input disabled={!permissions.canEdit} value={draft.title} onChange={event => setField('title', event.target.value)} className="consult-admin-input" /></label>
-            <label><span className="consult-admin-label">Slug</span><input disabled={!permissions.canEdit} value={draft.slug} onChange={event => { setSlugTouched(true); setField('slug', event.target.value) }} className="consult-admin-input" /></label>
-            <label><span className="consult-admin-label">Categoria</span><input disabled={!permissions.canEdit} value={draft.category || ''} onChange={event => setField('category', event.target.value)} className="consult-admin-input" /></label>
-            <label className="md:col-span-2"><span className="consult-admin-label">Resumo</span><textarea disabled={!permissions.canEdit} rows={3} value={draft.excerpt || ''} onChange={event => setField('excerpt', event.target.value)} className="consult-admin-input" /></label>
-            <label><span className="consult-admin-label">Autor</span><input disabled={!permissions.canEdit} value={draft.author || ''} onChange={event => setField('author', event.target.value)} className="consult-admin-input" /></label>
-            <label><span className="consult-admin-label">Imagem de capa</span><input disabled={!permissions.canEdit} type="url" value={draft.cover_url || ''} onChange={event => setField('cover_url', event.target.value)} placeholder="https://..." className="consult-admin-input" /></label>
-            <label className="md:col-span-2"><span className="consult-admin-label">Conteúdo em Markdown</span><textarea disabled={!permissions.canEdit} rows={16} value={draft.content_markdown || ''} onChange={event => setField('content_markdown', event.target.value)} className="consult-admin-input font-mono text-xs" /></label>
-            <label className="md:col-span-2"><span className="consult-admin-label">Título SEO <small>{(draft.seo_title || '').length}/60</small></span><input disabled={!permissions.canEdit} value={draft.seo_title || ''} onChange={event => setField('seo_title', event.target.value)} className="consult-admin-input" /></label>
-            <label className="md:col-span-2"><span className="consult-admin-label">Descrição SEO <small>{(draft.seo_description || '').length}/160</small></span><textarea disabled={!permissions.canEdit} rows={3} value={draft.seo_description || ''} onChange={event => setField('seo_description', event.target.value)} className="consult-admin-input" /></label>
-            <label><span className="consult-admin-label">Palavras-chave</span><input disabled={!permissions.canEdit} value={listToCsv(draft.metadata?.keywords)} onChange={event => setMetaField('keywords', csvToList(event.target.value))} className="consult-admin-input" placeholder="termo 1, termo 2" /></label>
-            <label><span className="consult-admin-label">Tags</span><input disabled={!permissions.canEdit} value={listToCsv(draft.metadata?.tags)} onChange={event => setMetaField('tags', csvToList(event.target.value))} className="consult-admin-input" placeholder="tag 1, tag 2" /></label>
-            <label className="md:col-span-2"><span className="consult-admin-label">Fonte / publicação original</span><input disabled={!permissions.canEdit} type="url" value={draft.source_url || ''} onChange={event => setField('source_url', event.target.value)} className="consult-admin-input" placeholder="https://..." /></label>
-          </div>
-
-          {permissions.canEdit && <div className="mt-7 flex flex-wrap gap-2 border-t border-[#E5F0ED] pt-5"><button type="button" onClick={() => persist('draft')} disabled={saving} className="consult-admin-button"><Save size={15} /> {saving ? 'Salvando...' : 'Salvar rascunho'}</button><button type="button" onClick={() => persist('review')} disabled={saving} className="consult-admin-button">Enviar para revisão</button>{draft.status === 'published' && draft.is_public ? <button type="button" onClick={() => persist('withdraw')} disabled={saving} className="consult-admin-button consult-admin-button-danger">Retirar da publicação</button> : <button type="button" onClick={() => persist('publish')} disabled={saving} className="consult-admin-button consult-admin-button-primary">Publicar na homologação</button>}{draft.status === 'published' && draft.is_public && <a href={consultPath(`blog/${draft.slug}`)} target="_blank" rel="noreferrer" className="consult-admin-button"><ExternalLink size={15} /> Abrir artigo</a>}</div>}
-          <p className="mt-5 text-xs leading-5 text-[#78908E]">A ingestão automática nunca publica. Use revisão e publicação somente após conferir o conteúdo técnico e os campos SEO.</p>
-        </section>
-      </div>
+  const tabs = [
+    ['content', 'Conteúdo'], ['seo', 'SEO'], ['social', 'Social'], ['advanced', 'Avançado'],
+  ]
+  return <div className="consult-admin-editor consult-blog-admin">
+    {!permissions.canEdit && permissions.canRead && <div className="consult-admin-alert">Seu acesso é somente leitura.</div>}
+    {error && <div role="alert" className="consult-admin-alert consult-admin-alert-error">{error}</div>}
+    {message && <div role="status" className="consult-admin-alert consult-admin-alert-ok">{message}</div>}
+    <div className="consult-blog-heading">
+      <div><h3>Artigos do Blog</h3><p>Gerencie os artigos da Consult e revise os conteúdos originados dos Insights.</p></div>
+      <div className="consult-blog-actions"><button type="button" onClick={load} disabled={loading} className="consult-admin-button"><RefreshCw size={15}/> Atualizar</button>{permissions.canEdit && <button type="button" onClick={beginNew} className="consult-admin-button consult-admin-button-primary"><Plus size={15}/> Novo Artigo</button>}</div>
     </div>
-  )
+    {editorOpen && <section className="consult-blog-editor-card">
+      <header className="consult-blog-editor-heading"><div><FilePenLine size={17}/><strong>{draft.id ? 'Editar Artigo' : 'Novo Artigo'}</strong></div><div className="consult-blog-seo-score"><small>Pontuação SEO</small><b>{seoScore}/100</b></div></header>
+      <nav className="consult-blog-editor-tabs" aria-label="Campos do artigo">{tabs.map(([id,label]) => <button key={id} type="button" onClick={() => setEditorTab(id)} className={editorTab === id ? 'is-active' : ''}>{label}</button>)}</nav>
+      {editorTab === 'content' && <div className="consult-blog-editor-fields">
+        <label className="full"><span>Título *</span><input disabled={!permissions.canEdit} value={draft.title} onChange={event => setField('title', event.target.value)} className="consult-admin-input"/></label>
+        <label><span>Slug (URL)</span><input disabled={!permissions.canEdit} value={draft.slug} onChange={event => { setSlugTouched(true); setField('slug', event.target.value) }} className="consult-admin-input"/><small>URL: /blog/{draft.slug || 'seu-artigo'}</small></label>
+        <label className="full"><span>Resumo</span><textarea disabled={!permissions.canEdit} rows={3} value={draft.excerpt || ''} onChange={event => setField('excerpt', event.target.value)} className="consult-admin-input"/></label>
+        <label className="full"><span>Introdução SEO</span><textarea disabled={!permissions.canEdit} rows={3} value={draft.metadata?.seo_intro || ''} onChange={event => setMetaField('seo_intro',event.target.value)} className="consult-admin-input"/></label>
+        <label className="full"><span>Conteúdo *</span><textarea disabled={!permissions.canEdit} rows={16} value={draft.content_markdown || ''} onChange={event => setField('content_markdown',event.target.value)} className="consult-admin-input consult-blog-markdown" placeholder="Desenvolva o conteúdo com base no Insight selecionado e nas fontes indicadas. Confira os dados técnicos antes de enviar para revisão."/></label>
+        <label><span>Categoria</span><input disabled={!permissions.canEdit} value={draft.category || ''} onChange={event => setField('category',event.target.value)} className="consult-admin-input"/></label>
+        <label><span>Imagem de capa</span><input disabled={!permissions.canEdit} type="url" value={draft.cover_url || ''} onChange={event => setField('cover_url',event.target.value)} placeholder="https://..." className="consult-admin-input"/></label>
+      </div>}
+      {editorTab === 'seo' && <div className="consult-blog-editor-fields">
+        <label className="full"><span>Meta Title ({(draft.seo_title || '').length}/60) *</span><input disabled={!permissions.canEdit} maxLength={60} value={draft.seo_title || ''} onChange={event => setField('seo_title',event.target.value)} className="consult-admin-input"/></label>
+        <label className="full"><span>Meta Description ({(draft.seo_description || '').length}/160) *</span><textarea disabled={!permissions.canEdit} maxLength={160} rows={3} value={draft.seo_description || ''} onChange={event => setField('seo_description',event.target.value)} className="consult-admin-input"/></label>
+        <label className="full"><span>Palavras-chave</span><div className="consult-blog-inline-input"><input disabled={!permissions.canEdit} value={listToCsv(draft.metadata?.keywords)} onChange={event => setMetaField('keywords',csvToList(event.target.value))} placeholder="Separe por vírgulas" className="consult-admin-input"/></div></label>
+        <label className="full"><span>Tags</span><input disabled={!permissions.canEdit} value={listToCsv(draft.metadata?.tags)} onChange={event => setMetaField('tags',csvToList(event.target.value))} placeholder="Separe por vírgulas" className="consult-admin-input"/></label>
+        <div className="consult-blog-editor-note full"><strong>Análise de SEO</strong><span>O título, a descrição, o slug, o resumo e as palavras-chave contribuem para a pontuação.</span></div>
+      </div>}
+      {editorTab === 'social' && <div className="consult-blog-editor-fields">
+        <div className="consult-blog-social-preview full"><small>Prévia Redes Sociais</small><strong>{draft.metadata?.og_title || draft.title || 'Título Social'}</strong><span>{draft.metadata?.og_description || draft.excerpt || 'Descrição do artigo'}</span></div>
+        <label className="full"><span>Título Social (Open Graph)</span><input disabled={!permissions.canEdit} value={draft.metadata?.og_title || ''} onChange={event => setMetaField('og_title',event.target.value)} className="consult-admin-input"/></label>
+        <label className="full"><span>Descrição Social</span><textarea disabled={!permissions.canEdit} rows={3} value={draft.metadata?.og_description || ''} onChange={event => setMetaField('og_description',event.target.value)} className="consult-admin-input"/></label>
+        <label className="full"><span>Imagem Open Graph (1200x630px recomendado)</span><input disabled={!permissions.canEdit} value={draft.metadata?.og_image || ''} onChange={event => setMetaField('og_image',event.target.value)} placeholder="https://..." className="consult-admin-input"/></label>
+      </div>}
+      {editorTab === 'advanced' && <div className="consult-blog-editor-fields">
+        <label><span>Status do Artigo</span><select disabled={!permissions.canEdit} value={draft.status || 'draft'} onChange={event => setField('status',event.target.value)} className="consult-admin-input"><option value="draft">Rascunho</option><option value="review">Em revisão</option><option value="published">Publicado</option></select></label>
+        <label><span>Autor</span><input disabled={!permissions.canEdit} value={draft.author || ''} onChange={event => setField('author',event.target.value)} className="consult-admin-input"/></label>
+        <label className="full"><span>Fonte / publicação original</span><input disabled={!permissions.canEdit} type="url" value={draft.source_url || ''} onChange={event => setField('source_url',event.target.value)} placeholder="https://..." className="consult-admin-input"/></label>
+        <label><span>Texto do CTA</span><input disabled={!permissions.canEdit} value={draft.metadata?.cta_text || ''} onChange={event => setMetaField('cta_text',event.target.value)} className="consult-admin-input"/></label>
+        <label><span>Link do CTA</span><input disabled={!permissions.canEdit} value={draft.metadata?.cta_link || ''} onChange={event => setMetaField('cta_link',event.target.value)} className="consult-admin-input"/></label>
+        <label className="consult-blog-check full"><input disabled={!permissions.canEdit} type="checkbox" checked={draft.metadata?.allow_indexing !== false} onChange={event => setMetaField('allow_indexing',event.target.checked)}/><span>Permitir indexação pelos buscadores</span></label>
+        <div className="consult-blog-editor-note full"><strong>Origem editorial</strong><span>Os artigos podem ser preparados a partir de Insights relacionados aos serviços e ao público da Consult. A revisão técnica continua antes da publicação.</span></div>
+      </div>}
+      <footer className="consult-blog-editor-footer">
+        {permissions.canEdit && <><button type="button" onClick={() => persist('draft')} disabled={saving} className="consult-admin-button">{saving ? 'Salvando...' : draft.id ? 'Atualizar Artigo' : 'Criar Artigo'}</button><button type="button" onClick={() => persist('review')} disabled={saving} className="consult-admin-button">Enviar para revisão</button>{draft.status === 'published' && draft.is_public ? <button type="button" onClick={() => persist('withdraw')} disabled={saving} className="consult-admin-button">Retirar da publicação</button> : <button type="button" onClick={() => persist('publish')} disabled={saving} className="consult-admin-button consult-admin-button-primary">Publicar na homologação</button>}</>}
+        <button type="button" onClick={cancelEditor} className="consult-admin-button"><X size={14}/> Cancelar</button>
+        {draft.status === 'published' && draft.is_public && <a href={consultPath(`blog/${draft.slug}`)} target="_blank" rel="noreferrer" className="consult-admin-button"><ExternalLink size={15}/> Abrir artigo</a>}
+      </footer>
+    </section>}
+    <div className="consult-blog-list">
+      {loading && <div className="consult-admin-panel-state">Carregando artigos…</div>}
+      {!loading && !posts.length && <div className="consult-admin-panel-state">Nenhum artigo cadastrado.</div>}
+      {posts.map(post => <article key={post.id} className="consult-blog-post-card">
+        <div className="consult-blog-post-actions">
+          <button type="button" onClick={() => copyPostLink(post)} aria-label={`Copiar link de ${post.title}`} title="Compartilhar"><Share2 size={15}/></button>
+          <button type="button" onClick={() => edit(post)} aria-label={`Editar ${post.title}`} title="Editar"><FilePenLine size={15}/></button>
+          {permissions.canEdit && <button type="button" onClick={() => removePost(post)} aria-label={`Excluir ${post.title}`} title="Excluir"><Trash2 size={15}/></button>}
+        </div>
+        <div className="consult-blog-post-title"><h4>{post.title}</h4><span className="consult-blog-category">{post.category || 'Sem categoria'}</span><span className={'consult-blog-status ' + (post.status === 'published' && post.is_public ? 'is-published' : post.status === 'review' ? 'is-review' : 'is-draft')}>{statusLabel(post)}</span></div>
+        <p>{post.excerpt || 'Sem resumo cadastrado.'}</p>
+        {post.metadata?.keywords?.length > 0 && <div className="consult-blog-tags">{post.metadata.keywords.map(tag => <span key={tag}>{tag}</span>)}</div>}
+      </article>)}
+    </div>
+  </div>
 }

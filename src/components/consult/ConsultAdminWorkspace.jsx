@@ -134,6 +134,7 @@ function Dashboard({ posts, data, onNavigate }) {
 export default function ConsultAdminWorkspace({ session, client, project, profile, onLogout }) {
   const [active, setActive] = useState('insights')
   const [collapsed, setCollapsed] = useState(() => { try { return window.localStorage.getItem('consult-admin-sidebar-collapsed') === 'true' } catch { return false } })
+  const [articleSeed, setArticleSeed] = useState(null)
   useEffect(() => { try { window.localStorage.setItem('consult-admin-sidebar-collapsed', String(collapsed)) } catch {} }, [collapsed])
   const [data, setData] = useState({})
   const [loading, setLoading] = useState(false)
@@ -160,8 +161,8 @@ export default function ConsultAdminWorkspace({ session, client, project, profil
 
   const title = NAV.find(item => item.id === active)?.label || 'Insights'
   const renderModule = () => {
-    if (active === 'blog') return <SitePostsAdmin session={session} client={client} project={project} profile={profile} />
-    if (active === 'insights') return <ConsultTrendRadar session={session} />
+    if (active === 'blog') return <SitePostsAdmin session={session} client={client} project={project} profile={profile} initialInsight={articleSeed} onInsightConsumed={() => setArticleSeed(null)} />
+    if (active === 'insights') return <ConsultTrendRadar session={session} onCreateArticle={item => { setArticleSeed({ title: item.title, excerpt: item.query ? `Insight relacionado a ${item.query}. Desenvolva o artigo com base na fonte selecionada.` : 'Tema identificado no Google Trends. Pesquise fontes técnicas antes de redigir.', source_url: item.url, category: 'Diagnóstico por Imagem', keywords: item.query ? [item.query] : [] }); setActive('blog') }} />
     if (active === 'search') return <ConsultLiveReports key="search" session={session} initialTab="search" hideTabs />
     if (active === 'analytics') return <ConsultLiveReports key="analytics" session={session} initialTab="ga4" hideTabs />
     if (active === 'ads') return <ConsultLiveReports key="ads" session={session} initialTab="ads" hideTabs />
@@ -189,7 +190,7 @@ export default function ConsultAdminWorkspace({ session, client, project, profil
         </nav>
       </aside>
       <section className="consult-admin-main" aria-label={title}>
-        <div className="consult-admin-module-heading consult-admin-workspace-heading"><div><p className="consult-admin-kicker">Consult · Administração</p><h2>{title}</h2></div>{active !== 'blog' && <button type="button" onClick={load} disabled={loading} className="consult-admin-button"><RefreshCw size={15}/> Atualizar</button>}</div>
+        <div className="consult-admin-module-heading consult-admin-workspace-heading"><div><p className="consult-admin-kicker">Consult · Administração</p><h2>Administração</h2><p>Gerencie o conteúdo e acompanhe o desempenho de SEO.</p></div>{active !== 'blog' && <button type="button" onClick={load} disabled={loading} className="consult-admin-button"><RefreshCw size={15}/> Atualizar</button>}</div>
         {renderModule()}
       </section>
     </div>
