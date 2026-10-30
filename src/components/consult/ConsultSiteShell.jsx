@@ -100,46 +100,45 @@ function ConsultHorizontalBrand() {
   </span>
 }
 
-export function ConsultHeader({ horizontalBrand = true }) {
+export function ConsultHeader({ horizontalBrand = true, adminAuthenticated = false, onAdminLogout = () => {} }) {
   const [open, setOpen] = useState(false)
   const nav = [
     ['Início',consultPath()],
     ['Sobre',consultPath('sobre')],
     ['Serviços',consultPath('servicos')],
     ['Blog',consultPath('blog')],
-    ['Admin',consultPath('admin')],
     ['Cursos','https://consultcursos.herospark.co'],
     ['Portal','https://radiationqa.com.br/login'],
     ['Contato',`${consultPath()}#contato`],
   ]
+  const desktopLink = ([label,href]) => label === 'Serviços'
+    ? <div key={label} className="flex items-center gap-0"><Link to={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">Serviços</Link><ConsultServiceQuickLinks/></div>
+    : label === 'Contato'
+      ? <a key={label} href={href} className="inline-flex min-h-10 items-center rounded-xl bg-[#FF6B26] px-4 text-sm font-extrabold text-white shadow-lg shadow-black/10">{label}</a>
+      : href.startsWith('http')
+        ? <a key={label} href={href} target="_blank" rel="noreferrer" className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
+        : <Link key={label} to={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</Link>
+  const mobileLink = ([label,href]) => label === 'Serviços'
+    ? <div key={label}><Link to={href} onClick={()=>setOpen(false)} className="block rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">Serviços</Link><ConsultServiceQuickLinks mobile onNavigate={()=>setOpen(false)}/></div>
+    : label === 'Contato'
+      ? <a key={label} href={href} onClick={()=>setOpen(false)} className="rounded-lg bg-[#FF6B26] px-3 py-3 text-sm font-extrabold text-white">{label}</a>
+      : href.startsWith('http')
+        ? <a key={label} href={href} target="_blank" rel="noreferrer" onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</a>
+        : <Link key={label} to={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</Link>
   return <header className="sticky top-0 z-50 border-b border-white/10 bg-[#075653]/95 text-white backdrop-blur" style={{ backgroundColor: 'rgba(7,86,83,.97)', color: '#fff' }}>
     <div className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link to={consultPath()} className="flex items-center" aria-label="Página inicial da Consult">{horizontalBrand ? <ConsultHorizontalBrand/> : <img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-12 w-auto max-w-[190px] object-contain" />}</Link>
-      <nav className={`hidden items-center gap-6 xl:flex`}>
-        {nav.map(([label,href]) => label === 'Serviços'
-          ? <div key={label} className="flex items-center gap-0"><Link to={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">Serviços</Link><ConsultServiceQuickLinks/></div>
-          : href.startsWith('http')
-            ? <a key={label} href={href} target="_blank" rel="noreferrer" className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
-            : href.includes('#')
-              ? <a key={label} href={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</a>
-              : <Link key={label} to={href} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">{label}</Link>
-        )}
-        <a href={`${consultPath()}#contato`} className="inline-flex min-h-11 items-center gap-2 rounded-xl bg-[#FF6B26] px-4 py-2.5 text-sm font-extrabold text-white shadow-lg shadow-black/10 transition hover:brightness-95">
-          <FileText size={16}/> Solicite um orçamento
-        </a>
+      <Link to={consultPath()} className="flex items-center" aria-label="Página inicial da Consult">{horizontalBrand ? <ConsultHorizontalBrand/> : <img src={LOGO} alt="Consult Radiometria e Qualidade" className="h-12 w-auto max-w-[190px] object-contain" />}</Link>
+      <nav className="hidden items-center gap-6 xl:flex" aria-label="Menu principal">
+        {nav.map(desktopLink)}
+        <Link to={consultPath('admin')} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">Admin</Link>
+        {adminAuthenticated && <button type="button" onClick={onAdminLogout} className="text-sm font-medium text-white/90 transition hover:text-[#8AE600]">Sair</button>}
       </nav>
-      <button type="button" className={`inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 xl:hidden`} onClick={() => setOpen(v => !v)} aria-label={open ? "Fechar menu" : "Abrir menu"} aria-expanded={open} aria-controls="consult-internal-mobile-menu">{open ? <X size={20}/> : <Menu size={20}/>}</button>
+      <button type="button" className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-white/15 xl:hidden" onClick={() => setOpen(v => !v)} aria-label={open ? 'Fechar menu' : 'Abrir menu'} aria-expanded={open} aria-controls="consult-internal-mobile-menu">{open ? <X size={20}/> : <Menu size={20}/>}</button>
     </div>
-    {open && <div id="consult-internal-mobile-menu" className={`max-h-[calc(100dvh-73px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#064946] px-4 py-5 xl:hidden`}><div className="mx-auto flex max-w-7xl flex-col gap-1">
-      {nav.map(([label,href]) => label === 'Serviços'
-        ? <div key={label}><Link to={href} onClick={()=>setOpen(false)} className="block rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">Serviços</Link><ConsultServiceQuickLinks mobile onNavigate={()=>setOpen(false)}/></div>
-        : href.startsWith('http')
-          ? <a key={label} href={href} target="_blank" rel="noreferrer" onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</a>
-            : href.includes('#')
-            ? <a key={label} href={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</a>
-            : <Link key={label} to={href} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">{label}</Link>
-      )}
-      <a href={`${consultPath()}#contato`} onClick={()=>setOpen(false)} className="mt-2 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#FF6B26] px-5 py-3 text-sm font-extrabold text-white"><FileText size={16}/> Solicite um orçamento</a>
+    {open && <div id="consult-internal-mobile-menu" className="max-h-[calc(100dvh-73px)] overflow-y-auto overscroll-contain border-t border-white/10 bg-[#064946] px-4 py-5 xl:hidden"><div className="mx-auto flex max-w-7xl flex-col gap-1">
+      {nav.map(mobileLink)}
+      <Link to={consultPath('admin')} onClick={()=>setOpen(false)} className="rounded-lg px-3 py-3 text-sm font-semibold text-white/90 hover:bg-white/5">Admin</Link>
+      {adminAuthenticated && <button type="button" onClick={()=>{setOpen(false);onAdminLogout()}} className="rounded-lg px-3 py-3 text-left text-sm font-semibold text-white/90 hover:bg-white/5">Sair</button>}
     </div></div>}
   </header>
 }
