@@ -8,12 +8,27 @@ function isoDate(date) {
   return date.toISOString().slice(0, 10)
 }
 
-function reportWindow() {
-  const end = new Date()
-  end.setUTCDate(end.getUTCDate() - 3)
-  const start = new Date(end)
-  start.setUTCDate(start.getUTCDate() - 27)
-  return { startDate: isoDate(start), endDate: isoDate(end) }
+function validDate(value) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value || ''))) return false
+  const date = new Date(`${value}T00:00:00Z`)
+  return !Number.isNaN(date.getTime()) && isoDate(date) === value
+}
+
+function reportWindow(req) {
+  const latest = new Date()
+  latest.setUTCDate(latest.getUTCDate() - 3)
+  const latestDate = isoDate(latest)
+  const requestedEnd = req.query?.endDate
+  const endDate = validDate(requestedEnd) && requestedEnd < latestDate ? requestedEnd : latestDate
+  const start = new Date(`${endDate}T00:00:00Z`)
+  const requestedStart = req.query?.startDate
+  if (validDate(requestedStart) && requestedStart <= endDate) {
+    const earliestAllowed = new Date(start)
+    earliestAllowed.setUTCDate(earliestAllowed.getUTCDate() - 729)
+    if (requestedStart >= isoDate(earliestAllowed)) return { startDate: requestedStart, endDate }
+  }
+  start.setUTCDate(start.getUTCDate() - 364)
+  return { startDate: isoDate(start), endDate }
 }
 
 async function googleJson(url, token, options = {}) {
@@ -54,6 +69,7 @@ async function ga4Report(token, window, dimensions = []) {
   })
   const toRow = row => ({
     key: row.dimensionValues?.[0]?.value || 'Total',
+    secondaryKey: row.dimensionValues?.[1]?.value || '',
     sessions: Number(row.metricValues?.[0]?.value || 0),
     users: Number(row.metricValues?.[1]?.value || 0),
     pageViews: Number(row.metricValues?.[2]?.value || 0),
@@ -73,24 +89,37 @@ export default async function handler(req, res) {
   try {
     await requireConsultReader(req)
     const token = await getGoogleAccessToken()
-    const window = reportWindow()
-    const [ga4, channels, gscTotals, queries, pages] = await Promise.all([
+    const window = reportWindow(req)
+    const [ga4, channels, monthlyTraffic, monthlyOrganic, gscTotals, queries, pages, searchDaily] = await Promise.all([
       sourceCall(() => ga4Report(token, window)),
       sourceCall(() => ga4Report(token, window, ['sessionDefaultChannelGroup'])),
+      sourceCall(() => ga4Report(token, window, ['yearMonth'])),
+      sourceCall(() => ga4Report(token, window, ['yearMonth', 'sessionDefaultChannelGroup'])),
       sourceCall(() => searchAnalytics(token, window, [], 1)),
       sourceCall(() => searchAnalytics(token, window, ['query'])),
       sourceCall(() => searchAnalytics(token, window, ['page'])),
+      sourceCall(() => searchAnalytics(token, window, ['date'], 1000)),
     ])
     return sendJson(res, 200, {
       generatedAt: new Date().toISOString(),
       window,
       ga4: ga4.status === 'available' ? { status: 'available', ...ga4.data } : ga4,
       channels: channels.status === 'available' ? channels.data.rows : [],
+      monthlyTraffic: monthlyTraffic.status === 'available'
+        ? monthlyTraffic.data.rows.map(row => ({
+          ...row,
+          organicSessions: monthlyOrganic.status === 'available'
+            ? Number(monthlyOrganic.data.rows.find(item => item.key === row.key && /organic search/i.test(item.secondaryKey))?.sessions || 0)
+            : null,
+        }))
+        : [],
+      monthlyTrafficError: monthlyTraffic.status === 'unavailable' ? monthlyTraffic.error : null,
       searchConsole: {
         status: [gscTotals, queries, pages].some(source => source.status === 'available') ? 'available' : 'unavailable',
         totals: gscTotals.status === 'available' ? gscTotals.data[0] || { clicks: 0, impressions: 0, ctr: 0, position: 0 } : null,
         queries: queries.status === 'available' ? queries.data : [],
         pages: pages.status === 'available' ? pages.data : [],
+        daily: searchDaily.status === 'available' ? searchDaily.data : [],
         totalsError: gscTotals.status === 'unavailable' ? gscTotals.error : null,
         queryError: queries.status === 'unavailable' ? queries.error : null,
         pageError: pages.status === 'unavailable' ? pages.error : null,
