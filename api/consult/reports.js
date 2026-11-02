@@ -161,7 +161,7 @@ export default async function handler(req, res) {
   try {
     await requireConsultReader(req)
     const window = reportWindow(req)
-    const tokenResult = await sourceCall(() => getGoogleAccessToken())
+    const tokenResult = await sourceCall(() => getGoogleAccessToken({ gatewayAllowed: true }))
     const token = tokenResult.data
     const googleCall = fn => token ? sourceCall(fn) : Promise.resolve({ status: 'unavailable', error: tokenResult.error })
     const [ga4, channels, monthlyTraffic, monthlyOrganic, gscTotals, queries, pages, searchDaily, ads] = await Promise.all([
