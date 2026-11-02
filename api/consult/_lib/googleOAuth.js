@@ -8,6 +8,7 @@ function base64url(value) {
 }
 
 export async function getGoogleAccessToken() {
+  if (process.env.FIGUEIRA_INTEGRATIONS_API_URL && process.env.FIGUEIRA_INTEGRATIONS_API_KEY) return 'figueira_gateway';
   if (cachedAccessToken && Date.now() < tokenExpiresAt - 60_000) return cachedAccessToken
   const email = process.env.GOOGLE_SEARCH_CONSOLE_CLIENT_EMAIL
   const privateKey = process.env.GOOGLE_SEARCH_CONSOLE_PRIVATE_KEY?.replace(/\\n/g, '\n')
