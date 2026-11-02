@@ -57,7 +57,7 @@ async function googleJson(url, token, options = {}) {
       route = '/v1/search-console/queries'
       query.set('site_url','sc-domain:consult.med.br')
       dims = body.dimensions || []
-      query.set('dimensions', dims.join(',') || 'query')
+      query.set('dimensions', dims.length ? dims.join(',') : 'none')
       query.set('limit',String(Math.min(body.rowLimit || 25, 500)))
     } else throw new Error('Rota Google não suportada pelo Gateway.')
     const response = await fetch(base + route + '?' + query.toString(), {
