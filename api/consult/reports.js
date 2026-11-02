@@ -33,6 +33,56 @@ function reportWindow(req) {
 }
 
 async function googleJson(url, token, options = {}) {
+  if (token === 'figueira_gateway') {
+    const base = process.env.FIGUEIRA_INTEGRATIONS_API_URL?.replace(/\/$/, '')
+    const key = process.env.FIGUEIRA_INTEGRATIONS_API_KEY
+    if (!base || !key) throw new Error('Integração Figueira indisponível.')
+    const body = JSON.parse(options.body || '{}')
+    const query = new URLSearchParams()
+    const start = body.dateRanges?.[0]?.startDate || body.startDate
+    const end = body.dateRanges?.[0]?.endDate || body.endDate
+    if(start) query.set('start_date', start)
+    if(end) query.set('end_date', end)
+    let route
+    let dims = []
+    let metrics = []
+    if(url.includes('analyticsdata.googleapis.com')) {
+      route = '/v1/ga4/report'
+      query.set('property_id', GA4_PROPERTY_ID)
+      dims = (body.dimensions || []).map(d => d.name)
+      metrics = (body.metrics || []).map(m => m.name)
+      query.set('dimensions',dims.join(','))
+      query.set('metrics',metrics.join(','))
+    } else if (url.includes('searchAnalytics/query')) {
+      route = '/v1/search-console/queries'
+      query.set('site_url','sc-domain:consult.med.br')
+      dims = body.dimensions || []
+      query.set('dimensions', dims.join(',') || 'query')
+      query.set('limit',String(Math.min(body.rowLimit || 25, 500)))
+    } else throw new Error('Rota Google não suportada pelo Gateway.')
+    const response = await fetch(base + route + '?' + query.toString(), {
+      headers: { Authorization: 'Bearer ' + key },
+      signal: AbortSignal.timeout(25000),
+    })
+    if (!response.ok) throw new Error('Figueira Gateway retornou HTTP ' + response.status)
+    const envelope = await response.json()
+    const data = envelope.data
+    if(!data || typeof data !== 'object' || typeof data.message === 'string' && /^❌/.test(data.message))
+      throw new Error('Relatório indisponível no Gateway.')
+    if(route === '/v1/ga4/report') return {
+      rows: (data.rows || []).map(row=>({
+        dimensionValues:dims.map(k=>({value:String(row[k] || '')})),
+        metricValues:metrics.map(k=>({value:String(row[k] || 0)})),
+      }))
+    }
+    return {rows:(data.rows || []).map(row=>({
+      keys:dims.map(k=>String(row[k] || '')),
+      clicks:Number(row.clicks || 0),
+      impressions:Number(row.impressions || 0),
+      ctr:Number(row.ctr_pct || 0)/100,
+      position:Number(row.position || 0)
+    }))}
+  }
   const response = await fetch(url, {
     ...options,
     headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'application/json', ...(options.headers || {}) },
