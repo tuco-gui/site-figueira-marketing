@@ -28,6 +28,23 @@ export async function getAdsAccessToken() {
 }
 
 export async function runAdsQuery(query) {
+  if (process.env.FIGUEIRA_INTEGRATIONS_API_URL && process.env.FIGUEIRA_INTEGRATIONS_API_KEY && /FROM campaign\b/i.test(query)) {
+    const range = query.match(/segments\.date BETWEEN '([0-9-]{10})' AND '([0-9-]{10})'/i)
+    const p = new URLSearchParams({customer_id:adsCustomerId()})
+    if(range) { p.set('start_date',range[1]);p.set('end_date',range[2]) }
+    p.set('limit','50')
+    const response=await fetch(process.env.FIGUEIRA_INTEGRATIONS_API_URL.replace(/\/$/,'')+'/v1/google-ads/campaigns?'+p.toString(),{
+      headers:{Authorization:'Bearer '+process.env.FIGUEIRA_INTEGRATIONS_API_KEY},
+      signal:AbortSignal.timeout(25000),
+    })
+    if(!response.ok) throw new Error('Figueira Gateway Ads retornou HTTP '+response.status)
+    const payload=await response.json()
+    if(!Array.isArray(payload.data?.campaigns)) throw new Error('Resposta Google Ads inválida do Gateway')
+    return payload.data.campaigns.map(c=>({
+      campaign:{id:c.campaign_id,name:c.campaign_name,status:c.status},
+      metrics:{impressions:c.impressions,clicks:c.clicks,costMicros:Math.round(Number(c.cost_BRL||0)*1e6),conversions:c.conversions},
+    }))
+  }
   const customerId = String(process.env.GOOGLE_ADS_CUSTOMER_ID || '9614110878').replace(/-/g, '')
   const developerToken = process.env.GOOGLE_ADS_DEVELOPER_TOKEN
   if (!developerToken) {
