@@ -162,7 +162,7 @@ export default function ConsultAdminWorkspace({ session, client, project, profil
   const title = NAV.find(item => item.id === active)?.label || 'Insights'
   const renderModule = () => {
     if (active === 'blog') return <SitePostsAdmin session={session} client={client} project={project} profile={profile} initialInsight={articleSeed} onInsightConsumed={() => setArticleSeed(null)} />
-    if (active === 'insights') return <ConsultTrendRadar session={session} onCreateArticle={item => { setArticleSeed({ title: item.title, excerpt: item.query ? `Insight relacionado a ${item.query}. Desenvolva o artigo com base na fonte selecionada.` : 'Tema identificado no Google Trends. Pesquise fontes técnicas antes de redigir.', source_url: item.url, category: 'Diagnóstico por Imagem', keywords: item.query ? [item.query] : [] }); setActive('blog') }} />
+    if (active === 'insights') return <ConsultTrendRadar session={session} onCreateArticle={item => { setArticleSeed({ title: item.title, excerpt: item.excerpt || (item.query ? `Insight relacionado a ${item.query}. Desenvolva o artigo com base na fonte selecionada.` : 'Tema identificado no Google Trends. Pesquise fontes técnicas antes de redigir.'), context: item.context || '', source_url: item.url, category: item.category || 'Diagnóstico por Imagem', keywords: item.keywords || (item.query ? [item.query] : []) }); setActive('blog') }} />
     if (active === 'search') return <ConsultLiveReports key="search" session={session} initialTab="search" hideTabs />
     if (active === 'analytics') return <ConsultLiveReports key="analytics" session={session} initialTab="ga4" hideTabs />
     if (active === 'ads') return <ConsultLiveReports key="ads" session={session} initialTab="ads" hideTabs />
