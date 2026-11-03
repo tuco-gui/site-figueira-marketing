@@ -28,7 +28,7 @@ function reportWindow(req) {
     earliestAllowed.setUTCDate(earliestAllowed.getUTCDate() - 729)
     if (requestedStart >= isoDate(earliestAllowed)) return { startDate: requestedStart, endDate }
   }
-  start.setUTCDate(start.getUTCDate() - 364)
+  start.setUTCDate(start.getUTCDate() - 29)
   return { startDate: isoDate(start), endDate }
 }
 
@@ -159,7 +159,7 @@ async function adsReport(window) {
 const CACHE_CLIENT_ID = '0b88061b-676d-48fb-846a-2483b0cf8284'
 const CACHE_PROJECT_ID = '6bf62bce-b7ff-46f1-84e9-07c54689a8e4'
 
-async function cachedSource(source, window, loader) {
+async function cachedSource(source, window, loader, force = false) {
   const base = (process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '').replace(/\\/$/, '')
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY
   if (base && key) {
@@ -179,7 +179,7 @@ async function cachedSource(source, window, loader) {
         signal: AbortSignal.timeout(5000),
       })
       const rows = response.ok ? await response.json() : []
-      if (rows[0]?.metrics) return { status: rows[0].status === 'available' ? 'available' : 'unavailable', data: rows[0].metrics, cached: true, generatedAt: rows[0].generated_at }
+      if (!force && rows[0]?.metrics && Date.now() - Date.parse(rows[0].generated_at) < 36 * 60 * 60 * 1000) return { status: rows[0].status === 'available' ? 'available' : 'unavailable', data: rows[0].metrics, cached: true, generatedAt: rows[0].generated_at }
     } catch {}
   }
   const result = await sourceCall(loader)
@@ -268,13 +268,13 @@ export default async function handler(req, res) {
     if (requested.some(item => !['ga4', 'search', 'ads'].includes(item))) return sendJson(res, 400, { error: 'Fonte de relatório inválida.' })
     const [ga4Result, searchResult, adsResult] = await Promise.all([
       requested.includes('ga4')
-        ? token ? cachedSource('ga4', window, () => loadGa4(token, window)) : Promise.resolve({ status: 'unavailable', error: tokenResult.error })
+        ? token ? cachedSource('ga4', window, () => loadGa4(token, window), isCron) : Promise.resolve({ status: 'unavailable', error: tokenResult.error })
         : Promise.resolve(null),
       requested.includes('search')
-        ? token ? cachedSource('search_console', window, () => loadSearch(token, window)) : Promise.resolve({ status: 'unavailable', error: tokenResult.error })
+        ? token ? cachedSource('search_console', window, () => loadSearch(token, window), isCron) : Promise.resolve({ status: 'unavailable', error: tokenResult.error })
         : Promise.resolve(null),
       requested.includes('ads')
-        ? cachedSource('google_ads', window, () => adsReport(window))
+        ? cachedSource('google_ads', window, () => adsReport(window), isCron)
         : Promise.resolve(null),
     ])
     if (isCron) return sendJson(res, 200, { ok: true, window, sources: { ga4: ga4Result?.status, searchConsole: searchResult?.status, ads: adsResult?.status }, generatedAt: new Date().toISOString() })
