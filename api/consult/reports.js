@@ -179,7 +179,7 @@ async function cachedSource(source, window, loader, force = false) {
         signal: AbortSignal.timeout(5000),
       })
       const rows = response.ok ? await response.json() : []
-      if (!force && rows[0]?.metrics && Date.now() - Date.parse(rows[0].generated_at) < 36 * 60 * 60 * 1000) return { status: rows[0].status === 'available' ? 'available' : 'unavailable', data: rows[0].metrics, cached: true, generatedAt: rows[0].generated_at }
+      if (!force && rows[0]?.status === 'available' && rows[0]?.metrics && Date.now() - Date.parse(rows[0].generated_at) < 36 * 60 * 60 * 1000) return { status: rows[0].status === 'available' ? 'available' : 'unavailable', data: rows[0].metrics, cached: true, generatedAt: rows[0].generated_at }
     } catch {}
   }
   const result = await sourceCall(loader)
