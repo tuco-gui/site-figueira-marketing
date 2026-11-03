@@ -39,7 +39,8 @@ function currency(value) { return Number(value || 0).toLocaleString('pt-BR', { s
 function duration(value) { const seconds = Math.max(0, Math.round(Number(value || 0))); return `${Math.floor(seconds / 60)}m ${String(seconds % 60).padStart(2, '0')}s` }
 function dateLabel(value) {
   if (!value) return '—'
-  const date = new Date(`${value}T00:00:00Z`)
+  const normalized = /^\\d{8}$/.test(String(value)) ? `${value.slice(0, 4)}-${value.slice(4, 6)}-${value.slice(6, 8)}` : value
+  const date = new Date(`${normalized}T00:00:00Z`)
   return Number.isNaN(date.getTime()) ? value : date.toLocaleDateString('pt-BR', { timeZone: 'UTC' })
 }
 function monthLabel(value) {
