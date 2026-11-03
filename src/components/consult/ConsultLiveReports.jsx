@@ -24,7 +24,7 @@ function defaultRange() {
   const end = new Date()
   end.setUTCDate(end.getUTCDate() - 3)
   const start = new Date(end)
-  start.setUTCDate(start.getUTCDate() - 364)
+  start.setUTCDate(start.getUTCDate() - 29)
   return { startDate: dateString(start), endDate: dateString(end) }
 }
 function shiftDays(value, days) {
@@ -81,7 +81,7 @@ function ReportTableNotice({ children, tone = 'info' }) {
 export default function ConsultLiveReports({ session, snapshots = [], initialTab = 'overview', hideTabs = false }) {
   const initialRange = useMemo(defaultRange, [])
   const [activeTab, setActiveTab] = useState(initialTab)
-  const [preset, setPreset] = useState('12m')
+  const [preset, setPreset] = useState('30d')
   const [startDate, setStartDate] = useState(initialRange.startDate)
   const [endDate, setEndDate] = useState(initialRange.endDate)
   const [data, setData] = useState(null)
@@ -90,10 +90,12 @@ export default function ConsultLiveReports({ session, snapshots = [], initialTab
   const [copied, setCopied] = useState(false)
 
   const load = useCallback(async () => {
-    if (!session?.access_token) return
+    if (!session?.access_token || (hideTabs ? initialTab === 'indexing' : activeTab === 'indexing')) return
     setLoading(true)
     setError('')
-    const params = new URLSearchParams({ startDate, endDate })
+    const reportTab = hideTabs ? initialTab : activeTab
+    const source = ['ga4', 'search', 'ads'].includes(reportTab) ? reportTab : 'overview'
+    const params = new URLSearchParams({ startDate, endDate, source })
     try {
       const response = await fetch(`/api/consult/reports?${params.toString()}`, { headers: { Authorization: `Bearer ${session.access_token}` } })
       const result = await response.json()
@@ -104,7 +106,7 @@ export default function ConsultLiveReports({ session, snapshots = [], initialTab
     } finally {
       setLoading(false)
     }
-  }, [session?.access_token, startDate, endDate])
+  }, [session?.access_token, startDate, endDate, activeTab, hideTabs, initialTab])
 
   useEffect(() => { load() }, [load])
 
@@ -112,7 +114,7 @@ export default function ConsultLiveReports({ session, snapshots = [], initialTab
     setPreset(value)
     if (value === 'custom') return
     const rangeEnd = defaultRange().endDate
-    const days = value === '28d' ? 27 : value === '90d' ? 89 : 364
+    const days = value === '7d' ? 6 : value === '90d' ? 89 : value === '12m' ? 364 : 29
     setEndDate(rangeEnd)
     setStartDate(shiftDays(rangeEnd, -days))
   }
@@ -163,11 +165,11 @@ export default function ConsultLiveReports({ session, snapshots = [], initialTab
     <div className="consult-admin-module-heading consult-admin-performance-heading"><div><p className="consult-admin-kicker">Figueira Marketing · Consult</p><h2>Painel de desempenho</h2><p>GA4, Search Console, indexação e resultados de mídia em um relatório único.</p></div><button type="button" onClick={load} disabled={loading} className="consult-admin-button"><span className={loading ? 'consult-admin-spin' : ''}>↻</span> Atualizar dados</button></div>
     <div className="consult-admin-performance-toolbar">
       {!hideTabs && <nav className="consult-admin-performance-tabs" aria-label="Seções do painel">{tabs}</nav>}
-      <div className="consult-admin-date-picker"><CalendarDays size={16}/><select aria-label="Período do relatório" value={preset} onChange={event => choosePreset(event.target.value)}><option value="12m">Últimos 12 meses</option><option value="90d">Últimos 90 dias</option><option value="28d">Últimos 28 dias</option><option value="custom">Personalizado</option></select><input aria-label="Data inicial" type="date" value={startDate} onChange={event => { setPreset('custom'); setStartDate(event.target.value) }}/><span>até</span><input aria-label="Data final" type="date" value={endDate} onChange={event => { setPreset('custom'); setEndDate(event.target.value) }}/><button type="button" onClick={load} disabled={loading}>Aplicar</button></div>
+      <div className="consult-admin-date-picker"><CalendarDays size={16}/><select aria-label="Período do relatório" value={preset} onChange={event => choosePreset(event.target.value)}><option value="7d">Últimos 7 dias</option><option value="30d">Últimos 30 dias</option><option value="90d">Últimos 90 dias</option><option value="12m">Últimos 12 meses</option><option value="custom">Personalizado</option></select><input aria-label="Data inicial" type="date" value={startDate} onChange={event => { setPreset('custom'); setStartDate(event.target.value) }}/><span>até</span><input aria-label="Data final" type="date" value={endDate} onChange={event => { setPreset('custom'); setEndDate(event.target.value) }}/><button type="button" onClick={load} disabled={loading}>Aplicar</button></div>
     </div>
     {error && <div role="alert" className="consult-admin-alert consult-admin-alert-error">{error}</div>}
-    {loading && !data && <div className="consult-admin-panel-state">Carregando dados de Analytics e Search Console…</div>}
-    {data && <div className="consult-admin-period-note">Período: <b>{dateLabel(data.window?.startDate)} a {dateLabel(data.window?.endDate)}</b><span>·</span> Dados ao vivo, atualizados em {new Date(data.generatedAt).toLocaleString('pt-BR')}.</div>}
+    {loading && !data && <div className="consult-admin-panel-state">Carregando dados do relatório…</div>}
+    {data && <div className="consult-admin-period-note">Período: <b>{dateLabel(data.window?.startDate)} a {dateLabel(data.window?.endDate)}</b><span>·</span> Dados do relatório · {new Date(data.generatedAt).toLocaleString('pt-BR')}.</div>}
     {activeTab === 'overview' && <div className="consult-admin-performance-content">
       <div className="consult-admin-performance-title"><h3>Visão geral · Consult</h3><p>Desempenho digital no período selecionado</p></div>
       <div className="consult-admin-metrics consult-admin-kpi-grid">
