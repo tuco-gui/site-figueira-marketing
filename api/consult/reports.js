@@ -160,7 +160,7 @@ const CACHE_CLIENT_ID = '0b88061b-676d-48fb-846a-2483b0cf8284'
 const CACHE_PROJECT_ID = '6bf62bce-b7ff-46f1-84e9-07c54689a8e4'
 
 async function cachedSource(source, window, loader, force = false) {
-  const base = (process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '').replace(/\\/$/, '')
+  const base = (process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '').replace(/\/$/, '')
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY
   if (base && key) {
     try {
