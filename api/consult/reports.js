@@ -115,7 +115,11 @@ async function ga4Report(token, window, dimensions = []) {
       dimensions: dimensions.map(name => ({ name })),
       metrics: metrics.map(name => ({ name })),
       limit: 25,
-      orderBys: dimensions.length ? [{ dimension: { dimensionName: dimensions[0] } }] : [],
+      orderBys: dimensions.length
+        ? ['date', 'yearMonth'].includes(dimensions[0])
+          ? [{ dimension: { dimensionName: dimensions[0] } }]
+          : [{ metric: { metricName: dimensions[0] === 'pagePath' ? 'screenPageViews' : 'sessions' }, desc: true }]
+        : [],
     }),
   })
   const toRow = row => ({
