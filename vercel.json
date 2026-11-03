@@ -109,6 +109,10 @@
   ],
   "rewrites": [
     {
+      "source": "/api/meta/whatsapp-webhook",
+      "destination": "/api/meta/whatsapp-webhook"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
