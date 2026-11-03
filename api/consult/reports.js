@@ -156,50 +156,145 @@ async function adsReport(window) {
   return { customerId, rows, totals }
 }
 
-export default async function handler(req, res) {
-  if (req.method !== 'GET') return sendJson(res, 405, { error: 'Método não permitido.' })
-  try {
-    await requireConsultReader(req)
-    const window = reportWindow(req)
-    const tokenResult = await sourceCall(() => getGoogleAccessToken({ gatewayAllowed: true }))
-    const token = tokenResult.data
-    const googleCall = fn => token ? sourceCall(fn) : Promise.resolve({ status: 'unavailable', error: tokenResult.error })
-    const [ga4, channels, monthlyTraffic, monthlyOrganic, gscTotals, queries, pages, searchDaily, ads] = await Promise.all([
-      googleCall(() => ga4Report(token, window)),
-      googleCall(() => ga4Report(token, window, ['sessionDefaultChannelGroup'])),
-      googleCall(() => ga4Report(token, window, ['yearMonth'])),
-      googleCall(() => ga4Report(token, window, ['yearMonth', 'sessionDefaultChannelGroup'])),
-      googleCall(() => searchAnalytics(token, window, [], 1)),
-      googleCall(() => searchAnalytics(token, window, ['query'])),
-      googleCall(() => searchAnalytics(token, window, ['page'])),
-      googleCall(() => searchAnalytics(token, window, ['date'], 1000)),
-      sourceCall(() => adsReport(window)),
-    ])
-    return sendJson(res, 200, {
-      generatedAt: new Date().toISOString(),
-      window,
-      ga4: ga4.status === 'available' ? { status: 'available', ...ga4.data } : ga4,
-      channels: channels.status === 'available' ? channels.data.rows : [],
-      monthlyTraffic: monthlyTraffic.status === 'available'
-        ? monthlyTraffic.data.rows.map(row => ({
+const CACHE_CLIENT_ID = '0b88061b-676d-48fb-846a-2483b0cf8284'
+const CACHE_PROJECT_ID = '6bf62bce-b7ff-46f1-84e9-07c54689a8e4'
+
+async function cachedSource(source, window, loader) {
+  const base = (process.env.SUPABASE_URL || process.env.VITE_SUPABASE_URL || '').replace(/\\/$/, '')
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_SECRET_KEY
+  if (base && key) {
+    try {
+      const params = new URLSearchParams({
+        select: 'metrics,generated_at',
+        client_id: 'eq.' + CACHE_CLIENT_ID,
+        project_id: 'eq.' + CACHE_PROJECT_ID,
+        source: 'eq.' + source,
+        period_start: 'eq.' + window.startDate,
+        period_end: 'eq.' + window.endDate,
+        order: 'generated_at.desc',
+        limit: '1',
+      })
+      const response = await fetch(base + '/rest/v1/analytics_snapshots?' + params, {
+        headers: { apikey: key, Authorization: 'Bearer ' + key },
+        signal: AbortSignal.timeout(5000),
+      })
+      const rows = response.ok ? await response.json() : []
+      if (rows[0]?.metrics) return { status: rows[0].status === 'available' ? 'available' : 'unavailable', data: rows[0].metrics, cached: true, generatedAt: rows[0].generated_at }
+    } catch {}
+  }
+  const result = await sourceCall(loader)
+  if (base && key) {
+    try {
+      await fetch(base + '/rest/v1/analytics_snapshots', {
+        method: 'POST',
+        headers: { apikey: key, Authorization: 'Bearer ' + key, 'Content-Type': 'application/json', Prefer: 'return=minimal' },
+        body: JSON.stringify({
+          client_id: CACHE_CLIENT_ID,
+          project_id: CACHE_PROJECT_ID,
+          source,
+          period_start: window.startDate,
+          period_end: window.endDate,
+          status: result.status,
+          metrics: result.status === 'available' ? result.data : { error: result.error },
+          dimensions: {},
+          insights: [],
+          generated_at: new Date().toISOString(),
+        }),
+        signal: AbortSignal.timeout(5000),
+      })
+    } catch {}
+  }
+  return result
+}
+
+async function loadGa4(token, window) {
+  const calls = await Promise.all([
+    sourceCall(() => ga4Report(token, window)),
+    sourceCall(() => ga4Report(token, window, ['sessionDefaultChannelGroup'])),
+    sourceCall(() => ga4Report(token, window, ['yearMonth'])),
+    sourceCall(() => ga4Report(token, window, ['yearMonth', 'sessionDefaultChannelGroup'])),
+  ])
+  const [ga4, channels, monthlyTraffic, monthlyOrganic] = calls
+  return {
+    ga4: ga4.status === 'available' ? { status: 'available', ...ga4.data } : ga4,
+    channels: channels.status === 'available' ? channels.data.rows : [],
+    monthlyTraffic: monthlyTraffic.status === 'available'
+      ? monthlyTraffic.data.rows.map(row => ({
           ...row,
           organicSessions: monthlyOrganic.status === 'available'
             ? Number(monthlyOrganic.data.rows.find(item => item.key === row.key && /organic search/i.test(item.secondaryKey))?.sessions || 0)
             : null,
         }))
-        : [],
-      monthlyTrafficError: monthlyTraffic.status === 'unavailable' ? monthlyTraffic.error : null,
-      searchConsole: {
-        status: [gscTotals, queries, pages].some(source => source.status === 'available') ? 'available' : 'unavailable',
-        totals: gscTotals.status === 'available' ? gscTotals.data[0] || { clicks: 0, impressions: 0, ctr: 0, position: 0 } : null,
-        queries: queries.status === 'available' ? queries.data : [],
-        pages: pages.status === 'available' ? pages.data : [],
-        daily: searchDaily.status === 'available' ? searchDaily.data : [],
-        totalsError: gscTotals.status === 'unavailable' ? gscTotals.error : null,
-        queryError: queries.status === 'unavailable' ? queries.error : null,
-        pageError: pages.status === 'unavailable' ? pages.error : null,
-      },
-      ads: ads.status === 'available' ? { status: 'available', ...ads.data, message: ads.data.rows.length ? null : 'Conta Consult consultada; não há campanhas com dados no período selecionado.' } : { status: 'unavailable', customerId: adsCustomerId(), message: ads.error },
+      : [],
+    error: [ga4, channels, monthlyTraffic].find(item => item.status === 'unavailable')?.error || null,
+  }
+}
+
+async function loadSearch(token, window) {
+  const [totals, queries, pages, daily] = await Promise.all([
+    sourceCall(() => searchAnalytics(token, window, [], 1)),
+    sourceCall(() => searchAnalytics(token, window, ['query'], 250)),
+    sourceCall(() => searchAnalytics(token, window, ['page'], 250)),
+    sourceCall(() => searchAnalytics(token, window, ['date'], 500)),
+  ])
+  return {
+    status: [totals, queries, pages].some(item => item.status === 'available') ? 'available' : 'unavailable',
+    totals: totals.status === 'available' ? totals.data[0] || { clicks: 0, impressions: 0, ctr: 0, position: 0 } : null,
+    queries: queries.status === 'available' ? queries.data : [],
+    pages: pages.status === 'available' ? pages.data : [],
+    daily: daily.status === 'available' ? daily.data : [],
+    totalsError: totals.error || null,
+    queryError: queries.error || null,
+    pageError: pages.error || null,
+  }
+}
+
+export default async function handler(req, res) {
+  if (req.method !== 'GET') return sendJson(res, 405, { error: 'Método não permitido.' })
+  try {
+    const source = String(req.query?.source || 'overview').toLowerCase()
+    const isCron = source === 'sync'
+    if (isCron) {
+      const expected = process.env.CRON_SECRET
+      const supplied = (req.headers.authorization || '').replace(/^Bearer\\s+/i, '')
+      if (!expected || supplied !== expected) return sendJson(res, 401, { error: 'Não autorizado.' })
+    } else {
+      await requireConsultReader(req)
+    }
+    const window = reportWindow(req)
+    const tokenResult = await sourceCall(() => getGoogleAccessToken({ gatewayAllowed: true }))
+    const token = tokenResult.data
+    const requested = isCron ? ['ga4', 'search', 'ads'] : ['overview', 'insights'].includes(source) ? ['ga4', 'search', 'ads'] : [source]
+    if (requested.some(item => !['ga4', 'search', 'ads'].includes(item))) return sendJson(res, 400, { error: 'Fonte de relatório inválida.' })
+    const [ga4Result, searchResult, adsResult] = await Promise.all([
+      requested.includes('ga4')
+        ? token ? cachedSource('ga4', window, () => loadGa4(token, window)) : Promise.resolve({ status: 'unavailable', error: tokenResult.error })
+        : Promise.resolve(null),
+      requested.includes('search')
+        ? token ? cachedSource('search_console', window, () => loadSearch(token, window)) : Promise.resolve({ status: 'unavailable', error: tokenResult.error })
+        : Promise.resolve(null),
+      requested.includes('ads')
+        ? cachedSource('google_ads', window, () => adsReport(window))
+        : Promise.resolve(null),
+    ])
+    if (isCron) return sendJson(res, 200, { ok: true, window, sources: { ga4: ga4Result?.status, searchConsole: searchResult?.status, ads: adsResult?.status }, generatedAt: new Date().toISOString() })
+    const ga4 = ga4Result?.status === 'available' ? { status: 'available', ...ga4Result.data.ga4 } : ga4Result || null
+    const channels = ga4Result?.status === 'available' ? ga4Result.data.channels : []
+    const monthlyTraffic = ga4Result?.status === 'available' ? ga4Result.data.monthlyTraffic : []
+    const searchConsole = searchResult?.status === 'available' ? searchResult.data : searchResult ? { status: 'unavailable', totals: null, queries: [], pages: [], daily: [], queryError: searchResult.error } : null
+    const ads = adsResult?.status === 'available'
+      ? { status: 'available', ...adsResult.data, message: adsResult.data.rows.length ? null : 'Conta Consult consultada; não há campanhas com dados no período selecionado.' }
+      : adsResult ? { status: 'unavailable', customerId: adsCustomerId(), message: adsResult.error } : null
+    return sendJson(res, 200, {
+      generatedAt: new Date().toISOString(),
+      cached: Boolean(ga4Result?.cached || searchResult?.cached),
+      window,
+      ga4,
+      channels,
+      monthlyTraffic,
+      monthlyTrafficError: ga4Result?.error || null,
+      searchConsole,
+      ads,
     })
   } catch (error) {
     return handleError(res, error)
