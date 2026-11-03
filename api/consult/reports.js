@@ -107,7 +107,7 @@ async function searchAnalytics(token, window, dimensions, limit = 25) {
 }
 
 async function ga4Report(token, window, dimensions = []) {
-  const metrics = ['sessions', 'totalUsers', 'screenPageViews', 'engagedSessions', 'keyEvents']
+  const metrics = ['sessions', 'totalUsers', 'screenPageViews', 'engagedSessions', 'keyEvents', 'newUsers', 'averageSessionDuration']
   const payload = await googleJson(`https://analyticsdata.googleapis.com/v1beta/properties/${encodeURIComponent(GA4_PROPERTY_ID)}:runReport`, token, {
     method: 'POST',
     body: JSON.stringify({
@@ -126,6 +126,8 @@ async function ga4Report(token, window, dimensions = []) {
     pageViews: Number(row.metricValues?.[2]?.value || 0),
     engagedSessions: Number(row.metricValues?.[3]?.value || 0),
     keyEvents: Number(row.metricValues?.[4]?.value || 0),
+    newUsers: Number(row.metricValues?.[5]?.value || 0),
+    avgSessionDuration: Number(row.metricValues?.[6]?.value || 0),
   })
   return { total: toRow(payload.rows?.[0] || {}), rows: (payload.rows || []).map(toRow) }
 }
@@ -165,7 +167,7 @@ async function cachedSource(source, window, loader, force = false) {
   if (base && key) {
     try {
       const params = new URLSearchParams({
-        select: 'metrics,generated_at',
+        select: 'metrics,status,generated_at',
         client_id: 'eq.' + CACHE_CLIENT_ID,
         project_id: 'eq.' + CACHE_PROJECT_ID,
         source: 'eq.' + source,
@@ -213,11 +215,17 @@ async function loadGa4(token, window) {
     sourceCall(() => ga4Report(token, window, ['sessionDefaultChannelGroup'])),
     sourceCall(() => ga4Report(token, window, ['yearMonth'])),
     sourceCall(() => ga4Report(token, window, ['yearMonth', 'sessionDefaultChannelGroup'])),
+    sourceCall(() => ga4Report(token, window, ['date'])),
+    sourceCall(() => ga4Report(token, window, ['pagePath'])),
+    sourceCall(() => ga4Report(token, window, ['sessionSource'])),
   ])
-  const [ga4, channels, monthlyTraffic, monthlyOrganic] = calls
+  const [ga4, channels, monthlyTraffic, monthlyOrganic, dailyTraffic, pages, sources] = calls
   return {
     ga4: ga4.status === 'available' ? { status: 'available', ...ga4.data } : ga4,
     channels: channels.status === 'available' ? channels.data.rows : [],
+    dailyTraffic: dailyTraffic.status === 'available' ? dailyTraffic.data.rows : [],
+    pages: pages.status === 'available' ? pages.data.rows : [],
+    sources: sources.status === 'available' ? sources.data.rows : [],
     monthlyTraffic: monthlyTraffic.status === 'available'
       ? monthlyTraffic.data.rows.map(row => ({
           ...row,
