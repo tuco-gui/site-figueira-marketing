@@ -9,7 +9,7 @@ function reportRange() {
   const end = new Date()
   end.setUTCDate(end.getUTCDate() - 3)
   const start = new Date(end)
-  start.setUTCDate(start.getUTCDate() - 27)
+  start.setUTCDate(start.getUTCDate() - 29)
   return { startDate: start.toISOString().slice(0, 10), endDate: end.toISOString().slice(0, 10) }
 }
 
@@ -25,7 +25,7 @@ export default function ConsultIndexingReport({ session }) {
     setError('')
     try {
       const range = reportRange()
-      const query = new URLSearchParams(range)
+      const query = new URLSearchParams({ ...range, source: 'search' })
       const response = await fetch('/api/consult/reports?' + query.toString(), {
         headers: { Authorization: 'Bearer ' + session.access_token },
         cache: 'no-store',
@@ -49,7 +49,7 @@ export default function ConsultIndexingReport({ session }) {
       <div>
         <p className="consult-admin-kicker">Consult · Search Console</p>
         <h2>Indexação de páginas</h2>
-        <p>Páginas do domínio consult.med.br que apareceram na Pesquisa Google nos últimos 28 dias.</p>
+        <p>Páginas do domínio consult.med.br que apareceram na Pesquisa Google nos últimos 30 dias.</p>
       </div>
       <button type="button" onClick={load} disabled={loading} className="consult-admin-button"><RefreshCw size={15}/> Atualizar páginas</button>
     </div>
